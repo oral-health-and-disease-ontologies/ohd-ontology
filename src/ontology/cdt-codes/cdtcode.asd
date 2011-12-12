@@ -7,7 +7,7 @@
 
 (setf (logical-pathname-translations "cdtcode")
       `(
-	("cdtdist;**;*.*" ,(format nil "~a/**/*.*" cl-user::*cdt-source*))
+	("cdtdist;**;*.*" ,(format nil "~a/**/*.*" cl-user::*cdt-dist*))
 	("**;*.*" ,(make-pathname :directory (append (pathname-directory *load-pathname*)
 						     '(:wild-inferiors))
 				  :name :wild
