@@ -3,8 +3,11 @@
 
 (in-package :asdf)
 
+(defvar cl-user::*cdt-source* "needs to be defined")
+
 (setf (logical-pathname-translations "cdtcode")
-      `(("cdtsource;**;*.*" "where the cdt sources are")
+      `(
+	("cdtsource;**;*.*" ,(format nil "~a/**/*.*" cl-user::*cdt-source*))
 	("**;*.*" ,(make-pathname :directory (append (pathname-directory *load-pathname*)
 						     '(:wild-inferiors))
 				  :name :wild
