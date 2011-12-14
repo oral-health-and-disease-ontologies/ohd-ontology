@@ -1,6 +1,12 @@
 (defparameter *parent-class-ht* nil
   "Global hash table that contains child/parent class information.")
 
+(defparameter *meta-class-id-ht*
+  "Global hash table to store the auto-generated id's of the cdt categories.")
+
+(defparameter *cdt-description-uri* nil
+  "Global variable to hold the uri of the cdt_label annotation.")
+
 ;;;; main driver function
 (defun get-cdtcode-ont (iri xmlfile)
   "This functions Builds an ontology of the CDT Codes.
@@ -19,7 +25,7 @@ Usage:
 
     ;; build xmlse parse list
     (setf xmls-parse (get-cdtcode-xmls xmlfile))
-
+    
     ;; get list of tags
     (setf meta-class-name-list (what-tags xmls-parse))
 
@@ -30,12 +36,50 @@ Usage:
 				  "Code" "CDTLabel" "CDTComment") :test 'equal)
 	   (setf meta-class-name-list (remove item meta-class-name-list))))	 
     
+    ;; convert meta class names to lowercase
+    (setf meta-class-name-list
+	  (mapcar 'string-downcase meta-class-name-list))
+    
+    ;; make id associated with meta classes
+    (make-meta-class-id-hash-table meta-class-name-list)
+
     ;; create hash table for child/parent class info
     (make-parent-class-hash-table meta-class-name-list xmls-parse)
 
-    (with-ontology ont (:collecting t :base iri)
-	(
-	 (as (import "purl.obolib"
+    ;; verify the iri ends with "/"
+    (unless (equal (subseq iri (- (length iri) 1)) "/")
+      (setf iri (str+ iri "/")))
+
+    (with-ontology ont (:collecting t :base iri :ontology-iri (str+ iri "cdt-codes.owl"))
+	(;;import IAO meta data	 
+	 (as `(imports !<http://purl.obolibrary.org/obo/iao/ontology-metadata.owl>))
+
+	 ;; add ontology annotations
+	 (as `(annotation !dc:creator "American Dental Association; see www.ada.org/dentalcode"))
+	 (as `(annotation !dc:contributor "Bill Duncan"))
+	 (as `(annotation !dc:contributor "Alan Ruttenberg"))
+	 (as `(declaration (annotation-property !dc:creator)))
+	 (as `(declaration (annotation-property !dc:contributor)))
+
+	 (as `(declaration (annotation-property !dc:identifier)))
+	 
+	 ;; make uri for cdt description annotation property
+	 ;; this will be used to annotate cdt codes (and categories) with
+	 ;; the descriptions provided by the ADA
+	 (setf *cdt-description-uri* (make-uri (str+ iri "cdt_description")))
+
+	 ;; add cdt_label annotation as a sub-annotation of IAO's "alternative term" 
+	 ;; annotation; i.e., IAO_0000118
+	 (as `(declaration (annotation-property ,*cdt-description-uri*)))
+	 (as `(annotation-assertion !rdfs:comment ,*cdt-description-uri* 
+				    "This annotation is used for the descriptions of the CDT codes provided by the American Dental Association."))
+	 (as `(subannotationpropertyof ,*cdt-description-uri*
+				       !<http://purl.obolibrary.org/obo/IAO_0000118>))
+	 (as `(annotation-property-range ,*cdt-description-uri* !xsd:string))
+	 (as `(annotation-property-domain ,*cdt-description-uri* 
+					  ,(make-uri (str+ iri "cdt-code"))))
+
+	 
 	 ;; add top level cdt code class (i.e., most general class) axioms
 	 (as (get-top-level-cdt-class-axioms iri))
 
@@ -48,9 +92,9 @@ Usage:
 	      ;; meta class has form:
 	      ;; (CLASS-NAME NIL (CLASS-LABEL ...) (CDTCOMMENT ..) (.......)
 	      ;; so, for efficiency I am getting the first four items
-	       (setf temp-list 
-		     (list (first cdt-list) (second cdt-list) 
-			   (third cdt-list) (fourth cdt-list)))
+	      (setf temp-list 
+		    (list (first cdt-list) (second cdt-list) 
+			  (third cdt-list) (fourth cdt-list)))
 	      (as (get-meta-class-axioms iri temp-list)))
 	 
 	 ;; add cdt code axoms
@@ -60,10 +104,13 @@ Usage:
 	      (as (get-cdt-code-axioms iri item)))
 
 	 ;; ********* add disjoint class info for meta and cdt codes
-	 (as (get-disjoint-class-axioms iri)))
+	 ;;(as (get-disjoint-class-axioms iri))
 	 
+	 (pprint "made it")
+	 )
+      ;;(to-owl-syntax ont :functional))))
+      ;;(pprint (null ont)))))
       (return-from get-cdtcode-ont ont))))
-
 
 ;;;;;;;;;;;;; Functions for getting axioms of meta and cdt classes ;;;;;;;;;;;;
 	 
@@ -72,12 +119,11 @@ Usage:
       ((axioms nil)
        (uri nil))
     
-    
-    (setf uri (make-uri (str+ iri "CDTCode")))
+    (setf uri (make-uri (str+ iri (get-meta-class-id "cdt-code"))))
     (push `(declaration (class ,uri)) axioms)
     (push `(annotation-assertion !rdfs:label ,uri "CDT Code") axioms)
     (push `(annotation-assertion !rdfs:comment ,uri
-				 "This is the top level class of all CDT Codes.") axioms)
+				 "This is the top level class of all CDT code classes.") axioms)
           
     (return-from get-top-level-cdt-class-axioms axioms)))
 
@@ -92,17 +138,18 @@ Usage:
        (class-comment nil))
     
     ;; gather necassary info about tag
-    (setf class-name (first meta-list))
-    (setf class-label (third (third meta-list)))
+    (setf class-name (string-downcase (first meta-list)))
+    (setf class-label (string-downcase (third (third meta-list))))
     (setf class-comment (third (fourth meta-list)))
-    (setf parent-class (gethash class-name *parent-class-ht*))
+    
+    ;; get the parent class and the id of the class
+    (setf parent-class (get-meta-class-id (get-parent-class class-name)))
 
     ;; clean up tag info
-    (if (or (not class-label) (equal class-label "NIL"))
-	(setf class-label ""))
-    (if (or (not class-comment) (equal class-comment "NIL"))
-	(setf class-comment ""))
-
+    (if (or (null class-label) (equal class-label "NIL"))
+	(setf class-label (str+ "billing category for " (regex-replace-all "_" class-name " ")))
+	(setf class-label (str+ "billing category for " class-label)))
+    
     ;; for testing
     ;;(print-db class-label)
     ;;(print-db class-comment)
@@ -116,6 +163,11 @@ Usage:
     (push `(subclass-of ,uri ,parent-class-uri) axioms)
     (push `(annotation-assertion !rdfs:label ,uri ,class-label) axioms)
     (push `(annotation-assertion !rdfs:comment ,uri ,class-comment) axioms)
+    
+    ;; add cdt description if description is present
+    (if (not (null class-comment))
+	(if (not (equal class-comment "NIL"))
+	    (push `(annotation-assertion ,*cdt-description-uri* ,uri ,class-comment) axioms)))
 
     (return-from get-meta-class-axioms axioms)))
 
@@ -134,13 +186,9 @@ Usage:
     (setf cdt-code (third (third cdt-code-list)))
     (setf cdt-label (third (fourth cdt-code-list)))
     (setf cdt-comment (third (fifth cdt-code-list)))
-    (setf parent-class (gethash cdt-code *parent-class-ht*))
 
-    ;; clean up tag info
-    (if (or (not cdt-label) (equal cdt-label "NIL"))
-	(setf cdt-label ""))
-    (if (or (not cdt-comment) (equal cdt-comment "NIL"))
-	(setf cdt-comment ""))
+    ;; get the parent class of cdt-code and the parent class id
+    (setf parent-class (get-meta-class-id (get-parent-class cdt-code)))
 
     ;; for testing
     ;;(print-db cdt-label)
@@ -148,17 +196,26 @@ Usage:
     ;;(print-db cdt-code)
     ;;(print-db parent-class)
 
-    ;; build uri's
-    (setf cdt-uri (make-uri (str+ iri cdt-code)))
+    ;; clean up label info
+    (if (or (null cdt-label) (equal cdt-label "NIL"))
+	(setf cdt-label (str+ "billing code " cdt-code))
+	(setf cdt-label (str+ "billing code " cdt-code " for: " cdt-label)))
+
+    ;; build uri's; note cdt uri is zero padded length 7: "~7,'0d"
+    (setf cdt-uri (make-uri (str+ iri "CDTD_" (format nil "~7,'0d" (subseq cdt-code 1)))))
     (setf parent-class-uri (make-uri (str+ iri parent-class)))
-	 
-    ;; add axioms about meta code to axiom list
+
+    ;; add axioms about cdt code to axiom list
     (push `(declaration (class ,cdt-uri)) axioms)
     (push `(subclass-of ,cdt-uri ,parent-class-uri) axioms)
     (push `(annotation-assertion !rdfs:label ,cdt-uri ,cdt-label) axioms)
-    (push `(annotation-assertion !rdfs:comment ,cdt-uri ,(str+ "CDT Code: " cdt-code)) axioms)
-    (push `(annotation-assertion !rdfs:comment ,cdt-uri ,cdt-comment) axioms)
+    (push `(annotation-assertion !dc:identifier ,cdt-uri ,cdt-code) axioms)
 
+    ;; add cdt description if description is present
+    (if (not (null cdt-comment))
+	(if (not (equal cdt-comment "NIL"))
+	    (push `(annotation-assertion ,*cdt-description-uri* ,cdt-uri ,cdt-comment) axioms)))
+    
     (return-from get-cdt-code-axioms axioms)))
     
 (defun get-disjoint-class-axioms (iri)
@@ -199,7 +256,7 @@ Usage:
     ;; NB: a disjoint list of length one (i.e. DisjointClasses(cdt-class))
     ;;     will cause a parse error.  so, check length of axiom list.
     (when (> (length axioms) 1)
-      (return-from get-disjoint-class-axioms axioms))    
+      (return-from get-disjoint-class-axioms axioms))
     ))
 
 ;;;;;;;;;;;;;; Functions for parsing CDT code xml file ;;;;;;;;;;;;;;;
@@ -214,7 +271,32 @@ Usage:
 
 ;;;;;;;;;;;;;;;;; Other helper Functions ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun get-meta-class-id (meta-class)
+  "Returns the uri id for a class (e.g., CDTC_0001234)."
+  (gethash meta-class *meta-class-id-ht*))
+
+(defun get-parent-class (class-name)
+  "Returns the parent class of the class-name parameter."
+  (gethash class-name *parent-class-ht*))
+
+(defun make-meta-class-id-hash-table (meta-class-name-list)
+  "Creates a hash table that associates an id with each meta class."
+  (let ((cdt-num 1)
+	(cdt-id nil))
+
+    (setf *meta-class-id-ht* (make-hash-table :test 'equal))
+    
+    ;; add top-level cdt code id
+    (setf cdt-id "CDTC_0000001")
+    (setf (gethash "cdt-code" *meta-class-id-ht*) cdt-id)
+
+    (loop for item in meta-class-name-list do
+	 (incf cdt-num)
+	 (setf cdt-id (str+ "CDTC_" (format nil "~7,'0d" cdt-num)))
+	 (setf (gethash item *meta-class-id-ht*) cdt-id))))
+
 (defun make-parent-class-hash-table (meta-class-name-list xmls-parse)
+  "Creates a hash table that associates cdt code or meta class with a parent class"
   (let ((child-list nil)
 	(class-list nil)
 	(code nil))
@@ -226,7 +308,7 @@ Usage:
     ;; iterate over meta class name list
     (loop 
        for class in meta-class-name-list do
-	 ;; create a class list of each meta class name
+         ;; create a class list of each meta class name
 	 (setf class-list (find-element-with-tag xmls-parse class))
 	 
 	 (loop 
@@ -238,11 +320,11 @@ Usage:
 	      (when child-list
 		(setf (gethash subclass *parent-class-ht*) class))))
 
-    ;; now add those meta class that have CDTCode as their parent class
+    ;; now add those meta class that have cdt-code as their parent class
     (loop 
        for class in meta-class-name-list do
 	 (unless (gethash class *parent-class-ht*)
-	   (setf (gethash class *parent-class-ht*) "CDTCode")))
+	   (setf (gethash class *parent-class-ht*) "cdt-code")))
 
     ;;;;;;;;;;;;;; add cdt codes (e.g., D1234) info to hash ;;;;;;;;;;;;;
     
@@ -287,15 +369,18 @@ Usage:
 (defun test-cdt-ont (iri xmlfile &key print-ont save-ont filename filepath)
   (let ((ont nil))
     (setf ont (get-cdtcode-ont iri xmlfile))
-    
-    (when print-ont
-      (pprint (to-owl-syntax ont :functional)))
 
-    (when save-ont
+    (pprint (null print-ont))
+
+    (when (not (null print-ont))
+      (pprint (to-owl-syntax ont :functional)))
+    
+    (pprint (null save-ont))
+
+    (when (not (null save-ont))
       (if (null filepath) (setf filepath "~/Desktop/"))
       (if (null filename) (setf filename "CDTCodes.owl"))
       (write-rdfxml ont (str+ filepath filename)))
-
 
     ;; return the ontology
     ont))
@@ -310,3 +395,7 @@ Usage:
 (defun print-parent-ht (hash)
   (maphash #'(lambda (key val)
 	       (format t "child: ~A ~% parent: ~A ~%~%" key val)) hash))
+
+(defun print-meta-id-ht (hash)
+  (maphash #'(lambda (key val)
+	       (format t "class: ~A ~% id: ~A ~%~%" key val)) hash))
