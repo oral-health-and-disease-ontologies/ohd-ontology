@@ -301,12 +301,11 @@ Usage:
 	(uri-list nil))
     
     ;; loop for child/parent hash table; if the name of the child class
-    ;; starts with "D" and the length of the string is 5 (e.g., D1234)
-    ;; then it is a cdt code (i.e., individual)
+    ;; has form "D\\d{4}" (i.e., a "D" followed by four numbers) it is 
+    ;; a cdt code (i.e., individual cdt code)
     (loop 
        for child-class being the hash-keys in *parent-class-ht* do
-	 (when (and (= (length child-class) 5)
-		    (equal (subseq child-class 0 1) "D"))
+	 (when (all-matches child-class "(D\\d{4})" 1)
 	   (setf uri (make-uri (str+ iri child-class)))
 	   (push uri uri-list)))
 
