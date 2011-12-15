@@ -119,7 +119,7 @@ Usage:
     
     (setf uri (make-uri (str+ iri (get-meta-class-id "cdt-code"))))
     (push `(declaration (class ,uri)) axioms)
-    (push `(annotation-assertion !rdfs:label ,uri "cdt code") axioms)
+    (push `(annotation-assertion !rdfs:label ,uri "current dental terminology code") axioms)
     (push `(annotation-assertion !rdfs:comment ,uri
 				 "This is the top level class of all CDT code classes.") axioms)
           
