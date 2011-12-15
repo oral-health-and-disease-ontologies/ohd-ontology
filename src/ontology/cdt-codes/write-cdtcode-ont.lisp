@@ -242,7 +242,7 @@ Usage:
 	 (when (equal (get-parent-class child-class) "cdt-code")
 	   ;; build uri
 	   (setf uri (make-uri (str+ iri (get-meta-class-id child-class))))
-
+	   
 	   ;; add uri to list
 	   (push uri uri-list)
 	   (push child-class level2-list)))
@@ -253,18 +253,21 @@ Usage:
     (when (> (length uri-list) 1)
       (push `(disjoint-classes ,@uri-list) axioms)
       (setf uri-list nil))
-    
+
     ;; now add classes who parents are in second level
     (loop 
        for item in level2-list do
 	 (loop 
 	    for child-class being the hash-keys of *parent-class-ht* do
 	      ;; check parent class
+	      ;; note: individual cdt codes (e.g., D1234) are in hash table
+	      ;;       so, make sure to exclude them
 	      (setf parent-class (get-parent-class child-class))
-	      (when (equal item parent-class)
+	      (when (and (equal item parent-class)
+			 (not (all-matches child-class "(D\\d{4})" 1)))
 		;; build uri
 		(setf uri (make-uri (str+ iri (get-meta-class-id child-class))))
-
+		
 		;; add uri to list
 		(push uri uri-list)
 		(push child-class level3-list)))
@@ -273,21 +276,23 @@ Usage:
 	 (when (> (length uri-list) 1)
 	   (push `(disjoint-classes ,@uri-list) axioms)
 	   (setf uri-list nil)))
-	 
+    
     ;; now add classes who parents are in second level
     (loop 
        for item in level3-list do
 	 (loop 
 	    for child-class being the hash-keys of *parent-class-ht* do
-	      ;; check parent class
+	      ;; check parent 
+       	      ;; note: individual cdt codes (e.g., D1234) are in hash table
+	      ;;       so, make sure to exclude them
 	      (setf parent-class (get-parent-class child-class))
-	      (when (equal item parent-class)
+	      (when (and (equal item parent-class)
+			 (not (all-matches child-class "(D\\d{4})" 1)))
 		;; build uri
 		(setf uri (make-uri (str+ iri (get-meta-class-id child-class))))
 
 		;; add uri to list
-		(push uri uri-list)
-		(push child-class level3-list)))
+		(push uri uri-list)))
 	 
        ;; add disjoint classes to axioms
 	 (when (> (length uri-list) 1)
