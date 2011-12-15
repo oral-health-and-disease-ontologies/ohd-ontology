@@ -178,6 +178,7 @@ Usage:
 	(cdt-label nil)
 	(cdt-comment nil)
 	(cdt-uri nil)
+	(cdt-num nil)
 	(parent-class nil)
 	(parent-class-uri))
 
@@ -188,8 +189,7 @@ Usage:
     (setf cdt-label (third (fourth cdt-code-list)))
     (setf cdt-comment (third (fifth cdt-code-list)))
 
-    ;; get the parent class of cdt-code and the parent class id
-    (setf parent-class (get-meta-class-id (get-parent-class cdt-code)))
+
 
     ;; for testing
     ;;(print-db cdt-label)
@@ -203,7 +203,9 @@ Usage:
 	(setf cdt-label (str+ "billing code " cdt-code " for: " cdt-label)))
 
     ;; build uri's; note cdt uri is zero padded length 7: "~7,'0d"
-    (setf cdt-uri (make-uri (str+ iri "CDTD_" (format nil "~7,'0d" (subseq cdt-code 1)))))
+    (setf cdt-num (parse-integer  (subseq cdt-code 1)))
+    (setf cdt-uri (make-uri (str+ iri "CDT_" (format nil "~7,'0d" cdt-num))))
+    (setf parent-class (get-meta-class-id (get-parent-class cdt-code)))
     (setf parent-class-uri (make-uri (str+ iri parent-class)))
 
     ;; add axioms about cdt code to axiom list
@@ -298,7 +300,9 @@ Usage:
 (defun get-different-individuals-axioms (iri)
   (let ((axioms nil)
 	(uri nil)
-	(uri-list nil))
+	(uri-list nil)
+	(cdt-id nil)
+	(cdt-num nil))
     
     ;; loop for child/parent hash table; if the name of the child class
     ;; has form "D\\d{4}" (i.e., a "D" followed by four numbers) it is 
@@ -306,7 +310,10 @@ Usage:
     (loop 
        for child-class being the hash-keys in *parent-class-ht* do
 	 (when (all-matches child-class "(D\\d{4})" 1)
-	   (setf uri (make-uri (str+ iri child-class)))
+	   ;; build uri; note cdt uri is zero padded length 7: "~7,'0d"
+	   (setf cdt-num (parse-integer (subseq child-class 1)))
+	   (setf cdt-id (str+ "CDT_" (format nil "~7,'0d" cdt-num)))
+	   (setf uri (make-uri (str+ iri cdt-id)))
 	   (push uri uri-list)))
 
     ;; add different individual axioms
@@ -339,13 +346,13 @@ Usage:
 
 (defun make-meta-class-id-hash-table (meta-class-name-list)
   "Creates a hash table that associates an id with each meta class."
-  (let ((cdt-num 1)
+  (let ((cdt-num 1000001)
 	(cdt-id nil))
 
     (setf *meta-class-id-ht* (make-hash-table :test 'equal))
     
     ;; add top-level cdt code id
-    (setf cdt-id "CDTC_0000001")
+    (setf cdt-id "CDTC_1000001")
     (setf (gethash "cdt-code" *meta-class-id-ht*) cdt-id)
 
     (loop for item in meta-class-name-list do
