@@ -16,7 +16,7 @@ Parmaters:
   iri: The IRI for the ontology.
   xmlfile: The xml file containing the CDT codes
 Usage:
-  (get-cdtcode-ont \"http://test.com\" \"CDTCodes8.xml\")"
+  (get-cdtcode-ont \"http://test.com\" \"CDTCodes.xml\")"
 
   (let ((xmls-parse nil)
 	(meta-class-name-list nil)
@@ -36,22 +36,18 @@ Usage:
 				  "Code" "CDTLabel" "CDTComment") :test 'equal)
 	   (setf meta-class-name-list (remove item meta-class-name-list))))	 
     
-    ;; convert meta class names to lowercase
-    (setf meta-class-name-list
-	  (mapcar 'string-downcase meta-class-name-list))
-    
     ;; make id associated with meta classes
     (make-meta-class-id-hash-table meta-class-name-list)
 
     ;; create hash table for child/parent class info
     (make-parent-class-hash-table meta-class-name-list xmls-parse)
-
+    
     ;; verify the iri ends with "/"
     (unless (equal (subseq iri (- (length iri) 1)) "/")
       (setf iri (str+ iri "/")))
 
     (with-ontology ont (:collecting t :base iri :ontology-iri (str+ iri "cdt-codes.owl"))
-	(;;import IAO meta data	 
+	( ;;import IAO meta data	 
 	 (as `(imports !<http://purl.obolibrary.org/obo/iao/ontology-metadata.owl>))
 
 	 ;; add ontology annotations
@@ -87,30 +83,31 @@ Usage:
 	 (loop 
 	    for item in meta-class-name-list do
 	      (setf cdt-list (find-element-with-tag xmls-parse item))
-	      
-	      ;; create a temp list from meta class
-	      ;; meta class has form:
-	      ;; (CLASS-NAME NIL (CLASS-LABEL ...) (CDTCOMMENT ..) (.......)
-	      ;; so, for efficiency I am getting the first four items
+
+	    ;; create a temp list from meta class
+	    ;; meta class has form:
+	    ;; (CLASS-NAME NIL (CLASS-LABEL ...) (CDTCOMMENT ..) (.......)
+	    ;; so, for efficiency I am getting the first four items
 	      (setf temp-list 
 		    (list (first cdt-list) (second cdt-list) 
 			  (third cdt-list) (fourth cdt-list)))
+	      ;;(print-db temp-list)
 	      (as (get-meta-class-axioms iri temp-list)))
-	 
+
 	 ;; add cdt code axoms
-	 (setf cdt-list (find-elements-with-tag xmls-parse "CDTCode"))	 
-	 (loop 
+	 (setf cdt-list (find-elements-with-tag xmls-parse "CDTCode"))
+	 
+	(loop 
 	    for item in cdt-list do
-	      (as (get-cdt-code-axioms iri item)))
+	    (as (get-cdt-code-axioms iri item)))
 
 	 ;; ********* add disjoint class info for meta and cdt codes
-	 ;;(as (get-disjoint-class-axioms iri))
-	 
-	 (pprint "made it")
+	 (as (get-disjoint-class-axioms iri))
+
 	 )
-      ;;(to-owl-syntax ont :functional))))
-      ;;(pprint (null ont)))))
-      (return-from get-cdtcode-ont ont))))
+      ;; return the ontology
+      ont
+      )))
 
 ;;;;;;;;;;;;; Functions for getting axioms of meta and cdt classes ;;;;;;;;;;;;
 	 
@@ -121,7 +118,7 @@ Usage:
     
     (setf uri (make-uri (str+ iri (get-meta-class-id "cdt-code"))))
     (push `(declaration (class ,uri)) axioms)
-    (push `(annotation-assertion !rdfs:label ,uri "CDT Code") axioms)
+    (push `(annotation-assertion !rdfs:label ,uri "cdt code") axioms)
     (push `(annotation-assertion !rdfs:comment ,uri
 				 "This is the top level class of all CDT code classes.") axioms)
           
@@ -136,18 +133,21 @@ Usage:
        (class-name nil)
        (class-label nil)
        (class-comment nil))
-    
+
+    ;;(print-db meta-list)
+
     ;; gather necassary info about tag
-    (setf class-name (string-downcase (first meta-list)))
+    (setf class-name (first meta-list))
     (setf class-label (string-downcase (third (third meta-list))))
     (setf class-comment (third (fourth meta-list)))
     
-    ;; get the parent class and the id of the class
-    (setf parent-class (get-meta-class-id (get-parent-class class-name)))
+    ;; get the parent class
+    (setf parent-class (get-parent-class class-name))
 
     ;; clean up tag info
     (if (or (null class-label) (equal class-label "NIL"))
-	(setf class-label (str+ "billing category for " (regex-replace-all "_" class-name " ")))
+	(setf class-label (str+ "billing category for " 
+				(regex-replace-all "_" (string-downcase class-name) " ")))
 	(setf class-label (str+ "billing category for " class-label)))
     
     ;; for testing
@@ -155,15 +155,15 @@ Usage:
     ;;(print-db class-comment)
 
     ;; build uri's
-    (setf uri (make-uri (str+ iri class-name)))
-    (setf parent-class-uri (make-uri (str+ iri parent-class)))
-	 
+    ;; note: uri's are built using id's: CDTC_0000???
+    (setf uri (make-uri (str+ iri (get-meta-class-id class-name))))
+    (setf parent-class-uri (make-uri (str+ iri (get-meta-class-id parent-class))))
+        
     ;; add axioms about meta code to axiom list
     (push `(declaration (class ,uri)) axioms)
     (push `(subclass-of ,uri ,parent-class-uri) axioms)
     (push `(annotation-assertion !rdfs:label ,uri ,class-label) axioms)
-    (push `(annotation-assertion !rdfs:comment ,uri ,class-comment) axioms)
-    
+
     ;; add cdt description if description is present
     (if (not (null class-comment))
 	(if (not (equal class-comment "NIL"))
@@ -206,8 +206,8 @@ Usage:
     (setf parent-class-uri (make-uri (str+ iri parent-class)))
 
     ;; add axioms about cdt code to axiom list
-    (push `(declaration (class ,cdt-uri)) axioms)
-    (push `(subclass-of ,cdt-uri ,parent-class-uri) axioms)
+    (push `(declaration (named-individual ,cdt-uri)) axioms)
+    (push `(class-assertion ,parent-class-uri ,cdt-uri) axioms)
     (push `(annotation-assertion !rdfs:label ,cdt-uri ,cdt-label) axioms)
     (push `(annotation-assertion !dc:identifier ,cdt-uri ,cdt-code) axioms)
 
@@ -215,50 +215,86 @@ Usage:
     (if (not (null cdt-comment))
 	(if (not (equal cdt-comment "NIL"))
 	    (push `(annotation-assertion ,*cdt-description-uri* ,cdt-uri ,cdt-comment) axioms)))
-    
-    (return-from get-cdt-code-axioms axioms)))
-    
+
+    (return-from get-cdt-code-axioms axioms)))    
+
 (defun get-disjoint-class-axioms (iri)
+  "Returns a list of disjoint classes."
   (let ((axioms nil)
 	(uri nil)
 	(uri-list nil)
-	(processed-list nil))
-  
-    ;; *parent-class-ht* has the structure (key: child-class) (value: parent-class)
-    ;; so, iterate over hash table and:
-    ;; 1. get each parent-class (i.e., value)
-    ;; 2. for each child-class (i.e., key)  of that parent make a disjoint axiom list
-    (loop 
-       for parent-class being the hash-values of *parent-class-ht* do
-         ;; check to see if the parent class had already been processed
-	 (unless (member parent-class processed-list :test 'equal)
-	   ;; reset uri list
-	   (setf uri-list nil)
-	   
-	   ;; now do step 2
-	   (loop 
-	      for child-class being the hash-keys of *parent-class-ht* do
-		;; if this is a child class of the parent, add uri to disjoint list
-		(when (equal (gethash child-class *parent-class-ht*) parent-class)
-		  ;; build and add uri
-		  (setf uri (make-uri (str+ iri child-class)))
-		  (push uri uri-list)))
-	   
-	   ;; spefify that all classes are disjoint
-	   ;; NB: a disjoint list of length one (i.e. DisjointClasses(cdt-class))
-	   ;;     will cause a parse error.  so, check length of axiom list.
-	   (when (> (length axioms) 1)
-	     (push `(disjoint-classes ,@uri-list) axioms))
-	   
-	   ;; add parent class to process list to keep from doing class twice
-	   (push parent-class processed-list)))
+	(level2-list nil)
+	(level3-list nil)
+	(parent-class nil))
 
+
+    ;; the cdt-code hierarchy goes four deep; so procede by iterating over the 
+    ;; parent class hash table three times, and during each iteration create
+    ;; a list of the disjoint classes
+
+    ;; add classes who's parent is cdt-code (first level) to disjoint list;
+    ;; i.e., add the immediate/second level under cdt-code
+    (loop 
+       for child-class being the hash-keys of *parent-class-ht* do
+	 (when (equal (get-parent-class child-class) "cdt-code")
+	   ;; build uri
+	   (setf uri (make-uri (str+ iri (get-meta-class-id child-class))))
+
+	   ;; add uri to list
+	   (push uri uri-list)
+	   (push child-class level2-list)))
+    
+    ;; spefify that all classes are disjoint
     ;; NB: a disjoint list of length one (i.e. DisjointClasses(cdt-class))
     ;;     will cause a parse error.  so, check length of axiom list.
-    (when (> (length axioms) 1)
-      (return-from get-disjoint-class-axioms axioms))
-    ))
+    (when (> (length uri-list) 1)
+      (push `(disjoint-classes ,@uri-list) axioms)
+      (setf uri-list nil))
+    
+    ;; now add classes who parents are in second level
+    (loop 
+       for item in level2-list do
+	 (loop 
+	    for child-class being the hash-keys of *parent-class-ht* do
+	      ;; check parent class
+	      (setf parent-class (get-parent-class child-class))
+	      (when (equal item parent-class)
+		;; build uri
+		(setf uri (make-uri (str+ iri (get-meta-class-id child-class))))
 
+		;; add uri to list
+		(push uri uri-list)
+		(push child-class level3-list)))
+	 
+	 ;; add disjoint classes to axioms
+	 (when (> (length uri-list) 1)
+	   (push `(disjoint-classes ,@uri-list) axioms)
+	   (setf uri-list nil)))
+	 
+     ;; now add classes who parents are in second level
+    (loop 
+       for item in level3-list do
+	 (loop 
+	    for child-class being the hash-keys of *parent-class-ht* do
+	      ;; check parent class
+	      (setf parent-class (get-parent-class child-class))
+	      (when (equal item parent-class)
+		;; build uri
+		(setf uri (make-uri (str+ iri (get-meta-class-id child-class))))
+
+		;; add uri to list
+		(push uri uri-list)
+		(push child-class level3-list)))
+	 
+	 ;; add disjoint classes to axioms
+	 (when (> (length uri-list) 1)
+	   (push `(disjoint-classes ,@uri-list) axioms)
+	   (setf uri-list nil)))
+
+    ;; return axioms
+    axioms))
+	 
+    
 ;;;;;;;;;;;;;; Functions for parsing CDT code xml file ;;;;;;;;;;;;;;;
 
 (defun get-cdtcode-xmls (xmlfile)
@@ -369,21 +405,18 @@ Usage:
 (defun test-cdt-ont (iri xmlfile &key print-ont save-ont filename filepath)
   (let ((ont nil))
     (setf ont (get-cdtcode-ont iri xmlfile))
-
-    (pprint (null print-ont))
-
+    
     (when (not (null print-ont))
       (pprint (to-owl-syntax ont :functional)))
     
-    (pprint (null save-ont))
-
     (when (not (null save-ont))
       (if (null filepath) (setf filepath "~/Desktop/"))
       (if (null filename) (setf filename "CDTCodes.owl"))
       (write-rdfxml ont (str+ filepath filename)))
-
+      
     ;; return the ontology
-    ont))
+    ont
+))
 
 
 (defun test-axioms (axiom-list)
