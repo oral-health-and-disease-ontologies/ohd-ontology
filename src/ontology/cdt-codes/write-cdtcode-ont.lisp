@@ -101,8 +101,9 @@ Usage:
 	    for item in cdt-list do
 	    (as (get-cdt-code-axioms iri item)))
 
-	 ;; ********* add disjoint class info for meta and cdt codes
+	 ;; ********* add disjoint class and different individual axioms
 	 (as (get-disjoint-class-axioms iri))
+	 (as (get-different-individuals-axioms iri))
 
 	 )
       ;; return the ontology
@@ -271,7 +272,7 @@ Usage:
 	   (push `(disjoint-classes ,@uri-list) axioms)
 	   (setf uri-list nil)))
 	 
-     ;; now add classes who parents are in second level
+    ;; now add classes who parents are in second level
     (loop 
        for item in level3-list do
 	 (loop 
@@ -286,15 +287,37 @@ Usage:
 		(push uri uri-list)
 		(push child-class level3-list)))
 	 
-	 ;; add disjoint classes to axioms
+       ;; add disjoint classes to axioms
 	 (when (> (length uri-list) 1)
 	   (push `(disjoint-classes ,@uri-list) axioms)
 	   (setf uri-list nil)))
 
     ;; return axioms
     axioms))
-	 
+
+(defun get-different-individuals-axioms (iri)
+  (let ((axioms nil)
+	(uri nil)
+	(uri-list nil))
     
+    ;; loop for child/parent hash table; if the name of the child class
+    ;; starts with "D" and the length of the string is 5 (e.g., D1234)
+    ;; then it is a cdt code (i.e., individual)
+    (loop 
+       for child-class being the hash-keys in *parent-class-ht* do
+	 (when (and (= (length child-class) 5)
+		    (equal (subseq child-class 0 1) "D"))
+	   (setf uri (make-uri (str+ iri child-class)))
+	   (push uri uri-list)))
+
+    ;; add different individual axioms
+    (when (> (length uri-list) 1)
+      (push `(different-individuals ,@uri-list) axioms))
+
+    ;; return axioms
+    axioms))
+
+	 
 ;;;;;;;;;;;;;; Functions for parsing CDT code xml file ;;;;;;;;;;;;;;;
 
 (defun get-cdtcode-xmls (xmlfile)
