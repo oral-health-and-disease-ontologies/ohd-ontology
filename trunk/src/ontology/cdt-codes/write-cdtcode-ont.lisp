@@ -4,7 +4,10 @@
 (defparameter *meta-class-id-ht*
   "Global hash table to store the auto-generated id's of the cdt categories.")
 
-(defparameter *cdt-description-uri* nil
+(defparameter *cdt-definition-uri* nil
+  "Global variable to hold the uri of the cdt_definition annotation.")
+
+(defparameter *cdt-label-uri* nil
   "Global variable to hold the uri of the cdt_label annotation.")
 
 ;;;; main driver function
@@ -48,7 +51,10 @@ Usage:
 
     (with-ontology ont (:collecting t :base iri :ontology-iri (str+ iri "cdt-codes.owl"))
 	( ;;import IAO meta data	 
-	 (as `(imports !<http://purl.obolibrary.org/obo/iao/ontology-metadata.owl>))
+	 ;;(as `(imports !<http://purl.obolibrary.org/obo/iao/ontology-metadata.owl>))
+
+	 ;; import IAO
+	 (as `(imports !<http://purl.obolibrary.org/obo/iao/dev/iao-dev.owl>))
 
 	 ;; add ontology annotations
 	 (as `(annotation !dc:creator "American Dental Association; see www.ada.org/dentalcode"))
@@ -62,18 +68,34 @@ Usage:
 	 ;; make uri for cdt description annotation property
 	 ;; this will be used to annotate cdt codes (and categories) with
 	 ;; the descriptions provided by the ADA
-	 (setf *cdt-description-uri* (make-uri (str+ iri "cdt_description")))
+	 (setf *cdt-definition-uri* (make-uri (str+ iri "cdt_definition")))
 
-	 ;; add cdt_label annotation as a sub-annotation of IAO's "alternative term" 
-	 ;; annotation; i.e., IAO_0000118
-	 (as `(declaration (annotation-property ,*cdt-description-uri*)))
-	 (as `(annotation-assertion !rdfs:comment ,*cdt-description-uri* 
-				    "This annotation is used for the descriptions of the CDT codes provided by the American Dental Association."))
-	 (as `(subannotationpropertyof ,*cdt-description-uri*
+	 ;; make uri for cdt label annotation property
+	 ;; this will be used to annotate cdt codes (and categories) with
+	 ;; the labels provided by the ADA
+	 (setf *cdt-label-uri* (make-uri (str+ iri "cdt_label")))
+
+	 ;; add cdt_definition and cdt_label annotations as a sub-annotation 
+	 ;;of IAO's "alternative term"  annotation; i.e., IAO_0000118
+	 (as `(declaration (annotation-property ,*cdt-label-uri*)))
+	 (as `(annotation-assertion !rdfs:comment ,*cdt-label-uri* 
+				    "This annotation is used for the labels of the CDT codes provided by the American Dental Association."))
+	 (as `(subannotationpropertyof ,*cdt-label-uri*
 				       !<http://purl.obolibrary.org/obo/IAO_0000118>))
-	 (as `(annotation-property-range ,*cdt-description-uri* !xsd:string))
-	 (as `(annotation-property-domain ,*cdt-description-uri* 
-					  ,(make-uri (str+ iri "cdt-code"))))
+	 (as `(annotation-property-range ,*cdt-label-uri* !xsd:string))
+	 (as `(annotation-property-domain ,*cdt-label-uri* 
+					  ,(make-uri (str+ iri 
+							   (get-meta-class-id "cdt-code")))))
+
+	 (as `(declaration (annotation-property ,*cdt-definition-uri*)))
+	 (as `(annotation-assertion !rdfs:comment ,*cdt-definition-uri* 
+				    "This annotation is used for the definitions (and descriptions) of the CDT codes provided by the American Dental Association."))
+	 (as `(subannotationpropertyof ,*cdt-definition-uri*
+				       !<http://purl.obolibrary.org/obo/IAO_0000118>))
+	 (as `(annotation-property-range ,*cdt-definition-uri* !xsd:string))
+	 (as `(annotation-property-domain ,*cdt-definition-uri* 
+					  ,(make-uri (str+ iri 
+							   (get-meta-class-id "cdt-code")))))
 
 	 
 	 ;; add top level cdt code class (i.e., most general class) axioms
@@ -121,7 +143,11 @@ Usage:
     (push `(declaration (class ,uri)) axioms)
     (push `(annotation-assertion !rdfs:label ,uri "current dental terminology code") axioms)
     (push `(annotation-assertion !rdfs:comment ,uri
-				 "This is the top level class of all CDT code classes.") axioms)
+     "A current dental terminology code is a centrally registered identifier that is maintained by the American Dental Association and used for recording dental services provided. It is typically used on the patient record, and when reporting procedures on a paper or electronic submission. ") axioms)
+
+    ;; make cdt-code a subclass of IAO:crid (centrally registered identifier)
+    (push `(subclassof ,uri
+		       !<http://purl.obolibrary.org/obo/IAO_0000578>) axioms)
           
     (return-from get-top-level-cdt-class-axioms axioms)))
 
@@ -132,7 +158,8 @@ Usage:
        (parent-class nil)
        (parent-class-uri nil)
        (class-name nil)
-       (class-label nil)
+       (label nil) ;; used for the rdfs:labe
+       (class-label nil) ;; used for ADA's lable of the class
        (class-comment nil))
 
     ;;(print-db meta-list)
@@ -145,37 +172,45 @@ Usage:
     ;; get the parent class
     (setf parent-class (get-parent-class class-name))
 
-    ;; clean up tag info
+    ;; clean up the ADA's label (i.e., class-label)
     (if (or (null class-label) (equal class-label "NIL"))
-	(setf class-label (str+ "billing category for " 
-				(regex-replace-all "_" (string-downcase class-name) " ")))
-	(setf class-label (str+ "billing category for " class-label)))
-    
+	(setf class-label(regex-replace-all "_" (string-downcase class-name) " ")))
+
+    ;; assign rdfs label info
+    (setf label (str+ "billing codes for " class-label))
+ 
     ;; for testing
     ;;(print-db class-label)
     ;;(print-db class-comment)
 
     ;; build uri's
-    ;; note: uri's are built using id's: CDTC_0000???
+    ;; note: uri's are built using id's: CDT_0000???
     (setf uri (make-uri (str+ iri (get-meta-class-id class-name))))
     (setf parent-class-uri (make-uri (str+ iri (get-meta-class-id parent-class))))
         
     ;; add axioms about meta code to axiom list
     (push `(declaration (class ,uri)) axioms)
     (push `(subclass-of ,uri ,parent-class-uri) axioms)
-    (push `(annotation-assertion !rdfs:label ,uri ,class-label) axioms)
+    (push `(annotation-assertion !rdfs:label ,uri ,label) axioms)
+    (push `(annotation-assertion ,*cdt-label-uri* ,uri ,class-label) axioms)
 
-    ;; add cdt description if description is present
+    ;; if the ADA has provided a definition/description add the definition and its source
     (if (not (null class-comment))
-	(if (not (equal class-comment "NIL"))
-	    (push `(annotation-assertion ,*cdt-description-uri* ,uri ,class-comment) axioms)))
+	(when (not (equal class-comment "NIL"))
+	    (push `(annotation-assertion ,*cdt-definition-uri* ,uri ,class-comment) axioms)
+	    (push `(annotation-assertion 
+		     !<http://purl.obolibrary.org/obo/IAO_0000119>
+		     ,uri
+		    "ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1")
+		  axioms)))
 
     (return-from get-meta-class-axioms axioms)))
 
 (defun get-cdt-code-axioms (iri cdt-code-list)
   (let ((axioms nil)
 	(cdt-code nil)
-	(cdt-label nil)
+	(label nil) ;; used for the rdfs label
+	(cdt-label nil) ;; used for the labels provided by the ADA
 	(cdt-comment nil)
 	(cdt-uri nil)
 	(cdt-num nil)
@@ -197,10 +232,15 @@ Usage:
     ;;(print-db cdt-code)
     ;;(print-db parent-class)
 
-    ;; clean up label info
+    ;; clean up cdt label info
+    (if (or (null cdt-label) (equal cdt-label "NIL")) 
+	(setf cdt-label cdt-code))
+
+
+    ;; create rdfs label
     (if (or (null cdt-label) (equal cdt-label "NIL"))
-	(setf cdt-label (str+ "billing code " cdt-code))
-	(setf cdt-label (str+ "billing code " cdt-code " for: " cdt-label)))
+	(setf label (str+ "billing code " cdt-code))
+	(setf label (str+ "billing code " cdt-code ": " cdt-label)))
 
     ;; build uri's; note cdt uri is zero padded length 7: "~7,'0d"
     (setf cdt-num (parse-integer  (subseq cdt-code 1)))
@@ -211,13 +251,19 @@ Usage:
     ;; add axioms about cdt code to axiom list
     (push `(declaration (named-individual ,cdt-uri)) axioms)
     (push `(class-assertion ,parent-class-uri ,cdt-uri) axioms)
-    (push `(annotation-assertion !rdfs:label ,cdt-uri ,cdt-label) axioms)
+    (push `(annotation-assertion !rdfs:label ,cdt-uri ,label) axioms)
+    (push `(annotation-assertion ,*cdt-label-uri* ,cdt-uri ,cdt-label) axioms)
     (push `(annotation-assertion !dc:identifier ,cdt-uri ,cdt-code) axioms)
 
     ;; add cdt description if description is present
     (if (not (null cdt-comment))
-	(if (not (equal cdt-comment "NIL"))
-	    (push `(annotation-assertion ,*cdt-description-uri* ,cdt-uri ,cdt-comment) axioms)))
+	(when (not (equal cdt-comment "NIL"))
+	    (push `(annotation-assertion ,*cdt-definition-uri* ,cdt-uri ,cdt-comment) axioms)
+	    (push `(annotation-assertion 
+		     !<http://purl.obolibrary.org/obo/IAO_0000119>
+		     ,cdt-uri
+		    "ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1") 
+		  axioms)))
 
     (return-from get-cdt-code-axioms axioms)))    
 
@@ -342,7 +388,7 @@ Usage:
 ;;;;;;;;;;;;;;;;; Other helper Functions ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun get-meta-class-id (meta-class)
-  "Returns the uri id for a class (e.g., CDTC_0001234)."
+  "Returns the uri id for a class (e.g., CDT_0001234)."
   (gethash meta-class *meta-class-id-ht*))
 
 (defun get-parent-class (class-name)
@@ -357,12 +403,12 @@ Usage:
     (setf *meta-class-id-ht* (make-hash-table :test 'equal))
     
     ;; add top-level cdt code id
-    (setf cdt-id "CDTC_1000001")
+    (setf cdt-id "CDT_1000001")
     (setf (gethash "cdt-code" *meta-class-id-ht*) cdt-id)
 
     (loop for item in meta-class-name-list do
 	 (incf cdt-num)
-	 (setf cdt-id (str+ "CDTC_" (format nil "~7,'0d" cdt-num)))
+	 (setf cdt-id (str+ "CDT_" (format nil "~7,'0d" cdt-num)))
 	 (setf (gethash item *meta-class-id-ht*) cdt-id))))
 
 (defun make-parent-class-hash-table (meta-class-name-list xmls-parse)
