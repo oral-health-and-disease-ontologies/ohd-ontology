@@ -311,7 +311,18 @@ Usage:
 			   "ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1"))
 		axioms)))
 
-    (return-from get-cdt-code-axioms axioms)))    
+    ;; if the cdt code ends with "by report" add editor note (IAO_0000116) 
+    ;; specifying that a narrative explaining the treatment must be provided 
+    ;; with the code submission
+    (when (> (length cdt-label) 9)
+      (when (equal (subseq cdt-label (- (length cdt-label) 9)) "by report")
+	(push `(annotation-assertion 
+		!<http://purl.obolibrary.org/obo/IAO_0000116>
+		,cdt-uri
+		,(format nil "A narrative explaining the treatment provided must be included with a claim submission that uses this code.  ~%~% ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1"))
+	      axioms)))
+
+    (return-from get-cdt-code-axioms axioms)))
 
 (defun get-disjoint-class-axioms (iri)
   "Returns a list of disjoint classes."
