@@ -12,7 +12,7 @@
   "Global variable to hold the uri of the cdt_label annotation.")
 
 ;;;; main driver function
-(defun get-cdtcode-ont (xmlfile &key iri ont-iri)
+(defun get-cdtcode-ont (xmlfile &key iri ont-iri cdt-codes-as-classes)
   "This functions Builds an ontology of the CDT Codes.
 Returns:
    An ontology of the CDT codes.
@@ -136,11 +136,19 @@ Usage:
 	 
 	(loop 
 	    for item in cdt-list do
-	    (as (get-cdt-code-axioms iri item)))
+	     ;; test whether cdt codes should be classes or individuals
+	     (if cdt-codes-as-classes
+		 (as (get-cdt-code-as-classes-axioms iri item)) ;; as class
+		 (as (get-cdt-code-axioms iri item)))) ;; as individuals
 
 	 ;; ********* add disjoint class and different individual axioms
 	 (as (get-disjoint-class-axioms iri))
-	 (as (get-different-individuals-axioms iri))
+
+	 ;; test whether cdt codes should be a list of 
+	 ;; disjoint classes or different individuals
+	 (if cdt-codes-as-classes
+	     (as (get-disjoint-cdt-classes-axioms iri))
+	     (as (get-different-individuals-axioms iri)))
 
 	 )
       ;; return the ontology
@@ -324,6 +332,81 @@ Usage:
 
     (return-from get-cdt-code-axioms axioms)))
 
+(defun get-cdt-code-as-classes-axioms (iri cdt-code-list)
+  (let ((axioms nil)
+	(cdt-code nil)
+	(label nil) ;; used for the rdfs label
+	(cdt-label nil) ;; used for the labels provided by the ADA
+	(cdt-comment nil)
+	(cdt-uri nil)
+	(cdt-num nil)
+	(parent-class nil)
+	(parent-class-uri))
+
+    ;; gather necassary info about tag
+    ;; cdt codes have the form:
+    ;; ("CDTCode" NIL ("Code" NIL "D1234") ("CDTLabel" nil "...") ("CDTComment" nil "...")
+    (setf cdt-code (third (third cdt-code-list)))
+    (setf cdt-label (third (fourth cdt-code-list)))
+    (setf cdt-comment (third (fifth cdt-code-list)))
+
+
+
+    ;; for testing
+    ;;(print-db cdt-label)
+    ;;(print-db cdt-comment)
+    ;;(print-db cdt-code)
+    ;;(print-db parent-class)
+
+    ;; clean up cdt label info
+    (if (or (null cdt-label) (equal cdt-label "NIL")) 
+	(setf cdt-label cdt-code))
+
+
+    ;; create rdfs label
+    (if (or (null cdt-label) (equal cdt-label "NIL"))
+	(setf label (str+ "billing code " cdt-code))
+	(setf label (str+ "billing code " cdt-code ": " cdt-label)))
+
+    ;; build uri's; note cdt uri is zero padded length 7: "~7,'0d"
+    (setf cdt-num (parse-integer  (subseq cdt-code 1)))
+    (setf cdt-uri (make-uri (str+ iri "CDT_" (format nil "~7,'0d" cdt-num))))
+    (setf parent-class (get-meta-class-id (get-parent-class cdt-code)))
+    (setf parent-class-uri (make-uri (str+ iri parent-class)))
+
+    ;; add axioms about cdt code to axiom list
+    (push `(declaration (class ,cdt-uri)) axioms)
+    (push `(subclass-of ,cdt-uri ,parent-class-uri) axioms)
+    (push `(annotation-assertion !rdfs:label ,cdt-uri ,label) axioms)
+    (push `(annotation-assertion ,*cdt-label-uri* ,cdt-uri ,cdt-label) axioms)
+    (push `(annotation-assertion !dc:identifier ,cdt-uri ,cdt-code) axioms)
+    
+
+    ;; if the ADA has provided a definition/description add the definition and its source
+    ;; as an 'editor note' (IAO_0000116) annotation
+    (if (not (null cdt-comment))
+	(when (not (equal cdt-comment "NIL"))
+	  (push `(annotation-assertion 
+		  !<http://purl.obolibrary.org/obo/IAO_0000116>
+		  ,cdt-uri
+		  ,(format nil "~a ~%~% ~a"
+			   cdt-comment
+			   "ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1"))
+		axioms)))
+
+    ;; if the cdt code ends with "by report" add editor note (IAO_0000116) 
+    ;; specifying that a narrative explaining the treatment must be provided 
+    ;; with the code submission
+    (when (> (length cdt-label) 9)
+      (when (equal (subseq cdt-label (- (length cdt-label) 9)) "by report")
+	(push `(annotation-assertion 
+		!<http://purl.obolibrary.org/obo/IAO_0000116>
+		,cdt-uri
+		,(format nil "A narrative explaining the treatment provided must be included with a claim submission that uses this code.  ~%~% ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1"))
+	      axioms)))
+
+    (return-from get-cdt-code-as-classes-axioms axioms)))
+
 (defun get-disjoint-class-axioms (iri)
   "Returns a list of disjoint classes."
   (let ((axioms nil)
@@ -354,8 +437,8 @@ Usage:
     ;; NB: a disjoint list of length one (i.e. DisjointClasses(cdt-class))
     ;;     will cause a parse error.  so, check length of axiom list.
     (when (> (length uri-list) 1)
-      (push `(disjoint-classes ,@uri-list) axioms)
-      (setf uri-list nil))
+      (push `(disjoint-classes ,@uri-list) axioms))
+    (setf uri-list nil)
 
     ;; now add classes who parents are in second level
     (loop 
@@ -377,8 +460,8 @@ Usage:
 	 
 	 ;; add disjoint classes to axioms
 	 (when (> (length uri-list) 1)
-	   (push `(disjoint-classes ,@uri-list) axioms)
-	   (setf uri-list nil)))
+	   (push `(disjoint-classes ,@uri-list) axioms))
+	 (setf uri-list nil))
     
     ;; now add classes who parents are in second level
     (loop 
@@ -399,8 +482,8 @@ Usage:
 	 
        ;; add disjoint classes to axioms
 	 (when (> (length uri-list) 1)
-	   (push `(disjoint-classes ,@uri-list) axioms)
-	   (setf uri-list nil)))
+	   (push `(disjoint-classes ,@uri-list) axioms))
+	 (setf uri-list nil))
 
     ;; return axioms
     axioms))
@@ -431,7 +514,47 @@ Usage:
     ;; return axioms
     axioms))
 
+(defun get-disjoint-cdt-classes-axioms (iri)
+  "Returns a list of disjoint cdt code classes."
+  (let ((axioms nil)
+	(uri nil)
+	(uri-list nil)
+	(cdt-list nil)
+	(cdt-num nil)
+	(parent-class nil))
+
+
+    (loop 
+       for child-class being the hash-keys of *parent-class-ht* do
+	 ;; test for cdt code that has not been processed
+	 (when (and (all-matches child-class "(D\\d{4})" 1)
+		    (not (member child-class cdt-list)))
+	   ;; get that cdt code's parent class
+	   (setf parent-class (get-parent-class child-class))
+	   
+	   (loop
+	      for cdt-code being the hash-keys of *parent-class-ht* do
+		;; test for cdt code's that are subclasses of the above parent class
+		(when (and (all-matches cdt-code "(D\\d{4})" 1)
+			   (equal parent-class  (get-parent-class cdt-code)))
+	     
+		  ;; build uri's; note cdt uri is zero padded length 7: "~7,'0d"
+		  (setf cdt-num (parse-integer  (subseq cdt-code 1)))
+		  (setf uri (make-uri (str+ iri "CDT_" (format nil "~7,'0d" cdt-num))))
+		
+		  ;; add uri to list
+		  (push uri uri-list)))
+
+	   ;; add disjoint cdt classes to axioms
+	   (when (> (length uri-list) 1)
+	     (push `(disjoint-classes ,@uri-list) axioms))
+	   (setf uri-list nil)
+	   
+	   (push child-class cdt-list)))
 	 
+    ;; return axioms
+    axioms))
+
 ;;;;;;;;;;;;;; Functions for parsing CDT code xml file ;;;;;;;;;;;;;;;
 
 (defun get-cdtcode-xmls (xmlfile)
@@ -539,16 +662,21 @@ Usage:
   ;; this may be the simplist to understant...
   (apply #'concatenate 'string values))
 
-(defun test-cdt-ont (xmlfile &key iri ont-iri print-ont save-ont filename filepath)
+(defun test-cdt-ont (xmlfile &key iri ont-iri cdt-codes-as-classes
+		                  print-ont save-ont filename filepath)
   (let ((ont nil))
-    (setf ont (get-cdtcode-ont xmlfile :iri iri :ont-iri ont-iri))
+    (setf ont (get-cdtcode-ont xmlfile :iri iri :ont-iri ont-iri
+			       :cdt-codes-as-classes cdt-codes-as-classes))
     
     (when (not (null print-ont))
       (pprint (to-owl-syntax ont :functional)))
     
     (when (not (null save-ont))
-      (if (null filepath) (setf filepath "~/Desktop/"))
-      (if (null filename) (setf filename "CDTCodes.owl"))
+      (when (null filepath) (setf filepath "~/Desktop/"))
+      (when (null filename) 
+	(if cdt-codes-as-classes
+	    (setf filename "CDTCodes as Classes.owl")
+	    (setf filename "CDTCodes.owl")))
       (write-rdfxml ont (str+ filepath filename)))
       
     ;; return the ontology
