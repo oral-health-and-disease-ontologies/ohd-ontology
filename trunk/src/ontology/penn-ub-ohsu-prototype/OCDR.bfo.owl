@@ -89,7 +89,6 @@
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label>hasDemographicInfo</rdfs:label>
         <rdfs:comment>&#39;hasDemographicInfo&#39; indicates that a Person has a set of Demographic Info. Since Demographic Info only consists of Date of Birth and Gender, it is functional right now.</rdfs:comment>
-        <rdfs:range rdf:resource="&www;DemographicInfo"/>
         <rdfs:domain rdf:resource="&www;Person"/>
     </owl:ObjectProperty>
     
@@ -244,6 +243,7 @@
     <owl:DatatypeProperty rdf:about="&www2;has_date">
         <rdfs:label xml:lang="en">has_date</rdfs:label>
         <rdfs:domain rdf:resource="&www;Exam"/>
+        <rdfs:domain rdf:resource="&www;Finding"/>
         <rdfs:domain rdf:resource="&www;Procedure"/>
         <rdfs:domain rdf:resource="&www;Visit"/>
         <rdfs:range rdf:resource="&xsd;date"/>
@@ -376,26 +376,6 @@
     
 
 
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#DateOfBirth -->
-
-    <owl:Class rdf:about="&www;DateOfBirth">
-        <rdfs:label>Date of Birth</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&www;DemographicInfo"/>
-        <owl:disjointWith rdf:resource="&www;Gender"/>
-        <obo:IAO_0000115>the date when a patient was born</obo:IAO_0000115>
-    </owl:Class>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#DemographicInfo -->
-
-    <owl:Class rdf:about="&www;DemographicInfo">
-        <rdfs:label>Demographic Information</rdfs:label>
-        <obo:IAO_0000115>basic information about a patient, such as age, date of birth, address, telephone number, marital status, insurance, emergency contact name/phone, etc.</obo:IAO_0000115>
-    </owl:Class>
-    
-
-
     <!-- http://www.OntologyForClinicalDentalResearch.owl#EmergencyVisit -->
 
     <owl:Class rdf:about="&www;EmergencyVisit">
@@ -471,6 +451,7 @@
 
     <owl:Class rdf:about="&www;Finding">
         <rdfs:label>Finding</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000005"/>
         <obo:IAO_0000119 rdf:datatype="&xsd;string">Jablonski</obo:IAO_0000119>
         <obo:IAO_0000115>an observation</obo:IAO_0000115>
     </owl:Class>
@@ -484,16 +465,6 @@
         <rdfs:subClassOf rdf:resource="&www;PathologicFinding"/>
         <obo:IAO_0000115 rdf:datatype="&xsd;string">A break or rupture.</obo:IAO_0000115>
         <obo:IAO_0000119 rdf:datatype="&xsd;string">Pedro</obo:IAO_0000119>
-    </owl:Class>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#Gender -->
-
-    <owl:Class rdf:about="&www;Gender">
-        <rdfs:label>Gender</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&www;DemographicInfo"/>
-        <obo:IAO_0000115>phenotypic expression of sex, usually male or female</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -745,7 +716,7 @@
 
     <owl:Class rdf:about="&www;Treatment_plan">
         <rdfs:label xml:lang="en">Treatment plan</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&obo;IAO_0000030"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000002"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&www;is_about"/>
@@ -805,188 +776,6 @@
     <!-- http://www.w3.org/2002/07/owl#Thing -->
 
     <owl:Class rdf:about="&owl;Thing"/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Individuals
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OCDRE_0000006 -->
-
-    <owl:NamedIndividual rdf:about="&obo;OCDRE_0000006">
-        <rdf:type rdf:resource="&www;Virgin"/>
-        <rdfs:label>virgin</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#Carlo -->
-
-    <owl:NamedIndividual rdf:about="&www;Carlo">
-        <rdf:type rdf:resource="&www;Person"/>
-        <rdfs:label xml:lang="en">Carlo</rdfs:label>
-        <hasVisit rdf:resource="&www;Carlo_emergency_visit"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#Carlo_emergency_visit -->
-
-    <owl:NamedIndividual rdf:about="&www;Carlo_emergency_visit">
-        <rdf:type rdf:resource="&www;EmergencyVisit"/>
-        <rdfs:label xml:lang="en">Carlo emergency visit</rdfs:label>
-        <www2:has_date rdf:datatype="&xsd;date">2011-06-17</www2:has_date>
-        <ro:has_part rdf:resource="&www;Carlo_hard_tissue_exam"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#Carlo_hard_tissue_exam -->
-
-    <owl:NamedIndividual rdf:about="&www;Carlo_hard_tissue_exam">
-        <rdf:type rdf:resource="&www;Hard_tissue_exam"/>
-        <rdfs:label xml:lang="en">Carlo hard tissue exam</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#Carlo_restoration -->
-
-    <owl:NamedIndividual rdf:about="&www;Carlo_restoration">
-        <rdf:type rdf:resource="&www;Filling"/>
-        <rdfs:label xml:lang="en">Carlo filling</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#Melissa -->
-
-    <Person rdf:about="&www;Melissa">
-        <rdfs:label>Melissa</rdfs:label>
-        <hasVisit rdf:resource="&www;Melissa_routine_visit_"/>
-    </Person>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#MelissaTooth_2 -->
-
-    <owl:NamedIndividual rdf:about="&www;MelissaTooth_2">
-        <rdf:type rdf:resource="&obo;FMA_55697"/>
-        <rdfs:label xml:lang="en">Melissa Tooth 2</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#Melissa_Tooth_8 -->
-
-    <owl:NamedIndividual rdf:about="&www;Melissa_Tooth_8">
-        <rdf:type rdf:resource="&obo;FMA_55681"/>
-        <rdfs:label xml:lang="en">Melissa Tooth 8</rdfs:label>
-        <isTreatedBy rdf:resource="&www;Resin_Filling_Procedure"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#Melissa_hard_tissue_exam -->
-
-    <owl:NamedIndividual rdf:about="&www;Melissa_hard_tissue_exam">
-        <rdf:type rdf:resource="&www;Hard_tissue_exam"/>
-        <rdfs:label xml:lang="en">Melissa hard tissue exam</rdfs:label>
-        <hasFinding rdf:resource="&www;caries"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#Melissa_routine_visit_ -->
-
-    <owl:NamedIndividual rdf:about="&www;Melissa_routine_visit_">
-        <rdf:type rdf:resource="&www;RoutineVisit"/>
-        <rdf:type rdf:resource="&www;Visit"/>
-        <rdfs:label xml:lang="en">Melissa routine visit </rdfs:label>
-        <www2:has_date rdf:datatype="&xsd;date">2011-01-06</www2:has_date>
-        <ro:has_part rdf:resource="&www;Melissa_hard_tissue_exam"/>
-        <ro:has_part rdf:resource="&www;Resin_Filling_Procedure"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#Resin_Filling_Procedure -->
-
-    <owl:NamedIndividual rdf:about="&www;Resin_Filling_Procedure">
-        <rdf:type rdf:resource="&www;FillingRestoration"/>
-        <rdf:type rdf:resource="&www;Procedure"/>
-        <rdfs:label xml:lang="en">Resin Filling Procedure</rdfs:label>
-        <ADA_code rdf:datatype="&xsd;string">D2335</ADA_code>
-        <has_specified_output rdf:resource="&www;resin_filling"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#Visit_1 -->
-
-    <owl:NamedIndividual rdf:about="&www;Visit_1">
-        <rdf:type rdf:resource="&www;RoutineVisit"/>
-        <rdfs:label>Visit_1</rdfs:label>
-        <www2:has_date rdf:datatype="&xsd;date">2011-01-01</www2:has_date>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#caries -->
-
-    <owl:NamedIndividual rdf:about="&www;caries">
-        <rdf:type rdf:resource="&www;Caries"/>
-        <rdfs:label>Tooth 2 caries</rdfs:label>
-        <hasAnatomicLocation rdf:resource="&www;MelissaTooth_2"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#male -->
-
-    <owl:NamedIndividual rdf:about="&www;male">
-        <rdf:type rdf:resource="&www;Gender"/>
-        <rdfs:label>male</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#resin_filling -->
-
-    <owl:NamedIndividual rdf:about="&www;resin_filling">
-        <rdfs:label xml:lang="en">resin filling</rdfs:label>
-        <rdfs:comment>remove this class?</rdfs:comment>
-        <hasAnatomicLocation rdf:resource="&www;Melissa_Tooth_8"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#titus -->
-
-    <owl:NamedIndividual rdf:about="&www;titus">
-        <rdf:type rdf:resource="&www;Person"/>
-        <rdfs:label>Titus</rdfs:label>
-        <hasVisit rdf:resource="&www;Visit_1"/>
-        <hasVisit rdf:resource="&www2;Visit_2"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl/Visit_2 -->
-
-    <owl:NamedIndividual rdf:about="&www2;Visit_2">
-        <rdf:type rdf:resource="&www;Visit"/>
-        <rdfs:label xml:lang="en">Visit_2</rdfs:label>
-        <www2:has_date rdf:datatype="&xsd;date">2011-03-01</www2:has_date>
-    </owl:NamedIndividual>
     
 
 
