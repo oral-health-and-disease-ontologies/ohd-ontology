@@ -326,8 +326,8 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&www;Filling"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&www;has_filling_material"/>
-                        <owl:someValuesFrom rdf:resource="&www;Amalgam"/>
+                        <owl:onProperty rdf:resource="&ro;has_part"/>
+                        <owl:allValuesFrom rdf:resource="&www;Amalgam"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
@@ -654,8 +654,8 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&www;Filling"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&www;has_filling_material"/>
-                        <owl:someValuesFrom rdf:resource="&www;Resin"/>
+                        <owl:onProperty rdf:resource="&ro;has_part"/>
+                        <owl:allValuesFrom rdf:resource="&www;Resin"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
@@ -671,6 +671,12 @@
     <owl:Class rdf:about="&www;RestorativeProcedure">
         <rdfs:label>Restorative Procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="&www;Procedure"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&www;has_specified_output"/>
+                <owl:someValuesFrom rdf:resource="&obo;OCDRE_0000004"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000115 rdf:datatype="&xsd;string">Steps followed to replace missing tooth structure; a method or mode of action that reestablishes or reforms a tooth or teeth or portions thereof to anatomic or functional form and health.</obo:IAO_0000115>
     </owl:Class>
     
