@@ -312,7 +312,7 @@
 
     <owl:Class rdf:about="&www;AmalgamFilling">
         <rdfs:label rdf:datatype="&xsd;string">Amalgam Filling Restoration</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&www;FillingRestoration"/>
+        <rdfs:subClassOf rdf:resource="&www;Direct_Restoration"/>
     </owl:Class>
     
 
@@ -502,6 +502,26 @@
     
 
 
+    <!-- http://www.OntologyForClinicalDentalResearch.owl#Gold_filling -->
+
+    <owl:Class rdf:about="&www;Gold_filling">
+        <rdfs:label xml:lang="en">Gold filling</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&www;Filling"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ro;has_part"/>
+                        <owl:allValuesFrom rdf:resource="&www;Gold"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&www;Filling"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.OntologyForClinicalDentalResearch.owl#Hard_tissue_exam -->
 
     <owl:Class rdf:about="&www;Hard_tissue_exam">
@@ -606,6 +626,26 @@
     
 
 
+    <!-- http://www.OntologyForClinicalDentalResearch.owl#Porcelain_filling -->
+
+    <owl:Class rdf:about="&www;Porcelain_filling">
+        <rdfs:label xml:lang="en">Porcelain filling</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&www;Filling"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ro;has_part"/>
+                        <owl:allValuesFrom rdf:resource="&www;Porcelain"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&www;Filling"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.OntologyForClinicalDentalResearch.owl#Procedure -->
 
     <owl:Class rdf:about="&www;Procedure">
@@ -640,7 +680,8 @@
 
     <owl:Class rdf:about="&www;ResinFilling">
         <rdfs:label rdf:datatype="&xsd;string">Resin Filling Restoration</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&www;FillingRestoration"/>
+        <rdfs:subClassOf rdf:resource="&www;Indirect_Restoration"/>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">An direct restoration made from a tooth colored composite or resin.</obo:IAO_0000115>
     </owl:Class>
     
 
