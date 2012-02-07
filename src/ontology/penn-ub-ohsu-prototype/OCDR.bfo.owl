@@ -292,6 +292,12 @@
     <owl:Class rdf:about="&www;AmalgamFilling">
         <rdfs:label rdf:datatype="&xsd;string">Amalgam Filling Restoration</rdfs:label>
         <rdfs:subClassOf rdf:resource="&www;Direct_Restoration"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ro;has_participant"/>
+                <owl:someValuesFrom rdf:resource="&www;Amalgam_filling"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -471,6 +477,12 @@
     <owl:Class rdf:about="&www;GoldFilling">
         <rdfs:label rdf:datatype="&xsd;string">Gold Filling Restoration</rdfs:label>
         <rdfs:subClassOf rdf:resource="&www;Indirect_Restoration"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ro;has_participant"/>
+                <owl:someValuesFrom rdf:resource="&www;Gold_filling"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000115 rdf:datatype="&xsd;string">An indirect restoration made from gold that is cast in a laboratory prior to insertion in the oral cavity and finished during placement.</obo:IAO_0000115>
         <obo:IAO_0000119 rdf:datatype="&xsd;string">Mosby&#39;s</obo:IAO_0000119>
     </owl:Class>
@@ -574,6 +586,12 @@
     <owl:Class rdf:about="&www;PorcelainFilling">
         <rdfs:label rdf:datatype="&xsd;string">Porcelain Filling Restoration</rdfs:label>
         <rdfs:subClassOf rdf:resource="&www;Indirect_Restoration"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ro;has_participant"/>
+                <owl:someValuesFrom rdf:resource="&www;Porcelain_filling"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000115 rdf:datatype="&xsd;string">An indirect restoration made from a ceramic material that is cast in a laboratory prior to insertion in the oral cavity and finished during placement.</obo:IAO_0000115>
         <obo:IAO_0000119 rdf:datatype="&xsd;string">Mosby&#39;s Dental Dictionary 2nd ed</obo:IAO_0000119>
     </owl:Class>
@@ -634,7 +652,13 @@
 
     <owl:Class rdf:about="&www;ResinFilling">
         <rdfs:label rdf:datatype="&xsd;string">Resin Filling Restoration</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&www;Indirect_Restoration"/>
+        <rdfs:subClassOf rdf:resource="&www;Direct_Restoration"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ro;has_participant"/>
+                <owl:someValuesFrom rdf:resource="&www;Resin_Filling"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000115 rdf:datatype="&xsd;string">An direct restoration made from a tooth colored composite or resin.</obo:IAO_0000115>
     </owl:Class>
     
