@@ -29,8 +29,8 @@
         <owl:versionIRI rdf:resource="http://www.OntologyForClinicalDentalResearch_v1.0.owl"/>
         <owl:imports rdf:resource="&obo;bfo.owl"/>
         <owl:imports rdf:resource="&obo;fma_dental.owl"/>
+        <owl:imports rdf:resource="&obo;ro.owl"/>
         <owl:imports rdf:resource="&obo;iao/2009-11-06/ontology-metadata.owl"/>
-        <owl:imports rdf:resource="http://www.obofoundry.org/ro/ro.owl"/>
     </owl:Ontology>
     
 
@@ -122,7 +122,6 @@
     <owl:ObjectProperty rdf:about="&www;has_filling_material">
         <rdfs:label xml:lang="en">has filling material</rdfs:label>
         <rdfs:range rdf:resource="&www;Material"/>
-        <rdfs:domain rdf:resource="&www;Restoration"/>
     </owl:ObjectProperty>
     
 
@@ -290,7 +289,7 @@
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&obo;FMA_12516"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&www;isTreatedBy"/>
+                        <owl:onProperty rdf:resource="&www;is_specified_output"/>
                         <owl:someValuesFrom rdf:resource="&www;RestorativeProcedure"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -312,7 +311,7 @@
     <!-- http://www.OntologyForClinicalDentalResearch.owl#AmalgamFilling -->
 
     <owl:Class rdf:about="&www;AmalgamFilling">
-        <rdfs:label>Amalgam Filling</rdfs:label>
+        <rdfs:label rdf:datatype="&xsd;string">Amalgam Filling Restoration</rdfs:label>
         <rdfs:subClassOf rdf:resource="&www;FillingRestoration"/>
     </owl:Class>
     
@@ -334,6 +333,7 @@
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&www;Filling"/>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">A restoration made using amalgam.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -350,6 +350,7 @@
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>changed label from anatomic location to anatomical part. MH</rdfs:comment>
+        <rdfs:comment>import from caro</rdfs:comment>
         <obo:IAO_0000115>anatomic features of an organism; the orientation or location of anatomic entities in physical space</obo:IAO_0000115>
     </owl:Class>
     
@@ -369,9 +370,19 @@
     <!-- http://www.OntologyForClinicalDentalResearch.owl#CrownRestoration -->
 
     <owl:Class rdf:about="&www;CrownRestoration">
-        <rdfs:label>Crown (Restoration)</rdfs:label>
+        <rdfs:label rdf:datatype="&xsd;string">Crown Restoration</rdfs:label>
         <rdfs:subClassOf rdf:resource="&www;RestorativeProcedure"/>
         <owl:disjointWith rdf:resource="&www;FillingRestoration"/>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">A restorative procedure whereby an artificial crown replaces the natural dental crown.</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://www.OntologyForClinicalDentalResearch.owl#Direct_Restoration -->
+
+    <owl:Class rdf:about="&www;Direct_Restoration">
+        <rdfs:label rdf:datatype="&xsd;string">Direct Restoration</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&www;FillingRestoration"/>
     </owl:Class>
     
 
@@ -392,6 +403,7 @@
     <owl:Class rdf:about="&www;EndodonticProcedure">
         <rdfs:label>Endodontic Procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="&www;Procedure"/>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">A procedure that is an operation on the root canal of a tooth or parts thereof.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -408,7 +420,7 @@
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 rdf:datatype="&xsd;string">Event whereby a physicial investigates some aspect of the patient. Exams are a part of a visit, and there can be more than one type of exam per visit.</obo:IAO_0000115>
-        <obo:IAO_0000119 rdf:datatype="&xsd;string">Melissa</obo:IAO_0000119>
+        <obo:IAO_0000119 rdf:datatype="&xsd;string">PERSON:Melissa Haendel</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -417,7 +429,7 @@
 
     <owl:Class rdf:about="&www;Filling">
         <rdfs:label xml:lang="en">Filling</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&www;Restoration"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000040"/>
     </owl:Class>
     
 
@@ -425,7 +437,7 @@
     <!-- http://www.OntologyForClinicalDentalResearch.owl#FillingRestoration -->
 
     <owl:Class rdf:about="&www;FillingRestoration">
-        <rdfs:label>Filling (Restoration)</rdfs:label>
+        <rdfs:label rdf:datatype="&xsd;string">Filling Restoration</rdfs:label>
         <rdfs:subClassOf rdf:resource="&www;RestorativeProcedure"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -443,6 +455,7 @@
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:comment>should the logical def refer to has_anatomic location some tooth surface?</rdfs:comment>
     </owl:Class>
     
 
@@ -481,8 +494,10 @@
     <!-- http://www.OntologyForClinicalDentalResearch.owl#GoldFilling -->
 
     <owl:Class rdf:about="&www;GoldFilling">
-        <rdfs:label>Gold Filling</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&www;FillingRestoration"/>
+        <rdfs:label rdf:datatype="&xsd;string">Gold Filling Restoration</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&www;Indirect_Restoration"/>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">An indirect restoration made from gold that is cast in a laboratory prior to insertion in the oral cavity and finished during placement.</obo:IAO_0000115>
+        <obo:IAO_0000119 rdf:datatype="&xsd;string">Mosby&#39;s</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -496,10 +511,19 @@
     
 
 
+    <!-- http://www.OntologyForClinicalDentalResearch.owl#Indirect_Restoration -->
+
+    <owl:Class rdf:about="&www;Indirect_Restoration">
+        <rdfs:label rdf:datatype="&xsd;string">Indirect Restoration</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&www;FillingRestoration"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.OntologyForClinicalDentalResearch.owl#Material -->
 
     <owl:Class rdf:about="&www;Material">
-        <rdfs:label>Material</rdfs:label>
+        <rdfs:label>Dental Material</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;BFO_0000040"/>
     </owl:Class>
     
@@ -574,8 +598,10 @@
     <!-- http://www.OntologyForClinicalDentalResearch.owl#PorcelainFilling -->
 
     <owl:Class rdf:about="&www;PorcelainFilling">
-        <rdfs:label>PorcelainFilling</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&www;FillingRestoration"/>
+        <rdfs:label rdf:datatype="&xsd;string">Porcelain Filling Restoration</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&www;Indirect_Restoration"/>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">An indirect restoration made from a ceramic material that is cast in a laboratory prior to insertion in the oral cavity and finished during placement.</obo:IAO_0000115>
+        <obo:IAO_0000119 rdf:datatype="&xsd;string">Mosby&#39;s Dental Dictionary 2nd ed</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -585,6 +611,8 @@
     <owl:Class rdf:about="&www;Procedure">
         <rdfs:label>Procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;BFO_0000007"/>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">Describes a specific healthcare activity that is performed on a patient for diagnostic or therapeutic purposes.</obo:IAO_0000115>
+        <obo:IAO_0000117 rdf:datatype="&xsd;string">PERSON:Pedro</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -611,7 +639,7 @@
     <!-- http://www.OntologyForClinicalDentalResearch.owl#ResinFilling -->
 
     <owl:Class rdf:about="&www;ResinFilling">
-        <rdfs:label>Resin Filling</rdfs:label>
+        <rdfs:label rdf:datatype="&xsd;string">Resin Filling Restoration</rdfs:label>
         <rdfs:subClassOf rdf:resource="&www;FillingRestoration"/>
     </owl:Class>
     
@@ -633,15 +661,7 @@
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&www;Filling"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.OntologyForClinicalDentalResearch.owl#Restoration -->
-
-    <owl:Class rdf:about="&www;Restoration">
-        <rdfs:label xml:lang="en">Restoration</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&www;NonpathologicFinding"/>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">A restoration made using resin.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -651,7 +671,7 @@
     <owl:Class rdf:about="&www;RestorativeProcedure">
         <rdfs:label>Restorative Procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="&www;Procedure"/>
-        <obo:IAO_0000115>steps followed to replace missing tooth structure; a method or mode of action that reestablishes or reforms a tooth or teeth or portions thereof to anatomic or functional form and health</obo:IAO_0000115>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">Steps followed to replace missing tooth structure; a method or mode of action that reestablishes or reforms a tooth or teeth or portions thereof to anatomic or functional form and health.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -680,6 +700,8 @@
     <owl:Class rdf:about="&www;SurgicalProcedure">
         <rdfs:label>Surgical Procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="&www;Procedure"/>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">A series of steps followed in a regular, orderly, definite way, performed by a dentist/surgeon by manual operation.</obo:IAO_0000115>
+        <obo:IAO_0000119 rdf:datatype="&xsd;string">Mosby&#39;s Dental Dictionary 2nd ed</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -790,9 +812,9 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&www;AmalgamFilling"/>
-            <rdf:Description rdf:about="&www;GoldFilling"/>
-            <rdf:Description rdf:about="&www;ResinFilling"/>
+            <rdf:Description rdf:about="&www;EndodonticProcedure"/>
+            <rdf:Description rdf:about="&www;RestorativeProcedure"/>
+            <rdf:Description rdf:about="&www;SurgicalProcedure"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -807,9 +829,9 @@
     <rdf:Description>
         <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&www;EndodonticProcedure"/>
-            <rdf:Description rdf:about="&www;RestorativeProcedure"/>
-            <rdf:Description rdf:about="&www;SurgicalProcedure"/>
+            <rdf:Description rdf:about="&www;AmalgamFilling"/>
+            <rdf:Description rdf:about="&www;GoldFilling"/>
+            <rdf:Description rdf:about="&www;ResinFilling"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>
