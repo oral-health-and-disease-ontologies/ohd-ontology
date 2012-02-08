@@ -69,7 +69,17 @@
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/FMA_12516">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tooth</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CARO_0000006"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CARO_0000006"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
         <obo:def>&quot;Organ with a cavity which consist of dentine and enamel. Examples: incisor, molar.&quot; []</obo:def>
         <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/fma.owl"/>
     </owl:Class>
