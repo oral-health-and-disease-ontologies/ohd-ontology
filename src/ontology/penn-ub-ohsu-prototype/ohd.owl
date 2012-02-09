@@ -264,7 +264,8 @@
     <!-- http://purl.obolibrary.org/obo/OHD_0000022 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000022">
-        <rdfs:label xml:lang="en">caries on tooth 14</rdfs:label>
+        <rdfs:label xml:lang="en">caries on tooth 14 finding
+</rdfs:label>
         <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -312,7 +313,7 @@
     <!-- http://purl.obolibrary.org/obo/OHD_0000026 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000026">
-        <rdfs:label xml:lang="en">missing tooth</rdfs:label>
+        <rdfs:label xml:lang="en">missing tooth finding</rdfs:label>
         <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -351,7 +352,7 @@
     <!-- http://purl.obolibrary.org/obo/OHD_0000028 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000028">
-        <rdfs:label xml:lang="en">missing tooth 14</rdfs:label>
+        <rdfs:label xml:lang="en">missing tooth 14 finding</rdfs:label>
         <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -369,6 +370,63 @@
                                                 <owl:complementOf rdf:resource="http://purl.obolibrary.org/obo/FMA_84218"/>
                                             </owl:Class>
                                         </owl:allValuesFrom>
+                                    </owl:Restriction>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000029 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000029">
+        <rdfs:label xml:lang="en">fractured tooth</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000030 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000030">
+        <rdfs:label xml:lang="en">fractured tooth finding</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000010"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000029"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000031 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000031">
+        <rdfs:label xml:lang="en">fractured tooth 14 finding</rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000010"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000029"/>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
+                                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_84218"/>
                                     </owl:Restriction>
                                 </owl:intersectionOf>
                             </owl:Class>
