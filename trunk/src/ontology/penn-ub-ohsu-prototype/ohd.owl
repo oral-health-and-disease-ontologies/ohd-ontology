@@ -183,6 +183,7 @@
                 <owl:someValuesFrom rdf:resource="&obo;NCBITaxon_9606"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000115>Restorative procedure whereby portions of a tooth are restored to functional form and health.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -508,6 +509,7 @@
     <owl:Class rdf:about="&obo;OHD_0000033">
         <rdfs:label xml:lang="en">crown restoration</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000004"/>
+        <obo:IAO_0000115>A restorative procedure whereby an artificial crown replaces the natural dental crown.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -547,6 +549,7 @@
     <owl:Class rdf:about="&obo;OHD_0000037">
         <rdfs:label xml:lang="en">direct restoration</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000006"/>
+        <obo:IAO_0000115>A filling restoration whereby the restorative material is formed directly onto the tooth. </obo:IAO_0000115>
     </owl:Class>
     
 
@@ -556,6 +559,7 @@
     <owl:Class rdf:about="&obo;OHD_0000038">
         <rdfs:label xml:lang="en">indirect restoration</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000006"/>
+        <obo:IAO_0000115>A filling restoration whereby the restorative material is preformed prior to placement onto the tooth. </obo:IAO_0000115>
     </owl:Class>
     
 
@@ -565,6 +569,14 @@
     <owl:Class rdf:about="&obo;OHD_0000039">
         <rdfs:label xml:lang="en">gold filling restoration</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000038"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000057"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000034"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>An indirect restoration made from gold that is cast in a laboratory prior to insertion in the oral cavity and finished during placement.</obo:IAO_0000115>
+        <obo:IAO_0000119>Mosby&#39;s</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -574,6 +586,14 @@
     <owl:Class rdf:about="&obo;OHD_0000040">
         <rdfs:label xml:lang="en">porcelain filling restoration</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000038"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000057"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000035"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>An indirect restoration made from a ceramic material that is cast in a laboratory prior to insertion in the oral cavity and finished during placement.</obo:IAO_0000115>
+        <obo:IAO_0000119>Mosby&#39;s Dental Dictionary 2nd ed</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -583,6 +603,12 @@
     <owl:Class rdf:about="&obo;OHD_0000041">
         <rdfs:label xml:lang="en">amalgam filling restoration</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000037"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000057"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000001"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -592,6 +618,24 @@
     <owl:Class rdf:about="&obo;OHD_0000042">
         <rdfs:label xml:lang="en">resin filling restoration</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000037"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000057"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000036"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>An direct restoration made from a tooth colored composite or resin.</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000044 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000044">
+        <rdfs:label xml:lang="en">surgical dental procedure</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000002"/>
+        <obo:IAO_0000115>A series of steps followed in a regular, orderly, definite way, performed by a dentist/surgeon by manual operation on some part of the mouth.</obo:IAO_0000115>
+        <obo:IAO_0000119>Mosby&#39;s Dental Dictionary 2nd ed</obo:IAO_0000119>
     </owl:Class>
     
 
