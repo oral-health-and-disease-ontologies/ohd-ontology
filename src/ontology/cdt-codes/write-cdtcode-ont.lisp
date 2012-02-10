@@ -659,7 +659,7 @@ Usage:
   ;; the following make use of the format functions
   ;;(format nil "~{~a~}" values)
   ;;; use (format nil "~{~a^ ~}" values) to concatenate with spaces
-  ;; this may be the simplist to understant...
+  ;; this may be the simplist to understand...
   (apply #'concatenate 'string values))
 
 (defun test-cdt-ont (xmlfile &key iri ont-iri cdt-codes-as-classes
