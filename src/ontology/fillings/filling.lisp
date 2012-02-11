@@ -9,6 +9,53 @@
 ;; the global variables are used to generate unique iri's
 (defparameter *iri* nil)
 (defparameter *iri-count* nil)
+y
+;; for ease of use, set up some aliases to reference ohd classes
+(def-uri-alias "fma_tooth" !obo:FMA_12516)
+(def-uri-alias "dental_patient" !obo:OHD_0000012)
+(def-uri-alias "patient_role" !obo:OBI_0000093)
+(def-uri-alias "dental_finding" !obo:OHD_0000010)
+(def-uri-alias "caries_finding" !obo:OHD_0000024)
+(def-uri-alias "fractured_tooth_finding" !obo:OHD_0000030)
+(def-uri-alias "missing_tooth_finding" !obo:OHD_0000026)
+(def-uri-alias "dentition" !obo:OHD_0000027)
+(def-uri-alias "caries" !obo:OHD_0000021)
+(def-uri-alias "fractured_tooth" !obo:OHD_0000029)
+(def-uri-alias "restoration_material" !obo:OHD_0000000)
+(def-uri-alias "amalgam" !obo:OHD_0000001)
+(def-uri-alias "gold" !obo:OHD_0000034)
+(def-uri-alias "porcelain" !obo:OHD_0000035)
+(def-uri-alias "resin" !obo:OHD_0000036)
+(def-uri-alias "dental_exam" !obo:OHD_0000019)
+(def-uri-alias "hard_tissue_exam" !obo:OHD_0000025)
+(def-uri-alias "soft_tissue_exam" !obo:OHD_0000032)
+(def-uri-alias "dental_visit" !obo:OHD_0000009)
+(def-uri-alias "performing_a_dental_clinical_assement" !obo:OHD_0000011)
+(def-uri-alias "procedure" !obo:OHD_0000002)
+(def-uri-alias "endodontic_procedure" !obo:OHD_0000003)
+(def-uri-alias "restorative_procedure" !obo:OHD_0000004)
+(def-uri-alias "crown_restoration" !obo:OHD_0000033)
+(def-uri-alias "filling_restoration" !obo:OHD_0000006)
+(def-uri-alias "direct_restoration" !obo:OHD_0000037)
+(def-uri-alias "amalgam_filling_restoration" !obo:OHD_0000041)
+(def-uri-alias "resin_filling_restoration" !obo:OHD_0000042)
+(def-uri-alias "indirect_restoration" !obo:OHD_0000038)
+(def-uri-alias "gold_filling_restoration" !obo:OHD_0000039)
+(def-uri-alias "procelain_filling_restoration" !obo:OHD_0000040)
+(def-uri-alias "surgical_dental_procedure" !obo:OHD_0000044)
+(def-uri-alias "surgical_procedure" !obo:OHD_0000005)
+(def-uri-alias "tooth_to_be_restored_role" !obo:OHD_0000007)
+(def-uri-alias "tooth_to_be_filled_role" !obo:OHD_0000008)
+(def-uri-alias "has_participant" !obo:BFO_0000057)
+(def-uri-alias "has_role" !obo:BFO_0000087)
+(def-uri-alias "has_part" !<http://www.obofoundry.org/ro/ro.owl#has_part>)
+(def-uri-alias "has_specified_output" !obi:OBI_0000299)
+(def-uri-alias "inheres_in" !obo:BFO_0000052)
+(def-uri-alias "is_about" !obo:IAO_0000136)
+(def-uri-alias "is_part_of" !obo:BFO_0000050)
+(def-uri-alias "realizes" !obo:BFO_0000055)
+(def-uri-alias "occurrence_date" !obo:OHD_0000015)
+(def-uri-alias "patient_ID" !obo:OHD_0000014)
 
 (add-to-classpath "/Applications/SQLAnywhere12/System/java/sajdbc4.jar")
 
@@ -17,6 +64,7 @@
 	(statement nil)
 	(results nil)
 	(query nil)
+	(url nil)
 	(count 0))
     
     ;; set default base and ontology iri's 
@@ -41,6 +89,11 @@
 	   	
 		;; import the ohd ontology
 		(as `(imports (make-uri "http://purl.obolibrary.org/obo/ohd/dev/ohd.owl")))
+
+		;; declare data properties
+		(as `(declaration (data-property !occurrence_date)))
+		(as `(declaration (data-property !patient_ID)))
+		    
 		(loop while (#"next" results) do
 		     (as (get-amalgam-axioms 
 			  (#"getString" results "patient_id")
@@ -69,6 +122,7 @@
 	(tooth-role-uri nil)
 	(amalgam-uri nil)
 	(amalgam-retoration-uri nil)
+	(tooth-string nil)
 	(teeth-list nil))
 	
     ;; get axioms abou the patient
@@ -87,56 +141,77 @@
          ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
 	 (setf tooth-uri (get-iri))
 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
-	 (push `(class-assertion !obo:FMA_12516 ,tooth-uri) axioms)	     
-         
+	 (push `(class-assertion !fma_tooth ,tooth-uri) axioms)	     
+
+	 ;; add annotation about tooth
+	 (setf tooth-string (format nil "~a" tooth))
+	 (push `(annotation-assertion !rdfs:label 
+				      ,tooth-uri
+				      ,(str+ "tooth " tooth-string
+					     " of patient " patient-id)) axioms)
+
          ;; declare instance of !ohd:'tooth to be filled role'
 	 (setf tooth-role-uri (get-iri))
 	 (push `(declaration (named-individual ,tooth-role-uri)) axioms)
-	 (push `(class-assertion !obo:OHD_0000008 ,tooth-role-uri) axioms)
+	 (push `(class-assertion !tooth_to_be_filled_role ,tooth-role-uri) axioms)
+
+	 ;; add annotation about 'tooth to be filled role'
+	 (push `(annotation-assertion !rdfs:label 
+				      ,tooth-role-uri
+				      ,(str+ "tooth to be filled role for tooth " 
+					     tooth-string " of patient " patient-id)) axioms)
 
          ;; declare instance of amalgam (!ohd:amalgam) for tooth
 	 (setf amalgam-uri (get-iri))
 	 (push `(declaration (named-individual ,amalgam-uri)) axioms)
-	 (push `(class-assertion !obo:OHD_0000001 ,amalgam-uri) axioms)	 
+	 (push `(class-assertion !amalgam ,amalgam-uri) axioms)	 
+	 
+	 ;; add annotation about this instance of amalgam
+	 (push `(annotation-assertion !rdfs:label 
+				      ,amalgam-uri
+				      ,(str+ "amalgam placed in tooth " tooth-string
+					     " of patient " patient-id)) axioms)
 
          ;; declare instance of amalgam restoration (!ohd:'amalgam filling restoration')
 	 (setf amalgam-retoration-uri (get-iri))
 	 (push `(declaration (named-individual ,amalgam-retoration-uri)) axioms)
-	 (push `(class-assertion !obo:OHD_0000041 ,amalgam-retoration-uri) axioms)
+	 (push `(class-assertion !amalgam_filling_restoration ,amalgam-retoration-uri) axioms)
+
+	 ;; add annotation about this amalgam restoration procedure
+	 (push `(annotation-assertion !rdfs:label 
+				      ,amalgam-retoration-uri
+				      ,(str+ "amalgam retoration procedure on tooth " 
+					     tooth-string " in patient " patient-id)) axioms)
 
 	 ;; add date property !ohd:'occurence date' to 'amalgam filling restoration'
-	 (push `(data-property-assertion !obo:OHD_0000015
+	 (push `(data-property-assertion !occurrence_date
 					 ,amalgam-retoration-uri ,tran-date) axioms)
 
-	 
- 
-         ;;;; relate instances ;;;;
+	  ;;;; relate instances ;;;;
        
          ;; 'tooth to be filled role' inheres in tooth
-	 (push `(object-property-assertion !obo:BFO_0000052 
+	 (push `(object-property-assertion !inheres_in
 					   ,tooth-role-uri ,tooth-uri) axioms)
 
          ;; 'amalgam filling restoration' realizes 'tooth to be filled role'
-	 (push `(object-property-assertion !obo:BFO_0000055
+	 (push `(object-property-assertion !realizes
 					   ,amalgam-retoration-uri ,tooth-role-uri) axioms)
 
          ;; 'amalgam filling restoration' has particpant tooth
-	 (push `(object-property-assertion !obo:BFO_0000057 
+	 (push `(object-property-assertion !has_participant
 					   ,amalgam-retoration-uri ,tooth-uri) axioms)
 	 
       
 
          ;; 'amalgam filling restoration' has particpant amalgam
-	 (push `(object-property-assertion !obo:BFO_0000057 
+	 (push `(object-property-assertion !has_participant 
 					   ,amalgam-retoration-uri ,amalgam-uri) axioms)
 
          ;; 'amalgam filling restoration' has particpant patient
-	 (push `(object-property-assertion !obo:BFO_0000057 
+	 (push `(object-property-assertion !has_participant 
 					   ,amalgam-retoration-uri ,patient-uri) axioms)
-
        
-	 
-	 )
+	 ) ;; end loop
     
     ;; surface - for now I'll skip this
     ;;(setf uri (make-uri (str+ iri surface)))
@@ -166,21 +241,27 @@
     (push `(declaration (named-individual ,patient-uri)) axioms) 
 
      ;; patient role is an instance of !ohd:'dental patient'
-    (push `(class-assertion !obo:OHD_0000012 ,patient-role-uri) axioms)
+    (push `(class-assertion !dental_patient ,patient-uri) axioms)
 
-    ;; patient fulfills !obi:'patient role'
-    (push `(class-assertion !obo:OBI_0000093 ,patient-uri) axioms) 
-    
+    ;; patient role is an instance of !obi:'patient role'
+    (push `(class-assertion !patient_role ,patient-role-uri) axioms) 
+
     ;; 'patient role' inheres in patient
-    (push `(object-property-assertion !obo:BFO_0000052 
+    (push `(object-property-assertion !inheres_in
 				      ,patient-role-uri ,patient-uri) axioms)
 
     ;; add data property 'patient id' to patient
-    (push `(data-property-assertion !obo:OHD_0000014
+    (push `(data-property-assertion !patient_ID
 				    ,patient-uri ,patient-id) axioms)
 
     ;; add annotation about patient
-    (push `(annotation-assertion !rdfs:label ,patient-uri ,(str+ "patient " patient-id)) axioms)
+    (push `(annotation-assertion !rdfs:label 
+				 ,patient-uri ,(str+ "dental patient " patient-id)) axioms)
+
+    ;; add annotation about patient role
+    (push `(annotation-assertion !rdfs:label 
+				 ,patient-role-uri 
+				 ,(str+ "'patient role' for patient " patient-id)) axioms)
     
     ;; return axioms
     axioms))
