@@ -184,8 +184,12 @@ y
 					     tooth-string " in patient " patient-id)) axioms)
 
 	 ;; add date property !ohd:'occurence date' to 'amalgam filling restoration'
+	 ;;(push `(data-property-assertion !occurrence_date
+	 ;;				 ,amalgam-retoration-uri ,tran-date) axioms)
+
 	 (push `(data-property-assertion !occurrence_date
-					 ,amalgam-retoration-uri ,tran-date) axioms)
+					 ,amalgam-retoration-uri 
+					 (:literal ,tran-date !xsd:date)) axioms)
 
 	  ;;;; relate instances ;;;;
        
