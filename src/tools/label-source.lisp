@@ -12,7 +12,6 @@
 			  (let ((label (car label)))
 			    (if (gethash label table) 
 				(unless (eq (gethash label table)  uri)
-				  (print-db (gethash label table) uri label)
 				  (setf (gethash label table) :ambiguous))
 				(setf (gethash label table) uri))))
 			labels))))
