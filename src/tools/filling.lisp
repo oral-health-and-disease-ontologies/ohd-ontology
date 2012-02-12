@@ -94,7 +94,7 @@
     
     ;; set default base and ontology iri's 
     (when (null iri) (setf iri "http://purl.obolibrary.org/obo/individuals/"))
-    (when (null ont-iri) (setf ont-iri "http://purl.obolibrary.org/obo/ohd/dev/fillings.owl"))
+    (when (null ont-iri) (setf ont-iri "http://purl.obolibrary.org/obo/ohd/dev/patterson-partial.owl"))
     
     ;; set global variables 
     (setf *iri* iri)
