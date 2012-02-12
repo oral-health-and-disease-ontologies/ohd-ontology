@@ -1,9 +1,18 @@
+;;****************************************************************
+;; Instructions for being able to connect to database
+;;
 ;; needs "/Applications/SQLAnywhere12/System/lib32"
 ;;  added to DYLD_LIBRARY_PATH so it can find libdbjdbc12.jnilib and dependencies.
 ;; for now add (setenv "DYLD_LIBRARY_PATH" (concatenate 'string (getenv "DYLD_LIBRARY_PATH") 
 ;; ":/Applications/SQLAnywhere12/System/lib32")) to your .emacs
 ;; (#"load" 'System "/Applications/SQLAnywhere12/System/lib32/libdbjdbc12.jnilib")  
 ;; fails there is no easy way to update DYLD_LIBRARY_PATH within a running java instance. POS.
+
+;;****************************************************************
+;; Database preparation for running this file. See dropbox:
+;; "R21 Work/Data/Queries For Extracting Data/Temp table of union of existing services, patient condtions, transactions.txt"
+;; Create and populate the two tables as instructed. 
+
 (defparameter *results-ht* nil)
 
 ;; the global variables are used to generate unique iri's
@@ -69,14 +78,15 @@ y
     
     ;; set default base and ontology iri's 
     (when (null iri) (setf iri "http://purl.obolibrary.org/obo/individuals/"))
-    (when (null ont-iri) (setf ont-iri "http://purl.obolibrary.org/obo/fillings.owl"))
+    (when (null ont-iri) (setf ont-iri "http://purl.obolibrary.org/obo/ohd/dev/fillings.owl"))
     
     ;; set global variables 
     (setf *iri* iri)
     (setf *iri-count* 1)
     
-    ;; set up connection string and query
-    (setf url"jdbc:sqlanywhere:Server=PattersonPM;UserID=PDBA;password=4561676C65536F6674")
+    ;; set up connection string and query. Put password in ~/.pattersondbpw
+    (setf url (concatenate 'string "jdbc:sqlanywhere:Server=PattersonPM;UserID=PDBA;password="
+			   (with-open-file (f "~/.pattersondbpw") (read-line f))))
     (setf query (get-amalgam-query))
 
     (with-ontology ont (:collecting t :base iri :ontology-iri ont-iri)
@@ -96,13 +106,13 @@ y
 		    
 		(loop while (#"next" results) do
 		     (as (get-amalgam-axioms 
-			  (#"getString" results "patient_id")
-			  (#"getString" results "tran_date")
+			  (#"getString" results "patient id")
+			  (#"getString" results "date entered / trans date")
 			  (#"getString" results "description")
-			  (#"getString" results "tooth_data")
+			  (#"getString" results "tooth")
 			  (#"getString" results "surface")
-			  (#"getString" results "ada_code")
-			  (#"getString" results "ada_code_description")))
+			  (#"getString" results "ada code")
+			  (#"getString" results "ada code description")))
 		     (incf count)))
 	   
 	   ;; database cleanup
@@ -307,8 +317,8 @@ y
 (defun get-amalgam-query ()
   (str+ 
    "select top 10 * from patient_history "
-   "where ada_code in ('D2140', 'D2150', 'D2160', 'D2161') "
-   "and table_name = 'transactions' ")
+   "where \"ada code\" in ('D2140', 'D2150', 'D2160', 'D2161') "
+   "and \"table/view name\" = 'transactions' ")
   )
 
 (defun str+ (&rest values)
