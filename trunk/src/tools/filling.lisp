@@ -9,9 +9,8 @@
 ;; fails there is no easy way to update DYLD_LIBRARY_PATH within a running java instance. POS.
 
 ;;****************************************************************
-;; Database preparation for running these two files in the files dropbox:
-;; "R21 Work/Data/Queries For Extracting Data/create action codes table.txt"
-;; "R21 Work/Data/Queries For Extracting Data/create patient  history table.txt"
+;; Database preparation for running this file. See dropbox:
+;; "R21 Work/Data/Queries For Extracting Data/Temp table of union of existing services, patient condtions, transactions.txt"
 ;; Create and populate the two tables as instructed. 
 
 (defparameter *results-ht* nil)
@@ -69,6 +68,22 @@
 
 (add-to-classpath "/Applications/SQLAnywhere12/System/java/sajdbc4.jar")
 
+;; Assuming that FMA uses the same numbering system, here's how the vector is computed
+;; (loop with alist 
+;; 	    for (rel tooth) in (get FMA::|Secondary dentition| :slots)
+;; 	      when (eq rel fma::|member|)
+;; 	      do 
+;; 	      (let ((syns (remove-if-not (lambda(e) (eq (car e) fma::|Synonym|)) (get tooth :slots))))
+;; 		(loop for (rel syn) in syns
+;; 		     for name = (second (find fma::|name| (get syn :slots) :key 'car))
+;; 		   for number = (caar (all-matches name ".*?(\\d+).*" 1))
+;; 		     when number do (push (cons (parse-integer number) tooth) alist)))
+;; 	      finally (return (coerce (mapcar (lambda(e) (cons (fma-uri e) (string e))) (mapcar 'cdr (sort alist '< :key 'car))) 'vector)))
+
+(defun number-to-fma-tooth (number)
+  (car (aref #((!obo:FMA_55696 . "Right upper third secondary molar tooth") (!obo:FMA_55697 . "Right upper second secondary molar tooth") (!obo:FMA_55698 . "Right upper first secondary molar tooth") (!obo:FMA_55688 . "Right upper second secondary premolar tooth") (!obo:FMA_55689 . "Right upper first secondary premolar tooth") (!obo:FMA_55798 . "Right upper secondary canine tooth") (!obo:FMA_55680 . "Right upper lateral secondary incisor tooth") (!obo:FMA_55681 . "Right upper central secondary incisor tooth") (!obo:FMA_55682 . "Left upper central secondary incisor tooth") (!obo:FMA_55683 . "Left upper lateral secondary incisor tooth") (!obo:FMA_55799 . "Left upper secondary canine tooth") (!obo:FMA_55690 . "Left upper first secondary premolar tooth") (!obo:FMA_55691 . "Left upper second secondary premolar tooth") (!obo:FMA_55699 . "Left upper first secondary molar tooth") (!obo:FMA_55700 . "Left upper second secondary molar tooth") (!obo:FMA_55701 . "Left upper third secondary molar tooth") (!obo:FMA_55702 . "Left lower third secondary molar tooth") (!obo:FMA_55703 . "Left lower second secondary molar tooth") (!obo:FMA_55704 . "Left lower first secondary molar tooth") (!obo:FMA_55692 . "Left lower second secondary premolar tooth") (!obo:FMA_55693 . "Left lower first secondary premolar tooth") (!obo:FMA_55687 . "Left lower secondary canine tooth") (!obo:FMA_57141 . "Left lower lateral secondary incisor tooth") (!obo:FMA_57143 . "Left lower central secondary incisor tooth") (!obo:FMA_57142 . "Right lower central secondary incisor tooth") (!obo:FMA_57140 . "Right lower lateral secondary incisor tooth") (!obo:FMA_55686 . "Right lower secondary canine tooth") (!obo:FMA_55694 . "Right lower first secondary premolar tooth") (!obo:FMA_55695 . "Right lower second secondary premolar tooth") (!obo:FMA_55705 . "Right lower first secondary molar tooth") (!obo:FMA_55706 . "Right lower second secondary molar tooth") (!obo:FMA_55707 . "Right lower third secondary molar tooth"))
+	(1- number))))
+
 (defun get-filling-ont (&key iri ont-iri patient-id file-name print-results)
   (let ((connection nil)
 	(statement nil)
@@ -107,13 +122,13 @@
 		    
 		(loop while (#"next" results) do
 		     (as (get-amalgam-axioms 
-			  (#"getString" results "patient_id")
-			  (#"getString" results "tran_date")
+			  (#"getString" results "patient id")
+			  (#"getString" results "date entered / trans date")
 			  (#"getString" results "description")
-			  (#"getString" results "tooth_data")
+			  (#"getString" results "tooth")
 			  (#"getString" results "surface")
-			  (#"getString" results "ada_code")
-			  (#"getString" results "ada_code_description")))
+			  (#"getString" results "ada code")
+			  (#"getString" results "ada code description")))
 		     (incf count)))
 	   
 	   ;; database cleanup
@@ -132,7 +147,7 @@
 	(tooth-uri nil)
 	(tooth-role-uri nil)
 	(amalgam-uri nil)
-	(amalgam-retoration-uri nil)
+	(amalgam-restoration-uri nil)
 	(tooth-string nil)
 	(teeth-list nil))
 	
@@ -144,7 +159,8 @@
 
     ;; tooth_data
     ;; get list of teeth in tooth_data array
-    (setf teeth-list (get-teeth tooth-data))
+;    (setf teeth-list (get-teeth tooth-data))
+    (setf teeth-list (parse-teeth-list tooth-data)) ; alanr - parse the list since that's what's in our table
     (loop for tooth in teeth-list do
          
          ;;;;  declare instances of participating entitie ;;;;
@@ -152,7 +168,7 @@
          ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
 	 (setf tooth-uri (get-iri))
 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
-	 (push `(class-assertion !fma_tooth ,tooth-uri) axioms)	     
+	 (push `(class-assertion ,(number-to-fma-tooth tooth) ,tooth-uri) axioms)	     
 
 	 ;; add annotation about tooth
 	 (setf tooth-string (format nil "~a" tooth))
@@ -184,22 +200,22 @@
 					     " of patient " patient-id)) axioms)
 
          ;; declare instance of amalgam restoration (!ohd:'amalgam filling restoration')
-	 (setf amalgam-retoration-uri (get-iri))
-	 (push `(declaration (named-individual ,amalgam-retoration-uri)) axioms)
-	 (push `(class-assertion !amalgam_filling_restoration ,amalgam-retoration-uri) axioms)
+	 (setf amalgam-restoration-uri (get-iri))
+	 (push `(declaration (named-individual ,amalgam-restoration-uri)) axioms)
+	 (push `(class-assertion !amalgam_filling_restoration ,amalgam-restoration-uri) axioms)
 
 	 ;; add annotation about this amalgam restoration procedure
 	 (push `(annotation-assertion !rdfs:label 
-				      ,amalgam-retoration-uri
-				      ,(str+ "amalgam retoration procedure on tooth " 
+				      ,amalgam-restoration-uri
+				      ,(str+ "amalgam restoration procedure on tooth " 
 					     tooth-string " in patient " patient-id)) axioms)
 
 	 ;; add date property !ohd:'occurence date' to 'amalgam filling restoration'
 	 ;;(push `(data-property-assertion !occurrence_date
-	 ;;				 ,amalgam-retoration-uri ,tran-date) axioms)
+	 ;;				 ,amalgam-restoration-uri ,tran-date) axioms)
 
 	 (push `(data-property-assertion !occurrence_date
-					 ,amalgam-retoration-uri 
+					 ,amalgam-restoration-uri 
 					 (:literal ,tran-date !xsd:date)) axioms)
 
 	  ;;;; relate instances ;;;;
@@ -210,21 +226,21 @@
 
          ;; 'amalgam filling restoration' realizes 'tooth to be filled role'
 	 (push `(object-property-assertion !realizes
-					   ,amalgam-retoration-uri ,tooth-role-uri) axioms)
+					   ,amalgam-restoration-uri ,tooth-role-uri) axioms)
 
          ;; 'amalgam filling restoration' has particpant tooth
 	 (push `(object-property-assertion !has_participant
-					   ,amalgam-retoration-uri ,tooth-uri) axioms)
+					   ,amalgam-restoration-uri ,tooth-uri) axioms)
 	 
       
 
          ;; 'amalgam filling restoration' has particpant amalgam
 	 (push `(object-property-assertion !has_participant 
-					   ,amalgam-retoration-uri ,amalgam-uri) axioms)
+					   ,amalgam-restoration-uri ,amalgam-uri) axioms)
 
          ;; 'amalgam filling restoration' has particpant patient
 	 (push `(object-property-assertion !has_participant 
-					   ,amalgam-retoration-uri ,patient-uri) axioms)
+					   ,amalgam-restoration-uri ,patient-uri) axioms)
        
 	 ) ;; end loop
     
@@ -296,7 +312,21 @@
 
     ;; return list of teeth
     teeth-list))
-	   
+
+;; alanr
+(defun parse-teeth-list (teeth-description)
+  "Parses the tooth list format '-' is range, ',' separates, into a list of teeth numbers"
+  (let ((teeth-list nil))
+
+    (let ((pieces (split-at-char teeth-description #\,)))
+      (loop for piece in pieces
+	   do
+	   (cond ((find #\- piece) (destructuring-bind (start end) (mapcar 'parse-integer (car (all-matches piece "^(\\d+)-(\\d+)" 1 2)))
+				     (loop for i from start to end do (push i teeth-list))))
+		 ;; otherwise it is a single number
+		 (t (push (parse-integer piece) teeth-list)))))
+    ;; return list of teeth
+    teeth-list))
 
 (defun get-iri ()
   "Returns a unique iri using 'make-uri'."
@@ -316,14 +346,10 @@
    (str+ *iri* iri-string)))
 
 (defun get-amalgam-query ()
-  ;;(str+ 
-  ;; "select top 10 * from patient_history "
-  ;; "where \"ada code\" in ('D2140', 'D2150', 'D2160', 'D2161') "
-  ;  "and \"table/view name\" = 'transactions' ")
   (str+ 
    "select top 10 * from patient_history "
-   "where ada_code in ('D2140', 'D2150', 'D2160', 'D2161') "
-   "and table_name = 'transactions' ")
+   "where \"ada code\" in ('D2140', 'D2150', 'D2160', 'D2161') "
+   "and \"table/view name\" = 'transactions' ")
   )
 
 (defun str+ (&rest values)
@@ -338,5 +364,5 @@ Usage:
   ;; the following make use of the format functions
   ;;(format nil "~{~a~}" values)
   ;;; use (format nil "~{~a^ ~}" values) to concatenate with spaces
-  ;; this may be the simplist to understant...
+  ;; this may be the simplist to understand...
   (apply #'concatenate 'string values))
