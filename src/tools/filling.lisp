@@ -9,8 +9,9 @@
 ;; fails there is no easy way to update DYLD_LIBRARY_PATH within a running java instance. POS.
 
 ;;****************************************************************
-;; Database preparation for running this file. See dropbox:
-;; "R21 Work/Data/Queries For Extracting Data/Temp table of union of existing services, patient condtions, transactions.txt"
+;; Database preparation for running these two files in the files dropbox:
+;; "R21 Work/Data/Queries For Extracting Data/create action codes table.txt"
+;; "R21 Work/Data/Queries For Extracting Data/create patient  history table.txt"
 ;; Create and populate the two tables as instructed. 
 
 (defparameter *results-ht* nil)
@@ -18,7 +19,7 @@
 ;; the global variables are used to generate unique iri's
 (defparameter *iri* nil)
 (defparameter *iri-count* nil)
-y
+
 ;; for ease of use, set up some aliases to reference ohd classes
 (def-uri-alias "fma_tooth" !obo:FMA_12516)
 (def-uri-alias "dental_patient" !obo:OHD_0000012)
@@ -106,13 +107,13 @@ y
 		    
 		(loop while (#"next" results) do
 		     (as (get-amalgam-axioms 
-			  (#"getString" results "patient id")
-			  (#"getString" results "date entered / trans date")
+			  (#"getString" results "patient_id")
+			  (#"getString" results "tran_date")
 			  (#"getString" results "description")
-			  (#"getString" results "tooth")
+			  (#"getString" results "tooth_data")
 			  (#"getString" results "surface")
-			  (#"getString" results "ada code")
-			  (#"getString" results "ada code description")))
+			  (#"getString" results "ada_code")
+			  (#"getString" results "ada_code_description")))
 		     (incf count)))
 	   
 	   ;; database cleanup
@@ -315,10 +316,14 @@ y
    (str+ *iri* iri-string)))
 
 (defun get-amalgam-query ()
+  ;;(str+ 
+  ;; "select top 10 * from patient_history "
+  ;; "where \"ada code\" in ('D2140', 'D2150', 'D2160', 'D2161') "
+  ;  "and \"table/view name\" = 'transactions' ")
   (str+ 
    "select top 10 * from patient_history "
-   "where \"ada code\" in ('D2140', 'D2150', 'D2160', 'D2161') "
-   "and \"table/view name\" = 'transactions' ")
+   "where ada_code in ('D2140', 'D2150', 'D2160', 'D2161') "
+   "and table_name = 'transactions' ")
   )
 
 (defun str+ (&rest values)
