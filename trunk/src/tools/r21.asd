@@ -24,7 +24,8 @@
 	    :components ((:file "label-source") )) 
    (:module tools :pathname ""
 	    :components
-	    ((:file "queries.lisp")
+	    ((:file "queries")
+	     (:file "filling")
 	     )
 	    :depends-on
 	    (early)))
