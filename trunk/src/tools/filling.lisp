@@ -23,6 +23,12 @@
 (defparameter *iri* nil)
 (defparameter *iri-count* nil)
 
+;; global hash table used to keep track of which patients have been processed.
+;; hash key is patient_id; value is the uri for the patient
+;; this is need to keep from generating a new uri when a patient id occurs in the 
+;; the database more than once
+(defvar *patient-uri-ht* nil)
+
 ;; for ease of use, set up some aliases to reference ohd classes
 (def-uri-alias "fma_tooth" !obo:FMA_12516)
 (def-uri-alias "dental_patient" !obo:OHD_0000012)
@@ -96,17 +102,24 @@
 	(url nil)
 	(count 0))
     
+    ;; create hash table for keeping track of patient uri's
+    (setf *patient-uri-ht* (make-hash-table :test 'equal))
+
     ;; set default base and ontology iri's 
     (when (null iri) (setf iri "http://purl.obolibrary.org/obo/ohd/individuals/"))
-    (when (null ont-iri) (setf ont-iri "http://purl.obolibrary.org/obo/ohd/dev/patterson-partial.owl"))
+    (when (null ont-iri) 
+      (setf ont-iri "http://purl.obolibrary.org/obo/ohd/dev/patterson-partial.owl"))
     
     ;; set global variables 
     (setf *iri* iri)
     (setf *iri-count* 1)
     
     ;; set up connection string and query. Put password in ~/.pattersondbpw
-    (setf url (concatenate 'string "jdbc:sqlanywhere:Server=PattersonPM;UserID=PDBA;password="
+    (setf url (concatenate 'string 
+			   "jdbc:sqlanywhere:Server=PattersonPM;UserID=PDBA;password="
 			   (with-open-file (f "~/.pattersondbpw") (read-line f))))
+
+    ;; get query string for amalgam restorations
     (setf query (get-amalgam-query))
 
     (with-ontology ont (:collecting t :base iri :ontology-iri ont-iri)
@@ -154,12 +167,27 @@
 	(amalgam-restoration-uri nil)
 	(tooth-string nil)
 	(teeth-list nil))
-	
-    ;; get axioms abou the patient
-    (setf patient-uri (get-iri))
+
+
+    ;; get axioms about the patient
+    ;; test to see if patient has already been created:
+    ;; if not, then generate axioms about patient
+    ;; otherwise, simply get the patient uri
+    (if (not (gethash patient-id *patient-uri-ht*))
+	(progn 
+	  ;; get uri based on patient id
+	  (setf patient-uri (get-patient-uri patient-id))
+	  (print-db patient-uri)
+	  ;; note append puts lists together and doesn't put items in list (like push)
+	  (setf axioms (append (get-patient-axioms patient-uri patient-id) axioms)))
+	(setf patient-uri (get-patient-uri patient-id)))
+
+
+    ;; generate the patient role axioms
     (setf patient-role-uri (get-iri))
-    (setf axioms (get-patient-axioms patient-uri patient-role-uri patient-id))
-    ;;(setf axioms (append (get-patient-axioms patient-uri patient-role-uri patient-id) axioms)) ;; this works too
+    (setf axioms 
+	  (append (get-patient-role-axioms patient-uri patient-role-uri patient-id) axioms))
+
 
     ;; tooth_data
     ;; get list of teeth in tooth_data array
@@ -270,31 +298,37 @@
     axioms))
   
 
-(defun get-patient-axioms (patient-uri patient-role-uri patient-id)
+(defun get-patient-axioms (patient-uri patient-id)
   "Returns a list of axioms about a patient that is identified by patient-id."
   (let ((axioms nil))
     ;; create instance/indiviual  patient
     (push `(declaration (named-individual ,patient-uri)) axioms) 
-
-     ;; patient role is an instance of !ohd:'dental patient'
     (push `(class-assertion !dental_patient ,patient-uri) axioms)
-
-    ;; patient role is an instance of !obi:'patient role'
-    (push `(class-assertion !patient_role ,patient-role-uri) axioms) 
-
-    ;; 'patient role' inheres in patient
-    (push `(object-property-assertion !inheres_in
-				      ,patient-role-uri ,patient-uri) axioms)
 
     ;; add data property 'patient id' to patient
     (push `(data-property-assertion !patient_ID
 				    ,patient-uri ,patient-id) axioms)
 
-    ;; add annotation about patient
+    ;; add label annotation about patient
     (push `(annotation-assertion !rdfs:label 
 				 ,patient-uri ,(str+ "dental patient " patient-id)) axioms)
 
-    ;; add annotation about patient role
+    ;; return axioms
+    axioms))
+
+(defun get-patient-role-axioms (patient-uri patient-role-uri patient-id)
+  "Returns a list of axioms about patient role."
+  (let ((axioms nil))
+
+    ;; create instance of patient role; patient role is an instance of !obi:'patient role'
+    (push `(declaration (named-individual ,patient-role-uri)) axioms)
+    (push `(class-assertion !patient_role ,patient-role-uri) axioms) 
+
+    ;; 'patient role' inheres in patient
+    (push `(object-property-assertion !inheres_in
+				      ,patient-role-uri ,patient-uri) axioms)
+    
+    ;; add label annotation about patient role
     (push `(annotation-assertion !rdfs:label 
 				 ,patient-role-uri 
 				 ,(str+ "'patient role' for patient " patient-id)) axioms)
@@ -333,6 +367,23 @@
     ;; return list of teeth
     teeth-list))
 
+(defun get-patient-uri (patient-id)
+  (let ((patient-uri nil))
+    ;; look in patient uri hash table for a ur
+    (setf patient-uri (gethash patient-id *patient-uri-ht*))
+
+    ;; if the patient-uri is nil, then create a new iri
+    ;; and add to patient uri hash table
+    (when (not patient-uri)
+      ;;(setf patient-uri (get-iri-string))
+      (setf patient-uri (get-iri))
+      (setf (gethash patient-id *patient-uri-ht*) patient-uri))
+
+    ;; return the patient uri
+    ;; note: this must be done using make-uri
+    ;;(make-uri patient-uri)))
+    patient-uri))
+
 (defun get-iri ()
   "Returns a unique iri using 'make-uri'."
   (make-uri (get-iri-string)))
@@ -355,10 +406,15 @@
   ;; "select top 10 * from patient_history "
   ;; "where \"ada code\" in ('D2140', 'D2150', 'D2160', 'D2161') "
   ;; "and \"table/view name\" = 'transactions' ")
-  (str+ 
-   "select top 10 * from patient_history "
-   "where ada_code in ('D2140', 'D2150', 'D2160', 'D2161') "
-   "and table_name = 'transactions' ")
+  ;; (str+ 
+  ;;  "select top 10 * from patient_history "
+  ;;  "where ada_code in ('D2140', 'D2150', 'D2160', 'D2161') "
+  ;;  "and table_name = 'transactions' ")
+  "select *
+from patient_history
+where ada_code in ('D2140', 'D2150', 'D2160', 'D2161') 
+and table_name = 'transactions'
+and (patient_id = 5708 or patient_id = 5482)"
   )
 
 (defun str+ (&rest values)
