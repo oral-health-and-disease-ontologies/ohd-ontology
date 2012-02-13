@@ -9,11 +9,15 @@
 ;; fails there is no easy way to update DYLD_LIBRARY_PATH within a running java instance. POS.
 
 ;;****************************************************************
-;; Database preparation for running this file. See dropbox:
-;; "R21 Work/Data/Queries For Extracting Data/Temp table of union of existing services, patient condtions, transactions.txt"
-;; Create and populate the two tables as instructed. 
-
-(defparameter *results-ht* nil)
+;; Database preparation: 
+;; In order to set up the Patterson datase, you must first run the queries 
+;; continaned in these two files in the files dropbox:
+;; 1. "R21 Work/Data/Queries For Extracting Data/create action codes table.txt"
+;; 2. "R21 Work/Data/Queries For Extracting Data/create patient  history table.txt"
+;; It is necessarry for you to run file #1 then file #2, since the patient_history table
+;; references the action_codes table.
+;; After the database has been set up, you will only need to run these quereies if the table
+;; definitions change.
 
 ;; the global variables are used to generate unique iri's
 (defparameter *iri* nil)
@@ -93,7 +97,7 @@
 	(count 0))
     
     ;; set default base and ontology iri's 
-    (when (null iri) (setf iri "http://purl.obolibrary.org/obo/individuals/"))
+    (when (null iri) (setf iri "http://purl.obolibrary.org/obo/ohd/individuals/"))
     (when (null ont-iri) (setf ont-iri "http://purl.obolibrary.org/obo/ohd/dev/patterson-partial.owl"))
     
     ;; set global variables 
@@ -122,13 +126,13 @@
 		    
 		(loop while (#"next" results) do
 		     (as (get-amalgam-axioms 
-			  (#"getString" results "patient id")
-			  (#"getString" results "date entered / trans date")
+			  (#"getString" results "patient_id")
+			  (#"getString" results "tran_date")
 			  (#"getString" results "description")
-			  (#"getString" results "tooth")
+			  (#"getString" results "tooth_data")
 			  (#"getString" results "surface")
-			  (#"getString" results "ada code")
-			  (#"getString" results "ada code description")))
+			  (#"getString" results "ada_code")
+			  (#"getString" results "ada_code_description")))
 		     (incf count)))
 	   
 	   ;; database cleanup
@@ -137,7 +141,7 @@
 	   (and statement (#"close" statement))))
 
       ;; return the ontology
-      ont)))
+      (values ont count))))
 
 (defun get-amalgam-axioms (patient-id tran-date description 
 			   tooth-data surface ada-code ada-code-description)
@@ -152,15 +156,16 @@
 	(teeth-list nil))
 	
     ;; get axioms abou the patient
-    ;;(push (get-patient-axioms iri patient-id) axioms) ;; this doesn' work.. why not?
     (setf patient-uri (get-iri))
     (setf patient-role-uri (get-iri))
     (setf axioms (get-patient-axioms patient-uri patient-role-uri patient-id))
+    ;;(setf axioms (append (get-patient-axioms patient-uri patient-role-uri patient-id) axioms)) ;; this works too
 
     ;; tooth_data
     ;; get list of teeth in tooth_data array
-;    (setf teeth-list (get-teeth tooth-data))
-    (setf teeth-list (parse-teeth-list tooth-data)) ; alanr - parse the list since that's what's in our table
+    (setf teeth-list (get-teeth tooth-data))
+    
+    ;(setf teeth-list (parse-teeth-list tooth-data)) ; alanr - parse the list since that's what's in our table  
     (loop for tooth in teeth-list do
          
          ;;;;  declare instances of participating entitie ;;;;
@@ -346,10 +351,14 @@
    (str+ *iri* iri-string)))
 
 (defun get-amalgam-query ()
+  ;;(str+ 
+  ;; "select top 10 * from patient_history "
+  ;; "where \"ada code\" in ('D2140', 'D2150', 'D2160', 'D2161') "
+  ;; "and \"table/view name\" = 'transactions' ")
   (str+ 
    "select top 10 * from patient_history "
-   "where \"ada code\" in ('D2140', 'D2150', 'D2160', 'D2161') "
-   "and \"table/view name\" = 'transactions' ")
+   "where ada_code in ('D2140', 'D2150', 'D2160', 'D2161') "
+   "and table_name = 'transactions' ")
   )
 
 (defun str+ (&rest values)
