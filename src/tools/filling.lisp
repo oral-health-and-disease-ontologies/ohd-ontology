@@ -34,7 +34,7 @@
 (defparameter *amalgam-code-list* 
   '("D2140" "D2150" "D2160" "D2161"))
 (defparameter *resin-code-list* 
-  '("D2330" "D2332" "D2335" "D2390" "D2391""D2392" "D2392" "D2394"))
+  '("D2330" "D2332" "D2335" "D2390" "D2391""D2392" "D2393" "D2394"))
 (defparameter *gold-code-list* 
   '("D2410" "D2420" "D2430"))
 
