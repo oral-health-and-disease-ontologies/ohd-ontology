@@ -672,28 +672,390 @@ Usage:
   ;; this may be the simplist to understand...
   (apply #'concatenate 'string values))
 
-(defun create-action-codes-table (force-create)
 
-)
-
-(defun create-patient-history-table (force-create)
-
-)
-
-(defun test-existence-of-table (table-name)
+(defun create-table (table-name &optional force-create-table)
   (let ((url nil)
 	(connection nil)
 	(statement nil)
-	(results nil)
-	(query nil))
+	(query nil)
+	(success nil)
+	(table-found))
+
+    ;; check to see if the table is in the db
+    (setf table-found (table-exists table-name))
+    
+    ;; create table if it does not exist or there is a force create flag
+    (when (or (not table-found) force-create-table)    
+      ;; create connection string
+      (setf url (concatenate 
+		 'string 
+		 "jdbc:sqlanywhere:Server=PattersonPM;UserID=PDBA;password="
+		 (with-open-file (f "~/.pattersondbpw") (read-line f))))
+
+      ;; create query string for creating table
+      (cond
+	((equal table-name "action_codes") 
+	 (setf query (get-create-action-codes-query)))
+	((equal table-name "patient_history")
+	 (setf query (get-create-patient-history-query))))
+      
+      ;; verfiy that there is a query
+      (when query
+	(unwind-protect
+	     (progn
+	       ;; connect to db and execute query
+	       (setf connection (#"getConnection" 'java.sql.DriverManager url))
+	       (setf statement (#"createStatement" connection))
+	       
+	       ;; if the table is already in the db, delete all the rows
+	       ;; this is to ensure that the created table will not have
+	       ;; any duplicate rows
+	       (when table-found (delete-table table-name))
+	       
+	       ;; create table
+	       ;; on success 1 is returned; otherwise nil
+	       (setf success (#"executeUpdate" statement query)))
+
+	  ;; database cleanup
+	  (and connection (#"close" connection))
+	  (and statement (#"close" statement)))))
+
+    ;; return success indicator
+    success))
+
+
+(defun delete-table (table-name)
+  "Deletes all the rows in table-name."
+  (let ((url nil)
+	(connection nil)
+	(statement nil)
+	(query nil)
+	(success nil))
+    
+  ;; create connection string
+    (setf url (concatenate 
+	       'string 
+	       "jdbc:sqlanywhere:Server=PattersonPM;UserID=PDBA;password="
+	       (with-open-file (f "~/.pattersondbpw") (read-line f))))
+
+    (setf query (str+ "DELETE " table-name))
+
+    (unwind-protect
+	 (progn
+	   ;; connect to db and execute query
+	   (setf connection (#"getConnection" 'java.sql.DriverManager url))
+	   (setf statement (#"createStatement" connection))
+	       
+	   ;; create table
+	   ;; on success 1 is returned; otherwise nil
+	   (setf success (#"executeUpdate" statement query)))
+
+      ;; database cleanup
+      (and connection (#"close" connection))
+      (and statement (#"close" statement)))
+
+    ;; return success indicator
+    success))
+
+(defun get-create-action-codes-query ()
+"
+DROP TABLE IF EXISTS PattersonPM.PPM.action_codes; 
+CREATE TABLE PattersonPM.PPM.action_codes (action_code_id int NOT NULL, description varchar(50) NOT NULL, PRIMARY KEY (action_code_id));
+insert into PattersonPM.PPM.action_codes (action_code_id, description) values (1, 'Missing Tooth'); 
+insert into PattersonPM.PPM.action_codes (action_code_id, description) values (2, 'Caries');
+insert into PattersonPM.PPM.action_codes (action_code_id, description) values (3, 'Dental Caries');
+insert into PattersonPM.PPM.action_codes (action_code_id, description) values (4, 'Recurring Caries');
+insert into PattersonPM.PPM.action_codes (action_code_id, description) values (5, 'Abscess/Lesions');
+insert into PattersonPM.PPM.action_codes (action_code_id, description) values (6, 'Open Contact');
+insert into PattersonPM.PPM.action_codes (action_code_id, description) values (7, 'Non Functional Tooth');
+insert into PattersonPM.PPM.action_codes (action_code_id, description) values (8, 'Fractured Restoration');
+insert into PattersonPM.PPM.action_codes (action_code_id, description) values (9, 'Fractured Tooth');
+insert into PattersonPM.PPM.action_codes (action_code_id, description) values (10,'Restoration With Poor Marginal Integrity');
+insert into PattersonPM.PPM.action_codes (action_code_id, description) values (11,'Wear Facets');
+insert into PattersonPM.PPM.action_codes (action_code_id, description) values (12,'Tori');
+insert into PattersonPM.PPM.action_codes (action_code_id, description) values (13,'Malposition');
+insert into PattersonPM.PPM.action_codes (action_code_id, description) values (14,'Erosion');
+insert into PattersonPM.PPM.action_codes (action_code_id, description) values (15,'Extrusion');
+insert into PattersonPM.PPM.action_codes (action_code_id, description) values (16,'Root Amputation');
+insert into PattersonPM.PPM.action_codes (action_code_id, description) values (17,'Root Canal');
+insert into PattersonPM.PPM.action_codes (action_code_id, description) values (18,'Impaction');")
+
+(defun get-create-patient-history-query ()
+"
+/* This line is needed to force Sybase to return all rows when populating the patient_history table. */
+SET rowcount 0
+
+DROP TABLE IF EXISTS PattersonPM.PPM.patient_history
+
+/* Create and define the column names for the patient_history table. */
+CREATE TABLE
+  PattersonPM.PPM.patient_history
+  (
+    /* Define field names of patient_history. */
+    patient_id INT,
+    table_name VARCHAR(20),
+    date_completed VARCHAR(15) NULL,
+    date_entered VARCHAR(15),
+    tran_date VARCHAR(15) NULL,
+    description VARCHAR(40) NULL,
+    tooth VARCHAR(10) NULL,
+    surface VARCHAR(10) NULL,
+    action_code VARCHAR(5) NULL,
+    action_code_description VARCHAR(50) NULL,
+    service_code VARCHAR(5) NULL,
+    ada_code VARCHAR(5) NULL,
+    ada_code_description VARCHAR(50) NULL,
+    tooth_data CHAR(55) NULL,
+    surface_detail CHAR(23) NULL
+  )
+
+
+/*
+Put values of union query into patient_history table.
+
+A field with the value 'n/a' means that the table/view being queried does not have a corresponding
+field.  This is necessary because when doing a union of multiple queries the number of columns
+returned by each query must match.  Putting the 'n/a' in as a place holder ensures this.
+
+Note: Many of the field are cast to type VARCHAR.  This is necessary in order to allow an 'n/a' to
+be the value of a non-character data field (such as a date).
+*/
+INSERT
+INTO
+  patient_history
+  (
+    patient_id,
+    table_name,
+    date_completed,
+    date_entered,
+    tran_date,
+    description,
+    tooth,
+    surface,
+    action_code,
+    action_code_description,
+    service_code,
+    ada_code,
+    ada_code_description,
+    tooth_data,
+    surface_detail
+  )
+/*
+The existing_services table is the table for all findings in ES that are, essentially
+procedures completed by entities outside the current dental office.
+*/
+
+SELECT
+  existing_services.patient_id,
+  table_name = 'existing_services', -- table_name value
+  /* date_completed is the date (usually reported by the patient) that something was done */
+  CAST(existing_services.date_completed AS VARCHAR),
+  /* date_entered is the date that the record was entered into the system */
+  CAST(existing_services.date_entered AS VARCHAR),
+  tran_date = 'n/a', -- tran_date is not recorded in the existing_services table
+  existing_services.description,
+  existing_services.tooth,
+  existing_services.surface,
+  action_code = 'n/a', -- action_code in not recorded in the existing_services table
+  action_code_description = 'n/a', -- there is no action code description in the existing_services table
+  existing_services.service_code,
   
-    (setf url (concatenate 'string 
-			   "jdbc:sqlanywhere:Server=PattersonPM;UserID=PDBA;password="
-			   (with-open-file (f "~/.pattersondbpw") (read-line f))))
+  ada_code =
+  (
+    -- This subquery finds the ada_code (if any) associated with a service code.
+    SELECT
+      services.ada_code
+    FROM
+      services
+    WHERE
+      services.service_code = existing_services.service_code),
+  
+  ada_code_descriiption =
+  (
+    -- This subquery finds the ada code description (if any) associated with a service code
+    SELECT
+      services.description
+    FROM
+      services
+    WHERE
+      services.service_code = existing_services.service_code),
+  
+  tooth_data =
+  (
+    SELECT
+      existing_services_extra.tooth_data
+    FROM
+      existing_services_extra
+    WHERE
+      existing_services.patient_id = existing_services_extra.patient_id
+    AND existing_services.line_number = existing_services_extra.line_number),
+  
+  surface_detail =
+  (
+    SELECT
+      surface_detail
+    FROM
+      existing_services_extra
+    WHERE
+      existing_services.patient_id = existing_services_extra.patient_id
+    AND existing_services.line_number = existing_services_extra.line_number)
+FROM
+  existing_services
 
-    ;; get query string for amalgam restorations
-    (setf query (get-amalgam-query))
+UNION ALL
+/*
+The patient_conditions table is the table for all conditions in ES that do not result from a
+procedure, i.e. all things that happen one their own (fracture, caries, etc.)
+*/
+SELECT
+  patient_conditions.patient_id,
+  table_name = 'patient_conditions', -- table_name value
+  date_completed = 'n/a', -- date_completed is not recorded in the patient_conditions table
+  CAST(patient_conditions.date_entered AS VARCHAR), -- date_entered is the date that the record was entered into the system
+  tran_date = 'n/a', -- tran_date is not recorded in the patient_conditions table
+  patient_conditions.description,
+  patient_conditions.tooth,
+  /* The case statement, here, is used to return empty strings for null values. */
+  surface =
+  CASE
+    WHEN patient_conditions.surface IS NULL
+    THEN ''
+    ELSE patient_conditions.surface
+  END,
+  
+  --see 'EagleSoft queries_123011.xls' spreadsheet for a list of action codes
+  CAST(patient_conditions.action_code AS VARCHAR),
+  action_code_description =
+  (
+    -- This subquery finds the desciption associate with an action code.
+    SELECT
+      action_codes.description
+    FROM
+      action_codes
+    WHERE
+      action_codes.action_code_id = patient_conditions.action_code),
+  
+  -- service codes, ada codes, and ada code descriptions are not recorded in the patient_conditions table
+  service_code = 'n/a',
+  ada_code = 'n/a',
+  ada_code_description = 'n/a',
+  
+  tooth_data =
+  (
+    SELECT
+      tooth_data
+    FROM
+      patient_conditions_extra
+    WHERE
+      patient_conditions.counter_id = patient_conditions_extra.counter_id),
+  
+  surface_detail =
+  (
+    SELECT
+      surface_detail
+    FROM
+      patient_conditions_extra
+    WHERE
+      patient_conditions.counter_id = patient_conditions_extra.counter_id)
+FROM
+  patient_conditions
 
+UNION ALL
+/*
+The transactions view records transactions between the provider and the patient.
+*/
+SELECT
+  transactions.patient_id,
+  table_name = 'transactions', -- table_name value (although transactions is a viiew)
+  date_completed = 'n/a', -- date_completed is not recorded in the transactons view
+  date_entered = 'n/a', -- date_entered is not recorded in the transactons view
+  CAST(transactions.tran_date AS VARCHAR),
+  transactions.description,
+  transactions.tooth,
+  /* The case statement, here, is used to return empty strings for null values. */
+  surface =
+  CASE
+    WHEN transactions.surface IS NULL
+    THEN ''
+    ELSE transactions.surface
+  END,
+  action_code = 'n/a', -- action_code in not recroded in the transactions view
+  action_code_description = 'n/a', -- there are no action code descriptions in the transactions view
+  transactions.service_code,
+  
+  ada_code =
+  (
+    -- This subquery finds the ada_code (if any) associated with a service code.
+    SELECT
+      services.ada_code
+    FROM
+      services
+    WHERE
+      services.service_code = transactions.service_code),
+  
+  ada_code_description =
+  (
+    -- This subquery finds the ada code description (if any) associated with a service code
+    SELECT
+      services.description
+    FROM
+      services
+    WHERE
+      services.service_code = transactions.service_code),
+  
+  tooth_data =
+  (
+    SELECT
+      tooth_data
+    FROM
+      transactions_extra
+    WHERE
+      transactions.tran_num = transactions_extra.tran_num),
+  
+  surface_detail =
+  (
+    SELECT
+      surface_detail
+    FROM
+      transactions_extra
+    WHERE
+      transactions.tran_num = transactions_extra.tran_num)
+FROM
+  transactions
+WHERE
+  type = 'S'
+  
+  /* To use an order by clause in a union query, you reference the column number. */
+ORDER BY
+  1, -- patient_id
+  2, -- table_name
+  3, -- date_completed
+  4, -- date_entered
+  5, -- tran_date
+  7 -- tooth
+")
+
+(defun table-exists (table-name)
+  "Returns t if table-name exists in db; nil otherwise."
+  (let ((url nil)
+	(connection nil)
+	;;(meta nil)
+	(statement nil)
+	(results nil)
+	(query nil)
+	(answer nil))
+  
+    ;; create connection string
+    (setf url (concatenate 
+	       'string 
+	       "jdbc:sqlanywhere:Server=PattersonPM;UserID=PDBA;password="
+	       (with-open-file (f "~/.pattersondbpw") (read-line f))))
+
+    ;; create query string for finding table name in sysobjects
+    (setf query (concatenate 
+		 'string
+		 "SELECT * FROM dbo.sysobjects "
+		 "WHERE name = '" table-name "' AND type = 'U'"))
 
     (unwind-protect
 	 (progn
@@ -702,11 +1064,122 @@ Usage:
 	   (setf statement (#"createStatement" connection))
 	   (setf results (#"executeQuery" statement query))
 
-	 
-	   )
+	   ;; ** could not get this to work :(
+	   ;;(setf meta (#"getMetaData" connection)) ;; col
+	   ;;(setf results (#"getTables" meta nil nil "action_codes" "TABLE"))
+
+	   (when (#"next" results) (setf answer t)))
       ;; database cleanup
       (and connection (#"close" connection))
       (and results (#"close" results))
-      (and statement (#"close" statement)))
+      (and statement (#"close" statement)))))
 
+(defun test-stored-produre ()
+  (let ((url nil)
+	(connection nil)
+	(statement nil)
+	(results nil)
+	(query nil))
+
+    (setf url (concatenate 
+	       'string 
+	       "jdbc:sqlanywhere:Server=PattersonPM;UserID=PDBA;password="
+	       (with-open-file (f "~/.pattersondbpw") (read-line f))))
+
+    ;; get query string for amalgam restorations
+    (setf query "{call uspGetPatientById(?)}")
+    
+
+    (unwind-protect
+	 (progn
+	   ;; connect to db and get data
+	   (setf connection (#"getConnection" 'java.sql.DriverManager url))
+	   (setf statement (#"prepareCall" connection query))
+	   (#"setInt" statement 1 3000)
+	   (setf results (#"executeQuery" statement))
+	   
+	   (#"next" results)
+	   (pprint (#"getString" results "first_name"))
+	   (pprint (#"getString" results "last_name")))
+
+      ;; database cleanup
+      (and connection (#"close" connection))
+      (and results (#"close" results))
+      (and statement (#"close" statement)))))
+
+(defun test-create-table ()
+  (let ((url nil)
+	(connection nil)
+	(statement nil)
+	(success nil)
+	(query nil))
+  
+    (setf url (concatenate 
+	       'string 
+	       "jdbc:sqlanywhere:Server=PattersonPM;UserID=PDBA;password="
+	       (with-open-file (f "~/.pattersondbpw") (read-line f))))
+
+    (unwind-protect
+	 (progn
+	   ;; connect to db and get data
+	   (setf connection (#"getConnection" 'java.sql.DriverManager url))
+	   (setf statement (#"createStatement" connection))
+
+	   (setf query 
+		 (concatenate
+		  'string 
+		  "create table mytest (test varchar(20)); "
+		  "insert into mytest (test) values('this is a test'); "
+		  "insert into mytest (test) values('this is another test');"))
+	   
+	   ;; just using "execute" returns nil on both success and failure
+	   ;;(#"execute" statement query)
+	   
+	   ;; "executeUpdate" returns 1 on successl; nil on failure
+	   ;; note: there is not a result to return or close during db cleanup
+	   (setf success (#"executeUpdate" statement query)))
+
+      ;; database cleanup
+      (and connection (#"close" connection))
+      (and statement (#"close" statement)))
+    
+    ;; return success of query
+    success
     ))
+
+(defun test-table-exists (table-name)
+  (let ((url nil)
+	(connection nil)
+	(meta nil)
+	(statement nil)
+	(results nil)
+	(query nil)
+	(answer nil)
+	(javanull nil))
+  
+    ;; create connection string
+    (setf url (concatenate 
+	       'string 
+	       "jdbc:sqlanywhere:Server=PattersonPM;UserID=PDBA;password="
+	       (with-open-file (f "~/.pattersondbpw") (read-line f))))
+
+    (unwind-protect
+	 (progn
+	   
+	   ;; create a null object to be used in with java calss
+	   (setf javanull (make-immediate-object nil :ref))
+	   
+	   ;; connect to db and get data
+	   (setf connection (#"getConnection" 'java.sql.DriverManager url))
+	   (setf statement (#"createStatement" connection))
+
+	   ;; note the use of javanull 
+	   (setf meta (#"getMetaData" connection)) 
+	   (setf results (#"getTables" meta javanull javanull "action_codes" "TABLE"))
+
+	   (when (#"next" results) (setf answer t)))
+
+      ;; database cleanup
+      (and connection (#"close" connection))
+      (and results (#"close" results))
+     (and statement (#"close" statement)))))
