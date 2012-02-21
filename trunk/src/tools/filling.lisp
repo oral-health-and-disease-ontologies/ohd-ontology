@@ -162,7 +162,7 @@
 			   (with-open-file (f "~/.pattersondbpw") (read-line f))))
 
     ;; get query string for amalgam restorations
-    (setf query (get-amalgam-query))
+    (setf query (get-fillings-query))
 
     (with-ontology ont (:collecting t :base iri :ontology-iri ont-iri)
 	((unwind-protect
@@ -199,127 +199,6 @@
       (values ont count))))
 
 
-;; (defun get-amalgam-axioms (patient-id occurrence-date description 
-;; 			   tooth-data surface ada-code ada-code-description)
-;;   (let ((axioms nil)
-;; 	(patient-uri nil)
-;; 	(patient-role-uri nil)
-;; 	(tooth-uri nil)
-;; 	(tooth-role-uri nil)
-;; 	(amalgam-uri nil)
-;; 	(amalgam-restoration-uri nil)
-;; 	(tooth-string nil)
-;; 	(teeth-list nil))
-
-
-;;     ;; get axioms about the patient
-;;     ;; test to see if patient has already been created:
-;;     ;; if not, then generate axioms about patient
-;;     ;; otherwise, simply get the patient uri
-;;     (if (not (gethash patient-id *patient-uri-ht*))
-;; 	(progn 
-;; 	  ;; get uri based on patient id
-;; 	  (setf patient-uri (get-patient-uri patient-id))
-;; 	  (print-db patient-uri)
-;; 	  ;; note append puts lists together and doesn't put items in list (like push)
-;; 	  (setf axioms (append (get-patient-axioms patient-uri patient-id) axioms)))
-;; 	(setf patient-uri (get-patient-uri patient-id)))
-
-
-;;     ;; generate the patient role axioms
-;;     (setf patient-role-uri (get-iri))
-;;     (setf axioms 
-;; 	  (append (get-patient-role-axioms patient-uri patient-role-uri patient-id) axioms))
-
-;;     ;; tooth_data
-;;     ;; get list of teeth in tooth_data array
-;;     (setf teeth-list (get-teeth tooth-data))
-    
-;;     ;(setf teeth-list (parse-teeth-list tooth-data)) ; alanr - parse the list since that's what's in our table  
-;;     (loop for tooth in teeth-list do
-         
-;;          ;;;;  declare instances of participating entitie ;;;;
-
-;;          ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
-;; 	 (setf tooth-uri (get-iri))
-;; 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
-;; 	 (push `(class-assertion ,(number-to-fma-tooth tooth) ,tooth-uri) axioms)	     
-
-;; 	 ;; add annotation about tooth
-;; 	 (setf tooth-string (format nil "~a" tooth))
-;; 	 (push `(annotation-assertion !rdfs:label 
-;; 				      ,tooth-uri
-;; 				      ,(str+ "tooth " tooth-string
-;; 					     " of patient " patient-id)) axioms)
-
-;;          ;; declare instance of !ohd:'tooth to be filled role'
-;; 	 (setf tooth-role-uri (get-iri))
-;; 	 (push `(declaration (named-individual ,tooth-role-uri)) axioms)
-;; 	 (push `(class-assertion !tooth_to_be_filled_role ,tooth-role-uri) axioms)
-
-;; 	 ;; add annotation about 'tooth to be filled role'
-;; 	 (push `(annotation-assertion !rdfs:label 
-;; 				      ,tooth-role-uri
-;; 				      ,(str+ "tooth to be filled role for tooth " 
-;; 					     tooth-string " of patient " patient-id)) axioms)
-
-;;          ;; declare instance of amalgam (!ohd:amalgam) for tooth
-;; 	 (setf amalgam-uri (get-iri))
-;; 	 (push `(declaration (named-individual ,amalgam-uri)) axioms)
-;; 	 (push `(class-assertion !amalgam ,amalgam-uri) axioms)	 
-	 
-;; 	 ;; add annotation about this instance of amalgam
-;; 	 (push `(annotation-assertion !rdfs:label 
-;; 				      ,amalgam-uri
-;; 				      ,(str+ "amalgam placed in tooth " tooth-string
-;; 					     " of patient " patient-id)) axioms)
-
-;;          ;; declare instance of amalgam restoration (!ohd:'amalgam filling restoration')
-;; 	 (setf amalgam-restoration-uri (get-iri))
-;; 	 (push `(declaration (named-individual ,amalgam-restoration-uri)) axioms)
-;; 	 (push `(class-assertion !amalgam_filling_restoration ,amalgam-restoration-uri) axioms)
-
-;; 	 ;; add annotation about this amalgam restoration procedure
-;; 	 (push `(annotation-assertion !rdfs:label 
-;; 				      ,amalgam-restoration-uri
-;; 				      ,(str+ "amalgam restoration procedure on tooth " 
-;; 					     tooth-string " in patient " patient-id)) axioms)
-
-;; 	 ;; add date property !ohd:'occurence date' to 'amalgam filling restoration'
-;; 	 (push `(data-property-assertion !occurrence_date
-;; 					 ,amalgam-restoration-uri 
-;; 					 (:literal ,occurrence-date !xsd:date)) axioms)
-
-;; 	  ;;;; relate instances ;;;;
-       
-;;          ;; 'tooth to be filled role' inheres in tooth
-;; 	 (push `(object-property-assertion !inheres_in
-;; 					   ,tooth-role-uri ,tooth-uri) axioms)
-
-;;          ;; 'amalgam filling restoration' realizes 'tooth to be filled role'
-;; 	 (push `(object-property-assertion !realizes
-;; 					   ,amalgam-restoration-uri ,tooth-role-uri) axioms)
-
-;;          ;; 'amalgam filling restoration' has particpant tooth
-;; 	 (push `(object-property-assertion !has_participant
-;; 					   ,amalgam-restoration-uri ,tooth-uri) axioms)
-	 
-      
-
-;;          ;; 'amalgam filling restoration' has particpant amalgam
-;; 	 (push `(object-property-assertion !has_participant 
-;; 					   ,amalgam-restoration-uri ,amalgam-uri) axioms)
-
-;;          ;; 'amalgam filling restoration' has particpant patient
-;; 	 (push `(object-property-assertion !has_participant 
-;; 					   ,amalgam-restoration-uri ,patient-uri) axioms)
-       
-;; 	 ) ;; end loop
-    
-
-;;     ;; return axioms
-;;     axioms))
-
 (defun get-filling-axioms (patient-id occurrence-date description 
 				  tooth-data surface ada-code ada-code-description)
   (let ((axioms nil)
@@ -343,7 +222,7 @@
     ;; otherwise, simply get the patient uri
     (if (not (gethash patient-id *patient-uri-ht*))
 	(progn 
-	  ;; get uri based on patient id
+	  p;; get uri based on patient id
 	  (setf patient-uri (get-patient-uri patient-id))
 	  ;; note append puts lists together and doesn't put items in list (like push)
 	  (setf axioms (append (get-patient-axioms patient-uri patient-id) axioms)))
@@ -575,7 +454,7 @@
 
 (defun get-patient-uri (patient-id)
   (let ((patient-uri nil))
-    ;; look in patient uri hash table for a ur
+    ;; look in patient uri hash table for a uri
     (setf patient-uri (gethash patient-id *patient-uri-ht*))
 
     ;; if the patient-uri is nil, then create a new iri
@@ -607,7 +486,7 @@
    ;; return new iri string
    (str+ *iri* iri-string)))
 
-(defun get-amalgam-query ()
+(defun get-fillings-query ()
   ;;(str+ 
   ;; "select top 10 * from patient_history "
   ;; "where \"ada code\" in ('D2140', 'D2150', 'D2160', 'D2161') "
