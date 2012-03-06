@@ -4,7 +4,7 @@
   "URI label source for ohd. All labels in OHD or imports are available. Case insensitive matching. Complains if an ambiguous label is used, or if a label is missing, or if actual is supplied and doesn't match the looked up term"
   (unless *ohd-label-source*
     (let ((table (make-hash-table :test 'equalp)))
-      (loop for file in '("ohd:imports;fma-jaws-teeth.owl")
+      (loop for file in '("ohd:imports;fma-jaws-teeth.owl" "ohd:ontology;ohd.owl")
 	   do
 	   (let ((kb (load-ontology (namestring (truename file)))))
 	     (let ((labels (rdfs-labels kb)))
