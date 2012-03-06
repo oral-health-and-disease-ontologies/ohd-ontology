@@ -173,7 +173,7 @@
 		(setf results (#"executeQuery" statement query))
 	   	
 		;; import the ohd ontology
-		(as `(imports (make-uri "http://purl.obolibrary.org/obo/ohd/dev/ohd.owl")))
+		(as `(imports ,(make-uri "http://purl.obolibrary.org/obo/ohd/dev/ohd.owl")))
 
 		;; declare data properties
 		(as `(declaration (data-property !occurrence_date)))
