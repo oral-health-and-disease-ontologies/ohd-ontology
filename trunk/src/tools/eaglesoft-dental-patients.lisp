@@ -1,3 +1,12 @@
+;; global variables for uri aliases
+(def-uri-alias "female_dental_patient" !obo:OHD_0000049)
+(def-uri-alias "male_dental_patient" !obo:OHD_0000054)
+(def-uri-alias "inheres_in" !obo:BFO_0000052)
+(def-uri-alias "realizes" !obo:BFO_0000055)
+(def-uri-alias "patient_ID" !obo:OHD_0000014)
+(def-uri-alias "birth_date" !obo:OHD_0000050)
+
+
 ;; the global variables are used to generate unique iri's
 (defparameter *iri* nil)
 (defparameter *iri-count* nil)
@@ -45,8 +54,8 @@
 		(setf results (#"executeQuery" statement query))
 	   	
 		;; import the ohd ontology
-		(as `(imports (make-uri "http://purl.obolibrary.org/obo/ohd/dev/ohd.owl")))
-
+		(as `(imports ,(make-uri "http://purl.obolibrary.org/obo/ohd/dev/ohd.owl")))
+		
 		;; declare data properties
 		(as `(declaration (data-property !occurrence_date)))
 		(as `(declaration (data-property !patient_ID)))
@@ -57,7 +66,7 @@
 
 		    
 		(loop while (#"next" results) do
-		     (as (get-dental-patient-axioms 
+		     (as (get-dental-patient-axioms
 			  (#"getString" results "patient_id")
 			  (#"getString" results "first_name")
 			  (#"getString" results "last_name")
@@ -78,9 +87,10 @@
 
 (defun get-dental-patient-axioms (patient-id first-name last-name birth-date sex)
   "Returns a list of axioms about a patient that is identified by patient-id."
+
   (let ((axioms nil)
 	(patient-uri nil))
-    
+
     ;; create instance/indiviual  patient, note this dependent on the patients sex
     ;; if sex is not present; we will skip the record
     (when (or (equalp sex "F") (equalp sex "M"))
@@ -92,16 +102,17 @@
       ;; declare patient to be an instance of Female or Male 
       (cond
 	((equalp sex "F")
-	 (push `(class-assertion !'female dental patient'@ohd ,patient-uri) axioms))
+	 (push `(class-assertion !female_dental_patient ,patient-uri) axioms))
 	(t
-	 (push `(class-assertion !'male dental patient'@ohd ,patient-uri) axioms)))
+	 (push `(class-assertion !male_dental_patient ,patient-uri) axioms)))
 	 
       ;; add data property 'patient id' to patient
       ;; note: the patient id is encoded
-      (push `(data-property-assertion !patient_ID ,patient-uri ,(encode patient-id)) axioms)
+      (push `(data-property-assertion !patient_ID
+				      ,patient-uri ,(encode patient-id)) axioms)
 
-      ;; add data propert about patient's birth date
-      (push `(data-property-assertion !'birth_date'@ohd ,patient-uri ,birth-date) axioms)
+      ;; add data property about patient's birth date
+      (push `(data-property-assertion !birth_date ,patient-uri ,birth-date) axioms)
 
     ;; add label annotation about patient
     (push `(annotation-assertion !rdfs:label 
@@ -110,12 +121,12 @@
 
     ;; add axioms about dental patient role
     ;; note: append puts lists together and doesn't put items in list (like push)
-    (setf axioms (append (get-dental-patient-role-axioms patient-uri patient-id) axioms)))
+    (setf axioms (append (get-dental-patient-role-axioms patient-uri) axioms)))
 
     ;; return axioms
     axioms))
 
-(defun get-dental-patient-role-axioms (patient-uri patient-id)
+(defun get-dental-patient-role-axioms (patient-uri)
   "Returns a list of axioms about a dental patient's role."
   (let ((axioms nil)
 	(patient-role-uri)
@@ -133,6 +144,76 @@
 
     ;; 'patient role' inheres in patient
     (push `(object-property-assertion !inheres_in
+				      ,patient-role-uri ,patient-uri) axioms)
+
+    ;; add label annotation about patient role
+    (push `(annotation-assertion !rdfs:label 
+				 ,patient-role-uri 
+				 ,(str+ "'patient role' for patient " 
+					 patient-string-uri)) axioms)
+    ;; return axioms
+    axioms))
+
+(defun get-dental-patient-axioms-using-label-source
+    (patient-id first-name last-name birth-date sex)
+  "Returns a list of axioms about a patient that is identified by patient-id."
+  (let ((axioms nil)
+	(patient-uri nil))
+
+    ;; create instance/indiviual  patient, note this dependent on the patients sex
+    ;; if sex is not present; we will skip the record
+    (when (or (equalp sex "F") (equalp sex "M"))
+      ;; create uri; individual patient
+      (setf patient-uri (get-iri))
+      (push `(declaration (named-individual ,patient-uri)) axioms) 
+
+      
+      ;; declare patient to be an instance of Female or Male 
+      (cond
+	((equalp sex "F")
+	 (push `(class-assertion !'female dental patient'@ohd ,patient-uri) axioms))
+	(t
+	 (push `(class-assertion !'male dental patient'@ohd ,patient-uri) axioms)))
+	 
+      ;; add data property 'patient id' to patient
+      ;; note: the patient id is encoded
+      (push `(data-property-assertion !'patient ID'@ohd 
+				      ,patient-uri ,(encode patient-id)) axioms)
+
+      ;; add data propert about patient's birth date
+      (push `(data-property-assertion !'birth_date'@ohd ,patient-uri ,birth-date) axioms)
+
+    ;; add label annotation about patient
+    (push `(annotation-assertion !rdfs:label 
+				 ,patient-uri 
+				 ,(str+ first-name " " last-name)) axioms)
+
+    ;; add axioms about dental patient role
+    ;; note: append puts lists together and doesn't put items in list (like push)
+    (setf axioms 
+	  (append (get-dental-patient-role-axioms-using-label-source patient-uri) axioms)))
+
+    ;; return axioms
+    axioms))
+
+(defun get-dental-patient-role-axioms-using-label-source (patient-uri)
+  "Returns a list of axioms about a dental patient's role."
+  (let ((axioms nil)
+	(patient-role-uri)
+	(patient-string-uri nil))
+
+    ;; create uri
+    (setf patient-role-uri (get-iri))
+
+    ;; create a string representation of the uri, this is used in the label
+    (setf patient-string-uri (format nil "~a" patient-uri))
+    
+    ;; create instance of patient role; patient role is an instance of !obi:'patient role'
+    (push `(declaration (named-individual ,patient-role-uri)) axioms)
+    (push `(class-assertion !'patient role'@ohd ,patient-role-uri) axioms) 
+
+    ;; 'patient role' inheres in patient
+    (push `(object-property-assertion !'inheres in'@ohd
 				      ,patient-role-uri ,patient-uri) axioms)
 
     ;; add label annotation about patient role
@@ -182,18 +263,13 @@ Note: This number is associated with some prefix; e.g., OHD_."
 
 (defun get-dental-patients-query ()
 "
-/* 
-Only get patients older than 18.
-18 * 365 = 6570 days
-*/
+SET rowcount 0
+
 SELECT
   *
 FROM
   PPM.patient
-/* for now I won't do this ...
-WHERE
-  DATEDIFF(DAY, patient.birth_date, now()) >= 6570
-*/
+WHERE birth_date is NOT NULL 
 ORDER BY patient_id")
 
 (defun encode (string)
@@ -308,7 +384,6 @@ Ontology uri's in the obo library typically end with a prefix folowed by an unde
 
 ;;       ;; 3. sort the list of integers, and store the largest sequence
 ;;       (setf int-list (sort int-list #'>))
-;;       (pprint int-list)
 ;;       (setf largest-sequence (car int-list)))
 
 ;;     ;; 4. return the largest sequence
