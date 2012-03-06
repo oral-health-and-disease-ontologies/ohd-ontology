@@ -6,7 +6,7 @@
     (let ((table (make-hash-table :test 'equalp)))
       (loop for file in '("ohd:imports;fma-jaws-teeth.owl")
 	   do
-	   (let ((kb (load-ontology file)))
+	   (let ((kb (load-ontology (namestring (truename file)))))
 	     (let ((labels (rdfs-labels kb)))
 	       (maphash (lambda(uri label) 
 			  (let ((label (car label)))
