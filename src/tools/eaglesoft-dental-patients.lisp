@@ -20,6 +20,7 @@
 	(results nil)
 	(query nil)
 	(url nil)
+	(ohd-ontology nil)
 	(count 0))
     
     ;; set default base and ontology iri's 
@@ -35,7 +36,8 @@
 
     ;; set global variables 
     (setf *iri* iri)
-    (setf *iri-count*  (get-iri-count ohd-iri-string "individuals/OHD_"))
+    (setf ohd-ontology (load-ontology ohd-iri-string))
+    (setf *iri-count*  (get-iri-count ohd-ontology "individuals/OHD_"))
     
     ;; set up connection string and query. Put password in ~/.pattersondbpw
     (setf url (concatenate 'string 
@@ -241,16 +243,12 @@
    ;; return new iri string
    (str+ *iri* iri-string)))
 
-(defun get-iri-count (ohd-iri-string sequence-prefix)
-  "Return the sequence number which can be used to generate unique iri's.
+(defun get-iri-count (ontology sequence-prefix)
+  "Returns the sequence number that can be used to generate unique iri's.
 Note: This number is associated with some prefix; e.g., OHD_."
-  (let ((ont nil)
-	(count nil))
-    ;; load the ohd ontology
-    (setf ont (load-ontology ohd-iri-string))
-
+  (let ((count nil))
     ;; find largest sequence number
-    (setf count (get-largest-uri-sequence ont sequence-prefix))
+    (setf count (get-largest-uri-sequence ontology sequence-prefix))
     
     ;; if count is nil, then none where found
     ;; otherwise, add 1 to count
@@ -340,8 +338,9 @@ Ontology uri's in the obo library typically end with a prefix folowed by an unde
     ;; 5. return the largest sequence
     largest-sequence))
 
-;; this previous version doesn't quite work as I intended.
+;; this version doesn't quite work as I intended.
 ;; it is difficult to retrieve all uri's for individuals, subclasses, annotation, etc.
+;; but I'm keeping the code around b/c it might prove useful
 ;; (defun get-largest-uri-sequence (ontology sequence-prefix)
 ;;   "Returns the largest sequence number pertaining to the uri's used in an ontology.  
 ;; Ontology uri's in the obo library typically end with a prefix folowed by an underscore '_' and 7 digit (zero padded) number.  For example, the continuant class in BFO has the uri 'http://purl.obo.library.org/obo/BFO_0000002'.  The sequence number, then, is the last 7 digits of the uri.  This procecure returns the largest numbered numbered squence relative to some prefix.  For instance, if an ontology contained the uri's 'BFO_0000005' and 'BFO_0000012', (get-largest-sequence-in-uribfo \"BFO\" would return the integer 12."
