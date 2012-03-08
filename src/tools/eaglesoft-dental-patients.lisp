@@ -267,7 +267,7 @@ SELECT
   *
 FROM
   PPM.patient
-WHERE birth_date is NOT NULL 
+WHERE  LENGTH(birth_date) > 0
 ORDER BY patient_id")
 
 (defun encode (string)
