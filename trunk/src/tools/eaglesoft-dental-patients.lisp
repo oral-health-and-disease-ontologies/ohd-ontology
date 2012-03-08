@@ -114,7 +114,8 @@
 				      ,patient-uri ,(encode patient-id)) axioms)
 
       ;; add data property about patient's birth date
-      (push `(data-property-assertion !birth_date ,patient-uri ,birth-date) axioms)
+      (push `(data-property-assertion !birth_date ,patient-uri 
+				      (:literal ,birth-date !xsd:date)) axioms)
 
     ;; add label annotation about patient
     (push `(annotation-assertion !rdfs:label 
@@ -183,7 +184,8 @@
 				      ,patient-uri ,(encode patient-id)) axioms)
 
       ;; add data propert about patient's birth date
-      (push `(data-property-assertion !'birth_date'@ohd ,patient-uri ,birth-date) axioms)
+      (push `(data-property-assertion !'birth_date'@ohd ,patient-uri 
+				      (:literal ,birth-date !xsd:date)) axioms)
 
     ;; add label annotation about patient
     (push `(annotation-assertion !rdfs:label 
