@@ -23,13 +23,6 @@
 (defparameter *iri* nil)
 (defparameter *iri-count* nil)
 
-
-;; global hash table used to keep track of which patients have been processed.
-;; hash key is patient_id; value is the uri for the patient
-;; this is need to keep from generating a new uri when a patient id occurs in the 
-;; the database more than once
-(defparameter *patient-uri-ht* nil)
-
 ;; list of ada codes for amalgam, resin, and gold fillings/restorations
 (defparameter *amalgam-code-list* 
   '("D2140" "D2150" "D2160" "D2161"))
@@ -81,6 +74,7 @@
 (def-uri-alias "inheres_in" !obo:BFO_0000052)
 (def-uri-alias "is_about" !obo:IAO_0000136)
 (def-uri-alias "is_part_of" !obo:BFO_0000050)
+(def-uri-alias "is_located_in" !obo:BFO_0000082)
 (def-uri-alias "realizes" !obo:BFO_0000055)
 (def-uri-alias "occurrence_date" !obo:OHD_0000015)
 (def-uri-alias "patient_ID" !obo:OHD_0000014)
@@ -92,7 +86,7 @@
 ;;    for (rel tooth) in (get FMA::|Secondary dentition| :slots)
 ;;    nwhen (eq rel fma::|member|)
 ;;    do 
-;;      (let ((syns (remove-if-not (lambda(e) (eq (car e) fma::|Synonym|)) (get tooth :slots))))
+;;     (let ((syns (remove-if-not (lambda(e) (eq (car e) fma::|Synonym|)) (get tooth :slots))))
 ;;        (loop for (rel syn) in syns
 ;; 	  for name = (second (find fma::|name| (get syn :slots) :key 'car))
 ;; 	  for number = (caar (all-matches name ".*?(\\d+).*" 1))
@@ -101,60 +95,74 @@
 ;; 		    (mapcar (lambda(e) (cons (fma-uri e) (string e)))
 ;; 			    (mapcar 'cdr (sort alist '< :key 'car))) 'vector)))
 
-(defun number-to-fma-tooth (number)
-  (car (aref #((!obo:FMA_55696 . "Right upper third secondary molar tooth") 
-	       (!obo:FMA_55697 . "Right upper second secondary molar tooth")
-	       (!obo:FMA_55698 . "Right upper first secondary molar tooth")
-	       (!obo:FMA_55688 . "Right upper second secondary premolar tooth")
-	       (!obo:FMA_55689 . "Right upper first secondary premolar tooth")
-	       (!obo:FMA_55798 . "Right upper secondary canine tooth")
-	       (!obo:FMA_55680 . "Right upper lateral secondary incisor tooth")
-	       (!obo:FMA_55681 . "Right upper central secondary incisor tooth")
-	       (!obo:FMA_55682 . "Left upper central secondary incisor tooth")
-	       (!obo:FMA_55683 . "Left upper lateral secondary incisor tooth")
-	       (!obo:FMA_55799 . "Left upper secondary canine tooth")
-	       (!obo:FMA_55690 . "Left upper first secondary premolar tooth")
-	       (!obo:FMA_55691 . "Left upper second secondary premolar tooth")
-	       (!obo:FMA_55699 . "Left upper first secondary molar tooth")
-	       (!obo:FMA_55700 . "Left upper second secondary molar tooth")
-	       (!obo:FMA_55701 . "Left upper third secondary molar tooth")
-	       (!obo:FMA_55702 . "Left lower third secondary molar tooth")
-	       (!obo:FMA_55703 . "Left lower second secondary molar tooth")
-	       (!obo:FMA_55704 . "Left lower first secondary molar tooth")
-	       (!obo:FMA_55692 . "Left lower second secondary premolar tooth")
-	       (!obo:FMA_55693 . "Left lower first secondary premolar tooth")
-	       (!obo:FMA_55687 . "Left lower secondary canine tooth")
-	       (!obo:FMA_57141 . "Left lower lateral secondary incisor tooth")
-	       (!obo:FMA_57143 . "Left lower central secondary incisor tooth")
-	       (!obo:FMA_57142 . "Right lower central secondary incisor tooth")
-	       (!obo:FMA_57140 . "Right lower lateral secondary incisor tooth")
-	       (!obo:FMA_55686 . "Right lower secondary canine tooth")
-	       (!obo:FMA_55694 . "Right lower first secondary premolar tooth")
-	       (!obo:FMA_55695 . "Right lower second secondary premolar tooth")
-	       (!obo:FMA_55705 . "Right lower first secondary molar tooth")
-	       (!obo:FMA_55706 . "Right lower second secondary molar tooth")
-	       (!obo:FMA_55707 . "Right lower third secondary molar tooth"))
-	(1- number))))
+(defun number-to-fma-tooth (number &key return-tooth-uri return-tooth-name)
+  (let ((teeth nil)
+	(tooth nil))
+    (setf teeth
+	  #((!obo:FMA_55696 . "Right upper third secondary molar tooth") 
+	    (!obo:FMA_55697 . "Right upper second secondary molar tooth")
+	    (!obo:FMA_55698 . "Right upper first secondary molar tooth")
+	    (!obo:FMA_55688 . "Right upper second secondary premolar tooth")
+	    (!obo:FMA_55689 . "Right upper first secondary premolar tooth")
+	    (!obo:FMA_55798 . "Right upper secondary canine tooth")
+	    (!obo:FMA_55680 . "Right upper lateral secondary incisor tooth")
+	    (!obo:FMA_55681 . "Right upper central secondary incisor tooth")
+	    (!obo:FMA_55682 . "Left upper central secondary incisor tooth")
+	    (!obo:FMA_55683 . "Left upper lateral secondary incisor tooth")
+	    (!obo:FMA_55799 . "Left upper secondary canine tooth")
+	    (!obo:FMA_55690 . "Left upper first secondary premolar tooth")
+	    (!obo:FMA_55691 . "Left upper second secondary premolar tooth")
+	    (!obo:FMA_55699 . "Left upper first secondary molar tooth")
+	    (!obo:FMA_55700 . "Left upper second secondary molar tooth")
+	    (!obo:FMA_55701 . "Left upper third secondary molar tooth")
+	    (!obo:FMA_55702 . "Left lower third secondary molar tooth")
+	    (!obo:FMA_55703 . "Left lower second secondary molar tooth")
+	    (!obo:FMA_55704 . "Left lower first secondary molar tooth")
+	    (!obo:FMA_55692 . "Left lower second secondary premolar tooth")
+	    (!obo:FMA_55693 . "Left lower first secondary premolar tooth")
+	    (!obo:FMA_55687 . "Left lower secondary canine tooth")
+	    (!obo:FMA_57141 . "Left lower lateral secondary incisor tooth")
+	    (!obo:FMA_57143 . "Left lower central secondary incisor tooth")
+	    (!obo:FMA_57142 . "Right lower central secondary incisor tooth")
+	    (!obo:FMA_57140 . "Right lower lateral secondary incisor tooth")
+	    (!obo:FMA_55686 . "Right lower secondary canine tooth")
+	    (!obo:FMA_55694 . "Right lower first secondary premolar tooth")
+	    (!obo:FMA_55695 . "Right lower second secondary premolar tooth")
+	    (!obo:FMA_55705 . "Right lower first secondary molar tooth")
+	    (!obo:FMA_55706 . "Right lower second secondary molar tooth")
+	    (!obo:FMA_55707 . "Right lower third secondary molar tooth")))
 
-(defun get-filling-ont (&key iri ont-iri patient-id file-name print-results)
+    (cond
+      (return-tooth-uri (setf tooth (car (aref teeth (1- number)))))
+      (return-tooth-name (setf tooth (cdr (aref teeth (1- number)))))
+      (t (setf tooth (aref teeth (1- number)))))))
+    
+
+(defun get-filling-ont (&key iri ont-iri dental-patients-iri-string)
   (let ((connection nil)
 	(statement nil)
 	(results nil)
 	(query nil)
 	(url nil)
+	(dental-patients-ontology nil)
 	(count 0))
     
-    ;; create hash table for keeping track of patient uri's
-    (setf *patient-uri-ht* (make-hash-table :test 'equal))
 
     ;; set default base and ontology iri's 
     (when (null iri) (setf iri "http://purl.obolibrary.org/obo/ohd/individuals/"))
     (when (null ont-iri) 
       (setf ont-iri "http://purl.obolibrary.org/obo/ohd/dev/patterson-partial.owl"))
     
+    ;; set default iri string for the location of ohd ontology
+    ;; for now this is my repository file
+    (when (null dental-patients-iri-string)
+      (setf dental-patients-iri-string 
+	    "/Users/williamduncan/Repositories/ohd-ontology/src/ontology/penn-ub-ohsu-prototype/eaglesoft-dental-patients.owl"))
+
     ;; set global variables 
     (setf *iri* iri)
-    (setf *iri-count* 1)
+    (setf dental-patients-ontology (load-ontology dental-patients-iri-string))
+    (setf *iri-count* (get-iri-count dental-patients-ontology "individuals/OHD_"))
     
     ;; set up connection string and query. Put password in ~/.pattersondbpw
     (setf url (concatenate 'string 
@@ -174,6 +182,7 @@
 	   	
 		;; import the ohd ontology
 		(as `(imports ,(make-uri "http://purl.obolibrary.org/obo/ohd/dev/ohd.owl")))
+		(as `(imports ,(make-uri "http://purl.obolibrary.org/obo/ohd/dev/eaglesoft-dental-patients.owl")))
 
 		;; declare data properties
 		(as `(declaration (data-property !occurrence_date)))
@@ -182,12 +191,11 @@
 		(loop while (#"next" results) do
 		     (as (get-filling-axioms 
 			  (#"getString" results "patient_id")
-			  (#"getString" results "tran_date")
-			  (#"getString" results "description")
+	 		  (#"getString" results "tran_date")
 			  (#"getString" results "tooth_data")
 			  (#"getString" results "surface")
 			  (#"getString" results "ada_code")
-			  (#"getString" results "ada_code_description")))
+			  dental-patients-ontology))
 		     (incf count)))
 
 	   ;; database cleanup
@@ -199,64 +207,55 @@
       (values ont count))))
 
 
-(defun get-filling-axioms (patient-id occurrence-date description 
-				  tooth-data surface ada-code ada-code-description)
+(defun get-filling-axioms (patient-id occurrence-date tooth-data 
+			   surface ada-code dental-patients-ontology)
   (let ((axioms nil)
-	(patient-uri nil)
-	(patient-role-uri nil)
 	(material-name nil)
 	(material-uri nil)
 	(obo-material-uri nil)
 	(obo-restoration-uri nil)
 	(restoration-name nil)
 	(restoration-uri nil)
+	(patient-uri nil)
+	(patient-uri-string nil)
 	(tooth-uri nil)
 	(tooth-role-uri nil)
 	(tooth-string nil)
 	(teeth-list nil))
 
 
-    ;; get axioms about the patient
-    ;; test to see if patient has already been created:
-    ;; if not, then generate axioms about patient
-    ;; otherwise, simply get the patient uri
-    (if (not (gethash patient-id *patient-uri-ht*))
-	(progn 
-	  p;; get uri based on patient id
-	  (setf patient-uri (get-patient-uri patient-id))
-	  ;; note append puts lists together and doesn't put items in list (like push)
-	  (setf axioms (append (get-patient-axioms patient-uri patient-id) axioms)))
-	(setf patient-uri (get-patient-uri patient-id)))
+    ;; alanr - parse the list since that's what's in our table 
+    ;; billd - since we are using the tooth_data array, this procedure is skipped
+    ;;(setf teeth-list (parse-teeth-list tooth-data)) ; commented out by billd
 
 
-    ;; generate the patient role axioms
-    (setf patient-role-uri (get-iri))
-    (setf axioms 
-	  (append (get-patient-role-axioms patient-uri patient-role-uri patient-id) axioms))
+    ;; get the patients uri
+    ;; note: the patient id is encoded in the dental patient ontology
+    (setf patient-id (encode patient-id))
+    (setf patient-uri (get-patient-uri patient-id dental-patients-ontology))
+    (setf patient-uri-sting (format nil "~a" patient-uri))
 
     ;; tooth_data
     ;; get list of teeth in tooth_data array
-    (setf teeth-list (get-teeth tooth-data))
-
-    ;; alanr - parse the list since that's what's in our table 
-    ;;(setf teeth-list (parse-teeth-list tooth-data)) ; commented out by billd
+    (setf teeth-list (get-teeth-list tooth-data))
 
     (loop for tooth in teeth-list do
          ;;(print-db tooth)
 
-         ;;;;  declare instances of participating entitie ;;;;
-
+         ;;;;  declare instances of participating entities ;;;;
+	 
          ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
 	 (setf tooth-uri (get-iri))
 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
-	 (push `(class-assertion ,(number-to-fma-tooth tooth) ,tooth-uri) axioms)	     
+	 (push `(class-assertion ,(number-to-fma-tooth tooth :return-tooth-uri t) 
+				 ,tooth-uri) axioms)	     
 	 
 	 ;; add annotation about tooth
-	 (setf tooth-string (format nil "~a" tooth))
+	 (setf tooth-string (number-to-fma-tooth tooth :return-tooth-name t))
 	 (push `(annotation-assertion !rdfs:label 
 				      ,tooth-uri
-				      ,(str+ "tooth " tooth-string
-					     " of patient " patient-id)) axioms)
+				      ,(str+ tooth-string
+					     " of patient " patient-uri-string)) axioms)
 
          ;; declare instance of !ohd:'tooth to be filled role'
 	 (setf tooth-role-uri (get-iri))
@@ -266,8 +265,9 @@
 	 ;; add annotation about 'tooth to be filled role'
 	 (push `(annotation-assertion !rdfs:label 
 				      ,tooth-role-uri
-				      ,(str+ "tooth to be filled role for tooth " 
-					     tooth-string " of patient " patient-id)) axioms)
+				      ,(str+ "tooth to be filled role for " 
+					     tooth-string " of patient " 
+					     patient-uri-string)) axioms)
 
          ;; declare instance of material (i.e.,  amalgam/resin/gold) used in tooth
 	 (setf material-uri (get-iri))
@@ -279,8 +279,8 @@
 	 (setf material-name (get-material-name ada-code))
 	 (push `(annotation-assertion !rdfs:label 
 				      ,material-uri
-				      ,(str+ material-name " placed in tooth " tooth-string
-					     " of patient " patient-id)) axioms)
+				      ,(str+ material-name " placed in " tooth-string
+					     " of patient " patient-uri-string)) axioms)
 
          ;; declare instance of restoration 
 	 (setf restoration-uri (get-iri))
@@ -292,8 +292,10 @@
 	 (setf restoration-name (get-restoraton-name ada-code))
 	 (push `(annotation-assertion !rdfs:label 
 				      ,restoration-uri
-				      ,(str+ restoration-name " restoration procedure on tooth " 
-					     tooth-string " in patient " patient-id)) axioms)
+				      ,(str+ restoration-name 
+					     " restoration procedure on tooth " 
+					     tooth-string " in patient " 
+					     patient-uri-string)) axioms)
 
 	 ;; add date property !ohd:'occurence date' to 'amalgam filling restoration'
 	 (push `(data-property-assertion !occurrence_date
@@ -301,7 +303,11 @@
 					 (:literal ,occurrence-date !xsd:date)) axioms)
 
 	  ;;;; relate instances ;;;;
-       
+
+	 ;; toot is located in the patient
+	 (push `(object-property-assertion !is_located_in 
+					   ,tooth-uri ,patient-uri) axioms)
+
          ;; 'tooth to be filled role' inheres in tooth
 	 (push `(object-property-assertion !inheres_in
 					   ,tooth-role-uri ,tooth-uri) axioms)
@@ -314,57 +320,34 @@
 	 (push `(object-property-assertion !has_participant
 					   ,restoration-uri ,tooth-uri) axioms)
 	 
-         ;; 'filling restoration has particpant material
+         ;; 'filling restoration' has particpant restoration material
 	 (push `(object-property-assertion !has_participant 
 					   ,restoration-uri ,material-uri) axioms)
 
-         ;; 'filling restoration' has particpant patient
-	 (push `(object-property-assertion !has_participant 
-					   ,restoration-uri ,patient-uri) axioms)
-       
+	 ;; restoration material is located in the tooth
+	 (push `(object-property-assertion !is_located_in
+					   ,material-uri ,tooth-uri) axioms)
 	 ) ;; end loop
     
     ;; return axioms
     axioms))
   
+(defun get-patient-uri (patient-id dental-patients-ontology)
+  (let ((uri nil))
+    ;; use sparql 
+    (setf uri
+	  (sparql `(:select (?a) ()
+		    (?a !patient_ID ,patient-id))
+		  :kb dental-patients-ontology
+		  :use-reasoner :pellet
+		  :values t))
 
-(defun get-patient-axioms (patient-uri patient-id)
-  "Returns a list of axioms about a patient that is identified by patient-id."
-  (let ((axioms nil))
-    ;; create instance/indiviual  patient
-    (push `(declaration (named-individual ,patient-uri)) axioms) 
-    (push `(class-assertion !dental_patient ,patient-uri) axioms)
-    
-    ;; add data property 'patient id' to patient
-    (push `(data-property-assertion !patient_ID
-				    ,patient-uri ,patient-id) axioms)
+    ;; the uri is returned as a list in a list; i.e., ((!ohd:0000123))
+    ;; so, get the inner most elment
+    (setf uri (car (car uri)))
 
-    ;; add label annotation about patient
-    (push `(annotation-assertion !rdfs:label 
-				 ,patient-uri ,(str+ "dental patient " patient-id)) axioms)
-
-    ;; return axioms
-    axioms))
-
-(defun get-patient-role-axioms (patient-uri patient-role-uri patient-id)
-  "Returns a list of axioms about patient role."
-  (let ((axioms nil))
-
-    ;; create instance of patient role; patient role is an instance of !obi:'patient role'
-    (push `(declaration (named-individual ,patient-role-uri)) axioms)
-    (push `(class-assertion !patient_role ,patient-role-uri) axioms) 
-
-    ;; 'patient role' inheres in patient
-    (push `(object-property-assertion !inheres_in
-				      ,patient-role-uri ,patient-uri) axioms)
-    
-    ;; add label annotation about patient role
-    (push `(annotation-assertion !rdfs:label 
-				 ,patient-role-uri 
-				 ,(str+ "'patient role' for patient " patient-id)) axioms)
-    
-    ;; return axioms
-    axioms))
+    ;; return uri
+    uri))
 
 (defun get-material-name (ada-code)
   "Returns the name the material used in a filling/restoration based on ada code."
@@ -421,8 +404,8 @@
     ;; return material uri
     material-uri))
 		     
-(defun get-teeth (tooth-data)
-  "Reads the tooth_data array and returns a list of tooth numbers referenced in the array."
+(defun get-teeth-list (tooth-data)
+  "Reads the tooth_data array and returns a list of tooth numbers referenced in the tooth_data (i.e., field) array."
   (let ((teeth-list nil))
 
     ;; verify that there are at least 32 tooth items in tooth-data
@@ -438,41 +421,28 @@
     teeth-list))
 
 ;; alanr
+;; billd: this was intended to read data that has tooth ranges of the form "3-6".
+;; however, we are reading the tooth_data array, which is processed using get-teeth-list
 (defun parse-teeth-list (teeth-description)
   "Parses the tooth list format '-' is range, ',' separates, into a list of teeth numbers"
   (let ((teeth-list nil))
 
     (let ((pieces (split-at-char teeth-description #\,)))
-      (loop for piece in pieces
-	   do
-	   (cond ((find #\- piece) (destructuring-bind (start end) (mapcar 'parse-integer (car (all-matches piece "^(\\d+)-(\\d+)" 1 2)))
-				     (loop for i from start to end do (push i teeth-list))))
+      (loop for piece in pieces do
+	   (cond ((find #\- piece) 
+		  (destructuring-bind (start end) 
+		      (mapcar 'parse-integer 
+			      (car (all-matches piece "^(\\d+)-(\\d+)" 1 2)))
+		    (loop for i from start to end do (push i teeth-list))))
 		 ;; otherwise it is a single number
 		 (t (push (parse-integer piece) teeth-list)))))
     ;; return list of teeth
     teeth-list))
 
-(defun get-patient-uri (patient-id)
-  (let ((patient-uri nil))
-    ;; look in patient uri hash table for a uri
-    (setf patient-uri (gethash patient-id *patient-uri-ht*))
-
-    ;; if the patient-uri is nil, then create a new iri
-    ;; and add to patient uri hash table
-    (when (not patient-uri)
-      ;;(setf patient-uri (get-iri-string))
-      (setf patient-uri (get-iri))
-      (setf (gethash patient-id *patient-uri-ht*) patient-uri))
-
-    ;; return the patient uri
-    ;; note: this must be done using make-uri
-    ;;(make-uri patient-uri)))
-    patient-uri))
 
 (defun get-iri ()
   "Returns a unique iri using 'make-uri'."
   (make-uri (get-iri-string)))
-  
 
 (defun get-iri-string ()
   "Returns a unique string that is used make a unique iri."
@@ -486,21 +456,80 @@
    ;; return new iri string
    (str+ *iri* iri-string)))
 
+(defun get-iri-count (ontology sequence-prefix)
+  "Returns the sequence number that can be used to generate unique iri's.
+Note: This number is associated with some prefix; e.g., OHD_."
+  (let ((count nil))
+    ;; find largest sequence number
+    (setf count (get-largest-uri-sequence ontology sequence-prefix))
+    
+    ;; if count is nil, then none where found
+    ;; otherwise, add 1 to count
+    (cond
+      ((not count) (setf count 1))
+      (t (incf count)))
+
+    ;; return the count
+    count))
+
+(defun get-largest-uri-sequence (ontology sequence-prefix)
+  "Returns the largest sequence number pertaining to the uri's used in an ontology.  
+Ontology uri's in the obo library typically end with a prefix folowed by an underscore '_' and 7 digit (zero padded) number.  For example, the continuant class in BFO has the uri 'http://purl.obo.library.org/obo/BFO_0000002'.  The sequence number, then, is the last 7 digits of the uri.  This procecure returns the largest numbered numbered squence relative to some prefix.  For instance, if an ontology contained the uri's 'BFO_0000005' and 'BFO_0000012', (get-largest-sequence-in-uribfo \"BFO_\" would return the integer 12. Note that the underscore '_' was included in the sequence-prefix.  When a greatest sequence is not found, nil is returned."
+ 
+  (let ((functional-syntax nil)
+	(matches nil)
+	(pattern nil)
+	(int-list nil)
+	(largest-sequence nil))
+    ;; steps 
+    ;; 1. convert the ontology to owl syntax
+    ;; 2. do regular expression search for sequence-prefix pattern
+    ;; 3. strip off the last 7 digits of each matched item into a list of integers
+    ;; 4. sort the list of integers, and store the largest sequence
+    ;; 5. return the largest sequence
+
+    ;; 1. convert the ontology to owl syntax
+    (setf functional-syntax (to-owl-syntax ontology :functional))
+    
+    ;; 2. do regular expression search for sequence-prefix pattern + 7 digits
+    (setf pattern (format nil "(~a\\d{7})" sequence-prefix))
+    (setf matches (all-matches functional-syntax pattern 1))
+
+    ;; 3. strip off the last 7 digits of each uri into a list of integers
+    ;; note: first check that records where returned
+    (when matches
+      (loop for item in matches do
+	   ;; each item in the matches is itsef an one-elment list
+	   ;; so, get this element
+	   (setf item (car item))
+
+           ;; parse out the integer portion of uri
+	   ;; e.g., OHD_0000123 -> "OHD_0000123"-> "0000123" -> 123
+	   ;; note: this requries converting the itme to a string
+	   (setf item (format nil "~a" item))
+	   
+	   ;; verify that the length is greater that 7
+	   (when (> (length item) 7)
+	     (setf item (subseq item (- (length item) 7)))
+	     (setf item (parse-integer item))
+
+	     ;; push uri integer on to list
+	     (push item int-list)))
+
+      ;; 4. sort the list of integers, and store the largest sequence
+      ;; verify that list exists
+      (when (listp int-list)
+	(setf int-list (sort int-list #'>))
+	(setf largest-sequence (car int-list))))
+
+    ;; 5. return the largest sequence
+    largest-sequence))
+
 (defun get-fillings-query ()
-  ;;(str+ 
-  ;; "select top 10 * from patient_history "
-  ;; "where \"ada code\" in ('D2140', 'D2150', 'D2160', 'D2161') "
-  ;; "and \"table/view name\" = 'transactions' ")
-  ;; (str+ 
-  ;;  "select top 10 * from patient_history "
-  ;;  "where ada_code in ('D2140', 'D2150', 'D2160', 'D2161') "
-  ;;  "and table_name = 'transactions' ")
-;;   "select *
-;; from patient_history
-;; where ada_code in ('D2140', 'D2150', 'D2160', 'D2161') 
-;; and table_name = 'transactions'
-;; and (patient_id = 5708 or patient_id = 5482)"
-"SELECT
+"
+SET rowcount 0
+
+SELECT
   *
 FROM
   patient_history
@@ -535,6 +564,20 @@ AND
 AND 
   table_name = 'transactions'"
 )
+
+(defun encode (string)
+  "Returns and md5 checksum of the string argument.
+Note: The .pattersondbpw file is required to run this procedure."
+
+  (let ((it nil)
+	(salt nil))
+    
+    ;; get salt value
+    (setf salt (with-open-file (f "~/.pattersondbpw") (read-line f)))
+    (setf it (new 'com.hp.hpl.jena.shared.uuid.MD5 
+		  (format nil "~a~a" salt string)))
+    (#"processString" it)
+    (#"getStringDigest" it)))
 
 (defun str+ (&rest values)
   "A shortcut for concatenting a list of strings. Code found at:
@@ -914,6 +957,7 @@ ORDER BY
   7 -- tooth
 ")
 
+
 (defun table-exists (table-name)
   "Returns t if table-name exists in db; nil otherwise."
   (let ((url nil)
@@ -952,6 +996,9 @@ ORDER BY
       (and connection (#"close" connection))
       (and results (#"close" results))
       (and statement (#"close" statement)))))
+
+;;;; a number of funcitons for testing various aspects of database functionality ;;;;
+;;;; such as using stored procedures, creating tables, and testing existence of a table ;;;
 
 (defun test-stored-produre ()
   (let ((url nil)
@@ -1062,3 +1109,4 @@ ORDER BY
       (and connection (#"close" connection))
       (and results (#"close" results))
      (and statement (#"close" statement)))))
+
