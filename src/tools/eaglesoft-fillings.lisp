@@ -147,7 +147,6 @@
 	(dental-patients-ontology nil)
 	(count 0))
     
-
     ;; set default base and ontology iri's 
     (when (null iri) (setf iri "http://purl.obolibrary.org/obo/ohd/individuals/"))
     (when (null ont-iri) 
@@ -222,26 +221,24 @@
 	(tooth-role-uri nil)
 	(tooth-string nil)
 	(teeth-list nil))
-
-
+    
     ;; alanr - parse the list since that's what's in our table 
     ;; billd - since we are using the tooth_data array, this procedure is skipped
     ;;(setf teeth-list (parse-teeth-list tooth-data)) ; commented out by billd
-
 
     ;; get the patients uri
     ;; note: the patient id is encoded in the dental patient ontology
     (setf patient-id (encode patient-id))
     (setf patient-uri (get-patient-uri patient-id dental-patients-ontology))
-    (setf patient-uri-sting (format nil "~a" patient-uri))
+
+    ;; store the patient uri in a string format for display purposes
+    (setf patient-uri-string (str-right (format nil "~a" patient-uri) 11))
 
     ;; tooth_data
     ;; get list of teeth in tooth_data array
     (setf teeth-list (get-teeth-list tooth-data))
 
     (loop for tooth in teeth-list do
-         ;;(print-db tooth)
-
          ;;;;  declare instances of participating entities ;;;;
 	 
          ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
@@ -524,6 +521,18 @@ Ontology uri's in the obo library typically end with a prefix folowed by an unde
 
     ;; 5. return the largest sequence
     largest-sequence))
+
+(defun str-right (string num)
+	   (let ((end nil)
+		 (start nil))
+	     (setf end (length string))
+	     (setf start (- end num))
+	     (when (>= start 0)
+	       (setf string (subseq string start end)))))
+
+(defun str-left (string num)
+  (when (<= num (length string))
+    (setf string (subseq string 0 num))))
 
 (defun get-fillings-query ()
 "
