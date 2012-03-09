@@ -117,14 +117,14 @@
       (push `(data-property-assertion !birth_date ,patient-uri 
 				      (:literal ,birth-date !xsd:date)) axioms)
 
-    ;; add label annotation about patient
-    (push `(annotation-assertion !rdfs:label 
-				 ,patient-uri 
-				 ,(str+ first-name " " last-name)) axioms)
+      ;; add label annotation about patient
+      (push `(annotation-assertion !rdfs:label 
+				   ,patient-uri 
+				   ,(str+ first-name " " last-name)) axioms)
 
-    ;; add axioms about dental patient role
-    ;; note: append puts lists together and doesn't put items in list (like push)
-    (setf axioms (append (get-dental-patient-role-axioms patient-uri) axioms)))
+      ;; add axioms about dental patient role
+      ;; note: append puts lists together and doesn't put items in list (like push)
+      (setf axioms (append (get-dental-patient-role-axioms patient-uri) axioms)))
 
     ;; return axioms
     axioms))
@@ -133,13 +133,13 @@
   "Returns a list of axioms about a dental patient's role."
   (let ((axioms nil)
 	(patient-role-uri)
-	(patient-string-uri nil))
+	(patient-uri-string nil))
 
     ;; create uri
     (setf patient-role-uri (get-iri))
 
     ;; create a string representation of the uri, this is used in the label
-    (setf patient-string-uri (format nil "~a" patient-uri))
+    (setf patient-uri-string (str-right (format nil "~a" patient-uri) 11))
     
     ;; create instance of patient role; patient role is an instance of !obi:'patient role'
     (push `(declaration (named-individual ,patient-role-uri)) axioms)
@@ -153,7 +153,7 @@
     (push `(annotation-assertion !rdfs:label 
 				 ,patient-role-uri 
 				 ,(str+ "'patient role' for patient " 
-					 patient-string-uri)) axioms)
+					patient-uri-string)) axioms)
     ;; return axioms
     axioms))
 
@@ -204,13 +204,13 @@
   "Returns a list of axioms about a dental patient's role."
   (let ((axioms nil)
 	(patient-role-uri)
-	(patient-string-uri nil))
+	(patient-uri-string nil))
 
     ;; create uri
     (setf patient-role-uri (get-iri))
 
     ;; create a string representation of the uri, this is used in the label
-    (setf patient-string-uri (format nil "~a" patient-uri))
+    (setf patient-uri-string (str-right (format nil "~a" patient-uri) 11))
     
     ;; create instance of patient role; patient role is an instance of !obi:'patient role'
     (push `(declaration (named-individual ,patient-role-uri)) axioms)
@@ -224,7 +224,7 @@
     (push `(annotation-assertion !rdfs:label 
 				 ,patient-role-uri 
 				 ,(str+ "'patient role' for patient " 
-					 patient-string-uri)) axioms)
+					 patient-uri-string)) axioms)
     ;; return axioms
     axioms))
 
@@ -286,6 +286,17 @@ Note: The .pattersondbpw file is required to run this procedure."
     (#"processString" it)
     (#"getStringDigest" it)))
 
+(defun str-right (string num)
+	   (let ((end nil)
+		 (start nil))
+	     (setf end (length string))
+	     (setf start (- end num))
+	     (when (>= start 0)
+	       (setf string (subseq string start end)))))
+
+(defun str-left (string num)
+  (when (<= num (length string))
+    (setf string (subseq string 0 num))))
 
 (defun get-largest-uri-sequence (ontology sequence-prefix)
   "Returns the largest sequence number pertaining to the uri's used in an ontology.  
