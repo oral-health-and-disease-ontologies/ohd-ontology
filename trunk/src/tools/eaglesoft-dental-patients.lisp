@@ -37,7 +37,7 @@
     ;; set global variables 
     (setf *iri* iri)
     (setf ohd-ontology (load-ontology ohd-iri-string))
-    (setf *iri-count*  (get-iri-count ohd-ontology "individuals/OHD_"))
+    (setf *iri-count*  (get-iri-num ohd-ontology "individuals/OHD_"))
     
     ;; set up connection string and query. Put password in ~/.pattersondbpw
     (setf url (concatenate 'string 
@@ -245,7 +245,7 @@
    ;; return new iri string
    (str+ *iri* iri-string)))
 
-(defun get-iri-count (ontology sequence-prefix)
+(defun get-iri-num (ontology sequence-prefix)
   "Returns the sequence number that can be used to generate unique iri's.
 Note: This number is associated with some prefix; e.g., OHD_."
   (let ((count nil))
