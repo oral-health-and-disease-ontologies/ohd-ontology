@@ -21,7 +21,6 @@
 
 ;; the global variables are used to generate unique iri's
 (defparameter *iri* nil)
-(defparameter *iri-count* nil)
 
 ;; list of ada codes for amalgam, resin, and gold fillings/restorations
 (defparameter *amalgam-code-list* 
@@ -30,6 +29,9 @@
   '("D2330" "D2332" "D2335" "D2390" "D2391""D2392" "D2393" "D2394"))
 (defparameter *gold-code-list* 
   '("D2410" "D2420" "D2430"))
+
+;; global variable used for to salt the md5 checksum
+(defparameter *salt* nil)
 
 ;; for ease of use, set up some aliases to reference ohd classes
 (def-uri-alias "fma_tooth" !obo:FMA_12516)
@@ -138,31 +140,25 @@
       (t (setf tooth (aref teeth (1- number)))))))
     
 
-(defun get-filling-ont (&key iri ont-iri dental-patients-iri-string)
+(defun get-filling-ont (&key iri ont-iri)
   (let ((connection nil)
 	(statement nil)
 	(results nil)
 	(query nil)
 	(url nil)
-	(dental-patients-ontology nil)
 	(count 0))
+
+    ;; set md5 salt
+    (setf *salt* (get-eaglesoft-salt))
     
     ;; set default base and ontology iri's 
     (when (null iri) (setf iri "http://purl.obolibrary.org/obo/ohd/individuals/"))
     (when (null ont-iri) 
       (setf ont-iri "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-fillngs.owl"))
     
-    ;; set default iri string for the location of ohd ontology
-    ;; for now this is my repository file
-    (when (null dental-patients-iri-string)
-      (setf dental-patients-iri-string 
-	    "/Users/williamduncan/Repositories/ohd-ontology/src/ontology/penn-ub-ohsu-prototype/eaglesoft-dental-patients.owl"))
-
     ;; set global variables 
     (setf *iri* iri)
-    (setf dental-patients-ontology (load-ontology dental-patients-iri-string))
-    (setf *iri-count* (get-iri-num dental-patients-ontology "individuals/OHD_"))
-    
+
     ;; set up connection string and query. Put password in ~/.pattersondbpw
     (setf url (concatenate 'string 
 			   "jdbc:sqlanywhere:Server=PattersonPM;UserID=PDBA;password="
@@ -184,8 +180,8 @@
 		(as `(imports ,(make-uri "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-patients.owl")))
 
 		;; declare data properties
-		(as `(declaration (data-property !occurrence_date)))
-		(as `(declaration (data-property !patient_ID)))
+		(as `(declaration (data-property !'occurence date'@ohd)))
+		(as `(declaration (data-property !'patient ID'@ohd)))
 		    
 		(loop while (#"next" results) do
 		     (as (get-filling-axioms 
@@ -194,7 +190,7 @@
 			  (#"getString" results "tooth_data")
 			  (#"getString" results "surface")
 			  (#"getString" results "ada_code")
-			  dental-patients-ontology))
+			  count))
 		     (incf count)))
 
 	   ;; database cleanup
@@ -205,8 +201,7 @@
       ;; return the ontology
       (values ont count))))
 
-(defun get-filling-axioms (patient-id occurrence-date tooth-data 
-			   surface ada-code dental-patients-ontology)
+(defun get-filling-axioms (patient-id occurrence-date tooth-data surface ada-code record-count)
   (let ((axioms nil)
 	(material-name nil)
 	(material-uri nil)
@@ -217,21 +212,15 @@
 	(patient-uri nil)
 	(patient-uri-string nil)
 	(tooth-uri nil)
+	(tooth-type-uri nil)
 	(tooth-role-uri nil)
-	(tooth-string nil)
+	(tooth-name nil)
 	(teeth-list nil))
     
     ;; alanr - parse the list since that's what's in our table 
     ;; billd - since we are using the tooth_data array, this procedure is skipped
     ;;(setf teeth-list (parse-teeth-list tooth-data)) ; commented out by billd
 
-    ;; get the patients uri
-    ;; note: the patient id is encoded in the dental patient ontology
-    (setf patient-id (encode patient-id))
-    (setf patient-uri (get-patient-uri patient-id dental-patients-ontology))
-
-    ;; store the patient uri in a string format for display purposes
-    (setf patient-uri-string (str-right (format nil "~a" patient-uri) 11))
 
     ;; tooth_data
     ;; get list of teeth in tooth_data array
@@ -240,43 +229,58 @@
     (loop for tooth in teeth-list do
          ;;;;  declare instances of participating entities ;;;;
 	 
+	 ;; get uri of patient
+	 (setf patient-uri 
+	       (get-unique-iri patient-id 
+			       :salt *salt*
+			       :iri-base *iri*
+			       :class-type !'dental patient'@ohd 			
+			       :args "eaglesoft"))
+	 
          ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
-	 ;;(setf tooth-uri (get-iri))
-	 ;; note: exclude the beginnning "!" from the uri
-	 (setf tooth-uri (subseq (format nil "~a" patient-uri) 1))
-	 (setf tooth-uri (concatenate 'string
-				      tooth-uri "/tooth" (format nil "~a" tooth)))
-
-	 ;; since I am using an abbreviated pathname, use nil as second arg
-	 ;; to make-uri
-	 (setf tooth-uri (make-uri nil tooth-uri))
-
+	 (setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
+	 (setf tooth-uri 
+	       (get-unique-iri patient-id
+			       :salt *salt*
+			       :iri-base *iri*
+			       :class-type tooth-type-uri
+			       :args `(,tooth "eaglesoft")))					 
 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
-	 (push `(class-assertion ,(number-to-fma-tooth tooth :return-tooth-uri t) 
-				 ,tooth-uri) axioms)	     
+	 (push `(class-assertion ,tooth-type-uri ,tooth-uri) axioms)	     
 	 
 	 ;; add annotation about tooth
-	 (setf tooth-string (number-to-fma-tooth tooth :return-tooth-name t))
+	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-name t))
 	 (push `(annotation-assertion !rdfs:label 
 				      ,tooth-uri
-				      ,(str+ tooth-string
-					     " of patient " patient-uri-string)) axioms)
-
+				      ,(str+ tooth-name
+					     " of patient " patient-id)) axioms)
+	 
          ;; declare instance of !ohd:'tooth to be filled role'
-	 (setf tooth-role-uri (get-iri))
+	 (setf tooth-role-uri
+	       (get-unique-iri patient-id
+			       :salt *salt*
+			       :iri-base *iri*
+			       :class-type !'tooth to be filled role'@ohd
+			       :args `(,tooth ,record-count "eaglesoft")))
+		
 	 (push `(declaration (named-individual ,tooth-role-uri)) axioms)
-	 (push `(class-assertion !tooth_to_be_filled_role ,tooth-role-uri) axioms)
+	 (push `(class-assertion !'tooth to be filled role'@ohd ,tooth-role-uri) axioms)
 
 	 ;; add annotation about 'tooth to be filled role'
 	 (push `(annotation-assertion !rdfs:label 
 				      ,tooth-role-uri
 				      ,(str+ "tooth to be filled role for " 
-					     tooth-string " of patient " 
-					     patient-uri-string)) axioms)
+					     tooth-name " of patient " 
+					     patient-id)) axioms)
 
          ;; declare instance of material (i.e.,  amalgam/resin/gold) used in tooth
-	 (setf material-uri (get-iri))
 	 (setf obo-material-uri (get-obo-material-uri ada-code))
+	 (setf material-uri 
+	       (get-unique-iri patient-id
+			       :salt *salt*
+			       :iri-base *iri*
+			       :class-type obo-material-uri
+			       :args `(,tooth ,record-count "eaglesoft")))
 	 (push `(declaration (named-individual ,material-uri)) axioms)
 	 (push `(class-assertion ,obo-material-uri ,material-uri) axioms)
 
@@ -284,12 +288,18 @@
 	 (setf material-name (get-material-name ada-code))
 	 (push `(annotation-assertion !rdfs:label 
 				      ,material-uri
-				      ,(str+ material-name " placed in " tooth-string
+				      ,(str+ material-name " placed in " tooth-name
 					     " of patient " patient-uri-string)) axioms)
 
          ;; declare instance of restoration 
-	 (setf restoration-uri (get-iri))
 	 (setf obo-restoration-uri (get-obo-restoration-uri ada-code))
+	 (setf restoration-uri
+	       (get-unique-iri patient-id
+			       :salt *salt*
+			       :iri-base *iri*
+			       :class-type obo-restoration-uri
+			       :args `(,tooth ,record-count "eaglesoft")))
+		
 	 (push `(declaration (named-individual ,restoration-uri)) axioms)
 	 (push `(class-assertion ,obo-restoration-uri ,restoration-uri) axioms)
 
@@ -299,62 +309,46 @@
 				      ,restoration-uri
 				      ,(str+ restoration-name 
 					     " restoration procedure on tooth " 
-					     tooth-string " in patient " 
-					     patient-uri-string)) axioms)
+					     tooth-name " in patient " 
+					     patient-id)) axioms)
 
-	 ;; add date property !ohd:'occurence date' to 'amalgam filling restoration'
-	 (push `(data-property-assertion !occurrence_date
+	 ;; add data property !ohd:'occurence date' to restoration
+	 (push `(data-property-assertion !'occurence date'@ohd
 					 ,restoration-uri 
 					 (:literal ,occurrence-date !xsd:date)) axioms)
 
 	  ;;;; relate instances ;;;;
 
 	 ;; toot is located in the patient
-	 (push `(object-property-assertion !is_located_in 
+	 (push `(object-property-assertion !'is part of'@ohd
 					   ,tooth-uri ,patient-uri) axioms)
 
          ;; 'tooth to be filled role' inheres in tooth
-	 (push `(object-property-assertion !inheres_in
+	 (push `(object-property-assertion !'inheres in'@ohd
 					   ,tooth-role-uri ,tooth-uri) axioms)
 
          ;; 'filling restoration' realizes 'tooth to be filled role'
-	 (push `(object-property-assertion !realizes
+	 (push `(object-property-assertion !'realizes'@ohd
 					   ,restoration-uri ,tooth-role-uri) axioms)
 
          ;; 'filling restoration' has particpant tooth
-	 (push `(object-property-assertion !has_participant
+	 (push `(object-property-assertion !'has participant'@ohd
 					   ,restoration-uri ,tooth-uri) axioms)
 	 
          ;; 'filling restoration' has particpant restoration material
-	 (push `(object-property-assertion !has_participant 
+	 (push `(object-property-assertion !'has participant'@ohd
 					   ,restoration-uri ,material-uri) axioms)
 
 	 ;; restoration material is located in the tooth
-	 (push `(object-property-assertion !is_located_in
+	 (push `(object-property-assertion !'is located in'@ohd
 					   ,material-uri ,tooth-uri) axioms)
 	 ) ;; end loop
     
+    ;;(pprint axioms)
+
     ;; return axioms
     axioms))
   
-(defun get-patient-uri (patient-id dental-patients-ontology)
-  (let ((uri nil))
-    ;; use sparql 
-    (setf uri
-	  (sparql `(:select (?a) ()
-		    (?a !patient_ID ,patient-id))
-		  :kb dental-patients-ontology
-		  :use-reasoner :pellet
-		  :values t))
-
-    ;; the uri is returned as a list in a list; i.e., ((!ohd:0000123))
-    ;; so, get the inner most elment
-    (setf uri (car (car uri)))
-
-    ;; return uri
-    uri))
-
-
 (defun get-material-name (ada-code)
   "Returns the name the material used in a filling/restoration based on ada code."
   (let ((material-name nil))
@@ -387,12 +381,12 @@
     ;; compare ada code to respective global code lists
     (cond
       ((member ada-code *amalgam-code-list* :test 'equal) 
-       (setf obo-restoration-uri !amalgam_filling_restoration))
+       (setf obo-restoration-uri !'amalgam filling restoration'@ohd))
       ((member ada-code *resin-code-list* :test 'equal)  
-       (setf obo-restoration-uri !resin_filling_restoration))
+       (setf obo-restoration-uri !'resin filling restoration'@ohd))
       ((member ada-code *gold-code-list* :test 'equal)  
-       (setf restoration-uri !gold_filling_restoration))
-      (t (setf obo-restoration-uri !other_restoration)))
+       (setf restoration-uri !'gold filling restoration'@ohd))
+      (t (setf obo-restoration-uri !'filling restoration'@ohd)))
 
     ;; return restoration
     obo-restoration-uri))
@@ -402,9 +396,9 @@
   (let ((material-uri nil))
     ;; compare ada code to respective global code lists
     (cond
-      ((member ada-code *amalgam-code-list* :test 'equal)  (setf material-uri !amalgam))
-      ((member ada-code *resin-code-list* :test 'equal)  (setf material-uri !resin))
-      ((member ada-code *gold-code-list* :test 'equal)  (setf material-uri !gold))
+      ((member ada-code *amalgam-code-list* :test 'equal) (setf material-uri !'amalgam'ohd))
+      ((member ada-code *resin-code-list* :test 'equal)  (setf material-uri !'resin'@ohd))
+      ((member ada-code *gold-code-list* :test 'equal)  (setf material-uri !'gold'@ohd))
       (t (setf material-uri !other_material)))
 
     ;; return material uri
@@ -445,91 +439,39 @@
     ;; return list of teeth
     teeth-list))
 
+(defun get-unique-iri(string &key salt class-type iri-base args)
+  "Returns a unique iri by doing a md5 checksum on the string parameter. An optional md5 salt value is specified by the salt key value (i.e., :salt salt). The class-type argument (i.e., :class-type class-type) concatentates the class type to the string.  This parameter is highly suggested, since it helps guarntee that ire will be unique.  The iri-base (i.e., :iri-base iri-base) is prepended to the iri.  For example, (get-unique-iri \"test\" :iri-base \"http://test.com/\" will prepend \"http://test.com/\" to the md5 checksum of \"test\".  The args parmameter is used to specify an other information you wish to concatenate to the string paramenter.  Args can be either a single value or list; e.g., (get-unique-iri \"test\" :args \"foo\") (get-unique-iri \"test\" :args '(\"foo\" \"bar\")."
+  ;; check that string param is a string
+  (if (not (stringp string)) 
+      (setf string (format nil "~a" string)))
 
-(defun get-iri ()
-  "Returns a unique iri using 'make-uri'."
-  (make-uri (get-iri-string)))
+  ;; prepend class type to string
+  (when class-type
+    (setf class-type (remove-leading-! class-type))
+    (setf string (format nil "~a~a" class-type string)))
+  
+  ;; concatenate extra arguments to string
+  (when args
+    (cond 
+      ((listp args)
+       (loop for item in args do
+	    (setf item (remove-leading-! item))
+	    (setf string (format nil "~a~a" string item))))
+      (t (setf string (format nil "~a~a" string args)))))
 
-(defun get-iri-string ()
-  "Returns a unique string that is used make a unique iri."
- (let ((iri-string nil))
-   ;; build iri; note cdt uri is zero padded length 7: "~7,'0d"
-   (setf iri-string (str+ "OHD_" (format nil "~7,'0d" *iri-count*)))
-   
-   ;; increment iri count
-   (incf *iri-count*)
+  ;; encode string
+  (setf string (encode string :salt salt))
+  (when iri-base
+    (setf string (format nil "~a~a" iri-base string)))
+  (make-uri string))
 
-   ;; return new iri string
-   (str+ *iri* iri-string)))
-
-(defun get-iri-num (ontology sequence-prefix)
-  "Returns the sequence number that can be used to generate unique iri's.
-Note: This number is associated with some prefix; e.g., OHD_."
-  (let ((count nil))
-    ;; find largest sequence number
-    (setf count (get-largest-uri-sequence ontology sequence-prefix))
-    
-    ;; if count is nil, then none where found
-    ;; otherwise, add 1 to count
-    (cond
-      ((not count) (setf count 1))
-      (t (incf count)))
-
-    ;; return the count
-    count))
-
-(defun get-largest-uri-sequence (ontology sequence-prefix)
-  "Returns the largest sequence number pertaining to the uri's used in an ontology.  
-Ontology uri's in the obo library typically end with a prefix folowed by an underscore '_' and 7 digit (zero padded) number.  For example, the continuant class in BFO has the uri 'http://purl.obo.library.org/obo/BFO_0000002'.  The sequence number, then, is the last 7 digits of the uri.  This procecure returns the largest numbered numbered squence relative to some prefix.  For instance, if an ontology contained the uri's 'BFO_0000005' and 'BFO_0000012', (get-largest-sequence-in-uribfo \"BFO_\" would return the integer 12. Note that the underscore '_' was included in the sequence-prefix.  When a greatest sequence is not found, nil is returned."
- 
-  (let ((functional-syntax nil)
-	(matches nil)
-	(pattern nil)
-	(int-list nil)
-	(largest-sequence nil))
-    ;; steps 
-    ;; 1. convert the ontology to owl syntax
-    ;; 2. do regular expression search for sequence-prefix pattern
-    ;; 3. strip off the last 7 digits of each matched item into a list of integers
-    ;; 4. sort the list of integers, and store the largest sequence
-    ;; 5. return the largest sequence
-
-    ;; 1. convert the ontology to owl syntax
-    (setf functional-syntax (to-owl-syntax ontology :functional))
-    
-    ;; 2. do regular expression search for sequence-prefix pattern + 7 digits
-    (setf pattern (format nil "(~a\\d{7})" sequence-prefix))
-    (setf matches (all-matches functional-syntax pattern 1))
-
-    ;; 3. strip off the last 7 digits of each uri into a list of integers
-    ;; note: first check that records where returned
-    (when matches
-      (loop for item in matches do
-	   ;; each item in the matches is itsef an one-elment list
-	   ;; so, get this element
-	   (setf item (car item))
-
-           ;; parse out the integer portion of uri
-	   ;; e.g., OHD_0000123 -> "OHD_0000123"-> "0000123" -> 123
-	   ;; note: this requries converting the itme to a string
-	   (setf item (format nil "~a" item))
-	   
-	   ;; verify that the length is greater that 7
-	   (when (> (length item) 7)
-	     (setf item (subseq item (- (length item) 7)))
-	     (setf item (parse-integer item))
-
-	     ;; push uri integer on to list
-	     (push item int-list)))
-
-      ;; 4. sort the list of integers, and store the largest sequence
-      ;; verify that list exists
-      (when (listp int-list)
-	(setf int-list (sort int-list #'>))
-	(setf largest-sequence (car int-list))))
-
-    ;; 5. return the largest sequence
-    largest-sequence))
+(defun remove-leading-! (iri)
+  "Removes the leading '!' from a iri and returns the iri as a string.
+If no leading '!' is present, the iri is simply returned as string."
+  (setf iri (format nil "~a" iri))
+  (when (equal "!" (subseq iri 0 1)) (setf iri (subseq iri 1)))
+  ;; return iri
+  iri)
 
 (defun str-right (string num)
 	   (let ((end nil)
@@ -548,7 +490,7 @@ Ontology uri's in the obo library typically end with a prefix folowed by an unde
 SET rowcount 0
 
 SELECT
-  *
+top 3  *
 FROM
   patient_history
 WHERE
@@ -589,17 +531,15 @@ ORDER BY
 "
 )
 
-(defun encode (string)
-  "Returns and md5 checksum of the string argument.
-Note: The .pattersondbpw file is required to run this procedure."
-
-  (let ((it nil)
-	(salt nil))
+(defun encode (string &key salt)
+  "Returns and md5 checksum of the string argument.  When the salt argument is present, it used in the computing of the md5 check sum."
+  (let ((it nil))
+    ;; check for salt
+    (when salt
+      (setf string (format nil "~a~a" salt string)))
     
-    ;; get salt value
-    (setf salt (with-open-file (f "~/.pattersondbpw") (read-line f)))
-    (setf it (new 'com.hp.hpl.jena.shared.uuid.MD5 
-		  (format nil "~a~a" salt string)))
+    (setf it (new 'com.hp.hpl.jena.shared.uuid.MD5 string))
+    
     (#"processString" it)
     (#"getStringDigest" it)))
 
