@@ -150,7 +150,7 @@
     ;; set default base and ontology iri's 
     (when (null iri) (setf iri "http://purl.obolibrary.org/obo/ohd/individuals/"))
     (when (null ont-iri) 
-      (setf ont-iri "http://purl.obolibrary.org/obo/ohd/dev/patterson-partial.owl"))
+      (setf ont-iri "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-fillngs.owl"))
     
     ;; set default iri string for the location of ohd ontology
     ;; for now this is my repository file
@@ -181,7 +181,7 @@
 	   	
 		;; import the ohd ontology
 		(as `(imports ,(make-uri "http://purl.obolibrary.org/obo/ohd/dev/ohd.owl")))
-		(as `(imports ,(make-uri "http://purl.obolibrary.org/obo/ohd/dev/eaglesoft-dental-patients.owl")))
+		(as `(imports ,(make-uri "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-patients.owl")))
 
 		;; declare data properties
 		(as `(declaration (data-property !occurrence_date)))
