@@ -26,7 +26,7 @@
     ;; set default base and ontology iri's 
     (when (null iri) (setf iri "http://purl.obolibrary.org/obo/ohd/individuals/"))
     (when (null ont-iri) 
-      (setf ont-iri "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-fillings.owl"))
+      (setf ont-iri "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-patients.owl"))
     
     ;; set default iri string for the location of ohd ontology
     ;; for now this is my repository file
