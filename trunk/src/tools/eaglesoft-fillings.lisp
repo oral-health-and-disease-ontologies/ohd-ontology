@@ -161,14 +161,14 @@
     ;; set global variables 
     (setf *iri* iri)
     (setf dental-patients-ontology (load-ontology dental-patients-iri-string))
-    (setf *iri-count* (get-iri-count dental-patients-ontology "individuals/OHD_"))
+    (setf *iri-count* (get-iri-num dental-patients-ontology "individuals/OHD_"))
     
     ;; set up connection string and query. Put password in ~/.pattersondbpw
     (setf url (concatenate 'string 
 			   "jdbc:sqlanywhere:Server=PattersonPM;UserID=PDBA;password="
 			   (with-open-file (f "~/.pattersondbpw") (read-line f))))
 
-    ;; get query string for amalgam restorations
+    ;; get query string for restorations
     (setf query (get-fillings-query))
 
     (with-ontology ont (:collecting t :base iri :ontology-iri ont-iri)
@@ -204,7 +204,6 @@
 
       ;; return the ontology
       (values ont count))))
-
 
 (defun get-filling-axioms (patient-id occurrence-date tooth-data 
 			   surface ada-code dental-patients-ontology)
@@ -242,7 +241,16 @@
          ;;;;  declare instances of participating entities ;;;;
 	 
          ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
-	 (setf tooth-uri (get-iri))
+	 ;;(setf tooth-uri (get-iri))
+	 ;; note: exclude the beginnning "!" from the uri
+	 (setf tooth-uri (subseq (format nil "~a" patient-uri) 1))
+	 (setf tooth-uri (concatenate 'string
+				      tooth-uri "/tooth" (format nil "~a" tooth)))
+
+	 ;; since I am using an abbreviated pathname, use nil as second arg
+	 ;; to make-uri
+	 (setf tooth-uri (make-uri nil tooth-uri))
+
 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
 	 (push `(class-assertion ,(number-to-fma-tooth tooth :return-tooth-uri t) 
 				 ,tooth-uri) axioms)	     
@@ -345,6 +353,7 @@
 
     ;; return uri
     uri))
+
 
 (defun get-material-name (ada-code)
   "Returns the name the material used in a filling/restoration based on ada code."
@@ -453,7 +462,7 @@
    ;; return new iri string
    (str+ *iri* iri-string)))
 
-(defun get-iri-count (ontology sequence-prefix)
+(defun get-iri-num (ontology sequence-prefix)
   "Returns the sequence number that can be used to generate unique iri's.
 Note: This number is associated with some prefix; e.g., OHD_."
   (let ((count nil))
@@ -543,18 +552,6 @@ SELECT
 FROM
   patient_history
 WHERE
-  patient_id IN ('930',
-                 '444',
-                 '790',
-                 '529',
-                 '112',
-                 '330',
-                 '1690',
-                 '327',
-                 '1680',
-                 '304') 
-
-AND 
   ada_code IN ('D2140', -- Restorative: Amalgam
               'D2150',
               'D2160',
@@ -570,8 +567,26 @@ AND
               'D2410', -- Restorative: Gold Foil
               'D2420',
               'D2430' )
+/****
 AND 
-  table_name = 'transactions'"
+  patient_id IN ('930',
+                 '444',
+                 '790',
+                 '529',
+                 '112',
+                 '330',
+                 '1690',
+                 '327',
+                 '1680',
+                 '304') 
+******/
+AND tooth_data IS NOT NULL
+AND surface_detail IS NOT NULL
+AND 
+  table_name = 'transactions'
+ORDER BY
+  patient_id
+"
 )
 
 (defun encode (string)
@@ -776,7 +791,7 @@ The existing_services table is the table for all findings in ES that are, essent
 procedures completed by entities outside the current dental office.
 */
 
-SELECT
+SELECT DISTINCT
   existing_services.patient_id,
   table_name = 'existing_services', -- table_name value
   /* date_completed is the date (usually reported by the patient) that something was done */
@@ -832,13 +847,22 @@ SELECT
     AND existing_services.line_number = existing_services_extra.line_number)
 FROM
   existing_services
+WHERE
+  patient_id IN
+  (
+    SELECT
+      patient_id
+    FROM
+      patient
+    WHERE
+      LENGTH(birth_date) > 0)
 
 UNION ALL
 /*
 The patient_conditions table is the table for all conditions in ES that do not result from a
 procedure, i.e. all things that happen one their own (fracture, caries, etc.)
 */
-SELECT
+SELECT DISTINCT
   patient_conditions.patient_id,
   table_name = 'patient_conditions', -- table_name value
   date_completed = 'n/a', -- date_completed is not recorded in the patient_conditions table
@@ -890,12 +914,21 @@ SELECT
       patient_conditions.counter_id = patient_conditions_extra.counter_id)
 FROM
   patient_conditions
+WHERE
+  patient_id IN
+  (
+    SELECT
+      patient_id
+    FROM
+      patient
+    WHERE
+      LENGTH(birth_date) > 0)
 
 UNION ALL
 /*
 The transactions view records transactions between the provider and the patient.
 */
-SELECT
+SELECT DISTINCT
   transactions.patient_id,
   table_name = 'transactions', -- table_name value (although transactions is a viiew)
   date_completed = 'n/a', -- date_completed is not recorded in the transactons view
@@ -955,6 +988,15 @@ FROM
   transactions
 WHERE
   type = 'S'
+AND
+  patient_id IN
+  (
+    SELECT
+      patient_id
+    FROM
+      patient
+    WHERE
+      LENGTH(birth_date) > 0)
   
   /* To use an order by clause in a union query, you reference the column number. */
 ORDER BY
