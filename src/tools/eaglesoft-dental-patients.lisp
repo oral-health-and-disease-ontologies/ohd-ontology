@@ -9,35 +9,31 @@
 
 ;; the global variables are used to generate unique iri's
 (defparameter *iri* nil)
-(defparameter *iri-count* nil)
+
+;; global variable used for to salt the md5 checksum
+(defparameter *salt* nil)
 
 ;; ensure that sql libary is loadd
 (add-to-classpath "/Applications/SQLAnywhere12/System/java/sajdbc4.jar")
 
-(defun get-dental-patient-ont (&key iri ont-iri ohd-iri-string)
+(defun get-dental-patient-ont (&key iri ont-iri)
   (let ((connection nil)
 	(statement nil)
 	(results nil)
 	(query nil)
 	(url nil)
-	(ohd-ontology nil)
 	(count 0))
     
+    ;; set md5 salt
+    (setf *salt* (get-eaglesoft-salt))
+
     ;; set default base and ontology iri's 
-    (when (null iri) (setf iri "http://purl.obolibrary.org/obo/ohd/individuals/"))
+    (when (null iri) (setf iri "http://purl.obolibrary.org/obo/ohd/"))
     (when (null ont-iri) 
       (setf ont-iri "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-patients.owl"))
     
-    ;; set default iri string for the location of ohd ontology
-    ;; for now this is my repository file
-    (when (null ohd-iri-string)
-      (setf ohd-iri-string 
-	    "/Users/williamduncan/Repositories/ohd-ontology/src/ontology/penn-ub-ohsu-prototype/ohd.owl"))
-
     ;; set global variables 
     (setf *iri* iri)
-    (setf ohd-ontology (load-ontology ohd-iri-string))
-    (setf *iri-count*  (get-iri-num ohd-ontology "individuals/OHD_"))
     
     ;; set up connection string and query. Put password in ~/.pattersondbpw
     (setf url (concatenate 'string 
@@ -61,17 +57,12 @@
 		;; declare data properties
 		(as `(declaration (data-property !occurrence_date)))
 		(as `(declaration (data-property !patient_ID)))
-		(as `(declaration (data-property !first_name)))
-		(as `(declaration (data-property !last_name)))
 		(as `(declaration (data-property !birth_date)))
 		(as `(declaration (data-property !patient_sex)))
-
 		    
 		(loop while (#"next" results) do
 		     (as (get-dental-patient-axioms
 			  (#"getString" results "patient_id")
-			  (#"getString" results "first_name")
-			  (#"getString" results "last_name")
 			  (#"getString" results "birth_date")
 			  (#"getString" results "sex")
 			  ))
@@ -87,87 +78,25 @@
       (values ont count))))
 
 
-(defun get-dental-patient-axioms (patient-id first-name last-name birth-date sex)
+(defun get-dental-patient-axioms (patient-id birth-date sex)
   "Returns a list of axioms about a patient that is identified by patient-id."
-
   (let ((axioms nil)
-	(patient-uri nil))
+	(patient-uri nil)
+	(unique-uri-string nil))
 
     ;; create instance/indiviual  patient, note this dependent on the patients sex
     ;; if sex is not present; we will skip the record
     (when (or (equalp sex "F") (equalp sex "M"))
-      ;; create uri; individual patient
-      (setf patient-uri (get-iri))
-      (push `(declaration (named-individual ,patient-uri)) axioms) 
+      ;; create uinque string to used for generating patient uri
+      ;; this is composed of the "eaglesoft" + class type + patient id
+      (setf unique-uri-string 
+	    (concatenate 'string
+			 "eaglesoft"
+			 (subseq (format nil "~a" !'dental patient'@ohd) 1)
+			 patient-id))
 
-      
-      ;; declare patient to be an instance of Female or Male 
-      (cond
-	((equalp sex "F")
-	 (push `(class-assertion !female_dental_patient ,patient-uri) axioms))
-	(t
-	 (push `(class-assertion !male_dental_patient ,patient-uri) axioms)))
-	 
-      ;; add data property 'patient id' to patient
-      ;; note: the patient id is encoded
-      (push `(data-property-assertion !patient_ID
-				      ,patient-uri ,(encode patient-id)) axioms)
-
-      ;; add data property about patient's birth date
-      (push `(data-property-assertion !birth_date ,patient-uri 
-				      (:literal ,birth-date !xsd:date)) axioms)
-
-      ;; add label annotation about patient
-      (push `(annotation-assertion !rdfs:label 
-				   ,patient-uri 
-				   ,(str+ first-name " " last-name)) axioms)
-
-      ;; add axioms about dental patient role
-      ;; note: append puts lists together and doesn't put items in list (like push)
-      (setf axioms (append (get-dental-patient-role-axioms patient-uri) axioms)))
-
-    ;; return axioms
-    axioms))
-
-(defun get-dental-patient-role-axioms (patient-uri)
-  "Returns a list of axioms about a dental patient's role."
-  (let ((axioms nil)
-	(patient-role-uri)
-	(patient-uri-string nil))
-
-    ;; create uri
-    (setf patient-role-uri (get-iri))
-
-    ;; create a string representation of the uri, this is used in the label
-    (setf patient-uri-string (str-right (format nil "~a" patient-uri) 11))
-    
-    ;; create instance of patient role; patient role is an instance of !obi:'patient role'
-    (push `(declaration (named-individual ,patient-role-uri)) axioms)
-    (push `(class-assertion !patient_role ,patient-role-uri) axioms) 
-
-    ;; 'patient role' inheres in patient
-    (push `(object-property-assertion !inheres_in
-				      ,patient-role-uri ,patient-uri) axioms)
-
-    ;; add label annotation about patient role
-    (push `(annotation-assertion !rdfs:label 
-				 ,patient-role-uri 
-				 ,(str+ "'patient role' for patient " 
-					patient-uri-string)) axioms)
-    ;; return axioms
-    axioms))
-
-(defun get-dental-patient-axioms-using-label-source
-    (patient-id first-name last-name birth-date sex)
-  "Returns a list of axioms about a patient that is identified by patient-id."
-  (let ((axioms nil)
-	(patient-uri nil))
-
-    ;; create instance/indiviual  patient, note this dependent on the patients sex
-    ;; if sex is not present; we will skip the record
-    (when (or (equalp sex "F") (equalp sex "M"))
-      ;; create uri; individual patient
-      (setf patient-uri (get-iri))
+      ;; create uri for individual patient
+      (setf patient-uri (get-unique-iri unique-uri-string :iri-base *iri*))
       (push `(declaration (named-individual ,patient-uri)) axioms) 
 
       
@@ -181,7 +110,8 @@
       ;; add data property 'patient id' to patient
       ;; note: the patient id is encoded
       (push `(data-property-assertion !'patient ID'@ohd 
-				      ,patient-uri ,(encode patient-id)) axioms)
+				      ,patient-uri 
+				      ,(encode patient-id :salt *salt*)) axioms)
 
       ;; add data propert about patient's birth date
       (push `(data-property-assertion !'birth_date'@ohd ,patient-uri 
@@ -190,28 +120,36 @@
     ;; add label annotation about patient
     (push `(annotation-assertion !rdfs:label 
 				 ,patient-uri 
-				 ,(str+ first-name " " last-name)) axioms)
+				 ,(str+ "patient " patient-id)) axioms)
 
     ;; add axioms about dental patient role
     ;; note: append puts lists together and doesn't put items in list (like push)
     (setf axioms 
-	  (append (get-dental-patient-role-axioms-using-label-source patient-uri) axioms)))
+	  (append (get-dental-patient-role-axioms patient-uri patient-id) axioms)))
 
+    ;;(pprint axioms)
     ;; return axioms
     axioms))
 
-(defun get-dental-patient-role-axioms-using-label-source (patient-uri)
+(defun get-dental-patient-role-axioms (patient-uri patient-id)
   "Returns a list of axioms about a dental patient's role."
   (let ((axioms nil)
 	(patient-role-uri)
-	(patient-uri-string nil))
+	(unique-uri-string nil))
+
+    ;; create uinque string to used for generating patient uri
+    ;; this is composed of the "eaglesoft" + class type + patient id
+    ;; note: the leading "!" is removed from the uri
+    (setf unique-uri-string 
+	  (concatenate 'string
+		       "eaglesoft"
+		       (subseq (format nil "~a" !'patient role'@ohd) 1)
+		       patient-id))
+		       
 
     ;; create uri
-    (setf patient-role-uri (get-iri))
+    (setf patient-role-uri (get-unique-iri unique-uri-string :iri-base *iri*))
 
-    ;; create a string representation of the uri, this is used in the label
-    (setf patient-uri-string (str-right (format nil "~a" patient-uri) 11))
-    
     ;; create instance of patient role; patient role is an instance of !obi:'patient role'
     (push `(declaration (named-individual ,patient-role-uri)) axioms)
     (push `(class-assertion !'patient role'@ohd ,patient-role-uri) axioms) 
@@ -224,42 +162,15 @@
     (push `(annotation-assertion !rdfs:label 
 				 ,patient-role-uri 
 				 ,(str+ "'patient role' for patient " 
-					 patient-uri-string)) axioms)
+					 patient-id)) axioms)
     ;; return axioms
     axioms))
 
-(defun get-iri ()
-  "Returns a unique iri using 'make-uri'."
-  (make-uri (get-iri-string)))
-  
-
-(defun get-iri-string ()
-  "Returns a unique string that is used make a unique iri."
- (let ((iri-string nil))
-   ;; build iri; note cdt uri is zero padded length 7: "~7,'0d"
-   (setf iri-string (str+ "OHD_" (format nil "~7,'0d" *iri-count*)))
-   
-   ;; increment iri count
-   (incf *iri-count*)
-
-   ;; return new iri string
-   (str+ *iri* iri-string)))
-
-(defun get-iri-num (ontology sequence-prefix)
-  "Returns the sequence number that can be used to generate unique iri's.
-Note: This number is associated with some prefix; e.g., OHD_."
-  (let ((count nil))
-    ;; find largest sequence number
-    (setf count (get-largest-uri-sequence ontology sequence-prefix))
-    
-    ;; if count is nil, then none where found
-    ;; otherwise, add 1 to count
-    (cond
-      ((not count) (setf count 1))
-      (t (incf count)))
-
-    ;; return the count
-    count))
+(defun get-unique-iri(string-uri &key iri-base)
+  (setf string-uri (encode string-uri :salt *salt*))
+  (when iri-base
+    (setf string-uri (str+ iri-base string-uri)))
+  (make-uri string-uri))
 
 (defun get-dental-patients-query ()
 "
@@ -269,20 +180,24 @@ SELECT
   *
 FROM
   PPM.patient
-WHERE  LENGTH(birth_date) > 0
+WHERE LENGTH(birth_date) > 0
 ORDER BY patient_id")
 
-(defun encode (string)
-  "Returns and md5 checksum of the string argument.
+(defun get-eaglesoft-salt ()
+  "Returns the salt to be used with the md5 checksum.  
 Note: The .pattersondbpw file is required to run this procedure."
-
-  (let ((it nil)
-	(salt nil))
+  (with-open-file (f "~/.pattersondbpw") (read-line f)))
     
-    ;; get salt value
-    (setf salt (with-open-file (f "~/.pattersondbpw") (read-line f)))
-    (setf it (new 'com.hp.hpl.jena.shared.uuid.MD5 
-		  (format nil "~a~a" salt string)))
+
+(defun encode (string &key salt)
+  "Returns and md5 checksum of the string argument.  When the salt argument is present, it used in the computing of the md5 check sum."
+  (let ((it nil))
+    ;; check for salt
+    (when salt
+      (setf string (format nil "~a~a" salt string)))
+    
+    (setf it (new 'com.hp.hpl.jena.shared.uuid.MD5 string))
+    
     (#"processString" it)
     (#"getStringDigest" it)))
 
@@ -297,106 +212,3 @@ Note: The .pattersondbpw file is required to run this procedure."
 (defun str-left (string num)
   (when (<= num (length string))
     (setf string (subseq string 0 num))))
-
-(defun get-largest-uri-sequence (ontology sequence-prefix)
-  "Returns the largest sequence number pertaining to the uri's used in an ontology.  
-Ontology uri's in the obo library typically end with a prefix folowed by an underscore '_' and 7 digit (zero padded) number.  For example, the continuant class in BFO has the uri 'http://purl.obo.library.org/obo/BFO_0000002'.  The sequence number, then, is the last 7 digits of the uri.  This procecure returns the largest numbered numbered squence relative to some prefix.  For instance, if an ontology contained the uri's 'BFO_0000005' and 'BFO_0000012', (get-largest-sequence-in-uribfo \"BFO_\" would return the integer 12. Note that the underscore '_' was included in the sequence-prefix.  When a greatest sequence is not found, nil is returned."
- 
-  (let ((functional-syntax nil)
-	(matches nil)
-	(pattern nil)
-	(int-list nil)
-	(largest-sequence nil))
-    ;; steps 
-    ;; 1. convert the ontology to owl syntax
-    ;; 2. do regular expression search for sequence-prefix pattern
-    ;; 3. strip off the last 7 digits of each matched item into a list of integers
-    ;; 4. sort the list of integers, and store the largest sequence
-    ;; 5. return the largest sequence
-
-    ;; 1. convert the ontology to owl syntax
-    (setf functional-syntax (to-owl-syntax ontology :functional))
-    
-    ;; 2. do regular expression search for sequence-prefix pattern + 7 digits
-    (setf pattern (format nil "(~a\\d{7})" sequence-prefix))
-    (setf matches (all-matches functional-syntax pattern 1))
-
-    ;; 3. strip off the last 7 digits of each uri into a list of integers
-    ;; note: first check that records where returned
-    (when matches
-      (loop for item in matches do
-	   ;; each item in the matches is itsef an one-elment list
-	   ;; so, get this element
-	   (setf item (car item))
-
-           ;; parse out the integer portion of uri
-	   ;; e.g., OHD_0000123 -> "OHD_0000123"-> "0000123" -> 123
-	   ;; note: this requries converting the itme to a string
-	   (setf item (format nil "~a" item))
-	   
-	   ;; verify that the length is greater that 7
-	   (when (> (length item) 7)
-	     (setf item (subseq item (- (length item) 7)))
-	     (setf item (parse-integer item))
-
-	     ;; push uri integer on to list
-	     (push item int-list)))
-
-      ;; 4. sort the list of integers, and store the largest sequence
-      ;; verify that list exists
-      (when (listp int-list)
-	(setf int-list (sort int-list #'>))
-	(setf largest-sequence (car int-list))))
-
-    ;; 5. return the largest sequence
-    largest-sequence))
-
-;; this version doesn't quite work as I intended.
-;; it is difficult to retrieve all uri's for individuals, subclasses, annotation, etc.
-;; but I'm keeping the code around b/c it might prove useful
-;; (defun get-largest-uri-sequence (ontology sequence-prefix)
-;;   "Returns the largest sequence number pertaining to the uri's used in an ontology.  
-;; Ontology uri's in the obo library typically end with a prefix folowed by an underscore '_' and 7 digit (zero padded) number.  For example, the continuant class in BFO has the uri 'http://purl.obo.library.org/obo/BFO_0000002'.  The sequence number, then, is the last 7 digits of the uri.  This procecure returns the largest numbered numbered squence relative to some prefix.  For instance, if an ontology contained the uri's 'BFO_0000005' and 'BFO_0000012', (get-largest-sequence-in-uribfo \"BFO\" would return the integer 12."
- 
-;;   (let ((uri-list nil)
-;; 	(int-list nil)
-;; 	(largest-sequence nil))
-;;     ;; steps 
-;;     ;; 1. do a sparql query for all the uri's that match the sequence prefix
-;;     ;; 2. strip off the last 7 digits of each uri into a list of integers
-;;     ;; 3. sort the list of integers, and store the largest sequence
-;;     ;; 4. return the largest sequence
-
-;;     ;; 1. do a sparql query for all the uri's that match the sequence prefix
-;;     (setf uri-list (sparql 
-;; 		    `(:select (?a) () 
-;; 			      (?a !rdf:type !owl:Thing)
-;; 			      (:filter (regex (str ?a) ,sequence-prefix "i")))
-;; 		    :kb ontology
-;; 		    :use-reasoner :pellet
-;; 		    :values t))
-    
-;;     ;; 2. strip off the last 7 digits of each uri into a list of integers
-;;     ;; note: first check that records where returned
-;;     (when uri-list
-;;       (loop for item in uri-list do
-;; 	   ;; each item in the uri-list is itsef an one-elment list
-;; 	   ;; so, get this element
-;; 	   (setf item (car item))
-
-;;            ;; parse out the integer portion of uri
-;; 	   ;; for example OHD_0000123 -> "OHD_0000123"-> "0000123" -> 123
-;; 	   ;; note: this requries converting the itme to a string
-;; 	   (setf item (format nil "~a" item))
-;; 	   (setf item (subseq item (- (length item) 7)))
-;; 	   (setf item (parse-integer item))
-
-;; 	   ;; push uri integer on to list
-;; 	   (push item int-list))
-
-;;       ;; 3. sort the list of integers, and store the largest sequence
-;;       (setf int-list (sort int-list #'>))
-;;       (setf largest-sequence (car int-list)))
-
-;;     ;; 4. return the largest sequence
-;;     largest-sequence))
