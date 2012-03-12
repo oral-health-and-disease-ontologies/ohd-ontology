@@ -1,3 +1,20 @@
+(defun get-patient-uri-sparql (patient-id dental-patients-ontology)
+  (let ((uri nil))
+    ;; use sparql 
+    (setf uri
+	  (sparql `(:select (?a) ()
+		    (?a !patient_ID ,patient-id))
+		  :kb dental-patients-ontology
+		  :use-reasoner :pellet
+		  :values t))
+
+    ;; the uri is returned as a list in a list; i.e., ((!ohd:0000123))
+    ;; so, get the inner most elment
+    (setf uri (car (car uri)))
+
+    ;; return uri
+    uri))
+
 (defun get-iri ()
   "Returns a unique iri using 'make-uri'."
   (make-uri (get-iri-string)))
