@@ -26,7 +26,7 @@
 (defparameter *amalgam-code-list* 
   '("D2140" "D2150" "D2160" "D2161"))
 (defparameter *resin-code-list* 
-  '("D2330" "D2332" "D2335" "D2390" "D2391""D2392" "D2393" "D2394"))
+  '("D2330" "D2332" "D2335" "D2390" "D2391" "D2392" "D2393" "D2394"))
 (defparameter *gold-code-list* 
   '("D2410" "D2420" "D2430"))
 
@@ -137,7 +137,9 @@
     (cond
       (return-tooth-uri (setf tooth (car (aref teeth (1- number)))))
       (return-tooth-name (setf tooth (cdr (aref teeth (1- number)))))
-      (t (setf tooth (aref teeth (1- number)))))))
+      (t (setf tooth (aref teeth (1- number)))))
+    ;; return tooth uri/name
+    tooth))
     
 
 (defun get-filling-ont (&key iri ont-iri)
@@ -210,7 +212,6 @@
 	(restoration-name nil)
 	(restoration-uri nil)
 	(patient-uri nil)
-	(patient-uri-string nil)
 	(tooth-uri nil)
 	(tooth-type-uri nil)
 	(tooth-role-uri nil)
@@ -289,7 +290,7 @@
 	 (push `(annotation-assertion !rdfs:label 
 				      ,material-uri
 				      ,(str+ material-name " placed in " tooth-name
-					     " of patient " patient-uri-string)) axioms)
+					     " of patient " patient-id)) axioms)
 
          ;; declare instance of restoration 
 	 (setf obo-restoration-uri (get-obo-restoration-uri ada-code))
@@ -367,9 +368,9 @@
   (let ((restoration-name nil))
     ;; compare ada code to respective global code lists
     (cond
-      ((member ada-code *amalgam-code-list* :test 'equal) (setf restoration-name "amalgam"))
-      ((member ada-code *resin-code-list* :test 'equal) (setf restoration-name "resin"))
-      ((member ada-code *gold-code-list* :test 'equal) (setf restoration-name "gold"))
+      ((member ada-code *amalgam-code-list* :test 'equalp) (setf restoration-name "amalgam"))
+      ((member ada-code *resin-code-list* :test 'equalp) (setf restoration-name "resin"))
+      ((member ada-code *gold-code-list* :test 'equalp) (setf restoration-name "gold"))
       (t (setf restoration-name "other")))
 
     ;; return material name
@@ -380,11 +381,11 @@
   (let ((obo-restoration-uri nil))
     ;; compare ada code to respective global code lists
     (cond
-      ((member ada-code *amalgam-code-list* :test 'equal) 
+      ((member ada-code *amalgam-code-list* :test 'equalp) 
        (setf obo-restoration-uri !'amalgam filling restoration'@ohd))
-      ((member ada-code *resin-code-list* :test 'equal)  
+      ((member ada-code *resin-code-list* :test 'equalp)  
        (setf obo-restoration-uri !'resin filling restoration'@ohd))
-      ((member ada-code *gold-code-list* :test 'equal)  
+      ((member ada-code *gold-code-list* :test 'equalp)
        (setf restoration-uri !'gold filling restoration'@ohd))
       (t (setf obo-restoration-uri !'filling restoration'@ohd)))
 
@@ -393,16 +394,20 @@
 
 (defun get-obo-material-uri (ada-code)
   "Returns the uri of the material used in a filling/restoration based on ada code."
-  (let ((material-uri nil))
+  (let ((obo-material-uri nil))
     ;; compare ada code to respective global code lists
     (cond
-      ((member ada-code *amalgam-code-list* :test 'equal) (setf material-uri !'amalgam'ohd))
-      ((member ada-code *resin-code-list* :test 'equal)  (setf material-uri !'resin'@ohd))
-      ((member ada-code *gold-code-list* :test 'equal)  (setf material-uri !'gold'@ohd))
-      (t (setf material-uri !other_material)))
-
-    ;; return material uri
-    material-uri))
+      ((member ada-code *amalgam-code-list* :test 'equalp)
+       (setf obo-material-uri !'amalgam'@ohd))
+      ((member ada-code *resin-code-list* :test 'equalp)
+       (setf obo-material-uri !'resin'@ohd))
+      ((member ada-code *gold-code-list* :test 'equalp)
+       (setf obo-material-uri !'gold'@ohd))
+      (t 
+       (setf obo-material-uri !'restoration material'@ohd)))
+    
+    ;; return obo material uri
+    obo-material-uri))
 		     
 (defun get-teeth-list (tooth-data)
   "Reads the tooth_data array and returns a list of tooth numbers referenced in the tooth_data (i.e., field) array."
@@ -489,8 +494,8 @@ If no leading '!' is present, the iri is simply returned as string."
 "
 SET rowcount 0
 
-SELECT
-top 3  *
+SELECT 
+  *
 FROM
   patient_history
 WHERE
