@@ -19,7 +19,7 @@
     (setf *salt* (get-eaglesoft-salt))
 
     ;; set default base and ontology iri's 
-    (when (null iri) (setf iri "http://purl.obolibrary.org/obo/ohd/"))
+    (when (null iri) (setf iri "http://purl.obolibrary.org/obo/ohd/individuals/"))
     (when (null ont-iri) 
       (setf ont-iri "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-patients.owl"))
     
@@ -46,10 +46,9 @@
 		(as `(imports ,(make-uri "http://purl.obolibrary.org/obo/ohd/dev/ohd.owl")))
 		
 		;; declare data properties
-		(as `(declaration (data-property !occurrence_date)))
-		(as `(declaration (data-property !patient_ID)))
-		(as `(declaration (data-property !birth_date)))
-		(as `(declaration (data-property !patient_sex)))
+		(as `(declaration (data-property !'occurence date'@ohd)))
+		(as `(declaration (data-property !'patient ID'@ohd)))
+		(as `(declaration (data-property !'birth_date'@ohd)))
 		    
 		(loop while (#"next" results) do
 		     (as (get-dental-patient-axioms
