@@ -9,6 +9,7 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ohd/r21cdtcodes.owl">
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/iao/dev/ontology-metadata.owl"/>
+        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ohd/dev/iao-imports.owl"/>
     </owl:Ontology>
     
 
@@ -35,7 +36,11 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDT_1000001">
+        <rdfs:label>current dental terminology code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000578"/>
+        <rdfs:comment>A current dental terminology code is a centrally registered identifier that is maintained by the American Dental Association and used for recording dental services provided. It is typically used on the patient record, and when reporting procedures on a paper or electronic submission. </rdfs:comment>
+    </owl:Class>
 
 
     <!-- http://purl.obolibrary.org/obo/CDT_0000120 -->
@@ -1138,6 +1143,7 @@ a crown when there is insufficient tooth strength and retention for the crown pr
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDT_1000011">
         <rdfs:label>billing code for other endodontic procedures</rdfs:label>
+	<rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
     </owl:Class>
     
 
@@ -1149,6 +1155,8 @@ a crown when there is insufficient tooth strength and retention for the crown pr
         <obo:IAO_0000116>Resin-based composite inlays/onlays must utilize indirect technique. 
 
  ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000116>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
+
     </owl:Class>
     
 
@@ -1156,6 +1164,8 @@ a crown when there is insufficient tooth strength and retention for the crown pr
     <!-- http://purl.obolibrary.org/obo/CDT_1000024 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDT_1000024">
+      <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
+
         <rdfs:label>billing code for endodontic therapy (including treatment plan, clinical procedures and follow-up care)</rdfs:label>
         <obo:IAO_0000116>Includes primary teeth without succedaneous teeth and permanent teeth. Complete
 root canal therapy; pulpectomy is part of root canal therapy.
@@ -1171,6 +1181,7 @@ images.
     <!-- http://purl.obolibrary.org/obo/CDT_1000034 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDT_1000034">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for clinical oral evaluations</rdfs:label>
         <obo:IAO_0000116>The codes in this section recognize the cognitive skills necessary for patient evaluation.
 The collection and recording of some data and components of the dental examination
@@ -1187,6 +1198,7 @@ specialists. Report additional diagnostic and/or definitive procedures separatel
     <!-- http://purl.obolibrary.org/obo/CDT_1000038 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDT_1000038">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for crowns - single restorations only</rdfs:label>
         <obo:IAO_0000116>Classification of Materials
 Classification of Metals (Source: ADA Council on Scientific Affairs)
@@ -1212,6 +1224,7 @@ compounds.
     <!-- http://purl.obolibrary.org/obo/CDT_1000041 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDT_1000041">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for other preventive services</rdfs:label>
     </owl:Class>
     
@@ -1220,6 +1233,7 @@ compounds.
     <!-- http://purl.obolibrary.org/obo/CDT_1000043 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDT_1000043">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for endodontic retreatment</rdfs:label>
         <obo:IAO_0000116>This procedure may include the removal of a post, pin(s), old root canal filling material,
 and the procedures necessary to prepare the canals and place the canal filling. This
@@ -1233,6 +1247,7 @@ includes complete root canal therapy.
     <!-- http://purl.obolibrary.org/obo/CDT_1000044 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDT_1000044">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for inlay/onlay restorations - porcelain/ceramic</rdfs:label>
         <obo:IAO_0000116>Porcelain/ceramic inlays/onlays include all indirect ceramic and porcelain type
 inlays/onlays. 
@@ -1245,6 +1260,7 @@ inlays/onlays.
     <!-- http://purl.obolibrary.org/obo/CDT_1000050 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDT_1000050">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for fixed partial denture pontics</rdfs:label>
     </owl:Class>
     
@@ -1253,6 +1269,7 @@ inlays/onlays.
     <!-- http://purl.obolibrary.org/obo/CDT_1000055 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDT_1000055">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for gold foil restorations</rdfs:label>
     </owl:Class>
     
@@ -1261,6 +1278,7 @@ inlays/onlays.
     <!-- http://purl.obolibrary.org/obo/CDT_1000061 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDT_1000061">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for amalgam restorations (including polishing)</rdfs:label>
         <obo:IAO_0000116>Tooth preparation, all adhesives (including amalgam bonding agents), liners and bases
 are included as part of the restoration. If pins are used, they should be reported
@@ -1274,6 +1292,7 @@ separately (see D2951).
     <!-- http://purl.obolibrary.org/obo/CDT_1000064 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDT_1000064">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for inlay/onlay restorations - metallic</rdfs:label>
     </owl:Class>
     
@@ -1282,6 +1301,7 @@ separately (see D2951).
     <!-- http://purl.obolibrary.org/obo/CDT_1000071 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDT_1000071">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for pulpotomy</rdfs:label>
     </owl:Class>
     
@@ -1290,6 +1310,7 @@ separately (see D2951).
     <!-- http://purl.obolibrary.org/obo/CDT_1000073 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDT_1000073">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for apicoectomy/periradicular services</rdfs:label>
         <obo:IAO_0000116>Periradicular surgery is a term used to describe surgery to the root surface (e.g.,
 apicoectomy), repair of a root perforation or resorptive defect, exploratory curettage
@@ -1305,6 +1326,7 @@ include retrograde filling material placement.
     <!-- http://purl.obolibrary.org/obo/CDT_1000084 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDT_1000084">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for other restorative services</rdfs:label>
     </owl:Class>
     
@@ -1313,6 +1335,7 @@ include retrograde filling material placement.
     <!-- http://purl.obolibrary.org/obo/CDT_1000087 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDT_1000087">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for resin-based composite restorations - direct</rdfs:label>
         <obo:IAO_0000116>Resin-based composite refers to a broad category of materials including but not
 limited to composites. May include bonded composite, light-cured composite, etc.
@@ -1352,7 +1375,7 @@ should be reported separately (see D2951).
         <rdfs:label>story of a tooth CDT code</rdfs:label>
         <obo:IAO_0000116>This is the list of ADA codes that we are including in our &quot;The Story of a Tooth&quot; datamining study. In our database queries, we will only retrieve the listed codes for analysis. Almost all codes are current (as of 1/2012) ADA CDT codes. However, there is the possibility that some historical codes are in the database. Jim Garrett explained that historical codes in the database are listed in the service_archive table. This means we can also access data that use codes that were phased out.</obo:IAO_0000116>
         <obo:IAO_0000117>TItus Schleyer</obo:IAO_0000117>
-    </owl:Class>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000578"/>    </owl:Class>
     
 
 
@@ -2543,6 +2566,7 @@ a crown when there is insufficient tooth strength and retention for the crown pr
     <!-- http://purl.obolibrary.org/obo/CDT_1000011 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000011">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for other endodontic procedures</rdfs:label>
         <obo:cdt_label>other endodontic procedures</obo:cdt_label>
     </rdf:Description>
@@ -2552,6 +2576,7 @@ a crown when there is insufficient tooth strength and retention for the crown pr
     <!-- http://purl.obolibrary.org/obo/CDT_1000015 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000015">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for inlay/onlay restorations - resin-based composite</rdfs:label>
         <obo:cdt_label>inlay/onlay restorations - resin-based composite</obo:cdt_label>
         <obo:IAO_0000116>Resin-based composite inlays/onlays must utilize indirect technique. 
@@ -2564,6 +2589,7 @@ a crown when there is insufficient tooth strength and retention for the crown pr
     <!-- http://purl.obolibrary.org/obo/CDT_1000024 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000024">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for endodontic therapy (including treatment plan, clinical procedures and follow-up care)</rdfs:label>
         <obo:cdt_label>endodontic therapy (including treatment plan, clinical procedures and follow-up care)</obo:cdt_label>
         <obo:IAO_0000116>Includes primary teeth without succedaneous teeth and permanent teeth. Complete
@@ -2580,6 +2606,7 @@ images.
     <!-- http://purl.obolibrary.org/obo/CDT_1000034 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000034">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for clinical oral evaluations</rdfs:label>
         <obo:IAO_0000116>The codes in this section recognize the cognitive skills necessary for patient evaluation.
 The collection and recording of some data and components of the dental examination
@@ -2597,6 +2624,7 @@ specialists. Report additional diagnostic and/or definitive procedures separatel
     <!-- http://purl.obolibrary.org/obo/CDT_1000038 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000038">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for crowns - single restorations only</rdfs:label>
         <obo:IAO_0000116>Classification of Materials
 Classification of Metals (Source: ADA Council on Scientific Affairs)
@@ -2623,6 +2651,7 @@ compounds.
     <!-- http://purl.obolibrary.org/obo/CDT_1000041 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000041">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for other preventive services</rdfs:label>
         <obo:cdt_label>other preventive services</obo:cdt_label>
     </rdf:Description>
@@ -2632,6 +2661,7 @@ compounds.
     <!-- http://purl.obolibrary.org/obo/CDT_1000043 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000043">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for endodontic retreatment</rdfs:label>
         <obo:cdt_label>endodontic retreatment</obo:cdt_label>
         <obo:IAO_0000116>This procedure may include the removal of a post, pin(s), old root canal filling material,
@@ -2646,6 +2676,7 @@ includes complete root canal therapy.
     <!-- http://purl.obolibrary.org/obo/CDT_1000044 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000044">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for inlay/onlay restorations - porcelain/ceramic</rdfs:label>
         <obo:cdt_label>inlay/onlay restorations - porcelain/ceramic</obo:cdt_label>
         <obo:IAO_0000116>Porcelain/ceramic inlays/onlays include all indirect ceramic and porcelain type
@@ -2659,6 +2690,7 @@ inlays/onlays.
     <!-- http://purl.obolibrary.org/obo/CDT_1000050 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000050">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for fixed partial denture pontics</rdfs:label>
         <obo:cdt_label>fixed partial denture pontics</obo:cdt_label>
     </rdf:Description>
@@ -2668,6 +2700,7 @@ inlays/onlays.
     <!-- http://purl.obolibrary.org/obo/CDT_1000055 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000055">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for gold foil restorations</rdfs:label>
         <obo:cdt_label>gold foil restorations</obo:cdt_label>
     </rdf:Description>
@@ -2677,6 +2710,7 @@ inlays/onlays.
     <!-- http://purl.obolibrary.org/obo/CDT_1000061 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000061">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for amalgam restorations (including polishing)</rdfs:label>
         <obo:cdt_label>amalgam restorations (including polishing)</obo:cdt_label>
         <obo:IAO_0000116>Tooth preparation, all adhesives (including amalgam bonding agents), liners and bases
@@ -2691,6 +2725,7 @@ separately (see D2951).
     <!-- http://purl.obolibrary.org/obo/CDT_1000064 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000064">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for inlay/onlay restorations - metallic</rdfs:label>
         <obo:cdt_label>inlay/onlay restorations - metallic</obo:cdt_label>
     </rdf:Description>
@@ -2700,6 +2735,7 @@ separately (see D2951).
     <!-- http://purl.obolibrary.org/obo/CDT_1000071 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000071">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for pulpotomy</rdfs:label>
         <obo:cdt_label>pulpotomy</obo:cdt_label>
     </rdf:Description>
@@ -2709,6 +2745,7 @@ separately (see D2951).
     <!-- http://purl.obolibrary.org/obo/CDT_1000073 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000073">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for apicoectomy/periradicular services</rdfs:label>
         <obo:IAO_0000116>Periradicular surgery is a term used to describe surgery to the root surface (e.g.,
 apicoectomy), repair of a root perforation or resorptive defect, exploratory curettage
@@ -2725,6 +2762,7 @@ include retrograde filling material placement.
     <!-- http://purl.obolibrary.org/obo/CDT_1000084 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000084">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for other restorative services</rdfs:label>
         <obo:cdt_label>other restorative services</obo:cdt_label>
     </rdf:Description>
@@ -2734,6 +2772,7 @@ include retrograde filling material placement.
     <!-- http://purl.obolibrary.org/obo/CDT_1000087 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000087">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
         <rdfs:label>billing code for resin-based composite restorations - direct</rdfs:label>
         <obo:cdt_label>resin-based composite restorations - direct</obo:cdt_label>
         <obo:IAO_0000116>Resin-based composite refers to a broad category of materials including but not
@@ -2745,6 +2784,150 @@ should be reported separately (see D2951).
 
  ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000116>
     </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002330"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002331"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002332"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002335"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002390"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002391"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002392"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002393"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002394"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002650"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002651"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002652"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002662"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002663"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002664"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000021"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000038"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000055"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000061"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000084"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000087"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002610"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002620"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002630"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002642"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002643"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002644"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002710"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002712"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002720"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002721"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002722"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002740"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002750"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002751"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002752"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002780"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002781"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002782"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002783"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002790"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002791"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002792"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002794"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002799"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002410"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002420"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002430"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000015"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000044"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_1000064"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002140"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002150"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002160"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002161"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002510"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002520"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002530"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002542"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002543"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002544"/>
+        </owl:members>
+    </rdf:Description>
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDT_1000021">
+        <rdfs:label>billing code for inlay/onlay restorations</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000022"/>
+        <obo:cdt_label>inlay/onlay restorations</obo:cdt_label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/CDT_1000022 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/CDT_1000022">
+        <rdfs:label>billing code for restorative</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000001"/>
+        <obo:IAO_0000116>Local anesthesia is usually considered to be part of Restorative procedures.
+A one-surface posterior restoration is one in which the restoration involves only one of
+the five surface classifications (mesial, distal, occlusal, lingual, or facial, including buccal
+and labial).
+A two-surface posterior restoration is one in which the restoration extends to two of
+the five surface classifications.
+A three-surface posterior restoration is one in which the restoration extends to three
+of the five surface classifications.
+A four-or-more surface posterior restoration is one in which the restoration extends to
+four or more of the five surface classifications.
+A one-surface anterior proximal restoration is one in which neither the lingual nor the
+facial margins of the restoration extend beyond the line angle.
+A two-surface anterior proximal restoration is one in which either the lingual or facial
+margin of the restoration extends beyond the line angle.
+A three-surface anterior proximal restoration is one in which both the lingual and facial
+margins of the restorations extend beyond the line angle.
+A four-or-more surface anterior restoration is one in which both the lingual and facial
+margins extend beyond the line angle and the incisal angle is involved. This restoration
+might also involve all four surfaces of an anterior tooth and not involve the incisal angle. 
+
+ ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000116>
+        <obo:cdt_label>restorative</obo:cdt_label>
+    </owl:Class>
+
+
 </rdf:RDF>
 
 
