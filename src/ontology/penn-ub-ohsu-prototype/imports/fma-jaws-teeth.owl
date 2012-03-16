@@ -47,43 +47,12 @@
     </ObjectProperty>
     
 
-
-    <!-- http://purl.obolibrary.org/obo/FMA_85835 -->
-
-    <ObjectProperty rdf:about="http://purl.obolibrary.org/obo/FMA_85835">
-        <rdfs:label>contained in</rdfs:label>
-        <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: slot&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Standard FMA slot&lt;br&gt;&lt;b&gt;:slot-inverse&lt;/b&gt;: contains&lt;br&gt;&lt;b&gt;:slot-value-type&lt;/b&gt;: Class, Anatomical space&lt;br&gt;&lt;b&gt;:direct-domain&lt;/b&gt;: Segment of ureter, Region of pelvic peritoneum, Heterogeneous cluster, Segment of large intestine, Segment of peritoneal sac, Upper lobe of lung, Subdivision of external iliac artery, Subdivision of external iliac vein, Branch of femoral nerve, Branch of posterior division of internal iliac artery, Branch of anterior division of internal iliac artery, Tributary of internal iliac vein, Branch of sacral nerve plexus, Middle cerebral artery, Segment of esophagus, Set of organs, Set of organ parts, Set of organ system subdivisions, Set of cells, Set of cell parts&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Location relation which holds between a material anatomical entity and some anatomical space if the related entities are part of the same organism.nnOBO Relation Ontology definition:nC contained_in C&#39; if and only if: given any instance c that instantiates C at a time t, there is some c&#39; such that: c&#39; instantiates C&#39; at time t and c located_in c&#39; at t, and it is not the case that c *overlaps* c&#39; at t. (c&#39; is a conduit or cavity.)nSource: http://obofoundry.org/ro/</obo:IAO_0000116>
-    </ObjectProperty>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_85848 -->
-
-    <ObjectProperty rdf:about="http://purl.obolibrary.org/obo/FMA_85848">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-        <rdfs:label>part of</rdfs:label>
-        <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: slot&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Structural slot&lt;br&gt;&lt;b&gt;:slot-inverse&lt;/b&gt;: part&lt;br&gt;&lt;b&gt;:slot-value-type&lt;/b&gt;: Class, Anatomical entity template&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Structural anatomical relations which holds between each entity of type A and some anatomical entity of the same dimension of type B such that if A is part-of B, there is a complement C which together with A accounts for the whole (100%) of B. The inverse relation is Has-part.n12-12-07:nThis relation is equivalent to &amp;#x0022;proper_part_of&amp;#x0022; in OBO Relation Ontology which is defined as:nAs for part_of, for continuants: C part_of C&#39; if and only if: given any c that instantiates C at a time t, there is some c&#39; such that c&#39; instantiates C&#39; at time t, and c *part_of* c&#39; at t. For processes: P part_of P&#39; if and only if: given any p that instantiates P at a time t, there is some p&#39; such that p&#39; instantiates P&#39; at time t, and p *part_of* p&#39; at t. (Here *part_of* is the instance-level part-relation.) Note the additional constraint that subject and object are distinct.nSource: http://obofoundry.org/ro/&lt;br&gt;&lt;b&gt;:direct-subslots&lt;/b&gt;: constitutional part of, member of, regional part of, systemic part of</obo:IAO_0000116>
-        <inverseOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
-    </ObjectProperty>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_85857 -->
-
-    <ObjectProperty rdf:about="http://purl.obolibrary.org/obo/FMA_85857">
-        <rdfs:label>contains</rdfs:label>
-        <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: slot&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Standard FMA slot&lt;br&gt;&lt;b&gt;:slot-inverse&lt;/b&gt;: contained in&lt;br&gt;&lt;b&gt;:slot-value-type&lt;/b&gt;: Class, Material anatomical entity&lt;br&gt;&lt;b&gt;:direct-domain&lt;/b&gt;: Subdivision of cochlea, Compartment of head, Prostatic duct, Subdivision of compartment of palm of hand, Subdivision of mediastinum, Compartment of neck, Compartment of free upper limb, Subdivision of abdominal compartment, Scrotal sac</obo:IAO_0000116>
-        <inverseOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85835"/>
-    </ObjectProperty>
-    
-
-
     <!-- http://purl.obolibrary.org/obo/FMA_85868 -->
 
     <ObjectProperty rdf:about="http://purl.obolibrary.org/obo/FMA_85868">
         <rdfs:label>member of</rdfs:label>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: slot&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Structural slot&lt;br&gt;&lt;b&gt;:slot-inverse&lt;/b&gt;: member&lt;br&gt;&lt;b&gt;:slot-value-type&lt;/b&gt;: Class, Anatomical set&lt;br&gt;&lt;b&gt;:direct-superslots&lt;/b&gt;: part of&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Has_part relation which holds between each anatomical set and any of its elements.&lt;br&gt;&lt;b&gt;:direct-domain&lt;/b&gt;: Anatomical structure, Cardinal organ part, Bone of calcaneus, Bone of zone of calcaneus, Cartilage of calcaneus, Compact bone of calcaneus, Trabecular bone of calcaneus, Anatomical set, Membranous cytoplasmic organelle, Nonmembranous cytoplasmic organelle, Non-nucleated solocyte, Differentiated hemal cell, Set of neural tree organs, Synovial joint, Symphysis, Syndesmosis, Synovial joint of pectoral girdle, First costochondral joint, Second costochondral joint, Third costochondral joint, Fourth costochondral joint, Fifth costochondral joint, Sixth costochondral joint, Seventh costochondral joint, Eighth costochondral joint, Ninth costochondral joint, Tenth costochondral joint, Eleventh costochondral joint, Twelfth costochondral joint, First sternocostal joint, Cranial synchondrosis, Dento-alveolar joint of incisor tooth, Dento-alveolar joint of canine tooth, Dento-alveolar joint of premolar tooth, Dento-alveolar joint of molar tooth, Suture, Set of carpal bones, Set of metacarpal bones, Set of phalanges of hand, Set of sesamoid bones of hand, Set of nuclei of amygdala, Naso-pharyngeal lymphoid tissue, Variant anatomical structure, Musculature of subdivision of free upper limb, Smooth muscle tissue, Set of viscera, Set of immaterial anatomical entities</obo:IAO_0000116>
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85848"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
     </ObjectProperty>
     
 
@@ -94,7 +63,7 @@
         <rdfs:label>member</rdfs:label>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: slot&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Structural slot&lt;br&gt;&lt;b&gt;:slot-inverse&lt;/b&gt;: member of&lt;br&gt;&lt;b&gt;:direct-superslots&lt;/b&gt;: part&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Has_part relation which holds between each anatomical set and any of its elements.&lt;br&gt;&lt;b&gt;:slot-value-type&lt;/b&gt;: Anatomical set, Material anatomical entity, Class, Immaterial anatomical entity&lt;br&gt;&lt;b&gt;:direct-domain&lt;/b&gt;: Vasculature of bony part of irregular bone, Set of immaterial anatomical entities</obo:IAO_0000116>
         <inverseOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85868"/>
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
     </ObjectProperty>
     
 
@@ -106,7 +75,7 @@
         <rdfs:label>constitutional part</rdfs:label>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: slot&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Structural slot&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Anatomical part relationship which describes a material or nonmaterial physical component (or constituent) of an anatomical structure and together with the other heterogeneous components, constitutes the entirety of an anatomical structure. Examples: integument, mediastinum, mucosa, wall of trachea, wall of artery, lumen of artery, muscularis mucosae, plasma membrane, nuclear matrix, histone.nnDescribes the organs, non-topological organ parts, cells or non-topological cell parts and their associated non-material physical anatomical entities that constitute an anatomical structure. Can also be called &amp;#x0022;constituent part&amp;#x0022;. Inverse relationship is constitutional part of.nnExamples: skin, fascia, set of muscles, set of bones (constitutional parts of the body); wall and lumen of esophagus; stroma and parenchyma of pancreas; endocardium, myocardium of right ventricle; Henley&#39;s and Huxley&#39;s layers of hair follicle; plasma membrane and protoplasm; outer and inner layers of wall of mitochondrion.&lt;br&gt;&lt;b&gt;:slot-inverse&lt;/b&gt;: constitutional part of&lt;br&gt;&lt;b&gt;:slot-value-type&lt;/b&gt;: Class, Physical anatomical entity&lt;br&gt;&lt;b&gt;:direct-domain&lt;/b&gt;: Subdivision of nervous system, Subdivision of genital system, Subdivision of hemolymphoid system, Subdivision of cavity of pharynx, Cavity of organ part, Set of organ regions&lt;br&gt;&lt;b&gt;:direct-superslots&lt;/b&gt;: part</obo:IAO_0000116>
         <inverseOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85927"/>
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
     </ObjectProperty>
     
 
@@ -118,7 +87,7 @@
         <rdfs:label>systemic part</rdfs:label>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: slot&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Structural slot&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Anatomical part relationsip which describes a subdivision of an organ system and together with the other systemic parts constitutes an organ system or an organ system subdivision. Examples: cardiovascular system, autonomic nervous system, nervous system of right upper limb, hematopoietic system, axial skeleton, lower GI tract.&lt;br&gt;&lt;b&gt;:slot-inverse&lt;/b&gt;: systemic part of&lt;br&gt;&lt;b&gt;:slot-value-type&lt;/b&gt;: Anatomical space, Anatomical structure, Class, Endocrine system, Anatomical set&lt;br&gt;&lt;b&gt;:direct-domain&lt;/b&gt;: Biological molecule, Biological molecular complex, Somatic nervous system, Set of bones, Set of heterogeneous clusters, Set of nerves, Set of organs, Anatomical structure&lt;br&gt;&lt;b&gt;:direct-superslots&lt;/b&gt;: part</obo:IAO_0000116>
         <inverseOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85928"/>
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
     </ObjectProperty>
     
 
@@ -129,7 +98,7 @@
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
         <rdfs:label>constitutional part of</rdfs:label>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: slot&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Structural slot&lt;br&gt;&lt;b&gt;:slot-inverse&lt;/b&gt;: constitutional part&lt;br&gt;&lt;b&gt;:slot-value-type&lt;/b&gt;: Material anatomical entity, Class&lt;br&gt;&lt;b&gt;:direct-domain&lt;/b&gt;: Anatomical entity template&lt;br&gt;&lt;b&gt;:direct-superslots&lt;/b&gt;: part of</obo:IAO_0000116>
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85848"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
     </ObjectProperty>
     
 
@@ -140,7 +109,7 @@
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
         <rdfs:label>systemic part of</rdfs:label>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: slot&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Structural slot&lt;br&gt;&lt;b&gt;:slot-inverse&lt;/b&gt;: systemic part&lt;br&gt;&lt;b&gt;:slot-value-type&lt;/b&gt;: Anatomical space, Anatomical structure, Class, Anatomical set&lt;br&gt;&lt;b&gt;:direct-domain&lt;/b&gt;: Organ system, Articular cartilage of costal facet of body of thoracic vertebra, Epithelium-associated lymphoid tissue, Primary nodular lymphoid tissue, Set of organ components, Set of organ regions, Portion of body substance, Zone of bone organ, Subdivision of urogenital part of male perineum, Subdivision of pelvis, Zone of cavernous organ, Subdivision of urogenital part of female perineum, Vestibule, Subdivision of bony labyrinth, Subdivision of epidermis, Smooth muscle tissue, Articular cartilage, Articular cartilage of epiphysis of metatarsal bone, Subdivision of surface of sternum, Region of surface of costal cartilage, Surface of subdivision of vertebra, Surface of subdivision of rib, Cartilage of atlas, Cartilage of axis, Cartilage of xiphoid process, Cartilage of body of sternum, Cartilage of manubrium, Cartilage of central part of body of vertebra, Cartilage of inferior surface of body of lumbar vertebra, Lumbar vertebral segment of anterior longitudinal ligament, Lumbar vertebral segment of posterior longitudinal ligament, Cartilage of inferior surface of body of thoracic vertebra, Cartilage of superior surface of body of thoracic vertebra, Thoracic vertebral segment of anterior longitudinal ligament, Thoracic vertebral segment of posterior longitudinal ligament, Cartilage of seventh cervical vertebra, Cervical vertebral segment of anterior longitudinal ligament, Cervical vertebral segment of posterior longitudinal ligament, Cartilage of sixth cervical vertebra, Cartilage of fifth cervical vertebra, Cartilage of fourth cervical vertebra, Cartilage of third cervical vertebra, Vocal ligament, Vestibular fold, Torus of pharyngotympanic tube, Torus levatorius, Salpingopharyngeal fold, Salpingopalatine fold, Zone of viscerocranial mucosa, Viscerocranial mucosa organ part, Fibrous connective tissue, Heterogeneous cluster, Piriform fossa, Fold of superior laryngeal nerve, Anatomical conduit space, Subdivision of respiratory conduit space, Cavity of organ part, Organ component cluster, Intramural nerve plexus, Organ subdivision cluster, Medial wall of ethmoidal labyrinth, Cavity of internal nose, Pulmonary nerve plexus, Organ cluster, Organ cavity subdivision, Cavity of organ system subdivision, Zone of small intestine, Organ segment, Subdivision of face, Set of joints, Anatomical line, Nasal crest of maxilla, Set of bones, Organ component gland, Zone of investing fascia, Layer of cervical fascia, Musculature, Set of neural tree organs, Neural cell, Set of viscera, Zone of superficial fascia of head, Zone of labial part of orbicularis oris, Zone of marginal part of orbicularis oris, Set of heterogeneous clusters, Cavity of subdivision of principal body part, Alar part of nasalis, Transverse part of nasalis, Subdivision of skin of face, Isthmus of external acoustic tube, Skin of external acoustic tube, Wall of subdivision of external acoustic tube&lt;br&gt;&lt;b&gt;:direct-superslots&lt;/b&gt;: part of</obo:IAO_0000116>
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85848"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
     </ObjectProperty>
     
 
@@ -166,24 +135,13 @@
     
 
 
-    <!-- http://purl.obolibrary.org/obo/FMA_85995 -->
-
-    <ObjectProperty rdf:about="http://purl.obolibrary.org/obo/FMA_85995">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-        <rdfs:label>part</rdfs:label>
-        <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: slot&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Structural slot&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Structural anatomical relations which holds between each entity of type A and some anatomical entity of the same dimension of type B such that if A is has_part B, there is a complement C which together with B accounts for the whole (100%) of A. The inverse relation is &#39;Part-of&#39;.n5.02.01nDefinition: &amp;#x0022;Has morphological part&amp;#x0022; or &amp;#x0022;morphological part of&amp;#x0022;  is a part-whole relationship which describes the countable elements of which an anatomical structure is composed. Allowed classes are organ component and organ subdivision, body part and body part subdivision, organ system and  organ system subdivision, cell and cell part.nExample: muscle belly and muscle tendon, cardiac chamber and cardiac valve, lobe of organ, limb.&lt;br&gt;&lt;b&gt;slot synonym&lt;/b&gt;: unattributed part&lt;br&gt;&lt;b&gt;:slot-inverse&lt;/b&gt;: part of&lt;br&gt;&lt;b&gt;:slot-value-type&lt;/b&gt;: Class, Anatomical entity template, Physical anatomical entity&lt;br&gt;&lt;b&gt;:direct-subslots&lt;/b&gt;: member, constitutional part, regional part, systemic part</obo:IAO_0000116>
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85857"/>
-    </ObjectProperty>
-    
-
-
     <!-- http://purl.obolibrary.org/obo/FMA_85996 -->
 
     <ObjectProperty rdf:about="http://purl.obolibrary.org/obo/FMA_85996">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
         <rdfs:label>regional part</rdfs:label>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: slot&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Structural slot&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: &#39;Has-part&#39; relation which holds between each maximally connected anatomical structure and its part demarcated from the complement by a predominantly fiat boundary Examples: body region like the head, thorax, or hand; organ region like the brain, trachea or cervical part of esophagus; organ part region like apical bronchopulmonary segment or mucosa of ascending aorta; cell region like apical part of cell or endoplasm&lt;br&gt;&lt;b&gt;slot synonym&lt;/b&gt;: topographic part&lt;br&gt;&lt;b&gt;:slot-inverse&lt;/b&gt;: regional part of&lt;br&gt;&lt;b&gt;:slot-value-type&lt;/b&gt;: Anatomical space, Anatomical structure, Anatomical set, Orifice of anatomical junction, Class, Immaterial anatomical entity&lt;br&gt;&lt;b&gt;:direct-superslots&lt;/b&gt;: part&lt;br&gt;&lt;b&gt;:direct-domain&lt;/b&gt;: Set of bones, Anatomical boundary entity, Set of joints, Set of organs, Set of organ regions, Set of organ components, Subdivision of skeleton, Set of heterogeneous clusters, Skeleton, Portion of body substance&lt;br&gt;&lt;b&gt;:direct-subslots&lt;/b&gt;: regional partition 2, regional partition 1, branch</obo:IAO_0000116>
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
     </ObjectProperty>
     
 
@@ -194,7 +152,7 @@
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
         <rdfs:label>regional part of</rdfs:label>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: slot&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Structural slot&lt;br&gt;&lt;b&gt;slot synonym&lt;/b&gt;: Topographic part of&lt;br&gt;&lt;b&gt;:slot-inverse&lt;/b&gt;: regional part&lt;br&gt;&lt;b&gt;:direct-domain&lt;/b&gt;: Anatomical boundary entity, Set of organ components, Portion of body substance, Subdivision of surface of sternum, Region of surface of costal cartilage, Surface of subdivision of vertebra, Surface of subdivision of rib, Set of organs, Torus of pharyngotympanic tube, Torus levatorius, Piriform fossa, Region of surface of eyeball, Non-physical anatomical entity template, Anatomical line, Surface of auricular cartilage, External surface of rib, Internal surface of rib, Subdivision of surface of rib, Clavicular facet of scapula, Orbital surface of frontal bone, Subdivision of surface of humerus, Set of organ regions, Medial surface of superficial part of submandibular gland, Mesial surface of lower third molar tooth, Distal surface of lower third molar tooth, Buccal surface of lower third molar tooth, Lingual surface of lower third molar tooth, Occlusal surface of lower third molar tooth, Mesial contact surface of lower third molar tooth, Buccal surface of upper third molar tooth, Lingual surface of upper third molar tooth, Mesial surface of upper third molar tooth, Distal surface of upper third molar tooth, Occlusal surface of upper third molar tooth, Mesial contact surface of upper third molar tooth, Mesial surface of lower second molar tooth, Distal surface of lower second molar tooth, Buccal surface of lower second molar tooth, Lingual surface of lower second molar tooth, Occlusal surface of lower second molar tooth, Mesial contact surface of lower second molar tooth, Distal contact surface of lower second molar tooth, Mesial surface of upper second molar tooth, Distal surface of upper second molar tooth, Buccal surface of upper second molar tooth, Occlusal surface of upper second molar tooth, Mesial contact surface of upper second molar tooth, Distal contact surface of upper second molar tooth, Lingual surface of upper second molar tooth, Mesial surface of lower first molar tooth, Distal surface of lower first molar tooth, Buccal surface of lower first molar tooth, Lingual surface of lower first molar tooth, Mesial contact surface of lower first molar tooth, Distal contact surface of lower first molar tooth, Occlusal surface of lower first molar tooth, Mesial surface of upper first molar tooth, Distal surface of upper first molar tooth, Buccal surface of upper first molar tooth, Lingual surface of upper first molar tooth, Occlusal surface of upper first molar tooth, Mesial contact surface of upper first molar tooth, Distal contact surface of upper first molar tooth, Mesial surface of lower second premolar tooth, Distal surface of lower second premolar tooth, Buccal surface of lower second premolar tooth, Lingual surface of lower second premolar tooth, Occlusal surface of lower second premolar tooth, Mesial contact surface of lower second premolar tooth, Distal contact surface of lower second premolar tooth, Buccal surface of upper second premolar tooth, Lingual surface of upper second premolar tooth, Mesial surface of upper second premolar tooth, Distal surface of upper second premolar tooth, Occlusal surface of upper second premolar tooth, Mesial contact surface of upper second premolar tooth, Distal contact surface of upper second premolar tooth, Mesial surface of lower first premolar tooth, Distal surface of lower first premolar tooth, Buccal surface of lower first premolar tooth, Lingual surface of lower first premolar tooth, Occlusal surface of lower first premolar tooth, Mesial contact surface of lower first premolar tooth, Distal contact surface of lower first premolar tooth, Buccal surface of upper first premolar tooth, Lingual surface of upper first premolar tooth, Mesial surface of upper first premolar tooth, Distal surface of upper first premolar tooth, Occlusal surface of upper first premolar tooth, Mesial contact surface of upper first premolar tooth, Distal contact surface of upper first premolar tooth, Mesial surface of lower canine tooth, Distal surface of lower canine tooth, Labial surface of lower canine tooth, Lingual surface of lower canine tooth, Incisal surface of lower canine tooth, Mesial contact surface of lower canine tooth, Distal contact surface of lower canine tooth, Labial surface of upper canine tooth, Lingual surface of upper canine tooth, Mesial surface of upper canine tooth, Distal surface of upper canine tooth, Incisal surface of upper canine tooth, Mesial contact surface of upper canine tooth, Distal contact surface of upper canine tooth, Mesial surface of lower lateral incisor tooth, Distal surface of lower lateral incisor tooth, Labial surface of lower lateral incisor tooth, Lingual surface of lower lateral incisor tooth, Incisal surface of lower lateral incisor tooth, Mesial contact surface of lower lateral incisor tooth, Distal contact surface of lower lateral incisor tooth, Mesial surface of lower central incisor tooth, Distal surface of lower central incisor tooth, Labial surface of lower central incisor tooth, Lingual surface of lower central incisor tooth, Incisal surface of lower central incisor tooth, Mesial contact surface of lower central incisor tooth, Distal contact surface of lower central incisor tooth, Mesial surface of upper lateral incisor tooth, Distal surface of upper lateral incisor tooth, Labial surface of upper lateral incisor tooth, Incisal surface of upper lateral incisor tooth, Lingual surface of upper lateral incisor tooth, Mesial contact surface of upper lateral incisor tooth, Distal contact surface of upper lateral incisor tooth, Mesial surface of upper central incisor tooth, Labial surface of upper central incisor tooth, Lingual surface of upper central incisor tooth, Distal surface of upper central incisor tooth, Incisal surface of upper central incisor tooth, Mesial contact surface of upper central incisor tooth, Distal contact surface of upper central incisor tooth, Region of surface of peritoneal sac, Region of internal surface of kidney, Internal surface of segment of duodenum, Internal surface of subdivision of stomach, Region of diaphragmatic surface of liver, Surface of sclera, Subdivision of skeleton, Set of joints, Set of heterogeneous clusters, Surface of pinna&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Regional_ part_of  is a Part-of relation which holds between each maximally connected anatomical structure and its part demarcated from the complement by a predominantly fiat boundary&lt;br&gt;&lt;b&gt;:slot-value-type&lt;/b&gt;: Class, Anatomical structure, Anatomical set, Anatomical space, Immaterial anatomical entity&lt;br&gt;&lt;b&gt;:direct-superslots&lt;/b&gt;: part of&lt;br&gt;&lt;b&gt;:direct-subslots&lt;/b&gt;: regional partition 1 of</obo:IAO_0000116>
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85848"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
         <inverseOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
     </ObjectProperty>
     
@@ -229,7 +187,7 @@
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_62955"/>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <allValuesFrom rdf:resource="http://example.com/left"/>
             </Restriction>
         </rdfs:subClassOf>
@@ -245,7 +203,7 @@
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_62955"/>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <allValuesFrom rdf:resource="http://example.com/right"/>
             </Restriction>
         </rdfs:subClassOf>
@@ -1803,49 +1761,49 @@
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_14462"/>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58026"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58023"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58050"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58052"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58054"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58011"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57996"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57994"/>
             </Restriction>
         </rdfs:subClassOf>
@@ -1861,49 +1819,49 @@
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_14462"/>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57997"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58027"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58051"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58055"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57995"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58053"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58024"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58012"/>
             </Restriction>
         </rdfs:subClassOf>
@@ -1919,49 +1877,49 @@
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_14462"/>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58045"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58001"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58041"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58019"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58043"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58003"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58009"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58021"/>
             </Restriction>
         </rdfs:subClassOf>
@@ -1977,49 +1935,49 @@
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_14462"/>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58044"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58022"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58004"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58002"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58046"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58010"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58020"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_58042"/>
             </Restriction>
         </rdfs:subClassOf>
@@ -3381,7 +3339,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_56833"/>
             </Restriction>
         </rdfs:subClassOf>
@@ -3434,7 +3392,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57529"/>
             </Restriction>
         </rdfs:subClassOf>
@@ -14493,7 +14451,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57671"/>
             </Restriction>
         </rdfs:subClassOf>
@@ -15421,7 +15379,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_56317"/>
             </Restriction>
         </rdfs:subClassOf>
@@ -16221,7 +16179,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_56333"/>
             </Restriction>
         </rdfs:subClassOf>
@@ -17438,7 +17396,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_56364"/>
             </Restriction>
         </rdfs:subClassOf>
@@ -21626,7 +21584,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_56382"/>
             </Restriction>
         </rdfs:subClassOf>
@@ -21903,7 +21861,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_56400"/>
             </Restriction>
         </rdfs:subClassOf>
@@ -25032,13 +24990,13 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_no_fmaid_Primary_mandibular_dentition"/>
             </Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_no_fmaid_Primary_maxillary_dentition"/>
             </Restriction>
         </rdfs:subClassOf>
@@ -25090,7 +25048,7 @@
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_75150"/>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_no_fmaid_Secondary_maxillary_dentition"/>
             </Restriction>
         </rdfs:subClassOf>
@@ -25180,7 +25138,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_no_fmaid_Secondary_mandibular_dentition"/>
             </Restriction>
         </rdfs:subClassOf>
