@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
-<uri id="User Edited Redirect" name="http://purl.obolibrary.org/obo/ohs/dev/ogms-imports.owl" uri="imports/ogms-imports.owl"/>
-<uri id="User Entered Import Resolution" name="http://purl.obolibrary.org/obo/ohd/dev/ohd.owl" uri="ohd.owl"/>
-<uri id="User Edited Redirect" name="http://purl.obolibrary.org/obo/iao/cdt.owl" uri="imports/CDTCodes%20as%20Classes_pruned.owl"/>
-<uri id="User Edited Redirect" name="http://purl.obolibrary.org/obo/fma/dev/jaws-teeth.owl" uri="imports/fma-jaws-teeth.owl"/>
-<uri id="User Edited Redirect" name="http://purl.obolibrary.org/obo/ohd/dev/ncbi-imports.owl" uri="imports/ncbi-imports.owl"/>
-<uri id="User Edited Redirect" name="http://purl.obolibrary.org/obo/ohd/dev/CARO_import.owl" uri="imports/CARO-imports.owl"/>
-<uri id="User Edited Redirect" name="http://purl.obolibrary.org/obo/ohd/dev/iao-imports.owl" uri="imports/iao-imports.owl"/>
-<uri id="User Edited Redirect" name="http://purl.obolibrary.org/obo/dhm/dev/obi-imports.owl" uri="imports/OBI-imports.owl"/>
-<uri id="User Edited Redirect" name="http://purl.obolibrary.org/obo/ogms.owl" uri="imports/ogms.owl"/>
-<uri id="Imports Wizard Entry" name="http://purl.obolibrary.org/obo/ro.owl" uri="imports/ro.owl"/>
-<uri id="Imports Wizard Entry" name="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl" uri="imports/protege-dc.owl"/>
-<uri id="User Edited Redirect" name="http://purl.obolibrary.org/obo/ro/2012-01-14/ro.owl" uri="imports/ro.owl"/>
-<uri id="User Edited Redirect" name="http://purl.obolibrary.org/obo/bfo.owl" uri="imports/BFO2/bfo2.owl"/>
-<uri id="User Edited Redirect" name="http://purl.obolibrary.org/obo/bfo/core-relations.owl" uri="imports/BFO2/bfo2-relations.owl"/>
-<uri id="User Edited Redirect" name="http://purl.obolibrary.org/obo/bfo/core-classes.owl" uri="imports/BFO2/bfo2-classes.owl"/>
-<uri id="User Edited Redirect" name="http://purl.org/obo/owl/ro_bfo_bridge/1.1" uri="imports/ro_bfo_bridge11.owl"/>
-<uri id="User Edited Redirect" name="http://purl.obolibrary.org/obo/iao/dev/ontology-metadata.owl" uri="imports/ontology-metadata.owl"/>
+
+  <group id="upper" prefer="public" xml:base="">
+    <uri name="http://purl.obolibrary.org/obo/bfo.owl" uri="imports/BFO2/bfo2.owl"/>
+    <uri name="http://purl.obolibrary.org/obo/bfo/core-relations.owl" uri="imports/BFO2/bfo2-relations.owl"/>
+    <uri name="http://purl.obolibrary.org/obo/bfo/core-classes.owl" uri="imports/BFO2/bfo2-classes.owl"/>
+  </group>
+
+  <group id="r21" prefer="public" xml:base="">
+    <uri name="http://purl.obolibrary.org/obo/ohd/dev/r21-top.owl" uri="r21-top.owl"/>
+    <uri name="http://purl.obolibrary.org/obo/ohd/dev/ohd.owl" uri="ohd.owl"/>
+    <uri name="http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-patients.owl" uri="dropbox/r21-eaglesoft-dental-patients.owl"/>
+    <uri name="http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-fillings.owl" uri="dropbox/r21-eaglesoft-fillings.owl"/>
+  </group>
+
+  <group id="imports" prefer="public" xml:base="">
+    <uri name="http://purl.obolibrary.org/obo/iao/cdt.owl" uri="imports/CDTCodes%20as%20Classes_pruned.owl"/>
+    <uri name="http://purl.obolibrary.org/obo/fma/dev/jaws-teeth.owl" uri="imports/fma-jaws-teeth.owl"/>
+    <uri name="http://purl.obolibrary.org/obo/ohd/dev/ncbi-imports.owl" uri="imports/ncbi-imports.owl"/>
+    <uri name="http://purl.obolibrary.org/obo/ohd/dev/CARO_import.owl" uri="imports/CARO-imports.owl"/>
+    <uri name="http://purl.obolibrary.org/obo/ohd/dev/iao-imports.owl" uri="imports/iao-imports.owl"/>
+    <uri name="http://purl.obolibrary.org/obo/dhm/dev/obi-imports.owl" uri="imports/OBI-imports.owl"/>
+
+    <uri name="http://purl.obolibrary.org/obo/ogms.owl" uri="imports/ogms.owl"/>
+
+    <uri name="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl" uri="imports/protege-dc.owl"/>
+    <uri name="http://purl.obolibrary.org/obo/iao/dev/ontology-metadata.owl" uri="imports/ontology-metadata.owl"/>
+  </group>
+
 </catalog>
