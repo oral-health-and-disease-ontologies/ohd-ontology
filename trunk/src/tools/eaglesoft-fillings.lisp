@@ -84,7 +84,7 @@
 		(loop while (#"next" results) do
 		     ;; determine this occurrence date
 		     (setf occurrence-date
-			   (get-eaglesoft-occurrenc-date 
+			   (get-eaglesoft-occurrence-date 
 			    (#"getString" results "table_name")
 			    (#"getString" results "date_entered")
 			    (#"getString" results "date_completed")
@@ -92,12 +92,12 @@
 		     
 		     ;; get axioms
 		     (as (get-filling-axioms 
-			  (#"getString" results "patient_id")
-			  occurrence-date
-			  (#"getString" results "tooth_data")
-			  (#"getString" results "surface")
-			  (#"getString" results "ada_code")
-			  count))
+		     	  (#"getString" results "patient_id")
+		     	  occurrence-date
+		     	  (#"getString" results "tooth_data")
+		     	  (#"getString" results "surface")
+		     	  (#"getString" results "ada_code")
+		     	  count))
 		     (incf count)))
 
 	   ;; database cleanup
