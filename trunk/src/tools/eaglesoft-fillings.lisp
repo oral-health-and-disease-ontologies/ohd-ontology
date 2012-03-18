@@ -36,7 +36,7 @@
 ;; ensure that sql libary is loaded
 (add-to-classpath "/Applications/SQLAnywhere12/System/java/sajdbc4.jar")
 
-(defun get-filling-ont (&key iri ont-iri)
+(defun get-filling-ont (&key iri ont-iri force-create-table)
   (let ((connection nil)
 	(statement nil)
 	(results nil)
@@ -58,6 +58,9 @@
 
     ;; set up connection string and query.
     (setf url (get-eaglesoft-database-url))
+
+    ;; verify that the eaglesoft db has the action_codes and patient_history tables
+    (prepare-eaglesoft-db url :force-create-table force-create-table)
 
     ;; get query string for restorations
     (setf query (get-fillings-query))
