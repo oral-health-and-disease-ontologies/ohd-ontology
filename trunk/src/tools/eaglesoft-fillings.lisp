@@ -41,6 +41,7 @@
 	(statement nil)
 	(results nil)
 	(query nil)
+	(occurrence-date nil)
 	(url nil)
 	(count 0))
 
@@ -78,9 +79,18 @@
 		(as `(declaration (data-property !'patient ID'@ohd)))
 		    
 		(loop while (#"next" results) do
+		     ;; determine this occurrence date
+		     (setf occurrence-date
+			   (get-eaglesoft-occurrenc-date 
+			    (#"getString" results "table_name")
+			    (#"getString" results "date_entered")
+			    (#"getString" results "date_completed")
+			    (#"getString" results "tran_date")))
+		     
+		     ;; get axioms
 		     (as (get-filling-axioms 
 			  (#"getString" results "patient_id")
-	 		  (#"getString" results "tran_date")
+			  occurrence-date
 			  (#"getString" results "tooth_data")
 			  (#"getString" results "surface")
 			  (#"getString" results "ada_code")
@@ -109,7 +119,7 @@
 	(tooth-role-uri nil)
 	(tooth-name nil)
 	(teeth-list nil))
-    
+
     ;; alanr - parse the list since that's what's in our table 
     ;; billd - since we are using the tooth_data array, this procedure is skipped
     ;;(setf teeth-list (parse-teeth-list tooth-data)) ; commented out by billd
@@ -277,7 +287,7 @@
       ((member ada-code *resin-code-list* :test 'equalp)  
        (setf obo-restoration-uri !'resin filling restoration'@ohd))
       ((member ada-code *gold-code-list* :test 'equalp)
-       (setf restoration-uri !'gold filling restoration'@ohd))
+       (setf obo-restoration-uri !'gold filling restoration'@ohd))
       (t (setf obo-restoration-uri !'filling restoration'@ohd)))
 
     ;; return restoration
@@ -326,7 +336,8 @@ SELECT
 FROM
   patient_history
 WHERE
-  ada_code IN ('D2140', -- Restorative: Amalgam
+  ada_code IN (
+              'D2140', -- Restorative: Amalgam
               'D2150',
               'D2160',
               'D2161',
@@ -341,7 +352,7 @@ WHERE
               'D2410', -- Restorative: Gold Foil
               'D2420',
               'D2430' )
-/****
+/**** This was used for testing
 AND 
   patient_id IN ('930',
                  '444',
@@ -355,14 +366,10 @@ AND
                  '304') 
 ******/
 AND tooth_data IS NOT NULL
+AND LENGTH(tooth_data) > 31
 AND surface_detail IS NOT NULL
-AND 
-  table_name = 'transactions'
+--AND table_name = 'transactions' -- This was used for testing
 ORDER BY
   patient_id
 "
 )
-
-
-
-
