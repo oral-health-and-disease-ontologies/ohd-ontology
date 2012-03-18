@@ -183,10 +183,14 @@ Usage:
 	   ;;(setf results (#"getTables" meta nil nil "action_codes" "TABLE"))
 
 	   (when (#"next" results) (setf answer t)))
+
       ;; database cleanup
       (and connection (#"close" connection))
       (and results (#"close" results))
-      (and statement (#"close" statement)))))
+      (and statement (#"close" statement)))
+    
+    ;; return whether the table exists
+    answer))
 
 (defun delete-table (table-name url)
   "Deletes all the rows in table-name; url specificies the connection string for connecting to the database."
@@ -229,49 +233,73 @@ Note: The file ~/.pattersondbpw must be on your system."
 Note: The ~/.pattersondbpw file is required to run this procedure."
   (with-open-file (f "~/.pattersondbpw") (read-line f)))
 
-(defun create-aciton-codes-or-patient-history-table (table-name &optional force-create-table)
-  (let ((url nil)
-	(connection nil)
+(defun get-eaglesoft-occurrence-date (table-name date-entered date-completed tran-date)
+  "Returns the occurrence date as determined by the name of the table."
+  (let ((occurrence-date nil))
+    ;; all records in the paient_history table have either a date_entered, 
+    ;; date_completed, or tran_date value
+    (cond
+      ;; the transactions table only has a tran_date
+      ((equalp table-name "transactions") (setf occurrence-date tran-date))
+      (t
+       ;; for existing_services and patient_conditions table
+       ;; default to date-completed
+       (setf occurrence-date date-completed)
+       ;; if no date_completed, the set occurrence-date to date-entered
+       (when (equalp date-completed (string-trim " " "n/a"))
+	 (setf occurrence-date date-entered))))
+
+    ;; return the occurrence date
+    occurrence-date))
+
+(defun prepare-eaglesoft-db (url &key force-create-table)
+  "Tests whether the action_codes and patient_history tables exist in the Eaglesoft database. The url parameter specifies the connection string to the database.  If the force-create-db key is given, then the tables tables are created regardless of whether they exist. This is needed when the table definitions change."
+  ;; test to see if action_codes table exists
+  ;; if not then create it
+  (when (or (not (table-exists "action_codes" url)) force-create-table)
+    (create-aciton-codes-or-patient-history-table "action_codes" url))
+
+  ;; test to see if patient history table exists
+  (when (or (not (table-exists "patient_history" url)) force-create-table)
+    (create-aciton-codes-or-patient-history-table "patient_history" url)))
+
+(defun create-aciton-codes-or-patient-history-table (table-name url)
+  "Creates either the action_codes or patient_history table, as determined by the table-name parameter.  The url parameter specifies the connection string to the database."
+  (let ((connection nil)
 	(statement nil)
 	(query nil)
 	(success nil)
-	(table-found))
-
-    ;; create connection string
-    (setf url (get-eaglesoft-database-url))
+	(table-found nil))
 
     ;; check to see if the table is in the db
     (setf table-found (table-exists table-name url))
     
-    ;; create table if it does not exist or there is a force create flag
-    (when (or (not table-found) force-create-table)    
-      ;; create query string for creating table
-      (cond
-	((equal table-name "action_codes") 
-	 (setf query (get-create-action-codes-query)))
-	((equal table-name "patient_history")
-	 (setf query (get-create-patient-history-query))))
+    ;; create query string for creating table
+    (cond
+      ((equal table-name "action_codes") 
+       (setf query (get-create-action-codes-query)))
+      ((equal table-name "patient_history")
+       (setf query (get-create-patient-history-query))))
       
-      ;; verfiy that there is a query
-      (when query
-	(unwind-protect
-	     (progn
-	       ;; connect to db and execute query
-	       (setf connection (#"getConnection" 'java.sql.DriverManager url))
-	       (setf statement (#"createStatement" connection))
-	       
-	       ;; if the table is already in the db, delete all the rows
-	       ;; this is to ensure that the created table will not have
-	       ;; any duplicate rows
-	       (when table-found (delete-table table-name url))
-	       
-	       ;; create table
-	       ;; on success 1 is returned; otherwise nil
-	       (setf success (#"executeUpdate" statement query)))
+    (unwind-protect
+	 (progn
+	   ;; connect to db and execute query
+	   (setf connection (#"getConnection" 'java.sql.DriverManager url))
+	   (setf statement (#"createStatement" connection))
+	   
+	   ;; if the table is already in the db, delete all the rows
+	   ;; this is to ensure that the created table will not have
+	   ;; any duplicate rows
+	   (when table-found (delete-table table-name url))
+	   
+	   ;; create table
+	   ;; on success a non-nil value is returned (usually the number of rows created)
+	   ;; on failure nil is returned
+	   (setf success (#"executeUpdate" statement query)))
 
-	  ;; database cleanup
-	  (and connection (#"close" connection))
-	  (and statement (#"close" statement)))))
+      ;; database cleanup
+      (and connection (#"close" connection))
+      (and statement (#"close" statement)))
 
     ;; return success indicator
     success))
