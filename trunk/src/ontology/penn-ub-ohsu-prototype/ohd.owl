@@ -8,14 +8,14 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ohd/dev/ohd.owl">
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/bfo.owl"/>
-        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ohd/dev/obi-imports.owl"/>
+        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ogms.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/fma/dev/jaws-teeth.owl"/>
-        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ohd/dev/cdt-imports.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/iao/dev/ontology-metadata.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ohd/dev/CARO_import.owl"/>
+        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ohd/dev/cdt-imports.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ohd/dev/iao-imports.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ohd/dev/ncbi-imports.owl"/>
-        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ogms.owl"/>
+        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ohd/dev/obi-imports.owl"/>
     </owl:Ontology>
     
 
@@ -272,7 +272,7 @@
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000004">
         <rdfs:label xml:lang="en">restorative procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
-        <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mosby&#39;s Dental Dictionary 2nd ed</obo:IAO_0000119>
+        <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mosby&apos;s Dental Dictionary 2nd ed</obo:IAO_0000119>
         <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Pedro Cott</obo:IAO_0000117>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Steps followed to replace missing tooth structure; a method or mode of action that reestablishes or reforms a tooth or teeth or portions thereof to anatomic or functional form and health.</obo:IAO_0000115>
     </owl:Class>
@@ -285,7 +285,7 @@
         <rdfs:label xml:lang="en">surgical procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A series of steps followed in a regular, orderly, definite way, performed by a dentist/surgeon by manual operation.</obo:IAO_0000115>
-        <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mosby&#39;s Dental Dictionary 2nd ed</obo:IAO_0000119>
+        <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mosby&apos;s Dental Dictionary 2nd ed</obo:IAO_0000119>
         <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Pedro Cott</obo:IAO_0000117>
     </owl:Class>
     
@@ -298,8 +298,8 @@
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000004"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000008"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -310,8 +310,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000008"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>Restorative procedure whereby portions of a tooth are restored to functional form and health.</obo:IAO_0000115>
@@ -349,7 +349,7 @@
         <rdfs:label xml:lang="en">dental visit</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000011"/>
         <obo:IAO_0000115>A meeting between a health care professional and a patient for diagnostic, therapeutic, or consultative reasons, usually a scheduled appointment in a professional office.</obo:IAO_0000115>
-        <obo:IAO_0000119>Mosby&#39;s Dental Dictionary</obo:IAO_0000119>
+        <obo:IAO_0000119>Mosby&apos;s Dental Dictionary</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -369,7 +369,7 @@
                 </owl:intersectionOf>
             </owl:Class>
         </rdfs:subClassOf>
-        <rdfs:comment>replace tooth in logical def with dentition or mouth when it&#39;s been imported.</rdfs:comment>
+        <rdfs:comment>replace tooth in logical def with dentition or mouth when it&apos;s been imported.</rdfs:comment>
         <obo:IAO_0000115>A dental observation.</obo:IAO_0000115>
     </owl:Class>
     
@@ -417,14 +417,14 @@
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000011"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000009"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000010"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000010"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000009"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>Event whereby a physicial investigates some aspect of the patient. Exams are a part of a visit, and there can be more than one type of exam per visit.
@@ -727,7 +727,7 @@
             </owl:Class>
         </rdfs:subClassOf>
         <obo:IAO_0000115>An indirect restoration made from gold that is cast in a laboratory prior to insertion in the oral cavity and finished during placement.</obo:IAO_0000115>
-        <obo:IAO_0000119>Mosby&#39;s</obo:IAO_0000119>
+        <obo:IAO_0000119>Mosby&apos;s</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -749,7 +749,7 @@
             </owl:Class>
         </rdfs:subClassOf>
         <obo:IAO_0000115>An indirect restoration made from a ceramic material that is cast in a laboratory prior to insertion in the oral cavity and finished during placement.</obo:IAO_0000115>
-        <obo:IAO_0000119>Mosby&#39;s Dental Dictionary 2nd ed</obo:IAO_0000119>
+        <obo:IAO_0000119>Mosby&apos;s Dental Dictionary 2nd ed</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -809,7 +809,7 @@
         <rdfs:label xml:lang="en">surgical dental procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
         <obo:IAO_0000115>A series of steps followed in a regular, orderly, definite way, performed by a dentist/surgeon by manual operation on some part of the mouth.</obo:IAO_0000115>
-        <obo:IAO_0000119>Mosby&#39;s Dental Dictionary 2nd ed</obo:IAO_0000119>
+        <obo:IAO_0000119>Mosby&apos;s Dental Dictionary 2nd ed</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -936,6 +936,15 @@
     
 
 
+    <!-- http://purl.obolibrary.org/obo/OHD_0000055 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000055">
+        <rdfs:label>tooth to be crowned role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000007"/>
+    </owl:Class>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -982,7 +991,7 @@
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000001"/>
             </owl:Restriction>
         </rdf:type>
-        <rdfs:label xml:lang="en">amalgam filling restoration on Melissas&#39; tooth 14</rdfs:label>
+        <rdfs:label xml:lang="en">amalgam filling restoration on Melissas&apos; tooth 14</rdfs:label>
         <obo:OHD_0000015 rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2012-02-14</obo:OHD_0000015>
         <obo:BFO_0000057 rdf:resource="http://purl.obolibrary.org/obo/OHD_0000013"/>
     </owl:NamedIndividual>
@@ -1002,7 +1011,7 @@
 
     <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000020">
         <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000011"/>
-        <rdfs:label xml:lang="en">Melissa&#39;s clinical assessment</rdfs:label>
+        <rdfs:label xml:lang="en">Melissa&apos;s clinical assessment</rdfs:label>
         <obo:OHD_0000015 rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2012-02-14</obo:OHD_0000015>
         <obo:BFO_0000057 rdf:resource="http://purl.obolibrary.org/obo/OHD_0000013"/>
     </owl:NamedIndividual>
@@ -1013,11 +1022,11 @@
 
     <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000023">
         <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000022"/>
-        <rdfs:label xml:lang="en">finding of caries in Melissa&#39;s tooth 14</rdfs:label>
+        <rdfs:label xml:lang="en">finding of caries in Melissa&apos;s tooth 14</rdfs:label>
     </owl:NamedIndividual>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 3.1.0.1642) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.2.5.1912) http://owlapi.sourceforge.net -->
 
