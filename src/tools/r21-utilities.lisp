@@ -79,8 +79,8 @@
     ;; return list of teeth
     teeth-list))
 
-(defun get-unique-iri(string &key salt class-type iri-base args)
-  "Returns a unique iri by doing a md5 checksum on the string parameter. An optional md5 salt value is specified by the salt key value (i.e., :salt salt). The class-type argument (i.e., :class-type class-type) concatentates the class type to the string.  This parameter is highly suggested, since it helps guarntee that ire will be unique.  The iri-base (i.e., :iri-base iri-base) is prepended to the iri.  For example, (get-unique-iri \"test\" :iri-base \"http://test.com/\" will prepend \"http://test.com/\" to the md5 checksum of \"test\".  The args parmameter is used to specify an other information you wish to concatenate to the string paramenter.  Args can be either a single value or list; e.g., (get-unique-iri \"test\" :args \"foo\") (get-unique-iri \"test\" :args '(\"foo\" \"bar\")."
+(defun get-unique-individual-iri(string &key salt class-type iri-base args)
+  "Returns a unique iri for individuals in the ontology by doing a md5 checksum on the string parameter. An optional md5 salt value is specified by the salt key value (i.e., :salt salt). The class-type argument (i.e., :class-type class-type) concatentates the class type to the string.  This parameter is highly suggested, since it helps guarntee that ire will be unique.  The iri-base (i.e., :iri-base iri-base) is prepended to the iri.  For example, (get-unique-iri \"test\" :iri-base \"http://test.com/\" will prepend \"http://test.com/\" to the md5 checksum of \"test\".  The args parmameter is used to specify an other information you wish to concatenate to the string paramenter.  Args can be either a single value or list; e.g., (get-unique-iri \"test\" :args \"foo\") (get-unique-iri \"test\" :args '(\"foo\" \"bar\")."
   ;; check that string param is a string
   (if (not (stringp string)) 
       (setf string (format nil "~a" string)))
@@ -102,7 +102,7 @@
   ;; encode string
   (setf string (encode string :salt salt))
   (when iri-base
-    (setf string (format nil "~a~a" iri-base string)))
+    (setf string (format nil "~aI_~a" iri-base string)))
   (make-uri string))
 
 (defun remove-leading-! (iri)
