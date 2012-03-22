@@ -10,33 +10,29 @@
 
 ;;****************************************************************
 ;; Database preparation: 
-;; In order to set up the Patterson datase, you must first run the queries 
-;; continaned in these two files in the files dropbox:
-;; 1. "R21 Work/Data/Queries For Extracting Data/create action codes table.txt"
-;; 2. "R21 Work/Data/Queries For Extracting Data/create patient  history table.txt"
-;; It is necessarry for you to run file #1 then file #2, since the patient_history table
-;; references the action_codes table.
-;; After the database has been set up, you will only need to run these quereies if the table
-;; definitions change.
+;; When get-eaglesoft-fillings-ont is ran, the program verifies that the action_codes and
+;; patient_history tables exist.  This is done by calling prepare-eaglesoft-db.  However, this
+;; only tests that these tables exist in the user's database. If these table need to be 
+;; recreated, the call get-eaglesoft-fillings-ont with :force-create-table key set to t.
 
 ;; the global variables are used to generate unique iri's
-(defparameter *iri* nil)
+(defparameter *eaglesoft-fillings-iri* nil)
 
 ;; list of ada codes for amalgam, resin, and gold fillings/restorations
-(defparameter *amalgam-code-list* 
+(defparameter *eaglesoft-amalgam-code-list* 
   '("D2140" "D2150" "D2160" "D2161"))
-(defparameter *resin-code-list* 
+(defparameter *eaglesoft-resin-code-list* 
   '("D2330" "D2332" "D2335" "D2390" "D2391" "D2392" "D2393" "D2394"))
-(defparameter *gold-code-list* 
+(defparameter *eaglesoft-gold-code-list* 
   '("D2410" "D2420" "D2430"))
 
 ;; global variable used for to salt the md5 checksum
-(defparameter *salt* nil)
+(defparameter *eaglesoft-salt* nil)
 
 ;; ensure that sql libary is loaded
 (add-to-classpath "/Applications/SQLAnywhere12/System/java/sajdbc4.jar")
 
-(defun get-filling-ont (&key iri ont-iri force-create-table)
+(defun get-eaglesoft-fillings-ont (&key iri ont-iri force-create-table)
   (let ((connection nil)
 	(statement nil)
 	(results nil)
@@ -46,7 +42,7 @@
 	(count 0))
 
     ;; set md5 salt
-    (setf *salt* (get-eaglesoft-salt))
+    (setf *eaglesoft-salt* (get-eaglesoft-salt))
     
     ;; set default base and ontology iri's 
     (when (null iri) (setf iri "http://purl.obolibrary.org/obo/ohd/individuals/"))
@@ -54,7 +50,7 @@
       (setf ont-iri "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-fillngs.owl"))
     
     ;; set global variables 
-    (setf *iri* iri)
+    (setf *eaglesoft-fillings-iri* iri)
 
     ;; set up connection string and query.
     (setf url (get-eaglesoft-database-url))
@@ -63,7 +59,7 @@
     (prepare-eaglesoft-db url :force-create-table force-create-table)
 
     ;; get query string for restorations
-    (setf query (get-fillings-query))
+    (setf query (get-eaglesoft-fillings-query))
 
     (with-ontology ont (:collecting t :base iri :ontology-iri ont-iri)
 	((unwind-protect
@@ -91,7 +87,7 @@
 			    (#"getString" results "tran_date")))
 		     
 		     ;; get axioms
-		     (as (get-filling-axioms 
+		     (as (get-eaglesoft-filling-axioms 
 		     	  (#"getString" results "patient_id")
 		     	  occurrence-date
 		     	  (#"getString" results "tooth_data")
@@ -108,12 +104,13 @@
       ;; return the ontology
       (values ont count))))
 
-(defun get-filling-axioms (patient-id occurrence-date tooth-data surface ada-code record-count)
+(defun get-eaglesoft-filling-axioms 
+    (patient-id occurrence-date tooth-data surface ada-code record-count)
   (let ((axioms nil)
 	(material-name nil)
 	(material-uri nil)
-	(obo-material-uri nil)
-	(obo-restoration-uri nil)
+	(ohd-material-uri nil)
+	(ohd-restoration-uri nil)
 	(restoration-name nil)
 	(restoration-uri nil)
 	(patient-uri nil)
@@ -130,32 +127,33 @@
 
     ;; tooth_data
     ;; get list of teeth in tooth_data array
-    (setf teeth-list (get-teeth-list tooth-data))
+    (setf teeth-list (get-eaglesoft-teeth-list tooth-data))
 
     (loop for tooth in teeth-list do
          ;;;;  declare instances of participating entities ;;;;
 	 
 	 ;; get uri of patient
 	 (setf patient-uri 
-	       (get-unique-iri patient-id 
-			       :salt *salt*
-			       :iri-base *iri*
-			       :class-type !'dental patient'@ohd 			
-			       :args "eaglesoft"))
+	       (get-unique-individual-iri patient-id 
+					  :salt *eaglesoft-salt*
+					  :iri-base *eaglesoft-fillings-iri*
+					  :class-type !'dental patient'@ohd 			
+					  :args "eaglesoft"))
 	 
          ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
 	 (setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
+	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-name t))
 	 (setf tooth-uri 
-	       (get-unique-iri patient-id
-			       :salt *salt*
-			       :iri-base *iri*
-			       :class-type tooth-type-uri
-			       :args `(,tooth "eaglesoft")))					 
+	       (get-unique-individual-iri patient-id
+					  :salt *eaglesoft-salt*
+					  :iri-base *eaglesoft-fillings-iri*
+					  :class-type tooth-type-uri
+					  :args `(,tooth-name "eaglesoft"))) 
+	 
 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
 	 (push `(class-assertion ,tooth-type-uri ,tooth-uri) axioms)	     
 	 
 	 ;; add annotation about tooth
-	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-name t))
 	 (push `(annotation-assertion !rdfs:label 
 				      ,tooth-uri
 				      ,(str+ tooth-name
@@ -163,11 +161,11 @@
 	 
          ;; declare instance of !ohd:'tooth to be filled role'
 	 (setf tooth-role-uri
-	       (get-unique-iri patient-id
-			       :salt *salt*
-			       :iri-base *iri*
-			       :class-type !'tooth to be filled role'@ohd
-			       :args `(,tooth ,record-count "eaglesoft")))
+	       (get-unique-individual-iri patient-id
+					  :salt *eaglesoft-salt*
+					  :iri-base *eaglesoft-fillings-iri*
+					  :class-type !'tooth to be filled role'@ohd
+					  :args `(,tooth-name ,record-count "eaglesoft")))
 		
 	 (push `(declaration (named-individual ,tooth-role-uri)) axioms)
 	 (push `(class-assertion !'tooth to be filled role'@ohd ,tooth-role-uri) axioms)
@@ -180,37 +178,38 @@
 					     patient-id)) axioms)
 
          ;; declare instance of material (i.e.,  amalgam/resin/gold) used in tooth
-	 (setf obo-material-uri (get-obo-material-uri ada-code))
+	 (setf ohd-material-uri (get-eaglesoft-material-uri ada-code))
 	 (setf material-uri 
-	       (get-unique-iri patient-id
-			       :salt *salt*
-			       :iri-base *iri*
-			       :class-type obo-material-uri
-			       :args `(,tooth ,record-count "eaglesoft")))
+	       (get-unique-individual-iri patient-id
+					  :salt *eaglesoft-salt*
+					  :iri-base *eaglesoft-fillings-iri*
+					  :class-type ohd-material-uri
+					  :args `(,tooth-name ,record-count "eaglesoft")))
+
 	 (push `(declaration (named-individual ,material-uri)) axioms)
-	 (push `(class-assertion ,obo-material-uri ,material-uri) axioms)
+	 (push `(class-assertion ,ohd-material-uri ,material-uri) axioms)
 
 	 ;; add annotation about this instance of material
-	 (setf material-name (get-material-name ada-code))
+	 (setf material-name (get-eaglesoft-material-name ada-code))
 	 (push `(annotation-assertion !rdfs:label 
 				      ,material-uri
 				      ,(str+ material-name " placed in " tooth-name
 					     " of patient " patient-id)) axioms)
 
          ;; declare instance of restoration 
-	 (setf obo-restoration-uri (get-obo-restoration-uri ada-code))
+	 (setf ohd-restoration-uri (get-eaglesoft-restoration-uri ada-code))
 	 (setf restoration-uri
-	       (get-unique-iri patient-id
-			       :salt *salt*
-			       :iri-base *iri*
-			       :class-type obo-restoration-uri
-			       :args `(,tooth ,record-count "eaglesoft")))
+	       (get-unique-individual-iri patient-id
+					  :salt *eaglesoft-salt*
+					  :iri-base *eaglesoft-fillings-iri*
+					  :class-type ohd-restoration-uri
+					  :args `(,tooth-name ,record-count "eaglesoft")))
 		
 	 (push `(declaration (named-individual ,restoration-uri)) axioms)
-	 (push `(class-assertion ,obo-restoration-uri ,restoration-uri) axioms)
+	 (push `(class-assertion ,ohd-restoration-uri ,restoration-uri) axioms)
 
 	 ;; add annotation about this restoration procedure
-	 (setf restoration-name (get-restoraton-name ada-code))
+	 (setf restoration-name (get-eaglesoft-restoraton-name ada-code))
 	 (push `(annotation-assertion !rdfs:label 
 				      ,restoration-uri
 				      ,(str+ restoration-name 
@@ -254,66 +253,72 @@
     ;; return axioms
     axioms))
   
-(defun get-material-name (ada-code)
+(defun get-eaglesoft-material-name (ada-code)
   "Returns the name the material used in a filling/restoration based on ada code."
   (let ((material-name nil))
     ;; compare ada code to respective global code lists
     (cond
-      ((member ada-code *amalgam-code-list* :test 'equal) (setf material-name "amalgam"))
-      ((member ada-code *resin-code-list* :test 'equal) (setf material-name "resin"))
-      ((member ada-code *gold-code-list* :test 'equal) (setf material-name "gold"))
+      ((member ada-code *eaglesoft-amalgam-code-list* :test 'equal) 
+       (setf material-name "amalgam"))
+      ((member ada-code *eaglesoft-resin-code-list* :test 'equal) 
+       (setf material-name "resin"))
+      ((member ada-code *eaglesoft-gold-code-list* :test 'equal)
+       (setf material-name "gold"))
       (t (setf material-name "other material")))
 
     ;; return material name
     material-name))
 
-(defun get-restoraton-name (ada-code)
+(defun get-eaglesoft-restoraton-name (ada-code)
   "Returns the name the type of restoration based on ada code."
   (let ((restoration-name nil))
     ;; compare ada code to respective global code lists
     (cond
-      ((member ada-code *amalgam-code-list* :test 'equalp) (setf restoration-name "amalgam"))
-      ((member ada-code *resin-code-list* :test 'equalp) (setf restoration-name "resin"))
-      ((member ada-code *gold-code-list* :test 'equalp) (setf restoration-name "gold"))
+      ((member ada-code *eaglesoft-amalgam-code-list* :test 'equalp)
+       (setf restoration-name "amalgam"))
+      ((member ada-code *eaglesoft-resin-code-list* :test 'equalp)
+       (setf restoration-name "resin"))
+      ((member ada-code *eaglesoft-gold-code-list* :test 'equalp)
+       (setf restoration-name "gold"))
       (t (setf restoration-name "other")))
 
     ;; return material name
     restoration-name))
 
-(defun get-obo-restoration-uri (ada-code)
+(defun get-eaglesoft-restoration-uri (ada-code)
   "Returns the uri of the restoration type based on ada code."
-  (let ((obo-restoration-uri nil))
+  (let ((restoration-uri nil))
     ;; compare ada code to respective global code lists
     (cond
-      ((member ada-code *amalgam-code-list* :test 'equalp) 
-       (setf obo-restoration-uri !'amalgam filling restoration'@ohd))
-      ((member ada-code *resin-code-list* :test 'equalp)  
-       (setf obo-restoration-uri !'resin filling restoration'@ohd))
-      ((member ada-code *gold-code-list* :test 'equalp)
-       (setf obo-restoration-uri !'gold filling restoration'@ohd))
-      (t (setf obo-restoration-uri !'filling restoration'@ohd)))
+      ((member ada-code *eaglesoft-amalgam-code-list* :test 'equalp) 
+       (setf restoration-uri !'amalgam filling restoration'@ohd))
+      ((member ada-code *eaglesoft-resin-code-list* :test 'equalp)  
+       (setf restoration-uri !'resin filling restoration'@ohd))
+      ((member ada-code *eaglesoft-gold-code-list* :test 'equalp)
+       (setf restoration-uri !'gold filling restoration'@ohd))
+      (t (setf restoration-uri !'filling restoration'@ohd)))
 
     ;; return restoration
-    obo-restoration-uri))
+    restoration-uri))
 
-(defun get-obo-material-uri (ada-code)
+(defun get-eaglesoft-material-uri (ada-code)
   "Returns the uri of the material used in a filling/restoration based on ada code."
-  (let ((obo-material-uri nil))
+  (let ((material-uri nil))
     ;; compare ada code to respective global code lists
     (cond
-      ((member ada-code *amalgam-code-list* :test 'equalp)
-       (setf obo-material-uri !'amalgam'@ohd))
-      ((member ada-code *resin-code-list* :test 'equalp)
-       (setf obo-material-uri !'resin'@ohd))
-      ((member ada-code *gold-code-list* :test 'equalp)
-       (setf obo-material-uri !'gold'@ohd))
+      ((member ada-code *eaglesoft-amalgam-code-list* :test 'equalp)
+       (setf material-uri !'amalgam'@ohd))
+      ((member ada-code *eaglesoft-resin-code-list* :test 'equalp)
+       (setf material-uri !'resin'@ohd))
+      ((member ada-code *eaglesoft-gold-code-list* :test 'equalp)
+       (setf material-uri !'gold'@ohd))
       (t 
-       (setf obo-material-uri !'restoration material'@ohd)))
+       (setf material-uri !'restoration material'@ohd)))
     
-    ;; return obo material uri
-    obo-material-uri))
+    ;; return material uri
+    material-uri))
 		     
-(defun get-teeth-list (tooth-data)
+(defun get-eaglesoft-teeth-list (tooth-data)
   "Reads the tooth_data array and returns a list of tooth numbers referenced in the tooth_data (i.e., field) array."
   (let ((teeth-list nil))
 
@@ -330,12 +335,17 @@
     teeth-list))
 
 
-(defun get-fillings-query ()
+(defun get-eaglesoft-fillings-query ()
 "
+/* 
+This queries the eaglesoft database for all ADA codes that indicate a filling procedure
+has been performed.
+Note: Code D2390/02390 is a crown. Not a filling.  Also, porcelain fillings are not included.
+*/
 SET rowcount 0
 
 SELECT 
-  *
+   *
 FROM
   patient_history
 WHERE
@@ -347,7 +357,6 @@ WHERE
               'D2330', -- Restorative: Resin
               'D2332',
               'D2335',
-              'D2390',
               'D2391',
               'D2392',
               'D2393',
@@ -355,6 +364,23 @@ WHERE
               'D2410', -- Restorative: Gold Foil
               'D2420',
               'D2430' )
+
+-- Older codes begin with a '0'
+OR  ada_code IN (
+              '02140', -- Restorative: Amalgam
+              '02150',
+              '02160',
+              '02161',
+              '02330', -- Restorative: Resin
+              '02332',
+              '02335',
+              '02391',
+              '02392',
+              '02393',
+              '02394',
+              '02410', -- Restorative: Gold Foil
+              '02420',
+              '02430' )
 /**** This was used for testing
 AND 
   patient_id IN ('930',
