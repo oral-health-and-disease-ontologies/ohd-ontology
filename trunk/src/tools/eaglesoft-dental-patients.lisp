@@ -1,13 +1,30 @@
+;;****************************************************************
+;; Instructions for being able to connect to database
+;;
+;; needs "/Applications/SQLAnywhere12/System/lib32"
+;;  added to DYLD_LIBRARY_PATH so it can find libdbjdbc12.jnilib and dependencies.
+;; for now add (setenv "DYLD_LIBRARY_PATH" (concatenate 'string (getenv "DYLD_LIBRARY_PATH") 
+;; ":/Applications/SQLAnywhere12/System/lib32")) to your .emacs
+;; (#"load" 'System "/Applications/SQLAnywhere12/System/lib32/libdbjdbc12.jnilib")  
+;; fails there is no easy way to update DYLD_LIBRARY_PATH within a running java instance. POS.
+
+;;****************************************************************
+;; Database preparation: 
+;; When get-eaglesoft-fillings-ont is ran, the program verifies that the action_codes and
+;; patient_history tables exist.  This is done by calling prepare-eaglesoft-db.  However, this
+;; only tests that these tables exist in the user's database. If these table need to be 
+;; recreated, the call get-eaglesoft-fillings-ont with :force-create-table key set to t.
+
 ;; the global variables are used to generate unique iri's
-(defparameter *iri* nil)
+(defparameter *eaglesoft-dental-patients-iri* nil)
 
 ;; global variable used for to salt the md5 checksum
-(defparameter *salt* nil)
+(defparameter *eaglesoft-salt* nil)
 
 ;; ensure that sql libary is loaded
 (add-to-classpath "/Applications/SQLAnywhere12/System/java/sajdbc4.jar")
 
-(defun get-dental-patient-ont (&key iri ont-iri)
+(defun get-eaglesoft-dental-patients-ont (&key iri ont-iri)
   (let ((connection nil)
 	(statement nil)
 	(results nil)
@@ -16,7 +33,7 @@
 	(count 0))
     
     ;; set md5 salt
-    (setf *salt* (get-eaglesoft-salt))
+    (setf *eaglesoft-salt* (get-eaglesoft-salt))
 
     ;; set default base and ontology iri's 
     (when (null iri) (setf iri "http://purl.obolibrary.org/obo/ohd/individuals/"))
@@ -24,7 +41,7 @@
       (setf ont-iri "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-patients.owl"))
     
     ;; set global variables 
-    (setf *iri* iri)
+    (setf *eaglesoft-dental-patients-iri* iri)
     
     ;; set up connection string and query.
     (setf url (get-eaglesoft-database-url))
@@ -49,7 +66,7 @@
 		(as `(declaration (data-property !'birth_date'@ohd)))
 		    
 		(loop while (#"next" results) do
-		     (as (get-dental-patient-axioms
+		     (as (get-eaglesoft-dental-patient-axioms
 			  (#"getString" results "patient_id")
 			  (#"getString" results "birth_date")
 			  (#"getString" results "sex")))
@@ -65,7 +82,7 @@
       (values ont count))))
 
 
-(defun get-dental-patient-axioms (patient-id birth-date sex)
+(defun get-eaglesoft-dental-patient-axioms (patient-id birth-date sex)
   "Returns a list of axioms about a patient that is identified by patient-id."
   (let ((axioms nil)
 	(patient-uri nil))
@@ -74,11 +91,12 @@
     ;; if sex is not present; we will skip the record
     (when (or (equalp sex "F") (equalp sex "M"))
       ;; create uri for individual patient
-      (setf patient-uri (get-unique-iri patient-id 
-					:salt *salt*
-					:iri-base *iri*
-					:class-type !'dental patient'@ohd 			
-					:args "eaglesoft"))
+      (setf patient-uri 
+	    (get-unique-individual-iri patient-id 
+				       :salt *eaglesoft-salt*
+				       :iri-base *eaglesoft-dental-patients-iri*
+				       :class-type !'dental patient'@ohd 			
+				       :args "eaglesoft"))
 
       (push `(declaration (named-individual ,patient-uri)) axioms) 
 
@@ -91,10 +109,9 @@
 	 (push `(class-assertion !'male dental patient'@ohd ,patient-uri) axioms)))
 	 
       ;; add data property 'patient id' to patient
-      ;; note: the patient id is encoded
       (push `(data-property-assertion !'patient ID'@ohd 
 				      ,patient-uri 
-				      ,(encode patient-id :salt *salt*)) axioms)
+				      ,patient-id) axioms)
 
       ;; add data propert about patient's birth date
       (push `(data-property-assertion !'birth_date'@ohd ,patient-uri 
@@ -108,22 +125,23 @@
     ;; add axioms about dental patient role
     ;; note: append puts lists together and doesn't put items in list (like push)
     (setf axioms 
-	  (append (get-dental-patient-role-axioms patient-uri patient-id) axioms)))
+	  (append (get-eaglesoft-dental-patient-role-axioms patient-uri patient-id) axioms)))
 
     ;;(pprint axioms)
     ;; return axioms
     axioms))
 
-(defun get-dental-patient-role-axioms (patient-uri patient-id)
+(defun get-eaglesoft-dental-patient-role-axioms (patient-uri patient-id)
   "Returns a list of axioms about a dental patient's role."
   (let ((axioms nil)
 	(patient-role-uri))
     ;; create uri
-    (setf patient-role-uri (get-unique-iri patient-id
-					   :salt *salt*
-					   :iri-base *iri*
-					   :class-type !'patient role'@ohd
-					   :args "eaglesoft"))
+    (setf patient-role-uri 
+	  (get-unique-individual-iri patient-id
+				     :salt *eaglesoft-salt*
+				     :iri-base *eaglesoft-dental-patients-iri*
+				     :class-type !'patient role'@ohd
+				     :args "eaglesoft"))
 
     ;; create instance of patient role; patient role is an instance of !obi:'patient role'
     (push `(declaration (named-individual ,patient-role-uri)) axioms)
