@@ -317,23 +317,6 @@
     
     ;; return material uri
     material-uri))
-		     
-(defun get-eaglesoft-teeth-list (tooth-data)
-  "Reads the tooth_data array and returns a list of tooth numbers referenced in the tooth_data (i.e., field) array."
-  (let ((teeth-list nil))
-
-    ;; verify that there are at least 32 tooth items in tooth-data
-    (when (>= (length tooth-data) 32)
-      (loop 
-	 for tooth from 0 to 31 do
-	   ;; when a postion in tooth-data is marked 'Y' add to teeth list
-	   (when (or (equal (char tooth-data tooth) #\Y) 
-		     (equal (char tooth-data tooth) #\y))
-	     (push (1+ tooth) teeth-list))))
-
-    ;; return list of teeth
-    teeth-list))
-
 
 (defun get-eaglesoft-fillings-query ()
 "
