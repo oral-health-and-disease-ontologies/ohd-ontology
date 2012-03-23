@@ -37,6 +37,7 @@
 	    ((:file "queries")
 	     (:file "eaglesoft-dental-patients")
 	     (:file "eaglesoft-fillings")
+	     (:file "eaglesoft-crowns")
 	     ) 
 	    :depends-on
 	    (early)))
