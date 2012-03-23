@@ -252,6 +252,22 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
     ;; return the occurrence date
     occurrence-date))
 
+(defun get-eaglesoft-teeth-list (tooth-data)
+  "Reads the tooth_data array and returns a list of tooth numbers referenced in the tooth_data (i.e., field) array."
+  (let ((teeth-list nil))
+
+    ;; verify that there are at least 32 tooth items in tooth-data
+    (when (>= (length tooth-data) 32)
+      (loop 
+	 for tooth from 0 to 31 do
+	   ;; when a postion in tooth-data is marked 'Y' add to teeth list
+	   (when (or (equal (char tooth-data tooth) #\Y) 
+		     (equal (char tooth-data tooth) #\y))
+	     (push (1+ tooth) teeth-list))))
+
+    ;; return list of teeth
+    teeth-list))
+
 (defun prepare-eaglesoft-db (url &key force-create-table)
   "Tests whether the action_codes and patient_history tables exist in the Eaglesoft database. The url parameter specifies the connection string to the database.  If the force-create-db key is given, then the tables tables are created regardless of whether they exist. This is needed when the table definitions change."
   ;; test to see if action_codes table exists
