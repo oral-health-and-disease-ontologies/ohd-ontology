@@ -236,7 +236,6 @@
 SET rowcount 0 
 
 -- Note: D2390 and 02390 (resin-based composite crown, anterior)  have been added to query
--- 12,374 records returned from query
 SELECT
   *
 FROM
@@ -270,10 +269,10 @@ WHERE
                'D2960',
                'D2961',
                'D2962',
-               'D2970')
+               'D2970',
 
- -- Older ada codes beging with a '0'
-OR ada_code IN('02390', -- This was origanally in the fillings query
+                -- Older ada codes beging with a '0'
+               '02390', -- This was origanally in the fillings query
                '02710',
                '02712',
                '02721',
