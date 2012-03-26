@@ -20,11 +20,17 @@
 
 ;; list of ada codes for amalgam, resin, and gold fillings/restorations
 (defparameter *eaglesoft-amalgam-code-list* 
-  '("D2140" "D2150" "D2160" "D2161"))
+  '("D2140" "D2150" "D2160" "D2161"
+    "02140" "02150" "02160" "02161"))
+
+;; Note: D2390/02390 is a resin-based crown; and thus not in the list
 (defparameter *eaglesoft-resin-code-list* 
-  '("D2330" "D2332" "D2335" "D2390" "D2391" "D2392" "D2393" "D2394"))
+  '("D2330" "D2332" "D2335" "D2390" "D2391" "D2392" "D2393" "D2394"
+    "02330" "02332" "02335" "02390" "02391" "02392" "02393" "02394"))
+
 (defparameter *eaglesoft-gold-code-list* 
-  '("D2410" "D2420" "D2430"))
+  '("D2410" "D2420" "D2430"
+    "02410" "02420" "02430"))
 
 ;; global variable used for to salt the md5 checksum
 (defparameter *eaglesoft-salt* nil)
@@ -340,16 +346,16 @@ WHERE
               'D2330', -- Restorative: Resin
               'D2332',
               'D2335',
+               --D2390,
               'D2391',
               'D2392',
               'D2393',
               'D2394',
               'D2410', -- Restorative: Gold Foil
               'D2420',
-              'D2430' )
+              'D2430',
 
--- Older codes begin with a '0'
-OR  ada_code IN (
+              -- Older codes begin with a '0'
               '02140', -- Restorative: Amalgam
               '02150',
               '02160',
@@ -357,6 +363,7 @@ OR  ada_code IN (
               '02330', -- Restorative: Resin
               '02332',
               '02335',
+              --'02390'
               '02391',
               '02392',
               '02393',
@@ -364,6 +371,7 @@ OR  ada_code IN (
               '02410', -- Restorative: Gold Foil
               '02420',
               '02430' )
+
 /**** This was used for testing
 AND 
   patient_id IN ('930',
@@ -377,6 +385,7 @@ AND
                  '1680',
                  '304') 
 ******/
+
 AND tooth_data IS NOT NULL
 AND LENGTH(tooth_data) > 31
 AND surface_detail IS NOT NULL
