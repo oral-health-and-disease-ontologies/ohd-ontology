@@ -18,7 +18,7 @@ import org.apache.commons.chain.Context;
  */
 public class MOPSExtractFeaturesCmd extends AbstractCommand {
 	@SuppressWarnings("unused")
-	private static final String __REV__ = "$Id$ $Date$ $Author$";
+	private static final String __REV__ = "%Rev$ $Date$";
 	
 	/* (non-Javadoc)
 	 * @see oor.iproc.cmd.AbstractCommand#execute(org.apache.commons.chain.Context)
