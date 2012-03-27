@@ -18,7 +18,7 @@ import org.apache.commons.chain.Context;
  */
 public class SIFTExtractFeaturesCmd extends AbstractCommand {
 	@SuppressWarnings("unused")
-	private static final String __REV__ = "%Rev$ $Date$";
+	private static final String __REV__ = "$Rev$ $Date$";
 	
 	/* (non-Javadoc)
 	 * @see oor.iproc.cmd.AbstractCommand#execute(org.apache.commons.chain.Context)
