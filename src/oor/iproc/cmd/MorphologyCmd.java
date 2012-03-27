@@ -16,7 +16,7 @@ import org.apache.commons.chain.Context;
  */
 public class MorphologyCmd extends AbstractCommand {
 	@SuppressWarnings("unused")
-	private static final String __REV__ = "$Id$ $Date$ $Author$";
+	private static final String __REV__ = "%Rev$ $Date$";
 	
 	/* (non-Javadoc)
 	 * @see org.apache.commons.chain.Command#execute(org.apache.commons.chain.Context)

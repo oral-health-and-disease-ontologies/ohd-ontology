@@ -8,8 +8,7 @@ package oor.iproc;
  *
  */
 public interface ContextConstants {
-	public static final String __REV__ = "$Id$ $Date$ $Author$";
-	
+	public static final String __REV__ = "%Rev$ $Date$";
 	/** Generic **/
 	public static final String SRC_IMG = "source";
 	public static final String TGT_IMG = "target";

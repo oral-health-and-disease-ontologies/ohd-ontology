@@ -17,7 +17,8 @@ import org.apache.commons.chain.Context;
  *
  */
 public abstract class AbstractCommand implements Command, ContextConstants {
-
+	@SuppressWarnings("unused")
+	private static final String __REV__ = "%Rev$ $Date$";
 	/* (non-Javadoc)
 	 * @see org.apache.commons.chain.Command#execute(org.apache.commons.chain.Context)
 	 */
