@@ -14,7 +14,7 @@ import org.apache.commons.chain.Context;
  */
 public class SubtractBackgroundCmd extends AbstractCommand {
 	@SuppressWarnings("unused")
-	private static final String __REV__ = "%Rev$ $Date$";
+	private static final String __REV__ = "$Rev$ $Date$";
 	
 	private BackgroundSubtracter bgs;
 	public SubtractBackgroundCmd() {
