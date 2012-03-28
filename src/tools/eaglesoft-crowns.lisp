@@ -1,31 +1,18 @@
 ;;****************************************************************
-;; Instructions for being able to connect to database
+;; Instructions for being able to connect to Eaglesoft database
 ;;
-;; needs "/Applications/SQLAnywhere12/System/lib32"
-;;  added to DYLD_LIBRARY_PATH so it can find libdbjdbc12.jnilib and dependencies.
-;; for now add (setenv "DYLD_LIBRARY_PATH" (concatenate 'string (getenv "DYLD_LIBRARY_PATH") 
-;; ":/Applications/SQLAnywhere12/System/lib32")) to your .emacs
-;; (#"load" 'System "/Applications/SQLAnywhere12/System/lib32/libdbjdbc12.jnilib")  
-;; fails there is no easy way to update DYLD_LIBRARY_PATH within a running java instance. POS.
+;; Ensure that the r21 system file is loaded.
+;; For details see comment at top of r21-utilities.lisp
 
 ;;****************************************************************
 ;; Database preparation: 
-;; When get-eaglesoft-fillings-ont is ran, the program verifies that the action_codes and
+;; When get-eaglesoft-crowns-ont is ran, the program verifies that the action_codes and
 ;; patient_history tables exist.  This is done by calling prepare-eaglesoft-db.  However, this
 ;; only tests that these tables exist in the user's database. If these table need to be 
 ;; recreated, the call get-eaglesoft-fillings-ont with :force-create-table key set to t.
 
-;; the global variables are used to generate unique iri's
-(defparameter *eaglesoft-iri* nil)
-
-
-;; global variable used for to salt the md5 checksum
-(defparameter *eaglesoft-salt* nil)
-
-;; ensure that sql libary is loaded
-(add-to-classpath "/Applications/SQLAnywhere12/System/java/sajdbc4.jar")
-
-(defun get-eaglesoft-crown-ont (&key iri ont-iri force-create-table)
+(defun get-eaglesoft-crown-ont (&key force-create-table)
+  "Returns an ontology of the crowns contained in the Eaglesoft database.  They force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
   (let ((connection nil)
 	(statement nil)
 	(results nil)
@@ -33,17 +20,6 @@
 	(occurrence-date nil)
 	(url nil)
 	(count 0))
-
-    ;; set md5 salt
-    (setf *eaglesoft-salt* (get-eaglesoft-salt))
-    
-    ;; set default base and ontology iri's 
-    (when (null iri) (setf iri "http://purl.obolibrary.org/obo/ohd/individuals/"))
-    (when (null ont-iri) 
-      (setf ont-iri "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-crowns.owl"))
-    
-    ;; set global variables 
-    (setf *eaglesoft-iri* iri)
 
     ;; set up connection string and query.
     (setf url (get-eaglesoft-database-url))
@@ -54,7 +30,9 @@
     ;; get query string for restorations
     (setf query (get-eaglesoft-crowns-query))
 
-    (with-ontology ont (:collecting t :base iri :ontology-iri ont-iri)
+    (with-ontology ont (:collecting t 
+			:base *eaglesoft-individual-crowns-iri* 
+			:ontology-iri *eaglesoft-crowns-ontology-iri*)
 	((unwind-protect
 	      (progn
 		;; connect to db and get data
@@ -63,8 +41,8 @@
 		(setf results (#"executeQuery" statement query))
 	   	
 		;; import the ohd ontology
-		(as `(imports ,(make-uri "http://purl.obolibrary.org/obo/ohd/dev/ohd.owl")))
-		(as `(imports ,(make-uri "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-patients.owl")))
+		(as `(imports ,(make-uri *ohd-ontology-iri*)))
+		(as `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)))
 
 		;; declare data properties
 		(as `(declaration (data-property !'occurence date'@ohd)))
@@ -103,6 +81,8 @@
 	(crown-role-uri nil)
 	(crown-material-uri nil)
 	(crown-restoration-uri nil)
+	(restoration-type-uri nil)
+	(material-type-uri nil)
 	(tooth-name nil)
 	(tooth-uri nil)
 	(tooth-type-uri nil)
@@ -117,21 +97,12 @@
 	 
 	 ;; get uri of patient
 	 (setf patient-uri 
-	       (get-unique-individual-iri patient-id 
-					  :salt *eaglesoft-salt*
-					  :iri-base *eaglesoft-iri*
-					  :class-type !'dental patient'@ohd 			
-					  :args "eaglesoft"))
+	       (get-eaglesoft-dental-patient-iri patient-id))
 	 
          ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
 	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-name t))
 	 (setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
-	 (setf tooth-uri 
-	       (get-unique-individual-iri patient-id
-					  :salt *eaglesoft-salt*
-					  :iri-base *eaglesoft-iri*
-					  :class-type tooth-type-uri
-					  :args `(,tooth-name "eaglesoft")))	
+	 (setf tooth-uri (get-eaglesoft-tooth-iri patient-id tooth-type-uri))
 
 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
 	 (push `(class-assertion ,tooth-type-uri ,tooth-uri) axioms)	     
@@ -144,11 +115,7 @@
 	 
        ;; declare instance of !ohd:'tooth to be filled role'
 	 (setf crown-role-uri
-	       (get-unique-individual-iri patient-id
-					  :salt *eaglesoft-salt*
-					  :iri-base *eaglesoft-iri*
-					  :class-type !'tooth to be crowned role'@ohd
-					  :args `(,tooth-name ,record-count "eaglesoft")))
+	       (get-eaglesoft-tooth-to-be-crowned-role-iri patient-id tooth record-count))
 		
 	 (push `(declaration (named-individual ,crown-role-uri)) axioms)
 	 (push `(class-assertion !'tooth to be crowned role'@ohd ,crown-role-uri) axioms)
@@ -161,12 +128,10 @@
 					     patient-id)) axioms)
 
          ;; declare instance of material (i.e.,  amalgam/resin/gold) used in tooth
+	 (setf material-type-uri !'restoration material'@ohd)
 	 (setf crown-material-uri 
-	       (get-unique-individual-iri patient-id
-					  :salt *eaglesoft-salt*
-					  :iri-base *eaglesoft-iri*
-					  :class-type !'restoration material'@ohd
-					  :args `(,tooth-name ,record-count "eaglesoft")))
+	       (get-eaglesoft-crown-material-iri 
+		patient-id tooth-name material-type-uri record-count))
 
 	 (push `(declaration (named-individual ,crown-material-uri)) axioms)
 	 (push `(class-assertion !'restoration material'@ohd ,crown-material-uri) axioms)
@@ -178,13 +143,11 @@
 					     tooth-name " of patient " patient-id)) axioms)
 
          ;; declare instance of restoration procedure
+	 (setf restoration-type-uri !'crown restoration'@ohd)
 	 (setf crown-restoration-uri
-	       (get-unique-individual-iri patient-id
-					  :salt *eaglesoft-salt*
-					  :iri-base *eaglesoft-iri*
-					  :class-type !'crown restoration'@ohd
-					  :args `(,tooth-name ,record-count "eaglesoft")))
-		
+	       (get-eaglesoft-crown-restoration-iri
+		patient-id tooth-name restoration-type-uri record-count))
+	 
 	 (push `(declaration (named-individual ,crown-restoration-uri)) axioms)
 	 (push `(class-assertion !'crown restoration'@ohd ,crown-restoration-uri) axioms)
 
@@ -230,6 +193,44 @@
 
     ;; return axioms
     axioms))
+
+(defun get-eaglesoft-tooth-to-be-crowned-role-iri (patient-id tooth-name instance-count)
+  "Returns an iri for a 'tooth to be crowned role' identified in the Eaglesoft database by the patient id, the name of the type of the tooth, and a count variable that used differientiate tooth role intances that have the same patient-id/tooth-name but are numerically distinct."
+  (let ((uri nil))
+    (setf uri 
+	  (get-unique-individual-iri patient-id 
+				     :salt *eaglesoft-salt*
+				     :iri-base *eaglesoft-individual-teeth-iri*
+				     :class-type !'tooth to be crowned role'@ohd
+				     :args `(,tooth-name ,instance-count "eaglesoft")))
+    ;; return uri
+    uri))
+
+(defun get-eaglesoft-crown-material-iri (patient-id tooth-name
+					 material-type-iri instance-count)
+  "Returns an iri for the material used in crown restoration procedure identified in the Eaglesoft database by the patient id, the name of the type of tooth, the type of restoration's material, and a count variable that used differientiate crown procedure intances that have the same patient-id/material-type-iri but are numerically distinct."
+  (let ((uri nil))
+    (setf uri 
+	  (get-unique-individual-iri patient-id 
+				     :salt *eaglesoft-salt*
+				     :iri-base *eaglesoft-individual-crowns-iri*
+				     :class-type material-type-iri
+				     :args `(,tooth-name ,instance-count "eaglesoft")))
+    ;; return uri
+    uri))
+
+(defun get-eaglesoft-crown-restoration-iri (patient-id tooth-name
+					    restoration-type-iri instance-count)
+  "Returns an iri for a crown restoration procedure identified in the Eaglesoft database by the patient id, the name of the type of tooth, the type of crown restoration, and a count variable that used differientiate crown procedure intances that have the same patient-id/restoration-type-iri but are numerically distinct."
+  (let ((uri nil))
+    (setf uri 
+	  (get-unique-individual-iri patient-id 
+				     :salt *eaglesoft-salt*
+				     :iri-base *eaglesoft-individual-crowns-iri*
+				     :class-type restoration-type-iri
+				     :args `(,tooth-name ,instance-count "eaglesoft")))
+    ;; return uri
+    uri))
 
 (defun get-eaglesoft-crowns-query ()
 "
