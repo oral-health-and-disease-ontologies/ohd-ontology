@@ -5,6 +5,7 @@ package oor.iproc.cmd;
 
 import java.util.ArrayList;
 
+import ij.ImagePlus;
 import ij.process.ImageProcessor;
 import mpicbg.imagefeatures.Feature;
 import oor.iproc.ContextConstants;
@@ -86,5 +87,23 @@ public abstract class AbstractCommand implements Command, ContextConstants {
 	@SuppressWarnings("unchecked")
 	protected void setTargetFeatures(Context ctxt, ArrayList<Feature> features) {
 		ctxt.put(TGT_FEATURES, features);
+	}
+	
+	protected ImagePlus getSourceImagePlus(Context ctxt) {
+		return (ImagePlus) ctxt.get(SRC_IPLUS);
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected void setSourceImagePlus(Context ctxt, ImagePlus iplus) {
+		ctxt.put(SRC_IPLUS, iplus);
+	}
+	
+	protected ImagePlus getTargetImagePlus(Context ctxt) {
+		return (ImagePlus) ctxt.get(TGT_IPLUS);
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected void setTargetImagePlus(Context ctxt, ImagePlus iplus) {
+		ctxt.put(TGT_IPLUS, iplus);
 	}
 }

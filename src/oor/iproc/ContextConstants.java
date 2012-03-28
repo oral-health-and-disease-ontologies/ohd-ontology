@@ -14,6 +14,8 @@ public interface ContextConstants {
 	public static final String TGT_IMG = "target";
 	public static final String SRC_FEATURES = "srcFeatures";
 	public static final String TGT_FEATURES = "tgtFeatures";
+	public static final String SRC_IPLUS = "srcIPlus";
+	public static final String TGT_IPLUS = "tgtIPlus";
 
 	/** Subtract background (SB) **/
 	public static final String SB_RADIUS = "radius";
@@ -58,5 +60,17 @@ public interface ContextConstants {
 	/** Point Match Marker (PMM) **/
 	public static final String PMM_COLOR = "color";
 	public static final String PMM_MATCHES = "matches";
+	
+	/** BunWarp (BW) **/
+	public static final String BW_MODE = "mode";
+	public static final String BW_SUBSAMPFACT = "subsampFact";
+	public static final String BW_MINDEFORM = "minDeform";
+	public static final String BW_MAXDEFORM = "maxDeform";
+	public static final String BW_DIVWT = "divWt";
+	public static final String BW_CURLWT = "curlWt";
+	public static final String BW_LMARKWT = "landmarkWt";
+	public static final String BW_IMGWT = "imgWt";
+	public static final String BW_CNSTCYWT = "consistencyWt";
+	public static final String BW_THRES = "stopThreshold";
 	
 }
