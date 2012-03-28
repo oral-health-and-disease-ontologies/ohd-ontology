@@ -7,14 +7,14 @@
 	 ,(make-pathname :directory 
 			 (append 
 			  (butlast (pathname-directory *load-pathname*))
-			  '("ontology" "penn-ub-ohsu-prototype" "imports" :wild-inferiors))
+			  '("ontology" "pitt-ub-ohsu-r21" "imports" :wild-inferiors))
 			 :name :wild
 			 :type :wild))
 	("ontology;**;*.*" 
 	 ,(make-pathname :directory 
 			 (append 
 			  (butlast (pathname-directory *load-pathname*))
-			  '("ontology" "penn-ub-ohsu-prototype" :wild-inferiors))
+			  '("ontology" "pitt-ub-ohsu-r21" :wild-inferiors))
 			 :name :wild
 			 :type :wild))
 	("**;*.*" 
