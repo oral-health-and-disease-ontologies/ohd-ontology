@@ -1,30 +1,22 @@
 ;;****************************************************************
-;; Instructions for being able to connect to database
+;; Instructions for being able to connect to Eaglesoft database
 ;;
-;; needs "/Applications/SQLAnywhere12/System/lib32"
-;;  added to DYLD_LIBRARY_PATH so it can find libdbjdbc12.jnilib and dependencies.
-;; for now add (setenv "DYLD_LIBRARY_PATH" (concatenate 'string (getenv "DYLD_LIBRARY_PATH") 
-;; ":/Applications/SQLAnywhere12/System/lib32")) to your .emacs
-;; (#"load" 'System "/Applications/SQLAnywhere12/System/lib32/libdbjdbc12.jnilib")  
-;; fails there is no easy way to update DYLD_LIBRARY_PATH within a running java instance. POS.
+;; Ensure that the r21 system file is loaded.
+;; For details see comment at top of r21-utilities.lisp
 
 ;;****************************************************************
 ;; Database preparation: 
-;; When get-eaglesoft-fillings-ont is ran, the program verifies that the action_codes and
+;; When get-eaglesoft-dental-patients-ont is ran, the program verifies that the action_codes and
 ;; patient_history tables exist.  This is done by calling prepare-eaglesoft-db.  However, this
 ;; only tests that these tables exist in the user's database. If these table need to be 
 ;; recreated, the call get-eaglesoft-fillings-ont with :force-create-table key set to t.
 
 ;; the global variables are used to generate unique iri's
-(defparameter *eaglesoft-dental-patients-iri* nil)
 
-;; global variable used for to salt the md5 checksum
-(defparameter *eaglesoft-salt* nil)
 
-;; ensure that sql libary is loaded
-(add-to-classpath "/Applications/SQLAnywhere12/System/java/sajdbc4.jar")
 
-(defun get-eaglesoft-dental-patients-ont (&key iri ont-iri)
+(defun get-eaglesoft-dental-patients-ont (&key force-create-table)
+  "Returns an ontology of the dental patients contained in the Eaglesoft database.  They force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
   (let ((connection nil)
 	(statement nil)
 	(results nil)
@@ -32,24 +24,18 @@
 	(url nil)
 	(count 0))
     
-    ;; set md5 salt
-    (setf *eaglesoft-salt* (get-eaglesoft-salt))
-
-    ;; set default base and ontology iri's 
-    (when (null iri) (setf iri "http://purl.obolibrary.org/obo/ohd/individuals/"))
-    (when (null ont-iri) 
-      (setf ont-iri "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-patients.owl"))
-    
-    ;; set global variables 
-    (setf *eaglesoft-dental-patients-iri* iri)
-    
     ;; set up connection string and query.
     (setf url (get-eaglesoft-database-url))
+
+    ;; verify that the eaglesoft db has the action_codes and patient_history tables
+    (prepare-eaglesoft-db url :force-create-table force-create-table)
 
     ;; get query string for amalgam restorations
     (setf query (get-dental-patients-query))
 
-    (with-ontology ont (:collecting t :base iri :ontology-iri ont-iri)
+    (with-ontology ont (:collecting t 
+			:base *eaglesoft-individual-dental-patients-iri*
+			:ontology-iri *eaglesoft-dental-patients-ontology-iri*)
 	((unwind-protect
 	      (progn
 		;; connect to db and get data
@@ -58,7 +44,7 @@
 		(setf results (#"executeQuery" statement query))
 	   	
 		;; import the ohd ontology
-		(as `(imports ,(make-uri "http://purl.obolibrary.org/obo/ohd/dev/ohd.owl")))
+		(as `(imports ,(make-uri *ohd-ontology-iri*)))
 		
 		;; declare data properties
 		(as `(declaration (data-property !'occurence date'@ohd)))
@@ -91,15 +77,8 @@
     ;; if sex is not present; we will skip the record
     (when (or (equalp sex "F") (equalp sex "M"))
       ;; create uri for individual patient
-      (setf patient-uri 
-	    (get-unique-individual-iri patient-id 
-				       :salt *eaglesoft-salt*
-				       :iri-base *eaglesoft-dental-patients-iri*
-				       :class-type !'dental patient'@ohd 			
-				       :args "eaglesoft"))
-
+      (setf patient-uri (get-eaglesoft-dental-patient-iri patient-id))
       (push `(declaration (named-individual ,patient-uri)) axioms) 
-
       
       ;; declare patient to be an instance of Female or Male 
       (cond
@@ -136,12 +115,7 @@
   (let ((axioms nil)
 	(patient-role-uri))
     ;; create uri
-    (setf patient-role-uri 
-	  (get-unique-individual-iri patient-id
-				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-dental-patients-iri*
-				     :class-type !'patient role'@ohd
-				     :args "eaglesoft"))
+    (setf patient-role-uri (get-eaglesoft-dental-patient-role-iri patient-id))
 
     ;; create instance of patient role; patient role is an instance of !obi:'patient role'
     (push `(declaration (named-individual ,patient-role-uri)) axioms)
@@ -159,6 +133,17 @@
     ;; return axioms
     axioms))
 
+(defun get-eaglesoft-dental-patient-role-iri (patient-id)
+  "Returns a uri for a patient role identified in the Eaglesoft database by the patient id."
+  (let ((uri nil))
+    (setf uri 
+	  (get-unique-individual-iri patient-id 
+				     :salt *eaglesoft-salt*
+				     :iri-base *eaglesoft-individual-dental-patients-iri*
+				     :class-type !'patient role'@ohd 			
+				     :args "eaglesoft"))
+    ;; return uri
+    uri))
 
 (defun get-dental-patients-query ()
 "

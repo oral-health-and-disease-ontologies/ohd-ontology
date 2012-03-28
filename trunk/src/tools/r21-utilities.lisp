@@ -1,3 +1,75 @@
+;;****************************************************************
+;; Required components on user's system:
+;;
+;; 1. Must have an instanct of the Eaglesoft datbase and necessary drivers (see below)
+;;    installed on your machine.
+;; 2. A file named .pattersondbpw (containing the password of Eaglesoft database) located in
+;;    your home directory.
+
+;; Instructions for being able to connect to Eaglesoft database
+;;
+;; Needs "/Applications/SQLAnywhere12/System/lib32"
+;;  added to DYLD_LIBRARY_PATH so it can find libdbjdbc12.jnilib and dependencies.
+;; for now add (setenv "DYLD_LIBRARY_PATH" (concatenate 'string (getenv "DYLD_LIBRARY_PATH") 
+;; ":/Applications/SQLAnywhere12/System/lib32")) to your .emacs
+;; (#"load" 'System "/Applications/SQLAnywhere12/System/lib32/libdbjdbc12.jnilib")  
+;; fails there is no easy way to update DYLD_LIBRARY_PATH within a running java instance. POS.
+;;
+;; The conection string for connecting to the database is retrieved by calling 
+;; (get-eaglesoft-database-url).
+;;****************************************************************
+
+;;;; ensure that sql libary is loaded ;;;;
+(add-to-classpath "/Applications/SQLAnywhere12/System/java/sajdbc4.jar")
+
+;;;; global variables ;;;;
+
+;; global variable used for to salt the md5 checksum for eaglesoft entities
+(defparameter *eaglesoft-salt* (get-eaglesoft-salt))
+
+;; list of ada codes for amalgam, resin, and gold fillings/restorations
+(defparameter *eaglesoft-amalgam-code-list* 
+  '("D2140" "D2150" "D2160" "D2161"
+    "02140" "02150" "02160" "02161"))
+
+;; Note: D2390/02390 is a resin-based crown; and thus not in the list
+(defparameter *eaglesoft-resin-code-list* 
+  '("D2330" "D2332" "D2335" "D2390" "D2391" "D2392" "D2393" "D2394"
+    "02330" "02332" "02335" "02390" "02391" "02392" "02393" "02394"))
+
+(defparameter *eaglesoft-gold-code-list* 
+  '("D2410" "D2420" "D2430"
+    "02410" "02420" "02430"))
+
+
+;; global variables iri
+
+;; ohd ontology
+(defparameter *ohd-base-iri* "http://purl.obolibrary.org/obo/ohd/")
+(defparameter *ohd-ontology-iri* "http://purl.obolibrary.org/obo/ohd/dev/ohd.owl")
+
+;; eaglesoft dental patients ontology 
+(defparameter *eaglesoft-individual-dental-patients-iri*
+  "http://purl.obolibrary.org/obo/ohd/individuals/")
+(defparameter *eaglesoft-dental-patients-ontology-iri* 
+  "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-patients.owl")x4b
+
+;; eaglesoft fillings ontology
+(defparameter *eaglesoft-individual-fillings-iri* 
+  "http://purl.obolibrary.org/obo/ohd/individuals/")
+(defparameter *eaglesoft-fillings-ontology-iri* 
+  "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-fillngs.owl")
+
+;; eaglesoft individual teeth
+(defparameter *eaglesoft-individual-teeth-iri*
+  "http://purl.obolibrary.org/obo/ohd/individuals/")
+
+;; eaglesoft crowns ontology
+(defparameter *eaglesoft-individual-crowns-iri* 
+  "http://purl.obolibrary.org/obo/ohd/individuals/")
+(defparameter *eaglesoft-crowns-ontology-iri* 
+  "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-crowns.owl")
+
 ;;;;; general shared functions ;;;;
 
 ;; Assuming that FMA uses the same numbering system, here's how the vector is computed
@@ -268,18 +340,43 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
     ;; return list of teeth
     teeth-list))
 
+(defun get-eaglesoft-dental-patient-iri (patient-id)
+  "Returns an iri for a patient identified in the Eaglesoft database by the patient id."
+  (let ((uri nil))
+    (setf uri 
+	  (get-unique-individual-iri patient-id 
+				     :salt *eaglesoft-salt*
+				     :iri-base *eaglesoft-individual-dental-patients-iri*
+				     :class-type !'dental patient'@ohd 			
+				     :args "eaglesoft"))
+    ;; return uri
+    uri))
+
+
+(defun get-eaglesoft-tooth-iri (patient-id tooth-type-iri)
+  "Returns an iri for a patient's tooth identified in the Eaglesoft database by the patient id and the type of the tooth."
+  (let ((uri nil))
+    (setf uri 
+	  (get-unique-individual-iri patient-id 
+				     :salt *eaglesoft-salt*
+				     :iri-base *eaglesoft-individual-teeth-iri*
+				     :class-type tooth-type-iri
+				     :args "eaglesoft"))
+    ;; return uri
+    uri))
+
 (defun prepare-eaglesoft-db (url &key force-create-table)
   "Tests whether the action_codes and patient_history tables exist in the Eaglesoft database. The url parameter specifies the connection string to the database.  If the force-create-db key is given, then the tables tables are created regardless of whether they exist. This is needed when the table definitions change."
   ;; test to see if action_codes table exists
   ;; if not then create it
   (when (or (not (table-exists "action_codes" url)) force-create-table)
-    (create-aciton-codes-or-patient-history-table "action_codes" url))
+    (create-eaglesoft-aciton-codes-or-patient-history-table "action_codes" url))
 
   ;; test to see if patient history table exists
   (when (or (not (table-exists "patient_history" url)) force-create-table)
-    (create-aciton-codes-or-patient-history-table "patient_history" url)))
+    (create-eaglesoft-aciton-codes-or-patient-history-table "patient_history" url)))
 
-(defun create-aciton-codes-or-patient-history-table (table-name url)
+(defun create-eaglesoft-aciton-codes-or-patient-history-table (table-name url)
   "Creates either the action_codes or patient_history table, as determined by the table-name parameter.  The url parameter specifies the connection string to the database."
   (let ((connection nil)
 	(statement nil)
@@ -293,9 +390,9 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
     ;; create query string for creating table
     (cond
       ((equal table-name "action_codes") 
-       (setf query (get-create-action-codes-query)))
+       (setf query (get-create-eaglesoft-action-codes-table-query)))
       ((equal table-name "patient_history")
-       (setf query (get-create-patient-history-query))))
+       (setf query (get-create-eaglesoft-patient-history-table-query))))
       
     (unwind-protect
 	 (progn
@@ -320,8 +417,8 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
     ;; return success indicator
     success))
 
-(defun get-create-action-codes-query ()
-  "
+(defun get-create-eaglesoft-action-codes-table-query ()
+"
 DROP TABLE IF EXISTS PattersonPM.PPM.action_codes; 
 CREATE TABLE PattersonPM.PPM.action_codes (action_code_id int NOT NULL, description varchar(50) NOT NULL, PRIMARY KEY (action_code_id));
 insert into PattersonPM.PPM.action_codes (action_code_id, description) values (1, 'Missing Tooth'); 
@@ -343,7 +440,7 @@ insert into PattersonPM.PPM.action_codes (action_code_id, description) values (1
 insert into PattersonPM.PPM.action_codes (action_code_id, description) values (17,'Root Canal');
 insert into PattersonPM.PPM.action_codes (action_code_id, description) values (18,'Impaction');")
 
-(defun get-create-patient-history-query ()
+(defun get-create-eaglesoft-patient-history-table-query ()
 "
 /* This line is needed to force Sybase to return all rows when populating the patient_history table. */
 SET rowcount 0
