@@ -27,7 +27,7 @@ public class MOPSExtractFeaturesCmd extends AbstractCommand {
 	public boolean execute(Context ctxt) throws Exception {
 		Param p = new Param();
 		p.fdSize = getIntValue(ctxt, MOF_FDSZ);
-		p.initialSigma = getFLoatValue(ctxt, MOF_INITSIG);
+		p.initialSigma = getFloatValue(ctxt, MOF_INITSIG);
 		p.maxOctaveSize = getIntValue(ctxt, MOF_MAXOCT);
 		p.minOctaveSize = getIntValue(ctxt, MOF_MINOCT);
 		p.steps = getIntValue(ctxt, MOF_STEPS);

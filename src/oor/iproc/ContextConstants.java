@@ -42,4 +42,21 @@ public interface ContextConstants {
 	public static final String SIF_MAXOCT = "maxOctaveSize";
 	public static final String SIF_MINOCT = "minOctaveSize";
 	public static final String SIF_STEPS = "steps";
+	
+	/** Feature matcher (FM) **/
+	public static final String FM_ROD = "rod";
+	public static final String FM_ALGORITHM = "algorithm";
+	public static final String FM_BRUTEFTRS = "bruteForce";
+	
+	/** Consensus matcher (CM) **/
+	public static final String CM_MODEL = "model";
+	public static final String CM_CANDIDATES = "candidates";
+	public static final String CM_MAXEPS = "maxEpsilon";
+	public static final String CM_MINIR = "minnlierRatio";
+	public static final String CM_INLIERS = "inliers";
+	
+	/** Point Match Marker (PMM) **/
+	public static final String PMM_COLOR = "color";
+	public static final String PMM_MATCHES = "matches";
+	
 }

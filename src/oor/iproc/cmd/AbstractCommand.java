@@ -34,7 +34,7 @@ public abstract class AbstractCommand implements Command, ContextConstants {
 		return Integer.valueOf(getValue(ctxt, key));
 	}
 	
-	protected float getFLoatValue(Context ctxt, String key) {
+	protected float getFloatValue(Context ctxt, String key) {
 		return Float.valueOf(getValue(ctxt, key));
 	}
 	

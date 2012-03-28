@@ -28,7 +28,7 @@ public class SIFTExtractFeaturesCmd extends AbstractCommand {
 		Param p = new Param();
 		p.fdBins = getIntValue(ctxt, SIF_FDBINS);
 		p.fdSize = getIntValue(ctxt, SIF_FDSZ);
-		p.initialSigma = getFLoatValue(ctxt, SIF_INITSIG);
+		p.initialSigma = getFloatValue(ctxt, SIF_INITSIG);
 		p.maxOctaveSize = getIntValue(ctxt, SIF_MAXOCT);
 		p.minOctaveSize = getIntValue(ctxt, SIF_MINOCT);
 		p.steps = getIntValue(ctxt, SIF_STEPS);
