@@ -34,7 +34,7 @@ public class MorphologyCmd extends AbstractCommand {
 		 * 		operation : user i/p
 		 */
 		int type = getIntValue(ctxt, MP_TYPE);
-		float radius = getFLoatValue(ctxt, MP_RADIUS);
+		float radius = getFloatValue(ctxt, MP_RADIUS);
 		int command = getIntValue(ctxt, MP_CMD);
 		ImageProcessor ip = getTarget(ctxt);
 		StructureElement se = new StructureElement(type, 1, radius, Constants.OFFSET0);
