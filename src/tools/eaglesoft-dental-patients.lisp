@@ -31,7 +31,7 @@
     (prepare-eaglesoft-db url :force-create-table force-create-table)
 
     ;; get query string for amalgam restorations
-    (setf query (get-dental-patients-query))
+    (setf query (get-eaglesoft-dental-patients-query))
 
     (with-ontology ont (:collecting t 
 			:base *eaglesoft-individual-dental-patients-iri*
@@ -145,7 +145,7 @@
     ;; return uri
     uri))
 
-(defun get-dental-patients-query ()
+(defun get-eaglesoft-dental-patients-query ()
 "
 SET rowcount 0
 
