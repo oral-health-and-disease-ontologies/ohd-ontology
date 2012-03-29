@@ -11,7 +11,7 @@
 ;; only tests that these tables exist in the user's database. If these table need to be 
 ;; recreated, the call get-eaglesoft-fillings-ont with :force-create-table key set to t.
 
-(defun get-eaglesoft-crown-ont (&key force-create-table)
+(defun get-eaglesoft-crowns-ont (&key force-create-table)
   "Returns an ontology of the crowns contained in the Eaglesoft database.  They force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
   (let ((connection nil)
 	(statement nil)
