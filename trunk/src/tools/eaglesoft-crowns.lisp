@@ -31,7 +31,7 @@
     (setf query (get-eaglesoft-crowns-query))
 
     (with-ontology ont (:collecting t 
-			:base *eaglesoft-individual-crowns-iri* 
+			:base *eaglesoft-individual-crowns-iri-base* 
 			:ontology-iri *eaglesoft-crowns-ontology-iri*)
 	((unwind-protect
 	      (progn
@@ -200,7 +200,7 @@
     (setf uri 
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-teeth-iri*
+				     :iri-base *eaglesoft-individual-teeth-iri-base*
 				     :class-type !'tooth to be crowned role'@ohd
 				     :args `(,tooth-name ,instance-count "eaglesoft")))
     ;; return uri
@@ -213,7 +213,7 @@
     (setf uri 
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-crowns-iri*
+				     :iri-base *eaglesoft-individual-crowns-iri-base*
 				     :class-type material-type-iri
 				     :args `(,tooth-name ,instance-count "eaglesoft")))
     ;; return uri
@@ -226,7 +226,7 @@
     (setf uri 
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-crowns-iri*
+				     :iri-base *eaglesoft-individual-crowns-iri-base*
 				     :class-type restoration-type-iri
 				     :args `(,tooth-name ,instance-count "eaglesoft")))
     ;; return uri

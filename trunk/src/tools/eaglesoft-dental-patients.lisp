@@ -34,7 +34,7 @@
     (setf query (get-eaglesoft-dental-patients-query))
 
     (with-ontology ont (:collecting t 
-			:base *eaglesoft-individual-dental-patients-iri*
+			:base *eaglesoft-individual-dental-patients-iri-base*
 			:ontology-iri *eaglesoft-dental-patients-ontology-iri*)
 	((unwind-protect
 	      (progn
@@ -139,7 +139,7 @@
     (setf uri 
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-dental-patients-iri*
+				     :iri-base *eaglesoft-individual-dental-patients-iri-base*
 				     :class-type !'patient role'@ohd 			
 				     :args "eaglesoft"))
     ;; return uri
