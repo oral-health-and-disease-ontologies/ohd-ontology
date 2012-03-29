@@ -31,7 +31,7 @@
     (setf query (get-eaglesoft-fillings-query))
 
     (with-ontology ont (:collecting t
-			:base *eaglesoft-individual-fillings-iri*
+			:base *eaglesoft-individual-fillings-iri-base*
 			:ontology-iri  *eaglesoft-fillings-ontology-iri*)
 	((unwind-protect
 	      (progn
@@ -208,7 +208,7 @@
     (setf uri 
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-teeth-iri*
+				     :iri-base *eaglesoft-individual-teeth-iri-base*
 				     :class-type !'tooth to be filled role'@ohd
 				     :args `(,tooth-name ,instance-count "eaglesoft")))
     ;; return uri
@@ -221,7 +221,7 @@
     (setf uri 
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-fillings-iri*
+				     :iri-base *eaglesoft-individual-fillings-iri-base*
 				     :class-type restoration-type-iri
 				     :args `(,tooth-name ,instance-count "eaglesoft")))
     ;; return uri
@@ -234,7 +234,7 @@
     (setf uri 
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-fillings-iri*
+				     :iri-base *eaglesoft-individual-fillings-iri-base*
 				     :class-type material-type-iri
 				     :args `(,tooth-name ,instance-count "eaglesoft")))
     ;; return uri

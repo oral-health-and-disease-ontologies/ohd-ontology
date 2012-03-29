@@ -45,27 +45,27 @@
 ;; global variables iri
 
 ;; ohd ontology
-(defparameter *ohd-base-iri* "http://purl.obolibrary.org/obo/ohd/")
+(defparameter *ohd-base-iri-base* "http://purl.obolibrary.org/obo/ohd/")
 (defparameter *ohd-ontology-iri* "http://purl.obolibrary.org/obo/ohd/dev/ohd.owl")
 
 ;; eaglesoft dental patients ontology 
-(defparameter *eaglesoft-individual-dental-patients-iri*
+(defparameter *eaglesoft-individual-dental-patients-iri-base*
   "http://purl.obolibrary.org/obo/ohd/individuals/")
 (defparameter *eaglesoft-dental-patients-ontology-iri* 
   "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-patients.owl")x4b
 
 ;; eaglesoft fillings ontology
-(defparameter *eaglesoft-individual-fillings-iri* 
+(defparameter *eaglesoft-individual-fillings-iri-base* 
   "http://purl.obolibrary.org/obo/ohd/individuals/")
 (defparameter *eaglesoft-fillings-ontology-iri* 
   "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-fillngs.owl")
 
 ;; eaglesoft individual teeth
-(defparameter *eaglesoft-individual-teeth-iri*
+(defparameter *eaglesoft-individual-teeth-iri-base*
   "http://purl.obolibrary.org/obo/ohd/individuals/")
 
 ;; eaglesoft crowns ontology
-(defparameter *eaglesoft-individual-crowns-iri* 
+(defparameter *eaglesoft-individual-crowns-iri-base* 
   "http://purl.obolibrary.org/obo/ohd/individuals/")
 (defparameter *eaglesoft-crowns-ontology-iri* 
   "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-crowns.owl")
@@ -346,7 +346,7 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
     (setf uri 
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-dental-patients-iri*
+				     :iri-base *eaglesoft-individual-dental-patients-iri-base*
 				     :class-type !'dental patient'@ohd 			
 				     :args "eaglesoft"))
     ;; return uri
@@ -359,7 +359,7 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
     (setf uri 
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-teeth-iri*
+				     :iri-base *eaglesoft-individual-teeth-iri-base*
 				     :class-type tooth-type-iri
 				     :args "eaglesoft"))
     ;; return uri
