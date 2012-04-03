@@ -10,7 +10,7 @@ export PATH=$trunk/bin:$PATH
 ontfiles="$trunk/src/ontology/pitt-ub-ohsu-r21/imports/*.owl $trunk/src/ontology/pitt-ub-ohsu-r21/imports/BFO2/*.owl $trunk/src/ontology/pitt-ub-ohsu-r21/ohd.owl"
 
 # instance files are kept in a dropbox folder rather than in repo as they have might have phi, and soft linked into this folder
-#instancefiles="$trunk/src/ontology/pitt-ub-ohsu-r21/dropbox/*.owl"
+instancefiles="$trunk/src/ontology/pitt-ub-ohsu-r21/dropbox/*.owl"
 
 # Reasoning expressivity for stardog
 expressivity=EL
@@ -22,7 +22,7 @@ rm -rf $STARDOG_HOME/*
 stardog-admin server start
 
 # create database, see http://stardog.com/docs/
-stardog-admin create -n r21db -t M -u admin -p admin --server snarl://127.0.0.1:5820/ 
+stardog-admin create -n r21db -t Dc -u admin -p admin --server snarl://127.0.0.1:5820/ 
 
 # add the files
 stardog add -u admin -p admin -c "snarl://127.0.0.1:5820/r21db;reasoning=$expressivity" $ontfiles $instancefiles
