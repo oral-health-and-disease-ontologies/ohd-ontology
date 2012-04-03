@@ -10,7 +10,7 @@ export PATH=$trunk/bin:$PATH
 ontfiles="$trunk/src/ontology/pitt-ub-ohsu-r21/imports/*.owl $trunk/src/ontology/pitt-ub-ohsu-r21/imports/BFO2/*.owl $trunk/src/ontology/pitt-ub-ohsu-r21/ohd.owl"
 
 # instance files are kept in a dropbox folder rather than in repo as they have might have phi, and soft linked into this folder
-instancefiles="$trunk/src/ontology/pitt-ub-ohsu-r21/dropbox/*.owl"
+#instancefiles="$trunk/src/ontology/pitt-ub-ohsu-r21/dropbox/*.owl"
 
 # Reasoning expressivity for stardog
 expressivity=EL
@@ -36,8 +36,8 @@ stardog query -c "http://127.0.0.1:5822/r21db;reasoning=$expressivity" -q "PREFI
 #instances of tooth - should return (without bulk instances loaded) http://purl.obolibrary.org/obo/OHD_0000016 tooth 14
 stardog query -c "http://127.0.0.1:5822/r21db;reasoning=$expressivity" -q "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT * WHERE { ?s rdf:type <http://purl.obolibrary.org/obo/FMA_12516> . ?s rdfs:label ?l } LIMIT 10"
 
-# ask for types of tooth14
-stardog query -c "http://127.0.0.1:5822/r21db;reasoning=$expressivity" -q "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT * WHERE { <http://purl.obolibrary.org/obo/OHD_0000016> rdf:type ?t. ?t rdfs:label ?l }"
+# # ask for types of tooth14
+# stardog query -c "http://127.0.0.1:5822/r21db;reasoning=$expressivity" -q "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT * WHERE { <http://purl.obolibrary.org/obo/OHD_0000016> rdf:type ?t. optional {?t rdfs:label ?l} }"
 
 # stop the server
 stardog-admin server stop
