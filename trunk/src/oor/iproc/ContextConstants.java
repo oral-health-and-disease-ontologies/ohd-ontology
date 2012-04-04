@@ -73,4 +73,6 @@ public interface ContextConstants {
 	public static final String BW_CNSTCYWT = "consistencyWt";
 	public static final String BW_THRES = "stopThreshold";
 	
+	/** Image calculator (IC) **/
+	public static final String IC_OPERATION = "operation";
 }
