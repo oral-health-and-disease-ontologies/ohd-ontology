@@ -38,6 +38,7 @@
 	     (:file "eaglesoft-dental-patients")
 	     (:file "eaglesoft-fillings")
 	     (:file "eaglesoft-crowns")
+	     (:file "eaglesoft-surgical-extractions")
 	     ) 
 	    :depends-on
 	    (early)))
