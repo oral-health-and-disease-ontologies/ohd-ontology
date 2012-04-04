@@ -6,10 +6,11 @@
 
 ;;****************************************************************
 ;; Database preparation: 
-;; When get-eaglesoft-crowns-ont is ran, the program verifies that the action_codes and
-;; patient_history tables exist.  This is done by calling prepare-eaglesoft-db.  However, this
-;; only tests that these tables exist in the user's database. If these table need to be 
-;; recreated, the call get-eaglesoft-fillings-ont with :force-create-table key set to t.
+;; When get-eaglesoft-surgical-extractsions-ont is ran, the program verifies that the 
+;; action_codes and patient_history tables exist.  This is done by calling 
+;; prepare-eaglesoft-db.  However, this only tests that these tables exist in the 
+;; user's database. If these table need to be recreated, the call 
+;; get-eaglesoft-fillings-ont with :force-create-table key set to t.
 
 (defun get-eaglesoft-surgical-extractions-ont (&key force-create-table)
   "Returns an ontology of the surgical extractions contained in the Eaglesoft database.  They force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
@@ -94,7 +95,7 @@
          ;;;;  declare instances of participating entities ;;;;
 	 
 	 ;; get uri of patient
-	 (setf patient-uri 
+	 (setf patient-uri
 	       (get-eaglesoft-dental-patient-iri patient-id))
 	 
          ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
@@ -148,22 +149,28 @@
 					 ,extraction-procedure-uri
 					 (:literal ,occurrence-date !xsd:date)) axioms)
 	  ;;;; relate instances ;;;;
-
+	 
+	 ;; **** for now exclude parthood relations for extracted teeth
 	 ;; tooth is located in the patient
-	 (push `(object-property-assertion !'is part of'@ohd
-					   ,tooth-uri ,patient-uri) axioms)
+	 ;; (push `(object-property-assertion !'is part of'@ohd
+	 ;; 				   ,tooth-uri ,patient-uri) axioms)
 
          ;; 'tooth to be extracted role' inheres in tooth
 	 (push `(object-property-assertion !'inheres in'@ohd
-					   ,extracted-role-uri ,tooth-uri) axioms)
+					   ,extraction-role-uri ,tooth-uri) axioms)
 
          ;; 'tooth extraction procedure' realizes 'tooth to be extracted role'
 	 (push `(object-property-assertion !'realizes'@ohd
-					   ,extracted-role-uri ,extracted-role-uri) axioms)
-
+					   ,extraction-procedure-uri
+					   ,extraction-role-uri) axioms)
+	 
          ;; 'tooth extraction procedure' has particpant tooth
 	 (push `(object-property-assertion !'has participant'@ohd
 					   ,extraction-procedure-uri ,tooth-uri) axioms)
+
+         ;;  'tooth extraction procedure' has particpant patient
+	 (push `(object-property-assertion !'has participant'@ohd
+					   ,extraction-procedure-uri ,patient-uri) axioms)
 	 ) ;; end loop
     
     ;;(pprint axioms)

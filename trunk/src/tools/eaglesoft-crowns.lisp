@@ -180,9 +180,13 @@
 	 (push `(object-property-assertion !'has participant'@ohd
 					   ,crown-restoration-uri ,tooth-uri) axioms)
 	 
-         ;; 'filling restoration' has particpant restoration material
+         ;; 'crown restoration' has particpant restoration material
 	 (push `(object-property-assertion !'has participant'@ohd
 					   ,crown-restoration-uri ,crown-material-uri) axioms)
+
+	 ;;  'crown restoration' has particpant patient
+	 (push `(object-property-assertion !'has participant'@ohd
+					   ,crown-restoration-uri ,patient-uri) axioms)
 
 	 ;; restoration material is located in the tooth
 	 (push `(object-property-assertion !'is located in'@ohd
