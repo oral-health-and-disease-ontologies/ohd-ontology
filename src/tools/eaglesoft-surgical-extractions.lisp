@@ -31,8 +31,8 @@
     (setf query (get-eaglesoft-surgical-extractions-query))
 
     (with-ontology ont (:collecting t 
-			:base *eaglesoft-individual-crowns-iri-base* 
-			:ontology-iri *eaglesoft-crowns-ontology-iri*)
+			:base *eaglesoft-individual-surgical-extractions-iri-base* 
+			:ontology-iri *eaglesoft-surgical-extractions-ontology-iri*)
 	((unwind-protect
 	      (progn
 		;; connect to db and get data
@@ -58,7 +58,7 @@
 			    (#"getString" results "tran_date")))
 		     
 		     ;; get axioms
-		     (as (get-eaglesoft-crown-axioms 
+		     (as (get-eaglesoft-surgical-extraction-axioms 
 		     	  (#"getString" results "patient_id")
 		     	  occurrence-date
 		     	  (#"getString" results "tooth_data")
@@ -116,11 +116,11 @@
 	       (get-eaglesoft-tooth-to-be-extracted-role-iri patient-id tooth record-count))
 		
 	 (push `(declaration (named-individual ,extraction-role-uri)) axioms)
-	 (push `(class-assertion !'tooth to be extracted role'@ohd ,crown-role-uri) axioms)
+	 (push `(class-assertion !'tooth to be extracted role'@ohd ,extraction-role-uri) axioms)
 
-	 ;; add annotation about 'tooth to be crowned role'
+	 ;; add annotation about 'tooth to be extracted role'
 	 (push `(annotation-assertion !rdfs:label 
-				      ,extracted-role-uri
+				      ,extraction-role-uri
 				      ,(str+ "tooth to be extracted role for " 
 					     tooth-name " of patient " 
 					     patient-id)) axioms)
@@ -185,12 +185,12 @@
 
 (defun get-eaglesoft-tooth-extraction-procedure-iri (patient-id tooth-name
 						     procedure-type-iri instance-count)
-  "Returns an iri for a tooth extraction procedure identified in the Eaglesoft database by the patient id, the name of the type of tooth, the type of crown restoration, and a count variable that used differientiate crown procedure intances that have the same patient-id/restoration-type-iri but are numerically distinct."
+  "Returns an iri for a tooth extraction procedure identified in the Eaglesoft database by the patient id, the name of the type of tooth, the type of procedure, and a count variable that used differientiate procedure intances that have the same patient-id/restoration-type-iri but are numerically distinct."
   (let ((uri nil))
     (setf uri 
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-crowns-iri-base*
+				     :iri-base *eaglesoft-individual-surgical-extractions-iri-base*
 				     :class-type procedure-type-iri
 				     :args `(,tooth-name ,instance-count "eaglesoft")))
     ;; return uri
