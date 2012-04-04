@@ -22,55 +22,8 @@
 ;;;; ensure that sql libary is loaded ;;;;
 (add-to-classpath "/Applications/SQLAnywhere12/System/java/sajdbc4.jar")
 
-;;;; global variables ;;;;
-
-;; global variable used for to salt the md5 checksum for eaglesoft entities
-(defparameter *eaglesoft-salt* (get-eaglesoft-salt))
-
-;; list of ada codes for amalgam, resin, and gold fillings/restorations
-(defparameter *eaglesoft-amalgam-code-list* 
-  '("D2140" "D2150" "D2160" "D2161"
-    "02140" "02150" "02160" "02161"))
-
-;; Note: D2390/02390 is a resin-based crown; and thus not in the list
-(defparameter *eaglesoft-resin-code-list* 
-  '("D2330" "D2332" "D2335" "D2390" "D2391" "D2392" "D2393" "D2394"
-    "02330" "02332" "02335" "02390" "02391" "02392" "02393" "02394"))
-
-(defparameter *eaglesoft-gold-code-list* 
-  '("D2410" "D2420" "D2430"
-    "02410" "02420" "02430"))
-
-
-;; global variables iri
-
-;; ohd ontology
-(defparameter *ohd-base-iri-base* "http://purl.obolibrary.org/obo/ohd/")
-(defparameter *ohd-ontology-iri* "http://purl.obolibrary.org/obo/ohd/dev/ohd.owl")
-
-;; eaglesoft dental patients ontology 
-(defparameter *eaglesoft-individual-dental-patients-iri-base*
-  "http://purl.obolibrary.org/obo/ohd/individuals/")
-(defparameter *eaglesoft-dental-patients-ontology-iri* 
-  "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-patients.owl")x4b
-
-;; eaglesoft fillings ontology
-(defparameter *eaglesoft-individual-fillings-iri-base* 
-  "http://purl.obolibrary.org/obo/ohd/individuals/")
-(defparameter *eaglesoft-fillings-ontology-iri* 
-  "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-fillngs.owl")
-
-;; eaglesoft individual teeth
-(defparameter *eaglesoft-individual-teeth-iri-base*
-  "http://purl.obolibrary.org/obo/ohd/individuals/")
-
-;; eaglesoft crowns ontology
-(defparameter *eaglesoft-individual-crowns-iri-base* 
-  "http://purl.obolibrary.org/obo/ohd/individuals/")
-(defparameter *eaglesoft-crowns-ontology-iri* 
-  "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-crowns.owl")
-
-;;;;; general shared functions ;;;;
+;;****************************************************************
+;;; general shared functions ;;;;
 
 ;; Assuming that FMA uses the same numbering system, here's how the vector is computed
 ;; (loop with alist 
@@ -721,3 +674,62 @@ ORDER BY
   5, -- tran_date
   7 -- tooth
 ")
+
+;;****************************************************************
+;;; global variables ;;;;
+
+;; Note: These must be loaded at the end of the file in order to call 
+;; (get-eaglesoft-salt).  The variable *eaglesoft-salt* is initialized
+;; with a call to this funciton.  Thus, the function must be loaded first.
+
+;; global variable used for to salt the md5 checksum for eaglesoft entities
+(defparameter *eaglesoft-salt* (get-eaglesoft-salt))
+
+;; list of ada codes for amalgam, resin, and gold fillings/restorations
+(defparameter *eaglesoft-amalgam-code-list* 
+  '("D2140" "D2150" "D2160" "D2161"
+    "02140" "02150" "02160" "02161"))
+
+;; Note: D2390/02390 is a resin-based crown; and thus not in the list
+(defparameter *eaglesoft-resin-code-list* 
+  '("D2330" "D2332" "D2335" "D2390" "D2391" "D2392" "D2393" "D2394"
+    "02330" "02332" "02335" "02390" "02391" "02392" "02393" "02394"))
+
+(defparameter *eaglesoft-gold-code-list* 
+  '("D2410" "D2420" "D2430"
+    "02410" "02420" "02430"))
+
+
+;; global iri variables
+
+;; ohd ontology
+(defparameter *ohd-base-iri-base* "http://purl.obolibrary.org/obo/ohd/")
+(defparameter *ohd-ontology-iri* "http://purl.obolibrary.org/obo/ohd/dev/ohd.owl")
+
+;; eaglesoft dental patients ontology 
+(defparameter *eaglesoft-individual-dental-patients-iri-base*
+  "http://purl.obolibrary.org/obo/ohd/individuals/")
+(defparameter *eaglesoft-dental-patients-ontology-iri* 
+  "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-patients.owl")x4b
+
+;; eaglesoft fillings ontology
+(defparameter *eaglesoft-individual-fillings-iri-base* 
+  "http://purl.obolibrary.org/obo/ohd/individuals/")
+(defparameter *eaglesoft-fillings-ontology-iri* 
+  "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-fillngs.owl")
+
+;; eaglesoft individual teeth
+(defparameter *eaglesoft-individual-teeth-iri-base*
+  "http://purl.obolibrary.org/obo/ohd/individuals/")
+
+;; eaglesoft crowns ontology
+(defparameter *eaglesoft-individual-crowns-iri-base* 
+  "http://purl.obolibrary.org/obo/ohd/individuals/")
+(defparameter *eaglesoft-crowns-ontology-iri* 
+  "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-crowns.owl")
+
+;; eaglesoft surgical extractions ontology
+(defparameter *eaglesoft-individual-surgical-extractions-iri-base* 
+  "http://purl.obolibrary.org/obo/ohd/individuals/")
+(defparameter *eaglesoft-surgical-extractions-ontology-iri* 
+  "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-surgical-extractions.owl")

@@ -192,6 +192,10 @@
 	 (push `(object-property-assertion !'has participant'@ohd
 					   ,restoration-uri ,material-uri) axioms)
 
+         ;; 'filling restoration' has particpant patient
+	 (push `(object-property-assertion !'has participant'@ohd
+					   ,restoration-uri ,patient-uri) axioms)
+
 	 ;; restoration material is located in the tooth
 	 (push `(object-property-assertion !'is located in'@ohd
 					   ,material-uri ,tooth-uri) axioms)
