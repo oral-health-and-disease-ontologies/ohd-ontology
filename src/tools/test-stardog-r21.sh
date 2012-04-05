@@ -22,7 +22,7 @@ rm -rf $STARDOG_HOME/*
 stardog-admin server start
 
 # create database, see http://stardog.com/docs/
-stardog-admin create -n r21db -t Dc -u admin -p admin --server snarl://127.0.0.1:5820/ 
+stardog-admin create -n r21db -t D -u admin -p admin --server snarl://127.0.0.1:5820/ 
 
 # add the files
 stardog add -u admin -p admin -c "snarl://127.0.0.1:5820/r21db;reasoning=$expressivity" $ontfiles $instancefiles
