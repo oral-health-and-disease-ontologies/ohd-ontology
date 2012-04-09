@@ -39,6 +39,7 @@
 	     (:file "eaglesoft-fillings")
 	     (:file "eaglesoft-crowns")
 	     (:file "eaglesoft-surgical-extractions")
+	     (:file "eaglesoft-endodontics")
 	     ) 
 	    :depends-on
 	    (early)))
