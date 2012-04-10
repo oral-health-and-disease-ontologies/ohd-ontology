@@ -16,10 +16,10 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      ontologyIRI="http://www.semanticweb.org/nikhillo/ontologies/2012/3/oor-ontology">
-    <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
-    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
-    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
     <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
     <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
     <Declaration>
         <Class IRI="#Anterior"/>
@@ -196,7 +196,13 @@
         <ObjectProperty IRI="#byWhomSigned"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#documentToPerson"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#forWhomCreated"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasACSurface"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#hasAPPosition"/>
@@ -223,6 +229,9 @@
         <ObjectProperty IRI="#isNeighborOf"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#isOcclusalNbrOf"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#isSignedBy"/>
     </Declaration>
     <Declaration>
@@ -230,6 +239,24 @@
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#isTreatedBy"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#personToDocument"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#personToPerson"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#toothNumberToToothNumber"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#toothNumberToToothPosition"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#toothNumberToToothSurface"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#toothToTooth"/>
     </Declaration>
     <EquivalentClasses>
         <Class IRI="#Chart"/>
@@ -367,8 +394,8 @@
     <EquivalentClasses>
         <Class IRI="#TN_1"/>
         <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_2"/>
+            <ObjectProperty IRI="#isOcclusalNbrOf"/>
+            <Class IRI="#TN_32"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -396,14 +423,14 @@
         <Class IRI="#TN_10"/>
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_11"/>
+            <Class IRI="#TN_9"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
         <Class IRI="#TN_10"/>
         <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_9"/>
+            <ObjectProperty IRI="#isOcclusalNbrOf"/>
+            <Class IRI="#TN_23"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -437,8 +464,8 @@
     <EquivalentClasses>
         <Class IRI="#TN_11"/>
         <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_12"/>
+            <ObjectProperty IRI="#isOcclusalNbrOf"/>
+            <Class IRI="#TN_22"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -472,8 +499,8 @@
     <EquivalentClasses>
         <Class IRI="#TN_12"/>
         <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_13"/>
+            <ObjectProperty IRI="#isOcclusalNbrOf"/>
+            <Class IRI="#TN_21"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -507,8 +534,8 @@
     <EquivalentClasses>
         <Class IRI="#TN_13"/>
         <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_14"/>
+            <ObjectProperty IRI="#isOcclusalNbrOf"/>
+            <Class IRI="#TN_20"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -542,8 +569,8 @@
     <EquivalentClasses>
         <Class IRI="#TN_14"/>
         <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_15"/>
+            <ObjectProperty IRI="#isOcclusalNbrOf"/>
+            <Class IRI="#TN_19"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -577,8 +604,8 @@
     <EquivalentClasses>
         <Class IRI="#TN_15"/>
         <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_16"/>
+            <ObjectProperty IRI="#isOcclusalNbrOf"/>
+            <Class IRI="#TN_18"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -610,6 +637,13 @@
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
+        <Class IRI="#TN_16"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#isOcclusalNbrOf"/>
+            <Class IRI="#TN_17"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
         <Class IRI="#TN_17"/>
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasAPPosition"/>
@@ -628,13 +662,6 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasLUPosition"/>
             <Class IRI="#Lower"/>
-        </ObjectExactCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#TN_17"/>
-        <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_18"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -666,13 +693,6 @@
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
-        <Class IRI="#TN_18"/>
-        <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_19"/>
-        </ObjectExactCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
         <Class IRI="#TN_19"/>
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasAPPosition"/>
@@ -698,13 +718,6 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
             <Class IRI="#TN_18"/>
-        </ObjectExactCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#TN_19"/>
-        <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_20"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -738,8 +751,8 @@
     <EquivalentClasses>
         <Class IRI="#TN_2"/>
         <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_3"/>
+            <ObjectProperty IRI="#isOcclusalNbrOf"/>
+            <Class IRI="#TN_31"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -771,13 +784,6 @@
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
-        <Class IRI="#TN_20"/>
-        <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_21"/>
-        </ObjectExactCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
         <Class IRI="#TN_21"/>
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasAPPosition"/>
@@ -806,13 +812,6 @@
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
-        <Class IRI="#TN_21"/>
-        <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_22"/>
-        </ObjectExactCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
         <Class IRI="#TN_22"/>
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasAPPosition"/>
@@ -841,13 +840,6 @@
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
-        <Class IRI="#TN_22"/>
-        <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_23"/>
-        </ObjectExactCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
         <Class IRI="#TN_23"/>
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasAPPosition"/>
@@ -876,13 +868,6 @@
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
-        <Class IRI="#TN_23"/>
-        <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_24"/>
-        </ObjectExactCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
         <Class IRI="#TN_24"/>
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasAPPosition"/>
@@ -911,13 +896,6 @@
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
-        <Class IRI="#TN_24"/>
-        <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_25"/>
-        </ObjectExactCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
         <Class IRI="#TN_25"/>
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasAPPosition"/>
@@ -946,13 +924,6 @@
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
-        <Class IRI="#TN_25"/>
-        <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_26"/>
-        </ObjectExactCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
         <Class IRI="#TN_26"/>
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasAPPosition"/>
@@ -981,13 +952,6 @@
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
-        <Class IRI="#TN_26"/>
-        <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_27"/>
-        </ObjectExactCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
         <Class IRI="#TN_27"/>
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasAPPosition"/>
@@ -1016,13 +980,6 @@
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
-        <Class IRI="#TN_27"/>
-        <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_28"/>
-        </ObjectExactCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
         <Class IRI="#TN_28"/>
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasAPPosition"/>
@@ -1051,13 +1008,6 @@
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
-        <Class IRI="#TN_28"/>
-        <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_29"/>
-        </ObjectExactCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
         <Class IRI="#TN_29"/>
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasAPPosition"/>
@@ -1083,13 +1033,6 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
             <Class IRI="#TN_28"/>
-        </ObjectExactCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#TN_29"/>
-        <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_30"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -1123,8 +1066,8 @@
     <EquivalentClasses>
         <Class IRI="#TN_3"/>
         <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_4"/>
+            <ObjectProperty IRI="#isOcclusalNbrOf"/>
+            <Class IRI="#TN_30"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -1156,13 +1099,6 @@
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
-        <Class IRI="#TN_30"/>
-        <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_31"/>
-        </ObjectExactCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
         <Class IRI="#TN_31"/>
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasAPPosition"/>
@@ -1188,13 +1124,6 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
             <Class IRI="#TN_30"/>
-        </ObjectExactCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#TN_31"/>
-        <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_32"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -1256,8 +1185,8 @@
     <EquivalentClasses>
         <Class IRI="#TN_4"/>
         <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_5"/>
+            <ObjectProperty IRI="#isOcclusalNbrOf"/>
+            <Class IRI="#TN_29"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -1291,8 +1220,8 @@
     <EquivalentClasses>
         <Class IRI="#TN_5"/>
         <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_6"/>
+            <ObjectProperty IRI="#isOcclusalNbrOf"/>
+            <Class IRI="#TN_28"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -1326,8 +1255,8 @@
     <EquivalentClasses>
         <Class IRI="#TN_6"/>
         <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_7"/>
+            <ObjectProperty IRI="#isOcclusalNbrOf"/>
+            <Class IRI="#TN_27"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -1361,8 +1290,8 @@
     <EquivalentClasses>
         <Class IRI="#TN_7"/>
         <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_8"/>
+            <ObjectProperty IRI="#isOcclusalNbrOf"/>
+            <Class IRI="#TN_26"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -1396,8 +1325,8 @@
     <EquivalentClasses>
         <Class IRI="#TN_8"/>
         <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_9"/>
+            <ObjectProperty IRI="#isOcclusalNbrOf"/>
+            <Class IRI="#TN_25"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -1425,15 +1354,50 @@
         <Class IRI="#TN_9"/>
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_10"/>
+            <Class IRI="#TN_8"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
         <Class IRI="#TN_9"/>
         <ObjectExactCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#TN_8"/>
+            <ObjectProperty IRI="#isOcclusalNbrOf"/>
+            <Class IRI="#TN_24"/>
         </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ToothNumber"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasAPPosition"/>
+            <Class IRI="#ToothPosition"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ToothNumber"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasLRPosition"/>
+            <Class IRI="#ToothPosition"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ToothNumber"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasLUPosition"/>
+            <Class IRI="#ToothPosition"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ToothNumber"/>
+        <ObjectMaxCardinality cardinality="1">
+            <ObjectProperty IRI="#isNeighborOf"/>
+            <Class IRI="#ToothNumber"/>
+        </ObjectMaxCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ToothNumber"/>
+        <ObjectMaxCardinality cardinality="1">
+            <ObjectProperty IRI="#isOcclusalNbrOf"/>
+            <Class IRI="#ToothNumber"/>
+        </ObjectMaxCardinality>
     </EquivalentClasses>
     <SubClassOf>
         <Class IRI="#Anterior"/>
@@ -1461,7 +1425,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Document"/>
-        <Class abbreviatedIRI="owl:Thing"/>
+        <Class abbreviatedIRI=":Thing"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Faculty"/>
@@ -1497,7 +1461,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Person"/>
-        <Class abbreviatedIRI="owl:Thing"/>
+        <Class abbreviatedIRI=":Thing"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Posterior"/>
@@ -1660,8 +1624,22 @@
         <Class IRI="#Posterior"/>
     </DisjointClasses>
     <DisjointClasses>
+        <Class IRI="#Apical"/>
+        <Class IRI="#Buccal"/>
+        <Class IRI="#Coronal"/>
+        <Class IRI="#Distal"/>
+        <Class IRI="#Incisal"/>
+        <Class IRI="#Mesial"/>
+        <Class IRI="#Occlusal"/>
+        <Class IRI="#Palatal"/>
+    </DisjointClasses>
+    <DisjointClasses>
         <Class IRI="#Document"/>
         <Class IRI="#Person"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Document"/>
+        <Class IRI="#Tooth"/>
     </DisjointClasses>
     <DisjointClasses>
         <Class IRI="#Faculty"/>
@@ -1675,6 +1653,10 @@
     <DisjointClasses>
         <Class IRI="#Lower"/>
         <Class IRI="#Upper"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Person"/>
+        <Class IRI="#Tooth"/>
     </DisjointClasses>
     <DisjointClasses>
         <Class IRI="#TN_1"/>
@@ -1710,26 +1692,110 @@
         <Class IRI="#TN_8"/>
         <Class IRI="#TN_9"/>
     </DisjointClasses>
-    <InverseObjectProperties>
+    <DisjointClasses>
+        <Class IRI="#ToothNumber"/>
+        <Class IRI="#ToothPosition"/>
+        <Class IRI="#ToothSurface"/>
+    </DisjointClasses>
+    <SubObjectPropertyOf>
         <ObjectProperty IRI="#byWhomCreated"/>
-        <ObjectProperty IRI="#isCreatedBy"/>
-    </InverseObjectProperties>
-    <InverseObjectProperties>
+        <ObjectProperty IRI="#personToDocument"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
         <ObjectProperty IRI="#byWhomSigned"/>
+        <ObjectProperty IRI="#personToDocument"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#forWhomCreated"/>
+        <ObjectProperty IRI="#personToDocument"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasACSurface"/>
+        <ObjectProperty IRI="#toothNumberToToothSurface"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasAPPosition"/>
+        <ObjectProperty IRI="#toothNumberToToothPosition"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasLRPosition"/>
+        <ObjectProperty IRI="#toothNumberToToothPosition"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasLUPosition"/>
+        <ObjectProperty IRI="#toothNumberToToothPosition"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasPatient"/>
+        <ObjectProperty IRI="#personToPerson"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasStudent"/>
+        <ObjectProperty IRI="#personToPerson"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isCreatedBy"/>
+        <ObjectProperty IRI="#documentToPerson"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isCreatedFor"/>
+        <ObjectProperty IRI="#documentToPerson"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isNeighborOf"/>
+        <ObjectProperty IRI="#toothNumberToToothNumber"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isOcclusalNbrOf"/>
+        <ObjectProperty IRI="#toothNumberToToothNumber"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
         <ObjectProperty IRI="#isSignedBy"/>
+        <ObjectProperty IRI="#documentToPerson"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isSupervisedBy"/>
+        <ObjectProperty IRI="#personToPerson"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#isTreatedBy"/>
+        <ObjectProperty IRI="#personToPerson"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#toothNumberToToothNumber"/>
+        <ObjectProperty IRI="#toothToTooth"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#toothNumberToToothPosition"/>
+        <ObjectProperty IRI="#toothToTooth"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#toothNumberToToothSurface"/>
+        <ObjectProperty IRI="#toothToTooth"/>
+    </SubObjectPropertyOf>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#isCreatedBy"/>
+        <ObjectProperty IRI="#byWhomCreated"/>
     </InverseObjectProperties>
     <InverseObjectProperties>
-        <ObjectProperty IRI="#isCreatedFor"/>
+        <ObjectProperty IRI="#isSignedBy"/>
+        <ObjectProperty IRI="#byWhomSigned"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
         <ObjectProperty IRI="#forWhomCreated"/>
+        <ObjectProperty IRI="#isCreatedFor"/>
     </InverseObjectProperties>
     <InverseObjectProperties>
         <ObjectProperty IRI="#hasPatient"/>
         <ObjectProperty IRI="#isTreatedBy"/>
     </InverseObjectProperties>
     <InverseObjectProperties>
-        <ObjectProperty IRI="#isSupervisedBy"/>
         <ObjectProperty IRI="#hasStudent"/>
+        <ObjectProperty IRI="#isSupervisedBy"/>
     </InverseObjectProperties>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#hasACSurface"/>
+    </FunctionalObjectProperty>
     <FunctionalObjectProperty>
         <ObjectProperty IRI="#hasAPPosition"/>
     </FunctionalObjectProperty>
@@ -1750,6 +1816,9 @@
     </FunctionalObjectProperty>
     <FunctionalObjectProperty>
         <ObjectProperty IRI="#isTreatedBy"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#toothNumberToToothPosition"/>
     </FunctionalObjectProperty>
     <InverseFunctionalObjectProperty>
         <ObjectProperty IRI="#byWhomCreated"/>
@@ -1766,6 +1835,12 @@
     <SymmetricObjectProperty>
         <ObjectProperty IRI="#isNeighborOf"/>
     </SymmetricObjectProperty>
+    <SymmetricObjectProperty>
+        <ObjectProperty IRI="#isOcclusalNbrOf"/>
+    </SymmetricObjectProperty>
+    <SymmetricObjectProperty>
+        <ObjectProperty IRI="#toothNumberToToothNumber"/>
+    </SymmetricObjectProperty>
     <AsymmetricObjectProperty>
         <ObjectProperty IRI="#byWhomCreated"/>
     </AsymmetricObjectProperty>
@@ -1773,7 +1848,13 @@
         <ObjectProperty IRI="#byWhomSigned"/>
     </AsymmetricObjectProperty>
     <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#documentToPerson"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
         <ObjectProperty IRI="#forWhomCreated"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#hasACSurface"/>
     </AsymmetricObjectProperty>
     <AsymmetricObjectProperty>
         <ObjectProperty IRI="#hasAPPosition"/>
@@ -1805,6 +1886,18 @@
     <AsymmetricObjectProperty>
         <ObjectProperty IRI="#isTreatedBy"/>
     </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#personToDocument"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#personToPerson"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#toothNumberToToothPosition"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#toothNumberToToothSurface"/>
+    </AsymmetricObjectProperty>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#byWhomCreated"/>
         <Class IRI="#Person"/>
@@ -1814,8 +1907,16 @@
         <Class IRI="#Person"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
+        <ObjectProperty IRI="#documentToPerson"/>
+        <Class IRI="#Document"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
         <ObjectProperty IRI="#forWhomCreated"/>
         <Class IRI="#Person"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasACSurface"/>
+        <Class IRI="#ToothNumber"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#hasAPPosition"/>
@@ -1850,6 +1951,10 @@
         <Class IRI="#ToothNumber"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isOcclusalNbrOf"/>
+        <Class IRI="#ToothNumber"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
         <ObjectProperty IRI="#isSignedBy"/>
         <Class IRI="#Document"/>
     </ObjectPropertyDomain>
@@ -1861,6 +1966,30 @@
         <ObjectProperty IRI="#isTreatedBy"/>
         <Class IRI="#Patient"/>
     </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#personToDocument"/>
+        <Class IRI="#Person"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#personToPerson"/>
+        <Class IRI="#Person"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#toothNumberToToothNumber"/>
+        <Class IRI="#ToothNumber"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#toothNumberToToothPosition"/>
+        <Class IRI="#ToothNumber"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#toothNumberToToothSurface"/>
+        <Class IRI="#ToothNumber"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#toothToTooth"/>
+        <Class IRI="#Tooth"/>
+    </ObjectPropertyDomain>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#byWhomCreated"/>
         <Class IRI="#Document"/>
@@ -1870,8 +1999,20 @@
         <Class IRI="#Document"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
+        <ObjectProperty IRI="#documentToPerson"/>
+        <Class IRI="#Person"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
         <ObjectProperty IRI="#forWhomCreated"/>
         <Class IRI="#Document"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasACSurface"/>
+        <Class IRI="#Apical"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasACSurface"/>
+        <Class IRI="#Coronal"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#hasAPPosition"/>
@@ -1918,6 +2059,10 @@
         <Class IRI="#ToothNumber"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
+        <ObjectProperty IRI="#isOcclusalNbrOf"/>
+        <Class IRI="#ToothNumber"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
         <ObjectProperty IRI="#isSignedBy"/>
         <Class IRI="#Person"/>
     </ObjectPropertyRange>
@@ -1929,9 +2074,33 @@
         <ObjectProperty IRI="#isTreatedBy"/>
         <Class IRI="#Student"/>
     </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#personToDocument"/>
+        <Class IRI="#Document"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#personToPerson"/>
+        <Class IRI="#Person"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#toothNumberToToothNumber"/>
+        <Class IRI="#ToothNumber"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#toothNumberToToothPosition"/>
+        <Class IRI="#ToothPosition"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#toothNumberToToothSurface"/>
+        <Class IRI="#ToothSurface"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#toothToTooth"/>
+        <Class IRI="#Tooth"/>
+    </ObjectPropertyRange>
 </Ontology>
 
 
 
-<!-- Generated by the OWL API (version 3.2.5.1928) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
 
