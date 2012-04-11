@@ -208,10 +208,19 @@
         <ObjectProperty IRI="#hasAPPosition"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#hasBPSurface"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasDMSurface"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#hasLRPosition"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#hasLUPosition"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasOISurface"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#hasPatient"/>
@@ -260,24 +269,24 @@
     </Declaration>
     <EquivalentClasses>
         <Class IRI="#Chart"/>
-        <ObjectAllValuesFrom>
+        <ObjectSomeValuesFrom>
             <ObjectProperty IRI="#isCreatedBy"/>
             <Class IRI="#Student"/>
-        </ObjectAllValuesFrom>
+        </ObjectSomeValuesFrom>
     </EquivalentClasses>
     <EquivalentClasses>
         <Class IRI="#Chart"/>
-        <ObjectAllValuesFrom>
+        <ObjectSomeValuesFrom>
             <ObjectProperty IRI="#isCreatedFor"/>
             <Class IRI="#Patient"/>
-        </ObjectAllValuesFrom>
+        </ObjectSomeValuesFrom>
     </EquivalentClasses>
     <EquivalentClasses>
         <Class IRI="#Chart"/>
-        <ObjectAllValuesFrom>
+        <ObjectSomeValuesFrom>
             <ObjectProperty IRI="#isSignedBy"/>
             <Class IRI="#Faculty"/>
-        </ObjectAllValuesFrom>
+        </ObjectSomeValuesFrom>
     </EquivalentClasses>
     <EquivalentClasses>
         <Class IRI="#Document"/>
@@ -394,6 +403,13 @@
     <EquivalentClasses>
         <Class IRI="#TN_1"/>
         <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_1"/>
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isOcclusalNbrOf"/>
             <Class IRI="#TN_32"/>
         </ObjectExactCardinality>
@@ -417,6 +433,13 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasLUPosition"/>
             <Class IRI="#Upper"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_10"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Incisal"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -457,6 +480,13 @@
     <EquivalentClasses>
         <Class IRI="#TN_11"/>
         <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Incisal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_11"/>
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
             <Class IRI="#TN_10"/>
         </ObjectExactCardinality>
@@ -487,6 +517,13 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasLUPosition"/>
             <Class IRI="#Upper"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_12"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -527,6 +564,13 @@
     <EquivalentClasses>
         <Class IRI="#TN_13"/>
         <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_13"/>
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
             <Class IRI="#TN_12"/>
         </ObjectExactCardinality>
@@ -557,6 +601,13 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasLUPosition"/>
             <Class IRI="#Upper"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_14"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -597,6 +648,13 @@
     <EquivalentClasses>
         <Class IRI="#TN_15"/>
         <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_15"/>
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
             <Class IRI="#TN_14"/>
         </ObjectExactCardinality>
@@ -627,6 +685,13 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasLUPosition"/>
             <Class IRI="#Upper"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_16"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -665,6 +730,13 @@
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
+        <Class IRI="#TN_17"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
         <Class IRI="#TN_18"/>
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasAPPosition"/>
@@ -683,6 +755,13 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasLUPosition"/>
             <Class IRI="#Lower"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_18"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -716,6 +795,13 @@
     <EquivalentClasses>
         <Class IRI="#TN_19"/>
         <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_19"/>
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
             <Class IRI="#TN_18"/>
         </ObjectExactCardinality>
@@ -739,6 +825,13 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasLUPosition"/>
             <Class IRI="#Upper"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_2"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -779,6 +872,13 @@
     <EquivalentClasses>
         <Class IRI="#TN_20"/>
         <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_20"/>
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
             <Class IRI="#TN_19"/>
         </ObjectExactCardinality>
@@ -802,6 +902,13 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasLUPosition"/>
             <Class IRI="#Lower"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_21"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -835,6 +942,13 @@
     <EquivalentClasses>
         <Class IRI="#TN_22"/>
         <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Incisal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_22"/>
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
             <Class IRI="#TN_21"/>
         </ObjectExactCardinality>
@@ -858,6 +972,13 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasLUPosition"/>
             <Class IRI="#Lower"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_23"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Incisal"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -891,6 +1012,13 @@
     <EquivalentClasses>
         <Class IRI="#TN_24"/>
         <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Incisal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_24"/>
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
             <Class IRI="#TN_23"/>
         </ObjectExactCardinality>
@@ -914,6 +1042,13 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasLUPosition"/>
             <Class IRI="#Lower"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_25"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Incisal"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -947,6 +1082,13 @@
     <EquivalentClasses>
         <Class IRI="#TN_26"/>
         <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Incisal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_26"/>
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
             <Class IRI="#TN_25"/>
         </ObjectExactCardinality>
@@ -970,6 +1112,13 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasLUPosition"/>
             <Class IRI="#Lower"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_27"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Incisal"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -1003,6 +1152,13 @@
     <EquivalentClasses>
         <Class IRI="#TN_28"/>
         <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_28"/>
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
             <Class IRI="#TN_27"/>
         </ObjectExactCardinality>
@@ -1031,6 +1187,13 @@
     <EquivalentClasses>
         <Class IRI="#TN_29"/>
         <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_29"/>
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
             <Class IRI="#TN_28"/>
         </ObjectExactCardinality>
@@ -1054,6 +1217,13 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasLUPosition"/>
             <Class IRI="#Upper"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_3"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -1094,6 +1264,13 @@
     <EquivalentClasses>
         <Class IRI="#TN_30"/>
         <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_30"/>
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
             <Class IRI="#TN_29"/>
         </ObjectExactCardinality>
@@ -1117,6 +1294,13 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasLUPosition"/>
             <Class IRI="#Lower"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_31"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -1150,6 +1334,13 @@
     <EquivalentClasses>
         <Class IRI="#TN_32"/>
         <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_32"/>
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
             <Class IRI="#TN_31"/>
         </ObjectExactCardinality>
@@ -1173,6 +1364,13 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasLUPosition"/>
             <Class IRI="#Upper"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_4"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -1213,6 +1411,13 @@
     <EquivalentClasses>
         <Class IRI="#TN_5"/>
         <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Occlusal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_5"/>
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
             <Class IRI="#TN_4"/>
         </ObjectExactCardinality>
@@ -1243,6 +1448,13 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasLUPosition"/>
             <Class IRI="#Upper"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_6"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Incisal"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -1283,6 +1495,13 @@
     <EquivalentClasses>
         <Class IRI="#TN_7"/>
         <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Incisal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_7"/>
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
             <Class IRI="#TN_6"/>
         </ObjectExactCardinality>
@@ -1313,6 +1532,13 @@
         <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasLUPosition"/>
             <Class IRI="#Upper"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_8"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Incisal"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -1353,6 +1579,13 @@
     <EquivalentClasses>
         <Class IRI="#TN_9"/>
         <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasOISurface"/>
+            <Class IRI="#Incisal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#TN_9"/>
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isNeighborOf"/>
             <Class IRI="#TN_8"/>
         </ObjectExactCardinality>
@@ -1367,8 +1600,50 @@
     <EquivalentClasses>
         <Class IRI="#ToothNumber"/>
         <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasACSurface"/>
+            <Class IRI="#Apical"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ToothNumber"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasACSurface"/>
+            <Class IRI="#Coronal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ToothNumber"/>
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#hasAPPosition"/>
             <Class IRI="#ToothPosition"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ToothNumber"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasBPSurface"/>
+            <Class IRI="#Buccal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ToothNumber"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasBPSurface"/>
+            <Class IRI="#Palatal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ToothNumber"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasDMSurface"/>
+            <Class IRI="#Distal"/>
+        </ObjectExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#ToothNumber"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="#hasDMSurface"/>
+            <Class IRI="#Mesial"/>
         </ObjectExactCardinality>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -1387,17 +1662,10 @@
     </EquivalentClasses>
     <EquivalentClasses>
         <Class IRI="#ToothNumber"/>
-        <ObjectMaxCardinality cardinality="1">
-            <ObjectProperty IRI="#isNeighborOf"/>
-            <Class IRI="#ToothNumber"/>
-        </ObjectMaxCardinality>
-    </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#ToothNumber"/>
-        <ObjectMaxCardinality cardinality="1">
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty IRI="#isOcclusalNbrOf"/>
             <Class IRI="#ToothNumber"/>
-        </ObjectMaxCardinality>
+        </ObjectExactCardinality>
     </EquivalentClasses>
     <SubClassOf>
         <Class IRI="#Anterior"/>
@@ -1718,12 +1986,24 @@
         <ObjectProperty IRI="#toothNumberToToothPosition"/>
     </SubObjectPropertyOf>
     <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasBPSurface"/>
+        <ObjectProperty IRI="#toothNumberToToothSurface"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasDMSurface"/>
+        <ObjectProperty IRI="#toothNumberToToothSurface"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
         <ObjectProperty IRI="#hasLRPosition"/>
         <ObjectProperty IRI="#toothNumberToToothPosition"/>
     </SubObjectPropertyOf>
     <SubObjectPropertyOf>
         <ObjectProperty IRI="#hasLUPosition"/>
         <ObjectProperty IRI="#toothNumberToToothPosition"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasOISurface"/>
+        <ObjectProperty IRI="#toothNumberToToothSurface"/>
     </SubObjectPropertyOf>
     <SubObjectPropertyOf>
         <ObjectProperty IRI="#hasPatient"/>
@@ -1794,9 +2074,6 @@
         <ObjectProperty IRI="#isSupervisedBy"/>
     </InverseObjectProperties>
     <FunctionalObjectProperty>
-        <ObjectProperty IRI="#hasACSurface"/>
-    </FunctionalObjectProperty>
-    <FunctionalObjectProperty>
         <ObjectProperty IRI="#hasAPPosition"/>
     </FunctionalObjectProperty>
     <FunctionalObjectProperty>
@@ -1860,10 +2137,19 @@
         <ObjectProperty IRI="#hasAPPosition"/>
     </AsymmetricObjectProperty>
     <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#hasBPSurface"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#hasDMSurface"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
         <ObjectProperty IRI="#hasLRPosition"/>
     </AsymmetricObjectProperty>
     <AsymmetricObjectProperty>
         <ObjectProperty IRI="#hasLUPosition"/>
+    </AsymmetricObjectProperty>
+    <AsymmetricObjectProperty>
+        <ObjectProperty IRI="#hasOISurface"/>
     </AsymmetricObjectProperty>
     <AsymmetricObjectProperty>
         <ObjectProperty IRI="#hasPatient"/>
@@ -1923,11 +2209,23 @@
         <Class IRI="#ToothNumber"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasBPSurface"/>
+        <Class IRI="#ToothNumber"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasDMSurface"/>
+        <Class IRI="#ToothNumber"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
         <ObjectProperty IRI="#hasLRPosition"/>
         <Class IRI="#ToothNumber"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#hasLUPosition"/>
+        <Class IRI="#ToothNumber"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasOISurface"/>
         <Class IRI="#ToothNumber"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
@@ -2023,6 +2321,22 @@
         <Class IRI="#Posterior"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasBPSurface"/>
+        <Class IRI="#Buccal"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasBPSurface"/>
+        <Class IRI="#Palatal"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasDMSurface"/>
+        <Class IRI="#Distal"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasDMSurface"/>
+        <Class IRI="#Mesial"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
         <ObjectProperty IRI="#hasLRPosition"/>
         <Class IRI="#Left"/>
     </ObjectPropertyRange>
@@ -2037,6 +2351,14 @@
     <ObjectPropertyRange>
         <ObjectProperty IRI="#hasLUPosition"/>
         <Class IRI="#Upper"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasOISurface"/>
+        <Class IRI="#Incisal"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasOISurface"/>
+        <Class IRI="#Occlusal"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#hasPatient"/>
