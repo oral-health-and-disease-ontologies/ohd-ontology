@@ -6,7 +6,7 @@
 
 ;;****************************************************************
 ;; Database preparation: 
-;; When get-eaglesoft-surgical-extractsions-ont is ran, the program verifies that the 
+;; When get-eaglesoft-surgical-extractions-ont is ran, the program verifies that the 
 ;; action_codes and patient_history tables exist.  This is done by calling 
 ;; prepare-eaglesoft-db.  However, this only tests that these tables exist in the 
 ;; user's database. If these table need to be recreated, the call 
