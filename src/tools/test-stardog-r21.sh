@@ -3,9 +3,11 @@ trunk=`dirname $0`/../..
 
 # This is where the database files will be kept (not checked in, of course)
 export STARDOG_HOME=$trunk/store/stardog-r21/
-
+echo PATH\=$STARDOG_HOME\:\$PATH
 # install the stardog distribution somewhere and then soft link in the executables stardog-admin, stardog-shell, and stardog into trunk/bin
 export PATH=$trunk/bin:$PATH
+
+export STARDOG_JAVA_ARGS='-DdisableSecurity=true'
 
 ontfiles="$trunk/src/ontology/pitt-ub-ohsu-r21/imports/*.owl $trunk/src/ontology/pitt-ub-ohsu-r21/imports/BFO2/*.owl $trunk/src/ontology/pitt-ub-ohsu-r21/ohd.owl"
 
@@ -40,5 +42,5 @@ stardog query -c "http://127.0.0.1:5822/r21db;reasoning=$expressivity" -q "PREFI
 # stardog query -c "http://127.0.0.1:5822/r21db;reasoning=$expressivity" -q "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT * WHERE { <http://purl.obolibrary.org/obo/OHD_0000016> rdf:type ?t. optional {?t rdfs:label ?l} }"
 
 # stop the server
-stardog-admin server stop
+#stardog-admin server stop
 
