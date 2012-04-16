@@ -18,7 +18,7 @@
 		     (?class !rdf:type !owl:Class)
 		     (?class !dc:identifier ?code)) 
 		   :expressivity nil)
-	 do (setf (gethash uri hash) code)
+	 do (setf (gethash class hash) code)
 	 finally  (setq *cdt2string* hash)
 	 (return-from cdt2string (cdt2string uri)))))
 
