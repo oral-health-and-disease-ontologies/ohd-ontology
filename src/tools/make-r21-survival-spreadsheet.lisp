@@ -1,6 +1,6 @@
 (defvar stardog-r21 "http://127.0.0.1:5822/r21db/query")
 
-(defun r21query (query  &rest args &key (expressivity "EL") &allow-other-keys t)
+(defun r21query (query  &rest args &key (expressivity "EL") &allow-other-keys)
   "Do a query against the r21 store. expressivity is nil, EL, RL, QL, DL(?)"
   (if expressivity
       (apply 'sparql query  :use-reasoner stardog-r21 :geturl-options `(:extra-headers (("SD-Connection-String" ,(format nil "reasoning=~a" expressivity)))) args)
