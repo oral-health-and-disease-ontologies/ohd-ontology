@@ -161,6 +161,7 @@
          ;; the dentition instance is a member of the class consisiting of
 	 ;; 1. the type of dentition it is (e.g., maxillary, mandibular, etc.)
 	 ;; 2. the class of things that lack a particular type of tooth
+	 ;; billd 4/23/12: commented out; this is going to be inferred by the reasoner
 	 ;; (push `(class-assertion
 	 ;; 	 (object-intersection-of
 	 ;; 	  ,dentition-type-uri
@@ -175,6 +176,7 @@
 	 ;; instance of missing tooth finding 'is about'
 	 ;; 1. the type of dentition it is (e.g., maxillary, mandibular, etc.)
 	 ;; 2. the class of things that lack a particular type of tooth
+         ;; billd 4/23/12: commented out; this is going to be inferred by the reasoner
 	 ;; (push `(class-assertion
 	 ;; 	 (object-some-values-from
 	 ;; 	  !'is about'@ohd
