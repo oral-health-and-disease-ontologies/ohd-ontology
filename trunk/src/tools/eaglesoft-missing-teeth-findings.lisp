@@ -130,19 +130,29 @@
          ;; declare type of dentition and add annotation about the dentition
 	 ;; teeth 1 - 16 are maxillary teeth
 	 ;; teeth 17 - 32 are mandibular teeth
-	 (cond
-	   ((< tooth 17) 
-	    (setf dentition-type-uri !'Secondary maxillary dentition'@ohd)
-	    (push `(class-assertion ,dentition-type-uri ,dentition-uri) axioms)
-	    (push `(annotation-assertion 
-		    !rdfs:label ,dentition-uri
-		    ,(str+ "secondary maxillary dentition of patient " patient-id)) axioms))
-	   (t 
-	    (setf dentition-type-uri !'Secondary mandibular dentition'@ohd)
-	    (push `(class-assertion ,dentition-type-uri ,dentition-uri) axioms)
-	    (push `(annotation-assertion 
-		    !rdfs:label ,dentition-uri
-		    ,(str+ "secondary mandibular dentition of patient " patient-id)) axioms)))
+	 ;; billd 4/23/12: we are not going worry about distinguishing between maxillary and mandibular
+	 ;;                dentitions; every dentition we be instance of 'Secondary dentition'
+	 ;; (cond
+	 ;;   ((< tooth 17) 
+	 ;;    (setf dentition-type-uri !'Secondary maxillary dentition'@ohd)
+	 ;;    (push `(class-assertion ,dentition-type-uri ,dentition-uri) axioms)
+	 ;;    (push `(annotation-assertion 
+	 ;; 	    !rdfs:label ,dentition-uri
+	 ;; 	    ,(str+ "secondary maxillary dentition of patient " patient-id)) axioms))
+	 ;;   (t 
+	 ;;    (setf dentition-type-uri !'Secondary mandibular dentition'@ohd)
+	 ;;    (push `(class-assertion ,dentition-type-uri ,dentition-uri) axioms)
+	 ;;    (push `(annotation-assertion 
+	 ;; 	    !rdfs:label ,dentition-uri
+	 ;; 	    ,(str+ "secondary mandibular dentition of patient " patient-id)) axioms)))
+	 
+	 ;; make dentition instance of 'Secondary dentition'
+	 (setf dentition-type-uri !'Secondary dentition'@ohd)
+	 (push `(class-assertion ,dentition-type-uri ,dentition-uri) axioms)
+	 (push `(annotation-assertion 
+		 !rdfs:label ,dentition-uri
+		 ,(str+ "secondary dentition of patient " patient-id)) axioms)
+	 
 
          ;; instance of secondary dentition is part of patient
 	 (push `(object-property-assertion !'is part of'@ohd
@@ -151,13 +161,13 @@
          ;; the dentition instance is a member of the class consisiting of
 	 ;; 1. the type of dentition it is (e.g., maxillary, mandibular, etc.)
 	 ;; 2. the class of things that lack a particular type of tooth
-	 (push `(class-assertion
-		 (object-intersection-of
-		  ,dentition-type-uri
-		  (object-all-values-from
-		   !'has part'@ohd
-		   (object-complement-of ,tooth-type-uri)))
-		 ,dentition-uri) axioms)
+	 ;; (push `(class-assertion
+	 ;; 	 (object-intersection-of
+	 ;; 	  ,dentition-type-uri
+	 ;; 	  (object-all-values-from
+	 ;; 	   !'has part'@ohd
+	 ;; 	   (object-complement-of ,tooth-type-uri)))
+	 ;; 	 ,dentition-uri) axioms)
 
          ;; instance of missing tooth finding 'is about' the dentition instance
 	 (push `(object-property-assertion !'is about'@ohd ,finding-uri ,dentition-uri) axioms)
@@ -165,14 +175,14 @@
 	 ;; instance of missing tooth finding 'is about'
 	 ;; 1. the type of dentition it is (e.g., maxillary, mandibular, etc.)
 	 ;; 2. the class of things that lack a particular type of tooth
-	 (push `(class-assertion
-		 (object-some-values-from
-		  !'is about'@ohd
-		  (object-intersection-of
-		   ,dentition-type-uri
-		   (object-all-values-from
-		    !'has part'@ohd
-		    (object-complement-of ,tooth-type-uri)))) ,finding-uri) axioms)
+	 ;; (push `(class-assertion
+	 ;; 	 (object-some-values-from
+	 ;; 	  !'is about'@ohd
+	 ;; 	  (object-intersection-of
+	 ;; 	   ,dentition-type-uri
+	 ;; 	   (object-all-values-from
+	 ;; 	    !'has part'@ohd
+	 ;; 	    (object-complement-of ,tooth-type-uri)))) ,finding-uri) axioms)
 
          ;; add data property !ohd:'occurence date' of the missing tooth finding
 	 (push `(data-property-assertion !'occurence date'@ohd
@@ -218,7 +228,7 @@ I.e., Records that have an action code '1'.
 Note: The query does not filter out primary (baby) teeth.
 */
 SELECT
-top 10
+top 100
   *
 FROM
   patient_history
