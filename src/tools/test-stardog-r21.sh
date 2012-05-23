@@ -17,6 +17,6 @@ stardog query -c "http://127.0.0.1:5822/r21db;reasoning=$expressivity" -q "PREFI
 
 # test sparql endpoint over http
 echo "testing sparql over http"
-wget --quiet --header='accept: application/sparql-results+json' -O - 'http://127.0.0.1:5822/r21db;reasoning=$expressivity/query?query=select%20*%20where%20{?s%20?p%20?o}%20limit%2010&'
+#wget --quiet --header='accept: application/sparql-results+json' -O - 'http://127.0.0.1:5822/r21db;reasoning=$expressivity/query?query=select%20*%20where%20{?s%20?p%20?o}%20limit%2010&'
 
 

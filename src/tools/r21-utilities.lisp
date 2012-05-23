@@ -278,7 +278,7 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
     occurrence-date))
 
 (defun get-eaglesoft-teeth-list (tooth-data)
-  "Reads the tooth_data array and returns a list of tooth numbers referenced in the tooth_data (i.e., field) array."
+  "Reads the tooth_data array and returns a list of tooth numbers referenced in the tooth_data (i.e., field) array. Note: This only returns a list of permanent teeth (i.e., teeth 1 - 32)."
   (let ((teeth-list nil))
 
     ;; verify that there are at least 32 tooth items in tooth-data
@@ -734,8 +734,14 @@ ORDER BY
 (defparameter *eaglesoft-surgical-extractions-ontology-iri* 
   "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-surgical-extractions.owl")
 
-;; eaglessoft endodontics ontology
+;; eaglesoft endodontics ontology
 (defparameter *eaglesoft-individual-endodontics-iri-base* 
   "http://purl.obolibrary.org/obo/ohd/individuals/")
 (defparameter *eaglesoft-endodontics-ontology-iri* 
   "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-endodontics.owl")
+
+;; eaglesoft missing teeth findings
+(defparameter *eaglesoft-individual-missing-teeth-findings-iri-base* 
+  "http://purl.obolibrary.org/obo/ohd/individuals/")
+(defparameter *eaglesoft-missing-teeth-findings-ontology-iri* 
+  "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-missing-teeth-findings.owl")

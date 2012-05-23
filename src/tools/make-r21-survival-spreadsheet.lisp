@@ -27,7 +27,7 @@
   (r21query '(:select (?patient ?tooth ?procedure ?date ?code) (:limit 10)
 	      (?toothi !rdf:type !'tooth'@ohd)
 	      (?procedurei !rdf:type !'restorative procedure'@ohd)
-	      (?procedurei !'occurence date'@ohd ?date)
+	      (?procedurei !'occurrence date'@ohd ?date)
 	      (?toothi !'is part of'@ohd ?personi)
 	      (?personi !rdf:type !'homo sapiens'@ohd)
 	      (?personi !rdfs:label ?person)

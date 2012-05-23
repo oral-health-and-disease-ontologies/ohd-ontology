@@ -47,7 +47,7 @@
 		(as `(imports ,(make-uri *ohd-ontology-iri*)))
 		
 		;; declare data properties
-		(as `(declaration (data-property !'occurence date'@ohd)))
+		(as `(declaration (data-property !'occurrence date'@ohd)))
 		(as `(declaration (data-property !'patient ID'@ohd)))
 		(as `(declaration (data-property !'birth_date'@ohd)))
 		    
