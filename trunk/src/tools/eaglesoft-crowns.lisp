@@ -45,7 +45,7 @@
 		(as `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)))
 
 		;; declare data properties
-		(as `(declaration (data-property !'occurence date'@ohd)))
+		(as `(declaration (data-property !'occurrence date'@ohd)))
 		(as `(declaration (data-property !'patient ID'@ohd)))
 		    
 		(loop while (#"next" results) do
@@ -158,13 +158,13 @@
 					     tooth-name " in patient " 
 					     patient-id)) axioms)
 
-	 ;; add data property !ohd:'occurence date' to restoration
-	 (push `(data-property-assertion !'occurence date'@ohd
+	 ;; add data property !ohd:'occurrence date' to restoration
+	 (push `(data-property-assertion !'occurrence date'@ohd
 					 ,crown-restoration-uri 
 					 (:literal ,occurrence-date !xsd:date)) axioms)
 	  ;;;; relate instances ;;;;
 
-	 ;; tooth is located in the patient
+	 ;; tooth is part of patient
 	 (push `(object-property-assertion !'is part of'@ohd
 					   ,tooth-uri ,patient-uri) axioms)
 

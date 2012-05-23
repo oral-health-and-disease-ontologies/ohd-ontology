@@ -46,7 +46,7 @@
 		(as `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)))
 
 		;; declare data properties
-		(as `(declaration (data-property !'occurence date'@ohd)))
+		(as `(declaration (data-property !'occurrence date'@ohd)))
 		(as `(declaration (data-property !'patient ID'@ohd)))
 		    
 		(loop while (#"next" results) do
@@ -142,8 +142,8 @@
          ;; instance of missing tooth finding 'is about' the dentition instance
 	 (push `(object-property-assertion !'is about'@ohd ,finding-uri ,dentition-uri) axioms)
 
-         ;; add data property !ohd:'occurence date' of the missing tooth finding
-	 (push `(data-property-assertion !'occurence date'@ohd
+         ;; add data property !ohd:'occurrence date' of the missing tooth finding
+	 (push `(data-property-assertion !'occurrence date'@ohd
 					 ,finding-uri
 					 (:literal ,occurrence-date !xsd:date)) axioms)
 	 ) ;; end loop
@@ -187,7 +187,7 @@ Note:
 - The some multiple enteries for the same missing tooth.
 */
 SELECT
- --top 100 -- used for testing
+  -- top 100 -- used for testing
   *
 FROM
   patient_history
