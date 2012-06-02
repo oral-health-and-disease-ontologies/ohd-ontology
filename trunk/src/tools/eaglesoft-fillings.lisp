@@ -47,7 +47,14 @@
 		;; declare data properties
 		(as `(declaration (data-property !'occurrence date'@ohd)))
 		(as `(declaration (data-property !'patient ID'@ohd)))
-		    
+		 
+		;; declare object property relations
+		(as `(declaration  (object-property !'is part of'@ohd)))
+		(as `(declaration  (object-property !'inheres in'@ohd)))
+		(as `(declaration  (object-property !'has participant'@ohd)))
+		(as `(declaration  (object-property !'is located in'@ohd)))
+		(as `(declaration  (object-property !'is about'@ohd)))
+
 		(loop while (#"next" results) do
 		     ;; determine this occurrence date
 		     (setf occurrence-date
@@ -78,6 +85,8 @@
 (defun get-eaglesoft-filling-axioms 
     (patient-id occurrence-date tooth-data surface ada-code record-count)
   (let ((axioms nil)
+	(cdt-class-uri nil)
+	(cdt-uri nil)
 	(material-name nil)
 	(material-uri nil)
 	(ohd-material-uri nil)
@@ -108,7 +117,7 @@
 	 
          ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
 	 (setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
-	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-name t))
+	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-with-number t))
 	 (setf tooth-uri (get-eaglesoft-tooth-iri patient-id tooth-type-uri))
 	 
 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
@@ -162,7 +171,7 @@
 	 (push `(annotation-assertion !rdfs:label 
 				      ,restoration-uri
 				      ,(str+ restoration-name 
-					     " restoration procedure on tooth " 
+					     " restoration procedure on " 
 					     tooth-name " in patient " 
 					     patient-id)) axioms)
 
@@ -170,6 +179,20 @@
 	 (push `(data-property-assertion !'occurrence date'@ohd
 					 ,restoration-uri 
 					 (:literal ,occurrence-date !xsd:date)) axioms)
+
+         ;; declare instance of cdt code as identified by the ada code that is about the procedure
+	 (setf cdt-class-uri (get-cdt-class-iri ada-code))
+	 (setf cdt-uri (get-eaglesoft-cdt-instance-iri patient-id ada-code cdt-class-uri record-count))
+	 (push `(declaration (named-individual ,cdt-uri)) axioms)
+	 (push `(class-assertion ,cdt-class-uri ,cdt-uri) axioms)
+	 
+	 ;; add annotion about cdt code
+	 (push `(annotation-assertion !rdfs:label
+				      ,cdt-uri
+				      ,(str+ "billing code " ada-code " for " restoration-name 
+					     " filling restoration on " tooth-name 
+					     " of patient " patient-id)) axioms)
+
 	  ;;;; relate instances ;;;;
 
 	 ;; toot is located in the patient
@@ -199,6 +222,10 @@
 	 ;; restoration material is located in the tooth
 	 (push `(object-property-assertion !'is located in'@ohd
 					   ,material-uri ,tooth-uri) axioms)
+
+         ;; cdt code instance is about the restoration process
+	 (push `(object-property-assertion !'is about'@ohd
+					   ,cdt-uri ,restoration-uri) axioms)
 	 ) ;; end loop
     
     ;;(pprint axioms)
@@ -321,6 +348,7 @@ To filter out primary teeth from the query you add the line:   AND isnumeric(too
 SET rowcount 0
 
 SELECT
+  -- TOP 10 -- for testing
    *
 FROM
   patient_history
