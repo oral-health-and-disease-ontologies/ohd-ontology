@@ -40,47 +40,48 @@
 ;; 			    (mapcar 'cdr (sort alist '< :key 'car))) 'vector)))
 
 
-(defun number-to-fma-tooth (number &key return-tooth-uri return-tooth-name)
+(defun number-to-fma-tooth (number &key return-tooth-uri return-tooth-name return-tooth-with-number)
   "Translates a tooth number into corresponding fma class.  By default, a cons is returned consisting of the (fma-class . name).  The :return-tooth-uri key specifies that only the uri is returned.  The :return-tooth-name key specifies that only the name is returned."
   (let ((teeth nil)
 	(tooth nil))
     (setf teeth
-	  #((!obo:FMA_55696 . "Right upper third secondary molar tooth") 
-	    (!obo:FMA_55697 . "Right upper second secondary molar tooth")
-	    (!obo:FMA_55698 . "Right upper first secondary molar tooth")
-	    (!obo:FMA_55688 . "Right upper second secondary premolar tooth")
-	    (!obo:FMA_55689 . "Right upper first secondary premolar tooth")
-	    (!obo:FMA_55798 . "Right upper secondary canine tooth")
-	    (!obo:FMA_55680 . "Right upper lateral secondary incisor tooth")
-	    (!obo:FMA_55681 . "Right upper central secondary incisor tooth")
-	    (!obo:FMA_55682 . "Left upper central secondary incisor tooth")
-	    (!obo:FMA_55683 . "Left upper lateral secondary incisor tooth")
-	    (!obo:FMA_55799 . "Left upper secondary canine tooth")
-	    (!obo:FMA_55690 . "Left upper first secondary premolar tooth")
-	    (!obo:FMA_55691 . "Left upper second secondary premolar tooth")
-	    (!obo:FMA_55699 . "Left upper first secondary molar tooth")
-	    (!obo:FMA_55700 . "Left upper second secondary molar tooth")
-	    (!obo:FMA_55701 . "Left upper third secondary molar tooth")
-	    (!obo:FMA_55702 . "Left lower third secondary molar tooth")
-	    (!obo:FMA_55703 . "Left lower second secondary molar tooth")
-	    (!obo:FMA_55704 . "Left lower first secondary molar tooth")
-	    (!obo:FMA_55692 . "Left lower second secondary premolar tooth")
-	    (!obo:FMA_55693 . "Left lower first secondary premolar tooth")
-	    (!obo:FMA_55687 . "Left lower secondary canine tooth")
-	    (!obo:FMA_57141 . "Left lower lateral secondary incisor tooth")
-	    (!obo:FMA_57143 . "Left lower central secondary incisor tooth")
-	    (!obo:FMA_57142 . "Right lower central secondary incisor tooth")
-	    (!obo:FMA_57140 . "Right lower lateral secondary incisor tooth")
-	    (!obo:FMA_55686 . "Right lower secondary canine tooth")
-	    (!obo:FMA_55694 . "Right lower first secondary premolar tooth")
-	    (!obo:FMA_55695 . "Right lower second secondary premolar tooth")
-	    (!obo:FMA_55705 . "Right lower first secondary molar tooth")
-	    (!obo:FMA_55706 . "Right lower second secondary molar tooth")
-	    (!obo:FMA_55707 . "Right lower third secondary molar tooth")))
+	  #((!obo:FMA_55696 "Right upper third secondary molar tooth" "tooth 1") 
+	    (!obo:FMA_55697 "Right upper second secondary molar tooth" "tooth 2")
+	    (!obo:FMA_55698 "Right upper first secondary molar tooth" "tooth 3")
+	    (!obo:FMA_55689 "Right upper second secondary premolar tooth" "tooth 4")
+	    (!obo:FMA_55689 "Right upper first secondary premolar tooth" "tooth 5")
+	    (!obo:FMA_55798 "Right upper secondary canine tooth" "tooth 6")
+	    (!obo:FMA_55680 "Right upper lateral secondary incisor tooth" "tooth 7")
+	    (!obo:FMA_55681 "Right upper central secondary incisor tooth" "tooth 8")
+	    (!obo:FMA_55682 "Left upper central secondary incisor tooth" "tooth 9")
+	    (!obo:FMA_55683 "Left upper lateral secondary incisor tooth" "tooth 10")
+	    (!obo:FMA_55799 "Left upper secondary canine tooth" "tooth 11")
+	    (!obo:FMA_55690 "Left upper first secondary premolar tooth" "tooth 12")
+	    (!obo:FMA_55691 "Left upper second secondary premolar tooth" "tooth 13")
+	    (!obo:FMA_55699 "Left upper first secondary molar tooth" "tooth 14")
+	    (!obo:FMA_55700 "Left upper second secondary molar tooth" "tooth 15")
+	    (!obo:FMA_55701 "Left upper third secondary molar tooth" "tooth 16")
+	    (!obo:FMA_55702 "Left lower third secondary molar tooth" "tooth 17")
+	    (!obo:FMA_55703 "Left lower second secondary molar tooth" "tooth 18")
+	    (!obo:FMA_55704 "Left lower first secondary molar tooth" "tooth 19")
+	    (!obo:FMA_55692 "Left lower second secondary premolar tooth" "tooth 20")
+	    (!obo:FMA_55693 "Left lower first secondary premolar tooth" "tooth 21")
+	    (!obo:FMA_55687 "Left lower secondary canine tooth" "tooth 22")
+	    (!obo:FMA_57141 "Left lower lateral secondary incisor tooth" "tooth 23")
+	    (!obo:FMA_57143 "Left lower central secondary incisor tooth" "tooth 24")
+	    (!obo:FMA_57142 "Right lower central secondary incisor tooth" "tooth 25")
+	    (!obo:FMA_57140 "Right lower lateral secondary incisor tooth" "tooth 26")
+	    (!obo:FMA_55686 "Right lower secondary canine tooth" "tooth 27")
+	    (!obo:FMA_55694 "Right lower first secondary premolar tooth" "tooth 28")
+	    (!obo:FMA_55695 "Right lower second secondary premolar tooth" "tooth 29")
+	    (!obo:FMA_55705 "Right lower first secondary molar tooth" "tooth 30")
+	    (!obo:FMA_55706 "Right lower second secondary molar tooth" "tooth 31")
+	    (!obo:FMA_55707 "Right lower third secondary molar tooth" "tooth 32")))
 
     (cond
-      (return-tooth-uri (setf tooth (car (aref teeth (1- number)))))
-      (return-tooth-name (setf tooth (cdr (aref teeth (1- number)))))
+      (return-tooth-uri (setf tooth (first (aref teeth (1- number)))))
+      (return-tooth-name (setf tooth (second (aref teeth (1- number)))))
+      (return-tooth-with-number (setf tooth (third (aref teeth (1- number)))))
       (t (setf tooth (aref teeth (1- number)))))
     ;; return tooth uri/name
     tooth))
@@ -103,6 +104,7 @@
 		 (t (push (parse-integer piece) teeth-list)))))
     ;; return list of teeth
     teeth-list))
+
 
 (defun get-unique-individual-iri(string &key salt class-type iri-base args)
   "Returns a unique iri for individuals in the ontology by doing a md5 checksum on the string parameter. An optional md5 salt value is specified by the salt key value (i.e., :salt salt). The class-type argument (i.e., :class-type class-type) concatentates the class type to the string.  This parameter is highly suggested, since it helps guarntee that ire will be unique.  The iri-base (i.e., :iri-base iri-base) is prepended to the iri.  For example, (get-unique-iri \"test\" :iri-base \"http://test.com/\" will prepend \"http://test.com/\" to the md5 checksum of \"test\".  The args parmameter is used to specify an other information you wish to concatenate to the string paramenter.  Args can be either a single value or list; e.g., (get-unique-iri \"test\" :args \"foo\") (get-unique-iri \"test\" :args '(\"foo\" \"bar\")."
@@ -178,6 +180,17 @@ Usage:
   "Returns num characters from the left of string. E.g. (str-right \"test\" 2) => \"te\""
   (when (<= num (length string))
     (setf string (subseq string 0 num))))
+
+(defun get-cdt-class-iri (ada-code)
+  "Returns the IRI for the CDT class that is associated with an ADA code. The function reads the last 4 charcters.  For example if the ADA code is 'D2390', the CDT class is determine by reading the '2390'. If the ada-code is less than 4 characters long, nil is returned."
+  (let ((cdt-iri nil))
+    ;; get last 4 characters of ada code
+    (setf ada-code (str-right ada-code 4))
+    (when ada-code
+      (setf cdt-iri (make-uri (str+ *cdt-iri-base* "CDT_000" ada-code))))
+    ;; return the cdt iri
+    cdt-iri))
+
 
 ;;;; database functions ;;;;
 
@@ -703,8 +716,12 @@ ORDER BY
 ;; global iri variables
 
 ;; ohd ontology
-(defparameter *ohd-base-iri-base* "http://purl.obolibrary.org/obo/ohd/")
+(defparameter *ohd-iri-base* "http://purl.obolibrary.org/obo/ohd/")
 (defparameter *ohd-ontology-iri* "http://purl.obolibrary.org/obo/ohd/dev/ohd.owl")
+
+;; CDT code ontology
+(defparameter *cdt-iri-base* "http://purl.obolibrary.org/obo/")
+(defparameter *cdt-ontology-iri* "http://purl.obolibrary.org/obo/cdt.owl")
 
 ;; eaglesoft dental patients ontology 
 (defparameter *eaglesoft-individual-dental-patients-iri-base*

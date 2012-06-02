@@ -48,7 +48,14 @@
 		;; declare data properties
 		(as `(declaration (data-property !'occurrence date'@ohd)))
 		(as `(declaration (data-property !'patient ID'@ohd)))
-		    
+		
+		;; declare object property relations
+		(as `(declaration  (object-property !'is part of'@ohd)))
+		(as `(declaration  (object-property !'inheres in'@ohd)))
+		(as `(declaration  (object-property !'has participant'@ohd)))
+		(as `(declaration  (object-property !'is located in'@ohd)))
+		(as `(declaration  (object-property !'is about'@ohd)))
+
 		(loop while (#"next" results) do
 		     ;; determine this occurrence date
 		     (setf occurrence-date
@@ -78,6 +85,8 @@
 (defun get-eaglesoft-endodontic-axioms 
     (patient-id occurrence-date tooth-data ada-code record-count)
   (let ((axioms nil)
+	(cdt-class-uri nil)
+	(cdt-uri nil)
 	(patient-uri nil)
 	(endodontic-role-uri nil)
 	(endodontic-procedure-uri nil)
@@ -98,7 +107,7 @@
 	       (get-eaglesoft-dental-patient-iri patient-id))
 	 
          ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
-	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-name t))
+	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-with-number t))
 	 (setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
 	 (setf tooth-uri (get-eaglesoft-tooth-iri patient-id tooth-type-uri))
 
@@ -139,14 +148,28 @@
 	 ;; add annotation about this endodontic procedure
 	 (push `(annotation-assertion !rdfs:label 
 				      ,endodontic-procedure-uri
-				      ,(str+ "endodontic procedure performed on tooth " 
-					     tooth-name " in patient " 
+				      ,(str+ "endodontic procedure performed on " 
+					     tooth-name " of patient " 
 					     patient-id)) axioms)
 
 	 ;; add data property !ohd:'occurrence date' to endodontic procedure
 	 (push `(data-property-assertion !'occurrence date'@ohd
 					 ,endodontic-procedure-uri
 					 (:literal ,occurrence-date !xsd:date)) axioms)
+
+         ;; declare instance of cdt code as identified by the ada code that is about the procedure
+	 (setf cdt-class-uri (get-cdt-class-iri ada-code))
+	 (setf cdt-uri (get-eaglesoft-cdt-instance-iri patient-id ada-code cdt-class-uri record-count))
+	 (push `(declaration (named-individual ,cdt-uri)) axioms)
+	 (push `(class-assertion ,cdt-class-uri ,cdt-uri) axioms)
+	 
+	 ;; add annotion about cdt code
+	 (push `(annotation-assertion !rdfs:label
+				      ,cdt-uri
+				      ,(str+ "billing code " ada-code " for endodontic procedure on "
+					     tooth-name " of patient " patient-id)) axioms)
+	 
+
 	  ;;;; relate instances ;;;;
 	 
          ;; 'tooth to undergo endodontic procedure role' inheres in tooth
@@ -165,6 +188,11 @@
          ;;  'endodontic procedure' has particpant patient
 	 (push `(object-property-assertion !'has participant'@ohd
 					   ,endodontic-procedure-uri ,patient-uri) axioms)
+
+	  ;; cdt code instance is about the restoration process
+	 (push `(object-property-assertion !'is about'@ohd
+					   ,cdt-uri ,endodontic-procedure-uri) axioms)
+
 	 ) ;; end loop
     
     ;;(pprint axioms)
@@ -208,6 +236,7 @@ Note: This has not been filtered for primary (baby) teeth.
 SET rowcount 0
 
 SELECT
+  -- TOP 10 -- for testing
   *
 FROM
   patient_history
