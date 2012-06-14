@@ -3,8 +3,29 @@
 (defun r21query (query  &rest args &key (expressivity "EL") &allow-other-keys)
   "Do a query against the r21 store. expressivity is nil, EL, RL, QL, DL(?)"
   (if expressivity
-      (apply 'sparql query  :use-reasoner stardog-r21 :geturl-options `(:extra-headers (("SD-Connection-String" ,(format nil "reasoning=~a" expressivity)))) args)
+      (apply 'sparql query  :use-reasoner stardog-r21 :geturl-options (and expressivity `(:extra-headers (("SD-Connection-String" ,(format nil "reasoning=~a" expressivity))))) args)
       (apply 'sparql query  :use-reasoner stardog-r21 args)))
+
+
+(defun explain-r21query (query &key (expressivity "EL") geturl-options &aux (url stardog-r21))
+  (destructuring-bind (protocol site path) (car (all-matches stardog-r21 "(http)://([^/]*)(.*)" 1 2 3))
+    (let ((query-uri (clean-uri site (#"replaceAll" path "query" "explain") protocol nil (format nil "query=~a" query))))
+
+      (apply 'get-url query-uri
+	     ;:post `(("query" ,query ))
+	     (append geturl-options (list :extra-headers `(("SD-Connection-String" ,(format nil "reasoning=~a" expressivity)) ("Accept" "text/plain"))
+				      :dont-cache t :force-refetch t))))))
+
+(defun stardog-db-consistent (&key (expressivity "EL") geturl-options &aux (url stardog-r21))
+  (destructuring-bind (protocol site path) (car (all-matches stardog-r21 "(http)://([^/]*)(.*)" 1 2 3))
+    (let ((query-uri (clean-uri site (#"replaceAll" path "query" "reasoning/consistency") protocol (make-immediate-object nil :ref) (make-immediate-object nil :ref))))
+      (apply 'get-url query-uri
+	     
+;:post `(("query" ,query ))
+	     (append geturl-options (list :extra-headers `(("SD-Connection-String" ,(format nil "reasoning=~a" expressivity)) ("Accept" "text/boolean"))
+				      :dont-cache t :force-refetch t))))))
+
+
 
 (defvar *cdt2string* nil)
 
@@ -22,18 +43,24 @@
 	 finally  (setq *cdt2string* hash)
 	 (return-from cdt2string (cdt2string uri)))))
 
+;; patients are asserted to be male organism or female organism.
 (defun build-spreadsheet ()
   "Start of the query. Next need to figure out how ?code is to be bound - it isn't in this version. It also appears to return incorrect answers."
-  (r21query '(:select (?patient ?tooth ?procedure ?date ?code) (:limit 10)
-	      (?toothi !rdf:type !'tooth'@ohd)
+  (r21query '(:select (?person  ?bdate ?tooth ?procedure ?procedurei ?procedure_type ?date ?toothn ?code) (:limit 10 :order-by (?person ?toothn ?date))
 	      (?procedurei !rdf:type !'restorative procedure'@ohd)
-	      (?procedurei !'occurrence date'@ohd ?date)
-	      (?toothi !'is part of'@ohd ?personi)
-	      (?personi !rdf:type !'homo sapiens'@ohd)
-	      (?personi !rdfs:label ?person)
+	      (?procedurei !'has participant'@ohd ?toothi)
+	      (?toothi !rdf:type ?toothtype)
+	      (?toothi !rdf:type !'tooth'@ohd)
+	      (?toothtype !'ADA universal tooth number'@ohd ?toothn)
 	      (?toothi !rdfs:label ?tooth)
+	      (?personi !rdf:type !'homo sapiens'@ohd)
+	      (?toothi !'is part of'@ohd ?personi)
+	      (?procedurei !'occurrence date'@ohd ?date)
+	      (?personi !'birth_date'@ohd ?bdate)
+	      (?personi !rdfs:label ?person)
 	      (?procedurei !rdfs:label ?procedure)
-	      (:optional (?code !'is about'@ohd ?procedurei))
+	      (?procedurei !rdf:type ?procedure_type)
+	      (:optional (?code !'is about'@ohd ?procedure_type))
 	      )
 	    :expressivity "RL" :trace "story of some teeth")
   nil) ;; RL fastest for this?

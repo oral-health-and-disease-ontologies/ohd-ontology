@@ -35,6 +35,7 @@
    (:module tools :pathname ""
 	    :components
 	    ((:file "queries")
+	     (:file "make-r21-survival-spreadsheet")
 	     (:file "eaglesoft-dental-patients")
 	     (:file "eaglesoft-fillings")
 	     (:file "eaglesoft-crowns")
