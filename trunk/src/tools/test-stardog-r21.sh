@@ -6,6 +6,9 @@ source stardog-env.sh
 # Reasoning expressivity for stardog
 expressivity=EL
 
+stardog-admin server start
+stardog-admin create -n r21db -t D -u admin -p admin --server snarl://localhost:5820/ $ontfiles $instancefiles
+
 #sanity check
 stardog query -c "http://127.0.0.1:5822/r21db;reasoning=$expressivity" -q "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> SELECT  ?s WHERE { ?s rdf:type owl:Thing . } LIMIT 10"
 

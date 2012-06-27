@@ -50,7 +50,14 @@
 		(as `(declaration (data-property !'occurrence date'@ohd)))
 		(as `(declaration (data-property !'patient ID'@ohd)))
 		(as `(declaration (data-property !'birth_date'@ohd)))
-		    
+		
+		;; declare object property relations
+		(as `(declaration  (object-property !'is part of'@ohd)))
+		(as `(declaration  (object-property !'inheres in'@ohd)))
+		(as `(declaration  (object-property !'has participant'@ohd)))
+		(as `(declaration  (object-property !'is located in'@ohd)))
+		(as `(declaration  (object-property !'is about'@ohd)))
+		
 		(loop while (#"next" results) do
 		     (as (get-eaglesoft-dental-patient-axioms
 			  (#"getString" results "patient_id")

@@ -17,6 +17,6 @@ export instancefiles="$trunk/src/ontology/pitt-ub-ohsu-r21/dropbox/*.owl"
 # Reasoning expressivity for stardog
 export expressivity=RL
 
-#echo STARDOG_HOME=$STARDOG_HOME
+echo STARDOG_HOME=$STARDOG_HOME
 #echo PATH=$PATH
 #echo expressivity=$expressivity

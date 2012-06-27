@@ -86,6 +86,39 @@
     ;; return tooth uri/name
     tooth))
 
+(defun get-fma-surface-uri (surface-name)
+  "Return the uri for a tooth surface, based on the FMA ontology, for a given surface name."
+  (let ((uri nil))
+    (cond
+      ((equalp surface-name "buccal") (setf uri !obo:FMA_no_fmaid_Buccal_surface_enamel_of_tooth))
+      ((equalp surface-name "distal") (setf uri !obo:FMA_no_fmaid_Distal_surface_enamel_of_tooth))
+      ((equalp surface-name "incisal") (setf uri !obo:FMA_no_fmaid_Incisal_surface_enamel_of_tooth))
+      ((equalp surface-name "labial") (setf uri !obo:FMA_no_fmaid_Labial_surface_enamel_of_tooth))
+      ((equalp surface-name "lingual") (setf uri !obo:FMA_no_fmaid_Lingual_surface_enamel_of_tooth))
+      ((equalp surface-name "mesial") (setf uri !obo:FMA_no_fmaid_Mesial_surface_enamel_of_tooth))
+      ((equalp surface-name "occlusial") (setf uri !obo:FMA_no_fmaid_Occlusial_surface_enamel_of_tooth)))
+
+    ;; return suface uri
+    uri))
+
+(defun get-surface-name-from-surface-letter (surface-letter)
+  "Returns the name of the tooth surface associated with a letter (e.g 'b' -> 'buccal')."
+  (let ((surface-name nil))
+    ;; remove any leading and trailing spaces from letter
+    (setf surface-letter (string-trim " " surface-letter))
+
+    (cond
+      ((equalp surface-letter "b") (setf surface-name "buccal"))
+      ((equalp surface-letter "d") (setf surface-name "distal"))
+      ((equalp surface-letter "i") (setf surface-name "incisal"))
+      ((equalp surface-letter "f") (setf surface-name "labial"))
+      ((equalp surface-letter "l") (setf surface-name "lingual"))
+      ((equalp surface-letter "m") (setf surface-name "mesial"))
+      ((equalp surface-letter "o") (setf surface-name "occlusial")))
+
+    ;; return surface name
+    surface-name))
+
 ;; alanr
 ;; billd: this was intended to read data that has tooth ranges of the form "3-6".
 ;; however, we are reading the tooth_data array, which is processed using get-teeth-list
@@ -107,7 +140,7 @@
 
 
 (defun get-unique-individual-iri(string &key salt class-type iri-base args)
-  "Returns a unique iri for individuals in the ontology by doing a md5 checksum on the string parameter. An optional md5 salt value is specified by the salt key value (i.e., :salt salt). The class-type argument (i.e., :class-type class-type) concatentates the class type to the string.  This parameter is highly suggested, since it helps guarntee that ire will be unique.  The iri-base (i.e., :iri-base iri-base) is prepended to the iri.  For example, (get-unique-iri \"test\" :iri-base \"http://test.com/\" will prepend \"http://test.com/\" to the md5 checksum of \"test\".  The args parmameter is used to specify an other information you wish to concatenate to the string paramenter.  Args can be either a single value or list; e.g., (get-unique-iri \"test\" :args \"foo\") (get-unique-iri \"test\" :args '(\"foo\" \"bar\")."
+  "Returns a unique iri for individuals in the ontology by doing a md5 checksum on the string parameter. An optional md5 salt value is specified by the salt key value (i.e., :salt salt). The class-type argument (i.e., :class-type class-type) concatentates the class type to the string.  This parameter is highly suggested, since it helps guarntee that iri will be unique.  The iri-base (i.e., :iri-base iri-base) is prepended to the iri.  For example, (get-unique-iri \"test\" :iri-base \"http://test.com/\" will prepend \"http://test.com/\" to the md5 checksum of \"test\".  The args parmameter is used to specify an other information you wish to concatenate to the string paramenter.  Args can be either a single value or list; e.g., (get-unique-iri \"test\" :args \"foo\") (get-unique-iri \"test\" :args '(\"foo\" \"bar\")."
   ;; check that string param is a string
   (if (not (stringp string)) 
       (setf string (format nil "~a" string)))
@@ -305,6 +338,34 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
 
     ;; return list of teeth
     teeth-list))
+
+(defun get-eaglesoft-surface-list (surface)
+  "Reads the surface data field (a string of characters) and returns a list of the surfaces."
+  (let ((surface-list nil)
+	(surface-matches nil)
+	(surface-letter nil)
+	(surface-name nil))
+    
+    ;; surfaces sometimes contain numbers to indicate different kinds of caries (e.g., B5)
+    ;; so, use regular expression to get a list of just the letters (e.g., "m" "f")
+    (setf surface-matches  (all-matches surface "[a-z]|[A-Z]" 0))
+    
+    (loop 
+       for item in surface-matches do
+	 ;; all-matches returns a list of single item list items that matched:
+	 ;; e.g., "mf" -> (("m") ("f"))
+	 ;; so, pull out the individual list items
+	 (setf surface-letter (first item))
+	 
+	 ;; get surface name associated with letter
+	 (setf surface-name 
+	       (get-surface-name-from-surface-letter surface-letter))
+
+	 ;; push surface name on to the list
+	 (push surface-name surface-list))
+
+    ;; return list of tooth surfaces
+    surface-list))
 
 (defun get-eaglesoft-dental-patient-iri (patient-id)
   "Returns an iri for a patient that is generated by the patient id."
@@ -727,7 +788,7 @@ ORDER BY
 (defparameter *eaglesoft-individual-dental-patients-iri-base*
   "http://purl.obolibrary.org/obo/ohd/individuals/")
 (defparameter *eaglesoft-dental-patients-ontology-iri* 
-  "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-patients.owl")x4b
+  "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-patients.owl")
 
 ;; eaglesoft fillings ontology
 (defparameter *eaglesoft-individual-fillings-iri-base* 
