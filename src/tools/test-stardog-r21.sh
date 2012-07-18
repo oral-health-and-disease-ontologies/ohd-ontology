@@ -4,7 +4,7 @@ cd $trunk/src/tools
 source stardog-env.sh
 
 # Reasoning expressivity for stardog
-expressivity=EL
+expressivity=RL
 
 stardog-admin server start
 stardog-admin create -n r21db -t D -u admin -p admin --server snarl://localhost:5820/ $ontfiles $instancefiles
