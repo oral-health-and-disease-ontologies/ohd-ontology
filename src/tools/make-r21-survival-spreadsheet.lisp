@@ -47,20 +47,22 @@
 (defun build-spreadsheet ()
   "Start of the query. Next need to figure out how ?code is to be bound - it isn't in this version. It also appears to return incorrect answers."
   (r21query '(:select (?person  ?bdate ?tooth ?procedure ?procedurei ?procedure_type ?date ?toothn ?code) (:limit 10 :order-by (?person ?toothn ?date))
-	      (?procedurei !rdf:type !'restorative procedure'@ohd)
-	      (?procedurei !'has participant'@ohd ?toothi)
-	      (?toothi !rdf:type ?toothtype)
-	      (?toothi !rdf:type !'tooth'@ohd)
-	      (?toothtype !'ADA universal tooth number'@ohd ?toothn)
-	      (?toothi !rdfs:label ?tooth)
-	      (?personi !rdf:type !'homo sapiens'@ohd)
-	      (?toothi !'is part of'@ohd ?personi)
-	      (?procedurei !'occurrence date'@ohd ?date)
-	      (?personi !'birth_date'@ohd ?bdate)
-	      (?personi !rdfs:label ?person)
+	      (?procedurei !rdf:type !'restorative procedure'@ohd) ; procedure instances we are looking for are restorative procedures
+	      (:optional (?not !rdfs:subClassOf ?procedurei))
+	      (?procedurei !'occurrence date'@ohd ?date) ; echo of which occurs on ?date
+	      (?procedurei !'has participant'@ohd ?toothi) ; that involve an instance
+	      (?toothi !rdf:type ?toothtype) ; of some type
+	      (?toothi !rdf:type !'tooth'@ohd) ; that is a tooth
+	      (?toothtype !'ADA universal tooth number'@ohd ?toothn) ; and we want the tooth number 
+	      (?toothi !rdfs:label ?tooth) ; and the label of the tooth
+	      (?personi !rdf:type !'homo sapiens'@ohd) ; Now there is a person involved
+	      (?toothi !'is part of'@ohd ?personi) ; that that tooth is part of
+	      (?personi !'birth_date'@ohd ?bdate) ; we want their birth date
+	      (?personi !rdfs:label ?person) ; their label 
 	      (?procedurei !rdfs:label ?procedure)
 	      (?procedurei !rdf:type ?procedure_type)
 	      (:optional (?code !'is about'@ohd ?procedure_type))
+	      (:filter (bound ?not))
 	      )
 	    :expressivity "RL" :trace "story of some teeth")
   nil) ;; RL fastest for this?
