@@ -48,7 +48,7 @@
   "Start of the query. Next need to figure out how ?code is to be bound - it isn't in this version. It also appears to return incorrect answers."
   (r21query '(:select (?person  ?bdate ?tooth ?procedure ?procedurei ?procedure_type ?date ?toothn ?code) (:limit 10 :order-by (?person ?toothn ?date))
 	      (?procedurei !rdf:type !'restorative procedure'@ohd) ; procedure instances we are looking for are restorative procedures
-	      (:optional (?not !rdfs:subClassOf ?procedurei))
+	      ;;(:optional (?not !rdfs:subClassOf ?procedurei))
 	      (?procedurei !'occurrence date'@ohd ?date) ; echo of which occurs on ?date
 	      (?procedurei !'has participant'@ohd ?toothi) ; that involve an instance
 	      (?toothi !rdf:type ?toothtype) ; of some type
@@ -62,8 +62,64 @@
 	      (?procedurei !rdfs:label ?procedure)
 	      (?procedurei !rdf:type ?procedure_type)
 	      (:optional (?code !'is about'@ohd ?procedure_type))
-	      (:filter (bound ?not))
+	      ;;(:filter (bound ?not))
 	      )
 	    :expressivity "RL" :trace "story of some teeth")
   nil) ;; RL fastest for this?
 
+(defun test-bound ()
+  (r21query 
+   '(:select 
+     (?type ?not)
+     ()
+      (!obo:OHD_0000017 !rdf:type ?type)
+     ;;(:optional (?type !rdfs:subClassOf ?not))
+     ;;(:optional (?not !rdfs:subClassOf ?type))
+     ;;(:optional (!obo:OHD_0000013 !rdfs:subClassOf ?type))
+     ;;(:filter (not (bound ?not)))
+     ;;(:filter (bound ?not))
+     )
+   :expressivity "RL" :trace "test bound")
+nil)
+
+(defun ontobee ()
+  (sparql 
+   '(:select 
+     (?person ?type)
+     ()
+     (:graph  !<http://purl.obolibrary.org/obo/merged/ohd.owl>
+      ;;(?person !rdf:type ?type)
+      (!obo:OHD_0000017 !rdf:type ?type)
+      ;;(?person !rdf:type !'dental patient'@ohd)
+      ;;(:optional (?not !rdfs:subClassOf ?procedurei))
+      ;;(:filter (bound ?not))
+      ))
+     :use-reasoner "http://sparql.hegroup.org/sparql"
+     :trace "ontobee: story of some teeth"
+     :values nil)
+nil)
+
+(defun get-ohd-classes ()
+  (sparql '(:select (?class ?label ?definition) ()
+	    (:graph  !<http://purl.obolibrary.org/obo/merged/ohd.owl>
+	     (?class !rdf:type !owl:Class)
+	     (?class !rdfs:label ?label)
+	     ;;(:optional (?class !'definition'@ohd ?definition))
+	     )
+	    (:filter (regex (str ?class) "OHD_")))
+	  :use-reasoner "http://sparql.hegroup.org/sparql"
+	  :trace "test query"
+	  :values nil))
+
+(defun write-ohd-class-file (file-name)
+  (let ((ohd-classes nil)
+	(uri nil)
+	(label nil))
+    (with-open-file (f file-name :direction :output 
+		       :if-exists :supersede
+		       :if-does-not-exist :create)
+      (setf ohd-classes (get-ohd-classes))
+      (loop for class in ohd-classes do
+	   (setf uri (uri-full (first class)))
+	   (setf label (second class))
+	   (format f "~a~a~a~%" uri #\tab label)))))
