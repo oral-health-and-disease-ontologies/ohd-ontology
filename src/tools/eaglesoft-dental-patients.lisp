@@ -46,17 +46,8 @@
 		;; import the ohd ontology
 		(as `(imports ,(make-uri *ohd-ontology-iri*)))
 		
-		;; declare data properties
-		(as `(declaration (data-property !'occurrence date'@ohd)))
-		(as `(declaration (data-property !'patient ID'@ohd)))
-		(as `(declaration (data-property !'birth_date'@ohd)))
-		
-		;; declare object property relations
-		(as `(declaration  (object-property !'is part of'@ohd)))
-		(as `(declaration  (object-property !'inheres in'@ohd)))
-		(as `(declaration  (object-property !'has participant'@ohd)))
-		(as `(declaration  (object-property !'is located in'@ohd)))
-		(as `(declaration  (object-property !'is about'@ohd)))
+		;; get axioms for declaring annotation, object, and data properties used for ohd
+		(as (get-ohd-declaration-axioms))
 		
 		(loop while (#"next" results) do
 		     (as (get-eaglesoft-dental-patient-axioms
@@ -65,7 +56,6 @@
 			  (#"getString" results "sex")))
 		     (incf count))) 
 	   
-
 	   ;; database cleanup
 	   (and connection (#"close" connection))
 	   (and results (#"close" results))
@@ -88,11 +78,15 @@
       (push `(declaration (named-individual ,patient-uri)) axioms) 
       
       ;; declare patient to be an instance of Female or Male 
+      ;; note: append puts lists together and doesn't put items in list (like push)
       (cond
 	((equalp sex "F")
-	 (push `(class-assertion !'female dental patient'@ohd ,patient-uri) axioms))
-	(t
-	 (push `(class-assertion !'male dental patient'@ohd ,patient-uri) axioms)))
+	 (setf axioms
+	       (append (get-ohd-instance-axioms patient-uri !'female dental patient'@ohd)axioms)))
+	(t	 
+	 (setf axioms
+	       (append (get-ohd-instance-axioms patient-uri !'male dental patient'@ohd)axioms))))
+
 	 
       ;; add data property 'patient id' to patient
       (push `(data-property-assertion !'patient ID'@ohd 
@@ -125,8 +119,13 @@
     (setf patient-role-uri (get-eaglesoft-dental-patient-role-iri patient-id))
 
     ;; create instance of patient role; patient role is an instance of !obi:'patient role'
+    ;; note: append puts lists together and doesn't put items in list (like push)
     (push `(declaration (named-individual ,patient-role-uri)) axioms)
-    (push `(class-assertion !'patient role'@ohd ,patient-role-uri) axioms) 
+    ;;(push `(class-assertion !'patient role'@ohd ,patient-role-uri) axioms) 
+    (setf axioms 
+	  (get-ohd-instance-axioms patient-role-uri !'patient role'@ohd))
+
+    
 
     ;; 'patient role' inheres in patient
     (push `(object-property-assertion !'inheres in'@ohd
@@ -157,6 +156,7 @@
 SET rowcount 0
 
 SELECT
+  --TOP 100 -- for testing
   *
 FROM
   PPM.patient

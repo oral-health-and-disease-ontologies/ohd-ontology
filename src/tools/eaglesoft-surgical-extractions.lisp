@@ -44,18 +44,10 @@
 		;; import the ohd ontology
 		(as `(imports ,(make-uri *ohd-ontology-iri*)))
 		(as `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)))
-
-		;; declare data properties
-		(as `(declaration (data-property !'occurrence date'@ohd)))
-		(as `(declaration (data-property !'patient ID'@ohd)))
-		    
-		;; declare object property relations
-		(as `(declaration  (object-property !'is part of'@ohd)))
-		(as `(declaration  (object-property !'inheres in'@ohd)))
-		(as `(declaration  (object-property !'has participant'@ohd)))
-		(as `(declaration  (object-property !'is located in'@ohd)))
-		(as `(declaration  (object-property !'is about'@ohd)))
-
+		
+		;; get axioms for declaring annotation, object, and data properties used for ohd
+		(as (get-ohd-declaration-axioms))
+		
 		(loop while (#"next" results) do
 		     ;; determine this occurrence date
 		     (setf occurrence-date
@@ -113,7 +105,9 @@
 	 (setf tooth-uri (get-eaglesoft-tooth-iri patient-id tooth-type-uri))
 
 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
-	 (push `(class-assertion ,tooth-type-uri ,tooth-uri) axioms)	     
+         ;; note: append puts lists together and doesn't put items in list (like push)
+	 (setf axioms
+	       (append (get-ohd-instance-axioms tooth-uri tooth-type-uri) axioms))
 	 
         ;; add annotation about tooth
 	 (push `(annotation-assertion !rdfs:label 
@@ -126,7 +120,9 @@
 	       (get-eaglesoft-tooth-to-be-extracted-role-iri patient-id tooth record-count))
 		
 	 (push `(declaration (named-individual ,extraction-role-uri)) axioms)
-	 (push `(class-assertion !'tooth to be extracted role'@ohd ,extraction-role-uri) axioms)
+	 (setf axioms
+	       (append (get-ohd-instance-axioms extraction-role-uri !'tooth to be extracted role'@ohd) 
+		       axioms))
 
 	 ;; add annotation about 'tooth to be extracted role'
 	 (push `(annotation-assertion !rdfs:label 
@@ -141,10 +137,9 @@
 	 (setf extraction-procedure-uri
 	       (get-eaglesoft-tooth-extraction-procedure-iri
 		patient-id tooth-name procedure-type-uri record-count))
-	 
 	 (push `(declaration (named-individual ,extraction-procedure-uri)) axioms)
-	 (push `(class-assertion !'tooth extraction procedure'@ohd 
-				 ,extraction-procedure-uri) axioms)
+	 (setf axioms
+	       (append (get-ohd-instance-axioms extraction-procedure-uri procedure-type-uri) axioms))
 
 	 ;; add annotation about this extraction procedure
 	 (push `(annotation-assertion !rdfs:label 
@@ -162,7 +157,8 @@
 	 (setf cdt-class-uri (get-cdt-class-iri ada-code))
 	 (setf cdt-uri (get-eaglesoft-cdt-instance-iri patient-id ada-code cdt-class-uri record-count))
 	 (push `(declaration (named-individual ,cdt-uri)) axioms)
-	 (push `(class-assertion ,cdt-class-uri ,cdt-uri) axioms)
+	 (setf axioms
+	       (append (get-ohd-instance-axioms cdt-uri cdt-class-uri) axioms))
 	 
 	 ;; add annotion about cdt code
 	 (push `(annotation-assertion !rdfs:label

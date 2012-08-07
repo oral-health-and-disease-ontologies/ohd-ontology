@@ -45,17 +45,9 @@
 		(as `(imports ,(make-uri *ohd-ontology-iri*)))
 		(as `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)))
 
-		;; declare data properties
-		(as `(declaration (data-property !'occurrence date'@ohd)))
-		(as `(declaration (data-property !'patient ID'@ohd)))
-
-		;; declare object property relations
-		(as `(declaration  (object-property !'is part of'@ohd)))
-		(as `(declaration  (object-property !'inheres in'@ohd)))
-		(as `(declaration  (object-property !'has participant'@ohd)))
-		(as `(declaration  (object-property !'is located in'@ohd)))
-		(as `(declaration  (object-property !'is about'@ohd)))
-		    
+		;; get axioms for declaring annotation, object, and data properties used for ohd
+		(as (get-ohd-declaration-axioms))
+		
 		(loop while (#"next" results) do
 		     ;; determine the occurrence date
 		     (setf occurrence-date
@@ -123,7 +115,8 @@
          ;; declare instance of !ohd:'missing tooth finding'
 	 (setf finding-uri
 	       (get-eaglesoft-missing-tooth-finding-iri patient-id tooth-name record-count))
-	 (push `(class-assertion ,finding-type-uri ,finding-uri) axioms)
+	 (setf axioms
+	       (append (get-ohd-instance-axioms finding-uri finding-type-uri) axioms))
 
          ;; add annotation about missing tooth finding
 	 (push `(annotation-assertion !rdfs:label 
@@ -137,7 +130,9 @@
 	 
          ;; make dentition instance of 'Secondary dentition'
 	 (setf dentition-type-uri !'Secondary dentition'@ohd)
-	 (push `(class-assertion ,dentition-type-uri ,dentition-uri) axioms)
+	 (setf axioms
+	       (append (get-ohd-instance-axioms dentition-uri dentition-type-uri) axioms))
+
 	 (push `(annotation-assertion 
 		 !rdfs:label ,dentition-uri
 		 ,(str+ "secondary dentition of patient " patient-id)) axioms)

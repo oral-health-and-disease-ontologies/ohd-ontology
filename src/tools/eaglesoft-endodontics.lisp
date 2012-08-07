@@ -45,16 +45,8 @@
 		(as `(imports ,(make-uri *ohd-ontology-iri*)))
 		(as `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)))
 
-		;; declare data properties
-		(as `(declaration (data-property !'occurrence date'@ohd)))
-		(as `(declaration (data-property !'patient ID'@ohd)))
-		
-		;; declare object property relations
-		(as `(declaration  (object-property !'is part of'@ohd)))
-		(as `(declaration  (object-property !'inheres in'@ohd)))
-		(as `(declaration  (object-property !'has participant'@ohd)))
-		(as `(declaration  (object-property !'is located in'@ohd)))
-		(as `(declaration  (object-property !'is about'@ohd)))
+		;; get axioms for declaring annotation, object, and data properties used for ohd
+		(as (get-ohd-declaration-axioms))
 
 		(loop while (#"next" results) do
 		     ;; determine this occurrence date
@@ -112,7 +104,9 @@
 	 (setf tooth-uri (get-eaglesoft-tooth-iri patient-id tooth-type-uri))
 
 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
-	 (push `(class-assertion ,tooth-type-uri ,tooth-uri) axioms)	     
+         ;; note: append puts lists together and doesn't put items in list (like push)
+	 (setf axioms
+	       (append (get-ohd-instance-axioms tooth-uri tooth-type-uri) axioms))
 	 
         ;; add annotation about tooth
 	 (push `(annotation-assertion !rdfs:label 
@@ -126,8 +120,9 @@
 		patient-id tooth record-count))
 		
 	 (push `(declaration (named-individual ,endodontic-role-uri)) axioms)
-	 (push `(class-assertion !'tooth to undergo endodontic procedure role'@ohd 
-				 ,endodontic-role-uri) axioms)
+	 (setf axioms
+	       (append (get-ohd-instance-axioms endodontic-role-uri 
+						!'tooth to undergo endodontic procedure role'@ohd) axioms))
 
 	 ;; add annotation about 'tooth to undergo endodontic procedure role'
 	 (push `(annotation-assertion !rdfs:label 
@@ -142,8 +137,8 @@
 	       (get-eaglesoft-endodontic-procedure-iri patient-id tooth-name record-count))
 	 
 	 (push `(declaration (named-individual ,endodontic-procedure-uri)) axioms)
-	 (push `(class-assertion !'endodontic procedure'@ohd 
-				 ,endodontic-procedure-uri) axioms)
+	 (setf axioms
+	       (append (get-ohd-instance-axioms endodontic-procedure-uri !'endodontic procedure'@ohd) axioms))
 
 	 ;; add annotation about this endodontic procedure
 	 (push `(annotation-assertion !rdfs:label 
@@ -161,7 +156,8 @@
 	 (setf cdt-class-uri (get-cdt-class-iri ada-code))
 	 (setf cdt-uri (get-eaglesoft-cdt-instance-iri patient-id ada-code cdt-class-uri record-count))
 	 (push `(declaration (named-individual ,cdt-uri)) axioms)
-	 (push `(class-assertion ,cdt-class-uri ,cdt-uri) axioms)
+	 (setf axioms
+	       (append (get-ohd-instance-axioms cdt-uri cdt-class-uri) axioms))
 	 
 	 ;; add annotion about cdt code
 	 (push `(annotation-assertion !rdfs:label

@@ -225,6 +225,36 @@ Usage:
     cdt-iri))
 
 
+(defun get-ohd-declaration-axioms ()
+  "Returns a list of declaration axioms for data properties, object properties, and annotations that are used in the ohd ontology."
+  (let ((axioms nil))
+    
+    ;; declare data properties
+    (push `(declaration (data-property !'occurrence date'@ohd)) axioms)
+    (push `(declaration (data-property !'patient ID'@ohd)) axioms)
+		
+    ;; declare object property relations
+    (push `(declaration  (object-property !'is part of'@ohd)) axioms)
+    (push `(declaration  (object-property !'inheres in'@ohd)) axioms)
+    (push `(declaration  (object-property !'has participant'@ohd)) axioms)
+    (push `(declaration  (object-property !'is located in'@ohd)) axioms)
+    (push `(declaration  (object-property !'is about'@ohd)) axioms)
+    
+    ;; declare custom ohd annation
+    (push `(declaration (annotation-property !'direct type'@ohd)) axioms)
+
+    ;; return axioms
+    axioms))
+
+(defun get-ohd-instance-axioms (instance class)
+  "Returns a list of axioms that 1) asserts the 'instance' to be a member of 'class'; 2) annotates that 'class' is a 'direct type' of 'instance'." 
+  (let ((axioms nil))
+    (push `(class-assertion ,class ,instance) axioms)
+    (push `(annotation-assertion !'direct type'@ohd ,instance ,class) axioms)
+    
+    ;;return axioms
+    axioms))
+	
 ;;;; database functions ;;;;
 
 (defun table-exists (table-name url)

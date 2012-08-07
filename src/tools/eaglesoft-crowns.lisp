@@ -43,17 +43,9 @@
 		;; import the ohd ontology
 		(as `(imports ,(make-uri *ohd-ontology-iri*)))
 		(as `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)))
-
-		;; declare data properties
-		(as `(declaration (data-property !'occurrence date'@ohd)))
-		(as `(declaration (data-property !'patient ID'@ohd)))
 		
-		;; declare object property relations
-		(as `(declaration  (object-property !'is part of'@ohd)))
-		(as `(declaration  (object-property !'inheres in'@ohd)))
-		(as `(declaration  (object-property !'has participant'@ohd)))
-		(as `(declaration  (object-property !'is located in'@ohd)))
-		(as `(declaration  (object-property !'is about'@ohd)))
+		;; get axioms for declaring annotation, object, and data properties used for ohd
+		(as (get-ohd-declaration-axioms))
 
 		(loop while (#"next" results) do
 		     ;; determine this occurrence date
@@ -114,9 +106,12 @@
 	 (setf tooth-uri (get-eaglesoft-tooth-iri patient-id tooth-type-uri))
 
 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
-	 (push `(class-assertion ,tooth-type-uri ,tooth-uri) axioms)	     
+	 ;;(push `(class-assertion ,tooth-type-uri ,tooth-uri) axioms)	     
+         ;; note: append puts lists together and doesn't put items in list (like push)
+	 (setf axioms
+	       (append (get-ohd-instance-axioms tooth-uri tooth-type-uri) axioms))
 	 
-       ;; add annotation about tooth
+         ;; add annotation about tooth
 	 (push `(annotation-assertion !rdfs:label 
 				      ,tooth-uri
 				      ,(str+ tooth-name
@@ -127,7 +122,8 @@
 	       (get-eaglesoft-tooth-to-be-crowned-role-iri patient-id tooth record-count))
 		
 	 (push `(declaration (named-individual ,crown-role-uri)) axioms)
-	 (push `(class-assertion !'tooth to be crowned role'@ohd ,crown-role-uri) axioms)
+	 (setf axioms
+	       (append (get-ohd-instance-axioms crown-role-uri !'tooth to be crowned role'@ohd) axioms))
 
 	 ;; add annotation about 'tooth to be crowned role'
 	 (push `(annotation-assertion !rdfs:label 
@@ -142,7 +138,8 @@
 		patient-id tooth-name material-type-uri record-count))
 
 	 (push `(declaration (named-individual ,crown-material-uri)) axioms)
-	 (push `(class-assertion !'restoration material'@ohd ,crown-material-uri) axioms)
+	 (setf axioms
+	       (append (get-ohd-instance-axioms crown-material-uri  !'restoration material'@ohd) axioms))
 
 	 ;; add annotation about this instance of material
 	 (push `(annotation-assertion !rdfs:label 
@@ -157,7 +154,8 @@
 		patient-id tooth-name restoration-type-uri record-count))
 	 
 	 (push `(declaration (named-individual ,crown-restoration-uri)) axioms)
-	 (push `(class-assertion !'crown restoration'@ohd ,crown-restoration-uri) axioms)
+	 (setf axioms
+	       (append (get-ohd-instance-axioms crown-restoration-uri !'crown restoration'@ohd) axioms))
 
 	 ;; add annotation about this restoration procedure
 	 (push `(annotation-assertion !rdfs:label 
@@ -174,8 +172,9 @@
 	 (setf cdt-class-uri (get-cdt-class-iri ada-code))
 	 (setf cdt-uri (get-eaglesoft-cdt-instance-iri patient-id ada-code cdt-class-uri record-count))
 	 (push `(declaration (named-individual ,cdt-uri)) axioms)
-	 (push `(class-assertion ,cdt-class-uri ,cdt-uri) axioms)
-
+	 (setf axioms
+	       (append (get-ohd-instance-axioms cdt-uri cdt-class-uri) axioms))
+	 
 	 ;; add annotion about cdt code
 	 (push `(annotation-assertion !rdfs:label
 				      ,cdt-uri
