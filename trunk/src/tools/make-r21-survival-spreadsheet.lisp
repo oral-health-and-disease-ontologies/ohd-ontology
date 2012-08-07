@@ -72,7 +72,8 @@
    '(:select 
      (?type ?not)
      ()
-      (!obo:OHD_0000017 !rdf:type ?type)
+     ;;(!obo:OHD_0000017 !rdf:type ?type)
+     (!owl:Nothing !rdfs:subClassOf ?type)
      ;;(:optional (?type !rdfs:subClassOf ?not))
      ;;(:optional (?not !rdfs:subClassOf ?type))
      ;;(:optional (!obo:OHD_0000013 !rdfs:subClassOf ?type))
@@ -85,7 +86,7 @@ nil)
 (defun ontobee ()
   (sparql 
    '(:select 
-     (?person ?type)
+     (?type)
      ()
      (:graph  !<http://purl.obolibrary.org/obo/merged/ohd.owl>
       ;;(?person !rdf:type ?type)
