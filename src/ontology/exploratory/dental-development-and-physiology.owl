@@ -1,0 +1,615 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://purl.obolibrary.org/obo/DentitionTerms.owl#"
+     xml:base="http://purl.obolibrary.org/obo/DentitionTerms.owl"
+     xmlns:obo="http://purl.obolibrary.org/obo/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ohd/dental-development-and-physiology.owl">
+        <rdfs:comment xml:lang="en">This is beginning work by Bill Duncan on dental physiology and development aimed at exploring the ontology of processes.</rdfs:comment>
+        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/bfo.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100000 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100000">
+        <rdfs:label>tooth development stage</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100001 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100001">
+        <rdfs:label>dental lamina stage</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100000"/>
+        <rdfs:comment>The dental lamina stage is characterized by a thickening of the oral epithelium. At this stage there are no distinguishable tooth sites. The bud stage is the initial stage of definitive tooth development. (Avery 75)
+
+Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Publishers, 2002. 
+
+</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100002 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100002">
+        <rdfs:label>bud stage</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100000"/>
+        <rdfs:comment>The bud stage designates a rounded, localized growth of the epithelial cells of the dental lamina. It is also defined as the initiation or proliferative stage because it is the stage in which the initial proliferation of oral epithelial cells and adjacent mesenchymal cells occurs. Proliferation of oral epithelial cells results in the formation of a bud-shaped epithelial (enamel) organ. Proliferating mesenchymal cells surround the bud and form an ectomesenchymal condensation. Gradually, the epithelial bud gains a concave surface, and the enamel organ is then considered to be in the cap stage. (Avery 75)
+
+Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Publishers, 2002. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100003 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100003">
+        <rdfs:label>cap stage</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100000"/>
+        <rdfs:comment>The epithelial bud has a concave surface resembling a cap. Dental mesenchyme that is partially surrounded by the cap-shaped enamel organ is called the dental  papilla or embryonic dental pulp. Cells adjacent to the dental papilla and those that lie outside the enamel organ divide and grow around the enamel organ to form the dental follicle or sac. (Avery 75-76)
+
+All three structures, the enamel organ, dental papilla, and dental follicle, are seen in the cap stage. These three structures constitute the tooth germ and give rise to the tooth and its supporting structures. The epithelial component, the enamel organ, forms enamel. The dental papilla forms the dentin and pulp. The dental follicle forms the cementum, periodontal ligament, and adjacent alveolar bone. Note that the collagenous matrices (dentin, cementum, periodontal ligament, and bone) are formed from the neural crest mesenchyme and the noncollagenous matrix (enamel) is formed by the epithelium.  (Avery 76)
+
+Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Publishers, 2002. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100004 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100004">
+        <rdfs:label>bell stage</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100000"/>
+        <rdfs:comment>After the enamel organ and adjacent dental papilla increase further in size, the tooth germ proceeds from the cap stage to the bell or differentiation stage. This stage has two characteristics: 1) The shape of the future tooth crown is defined and outlined by the junction between the inner enamel epithelium and dental papilla. This process, a change from an undifferentiated cap-stage tooth germ to a more differentiated adult-looking bell-stage tooth germ, is called morphodifferentiation. 2) The inner enamel epithelial cells (those cells closest to the papilla) elongate and differentiate into ameloblasts, the future enamel-forming cells. Adjacent to the ameloblasts, the stratum intermedium is formed from a layer of spindle-shaped cells that lie in an axis perpendicular to that of the differentiating ameloblasts. The stratum intermedium cells are thought to function with ameloblasts in the mineralization of the enamel. The outer enamel epithelial cells become associated with a capillary plexus, which will function to bring nutritional substances and oxygen to ameloblasts and other enamel organ cells. The stellate (star-shaped) cells lying between the stratum intermedium and outer enamel epithelium comprise the stellate reticulum. (Avery 76)
+
+The enamel organ in the bell stage consists of four different types of cells: 1) Those that cover the convex surface, which are the outer enamel epithelial cells. 2) Those that line the concavity of the enamel organ, which are the inner enamel epithelial cells. 3) Those forming a layer adjacent to the inner enamel epithelium, referred to as the stratum intermedium; 4) Those that fill the remainder of the enamel organ, which are termed the stellate reticulum. The stellate reticulum is sometimes called the enamel pulp. The area of the enamel organ where the inner and outer enamel epithelial cells join one another is called the cervical loop. The cervical loop is an area of active cell proliferation and lies in a region that will become the cervix of the tooth. Following the formation of the crown, the cells in the cervical loop will give rise to the epithelial root sheath and epithelial diaphragm. During the bell stage, the cells in the periphery of the dental papilla differentiate  into odontoblasts. As they differentiate, they elongate and will function in the formation of dentin. The process of differentiation of the various cells of the enamel organ and dental papilla is called cytodifferentiation. Differentiation of the various dental tissues during these stages is called histodifferentiation. At this time, the general and lateral dental laminae begin to degenerate. The tooth bud has differentiated and is independent of the oral epithelium. In this process, the epithelial cells of the dental lamina undergo lysis until the lamina disappears. The general lamina is maintained more posteriorly in the mouth, however, where other teeth are less advanced in development. (Avery 76-77)
+
+Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Publishers, 2002.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100005 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100005">
+        <rdfs:label>tooth development process</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100006 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100006">
+        <rdfs:label>cell differentiation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100005"/>
+        <rdfs:comment>the development of the cells into the various basic cell units of tissue: the epithelial cell and the nerve cell, which arise from the ectodermal tissue layer of the embryo; and the blood, muscle, bone, cartilage, and other connective tissue cells, which arise from the mesodermal tissue of the embryo. The mature tissue cell has many intermediary, transitional forms that are sequential in their development from the primitive, less differentiated anlage cell forms. These intermediary forms are evident clinically in disease in blood dyscrasias, tumors, and inflammation and in health in the normal processes of growth, development, healing, and repair. ( Mosby 109)
+ 
+Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100007 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100007">
+        <rdfs:label>cell proliferation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100005"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100008 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100008">
+        <rdfs:label>cell type</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100009 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100009">
+        <rdfs:label>dentin cell</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100008"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100010 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100010">
+        <rdfs:label>enamel cell</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100008"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100011 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100011">
+        <rdfs:label>epithelial cell</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100008"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100012 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100012">
+        <rdfs:label>outer enamel epithelial cell</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100011"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100013 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100013">
+        <rdfs:label>inner enamel epithelial cell</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100011"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100014 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100014">
+        <rdfs:label>stratum intermedium</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100008"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100015 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100015">
+        <rdfs:label>stellate reticulum</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100008"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100016 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100016">
+        <rdfs:label>organ</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100017 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100017">
+        <rdfs:label>enamel organ</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100016"/>
+        <rdfs:comment>the part of a developing tooth germ that produces enamel. ( Mosby 217)
+ Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. </rdfs:comment>
+        <rdfs:comment>Originates from the stratified epithelium lining the primitive oral cavity organ; consists of four distinct layers: outer enamel epithelium, stellate reticulum, stratum intermedium, and inner enamel epithelium. The latter becomes the ameloblastic layer. (Avery 415)
+Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Publishers, 2002.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100018 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100018">
+        <rdfs:label>region</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100019 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100019">
+        <rdfs:label>cervical loop</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100018"/>
+        <rdfs:comment>The area of the enamel organ where the inner and outer enamel epithelial cells join one another is called the cervical loop. The cervical loop is an area of active cell proliferation and lies in a region that will become the cervix of the tooth. Following the formation of the crown, the cells in the cervical loop will give rise to the epithelial root sheath and epithelial diaphragm  (Avery 76)
+Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Publishers, 2002.
+</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100020 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100020">
+        <rdfs:label>odontoblast</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100008"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100021 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100021">
+        <rdfs:label>cytodifferentiation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100006"/>
+        <rdfs:comment>The process of differentiation of the various cells of the enamel organ and dental papilla. (Avery 77)
+Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Publishers, 2002.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100022 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100022">
+        <rdfs:label>epithelial root sheath</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100018"/>
+        <rdfs:comment>Also called Hertwig&apos;s root sheath.</rdfs:comment>
+        <rdfs:comment>After the crown is completed, the inner and outer enamel epithelium at the base of the cervical loop proliferate to form a bilayer of epithelial cells called the (Hertwig&apos;s) root sheath. (Avery 109)
+Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Publishers, 2002.</rdfs:comment>
+        <rdfs:comment>an elongation of the cervical loop, which helps determine the shape, size, and number of roots and which influences the formation of dentin in the root area during the developmental stages of a tooth. ( Mosby 314-315)
+ Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100023 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100023">
+        <rdfs:label>epithelial diaphragm</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100018"/>
+        <rdfs:comment>The first formed part of the epithelial root sheath.  It bends upward at a 45° angle to form a disc–like structure. (Avery 109)
+Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Publishers, 2002.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100024 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100024">
+        <rdfs:label>histodifferentiation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100006"/>
+        <rdfs:comment>the process in which cells develop the distinctive characteristics of the tissues to which they are to belong. ( Mosby 316)
+ Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100025 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100025">
+        <rdfs:label>lysis</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100005"/>
+        <rdfs:comment>The disintegration or dissolution of cells by a lysin. ( Mosby 397)
+ Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100026 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100026">
+        <rdfs:label>elongation of odontoblast</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100005"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100027 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100027">
+        <rdfs:label>degeneration of dental laminae</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100005"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100028 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100028">
+        <rdfs:label>dentinogenesis</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100005"/>
+        <rdfs:comment>formation of the connective tissue, dentin, from odontoblasts during the development of the tooth. ( Mosby 174)
+ Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100029 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100029">
+        <rdfs:label>dentinal tubule</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100016"/>
+        <rdfs:comment>The space in dentin that contains, or at one time contained, an odontoblastic process. (Avery 414)
+Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Publishers, 2002. </rdfs:comment>
+        <rdfs:comment>a microscopic tube within dentin that spreads outward from the tooth&apos;s center. It carries dentinal fluid. ( Mosby 172)
+ Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100030 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100030">
+        <rdfs:label>dentin matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100033"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100031 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100031">
+        <rdfs:label>dental papilla</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100016"/>
+        <rdfs:comment>Formative organ of the dentin and primordium of the pulp. (Avery 413)
+Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Publishers, 2002.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100032 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100032">
+        <rdfs:label>dental follical</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100016"/>
+        <rdfs:comment>older term for dental sac.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100033 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100033">
+        <rdfs:label>collagenous matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100018"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100034 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100034">
+        <rdfs:label>cementum matix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100033"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100035 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100035">
+        <rdfs:label>periodontal ligament matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100033"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100036 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100036">
+        <rdfs:label>bone matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100033"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100037 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100037">
+        <rdfs:label>morphodifferentiation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100005"/>
+        <rdfs:comment>The process in which an undifferentiated cap-stage tooth germ changes to a more differentiated adult-looking bell-stage tooth germ. (Avery 76)
+Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Publishers, 2002.
+</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100038 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100038">
+        <rdfs:label>ameobalst</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100008"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100039 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100039">
+        <rdfs:label>mesenchymal cell</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100008"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100040 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100040">
+        <rdfs:label>minerization</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100005"/>
+        <rdfs:comment>the bioprecipitation of an inorganic substance. ( Mosby 425)
+ Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100041 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100041">
+        <rdfs:label>tooth eruption</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100005"/>
+        <rdfs:comment>the process by which the tooth moves from its site of formation to its position of function. It can be active or passive. ( Mosby 690)
+ Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100042 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100042">
+        <rdfs:label>cell division</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100005"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100043 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100043">
+        <rdfs:label>funciton</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100044 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100044">
+        <rdfs:label>appitonal dentin and emamel</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100045 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100045">
+        <rdfs:label>matrix secretion</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100005"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100046 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100046">
+        <rdfs:label>tooth germ</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100000"/>
+        <rdfs:comment>the earliest evidence of a tooth. It includes the dental sac, dental papilla, and enamel organ. ( Mosby 690)
+ Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100047 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100047">
+        <rdfs:label>tissue</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100048 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100048">
+        <rdfs:label>enamel tissue</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100047"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100049 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100049">
+        <rdfs:label>dentin tissue</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100047"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100050 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100050">
+        <rdfs:label>cementum tissue</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100047"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100051 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100051">
+        <rdfs:label>amino acid</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100052 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100052">
+        <rdfs:label>lysine</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100051"/>
+        <rdfs:comment> one of the essential amino acids found in many proteins; needed for proper growth in infants and for maintenance of nitrogen balance in adults.  ( Mosby 397)
+ Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100053 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100053">
+        <rdfs:label>active tooth eruption</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100041"/>
+        <rdfs:comment>the movement of a developing tooth from its area of development in the jaw into the oral cavity to become part of the dental arch. ( Mosby 226)
+ Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100054 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100054">
+        <rdfs:label>passive tooth eruption</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100041"/>
+        <rdfs:comment>an increasing length of the clinical crown often seen with aging and in the absence of clinical evidence of inflammation. ( Mosby 226)
+ Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100055 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100055">
+        <rdfs:label>dental sac</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100016"/>
+        <rdfs:comment>a portion of the tooth germ consisting of ectomesenchyme surrounding the outside of the enamel organ, which produces the periodontium of a tooth. Older term is dental follicle. ( Mosby 171)
+ Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.5.1912) http://owlapi.sourceforge.net -->
+
