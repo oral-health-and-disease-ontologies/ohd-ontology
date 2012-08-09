@@ -10,8 +10,8 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ohd/dev/ohd.owl">
         <dc:contributor>Pedro Hernandez Cott</dc:contributor>
-        <dc:contributor>Carlo Torniai</dc:contributor>
         <dc:contributor>Amit Acharya</dc:contributor>
+        <dc:contributor>Carlo Torniai</dc:contributor>
         <dc:contributor>Alan Ruttenberg</dc:contributor>
         <dc:contributor>Dan Caplan</dc:contributor>
         <dc:contributor>Melissa Haendel</dc:contributor>
@@ -47,10 +47,10 @@ This ontology is licensed under the CC-BY License. Please see http://creativecom
         <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
     </owl:AnnotationProperty>
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/OHD_0000092">
-        <rdfs:label>direct type</rdfs:label>
+        <rdfs:label>asserted type</rdfs:label>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <dc:creator>Person:Bill Duncan</dc:creator>
-        <obo:IAO_0000115>This annotation is used to indicate the class that is the direct type of an individual. This is useful when needing to find only the (direct) type of an individual, and not the all the inferred types.  For example, if x is an instance of &#39;material entity&#39;, then its &#39;direct type&#39; will be &#39;material entity&#39;, whereas the inferred types will also include &#39;independent continuant&#39;, &#39;continuant&#39;, and &#39;Thing&#39;.</obo:IAO_0000115>
+        <obo:IAO_0000115>This annotation is used to indicate that an individual is asserted to be a member of a class.  This is useful when needing to find only the non-inferred type of an individual, and not the all the inferred types.  For example, suppose x is a member of the class &#39;material entity&#39; and &#39;material entity&#39; is a subclass of &#39;independent continuant&#39;.  This entails that x will be a member of &#39;independent continuant&#39;.  However, by using this annotation to assert that x is a member of &#39;material entity&#39;, you can query for x&#39;s &#39;asserted type&#39; and ignore the other inferred types in the class hierarchy.  </obo:IAO_0000115>
     </owl:AnnotationProperty>
     
 
@@ -87,13 +87,13 @@ This ontology is licensed under the CC-BY License. Please see http://creativecom
 
     <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OHD_0000091">
         <rdfs:label>is dental restoration of</rdfs:label>
+        <obo:IAO_0000119>Adapted from:
+Mosby&#39;s Dental Dictionary, 2nd Edition. page 580. 
+Wikipedia: http://en.wikipedia.org/wiki/Dental_restoration</obo:IAO_0000119>
         <obo:IAO_0000116>Bill Duncan 6/27/2012:
 This relation is intended to capture the relationship between restorative materials, such as amalagam, and the tooth (or teeth) that is being repaired.  Some examples in which this relation obtains include fillings, crowns, bridges, and inlays. 
 
 It is going to be a shortcut relation between the material, the tooth in which the material is located, and the site formed for the restoration (e.g., a hole formed by drilling).  The details of this still need to be worked out.</obo:IAO_0000116>
-        <obo:IAO_0000119>Adapted from:
-Mosby&apos;s Dental Dictionary, 2nd Edition. page 580. 
-Wikipedia: http://en.wikipedia.org/wiki/Dental_restoration</obo:IAO_0000119>
         <obo:IAO_0000115>This relation holds between some restorative material and some part of a tooth in which the restorative material restores or replaces lost tooth structure, oral tissues, tooth (structural) integrity, or tooth functioning.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
         <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
@@ -132,7 +132,7 @@ Wikipedia: http://en.wikipedia.org/wiki/Dental_restoration</obo:IAO_0000119>
 
     <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/OHD_0000015">
         <rdfs:label xml:lang="en">occurrence date</rdfs:label>
-        <obo:IAO_0000115>&apos;occurrence date&apos; denotes either the day when a finding was recorded or the day on which some processes occurred. 
+        <obo:IAO_0000115>&#39;occurrence date&#39; denotes either the day when a finding was recorded or the day on which some processes occurred. 
 </obo:IAO_0000115>
         <obo:IAO_0000116>Bill Duncan 5/23/2012:
 There is a problem with occurrence date.  The date on which an event occurred and the date on which it the event was recorded do not always match up.  This will eventually need to be fixed.</obo:IAO_0000116>
@@ -373,7 +373,7 @@ There is a problem with occurrence date.  The date on which an event occurred an
         <rdfs:label xml:lang="en">dental caries</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000031"/>
         <obo:IAO_0000115 xml:lang="en">A disease realized as a disease course in which a carious lesion grows into the tooth, resulting in loss of tooth mass and appearance of cavity or other structural damage to the tooth.</obo:IAO_0000115>
-        <obo:IAO_0000116 xml:lang="en">Alan Ruttenberg 4/12/2012: We need to hook up the disease with the material basis, and possible a representation of the disease course. However we don&apos;t have the &apos;has material basis&apos; relation yet, and its not clear that it is useful to represent the disease course.</obo:IAO_0000116>
+        <obo:IAO_0000116 xml:lang="en">Alan Ruttenberg 4/12/2012: We need to hook up the disease with the material basis, and possible a representation of the disease course. However we don&#39;t have the &#39;has material basis&#39; relation yet, and its not clear that it is useful to represent the disease course.</obo:IAO_0000116>
         <obo:IAO_0000117 xml:lang="en">Person:Alan Ruttenberg</obo:IAO_0000117>
         <obo:IAO_0000117 xml:lang="en">Person:Bill Duncan</obo:IAO_0000117>
     </owl:Class>
@@ -1207,14 +1207,14 @@ There is a problem with occurrence date.  The date on which an event occurred an
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000011"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000052"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000009"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000009"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000052"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Describes a specific healthcare activity that is performed on a patient for diagnostic or therapeutic purposes.</obo:IAO_0000115>
@@ -1231,13 +1231,13 @@ There is a problem with occurrence date.  The date on which an event occurred an
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A procedure that is an operation on the root canal of a tooth or parts thereof.</obo:IAO_0000115>
@@ -1251,7 +1251,7 @@ There is a problem with occurrence date.  The date on which an event occurred an
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000004">
         <rdfs:label xml:lang="en">restorative procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
-        <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mosby&apos;s Dental Dictionary 2nd ed</obo:IAO_0000119>
+        <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mosby&#39;s Dental Dictionary 2nd ed</obo:IAO_0000119>
         <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Pedro Cott</obo:IAO_0000117>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Steps followed to replace missing tooth structure; a method or mode of action that reestablishes or reforms a tooth or teeth or portions thereof to anatomic or functional form and health.</obo:IAO_0000115>
     </owl:Class>
@@ -1264,7 +1264,7 @@ There is a problem with occurrence date.  The date on which an event occurred an
         <rdfs:label xml:lang="en">surgical procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A series of steps followed in a regular, orderly, definite way, performed by a dentist/surgeon by manual operation.</obo:IAO_0000115>
-        <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mosby&apos;s Dental Dictionary 2nd ed</obo:IAO_0000119>
+        <obo:IAO_0000119 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mosby&#39;s Dental Dictionary 2nd ed</obo:IAO_0000119>
         <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON:Pedro Cott</obo:IAO_0000117>
     </owl:Class>
     
@@ -1275,12 +1275,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000006">
         <rdfs:label xml:lang="en">filling restoration</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000004"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
@@ -1297,6 +1291,12 @@ There is a problem with occurrence date.  The date on which an event occurred an
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000008"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>Restorative procedure whereby portions of a tooth are restored to functional form and health.</obo:IAO_0000115>
@@ -1326,14 +1326,14 @@ There is a problem with occurrence date.  The date on which an event occurred an
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000007"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000006"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000006"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1346,7 +1346,7 @@ There is a problem with occurrence date.  The date on which an event occurred an
         <rdfs:label xml:lang="en">dental visit</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000099"/>
         <obo:IAO_0000115>A meeting between a health care professional and a patient for diagnostic, therapeutic, or consultative reasons, usually a scheduled appointment in a professional office.</obo:IAO_0000115>
-        <obo:IAO_0000119>Mosby&apos;s Dental Dictionary</obo:IAO_0000119>
+        <obo:IAO_0000119>Mosby&#39;s Dental Dictionary</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -1372,11 +1372,11 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 </owl:intersectionOf>
             </owl:Class>
         </rdfs:subClassOf>
-        <rdfs:comment>replace tooth in logical def with dentition or mouth when it&apos;s been imported.</rdfs:comment>
+        <rdfs:comment>replace tooth in logical def with dentition or mouth when it&#39;s been imported.</rdfs:comment>
         <obo:IAO_0000117>Person:Bill Duncan</obo:IAO_0000117>
-        <dc:source>Adapted from Mosby&apos;s definition of dentistry:
+        <dc:source>Adapted from Mosby&#39;s definition of dentistry:
 The evaluation, diagnosis, and/or treatment (nonsurgical, surgical, or related procedures) of diseases, disorders, and/or conditions of the oral cavity, maxillofacial area, and/or the adjacent and associated structures and their impact on the body; provided by dental professionals, within the scope of his/her education, training, and experience, in accordance with the ethics of the profession and applicable law.
-(Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 102007. p. 173). 
+(Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 102007. p. 173). 
 </dc:source>
         <obo:IAO_0000115 xml:lang="en">A clinical finding that is a specified output of a dental exam and is about the oral cavity, maxillofacial area, and/or the adjacent and associated structures, or their parts, or pathological anatomical entities derived from them. The finding has a part that is about when the exam that led to the finding occured well as other data items specifying the nature of the finding.
 </obo:IAO_0000115>
@@ -1384,7 +1384,7 @@ The evaluation, diagnosis, and/or treatment (nonsurgical, surgical, or related p
 First version of adapted definition by Bill:
 A dental observation regarding (or about) the evaluation, diagnosis, and/or treatment (nonsurgical, surgical, or related procedures) of diseases, disorders, and/or conditions of the oral cavity, maxillofacial area, and/or the adjacent and associated structures and their impact on the body; provided by dental professionals, within the scope of his/her education, training , and experience, in accordance with the ethics of the profession and applicable law</obo:IAO_0000116>
         <obo:IAO_0000116 xml:lang="en">Alan Ruttenberg 4/12/2012: The part of the finding that is specification of the time when it was created, is currently represented using the data property
-&apos;occurence date&apos;.</obo:IAO_0000116>
+&#39;occurence date&#39;.</obo:IAO_0000116>
         <obo:IAO_0000117 xml:lang="en">Person:Alan Ruttenberg</obo:IAO_0000117>
     </owl:Class>
     
@@ -1432,14 +1432,14 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000057"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000010"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000009"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000009"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000010"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">A physical examination of the oral cavity, maxillofacial area, and/or the adjacent and associated structures, or their parts, or pathological anatomical entities derived from them.</obo:IAO_0000115>
@@ -1470,6 +1470,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000024"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000114"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -1482,12 +1488,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000114"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1532,21 +1532,21 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000010"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/FMA_75152"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <obo:IAO_0000116>Bill Duncan 5/14/2012: Our criteria for determing that a tooth is missing is stronger than the clinical criterion.  Clinically, a tooth is missing if it is not visible in the oral cavity, in which case an unerrupted tooth is considered missing.  However, we include the added criterion that the tooth must also not be present in a radiograph.  Thus, if such an exam reveals the presence of such a tooth, the tooth is not considered to be missing.</obo:IAO_0000116>
         <obo:IAO_0000115 xml:lang="en">A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number.  The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.</obo:IAO_0000115>
         <obo:IAO_0000116 xml:lang="en">Bill Duncan 4/12/2012: To think about: There are two cases at least - one where the tooth was never formed in the mouth and the other where the tooth was lost through some process.  Presently we do not distinquish between these cases.</obo:IAO_0000116>
-        <obo:IAO_0000116>Bill Duncan 5/14/2012: We have added the necessary condtion that a missing tooth finding is about &apos;exactly 1 Secondary Dentition&apos;.  </obo:IAO_0000116>
+        <obo:IAO_0000116>Bill Duncan 5/14/2012: We have added the necessary condtion that a missing tooth finding is about &#39;exactly 1 Secondary Dentition&#39;.  </obo:IAO_0000116>
         <rdfs:comment xml:lang="en">to think about the proper logical definition: probably there is lacks_part to be fixed</rdfs:comment>
     </owl:Class>
     
@@ -1762,7 +1762,7 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
             </owl:Class>
         </rdfs:subClassOf>
         <obo:IAO_0000115>An indirect restoration made from gold that is cast in a laboratory prior to insertion in the oral cavity and finished during placement.</obo:IAO_0000115>
-        <obo:IAO_0000119>Mosby&apos;s</obo:IAO_0000119>
+        <obo:IAO_0000119>Mosby&#39;s</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -1784,7 +1784,7 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
             </owl:Class>
         </rdfs:subClassOf>
         <obo:IAO_0000115>An indirect restoration made from a ceramic material that is cast in a laboratory prior to insertion in the oral cavity and finished during placement.</obo:IAO_0000115>
-        <obo:IAO_0000119>Mosby&apos;s Dental Dictionary 2nd ed</obo:IAO_0000119>
+        <obo:IAO_0000119>Mosby&#39;s Dental Dictionary 2nd ed</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -1844,7 +1844,7 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:label xml:lang="en">surgical dental procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
         <obo:IAO_0000115>A series of steps followed in a regular, orderly, definite way, performed by a dentist/surgeon by manual operation on some part of the mouth.</obo:IAO_0000115>
-        <obo:IAO_0000119>Mosby&apos;s Dental Dictionary 2nd ed</obo:IAO_0000119>
+        <obo:IAO_0000119>Mosby&#39;s Dental Dictionary 2nd ed</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -2021,6 +2021,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2030,16 +2036,10 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000056"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>The removal of a tooth from the oral cavity by means of elevators and/or forceps.
 </obo:IAO_0000115>
-        <obo:IAO_0000119>Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 102007. p. 238
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000119>Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 102007. p. 238
 </obo:IAO_0000119>
     </owl:Class>
     
@@ -2108,6 +2108,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000102"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2124,12 +2130,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000102"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2178,6 +2178,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000104"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2194,12 +2200,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000104"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2283,6 +2283,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000107"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2301,12 +2307,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000107"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2316,6 +2316,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000067">
         <rdfs:label>missing tooth 8 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000108"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2336,12 +2342,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000108"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2351,12 +2351,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000068">
         <rdfs:label>missing tooth 9 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000109"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2377,6 +2371,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000109"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2386,12 +2386,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000069">
         <rdfs:label>missing tooth 10 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000110"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2412,6 +2406,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000110"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2421,12 +2421,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000070">
         <rdfs:label>missing tooth 11 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000111"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2447,6 +2441,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000111"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2456,6 +2456,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000071">
         <rdfs:label>missing tooth 12 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000112"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2474,12 +2480,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000112"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2528,6 +2528,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000115"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2544,12 +2550,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000115"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2668,12 +2668,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000119"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2690,6 +2684,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000119"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2738,12 +2738,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000121"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2760,6 +2754,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000121"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2808,6 +2808,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000123"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2826,12 +2832,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000123"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2841,6 +2841,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000082">
         <rdfs:label>missing tooth 24 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000124"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2859,12 +2865,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000124"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2913,6 +2913,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000126"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2929,12 +2935,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000126"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2983,12 +2983,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000128"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -3005,6 +2999,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000128"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3053,12 +3053,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000130"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -3077,6 +3071,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000130"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3086,6 +3086,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000089">
         <rdfs:label>missing tooth 31 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000131"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -3104,12 +3110,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000131"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3160,7 +3160,7 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
 
 The Universal Numbering System uses No. 1 through 32 for the 32 teeth in the permanent dentition, starting with 1 for the maxillary right third molar, going around the arch to the maxillary left third molar as 16; dropping down on the same side, the left mandibular third molar becomes 17, and then the numbers increase around the lower arch to 32, which is the lower right third molar. </obo:IAO_0000115>
         <obo:IAO_0000116 xml:lang="en">Bill Duncan 4/12/2012: From the book: &quot;The Universal Numbering System was first suggested by Parreidt in 1882, and officially adopted by the American Dental Association in 1975. It is accepted by third-party providers and is endorsed by the American Society of Forensic Odontology.&quot;</obo:IAO_0000116>
-        <obo:IAO_0000119 xml:lang="en">Book:Scheid, Rickne. Woelfel&apos;s Dental Anatomy, 8th Edition. Lippincott Williams &amp; Wilkins, 01/2011. pp. i - ii). </obo:IAO_0000119>
+        <obo:IAO_0000119 xml:lang="en">Book:Scheid, Rickne. Woelfel&#39;s Dental Anatomy, 8th Edition. Lippincott Williams &amp; Wilkins, 01/2011. pp. i - ii). </obo:IAO_0000119>
     </owl:Class>
     
 
@@ -3473,7 +3473,7 @@ The Universal Numbering System uses No. 1 through 32 for the 32 teeth in the per
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000001"/>
             </owl:Restriction>
         </rdf:type>
-        <rdfs:label xml:lang="en">amalgam filling restoration on Melissas&apos; tooth 14</rdfs:label>
+        <rdfs:label xml:lang="en">amalgam filling restoration on Melissas&#39; tooth 14</rdfs:label>
         <obo:OHD_0000015 rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2012-02-14</obo:OHD_0000015>
         <obo:BFO_0000057 rdf:resource="http://purl.obolibrary.org/obo/OHD_0000013"/>
     </owl:NamedIndividual>
@@ -3493,7 +3493,7 @@ The Universal Numbering System uses No. 1 through 32 for the 32 teeth in the per
 
     <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000020">
         <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000011"/>
-        <rdfs:label xml:lang="en">Melissa&apos;s clinical assessment</rdfs:label>
+        <rdfs:label xml:lang="en">Melissa&#39;s clinical assessment</rdfs:label>
         <obo:OHD_0000015 rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2012-02-14</obo:OHD_0000015>
         <obo:BFO_0000057 rdf:resource="http://purl.obolibrary.org/obo/OHD_0000013"/>
     </owl:NamedIndividual>
@@ -3504,7 +3504,7 @@ The Universal Numbering System uses No. 1 through 32 for the 32 teeth in the per
 
     <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000023">
         <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000022"/>
-        <rdfs:label xml:lang="en">finding of caries in Melissa&apos;s tooth 14</rdfs:label>
+        <rdfs:label xml:lang="en">finding of caries in Melissa&#39;s tooth 14</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -3830,5 +3830,5 @@ The Universal Numbering System uses No. 1 through 32 for the 32 teeth in the per
 
 
 
-<!-- Generated by the OWL API (version 3.3.1957) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.1.0.1642) http://owlapi.sourceforge.net -->
 
