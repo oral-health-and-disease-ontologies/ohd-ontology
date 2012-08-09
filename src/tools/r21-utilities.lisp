@@ -241,16 +241,16 @@ Usage:
     (push `(declaration  (object-property !'is about'@ohd)) axioms)
     
     ;; declare custom ohd annation
-    (push `(declaration (annotation-property !'direct type'@ohd)) axioms)
+    (push `(declaration (annotation-property !'asserted type'@ohd)) axioms)
 
     ;; return axioms
     axioms))
 
 (defun get-ohd-instance-axioms (instance class)
-  "Returns a list of axioms that 1) asserts the 'instance' to be a member of 'class'; 2) annotates that 'class' is a 'direct type' of 'instance'." 
+  "Returns a list of axioms that 1) asserts the 'instance' to be a member of 'class'; 2) annotates that 'class' is a 'asserted type' of 'instance'." 
   (let ((axioms nil))
     (push `(class-assertion ,class ,instance) axioms)
-    (push `(annotation-assertion !'direct type'@ohd ,instance ,class) axioms)
+    (push `(annotation-assertion !'asserted type'@ohd ,instance ,class) axioms)
     
     ;;return axioms
     axioms))
