@@ -48,37 +48,44 @@
 ;; patients are asserted to be male organism or female organism.
 (defun build-spreadsheet (&key explain)
   "Start of the query. Next need to figure out how ?code is to be bound - it isn't in this version. It also appears to return incorrect answers."
-  (let ((res (funcall (if explain 'explain-r21query 'r21query) '(:select (?person  ?bdate ?tooth ?procedure ?procedurei ?procedure_type ?procedure_label ?date ?toothn ?code_label) (:limit 100 :order-by (?person ?toothn ?date) )
+  (let ((res 
+	 (funcall (if explain 'explain-r21query 'r21query) 
+		  '(:select (?person  ?bdate ?tooth ?procedure ?procedurei ?procedure_type ?procedure_label ?date ?toothn ?code_label ?surface) 
+		    (:limit 10 :order-by (?person ?toothn ?date) )
 
-	      (?procedurei !'direct type'@ohd ?procedure_type) ; procedure instances 
-	      (?procedurei !rdfs:label ?procedure) ; label for the procedure instance
-	      (?procedure_type !rdfs:subClassOf !'restorative procedure'@ohd) ; narrowed to restorative procedure
-	      (?procedure_type !rdfs:label ?procedure_label) ; and the label of the procedure type
+		    ;; (?procedurei !'asserted type'@ohd ?procedure_type) ; procedure instances 
+		    ;; (?procedurei !rdfs:label ?procedure) ; label for the procedure instance
+		    ;; (?procedure_type !rdfs:subClassOf !'restorative procedure'@ohd) ; narrowed to restorative procedure
+		    ;; (?procedure_type !rdfs:label ?procedure_label) ; and the label of the procedure type
+		    
+		    ;; (?codetype !rdfs:subClassOf !'current dental terminology code'@ohd)
+		    ;; (?code !'is about'@ohd ?procedurei) ; get CDT code
+		    ;; (?code !'asserted type'@ohd ?codetype) ; get its asserted ype
+		    ;; (?codetype !rdfs:label ?code_label) ; then get the label of that
+		    
+		    ;; (?procedurei !'occurrence date'@ohd ?date) ; of which occurs on ?date
 
-	      (?codetype !rdfs:subClassOf !'current dental terminology code'@ohd)
-	      (?code !'is about'@ohd ?procedurei) ; get CDT code
-	      (?code !'direct type'@ohd ?codetype) ; get its direct ype
-	      (?codetype !rdfs:label ?code_label) ; then get the label of that
+		    ;; (?procedurei !'has participant'@ohd ?toothi) ; that involve an instance
+		    (?toothi !'asserted type'@ohd ?toothtype) ; of some type
+		    (?toothtype !rdfs:subClassOf !'tooth'@ohd) ; that is a tooth
 
-	      (?procedurei !'occurrence date'@ohd ?date) ; of which occurs on ?date
+		    (?toothtype !'ADA universal tooth number'@ohd ?toothn) ; and we want the tooth number 
+		    (?toothi !rdfs:label ?tooth) ; and the label of the tooth
 
-	      (?procedurei !'has participant'@ohd ?toothi) ; that involve an instance
-	      (?toothi !'direct type'@ohd ?toothtype) ; of some type
-	      (?toothtype !rdfs:subClassOf !'tooth'@ohd) ; that is a tooth
+		    (?personi !'asserted type'@ohd ?ptype) 
+		    (?ptype !rdfs:subClassOf !'homo sapiens'@ohd) ; Now there is a person involved
 
-	      (?toothtype !'ADA universal tooth number'@ohd ?toothn) ; and we want the tooth number 
-	      (?toothi !rdfs:label ?tooth) ; and the label of the tooth
+		    (?toothi !'is part of'@ohd ?personi) ; that that tooth is part of
 
-	      (?personi !'direct type'@ohd ?ptype) 
-	      (?ptype !rdfs:subClassOf !'homo sapiens'@ohd) ; Now there is a person involved
-
-	      (?toothi !'is part of'@ohd ?personi) ; that that tooth is part of
-
-	      (?personi !'birth_date'@ohd ?bdate) ; we want their birth date
-	      (?personi !rdfs:label ?person) ; their label 
-
-
-	      )
+		    (?personi !'birth_date'@ohd ?bdate) ; we want their birth date
+		    (?personi !rdfs:label ?person)	; their label 
+		    
+		    (?surfacetype !rdfs:subClassOf !'Surface enamel of tooth'@ohd) ; narrow asserted types to subclass of suface enamel
+		    ;;(?surfacetype !rdfs:label ?surface)
+		    (?surfacei !'asserted type'@ohd ?surfacetype) ; get surface intsances that are asserted types
+		    ;;(?surfacei !'is part of'@ohd ?toothi) ; surface instance is part of tooth instance
+		    (?surfacei !rdfs:label ?surface) ; get label of surface
+		    )
 	    :expressivity "RL" :trace "story of some teeth" :values nil)))
   (if explain res nil)
   )) ;; RL fastest for this?
