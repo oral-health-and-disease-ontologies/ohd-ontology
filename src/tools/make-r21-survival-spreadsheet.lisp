@@ -1,4 +1,5 @@
 (defvar stardog-r21 "http://127.0.0.1:5822/r21db/query")
+(defvar owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/ohd/query")
 
 (defun r21query (query  &rest args &key (expressivity "RL") &allow-other-keys)
   "Do a query against the r21 store. expressivity is nil, EL, RL, QL, DL(?)"
@@ -14,7 +15,6 @@
   (destructuring-bind (protocol site path) (car (all-matches stardog-r21 "(http)://([^/]*)(.*)" 1 2 3))
     (setq query (sparql-stringify query))
     (let ((query-uri (clean-uri site (#"replaceAll" path "query" "explain") protocol nil (format nil "query=~a" query))))
-
       (apply 'get-url query-uri
 	     ;:post `(("query" ,query ))
 	     (append geturl-options (list :extra-headers `(("SD-Connection-String" ,(format nil "reasoning=~a" expressivity)) ("Accept" "text/plain"))
@@ -46,10 +46,10 @@
 	 (return-from cdt2string (cdt2string uri)))))
 
 ;; patients are asserted to be male organism or female organism.
-(defun build-spreadsheet (&key explain)
+(defun build-spreadsheet (&key explain translate)
   "Start of the query. Next need to figure out how ?code is to be bound - it isn't in this version. It also appears to return incorrect answers."
   (let ((res 
-	 (funcall (if explain 'explain-r21query 'r21query) 
+	 (funcall (if explain 'explain-r21query (if translate 'sparql-stringify 'r21query) )
 		  '(:select (?person  ?bdate ?tooth ?procedure ?procedurei ?procedure_type ?procedure_label ?date ?toothn ?code_label ?surface) 
 		    (:limit 10 :order-by (?person ?toothn ?date) )
 
@@ -81,9 +81,9 @@
 		    (?personi !rdfs:label ?person)	; their label 
 		    
 		    (?surfacetype !rdfs:subClassOf !'Surface enamel of tooth'@ohd) ; narrow asserted types to subclass of suface enamel
-		    ;;(?surfacetype !rdfs:label ?surface)
+		    (?surfacetype !rdfs:label ?surface)
 		    (?surfacei !'asserted type'@ohd ?surfacetype) ; get surface intsances that are asserted types
-		    ;;(?surfacei !'is part of'@ohd ?toothi) ; surface instance is part of tooth instance
+		    (?surfacei !'is part of'@ohd ?toothi) ; surface instance is part of tooth instance
 		    (?surfacei !rdfs:label ?surface) ; get label of surface
 		    )
 	    :expressivity "RL" :trace "story of some teeth" :values nil)))
