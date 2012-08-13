@@ -48,7 +48,7 @@
 	 (return-from cdt2string (cdt2string uri)))))
 
 ;; patients are asserted to be male organism or female organism.
-(defun build-spreadsheet (&key explain translate)
+(defun build-spreadsheet (&key explain translate (reasoner 'stardog-r21))
   "Start of the query. Next need to figure out how ?code is to be bound - it isn't in this version. It also appears to return incorrect answers."
   (let ((res 
 	 (funcall (if explain 'explain-r21query (if translate 'sparql-stringify 'r21query) )
@@ -67,10 +67,10 @@
 			     ) 
 		    (:limit 10 :order-by (?person ?toothn ?date) )
 
-		    (?procedurei !'asserted type'@ohd ?procedure_type) ; procedure instances 
-		    (?procedurei !rdfs:label ?procedure) ; label for the procedure instance
-		    (?procedure_type !rdfs:subClassOf !'restorative procedure'@ohd) ; narrowed to restorative procedure
-		    (?procedure_type !rdfs:label ?procedure_label) ; and the label of the procedure type
+		    ;; (?procedurei !'asserted type'@ohd ?procedure_type) ; procedure instances 
+		    ;; (?procedurei !rdfs:label ?procedure) ; label for the procedure instance
+		    ;; (?procedure_type !rdfs:subClassOf !'restorative procedure'@ohd) ; narrowed to restorative procedure
+		    ;; (?procedure_type !rdfs:label ?procedure_label) ; and the label of the procedure type
 		    
 		    ;; (?codetype !rdfs:subClassOf !'current dental terminology code'@ohd)
 		    ;; (?code !'is about'@ohd ?procedurei) ; get CDT code
@@ -94,13 +94,13 @@
 		    (?personi !'birth_date'@ohd ?bdate) ; we want their birth date
 		    (?personi !rdfs:label ?person)	; their label 
 		    
-		    (?surfacetype !rdfs:subClassOf !'Surface enamel of tooth'@ohd) ; narrow asserted types to subclass of suface enamel
-		    (?surfacetype !rdfs:label ?surface_type_label) ; get label of surface type
-		    (?surfacei !'asserted type'@ohd ?surfacetype) ; get surface intsances that are asserted types
-		    (?surfacei !'is part of'@ohd ?toothi) ; surface instance is part of tooth instance
-		    (?surfacei !rdfs:label ?surface_instance_label) ; get label of surface instance
+		    ;; (?surfacetype !rdfs:subClassOf !'Surface enamel of tooth'@ohd) ; narrow asserted types to subclass of suface enamel
+		    ;; (?surfacetype !rdfs:label ?surface_type_label) ; get label of surface type
+		    ;; (?surfacei !'asserted type'@ohd ?surfacetype) ; get surface intsances that are asserted types
+		    ;; (?surfacei !'is part of'@ohd ?toothi) ; surface instance is part of tooth instance
+		    ;; (?surfacei !rdfs:label ?surface_instance_label) ; get label of surface instance
 		    )
-	    :expressivity "RL" :trace "story of some teeth" :values nil)))
+	    :expressivity "RL" :reasoner reasoner :trace "story of some teeth" :values nil)))
   (if explain res nil)
   )) ;; RL fastest for this?
 
