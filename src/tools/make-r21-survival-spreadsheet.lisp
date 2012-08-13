@@ -1,11 +1,13 @@
 (defvar stardog-r21 "http://127.0.0.1:5822/r21db/query")
 (defvar owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/ohd/query")
 
-(defun r21query (query  &rest args &key (expressivity "RL") &allow-other-keys)
+(defun r21query (query  &rest args &key (expressivity "RL") (reasoner 'stardog-r21) &allow-other-keys)
   "Do a query against the r21 store. expressivity is nil, EL, RL, QL, DL(?)"
   (if expressivity
-      (apply 'sparql query  :use-reasoner stardog-r21 :geturl-options (and expressivity `(:extra-headers (("SD-Connection-String" ,(format nil "reasoning=~a" expressivity))))) args)
-      (apply 'sparql query  :use-reasoner stardog-r21 args)))
+      (apply 'sparql query  :use-reasoner (eval reasoner) :geturl-options 
+	     (and expressivity `(:extra-headers (("SD-Connection-String" 
+						  ,(format nil "reasoning=~a" expressivity))))) args)
+      (apply 'sparql query  :use-reasoner (eval reasoner))))
 
 (def-uri-alias "stardog-asserted-subclassof" !<http://pellet.owldl.com/ns/sdle#directSubClassOf>)
 ;(def-uri-alias "stardog-asserted-type" !<http://pellet.owldl.com/ns/sdle#directType>)
@@ -50,13 +52,25 @@
   "Start of the query. Next need to figure out how ?code is to be bound - it isn't in this version. It also appears to return incorrect answers."
   (let ((res 
 	 (funcall (if explain 'explain-r21query (if translate 'sparql-stringify 'r21query) )
-		  '(:select (?person  ?bdate ?tooth ?procedure ?procedurei ?procedure_type ?procedure_label ?date ?toothn ?code_label ?surface) 
+		  '(:select (?person  
+			     ?bdate 
+			     ?tooth 
+			     ?procedure 
+			     ;;?procedurei 
+			     ?procedure_type 
+			     ?procedure_label 
+			     ?date 
+			     ;;?toothn 
+			     ?code_label 
+			     ?surface_instance_label
+			     ;;?surface_type_label
+			     ) 
 		    (:limit 10 :order-by (?person ?toothn ?date) )
 
-		    ;; (?procedurei !'asserted type'@ohd ?procedure_type) ; procedure instances 
-		    ;; (?procedurei !rdfs:label ?procedure) ; label for the procedure instance
-		    ;; (?procedure_type !rdfs:subClassOf !'restorative procedure'@ohd) ; narrowed to restorative procedure
-		    ;; (?procedure_type !rdfs:label ?procedure_label) ; and the label of the procedure type
+		    (?procedurei !'asserted type'@ohd ?procedure_type) ; procedure instances 
+		    (?procedurei !rdfs:label ?procedure) ; label for the procedure instance
+		    (?procedure_type !rdfs:subClassOf !'restorative procedure'@ohd) ; narrowed to restorative procedure
+		    (?procedure_type !rdfs:label ?procedure_label) ; and the label of the procedure type
 		    
 		    ;; (?codetype !rdfs:subClassOf !'current dental terminology code'@ohd)
 		    ;; (?code !'is about'@ohd ?procedurei) ; get CDT code
@@ -74,20 +88,40 @@
 
 		    (?personi !'asserted type'@ohd ?ptype) 
 		    (?ptype !rdfs:subClassOf !'homo sapiens'@ohd) ; Now there is a person involved
-
+		    
 		    (?toothi !'is part of'@ohd ?personi) ; that that tooth is part of
 
 		    (?personi !'birth_date'@ohd ?bdate) ; we want their birth date
 		    (?personi !rdfs:label ?person)	; their label 
 		    
 		    (?surfacetype !rdfs:subClassOf !'Surface enamel of tooth'@ohd) ; narrow asserted types to subclass of suface enamel
-		    (?surfacetype !rdfs:label ?surface)
+		    (?surfacetype !rdfs:label ?surface_type_label) ; get label of surface type
 		    (?surfacei !'asserted type'@ohd ?surfacetype) ; get surface intsances that are asserted types
 		    (?surfacei !'is part of'@ohd ?toothi) ; surface instance is part of tooth instance
-		    (?surfacei !rdfs:label ?surface) ; get label of surface
+		    (?surfacei !rdfs:label ?surface_instance_label) ; get label of surface instance
 		    )
 	    :expressivity "RL" :trace "story of some teeth" :values nil)))
   (if explain res nil)
   )) ;; RL fastest for this?
 
 
+(defun test-stardog-query ()
+ (r21query '(:select (?s ?l)
+	     (:limit 10)
+	     (?s !rdf:type !obo:FMA_12516)
+	     (?s !rdfs:label ?l))))
+
+(defun test-owlim-query ()
+  (r21query 
+   '(:select (?s ?l)
+     (:limit 10)
+     ;;(?s !rdf:type !obo:FMA_12516)
+     ;;(?s !rdfs:label ?l)
+     (?surfacetype !rdfs:subClassOf !'Surface enamel of tooth'@ohd)
+     (?surfacetype !rdfs:label ?l)
+     (?surfacei !'asserted type'@ohd ?surfacetype) 
+     (?s !rdf:type ?surfacetype)
+     )
+   :reasoner 'owlim-lite-r21
+   :trace "test owlim query")
+  nil)
