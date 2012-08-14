@@ -27,7 +27,7 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // Datatypes
+    // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
@@ -35,14 +35,97 @@
     
 
 
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Classes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
+    <!-- http://purl.obolibrary.org/obo/OHD_0100056 -->
 
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100056">
+        <rdfs:label>biological matrix</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100057 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100057">
+        <rdfs:label>extracellular matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100056"/>
+        <obo:IAO_0000119>Dorland. Dorland&#39;s Illustrated Medical Dictionary, 32nd Edition. W.B. Saunders Company, 2012.</obo:IAO_0000119>
+        <obo:IAO_0000119>Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008. </obo:IAO_0000119>
+        <rdfs:comment>Gene Ontology term: GO:0031012
+
+Definition:
+A structure lying external to one or more cells, which provides structural support for cells or tissues; may be completely external to the cell (as in animals and bacteria) or be part of the cell (as in plants). 
+
+Source: GOC:mah</rdfs:comment>
+        <obo:IAO_0000115>an amorphous or structured substance produced by cellular activity that lies within the tissue but outside the cell. ( Mosby 238)
+
+Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008. </obo:IAO_0000115>
+        <obo:IAO_0000115>any material produced by cells and excreted to the extracellular space within the tissues. It takes the form of both ground substance and fibers and is composed chiefly of fibrous elements, proteins involved in cell adhesion, and glycosaminoglycans and other space-filling molecules. It serves as a scaffolding holding tissues together and its form and composition help determine tissue characteristics. In epithelia, it includes the basement membrane. (Dorland 1113)
+
+Dorland. Dorland&#39;s Illustrated Medical Dictionary, 32nd Edition. W.B. Saunders Company, 2012. </obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100058 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100058">
+        <rdfs:label>intracellular matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100056"/>
+        <obo:IAO_0000118>cytoskeleton</obo:IAO_0000118>
+        <obo:IAO_0000115> a three-dimensional cytoplasmic network of protein polymers (microfilaments, intermediate filaments, and microtubules), occurring in eukaryotes, that supports and maintains the shape of the cell and provides motility (both of the whole cell and of organelles and vesicles within the cell). (Dorland 467)
+
+Dorland. Dorland&#39;s Illustrated Medical Dictionary, 32nd Edition. W.B. Saunders Company, 2012.
+ </obo:IAO_0000115>
+        <obo:IAO_0000119>the intracellular filaments that serve to support or stiffen cells. ( Mosby 162)
+ Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008. </obo:IAO_0000119>
+        <obo:IAO_0000119>Dorland. Dorland&#39;s Illustrated Medical Dictionary, 32nd Edition. W.B. Saunders Company, 2012. </obo:IAO_0000119>
+        <rdfs:comment>Gene Ontology term: GO:0005856
+
+Definition
+Any of the various filamentous elements that form the internal framework of cells, and typically remain after treatment of the cells with mild detergent to remove membrane constituents and soluble components of the cytoplasm. The term embraces intermediate filaments, microfilaments, microtubules, the microtrabecular lattice, and other structures characterized by a polymeric filamentous nature and long-range order within the cell. The various elements of the cytoskeleton not only serve in the maintenance of cellular shape but also have roles in other cellular functions, including cellular movement, cell division, endocytosis, and movement of organelles. 
+
+Source: GOC:mah, ISBN:0198547684, PMID:16959967</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100059 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100059">
+        <rdfs:label>interstitial matrix</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100056"/>
+        <obo:IAO_0000115>A type of extracellular matrix found in interstitial connective tissue, characterized by the presence of fibronectins, proteoglycans, and types I, III, V, VI, VII and XII collagens. 
+
+Source: PMID:8450001</obo:IAO_0000115>
+        <obo:IAO_0000119>Source: PMID:8450001</obo:IAO_0000119>
+        <rdfs:comment>Gene Ontology term: GO:0005614
+
+Definition:
+A type of extracellular matrix found in interstitial connective tissue, characterized by the presence of fibronectins, proteoglycans, and types I, III, V, VI, VII and XII collagens. 
+
+Source: PMID:8450001</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0100060 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100060">
+        <rdfs:label>basement membrane</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD0100061 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD0100061">
+        <rdfs:label>amelogenesis</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100005"/>
+        <obo:IAO_0000115>the process during which the enamel matrix is formed by ameloblasts. ( Mosby 25)
+ Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008.
+</obo:IAO_0000115>
+        <obo:IAO_0000119> Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008.</obo:IAO_0000119>
+    </owl:Class>
     
 
 
@@ -123,7 +206,7 @@ Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Pub
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100005"/>
         <rdfs:comment>the development of the cells into the various basic cell units of tissue: the epithelial cell and the nerve cell, which arise from the ectodermal tissue layer of the embryo; and the blood, muscle, bone, cartilage, and other connective tissue cells, which arise from the mesodermal tissue of the embryo. The mature tissue cell has many intermediary, transitional forms that are sequential in their development from the primitive, less differentiated anlage cell forms. These intermediary forms are evident clinically in disease in blood dyscrasias, tumors, and inflammation and in health in the normal processes of growth, development, healing, and repair. ( Mosby 109)
  
-Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
+Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
     </owl:Class>
     
 
@@ -221,10 +304,10 @@ Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100017">
         <rdfs:label>enamel organ</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100016"/>
-        <rdfs:comment>the part of a developing tooth germ that produces enamel. ( Mosby 217)
- Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. </rdfs:comment>
         <rdfs:comment>Originates from the stratified epithelium lining the primitive oral cavity organ; consists of four distinct layers: outer enamel epithelium, stellate reticulum, stratum intermedium, and inner enamel epithelium. The latter becomes the ameloblastic layer. (Avery 415)
 Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Publishers, 2002.</rdfs:comment>
+        <rdfs:comment>the part of a developing tooth germ that produces enamel. ( Mosby 217)
+ Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008. </rdfs:comment>
     </owl:Class>
     
 
@@ -274,11 +357,11 @@ Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Pub
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0100022">
         <rdfs:label>epithelial root sheath</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100018"/>
-        <rdfs:comment>Also called Hertwig&apos;s root sheath.</rdfs:comment>
-        <rdfs:comment>After the crown is completed, the inner and outer enamel epithelium at the base of the cervical loop proliferate to form a bilayer of epithelial cells called the (Hertwig&apos;s) root sheath. (Avery 109)
+        <rdfs:comment>Also called Hertwig&#39;s root sheath.</rdfs:comment>
+        <rdfs:comment>After the crown is completed, the inner and outer enamel epithelium at the base of the cervical loop proliferate to form a bilayer of epithelial cells called the (Hertwig&#39;s) root sheath. (Avery 109)
 Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Publishers, 2002.</rdfs:comment>
         <rdfs:comment>an elongation of the cervical loop, which helps determine the shape, size, and number of roots and which influences the formation of dentin in the root area during the developmental stages of a tooth. ( Mosby 314-315)
- Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
+ Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
     </owl:Class>
     
 
@@ -300,7 +383,7 @@ Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Pub
         <rdfs:label>histodifferentiation</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100006"/>
         <rdfs:comment>the process in which cells develop the distinctive characteristics of the tissues to which they are to belong. ( Mosby 316)
- Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. </rdfs:comment>
+ Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008. </rdfs:comment>
     </owl:Class>
     
 
@@ -311,7 +394,7 @@ Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Pub
         <rdfs:label>lysis</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100005"/>
         <rdfs:comment>The disintegration or dissolution of cells by a lysin. ( Mosby 397)
- Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
+ Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
     </owl:Class>
     
 
@@ -340,7 +423,7 @@ Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Pub
         <rdfs:label>dentinogenesis</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100005"/>
         <rdfs:comment>formation of the connective tissue, dentin, from odontoblasts during the development of the tooth. ( Mosby 174)
- Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. </rdfs:comment>
+ Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008. </rdfs:comment>
     </owl:Class>
     
 
@@ -352,8 +435,8 @@ Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Pub
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100016"/>
         <rdfs:comment>The space in dentin that contains, or at one time contained, an odontoblastic process. (Avery 414)
 Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Publishers, 2002. </rdfs:comment>
-        <rdfs:comment>a microscopic tube within dentin that spreads outward from the tooth&apos;s center. It carries dentinal fluid. ( Mosby 172)
- Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
+        <rdfs:comment>a microscopic tube within dentin that spreads outward from the tooth&#39;s center. It carries dentinal fluid. ( Mosby 172)
+ Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
     </owl:Class>
     
 
@@ -460,7 +543,7 @@ Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Pub
         <rdfs:label>minerization</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100005"/>
         <rdfs:comment>the bioprecipitation of an inorganic substance. ( Mosby 425)
- Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
+ Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
     </owl:Class>
     
 
@@ -471,7 +554,7 @@ Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Pub
         <rdfs:label>tooth eruption</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100005"/>
         <rdfs:comment>the process by which the tooth moves from its site of formation to its position of function. It can be active or passive. ( Mosby 690)
- Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. </rdfs:comment>
+ Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008. </rdfs:comment>
     </owl:Class>
     
 
@@ -518,7 +601,7 @@ Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Pub
         <rdfs:label>tooth germ</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100000"/>
         <rdfs:comment>the earliest evidence of a tooth. It includes the dental sac, dental papilla, and enamel organ. ( Mosby 690)
- Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. </rdfs:comment>
+ Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008. </rdfs:comment>
     </owl:Class>
     
 
@@ -572,7 +655,7 @@ Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Pub
         <rdfs:label>lysine</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100051"/>
         <rdfs:comment> one of the essential amino acids found in many proteins; needed for proper growth in infants and for maintenance of nitrogen balance in adults.  ( Mosby 397)
- Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
+ Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
     </owl:Class>
     
 
@@ -583,7 +666,7 @@ Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Pub
         <rdfs:label>active tooth eruption</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100041"/>
         <rdfs:comment>the movement of a developing tooth from its area of development in the jaw into the oral cavity to become part of the dental arch. ( Mosby 226)
- Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
+ Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
     </owl:Class>
     
 
@@ -594,7 +677,7 @@ Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Pub
         <rdfs:label>passive tooth eruption</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100041"/>
         <rdfs:comment>an increasing length of the clinical crown often seen with aging and in the absence of clinical evidence of inflammation. ( Mosby 226)
- Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
+ Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
     </owl:Class>
     
 
@@ -605,11 +688,11 @@ Avery, James K.. Oral Development and Histology, 3rd Edition. Thieme Medical Pub
         <rdfs:label>dental sac</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0100016"/>
         <rdfs:comment>a portion of the tooth germ consisting of ectomesenchyme surrounding the outside of the enamel organ, which produces the periodontium of a tooth. Older term is dental follicle. ( Mosby 171)
- Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
+ Mosby. Mosby&#39;s Dental Dictionary, 2nd Edition. Mosby, 2008.</rdfs:comment>
     </owl:Class>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 3.2.5.1912) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.1.0.1642) http://owlapi.sourceforge.net -->
 
