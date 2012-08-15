@@ -13,6 +13,22 @@
 			(list "queryLn" "SPARQL")))
 	 (format *debug-io* "Loaded ~a~%" file))))
 
+
+(register-namespace "openrdf:" "http://www.openrdf.org/config/repository#")
+
+(defun create-repo-from-ttl (&optional (endpoint "http://localhost:8080/openrdf-workbench/repositories/SYSTEM/update") name expressivity )
+  (let ((files (append (directory "/Volumes/Big/Downloads/2012-08-13/owlim-lite-5.2.5331/getting-started/owlim.ttl"))))
+    (with-ontology foo (:collecting t) 
+	((asq
+	  (class-assertion !openrdf:RepositoryContext !blank:repocontext)
+	  (class-assertion !openrdf:Repository !blank:repo)
+	  (declaration (annotation-property !openrdf:repositoryID))
+	  (annotation-assertion !openrdf:repositoryID !blank:repo "name of ontology")))
+      (to-owl-syntax foo :turtle))))
+
+
+
+
 (defun sesame-repository-size (id)
   (parse-integer (get-url (format nil "http://localhost:8080/openrdf-sesame/repositories/~a/size" id))))
 
@@ -55,9 +71,7 @@ Template RDF for uploading to SYSTEM repository to create an OWLIM repo.
        owlim:defaultNS "http://www.my-organisation.org/ontology#"
      ]
    ].
-|#
 
-#|
 Traced doing an update in the interface, with packet peeper http://sourceforge.net/projects/packetpeeper/files/latest/download
 
 Bottom line: The update needs to be made as a post at endpoint "/update" relative to repository
@@ -98,3 +112,5 @@ PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
 PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX pext:<http://proton.semanticweb.org/protonext#>
 load <file:/Users/alanr/repos/ohd-ontology/trunk/src/ontology/pitt-ub-ohsu-r21/imports/BFO2/bfo2.owl>;
+
+|#
