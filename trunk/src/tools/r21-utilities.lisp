@@ -349,6 +349,63 @@ Usage:
 
 ;;;; specific to eagle soft ;;;;
 
+(defun create-eaglesoft-ontologies (&key patient-id limit-rows save-to-directory force-create-table)
+  "Creates the suite of ontologies based on the Eaglesoft database. These ontologies are then returned in an associated list. The patient-id key creates the ontologies based on that specific patient. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. When the save-to-directory key (as a string) is provided, the created ontologies will saved to the specified directory.  The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
+  (let ((crowns nil)
+	(dental-patients nil)
+	(endodontics nil)
+	(fillings nil)
+	(missing-teeth nil)
+	(surgical-extractions nil))
+	
+	;; create ontologies
+	(setf crowns (get-eaglesoft-crowns-ont
+	       :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+	(setf dental-patients (get-eaglesoft-dental-patients-ont
+	       :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+	(setf endodontics (get-eaglesoft-endodontics-ont
+	       :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+	(setf fillings (get-eaglesoft-fillings-ont
+	       :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+	(setf missing-teeth (get-eaglesoft-missing-teeth-findings-ont
+	       :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+	(setf surgical-extractions (get-eaglesoft-surgical-extractions-ont
+	       :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+	
+	;; check to save
+	(when save-to-directory
+	  ;; ensure save-to-directory is a string
+	  (setf save-to-directory (format nil "~a" save-to-directory))
+
+	  ;; make sure save-to-directory ends with a "/"
+	  (when (not (equal (str-right save-to-directory 1) "/"))
+	    (setf save-to-directory 
+		  (str+ save-to-directory "/")))
+
+	  ;; if a patient-id has been given, append it to directory
+	  ;; this has the affect of prepennding the patient-id to the file name
+	  (when patient-id
+	    ;; ensure patient-id is a string
+	    (setf patient-id (format nil "~a" patient-id))
+	    (setf save-to-directory
+		  (str+ save-to-directory "patient-" patient-id "-")))
+
+	  ;; save each ontology
+	  (write-rdfxml crowns (str+ save-to-directory "crowns.owl"))
+	  (write-rdfxml dental-patients (str+ save-to-directory "dental-patients.owl"))
+	  (write-rdfxml endodontics (str+ save-to-directory "endodontics.owl"))
+	  (write-rdfxml fillings (str+ save-to-directory "fillings.owl"))
+	  (write-rdfxml missing-teeth (str+ save-to-directory "missing-teeth.owl"))
+	  (write-rdfxml surgical-extractions (str+ save-to-directory "surgical-extractions.owl")))
+
+	;; place ontologies in asscoiated list and return
+	`((crowns . ,crowns)
+	  (dental-patients . ,dental-patients)
+	  (endodontics . ,endodontics)
+	  (fillings . ,fillings)
+	  (missing-teeth . ,missing-teeth)
+	  (surgical-extractions . ,surgical-extractions))))
+
 (defun get-eaglesoft-database-url ()
   "Returns the url string for connecting to Eaglesoft dabase.
 Note: The file ~/.pattersondbpw must be on your system."
