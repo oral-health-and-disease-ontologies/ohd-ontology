@@ -349,8 +349,8 @@ Usage:
 
 ;;;; specific to eagle soft ;;;;
 
-(defun create-eaglesoft-ontologies (&key patient-id limit-rows save-to-directory force-create-table)
-  "Creates the suite of ontologies based on the Eaglesoft database. These ontologies are then returned in an associated list. The patient-id key creates the ontologies based on that specific patient. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. When the save-to-directory key (as a string) is provided, the created ontologies will saved to the specified directory.  The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
+(defun create-eaglesoft-ontologies (&key patient-id limit-rows save-to-path force-create-table)
+  "Creates the suite of ontologies based on the Eaglesoft database. These ontologies are then returned in an associated list. The patient-id key creates the ontologies based on that specific patient. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. When the save-to-path key (as a string) is provided, the created ontologies will saved to the specified path.  The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
   (let ((crowns nil)
 	(dental-patients nil)
 	(endodontics nil)
@@ -373,30 +373,32 @@ Usage:
 	       :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
 	
 	;; check to save
-	(when save-to-directory
-	  ;; ensure save-to-directory is a string
-	  (setf save-to-directory (format nil "~a" save-to-directory))
+	(when save-to-path
+	  ;; ensure save-to-path is a string
+	  (setf save-to-path (format nil "~a" save-to-path))
 
-	  ;; make sure save-to-directory ends with a "/"
-	  (when (not (equal (str-right save-to-directory 1) "/"))
-	    (setf save-to-directory 
-		  (str+ save-to-directory "/")))
+	  ;; billd: I decided the code below was too limiting for the various ways
+	  ;;        I might want to save files
+	  ;; ;; make sure save-to-path ends with a "/"
+	  ;; (when (not (equal (str-right save-to-path 1) "/"))
+	  ;;   (setf save-to-path 
+	  ;; 	  (str+ save-to-path "/")))
 
-	  ;; if a patient-id has been given, append it to directory
-	  ;; this has the affect of prepennding the patient-id to the file name
-	  (when patient-id
-	    ;; ensure patient-id is a string
-	    (setf patient-id (format nil "~a" patient-id))
-	    (setf save-to-directory
-		  (str+ save-to-directory "patient-" patient-id "-")))
+	  ;; ;; if a patient-id has been given, append it to directory
+	  ;; ;; this has the affect of prepennding the patient-id to the file name
+	  ;; (when patient-id
+	  ;;   ;; ensure patient-id is a string
+	  ;;   (setf patient-id (format nil "~a" patient-id))
+	  ;;   (setf save-to-path
+	  ;; 	  (str+ save-to-path "patient-" patient-id "-")))
 
 	  ;; save each ontology
-	  (write-rdfxml crowns (str+ save-to-directory "crowns.owl"))
-	  (write-rdfxml dental-patients (str+ save-to-directory "dental-patients.owl"))
-	  (write-rdfxml endodontics (str+ save-to-directory "endodontics.owl"))
-	  (write-rdfxml fillings (str+ save-to-directory "fillings.owl"))
-	  (write-rdfxml missing-teeth (str+ save-to-directory "missing-teeth.owl"))
-	  (write-rdfxml surgical-extractions (str+ save-to-directory "surgical-extractions.owl")))
+	  (write-rdfxml crowns (str+ save-to-path "crowns.owl"))
+	  (write-rdfxml dental-patients (str+ save-to-path "dental-patients.owl"))
+	  (write-rdfxml endodontics (str+ save-to-path "endodontics.owl"))
+	  (write-rdfxml fillings (str+ save-to-path "fillings.owl"))
+	  (write-rdfxml missing-teeth (str+ save-to-path "missing-teeth.owl"))
+	  (write-rdfxml surgical-extractions (str+ save-to-path "surgical-extractions.owl")))
 
 	;; place ontologies in asscoiated list and return
 	`((crowns . ,crowns)
