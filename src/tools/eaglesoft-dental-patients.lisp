@@ -15,8 +15,8 @@
 
 
 
-(defun get-eaglesoft-dental-patients-ont (&key force-create-table)
-  "Returns an ontology of the dental patients contained in the Eaglesoft database.  They force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
+(defun get-eaglesoft-dental-patients-ont (&key patient-id limit-rows force-create-table)
+  "Returns an ontology of the dental patients contained in the Eaglesoft database. The patient-id key creates an ontology based on that specific patient. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
   (let ((connection nil)
 	(statement nil)
 	(results nil)
@@ -31,7 +31,8 @@
     (prepare-eaglesoft-db url :force-create-table force-create-table)
 
     ;; get query string for amalgam restorations
-    (setf query (get-eaglesoft-dental-patients-query))
+    (setf query (get-eaglesoft-dental-patients-query 
+		 :patient-id patient-id :limit-rows limit-rows))
 
     (with-ontology ont (:collecting t 
 			:base *eaglesoft-individual-dental-patients-iri-base*
@@ -151,17 +152,34 @@
     ;; return uri
     uri))
 
-(defun get-eaglesoft-dental-patients-query ()
-"
-SET rowcount 0
+(defun get-eaglesoft-dental-patients-query (&key patient-id limit-rows)
+  "Returns query string for retrieving data. The patient-id key restricts records only that patient or patients.  Multiple are patients are specified using commas; e.g: \"123, 456, 789\".  The limit-rows key restricts the number of records to the number specified."
+  (let ((sql nil))
 
-SELECT
-  --TOP 100 -- for testing
-  *
-FROM
-  PPM.patient
-WHERE LENGTH(birth_date) > 0
-ORDER BY patient_id")
+    ;; build query string
+    (setf sql "SET rowcount 0 ")
+    
+    ;; SELECT clause
+    (cond 
+      (limit-rows
+       (setf limit-rows (format nil "~a" limit-rows)) ;ensure that limit rows is a string
+       (setf sql (str+ sql " SELECT  TOP " limit-rows " * "))) 
+      (t (setf sql (str+ sql " SELECT * "))))
 
+    ;; FROM clause
+    (setf sql (str+ sql " FROM PPM.patient "))
 
+    ;; WHERE clause
+    (setf sql (str+ sql " WHERE LENGTH(birth_date) > 0 "))
 
+    ;; check for patient id
+    (when patient-id
+      (setf sql
+	    (str+ sql " AND patient_id IN (" (get-single-quoted-list patient-id) ") ")))
+
+    ;; ORDER BY clause
+    (setf sql (str+ sql " ORDER BY patient_id "))
+
+    ;; return query string
+    ;;(pprint sql)
+    sql))

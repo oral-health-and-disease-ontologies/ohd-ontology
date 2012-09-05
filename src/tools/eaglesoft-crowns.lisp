@@ -11,8 +11,9 @@
 ;; only tests that these tables exist in the user's database. If these table need to be 
 ;; recreated, the call get-eaglesoft-fillings-ont with :force-create-table key set to t.
 
-(defun get-eaglesoft-crowns-ont (&key force-create-table)
-  "Returns an ontology of the crowns contained in the Eaglesoft database.  They force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
+(defun get-eaglesoft-crowns-ont (&key patient-id limit-rows force-create-table)
+  "Returns an ontology of the crowns contained in the Eaglesoft database.  The patient-id key creates an ontology based on that specific patient. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
+
   (let ((connection nil)
 	(statement nil)
 	(results nil)
@@ -28,7 +29,8 @@
     (prepare-eaglesoft-db url :force-create-table force-create-table)
 
     ;; get query string for restorations
-    (setf query (get-eaglesoft-crowns-query))
+    (setf query (get-eaglesoft-crowns-query 
+		 :patient-id patient-id :limit-rows limit-rows))
 
     (with-ontology ont (:collecting t 
 			:base *eaglesoft-individual-crowns-iri-base* 
@@ -273,76 +275,91 @@
     ;; return uri
     uri))
 
-(defun get-eaglesoft-crowns-query ()
-"
-SET rowcount 0 
+(defun get-eaglesoft-crowns-query (&key patient-id limit-rows)
+  "Retruns query string for retrieving data. The patient-id key restricts records only that patient or patients.  Multiple are patients are specified using commas; e.g: \"123, 456, 789\".  The limit-rows key restricts the number of records to the number specified."
+  (let ((sql nil))
+    ;; build query string
+    (setf sql "SET rowcount 0 ")
+    
+    ;; SELECT clause
+    (cond 
+      (limit-rows
+       (setf limit-rows (format nil "~a" limit-rows)) ;ensure that limit rows is a string
+       (setf sql (str+ sql " SELECT  TOP " limit-rows " * "))) 
+      (t (setf sql (str+ sql " SELECT * "))))
 
--- Note: D2390 and 02390 (resin-based composite crown, anterior)  have been added to query
-SELECT
-  -- TOP 10 -- used for testing
-  *
-FROM
-  patient_history
-WHERE
-  ada_code IN ('D2390', -- This was originally in the fillings query
-               'D2710',
-               'D2712',
-               'D2721',
-               'D2722',
-               'D2740',
-               'D2750',
-               'D2751',
-               'D2752',
-               'D2780',
-               'D2781',
-               'D2782',
-               'D2783',
-               'D2790',
-               'D2791',
-               'D2792',
-               'D2794',
-               'D2799',
-               'D2931',
-               'D2932',
-               'D2933',
-               'D2940',
-               'D2950',
-               'D2952',
-               'D2954',
-               'D2960',
-               'D2961',
-               'D2962',
-               'D2970',
+    ;; FROM clause
+    (setf sql (str+ sql " FROM patient_history "))
 
-                -- Older ada codes beging with a '0'
-               '02390', -- This was origanally in the fillings query
-               '02710',
-               '02712',
-               '02721',
-               '02722',
-               '02740',
-               '02750',
-               '02751',
-               '02752',
-               '02780',
-               '02781',
-               '02782',
-               '02783',
-               '02790',
-               '02791',
-               '02792',
-               '02794',
-               '02799',
-               '02931',
-               '02932',
-               '02933',
-               '02940',
-               '02950',
-               '02952',
-               '02954',
-               '02960',
-               '02961',
-               '02962',
-               '02970')
-"
-)
+    ;; WHERE clause
+    (setf sql 
+	  (str+ sql 
+		"WHERE
+                 ada_code IN ('D2390', -- This was originally in the fillings query
+                              'D2710',
+                              'D2712',
+                              'D2721',
+                              'D2722',
+                              'D2740',
+                              'D2750',
+                              'D2751',
+                              'D2752',
+                              'D2780',
+                              'D2781',
+                              'D2782',
+                              'D2783',
+                              'D2790',
+                              'D2791',
+                              'D2792',
+                              'D2794',
+                              'D2799',
+                              'D2931',
+                              'D2932',
+                              'D2933',
+                              'D2940',
+                              'D2950',
+                              'D2952',
+                              'D2954',
+                              'D2960',
+                              'D2961',
+                              'D2962',
+                              'D2970',
+
+                               -- Older ada codes beging with a '0'
+                              '02390', -- This was origanally in the fillings query
+                              '02710',
+                              '02712',
+                              '02721',
+                              '02722',
+                              '02740',
+                              '02750',
+                              '02751',
+                              '02752',
+                              '02780',
+                              '02781',
+                              '02782',
+                              '02783',
+                              '02790',
+                              '02791',
+                              '02792',
+                              '02794',
+                              '02799',
+                              '02931',
+                              '02932',
+                              '02933',
+                              '02940',
+                              '02950',
+                              '02952',
+                              '02954',
+                              '02960',
+                              '02961',
+                              '02962',
+                              '02970') "))
+
+    ;; check for patient id
+    (when patient-id
+      (setf sql
+	    (str+ sql " AND patient_id IN (" (get-single-quoted-list patient-id) ") ")))
+    ;; return query string
+    ;;(pprint sql)
+    sql))

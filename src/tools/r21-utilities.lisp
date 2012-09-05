@@ -254,6 +254,33 @@ Usage:
     
     ;;return axioms
     axioms))
+
+(defun get-single-quoted-list (items)
+  "Returns the value of items with single quotes around the value.  For example if the value of items is \"test\", this function returns \"'test'\".  Or if the value of items is \"one, two, three\", then \"'one', 'two', 'three'\" is returned."
+
+  (let ((replace-value nil)
+	(value-list nil))
+    ;; ensure items is a string
+    (setf items (format nil "~a" items))
+
+    ;; get a list of values
+    ;; note: all-matches returns a list of lists, so do (fist list-item) to get value
+    (loop 
+       for list-item in (all-matches items "\\b\\w+\\b" 0) do
+	 (push (first list-item) value-list))
+    
+    ;; remove any duplicates
+    (setf value-list (remove-duplicates value-list :test 'equalp))
+	  
+
+    ;; replace each value in list with a quoted value
+    (loop 
+       for list-item in value-list do
+	 (setf replace-value (str+ "'" list-item "'"))
+	 (setf items (regex-replace-all list-item items replace-value)))
+
+    ;; retun list of single-quoted items
+    items))
 	
 ;;;; database functions ;;;;
 

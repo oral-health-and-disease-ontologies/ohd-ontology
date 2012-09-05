@@ -17,7 +17,9 @@
 (register-namespace "openrdf:" "http://www.openrdf.org/config/repository#")
 
 (defun create-repo-from-ttl (&optional (endpoint "http://localhost:8080/openrdf-workbench/repositories/SYSTEM/update") name expressivity )
-  (let ((files (append (directory "/Volumes/Big/Downloads/2012-08-13/owlim-lite-5.2.5331/getting-started/owlim.ttl"))))
+  (let 
+      ;;((files (append (directory "/Volumes/Big/Downloads/2012-08-13/owlim-lite-5.2.5331/getting-started/owlim.ttl"))))
+      ((files (append (directory "/Users/williamduncan/owlim/owlim-lite-5.2.5331/getting-started/owlim.ttl"))))
     (with-ontology foo (:collecting t) 
 	((asq
 	  (class-assertion !openrdf:RepositoryContext !blank:repocontext)

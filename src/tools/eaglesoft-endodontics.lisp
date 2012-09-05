@@ -12,8 +12,9 @@
 ;; user's database. If these table need to be recreated, the call 
 ;; get-eaglesoft-fillings-ont with :force-create-table key set to t.
 
-(defun get-eaglesoft-endodontics-ont (&key force-create-table)
-  "Returns an ontology of the endodontic procedures contained in the Eaglesoft database.  They force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
+(defun get-eaglesoft-endodontics-ont (&key patient-id limit-rows force-create-table)
+  "Returns an ontology of the endodontic procedures contained in the Eaglesoft database. The patient-id key creates an ontology based on that specific patient.  The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
+
   (let ((connection nil)
 	(statement nil)
 	(results nil)
@@ -29,7 +30,8 @@
     (prepare-eaglesoft-db url :force-create-table force-create-table)
 
     ;; get query string for restorations
-    (setf query (get-eaglesoft-endodontics-query))
+    (setf query (get-eaglesoft-endodontics-query 
+		 :patient-id patient-id :limit-rows limit-rows))
 
     (with-ontology ont (:collecting t 
 			:base *eaglesoft-individual-endodontics-iri-base*
@@ -221,53 +223,71 @@
     ;; return uri
     uri))
 
-(defun get-eaglesoft-endodontics-query ()
-"
-/*
+(defun get-eaglesoft-endodontics-query (&key patient-id limit-rows)
+  "Returns query string for retrieving data. The patient-id key restricts records only that patient or patients.  Multiple are patients are specified using commas; e.g: \"123, 456, 789\".  The limit-rows key restricts the number of records to the number specified."
+
+#|
 Returns endodontic procedure records.
 Note: This has not been filtered for primary (baby) teeth.
 1436 records returned
-*/
+|#
 
-SET rowcount 0
+  (let ((sql nil))
+    ;; build query string
+    (setf sql "SET rowcount 0 ")
+    
+    ;; SELECT clause
+    (cond 
+      (limit-rows
+       (setf limit-rows (format nil "~a" limit-rows)) ;ensure that limit rows is a string
+       (setf sql (str+ sql " SELECT  TOP " limit-rows " * "))) 
+      (t (setf sql (str+ sql " SELECT * "))))
 
-SELECT
-  -- TOP 10 -- for testing
-  *
-FROM
-  patient_history
-WHERE
-  (
-    ada_code IN ('D3220',
-                 'D3221',
-                 'D3222',
-                 'D3310',
-                 'D3320',
-                 'D3330',
-                 'D3346',
-                 'D3347',
-                 'D3348',
-                 'D3410',
-                 'D3421',
-                 'D3425',
-                 'D3450',
-                 'D3920' )
-  OR
-    -- Older codes begin with a '0'
-    ada_code IN ('03220',
-                 '03221',
-                 '03222',
-                 '03310',
-                 '03320',
-                 '03330',
-                 '03346',
-                 '03347',
-                 '03348',
-                 '03410',
-                 '03421',
-                 '03425',
-                 '03450',
-                 '03920' ) )
-AND length(tooth_data) > 31
-"
-)
+    ;; FROM clause
+    (setf sql (str+ sql " FROM patient_history "))
+
+    ;; WHERE clause
+    (setf sql 
+	  (str+ sql 
+		"WHERE
+                  (
+                    ada_code IN ('D3220',
+                                 'D3221',
+                                 'D3222',
+                                 'D3310',
+                                 'D3320',
+                                 'D3330',
+                                 'D3346',
+                                 'D3347',
+                                 'D3348',
+                                 'D3410',
+                                 'D3421',
+                                 'D3425',
+                                 'D3450',
+                                 'D3920' )
+                 OR
+                   -- Older codes begin with a '0'
+                   ada_code IN ('03220',
+                                '03221',
+                                '03222',
+                                '03310',
+                                '03320',
+                                '03330',
+                                '03346',
+                                '03347',
+                                '03348',
+                                '03410',
+                                '03421',
+                                '03425',
+                               '03450',
+                               '03920' ) )
+                 AND length(tooth_data) > 31 "))
+
+    ;; check for patient id
+    (when patient-id
+      (setf sql
+	    (str+ sql " AND patient_id IN (" (get-single-quoted-list patient-id) ") ")))
+
+    ;; return query string
+    ;;(pprint sql)
+    sql))

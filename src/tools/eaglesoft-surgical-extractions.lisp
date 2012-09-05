@@ -12,8 +12,8 @@
 ;; user's database. If these table need to be recreated, the call 
 ;; get-eaglesoft-fillings-ont with :force-create-table key set to t.
 
-(defun get-eaglesoft-surgical-extractions-ont (&key force-create-table)
-  "Returns an ontology of the surgical extractions contained in the Eaglesoft database.  They force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
+(defun get-eaglesoft-surgical-extractions-ont (&key patient-id limit-rows force-create-table)
+  "Returns an ontology of the surgical extractions contained in the Eaglesoft database. The patient-id key creates an ontology based on that specific patient. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
   (let ((connection nil)
 	(statement nil)
 	(results nil)
@@ -29,7 +29,8 @@
     (prepare-eaglesoft-db url :force-create-table force-create-table)
 
     ;; get query string for restorations
-    (setf query (get-eaglesoft-surgical-extractions-query))
+    (setf query (get-eaglesoft-surgical-extractions-query
+		 :patient-id patient-id :limit-rows limit-rows))
 
     (with-ontology ont (:collecting t 
 			:base *eaglesoft-individual-surgical-extractions-iri-base* 
@@ -220,32 +221,50 @@
     ;; return uri
     uri))
 
-(defun get-eaglesoft-surgical-extractions-query ()
-"
-/*
+(defun get-eaglesoft-surgical-extractions-query (&key patient-id limit-rows)
+  "Returns query string for retrieving data. The patient-id key restricts records only that patient or patients.  Multiple are patients are specified using commas; e.g: \"123, 456, 789\".  The limit-rows key restricts the number of records to the number specified."
+
+#|
 Returns surgical extraction records.
 Note: This has not been filtered for primary (baby) teeth.
 1215 records returned
-*/
+|#
 
-SET rowcount 0 
+  (let ((sql nil))
+    (setf sql "SET rowcount 0 ")
+    
+    ;; SELECT clause
+    (cond 
+      (limit-rows
+       (setf limit-rows (format nil "~a" limit-rows)) ;ensure that limit rows is a string
+       (setf sql (str+ sql " SELECT  TOP " limit-rows " * "))) 
+      (t (setf sql (str+ sql " SELECT * "))))
 
-SELECT
-  --TOP 10 -- for testing
-  *
-FROM
-  patient_history
-WHERE
- length(tooth_data) > 31
-AND (
-    ada_code IN ('D7110',
-                 'D7120',
-                 'D7140',
-                 'D7210')
-  OR -- older codes begin with a '0'
-    ada_code IN ('07110',
-                 '07120',
-                 '07140',
-                 '07210'))
-"
-)
+    ;; FROM clause
+    (setf sql (str+ sql " FROM patient_history "))
+
+    ;; WHERE clause
+    (setf sql 
+	  (str+ sql 
+		"WHERE
+                   length(tooth_data) > 31
+                 AND (
+                      ada_code IN ('D7110',
+                                   'D7120',
+                                   'D7140',
+                                   'D7210')
+                 OR -- older codes begin with a '0'
+                    ada_code IN ('07110',
+                                 '07120',
+                                 '07140',
+                                 '07210')) "))
+
+    ;; check for patient id
+    (when patient-id
+      (setf sql
+	    (str+ sql " AND patient_id IN (" (get-single-quoted-list patient-id) ") ")))
+
+    ;; return query string
+    ;;(pprint sql)
+    sql))
+

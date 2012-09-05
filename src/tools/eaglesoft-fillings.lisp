@@ -11,8 +11,9 @@
 ;; only tests that these tables exist in the user's database. If these table need to be 
 ;; recreated, the call get-eaglesoft-fillings-ont with :force-create-table key set to t.
 
-(defun get-eaglesoft-fillings-ont (&key force-create-table)
-  "Returns an ontology of the fillings contained in the Eaglesoft database.  They force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
+(defun get-eaglesoft-fillings-ont (&key patient-id limit-rows force-create-table)
+  "Returns an ontology of the fillings contained in the Eaglesoft database. The patient-id key creates an ontology based on that specific patient. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
+
   (let ((connection nil)
 	(statement nil)
 	(results nil)
@@ -28,7 +29,8 @@
     (prepare-eaglesoft-db url :force-create-table force-create-table)
 
     ;; get query string for restorations
-    (setf query (get-eaglesoft-fillings-query))
+    (setf query (get-eaglesoft-fillings-query 
+		 :patient-id patient-id :limit-rows limit-rows))
 
     (with-ontology ont (:collecting t
 			:base *eaglesoft-individual-fillings-iri-base*
@@ -386,9 +388,10 @@
     ;; return material uri
     material-uri))
 
-(defun get-eaglesoft-fillings-query ()
-"
-/* 
+(defun get-eaglesoft-fillings-query (&key patient-id limit-rows)
+  "Returns query string for retrieving data. The patient-id key restricts records only that patient or patients.  Multiple are patients are specified using commas; e.g: \"123, 456, 789\".  The limit-rows key restricts the number of records to the number specified."
+
+#| 
 This queries the eaglesoft database for all ADA codes that indicate a filling procedure
 has been performed.
 Note: Code D2390/02390 is a crown. Not a filling.  Also, porcelain fillings are not included.
@@ -399,75 +402,85 @@ get_surface_summary_from_detail is used with the surface_detail array in order t
 correct surfaces names are used. For example, some record list an occlusal surface for an incisor tooth.
 get_surface_summary_from_detail corrects this by recovering the correct name of the surface from
 the surface_detail array.
-*/
-SET rowcount 0
+|#
 
-SELECT
-   --TOP 10 -- for testing
-   table_name, 
-   date_entered, 
-   date_completed, 
-   tran_date, 
-   patient_id, 
-   tooth_data, 
-   ada_code, 
-   get_surface_summary_from_detail(surface_detail, tooth) as surface 
-FROM
-  patient_history
-WHERE
-  ada_code IN (
-              'D2140', -- Restorative: Amalgam
-              'D2150',
-              'D2160',
-              'D2161',
-              'D2330', -- Restorative: Resin
-              'D2332',
-              'D2335',
-               --D2390, -- D2390 is not a restoration, it's a filling
-              'D2391',
-              'D2392',
-              'D2393',
-              'D2394',
-              'D2410', -- Restorative: Gold Foil
-              'D2420',
-              'D2430',
+  (let ((sql nil))
+    ;; build query string
+    (setf sql "SET rowcount 0 ")
+    
+    ;; SELECT clause
+    (cond 
+      (limit-rows
+       (setf limit-rows (format nil "~a" limit-rows)) ;ensure that limit rows is a string
+       (setf sql (str+ sql " SELECT  TOP " limit-rows "  "))) 
+      (t (setf sql (str+ sql " SELECT "))))
+    
+    (setf sql  
+	  (str+ sql 
+		"table_name, 
+                 date_entered, 
+                 date_completed, 
+                 tran_date, 
+                 patient_id, 
+                 tooth_data, 
+                 ada_code, 
+                get_surface_summary_from_detail(surface_detail, tooth) as surface "))
 
-              -- Older codes begin with a '0'
-              '02140', -- Restorative: Amalgam
-              '02150',
-              '02160',
-              '02161',
-              '02330', -- Restorative: Resin
-              '02332',
-              '02335',
-              --'02390' -- 02390 is not a restoration, it's a filling
-              '02391',
-              '02392',
-              '02393',
-              '02394',
-              '02410', -- Restorative: Gold Foil
-              '02420',
-              '02430' )
+    ;; FROM clause
+    (setf sql (str+ sql " FROM patient_history "))
 
-/**** This was used for testing
-AND 
-  patient_id IN ('930',
-                 '444',
-                 '790',
-                 '529',
-                 '112',
-                 '330',
-                 '1690',
-                 '327',
-                 '1680',
-                 '304') 
-******/
+    ;; WHERE clause
+    (setf sql
+	  (str+ sql 
+		"WHERE
+                  ada_code IN ('D2140', -- Restorative: Amalgam
+                               'D2150',
+                               'D2160',
+                               'D2161',
+                               'D2330', -- Restorative: Resin
+                               'D2332',
+                               'D2335',
+                               --'D2390', -- D2390 is not a restoration, it's a filling
+                              'D2391',
+                              'D2392',
+                              'D2393',
+                              'D2394',
+                              'D2410', -- Restorative: Gold Foil
+                              'D2420',
+                              'D2430',
 
-AND tooth_data IS NOT NULL
-AND LENGTH(tooth_data) > 31
-AND surface_detail IS NOT NULL
---AND table_name = 'transactions' -- This was used for testing
-ORDER BY
-  patient_id
-"
-)
+                               -- Older codes begin with a '0'
+                              '02140', -- Restorative: Amalgam
+                              '02150',
+                              '02160',
+                              '02161',
+                              '02330', -- Restorative: Resin
+                              '02332',
+                              '02335',
+                              --'02390' -- 02390 is not a restoration, it's a filling
+                             '02391',
+                             '02392',
+                             '02393',
+                             '02394',
+                             '02410', -- Restorative: Gold Foil
+                             '02420',
+                             '02430' )
+
+                   AND tooth_data IS NOT NULL
+                   AND LENGTH(tooth_data) > 31
+                   AND surface_detail IS NOT NULL "))
+
+
+    ;; check for patient id
+    (when patient-id
+      (setf sql
+	    (str+ sql " AND patient_id IN (" (get-single-quoted-list patient-id) ") ")))
+
+    
+    ;; ORDER BY clause
+    (setf sql
+	  (str+ sql " ORDER BY patient_id "))
+
+    ;; return query string
+    ;;(pprint sql)
+    sql))

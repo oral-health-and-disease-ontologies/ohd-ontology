@@ -67,25 +67,24 @@
 			     ) 
 		    (:limit 10 :order-by (?person ?toothn ?date) )
 
-		    ;; (?procedurei !'asserted type'@ohd ?procedure_type) ; procedure instances 
-		    ;; (?procedurei !rdfs:label ?procedure) ; label for the procedure instance
-		    ;; (?procedure_type !rdfs:subClassOf !'restorative procedure'@ohd) ; narrowed to restorative procedure
-		    ;; (?procedure_type !rdfs:label ?procedure_label) ; and the label of the procedure type
+		    (?procedurei !'asserted type'@ohd ?procedure_type) ; procedure instances 
+		    (?procedurei !rdfs:label ?procedure) ; label for the procedure instance
+		    (?procedure_type !rdfs:subClassOf !'restorative procedure'@ohd) ; narrowed to restorative procedure
+		    (?procedure_type !rdfs:label ?procedure_label) ; and the label of the procedure type
 		    
 		    ;; (?codetype !rdfs:subClassOf !'current dental terminology code'@ohd)
 		    ;; (?code !'is about'@ohd ?procedurei) ; get CDT code
 		    ;; (?code !'asserted type'@ohd ?codetype) ; get its asserted ype
 		    ;; (?codetype !rdfs:label ?code_label) ; then get the label of that
 		    
-		    ;; (?procedurei !'occurrence date'@ohd ?date) ; of which occurs on ?date
+		    (?procedurei !'occurrence date'@ohd ?date) ; of which occurs on ?date
 
-		    ;; (?procedurei !'has participant'@ohd ?toothi) ; that involve an instance
+		    (?procedurei !'has participant'@ohd ?toothi) ; that involve an instance
 		    (?toothi !'asserted type'@ohd ?toothtype) ; of some type
 		    (?toothtype !rdfs:subClassOf !'tooth'@ohd) ; that is a tooth
-
 		    (?toothtype !'ADA universal tooth number'@ohd ?toothn) ; and we want the tooth number 
 		    (?toothi !rdfs:label ?tooth) ; and the label of the tooth
-
+		    
 		    (?personi !'asserted type'@ohd ?ptype) 
 		    (?ptype !rdfs:subClassOf !'homo sapiens'@ohd) ; Now there is a person involved
 		    
@@ -93,12 +92,11 @@
 
 		    (?personi !'birth_date'@ohd ?bdate) ; we want their birth date
 		    (?personi !rdfs:label ?person)	; their label 
-		    
-		    ;; (?surfacetype !rdfs:subClassOf !'Surface enamel of tooth'@ohd) ; narrow asserted types to subclass of suface enamel
-		    ;; (?surfacetype !rdfs:label ?surface_type_label) ; get label of surface type
-		    ;; (?surfacei !'asserted type'@ohd ?surfacetype) ; get surface intsances that are asserted types
-		    ;; (?surfacei !'is part of'@ohd ?toothi) ; surface instance is part of tooth instance
-		    ;; (?surfacei !rdfs:label ?surface_instance_label) ; get label of surface instance
+		    ;;(?surfacetype !rdfs:subClassOf !'Surface enamel of tooth'@ohd) ; narrow asserted types to subclass of suface enamel
+		    (?surfacetype !rdfs:label ?surface_type_label) ; get label of surface type
+		    (?surfacei !'asserted type'@ohd ?surfacetype) ; get surface intsances that are asserted types
+		    (?surfacei !'is part of'@ohd ?toothi) ; surface instance is part of tooth instance
+		    (?surfacei !rdfs:label ?surface_instance_label) ; get label of surface instance
 		    )
 	    :expressivity "RL" :reasoner reasoner :trace "story of some teeth" :values nil)))
   (if explain res nil)
