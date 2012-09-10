@@ -6,7 +6,7 @@
   (let ((files (append (directory "ohd:ontology;ohd.owl")
 		       (directory "ohd:ontology;imports;BFO2;*.owl")
 		       (directory "ohd:ontology;imports;*.owl")
-		       (directory "ohd:ontology;dropbox;*.owl"))))
+		       (directory "ohd:ontology;dropbox;full;*.owl"))))
     (loop for file in files do
 	 (get-url endpoint :post
 		  (list (list "update" (format nil "load <~a>;~%" (clean-uri nil (namestring file) "file" nil)))
