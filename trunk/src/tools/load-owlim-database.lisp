@@ -22,10 +22,10 @@
       ((files (append (directory "/Users/williamduncan/owlim/owlim-lite-5.2.5331/getting-started/owlim.ttl"))))
     (with-ontology foo (:collecting t) 
 	((asq
-	  (class-assertion !openrdf:RepositoryContext !blank:repocontext)
-	  (class-assertion !openrdf:Repository !blank:repo)
+	  (class-assertion !openrdf:RepositoryContext (:blank repocontext))
+	  (class-assertion !openrdf:Repository (:blank repo))
 	  (declaration (annotation-property !openrdf:repositoryID))
-	  (annotation-assertion !openrdf:repositoryID !blank:repo "name of ontology")))
+	  (annotation-assertion !openrdf:repositoryID (:blank repo) "name of ontology")))
       (to-owl-syntax foo :turtle))))
 
 
