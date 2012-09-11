@@ -1,5 +1,7 @@
 (defvar stardog-r21 "http://127.0.0.1:5822/r21db/query")
-(defvar owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/ohd/query")
+;;(defvar owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/ohd/query)
+(defparameter
+    owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/ohd-top-10-patients/query")
 
 (defun r21query (query  &rest args &key (expressivity "RL") (reasoner 'stardog-r21) &allow-other-keys)
   "Do a query against the r21 store. expressivity is nil, EL, RL, QL, DL(?)"
@@ -54,49 +56,58 @@
 	 (funcall (if explain 'explain-r21query (if translate 'sparql-stringify 'r21query) )
 		  '(:select (?person  
 			     ?bdate 
-			     ?tooth 
+			     ;;?tooth 
+			     ?toothn 
+			     ?surface
 			     ?procedure 
-			     ;;?procedurei 
-			     ?procedure_type 
-			     ?procedure_label 
 			     ?date 
-			     ;;?toothn 
-			     ?code_label 
-			     ?surface_instance_label
-			     ;;?surface_type_label
+			     ?code
 			     ) 
 		    (:limit 10 :order-by (?person ?toothn ?date) )
 
-		    (?procedurei !'asserted type'@ohd ?procedure_type) ; procedure instances 
-		    (?procedurei !rdfs:label ?procedure) ; label for the procedure instance
-		    (?procedure_type !rdfs:subClassOf !'restorative procedure'@ohd) ; narrowed to restorative procedure
-		    (?procedure_type !rdfs:label ?procedure_label) ; and the label of the procedure type
+		    ;; get info about persons
+		    (?personi !rdf:type !'homo sapiens'@ohd) 
+		    (?personi !rdfs:label ?person) ; their label 
+		    (?personi !'birth_date'@ohd ?bdate) ; their birth date
 		    
-		    ;; (?codetype !rdfs:subClassOf !'current dental terminology code'@ohd)
-		    ;; (?code !'is about'@ohd ?procedurei) ; get CDT code
-		    ;; (?code !'asserted type'@ohd ?codetype) ; get its asserted ype
-		    ;; (?codetype !rdfs:label ?code_label) ; then get the label of that
+		    ;; and the tooth that was worked on
+		    (?toothtype !rdfs:subClassOf !'tooth'@ohd)
+		    (?toothi !rdf:type ?toothtype)
+		    ;;(?toothi !rdf:type !'tooth'@ohd)
+		    (?toothi !'is part of'@ohd ?personi) ; that is part of the person
+		    ;;(?toothi !rdfs:label ?tooth) ; the label of the tooth
+		    (?toothtype !'ADA universal tooth number'@ohd ?toothn) ; ADA tooth number of tooth
 		    
-		    (?procedurei !'occurrence date'@ohd ?date) ; of which occurs on ?date
-
-		    (?procedurei !'has participant'@ohd ?toothi) ; that involve an instance
-		    (?toothi !'asserted type'@ohd ?toothtype) ; of some type
-		    (?toothtype !rdfs:subClassOf !'tooth'@ohd) ; that is a tooth
-		    (?toothtype !'ADA universal tooth number'@ohd ?toothn) ; and we want the tooth number 
-		    (?toothi !rdfs:label ?tooth) ; and the label of the tooth
-		    
-		    (?personi !'asserted type'@ohd ?ptype) 
-		    (?ptype !rdfs:subClassOf !'homo sapiens'@ohd) ; Now there is a person involved
-		    
-		    (?toothi !'is part of'@ohd ?personi) ; that that tooth is part of
-
-		    (?personi !'birth_date'@ohd ?bdate) ; we want their birth date
-		    (?personi !rdfs:label ?person)	; their label 
-		    ;;(?surfacetype !rdfs:subClassOf !'Surface enamel of tooth'@ohd) ; narrow asserted types to subclass of suface enamel
-		    (?surfacetype !rdfs:label ?surface_type_label) ; get label of surface type
-		    (?surfacei !'asserted type'@ohd ?surfacetype) ; get surface intsances that are asserted types
+		    ;; and the the surfaces of the tooth
+		    (?surfacetype !rdfs:subClassOf !'Surface enamel of tooth'@ohd)
+		    (?surfacei !rdf:type ?surfacetype)
+		    ;;(?surfacei !rdf:type !'Surface enamel of tooth'@ohd)
 		    (?surfacei !'is part of'@ohd ?toothi) ; surface instance is part of tooth instance
-		    (?surfacei !rdfs:label ?surface_instance_label) ; get label of surface instance
+		    (?surfacetype !rdfs:label ?surface)
+
+		    ;; not all procedures include surfaces -- I'm not sure if this works
+		    ;; (:optional (?surfacei !rdf:type !'Surface enamel of tooth'@ohd))
+		    ;; (:optional (?surfacei !'is part of'@ohd ?toothi)) ; surface instance is part of tooth instance
+		    ;; (:optional (?surfacei !rdfs:label ?surface_instance_label)) ; get label of surface instance
+		    
+		    ;; and procedure performed on that tooth
+		    (?proceduretype !rdfs:subClassOf !'dental procedure'@ohd)
+		    (?procedurei !rdf:type ?proceduretype) ; that are dental procedures
+		    ;;(?procedurei !rdf:type !'dental procedure'@ohd) ; that are dental procedures
+		    (?procedurei !'has participant'@ohd ?personi) ; involving that person
+		    (?procedurei !'has participant'@ohd ?toothi) ; and involving that tooth
+		    (?procedurei !'has participant'@ohd ?surfacei) ; involving that surface
+		    ;;(:optional (?procedurei !'has participant'@ohd ?surfacei)) ; involving that surface
+		    (?procedurei !'occurrence date'@ohd ?date) ; of which occurs on ?date
+		    (?proceduretype !rdfs:label ?procedure) ; label for the procedure instance
+
+		    ;; and cdt code info for the procedure
+		    (?codetype !rdfs:subClassOf !'current dental terminology code'@ohd)
+		    (?codei !rdf:type ?codetype)
+		    ;;(?codei !rdf:type !'current dental terminology code'@ohd)
+		    (?codei !'is about'@ohd ?procedurei) ; get CDT code
+		    (?codetype !rdfs:label ?code) ; then get the label of that code type
+		    
 		    )
 	    :expressivity "RL" :reasoner reasoner :trace "story of some teeth" :values nil)))
   (if explain res nil)
@@ -113,12 +124,12 @@
   (r21query 
    '(:select (?s ?l)
      (:limit 10)
-     ;;(?s !rdf:type !obo:FMA_12516)
-     ;;(?s !rdfs:label ?l)
-     (?surfacetype !rdfs:subClassOf !'Surface enamel of tooth'@ohd)
-     (?surfacetype !rdfs:label ?l)
-     (?surfacei !'asserted type'@ohd ?surfacetype) 
-     (?s !rdf:type ?surfacetype)
+     (?s !rdf:type !obo:FMA_12516)
+     (?s !rdfs:label ?l)
+     ;; (?surfacetype !rdfs:subClassOf !'Surface enamel of tooth'@ohd)
+     ;; (?surfacetype !rdfs:label ?l)
+     ;; (?surfacei !'asserted type'@ohd ?surfacetype) 
+     ;; (?s !rdf:type ?surfacetype)
      )
    :reasoner 'owlim-lite-r21
    :trace "test owlim query")

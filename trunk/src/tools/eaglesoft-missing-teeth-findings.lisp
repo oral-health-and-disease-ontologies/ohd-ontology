@@ -12,8 +12,8 @@
 ;; user's database. If these table need to be recreated, the call 
 ;; get-eaglesoft-fillings-ont with :force-create-table key set to t.
 
-(defun get-eaglesoft-missing-teeth-findings-ont (&key patient-id limit-rows force-create-table)
-  "Returns an ontology of the missing teeth findings contained in the Eaglesoft database. The patient-id key creates an ontology based on that specific patient. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
+(defun get-eaglesoft-missing-teeth-findings-ont (&key patient-id tooth limit-rows force-create-table)
+  "Returns an ontology of the missing teeth findings contained in the Eaglesoft database. The patient-id key creates an ontology based on that specific patient. The tooth key is used to limit results to a specific tooth, and can be used in combination with the patient-id. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
   (let ((connection nil)
 	(statement nil)
 	(results nil)
@@ -30,7 +30,7 @@
 
     ;; get query string for restorations
     (setf query (get-eaglesoft-missing-teeth-findings-query 
-		 :patient-id patient-id :limit-rows limit-rows))
+		 :patient-id patient-id :tooth tooth :limit-rows limit-rows))
 
     (with-ontology ont (:collecting t 
 			:base *eaglesoft-individual-missing-teeth-findings-iri-base*
@@ -179,8 +179,8 @@
     ;; return uri
     uri))
 
-(defun get-eaglesoft-missing-teeth-findings-query (&key patient-id limit-rows)
-  "Returns query string for retrieving data. The patient-id key restricts records only that patient or patients.  Multiple are patients are specified using commas; e.g: \"123, 456, 789\".  The limit-rows key restricts the number of records to the number specified."
+(defun get-eaglesoft-missing-teeth-findings-query (&key patient-id tooth limit-rows)
+  "Returns query string for retrieving data. The patient-id key restricts records only that patient or patients.  Multiple are patients are specified using commas; e.g: \"123, 456, 789\".  The tooth key is used to limit results to a specific tooth, and can be used in combination with the patient-id. However, the tooth key only takes a single value. The limit-rows key restricts the number of records to the number specified."
 
 #|
 Returns records that indicate a tooth has been found to be missing.
@@ -220,7 +220,14 @@ Note:
       (setf sql
 	    (str+ sql " AND patient_id IN (" (get-single-quoted-list patient-id) ") ")))
 
-    ;; ORDER BY clause
+    ;; check for tooth
+    (when tooth
+      ;; ensure tooth is a string
+      (setf tooth (format nil "~a" tooth))
+      (setf sql 
+	    (str+ sql " AND substring(tooth_data, " tooth ", 1) = 'Y' ")))
+
+     ;; ORDER BY clause
     (setf sql
 	  (str+ sql " ORDER BY patient_id "))
 
