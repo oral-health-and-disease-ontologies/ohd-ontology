@@ -8,11 +8,7 @@
 		       (directory "ohd:ontology;imports;*.owl")
 		       (directory "ohd:ontology;dropbox;full;*.owl"))))
     (loop for file in files do
-	 (get-url endpoint :post
-		  (list (list "update" (format nil "load <~a>;~%" (clean-uri nil (namestring file) "file" nil)))
-			(list "queryLn" "SPARQL")))
-	 (format *debug-io* "Loaded ~a~%" file))))
-
+	 (format t "load <file://~a>;~%" file))))
 
 (register-namespace "openrdf:" "http://www.openrdf.org/config/repository#")
 
