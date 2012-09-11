@@ -65,14 +65,26 @@
 			     ) 
 		    (:limit 10 :order-by (?person ?toothn ?date) )
 
+		    ;; billd: general not about 'asserted type'
+		    ;; the 'assert type' relation is used to restrict matching so that
+		    ;; instances are matched only with the most direct parent.
+		    ;; for example, an instance of tooth 1 is matched not only with the
+		    ;; type 'Tooth 1', but also with the types 'Secondary upper molar' and
+		    ;; the most general type 'Tooth'.
+		    ;; we, however, are only concerned with matching to type 'Tooth 1'.
+		    ;; thus, we would use "toothi !'asserted type'@ohd !'Tooth 1'@ohd"
+
 		    ;; get info about persons
-		    (?personi !rdf:type !'homo sapiens'@ohd) 
+		    (?persontype !rdfs:subClassOf 'dental patient'@ohd)
+		    ;;(?personi !rdf:type !'homo sapiens'@ohd) 
+		    (personi !'asserted type'@ohd ?persontype) 
 		    (?personi !rdfs:label ?person) ; their label 
 		    (?personi !'birth_date'@ohd ?bdate) ; their birth date
 		    
 		    ;; and the tooth that was worked on
 		    (?toothtype !rdfs:subClassOf !'tooth'@ohd)
-		    (?toothi !rdf:type ?toothtype)
+		    ;;(?toothi !rdf:type ?toothtype)
+		    (?toothi !'asserted type'@ohd ?toothtype)
 		    ;;(?toothi !rdf:type !'tooth'@ohd)
 		    (?toothi !'is part of'@ohd ?personi) ; that is part of the person
 		    ;;(?toothi !rdfs:label ?tooth) ; the label of the tooth
@@ -80,7 +92,8 @@
 		    
 		    ;; and the the surfaces of the tooth
 		    (?surfacetype !rdfs:subClassOf !'Surface enamel of tooth'@ohd)
-		    (?surfacei !rdf:type ?surfacetype)
+		    ;;(?surfacei !rdf:type ?surfacetype)
+		    (?surfacei !'asserted type'@ohd ?surfacetype)
 		    ;;(?surfacei !rdf:type !'Surface enamel of tooth'@ohd)
 		    (?surfacei !'is part of'@ohd ?toothi) ; surface instance is part of tooth instance
 		    (?surfacetype !rdfs:label ?surface)
@@ -92,7 +105,8 @@
 		    
 		    ;; and procedure performed on that tooth
 		    (?proceduretype !rdfs:subClassOf !'dental procedure'@ohd)
-		    (?procedurei !rdf:type ?proceduretype) ; that are dental procedures
+		    ;;(?procedurei !rdf:type ?proceduretype) ; that are dental procedures
+		    (?procedurei !'asserted type'@ohd ?proceduretype) 
 		    ;;(?procedurei !rdf:type !'dental procedure'@ohd) ; that are dental procedures
 		    (?procedurei !'has participant'@ohd ?personi) ; involving that person
 		    (?procedurei !'has participant'@ohd ?toothi) ; and involving that tooth
@@ -103,7 +117,8 @@
 
 		    ;; and cdt code info for the procedure
 		    (?codetype !rdfs:subClassOf !'current dental terminology code'@ohd)
-		    (?codei !rdf:type ?codetype)
+		    ;;(?codei !rdf:type ?codetype)
+		    (?codei !'asserted type'@ohd ?codetype)
 		    ;;(?codei !rdf:type !'current dental terminology code'@ohd)
 		    (?codei !'is about'@ohd ?procedurei) ; get CDT code
 		    (?codetype !rdfs:label ?code) ; then get the label of that code type
