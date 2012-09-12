@@ -1,7 +1,9 @@
 (defvar stardog-r21 "http://127.0.0.1:5822/r21db/query")
 ;;(defvar owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/ohd/query)
+;;(defparameter
+;;    owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/ohd-top-10-patients/query")
 (defparameter
-    owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/ohd-top-10-patients/query")
+    owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-5-se-september/query")
 
 (defun r21query (query  &rest args &key (expressivity "RL") (reasoner 'stardog-r21) &allow-other-keys)
   "Do a query against the r21 store. expressivity is nil, EL, RL, QL, DL(?)"
@@ -58,10 +60,10 @@
 			     ?bdate 
 			     ;;?tooth 
 			     ?toothn 
-			     ?surface
 			     ?procedure 
 			     ?date 
-			     ?code
+			     ;;?code
+			     ?surface			     
 			     ) 
 		    (:limit 10 :order-by (?person ?toothn ?date) )
 
@@ -75,9 +77,9 @@
 		    ;; thus, we would use "toothi !'asserted type'@ohd !'Tooth 1'@ohd"
 
 		    ;; get info about persons
-		    (?persontype !rdfs:subClassOf 'dental patient'@ohd)
+		    (?persontype !rdfs:subClassOf !'dental patient'@ohd)
 		    ;;(?personi !rdf:type !'homo sapiens'@ohd) 
-		    (personi !'asserted type'@ohd ?persontype) 
+		    (?personi !'asserted type'@ohd ?persontype) 
 		    (?personi !rdfs:label ?person) ; their label 
 		    (?personi !'birth_date'@ohd ?bdate) ; their birth date
 		    
@@ -91,17 +93,20 @@
 		    (?toothtype !'ADA universal tooth number'@ohd ?toothn) ; ADA tooth number of tooth
 		    
 		    ;; and the the surfaces of the tooth
-		    (?surfacetype !rdfs:subClassOf !'Surface enamel of tooth'@ohd)
-		    ;;(?surfacei !rdf:type ?surfacetype)
-		    (?surfacei !'asserted type'@ohd ?surfacetype)
-		    ;;(?surfacei !rdf:type !'Surface enamel of tooth'@ohd)
-		    (?surfacei !'is part of'@ohd ?toothi) ; surface instance is part of tooth instance
-		    (?surfacetype !rdfs:label ?surface)
-
+		    ;; (?surfacetype !rdfs:subClassOf !'Surface enamel of tooth'@ohd)
+		    ;; ;;(?surfacei !rdf:type ?surfacetype)
+		    ;; (?surfacei !'asserted type'@ohd ?surfacetype)
+		    ;; ;;(?surfacei !rdf:type !'Surface enamel of tooth'@ohd)
+		    ;; (?surfacei !'is part of'@ohd ?toothi) ; surface instance is part of tooth instance
+		    ;; (?surfacetype !rdfs:label ?surface)
+		    
 		    ;; not all procedures include surfaces -- I'm not sure if this works
 		    ;; (:optional (?surfacei !rdf:type !'Surface enamel of tooth'@ohd))
 		    ;; (:optional (?surfacei !'is part of'@ohd ?toothi)) ; surface instance is part of tooth instance
 		    ;; (:optional (?surfacei !rdfs:label ?surface_instance_label)) ; get label of surface instance
+		    (:optional (?surfacei !rdf:type !'Surface enamel of tooth'@ohd)
+		     (?surfacei !'is part of'@ohd ?toothi) ; surface instance is part of tooth instance
+		     (?surfacei !rdfs:label ?surface_instance_label)) ; get label of surface instance
 		    
 		    ;; and procedure performed on that tooth
 		    (?proceduretype !rdfs:subClassOf !'dental procedure'@ohd)
@@ -123,6 +128,8 @@
 		    (?codei !'is about'@ohd ?procedurei) ; get CDT code
 		    (?codetype !rdfs:label ?code) ; then get the label of that code type
 		    
+		    ;;(:filter (equal (str ?person) "patient 1096"))
+		    (:filter (and (equal (str ?person) "patient 1096") (equal (str ?toothn) "Tooth 5")))
 		    )
 	    :expressivity "RL" :reasoner reasoner :trace "story of some teeth" :values nil)))
   (if explain res nil)
@@ -134,7 +141,6 @@
 	     (:limit 10)
 	     (?s !rdf:type !obo:FMA_12516)
 	     (?s !rdfs:label ?l))))
-
 (defun test-owlim-query ()
   (r21query 
    '(:select (?s ?l)
