@@ -48,7 +48,7 @@
 	  #((!obo:FMA_55696 "Right upper third secondary molar tooth" "tooth 1") 
 	    (!obo:FMA_55697 "Right upper second secondary molar tooth" "tooth 2")
 	    (!obo:FMA_55698 "Right upper first secondary molar tooth" "tooth 3")
-	    (!obo:FMA_55689 "Right upper second secondary premolar tooth" "tooth 4")
+	    (!obo:FMA_55688 "Right upper second secondary premolar tooth" "tooth 4")
 	    (!obo:FMA_55689 "Right upper first secondary premolar tooth" "tooth 5")
 	    (!obo:FMA_55798 "Right upper secondary canine tooth" "tooth 6")
 	    (!obo:FMA_55680 "Right upper lateral secondary incisor tooth" "tooth 7")
