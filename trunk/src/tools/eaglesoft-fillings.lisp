@@ -116,9 +116,10 @@
 	 (setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
 	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-with-number t))
 	 (setf tooth-uri (get-eaglesoft-tooth-iri patient-id tooth-type-uri))
-	 
+	 	 	 
 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
-	 ;; note: append puts lists together and doesn't put items in list (like push)
+	 
+         ;; note: append puts lists together and doesn't put items in list (like push)
 	 (setf axioms
 	       (append (get-ohd-instance-axioms tooth-uri tooth-type-uri) axioms))
 	 
