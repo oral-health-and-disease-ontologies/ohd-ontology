@@ -186,5 +186,23 @@
    :reasoner 'owlim-se-r21
    :trace "test owlim query")
   
+#|
+;; try to work with query like this to get direct super class:
+;; code adapted from: http://www.mail-archive.com/owlim-discussion@ontotext.com/msg01728.html
+
+SELECT ?tooth ?toothtype ?pclass
+WHERE { 
+   ?class rdfs:subClassOf obo:FMA_12516 . 
+   ?toothi rdf:type ?class .
+
+   ?class rdfs:label ?toothtype . 
+   ?toothi rdfs:label ?tooth .
+OPTIONAL { 
+  ?class rdfs:subClassOf ?pclass . 
+  ?pclass rdfs:subClassOf ?gpclass . 
+  FILTER (?pclass != ?class && ?pclass != ?gpclass)}.
+FILTER (! bound(?pclass) && ?gpclass != ?class)} LIMIT 10 
+|#
+  
   ;; return nil
   nil)
