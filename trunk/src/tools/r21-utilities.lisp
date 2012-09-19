@@ -513,13 +513,13 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
   ;; test to see if action_codes table exists
   ;; if not then create it
   (when (or (not (table-exists "action_codes" url)) force-create-table)
-    (create-eaglesoft-aciton-codes-or-patient-history-table "action_codes" url))
+    (create-eaglesoft-action-codes-or-patient-history-table "action_codes" url))
 
   ;; test to see if patient history table exists
   (when (or (not (table-exists "patient_history" url)) force-create-table)
-    (create-eaglesoft-aciton-codes-or-patient-history-table "patient_history" url)))
+    (create-eaglesoft-action-codes-or-patient-history-table "patient_history" url)))
 
-(defun create-eaglesoft-aciton-codes-or-patient-history-table (table-name url)
+(defun create-eaglesoft-action-codes-or-patient-history-table (table-name url)
   "Creates either the action_codes or patient_history table, as determined by the table-name parameter.  The url parameter specifies the connection string to the database."
   (let ((connection nil)
 	(statement nil)
