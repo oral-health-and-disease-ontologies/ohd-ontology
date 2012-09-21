@@ -441,7 +441,7 @@ WHERE
 
     ;; append order info
     (setf query (str+ query " ORDER BY table_name, field_name "))
-    (pprint query)
+    ;;(pprint query)
     
     (unwind-protect 
 	 (progn
