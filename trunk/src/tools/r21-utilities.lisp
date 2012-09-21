@@ -408,6 +408,60 @@ Usage:
 	  (missing-teeth . ,missing-teeth)
 	  (surgical-extractions . ,surgical-extractions))))
 
+(defun  search-eaglesoft-database-schema (&key table-name field-name)
+  "Searches the Eaglesoft database schema for specified table and field names, and prints the results to the screen.  If not parameters are given, all the results are printed to sceen."
+  (let ((connection nil)
+	(statement nil)
+	(results nil)
+	(query nil)
+	(url nil))
+    
+    ;; set up connection string and query.
+    (setf url (get-eaglesoft-database-url))
+    
+    (setf query 
+"SELECT
+  dbo.sysobjects.name AS table_name,
+  dbo.syscolumns.name AS field_name
+FROM
+  dbo.sysobjects
+LEFT JOIN
+  dbo.syscolumns
+ON
+  dbo.sysobjects.id = dbo.syscolumns.id
+WHERE
+  dbo.sysobjects.type = 'U' ")
+    
+    ;; append additional search criteria to query string
+    (when table-name
+      (setf query (str+ query " AND table_name LIKE '%" table-name "%' ")))
+
+    (when field-name
+      (setf query (str+ query " AND field_name LIKE '%" field-name "%' ")))
+
+    ;; append order info
+    (setf query (str+ query " ORDER BY table_name, field_name "))
+    (pprint query)
+    
+    (unwind-protect 
+	 (progn
+	   ;; connect to db and get data
+	   (setf connection (#"getConnection" 'java.sql.DriverManager url))
+	   (setf statement (#"createStatement" connection))
+	   (setf results (#"executeQuery" statement query))
+    
+	   (loop while (#"next" results) do
+		(format t "~a~a~a~%"
+			(#"getString" results "table_name")
+			#\tab
+			(#"getString" results "field_name"))))
+      
+      	   ;; database cleanup
+	   (and connection (#"close" connection))
+	   (and results (#"close" results))
+	   (and statement (#"close" statement)))))
+    
+    
 (defun get-eaglesoft-database-url ()
   "Returns the url string for connecting to Eaglesoft dabase.
 Note: The file ~/.pattersondbpw must be on your system."
