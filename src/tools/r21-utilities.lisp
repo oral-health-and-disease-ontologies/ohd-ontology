@@ -430,7 +430,8 @@ LEFT JOIN
 ON
   dbo.sysobjects.id = dbo.syscolumns.id
 WHERE
-  dbo.sysobjects.type = 'U' ")
+  dbo.sysobjects.type = 'U' 
+OR dbo.sysobjects.type = 'V' ")
     
     ;; append additional search criteria to query string
     (when table-name
@@ -460,7 +461,100 @@ WHERE
 	   (and connection (#"close" connection))
 	   (and results (#"close" results))
 	   (and statement (#"close" statement)))))
+
+(defun get-eaglesoft-field-type-count (table-name &key field-name print)
+  "Returns a list that contains the totals (counts) of each distinct value in each field in the table specified by the table-name paramater.  The returned list has the following form: ((field1 ((value1 total) (value2 total) (value3 total)))).  The field-name paramater specifies the totals will only be for that field.  The print parameter specifies that the results will be printed to the screen."
+  (let ((field-list nil)
+	(count-list nil)
+	(summary-list nil)
+	(connection nil)
+	(statement nil)
+	(results nil)
+	(query nil)
+	(url nil))	
     
+    ;; set up connection string and query.
+    (setf url (get-eaglesoft-database-url))
+    
+    ;; if no field name supplied given, get a list of the 
+    ;; of all field names; otherwise, if a field name is given
+    ;; just create a list with that field
+    (cond 
+      ((not field-name)
+       
+       ;; build query string to get the first record from the table
+       (setf query (str+ "SELECT TOP 1 * FROM " table-name))
+       
+       (unwind-protect 
+	    (progn
+	      ;; connect to db and get data
+	      (setf connection (#"getConnection" 'java.sql.DriverManager url))
+	      (setf statement (#"createStatement" connection))
+	      (setf results (#"executeQuery" statement query))
+	      
+	      ;; build field name list based on the resultset's column names
+	      (loop for column from 1 to (#"getColumnCount" (#"getMetaData" results)) do
+		   (push (#"getColumnName" (#"getMetaData" results) column) field-list)))
+
+	 ;; database cleanup
+	 (and connection (#"close" connection))
+	 (and results (#"close" results))
+	 (and statement (#"close" statement))))
+      (t (push field-name field-list)))
+    
+    ;; sort field name list
+    ;; note: I sort from greatest to least so that the fields will be in
+    ;; alphabetical order when I push the count summaries on the list
+    (setf field-list (sort field-list #'string-greaterp))
+
+    ;; iterate over field name list and for each field get a count of each distinct value
+    (loop
+       for field in field-list do
+	 (setf query 
+	       (str+ "SELECT DISTINCT " field ", COUNT(*) AS total " 
+		     " FROM " table-name 
+		     " GROUP BY " field 
+		     " ORDER BY total DESC "))
+	 
+	 (unwind-protect 
+	      (progn
+		;; connect to db and get data
+		(setf connection (#"getConnection" 'java.sql.DriverManager url))
+		(setf statement (#"createStatement" connection))
+		(setf results (#"executeQuery" statement query))
+		
+		;; buld list of data value counts
+		;; column 1 is the value of in the field
+		;; column 2 is the count of the values
+		(setf count-list 
+		      (loop while (#"next" results) 
+			 collect (list (#"getString" results 1) (#"getString" results 2))))
+		     
+		(push (list field count-list) summary-list)
+		
+	   ;; database cleanup
+	   (and connection (#"close" connection))
+	   (and results (#"close" results))
+	   (and statement (#"close" statement)))))
+
+    ;; check to print out summary list
+    (when print
+      (loop 
+	 for field-data in summary-list do
+	   ;; dispaly field name
+	   (format t "~%~a~%" (first field-data))
+	   (format t "----------------------------------------~%")
+	   
+	   (loop 
+	      for data in (second field-data) do
+				  (format t "~a~a~a~a~%"
+					  #\tab
+					  (first data) ; first is value in the field
+					  #\tab
+					  (second data))))) ; second is the total
+    ;; return summary list of
+    ;; field names and counts
+    summary-list))
     
 (defun get-eaglesoft-database-url ()
   "Returns the url string for connecting to Eaglesoft dabase.
