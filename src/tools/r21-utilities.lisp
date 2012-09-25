@@ -462,7 +462,7 @@ OR dbo.sysobjects.type = 'V' ")
 	   (and results (#"close" results))
 	   (and statement (#"close" statement)))))
 
-(defun get-eaglesoft-field-type-count (table-name &key field-name print)
+(defun get-eaglesoft-field-type-count (table-name &key field-name  print)
   "Returns a list that contains the totals (counts) of each distinct value in each field in the table specified by the table-name paramater.  The returned list has the following form: ((field1 ((value1 total) (value2 total) (value3 total)))).  The field-name paramater specifies the totals will only be for that field.  The print parameter specifies that the results will be printed to the screen."
   (let ((field-list nil)
 	(count-list nil)
@@ -480,7 +480,7 @@ OR dbo.sysobjects.type = 'V' ")
     ;; of all field names; otherwise, if a field name is given
     ;; just create a list with that field
     (cond 
-      ((not field-name)
+      ((or (not field-name) (functionp field-name) (symbolp field-name))
        
        ;; build query string to get the first record from the table
        (setf query (str+ "SELECT TOP 1 * FROM " table-name))
@@ -493,8 +493,10 @@ OR dbo.sysobjects.type = 'V' ")
 	      (setf results (#"executeQuery" statement query))
 	      
 	      ;; build field name list based on the resultset's column names
-	      (loop for column from 1 to (#"getColumnCount" (#"getMetaData" results)) do
-		   (push (#"getColumnName" (#"getMetaData" results) column) field-list)))
+	      (loop for column from 1 to (#"getColumnCount" (#"getMetaData" results))
+		 for name = (#"getColumnName" (#"getMetaData" results) column) do
+		   (if (or (not field-name) (and field-name (funcall field-name name)))
+		   (push (#"getColumnName" (#"getMetaData" results) column) field-list))))
 
 	 ;; database cleanup
 	 (and connection (#"close" connection))
@@ -738,6 +740,7 @@ SET rowcount 0
 
 DROP TABLE IF EXISTS PattersonPM.PPM.patient_history
 
+
 /* Create and define the column names for the patient_history table. */
 CREATE TABLE
   PattersonPM.PPM.patient_history
@@ -757,7 +760,10 @@ CREATE TABLE
     ada_code VARCHAR(5) NULL,
     ada_code_description VARCHAR(50) NULL,
     tooth_data CHAR(55) NULL,
-    surface_detail CHAR(23) NULL
+    surface_detail CHAR(23) NULL,
+    r21_provider_id SMALLINT NULL,
+    r21_provider_type VARCHAR(20) NULL,
+    practice_id SMALLINT NULL
   )
 
 
@@ -789,14 +795,17 @@ INTO
     ada_code,
     ada_code_description,
     tooth_data,
-    surface_detail
+    surface_detail,
+    r21_provider_id,
+    r21_provider_type,
+    practice_id
   )
 /*
 The existing_services table is the table for all findings in ES that are, essentially
 procedures completed by entities outside the current dental office.
 */
 
-SELECT DISTINCT
+SELECT
   existing_services.patient_id,
   table_name = 'existing_services', -- table_name value
   /* date_completed is the date (usually reported by the patient) that something was done */
@@ -849,7 +858,34 @@ SELECT DISTINCT
       existing_services_extra
     WHERE
       existing_services.patient_id = existing_services_extra.patient_id
-    AND existing_services.line_number = existing_services_extra.line_number)
+    AND existing_services.line_number = existing_services_extra.line_number),
+  
+  r21_provider_id =
+  (
+    SELECT
+      r21_provider_id
+    FROM
+      r21_provider
+    WHERE
+      existing_services.provider_id = r21_provider.provider_id),
+  
+  r21_provider_type =
+  (
+    SELECT
+      r21_provider_type
+    FROM
+      r21_provider
+    WHERE
+      existing_services.provider_id = r21_provider.provider_id),
+  
+  practice_id =
+  (
+    SELECT
+      practice_id
+    FROM
+      r21_provider
+    WHERE
+      existing_services.provider_id = r21_provider.provider_id)
 FROM
   existing_services
 WHERE
@@ -867,7 +903,7 @@ UNION ALL
 The patient_conditions table is the table for all conditions in ES that do not result from a
 procedure, i.e. all things that happen one their own (fracture, caries, etc.)
 */
-SELECT DISTINCT
+SELECT
   patient_conditions.patient_id,
   table_name = 'patient_conditions', -- table_name value
   date_completed = 'n/a', -- date_completed is not recorded in the patient_conditions table
@@ -916,7 +952,34 @@ SELECT DISTINCT
     FROM
       patient_conditions_extra
     WHERE
-      patient_conditions.counter_id = patient_conditions_extra.counter_id)
+      patient_conditions.counter_id = patient_conditions_extra.counter_id),
+  
+  r21_provider_id =
+  (
+    SELECT
+      r21_provider_id
+    FROM
+      r21_provider
+    WHERE
+      patient_conditions.provider_id = r21_provider.provider_id),
+  
+  r21_provider_type =
+  (
+    SELECT
+      r21_provider_type
+    FROM
+      r21_provider
+    WHERE
+      patient_conditions.provider_id = r21_provider.provider_id),
+  
+  practice_id =
+  (
+    SELECT
+      practice_id
+    FROM
+      r21_provider
+    WHERE
+      patient_conditions.provider_id = r21_provider.provider_id)
 FROM
   patient_conditions
 WHERE
@@ -933,7 +996,7 @@ UNION ALL
 /*
 The transactions view records transactions between the provider and the patient.
 */
-SELECT DISTINCT
+SELECT
   transactions.patient_id,
   table_name = 'transactions', -- table_name value (although transactions is a viiew)
   date_completed = 'n/a', -- date_completed is not recorded in the transactons view
@@ -988,13 +1051,42 @@ SELECT DISTINCT
     FROM
       transactions_extra
     WHERE
-      transactions.tran_num = transactions_extra.tran_num)
+      transactions.tran_num = transactions_extra.tran_num),
+  
+  r21_provider_id =
+  (
+    SELECT
+      r21_provider_id
+    FROM
+      r21_provider
+    WHERE
+      transactions.provider_id = r21_provider.provider_id),
+  
+  r21_provider_type =
+  (
+    SELECT
+      r21_provider_type
+    FROM
+      r21_provider
+    WHERE
+      transactions.provider_id = r21_provider.provider_id),
+  
+  practice_id =
+  (
+    SELECT
+      practice_id
+    FROM
+      r21_provider
+    WHERE
+      transactions.provider_id = r21_provider.provider_id)
 FROM
   transactions
 WHERE
   type = 'S'
 AND
-  patient_id IN
+  -- There are some wacky dates in the db, so limit dates to 1999-2011
+  YEAR(tran_date) BETWEEN 1999 AND 2011
+AND patient_id IN
   (
     SELECT
       patient_id
