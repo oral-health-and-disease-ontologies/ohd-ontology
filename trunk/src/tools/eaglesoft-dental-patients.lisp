@@ -17,18 +17,12 @@
 
 (defun get-eaglesoft-dental-patients-ont (&key patient-id limit-rows force-create-table)
   "Returns an ontology of the dental patients contained in the Eaglesoft database. The patient-id key creates an ontology based on that specific patient. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
-  (let ((connection nil)
-	(statement nil)
-	(results nil)
+  (let ((results nil)
 	(query nil)
-	(url nil)
 	(count 0))
     
-    ;; set up connection string and query.
-    (setf url (get-eaglesoft-database-url))
-
     ;; verify that the eaglesoft db has the action_codes and patient_history tables
-    (prepare-eaglesoft-db url :force-create-table force-create-table)
+    (prepare-eaglesoft-db :force-create-table force-create-table)
 
     ;; get query string for amalgam restorations
     (setf query (get-eaglesoft-dental-patients-query 
@@ -37,30 +31,20 @@
     (with-ontology ont (:collecting t 
 			:base *eaglesoft-individual-dental-patients-iri-base*
 			:ontology-iri *eaglesoft-dental-patients-ontology-iri*)
-	((unwind-protect
-	      (progn
-		;; connect to db and get data
-		(setf connection (#"getConnection" 'java.sql.DriverManager url))
-		(setf statement (#"createStatement" connection))
-		(setf results (#"executeQuery" statement query))
-	   	
-		;; import the ohd ontology
-		(as `(imports ,(make-uri *ohd-ontology-iri*)))
-		
-		;; get axioms for declaring annotation, object, and data properties used for ohd
-		(as (get-ohd-declaration-axioms))
-		
-		(loop while (#"next" results) do
-		     (as (get-eaglesoft-dental-patient-axioms
-			  (#"getString" results "patient_id")
-			  (#"getString" results "birth_date")
-			  (#"getString" results "sex")))
-		     (incf count))) 
-	   
-	   ;; database cleanup
-	   (and connection (#"close" connection))
-	   (and results (#"close" results))
-	   (and statement (#"close" statement))))
+	(;; import the ohd ontology
+	 (as `(imports ,(make-uri *ohd-ontology-iri*)))
+
+	 ;; get axioms for declaring annotation, object, and data properties used for ohd
+	 (as (get-ohd-declaration-axioms))
+	 
+	 ;; get records from eaglesoft db and create axioms
+	 (with-eaglesoft (results query)
+	    (loop while (#"next" results) do
+		 (as (get-eaglesoft-dental-patient-axioms
+		      (#"getString" results "patient_id")
+		      (#"getString" results "birth_date")
+		      (#"getString" results "sex")))
+		 (incf count))))
 
       ;; return the ontology
       (values ont count))))
