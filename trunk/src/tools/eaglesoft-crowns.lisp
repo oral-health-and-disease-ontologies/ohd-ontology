@@ -14,19 +14,13 @@
 (defun get-eaglesoft-crowns-ont (&key patient-id tooth limit-rows force-create-table)
   "Returns an ontology of the crowns contained in the Eaglesoft database.  The patient-id key creates an ontology based on that specific patient. The tooth key is used to limit results to a specific tooth, and can be used in combination with the patient-id. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
 
-  (let ((connection nil)
-	(statement nil)
-	(results nil)
+  (let ((results nil)
 	(query nil)
 	(occurrence-date nil)
-	(url nil)
 	(count 0))
 
-    ;; set up connection string and query.
-    (setf url (get-eaglesoft-database-url))
-
     ;; verify that the eaglesoft db has the action_codes and patient_history tables
-    (prepare-eaglesoft-db url :force-create-table force-create-table)
+    (prepare-eaglesoft-db :force-create-table force-create-table)
 
     ;; get query string for restorations
     (setf query (get-eaglesoft-crowns-query 
@@ -35,20 +29,13 @@
     (with-ontology ont (:collecting t 
 			:base *eaglesoft-individual-crowns-iri-base* 
 			:ontology-iri *eaglesoft-crowns-ontology-iri*)
-	((unwind-protect
-	      (progn
-		;; connect to db and get data
-		(setf connection (#"getConnection" 'java.sql.DriverManager url))
-		(setf statement (#"createStatement" connection))
-		(setf results (#"executeQuery" statement query))
-	   	
-		;; import the ohd ontology
-		(as `(imports ,(make-uri *ohd-ontology-iri*)))
-		(as `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)))
-		
-		;; get axioms for declaring annotation, object, and data properties used for ohd
-		(as (get-ohd-declaration-axioms))
-
+	(;; import the ohd and patient ontology
+	 (as `(imports ,(make-uri *ohd-ontology-iri*)))
+	 (as `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)))
+	 
+	 ;; get axioms for declaring annotation, object, and data properties used for ohd
+	 (as (get-ohd-declaration-axioms))
+	 (with-eaglesoft (results query)
 		(loop while (#"next" results) do
 		     ;; determine this occurrence date
 		     (setf occurrence-date
@@ -57,20 +44,15 @@
 			    (#"getString" results "date_entered")
 			    (#"getString" results "date_completed")
 			    (#"getString" results "tran_date")))
-		     
-		     ;; get axioms
+
+		     ;; get records from eaglesoft db and create axioms
 		     (as (get-eaglesoft-crown-axioms 
 		     	  (#"getString" results "patient_id")
 		     	  occurrence-date
 		     	  (#"getString" results "tooth_data")
 		     	  (#"getString" results "ada_code")
 		     	  count))
-		     (incf count)))
-
-	   ;; database cleanup
-	   (and connection (#"close" connection))
-	   (and results (#"close" results))
-	   (and statement (#"close" statement))))
+		     (incf count))))
 
       ;; return the ontology
       (values ont count))))
@@ -141,7 +123,8 @@
 
 	 (push `(declaration (named-individual ,crown-material-uri)) axioms)
 	 (setf axioms
-	       (append (get-ohd-instance-axioms crown-material-uri  !'restoration material'@ohd) axioms))
+	       (append (get-ohd-instance-axioms crown-material-uri  
+						!'dental restoration material'@ohd) axioms))
 
 	 ;; add annotation about this instance of material
 	 (push `(annotation-assertion !rdfs:label 
