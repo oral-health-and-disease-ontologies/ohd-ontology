@@ -14,19 +14,13 @@
 
 (defun get-eaglesoft-missing-teeth-findings-ont (&key patient-id tooth limit-rows force-create-table)
   "Returns an ontology of the missing teeth findings contained in the Eaglesoft database. The patient-id key creates an ontology based on that specific patient. The tooth key is used to limit results to a specific tooth, and can be used in combination with the patient-id. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
-  (let ((connection nil)
-	(statement nil)
-	(results nil)
+  (let ((results nil)
 	(query nil)
 	(occurrence-date nil)
-	(url nil)
 	(count 0))
 
-    ;; set up connection string and query.
-    (setf url (get-eaglesoft-database-url))
-
     ;; verify that the eaglesoft db has the action_codes and patient_history tables
-    (prepare-eaglesoft-db url :force-create-table force-create-table)
+    (prepare-eaglesoft-db :force-create-table force-create-table)
 
     ;; get query string for restorations
     (setf query (get-eaglesoft-missing-teeth-findings-query 
@@ -35,42 +29,32 @@
     (with-ontology ont (:collecting t 
 			:base *eaglesoft-individual-missing-teeth-findings-iri-base*
 			:ontology-iri *eaglesoft-missing-teeth-findings-ontology-iri*)
-	((unwind-protect
-	      (progn
-		;; connect to db and get data
-		(setf connection (#"getConnection" 'java.sql.DriverManager url))
-		(setf statement (#"createStatement" connection))
-		(setf results (#"executeQuery" statement query))
-	   	
-		;; import the ohd ontology
-		(as `(imports ,(make-uri *ohd-ontology-iri*)))
-		(as `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)))
+	(;; import the ohd and patient ontology
+	 (as `(imports ,(make-uri *ohd-ontology-iri*)))
+	 (as `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)))
 
-		;; get axioms for declaring annotation, object, and data properties used for ohd
-		(as (get-ohd-declaration-axioms))
-		
-		(loop while (#"next" results) do
-		     ;; determine the occurrence date
-		     (setf occurrence-date
-			   (get-eaglesoft-occurrence-date 
-			    (#"getString" results "table_name")
-			    (#"getString" results "date_entered")
-			    (#"getString" results "date_completed")
-			    (#"getString" results "tran_date")))
+	 ;; get axioms for declaring annotation, object, and data properties used for ohd
+	 (as (get-ohd-declaration-axioms))
+	 
+	 ;; get records from eaglesoft db and create axioms
+	 (with-eaglesoft (results query)
+	   (loop while (#"next" results) do
+	        ;; determine the occurrence date
+		(setf occurrence-date
+		      (get-eaglesoft-occurrence-date 
+		       (#"getString" results "table_name")
+		       (#"getString" results "date_entered")
+		       (#"getString" results "date_completed")
+		       (#"getString" results "tran_date")))
 
-		     ;; generate axioms
-		     (as (get-eaglesoft-missing-tooth-finding-axioms 
-		       	  (#"getString" results "patient_id")
-		     	  occurrence-date
-		     	  (#"getString" results "tooth_data")
-			  count))
+	        ;; generate axioms
+		(as (get-eaglesoft-missing-tooth-finding-axioms 
+		     (#"getString" results "patient_id")
+		     occurrence-date
+		     (#"getString" results "tooth_data")
+		     count))
 		     	  		     
-		     (incf count)))
-
-	   ;; database cleanup
-	   (and connection (#"close" connection))
-	   (and results (#"close" results))
-	   (and statement (#"close" statement))))
+		(incf count))))
 
       ;; return the ontology
       (values ont count))))
@@ -91,7 +75,12 @@
     ;; tooth_data
     ;; get list of teeth in tooth_data array
     (setf teeth-list (get-eaglesoft-teeth-list tooth-data))
-
+    
+    ;; make sure *ohd-label-source* hash table has been created
+    ;; this value will be discarded below when the patient uri is set
+    ;; again. 
+    (setf patient-uri !'dental patient'@ohd)
+    
     (loop for tooth in teeth-list do
          ;;;;  declare instances of participating entities ;;;;
 	 
@@ -144,7 +133,7 @@
 
          ;; instance of missing tooth finding 'is about' the dentition instance
 	 (push `(object-property-assertion !'is about'@ohd ,finding-uri ,dentition-uri) axioms)
-
+	 
          ;; add data property !ohd:'occurrence date' of the missing tooth finding
 	 (push `(data-property-assertion !'occurrence date'@ohd
 					 ,finding-uri
