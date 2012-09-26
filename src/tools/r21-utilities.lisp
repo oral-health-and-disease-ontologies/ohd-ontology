@@ -349,6 +349,26 @@ Usage:
 
 ;;;; specific to eagle soft ;;;;
 
+(defmacro with-eaglesoft ((results query) &body body)
+  "This macro is used for connecting to Eaglesoft database and retrieving records. The results parameter is the recordset that holds the retrieved records.  The query parameter is the query string that is applied to the database."
+  (let ((connection (make-symbol "CONNECTION-"))
+	(statement (make-symbol "STATEMENT-"))
+	(url (make-symbol "DB-URL-")))
+    `(unwind-protect
+	  (progn
+	    (find-java-class "com.microsoft.sqlserver.jdbc.SQLServerDriver")
+	    (setf ,url (get-eaglesoft-database-url))
+	    (setf ,connection (#"getConnection" 'java.sql.DriverManager ,url))
+	    (setf ,statement (#"createStatement" ,connection))
+	    (setf ,results (#"executeQuery" ,statement ,query))
+
+	    ,@body
+	    
+	    )
+       (and ,connection (#"close" ,connection))
+       (and ,results (#"close" ,results))
+       (and ,statement (#"close" ,statement)))))
+
 (defun create-eaglesoft-ontologies (&key patient-id limit-rows save-to-path force-create-table)
   "Creates the suite of ontologies based on the Eaglesoft database. These ontologies are then returned in an associated list. The patient-id key creates the ontologies based on that specific patient. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. When the save-to-path key (as a string) is provided, the created ontologies will saved to the specified path.  The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
   (let ((crowns nil)
@@ -658,16 +678,20 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
     ;; return uri
     uri))
 
-(defun prepare-eaglesoft-db (url &key force-create-table)
-  "Tests whether the action_codes and patient_history tables exist in the Eaglesoft database. The url parameter specifies the connection string to the database.  If the force-create-db key is given, then the tables tables are created regardless of whether they exist. This is needed when the table definitions change."
-  ;; test to see if action_codes table exists
-  ;; if not then create it
-  (when (or (not (table-exists "action_codes" url)) force-create-table)
-    (create-eaglesoft-action-codes-or-patient-history-table "action_codes" url))
+(defun prepare-eaglesoft-db (&key force-create-table)
+  "Tests whether the action_codes and patient_history tables exist in the Eaglesoft database. If the force-create-db key is given, then the tables tables are created regardless of whether they exist. This is needed when the table definitions change."
+  (let ((url nil))
+    ;; get connection info
+    (setf url (get-eaglesoft-database-url))
 
-  ;; test to see if patient history table exists
-  (when (or (not (table-exists "patient_history" url)) force-create-table)
-    (create-eaglesoft-action-codes-or-patient-history-table "patient_history" url)))
+    ;; test to see if action_codes table exists
+    ;; if not then create it
+    (when (or (not (table-exists "action_codes" url)) force-create-table)
+      (create-eaglesoft-action-codes-or-patient-history-table "action_codes" url))
+
+    ;; test to see if patient history table exists
+    (when (or (not (table-exists "patient_history" url)) force-create-table)
+      (create-eaglesoft-action-codes-or-patient-history-table "patient_history" url))))
 
 (defun create-eaglesoft-action-codes-or-patient-history-table (table-name url)
   "Creates either the action_codes or patient_history table, as determined by the table-name parameter.  The url parameter specifies the connection string to the database."
@@ -1179,3 +1203,9 @@ ORDER BY
   "http://purl.obolibrary.org/obo/ohd/individuals/")
 (defparameter *eaglesoft-missing-teeth-findings-ontology-iri* 
   "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-missing-teeth-findings.owl")
+
+;; eaglesoft dental providers
+(defparameter *eaglesoft-individual-dental-providers-iri-base* 
+  "http://purl.obolibrary.org/obo/ohd/individuals/")
+(defparameter *eaglesoft-dental-providers-ontology-iri* 
+  "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-providers.owl")
