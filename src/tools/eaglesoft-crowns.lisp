@@ -35,6 +35,7 @@
 	 
 	 ;; get axioms for declaring annotation, object, and data properties used for ohd
 	 (as (get-ohd-declaration-axioms))
+
 	 (with-eaglesoft (results query)
 		(loop while (#"next" results) do
 		     ;; determine this occurrence date
