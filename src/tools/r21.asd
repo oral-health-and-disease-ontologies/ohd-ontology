@@ -42,7 +42,8 @@
 	     (:file "eaglesoft-surgical-extractions")
 	     (:file "eaglesoft-endodontics")
 	     (:file "eaglesoft-missing-teeth-findings")
-	     ) 
+	     (:file "eaglesoft-dental-providers")
+	     )
 	    :depends-on
 	    (early)))
   :depends-on (owl2) )
