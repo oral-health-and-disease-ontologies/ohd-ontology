@@ -49,6 +49,7 @@
 		     
 	        ;; get axioms
 		(as (get-eaglesoft-surgical-extraction-axioms 
+
 		     (#"getString" results "patient_id")
 		     occurrence-date
 		     (#"getString" results "tooth_data")
