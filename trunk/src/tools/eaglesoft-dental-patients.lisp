@@ -67,10 +67,10 @@
       (cond
 	((equalp sex "F")
 	 (setf axioms
-	       (append (get-ohd-instance-axioms patient-uri !'female dental patient'@ohd)axioms)))
+	       (append (get-ohd-instance-axioms patient-uri !'female dental patient'@ohd) axioms)))
 	(t	 
 	 (setf axioms
-	       (append (get-ohd-instance-axioms patient-uri !'male dental patient'@ohd)axioms))))
+	       (append (get-ohd-instance-axioms patient-uri !'male dental patient'@ohd) axioms))))
 
 	 
       ;; add data property 'patient id' to patient
