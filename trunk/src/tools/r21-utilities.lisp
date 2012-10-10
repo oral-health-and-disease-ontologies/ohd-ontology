@@ -224,6 +224,16 @@ Usage:
     ;; return the cdt iri
     cdt-iri))
 
+(defun get-ohd-import-axioms ()
+  "Returns a list of axioms for importing ontologies that are needed to link procedures and finding to patients and providers.  For example, if a crown procedure was performed, we need to know both the patient it was performed on and provider who did the procedure.  This requires the we import patient and provider ontologies."
+  (let ((axioms nil))
+    ;; import the ohd, patient, and provider ontologies
+    (push `(imports ,(make-uri *ohd-ontology-iri*)) axioms)
+    (push `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)) axioms)
+    (push `(imports ,(make-uri *eaglesoft-dental-providers-ontology-iri*)) axioms)
+
+    ;; return axioms
+    axioms))
 
 (defun get-ohd-declaration-axioms ()
   "Returns a list of declaration axioms for data properties, object properties, and annotations that are used in the ohd ontology."
@@ -352,8 +362,8 @@ Usage:
 (defmacro with-eaglesoft ((results query) &body body)
   "This macro is used for connecting to Eaglesoft database and retrieving records. The results parameter is the recordset that holds the retrieved records.  The query parameter is the query string that is applied to the database."
   (let ((connection (make-symbol "CONNECTION-"))
-	(statement (make-symbol "STATEMENT-"))
-	(url (make-symbol "DB-URL-")))
+	 (statement (make-symbol "STATEMENT-"))
+	 (url (make-symbol "DB-URL-")))
     `(unwind-protect
 	  (progn
 	    (find-java-class "com.microsoft.sqlserver.jdbc.SQLServerDriver")
@@ -369,64 +379,72 @@ Usage:
        (and ,results (#"close" ,results))
        (and ,statement (#"close" ,statement)))))
 
-(defun create-eaglesoft-ontologies (&key patient-id limit-rows save-to-path force-create-table)
-  "Creates the suite of ontologies based on the Eaglesoft database. These ontologies are then returned in an associated list. The patient-id key creates the ontologies based on that specific patient. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. When the save-to-path key (as a string) is provided, the created ontologies will saved to the specified path.  The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
+(defun create-eaglesoft-ontologies (&key patient-id r21-provider-id 
+				    limit-rows save-to-path force-create-table)
+  "Creates the suite of ontologies based on the Eaglesoft database. These ontologies are then returned in an associated list. The patient-id key creates the ontologies based on that specific patient. The r21-provider-id key creates a provider ontology based on the provider identified by the id. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. When the save-to-path key (as a string) is provided, the created ontologies will saved to the specified path.  The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables.
+As an example of use, this call would create the ontologies for patient 3000: (create-eaglesoft-ontologies :patient-id 3000 :save-to-path \"/Users/williamduncan/Desktop/patient-3000/patient-3000-\")"
   (let ((crowns nil)
 	(dental-patients nil)
+	(dental-providers nil)
 	(endodontics nil)
 	(fillings nil)
 	(missing-teeth nil)
 	(surgical-extractions nil))
 	
-	;; create ontologies
-	(setf crowns (get-eaglesoft-crowns-ont
-	       :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
-	(setf dental-patients (get-eaglesoft-dental-patients-ont
-	       :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
-	(setf endodontics (get-eaglesoft-endodontics-ont
-	       :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
-	(setf fillings (get-eaglesoft-fillings-ont
-	       :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
-	(setf missing-teeth (get-eaglesoft-missing-teeth-findings-ont
-	       :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
-	(setf surgical-extractions (get-eaglesoft-surgical-extractions-ont
-	       :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+    ;; create ontologies
+    (setf crowns (get-eaglesoft-crowns-ont
+		  :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+    (setf dental-patients (get-eaglesoft-dental-patients-ont
+		  :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+    (setf dental-providers (get-eaglesoft-dental-providers-ont
+		  :r21-provider-id r21-provider-id 
+		  :limit-rows limit-rows :force-create-table force-create-table))
+    (setf endodontics (get-eaglesoft-endodontics-ont
+		  :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+    (setf fillings (get-eaglesoft-fillings-ont
+		   :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+    (setf missing-teeth (get-eaglesoft-missing-teeth-findings-ont
+		   :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+    (setf surgical-extractions (get-eaglesoft-surgical-extractions-ont
+		   :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
 	
-	;; check to save
-	(when save-to-path
-	  ;; ensure save-to-path is a string
-	  (setf save-to-path (format nil "~a" save-to-path))
+    ;; check to save
+    (when save-to-path
+      ;; ensure save-to-path is a string
+      (setf save-to-path (format nil "~a" save-to-path))
 
-	  ;; billd: I decided the code below was too limiting for the various ways
-	  ;;        I might want to save files
-	  ;; ;; make sure save-to-path ends with a "/"
-	  ;; (when (not (equal (str-right save-to-path 1) "/"))
-	  ;;   (setf save-to-path 
-	  ;; 	  (str+ save-to-path "/")))
+      ;; billd: I decided the commented out code below was too limiting 
+      ;;        for the various ways I might want to save files
+      ;; ;; make sure save-to-path ends with a "/"
+      ;; (when (not (equal (str-right save-to-path 1) "/"))
+      ;;   (setf save-to-path 
+      ;; 	  (str+ save-to-path "/")))
 
-	  ;; ;; if a patient-id has been given, append it to directory
-	  ;; ;; this has the affect of prepennding the patient-id to the file name
-	  ;; (when patient-id
-	  ;;   ;; ensure patient-id is a string
-	  ;;   (setf patient-id (format nil "~a" patient-id))
-	  ;;   (setf save-to-path
-	  ;; 	  (str+ save-to-path "patient-" patient-id "-")))
+      ;; ;; if a patient-id has been given, append it to directory
+      ;; ;; this has the affect of prepennding the patient-id to the file name
+      ;; (when patient-id
+      ;;   ;; ensure patient-id is a string
+      ;;   (setf patient-id (format nil "~a" patient-id))
+      ;;   (setf save-to-path
+      ;; 	  (str+ save-to-path "patient-" patient-id "-")))
 
-	  ;; save each ontology
-	  (write-rdfxml crowns (str+ save-to-path "crowns.owl"))
-	  (write-rdfxml dental-patients (str+ save-to-path "dental-patients.owl"))
-	  (write-rdfxml endodontics (str+ save-to-path "endodontics.owl"))
-	  (write-rdfxml fillings (str+ save-to-path "fillings.owl"))
-	  (write-rdfxml missing-teeth (str+ save-to-path "missing-teeth.owl"))
-	  (write-rdfxml surgical-extractions (str+ save-to-path "surgical-extractions.owl")))
+      ;; save each ontology
+      (write-rdfxml crowns (str+ save-to-path "crowns.owl"))
+      (write-rdfxml dental-patients (str+ save-to-path "dental-patients.owl"))
+      (write-rdfxml dental-providers (str+ save-to-path "dental-providers.owl"))
+      (write-rdfxml endodontics (str+ save-to-path "endodontics.owl"))
+      (write-rdfxml fillings (str+ save-to-path "fillings.owl"))
+      (write-rdfxml missing-teeth (str+ save-to-path "missing-teeth.owl"))
+      (write-rdfxml surgical-extractions (str+ save-to-path "surgical-extractions.owl")))
 
-	;; place ontologies in asscoiated list and return
-	`((crowns . ,crowns)
-	  (dental-patients . ,dental-patients)
-	  (endodontics . ,endodontics)
-	  (fillings . ,fillings)
-	  (missing-teeth . ,missing-teeth)
-	  (surgical-extractions . ,surgical-extractions))))
+    ;; place ontologies in asscoiated list and return
+    `((crowns . ,crowns)
+      (dental-patients . ,dental-patients)
+      (dental-providers . ,dental-providers)
+      (endodontics . ,endodontics)
+      (fillings . ,fillings)
+      (missing-teeth . ,missing-teeth)
+      (surgical-extractions . ,surgical-extractions))))
 
 (defun  search-eaglesoft-database-schema (&key table-name field-name)
   "Searches the Eaglesoft database schema for specified table and field names, and prints the results to the screen.  If not parameters are given, all the results are printed to sceen."
@@ -666,6 +684,63 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
     uri))
 
 
+(defun get-eaglesoft-dental-provider-axioms 
+    (procedure-uri r21-provider-id r21-provider-type practice-id row-id)
+  (let ((axioms nil)
+	(provider-uri nil)
+	(practice-uri nil))
+
+    (cond
+      (;; if the provider is a known person generate an iri
+       (equalp r21-provider-type "person") 
+       (setf provider-uri (get-eaglesoft-dental-provider-iri r21-provider-id)))
+      (t 
+       ;; there are number of unknown cases:
+       ;; 1. the provider is an unknown temporory worker generate the anonymous individual
+       ;; 2. the provider is simply listed as the practice or organization in which the
+       ;;    the procedure was performed.
+       ;; in each case create an anonymous indivdual using the unique row-id
+       (setf provider-uri `(:blank ,(format nil "anonymous dental provider ~a" row-id)))
+
+       ;; specify which practice the anonymous individual is a member of
+       ;; NB! do not do this if the the practice id dentote the practice itself
+       ;;     i.e., we do not want the practice to be a member of itself
+       (when practice-id
+	 (when (not (equalp r21-provider-type "practice"))
+	   (setf practice-uri (get-eaglesoft-dental-practice-iri practice-id))
+	   (push `(object-property-assertion !'member of'@ohd
+					     ,provider-uri ,practice-uri) axioms)))))
+    
+    ;; the procedure 'has participant' the provider
+    (push `(object-property-assertion !'has participant'@ohd
+				      ,procedure-uri ,provider-uri) axioms)
+    ;; return axioms
+    axioms))
+
+
+(defun get-eaglesoft-dental-provider-iri (r21-provider-id)
+  "Returns an iri for a provider that is generated by the r21-provider-id."
+  (let ((uri nil))
+    (setf uri (get-unique-individual-iri r21-provider-id 
+					    :salt *eaglesoft-salt*
+					    :iri-base *eaglesoft-individual-dental-providers-iri-base*
+					    :class-type !'dental care provider'@ohd))
+    ;; return uri
+    uri))
+
+(defun get-eaglesoft-dental-practice-iri (practice-id)
+  "Returns an iri for a practice that is generated by the practice id."
+  (let ((uri nil))
+    (setf uri 
+	  (get-unique-individual-iri practice-id 
+				     :salt *eaglesoft-salt*
+				     :iri-base *eaglesoft-individual-dental-providers-iri-base*
+				     :class-type !'dental health care organization'@ohd
+				     :args "eaglesoft dental practice"))
+    ;; return uri
+    uri))
+
+
 (defun get-eaglesoft-tooth-iri (patient-id tooth-type-iri)
   "Returns an iri for a patient's tooth that is generated by the patient id and the type of the tooth."
   (let ((uri nil))
@@ -759,10 +834,10 @@ insert into PattersonPM.PPM.action_codes (action_code_id, description) values (1
 
 (defun get-create-eaglesoft-patient-history-table-query ()
 "
+DROP TABLE IF EXISTS PattersonPM.PPM.patient_history
+
 /* This line is needed to force Sybase to return all rows when populating the patient_history table. */
 SET rowcount 0
-
-DROP TABLE IF EXISTS PattersonPM.PPM.patient_history
 
 
 /* Create and define the column names for the patient_history table. */
@@ -770,7 +845,10 @@ CREATE TABLE
   PattersonPM.PPM.patient_history
   (
     /* Define field names of patient_history. */
+    row_id INT IDENTITY,
     patient_id INT,
+    birth_date DATE,
+    sex VARCHAR(1), 
     table_name VARCHAR(20),
     date_completed VARCHAR(15) NULL,
     date_entered VARCHAR(15),
@@ -785,6 +863,7 @@ CREATE TABLE
     ada_code_description VARCHAR(50) NULL,
     tooth_data CHAR(55) NULL,
     surface_detail CHAR(23) NULL,
+    provider_id CHAR(3) NULL,
     r21_provider_id SMALLINT NULL,
     r21_provider_type VARCHAR(20) NULL,
     practice_id SMALLINT NULL
@@ -806,6 +885,8 @@ INTO
   patient_history
   (
     patient_id,
+    birth_date,
+    sex,
     table_name,
     date_completed,
     date_entered,
@@ -820,6 +901,7 @@ INTO
     ada_code_description,
     tooth_data,
     surface_detail,
+    provider_id,
     r21_provider_id,
     r21_provider_type,
     practice_id
@@ -831,6 +913,24 @@ procedures completed by entities outside the current dental office.
 
 SELECT
   existing_services.patient_id,
+  birth_date =
+  (
+    -- This subquery finds the patient's birth date
+    SELECT 
+      birth_date
+    FROM
+      patient
+    WHERE
+      patient.patient_id = existing_services.patient_id), 
+  sex =
+  (
+    -- This subquery finds the patient's sex
+    SELECT 
+      sex
+    FROM
+      patient
+    WHERE
+      patient.patient_id = existing_services.patient_id),     
   table_name = 'existing_services', -- table_name value
   /* date_completed is the date (usually reported by the patient) that something was done */
   CAST(existing_services.date_completed AS VARCHAR),
@@ -884,6 +984,8 @@ SELECT
       existing_services.patient_id = existing_services_extra.patient_id
     AND existing_services.line_number = existing_services_extra.line_number),
   
+  provider_id, 
+  
   r21_provider_id =
   (
     SELECT
@@ -929,6 +1031,24 @@ procedure, i.e. all things that happen one their own (fracture, caries, etc.)
 */
 SELECT
   patient_conditions.patient_id,
+  birth_date =
+  (
+    -- This subquery find the patient's birht date
+    SELECT 
+      birth_date
+    FROM
+      patient
+    WHERE
+      patient.patient_id = patient_conditions.patient_id), 
+  sex =
+  (
+    -- This subquery finds the patient's sex
+    SELECT 
+      sex
+    FROM
+      patient
+    WHERE
+      patient.patient_id = patient_conditions.patient_id), 
   table_name = 'patient_conditions', -- table_name value
   date_completed = 'n/a', -- date_completed is not recorded in the patient_conditions table
   CAST(patient_conditions.date_entered AS VARCHAR), -- date_entered is the date that the record was entered into the system
@@ -978,6 +1098,8 @@ SELECT
     WHERE
       patient_conditions.counter_id = patient_conditions_extra.counter_id),
   
+  provider_id, 
+  
   r21_provider_id =
   (
     SELECT
@@ -1022,6 +1144,24 @@ The transactions view records transactions between the provider and the patient.
 */
 SELECT
   transactions.patient_id,
+  birth_date =
+  (
+    -- This subquery find the patient's birht date
+    SELECT 
+      birth_date
+    FROM
+      patient
+    WHERE
+      patient.patient_id = transactions.patient_id), 
+  sex =
+  (
+    -- This subquery finds the patient's sex
+    SELECT 
+      sex
+    FROM
+      patient
+    WHERE
+      patient.patient_id = transactions.patient_id), 
   table_name = 'transactions', -- table_name value (although transactions is a viiew)
   date_completed = 'n/a', -- date_completed is not recorded in the transactons view
   date_entered = 'n/a', -- date_entered is not recorded in the transactons view
@@ -1077,6 +1217,8 @@ SELECT
     WHERE
       transactions.tran_num = transactions_extra.tran_num),
   
+  provider_id,
+  
   r21_provider_id =
   (
     SELECT
@@ -1127,16 +1269,19 @@ ORDER BY
   4, -- date_entered
   5, -- tran_date
   7 -- tooth
-")
+"
+)
 
 ;;****************************************************************
 ;;; global variables ;;;;
 
-;; Note: These must be loaded at the end of the file in order to call 
-;; (get-eaglesoft-salt).  The variable *eaglesoft-salt* is initialized
-;; with a call to this funciton.  Thus, the function must be loaded first.
+;; Note: These must be loaded at the end of the file in order to call functions that
+;; load the intitial values of the globlal variable.  
+;; An example of this is the *eaglesoft-salt* variable.  It is initialized by calling
+;; the get-eaglesoft-salt procedure (above).
 
 ;; global variable used for to salt the md5 checksum for eaglesoft entities
+;; it is loaded in get-eaglesoft-salt above
 (defparameter *eaglesoft-salt* (get-eaglesoft-salt))
 
 ;; list of ada codes for amalgam, resin, and gold fillings/restorations
@@ -1152,7 +1297,6 @@ ORDER BY
 (defparameter *eaglesoft-gold-code-list* 
   '("D2410" "D2420" "D2430"
     "02410" "02420" "02430"))
-
 
 ;; global iri variables
 
