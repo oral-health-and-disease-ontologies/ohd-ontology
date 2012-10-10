@@ -29,9 +29,8 @@
     (with-ontology ont (:collecting t
 			:base *eaglesoft-individual-fillings-iri-base*
 			:ontology-iri  *eaglesoft-fillings-ontology-iri*)
-	(;; import the ohd ontology and dental patient ontology
-	 (as `(imports ,(make-uri *ohd-ontology-iri*)))
-	 (as `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)))
+	(;; import needed ontologies
+	 (as (get-ohd-import-axioms))
 
 	 ;; get axioms for declaring annotation, object, and data properties used for ohd
 	 (as (get-ohd-declaration-axioms))
@@ -54,7 +53,7 @@
 		     	  (#"getString" results "tooth_data")
 		     	  (#"getString" results "surface")
 		     	  (#"getString" results "ada_code")
-		     	  count))
+		     	  (#"getString" results "row_id")))
 		     (incf count))))
 
       ;; return the ontology
@@ -90,11 +89,13 @@
     ;; get list of teeth in tooth_data array
     (setf teeth-list (get-eaglesoft-teeth-list tooth-data))
 
+    ;; get uri of patient
+    (setf patient-uri (get-eaglesoft-dental-patient-iri patient-id))
+
     (loop for tooth in teeth-list do
          ;;;;  declare instances of participating entities ;;;;
 	 
-	 ;; get uri of patient
-	 (setf patient-uri (get-eaglesoft-dental-patient-iri patient-id))
+       
 	 
          ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
 	 (setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
@@ -409,7 +410,7 @@ the surface_detail array.
                  patient_id, 
                  tooth_data, 
                  ada_code, 
-                get_surface_summary_from_detail(surface_detail, tooth) as surface "))
+                 get_surface_summary_from_detail(surface_detail, tooth) as surface "))
 
     ;; FROM clause
     (setf sql (str+ sql " FROM patient_history "))
@@ -425,7 +426,7 @@ the surface_detail array.
                                'D2330', -- Restorative: Resin
                                'D2332',
                                'D2335',
-                               --'D2390', -- D2390 is not a restoration, it's a filling
+                               --'D2390', -- D2390 is not a restoration, it's a crown
                               'D2391',
                               'D2392',
                               'D2393',
@@ -442,7 +443,7 @@ the surface_detail array.
                               '02330', -- Restorative: Resin
                               '02332',
                               '02335',
-                              --'02390' -- 02390 is not a restoration, it's a filling
+                              --'02390' -- 02390 is not a restoration, it's a crown
                              '02391',
                              '02392',
                              '02393',

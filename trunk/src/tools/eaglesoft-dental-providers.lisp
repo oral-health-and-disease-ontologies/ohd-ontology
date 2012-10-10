@@ -36,6 +36,12 @@
 	 (as (get-ohd-declaration-axioms))
 
 	 ;; get records from eaglesoft db and create axioms
+
+	 ;; first get axioms to describe practices
+	 ;; this is needed so that a provider can be member of a practice
+	 (as (get-eaglesoft-dental-practice-axioms))
+
+	 ;; now
 	 (with-eaglesoft (results query)
 	   (loop while (#"next" results) do
 	        ;; get axioms
@@ -55,21 +61,18 @@
 	(provider-type-uri nil)
 	(practice-uri nil))
 
-    ;; create instance of the provider
-    ;; if the provider type is unknown, then create anonymous indivual
-    (cond
-      (;; if the provider is person or organization create a named individual
-       (or (equalp r21-provider-type "person") (equalp r21-provider-type "organization"))
-       (setf provider-uri (get-eaglesoft-dental-provider-iri r21-provider-id))
-       (push `(declaration (named-individual ,provider-uri)) axioms))
-      
-      (t ;; in this case the proviser is unknown or a temporary worker, create anonyomous individual
-       (setf provider-uri `(:blank ,(format nil "anonymous provider ~a" r21-provider-id)))))
+    ;; get provider uri
+    ;; in cases where the provider is not known, and anonymous individual is returned as iri
+    (setf provider-uri (get-eaglesoft-dental-provider-iri r21-provider-id))
+
+    ;; create named individual if the type of provider is known.
+    (when (or (equalp r21-provider-type "person") (equalp r21-provider-type "organization"))
+      (push `(declaration (named-individual ,provider-uri)) axioms))
 
     ;; add annotation about provider
     (push `(annotation-assertion !rdfs:label
 				 ,provider-uri
-				 ,(format nil "provider ~a" r21-provider-id)) axioms)
+				 ,(format nil "dental provider ~a" r21-provider-id)) axioms)
        
 
   ;; determine type of provider
@@ -79,7 +82,7 @@
      (setf provider-type-uri !'dental care provider'@ohd))
     ((equalp r21-provider-type "person temporary") 
      (setf provider-type-uri !'dental care provider'@ohd))
-    ((equalp r21-provider-type "organization")
+    ((equalp r21-provider-type "practice")
       (setf provider-type-uri !'dental health care organization'@ohd)))
     
   ;; make class assertion about provider instance
@@ -89,32 +92,50 @@
     (provider-type-uri
      (setf axioms (append (get-ohd-instance-axioms provider-uri provider-type-uri) axioms)))
     (t ;this is the "unknown" case
-     (setf axioms (append (get-unknown-provider-type-axioms provider-uri) axioms))))
+     (setf axioms (append (get-eaglesoft-unknown-provider-type-axioms provider-uri) axioms))))
 
-
-  ;; create instance of the practice (a dental health care organization)
-  ;; that provider is part of
+  ;; associate the provider with practice that he/she is a member of
   ;; note: do this only when there is a practice id
   (when practice-id
     (setf practice-uri (get-eaglesoft-dental-practice-iri practice-id))
-    (push `(declaration (named-individual ,practice-uri)) axioms)
-    (setf axioms
-	  (append (get-ohd-instance-axioms practice-uri 
-					   !'dental health care organization'@ohd) axioms))
-
-    ;; add annotation about the practice
-    (push `(annotation-assertion !rdfs:label
-				 ,practice-uri
-				 ,(format nil "practice ~a" practice-id)) axioms)
 
     ;; specify that the provider is part of a practice
-    (push `(object-property-assertion !'is part of'@ohd
+    (push `(object-property-assertion !'member of'@ohd
 				      ,provider-uri ,practice-uri) axioms))
+
 
   ;; return axioms
   axioms))
 
-(defun get-unknown-provider-type-axioms (provider-uri)
+
+(defun get-eaglesoft-dental-practice-axioms ()
+  (let ((axioms nil)
+	(results nil)
+	(practice-id nil)
+	(practice-uri nil)
+	(query nil))
+    
+    ;; get query string for returning practices
+    (setf query (get-eaglesoft-dental-practices-query))
+    (with-eaglesoft (results query)
+      (loop while (#"next" results) do
+	 (setf practice-id (#"getString" results "practice_id"))
+      
+	 (setf practice-uri (get-eaglesoft-dental-practice-iri practice-id))
+	 (push `(declaration (named-individual ,practice-uri)) axioms)
+	 (setf axioms
+	       (append (get-ohd-instance-axioms practice-uri 
+						!'dental health care organization'@ohd) axioms))
+
+	 ;; add annotation about the practice
+	 (push `(annotation-assertion !rdfs:label
+				      ,practice-uri
+				      ,(format nil "dental practice ~a" practice-id)) axioms)))
+      
+    ;; return axioms
+    axioms))
+
+(defun get-eaglesoft-unknown-provider-type-axioms (provider-uri)
   "Returns a list of axioms for specifying that a provider is either a dental care provider (person) or dental health care organization."
   (let ((axioms nil))
     (push `(class-assertion 
@@ -122,37 +143,13 @@
 			     !'dental health care organization'@ohd)
 	    ,provider-uri) axioms)
     
-    (push `(annotation-assertion !'asserted type'@ohd ,provider-uri
-				 !'dental care provider'@ohd) axioms)
-
-    (push `(annotation-assertion !'asserted type'@ohd ,provider-uri
-				 !'dental health care organization'@ohd) axioms)
+    (push `(annotation-assertion !'asserted type'@ohd 
+				 ,provider-uri
+				 (object-union-of 
+				  !'dental care provider'@ohd
+				  !'dental health care organization'@ohd)) axioms)
     ;; return axioms
     axioms))
-
-(defun get-eaglesoft-dental-practice-iri (practice-id)
-  "Returns an iri for a practice that is generated by the practice id."
-  (let ((uri nil))
-    (setf uri 
-	  (get-unique-individual-iri practice-id 
-				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-dental-providers-iri-base*
-				     :class-type !'dental health care organization'@ohd
-				     :args "eaglesoft"))
-    ;; return uri
-    uri))
-
-(defun get-eaglesoft-dental-provider-iri (provider-id)
-  "Returns an iri for a provider that is generated by the provider id."
-  (let ((uri nil))
-    (setf uri 
-	  (get-unique-individual-iri provider-id 
-				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-dental-providers-iri-base*
-				     :class-type !'dental care provider'@ohd
-				     :args "eaglesoft"))
-    ;; return uri
-    uri))
 
 (defun get-eaglesoft-dental-providers-query (&key r21-provider-id limit-rows)
   "Returns query string for retrieving data. The r21-provider-id key restricts records only that provider or providers as identified in the r21_provider table.  Multiple are providers are specified using commas; e.g: \"123, 456, 789\".  The limit-rows key restricts the number of records to the number specified."
@@ -182,4 +179,12 @@
 
     ;; return query string
     ;;(pprint sql)
+    sql))
+
+(defun get-eaglesoft-dental-practices-query ()
+  "Return query string for getting the dental practies."
+  (let ((sql nil))
+    (setf sql "SELECT * FROM practice")
+
+    ;;return query string
     sql))

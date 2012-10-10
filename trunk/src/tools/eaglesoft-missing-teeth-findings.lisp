@@ -29,9 +29,8 @@
     (with-ontology ont (:collecting t 
 			:base *eaglesoft-individual-missing-teeth-findings-iri-base*
 			:ontology-iri *eaglesoft-missing-teeth-findings-ontology-iri*)
-	(;; import the ohd and patient ontology
-	 (as `(imports ,(make-uri *ohd-ontology-iri*)))
-	 (as `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)))
+	(;; import needed ontologies
+	 (as (get-ohd-import-axioms))
 
 	 ;; get axioms for declaring annotation, object, and data properties used for ohd
 	 (as (get-ohd-declaration-axioms))
@@ -52,8 +51,7 @@
 		     (#"getString" results "patient_id")
 		     occurrence-date
 		     (#"getString" results "tooth_data")
-		     count))
-		     	  		     
+		     (#"getString" results "row_id")))
 		(incf count))))
 
       ;; return the ontology

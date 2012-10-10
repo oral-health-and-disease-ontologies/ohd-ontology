@@ -29,37 +29,39 @@
     (with-ontology ont (:collecting t 
 			:base *eaglesoft-individual-crowns-iri-base* 
 			:ontology-iri *eaglesoft-crowns-ontology-iri*)
-	(;; import the ohd and patient ontology
-	 (as `(imports ,(make-uri *ohd-ontology-iri*)))
-	 (as `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)))
+	(;; import needed ontologies
+	 (as (get-ohd-import-axioms))
 	 
 	 ;; get axioms for declaring annotation, object, and data properties used for ohd
 	 (as (get-ohd-declaration-axioms))
 	 
-	 (with-eaglesoft (results query)
-		(loop while (#"next" results) do
-		     ;; determine this occurrence date
-		     (setf occurrence-date
-			   (get-eaglesoft-occurrence-date 
-			    (#"getString" results "table_name")
-			    (#"getString" results "date_entered")
-			    (#"getString" results "date_completed")
-			    (#"getString" results "tran_date")))
+	  (with-eaglesoft (results query)
+	    (loop while (#"next" results) do
+	         ;; determine this occurrence date
+		 (setf occurrence-date
+		       (get-eaglesoft-occurrence-date 
+			(#"getString" results "table_name")
+			(#"getString" results "date_entered")
+			(#"getString" results "date_completed")
+			(#"getString" results "tran_date")))
 
-		     ;; get records from eaglesoft db and create axioms
-		     (as (get-eaglesoft-crown-axioms 
-		     	  (#"getString" results "patient_id")
-		     	  occurrence-date
-		     	  (#"getString" results "tooth_data")
-		     	  (#"getString" results "ada_code")
-		     	  count))
-		     (incf count))))
+	         ;; get records from eaglesoft db and create axioms
+		 (as (get-eaglesoft-crown-axioms 
+		      (#"getString" results "patient_id")
+		      occurrence-date
+		      (#"getString" results "tooth_data")
+		      (#"getString" results "ada_code")
+		      (#"getString" results "r21_provider_id")
+		      (#"getString" results "r21_provider_type")
+		      (#"getString" results "practice_id")
+		      (#"getString" results "row_id")))
+		 (incf count))))
 
       ;; return the ontology
       (values ont count))))
 
 (defun get-eaglesoft-crown-axioms 
-    (patient-id occurrence-date tooth-data ada-code record-count)
+    (patient-id occurrence-date tooth-data ada-code provider-id provider-type practice-id record-count)
   (let ((axioms nil)
 	(cdt-class-uri nil)
 	(cdt-uri nil)
@@ -78,13 +80,12 @@
     ;; get list of teeth in tooth_data array
     (setf teeth-list (get-eaglesoft-teeth-list tooth-data))
 
+    ;; get uri of patient
+    (setf patient-uri (get-eaglesoft-dental-patient-iri patient-id))
+
     (loop for tooth in teeth-list do
          ;;;;  declare instances of participating entities ;;;;
-	 
-	 ;; get uri of patient
-	 (setf patient-uri 
-	       (get-eaglesoft-dental-patient-iri patient-id))
-	 
+	 	 
          ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
 	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-with-number t))
 	 (setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
@@ -193,6 +194,11 @@
 	 (push `(object-property-assertion !'has participant'@ohd
 					   ,crown-restoration-uri ,patient-uri) axioms)
 
+         ;; get axioms that a 'crown restoration' has particpant provider
+	 (setf axioms
+	       (append (get-eaglesoft-dental-provider-axioms 
+			crown-restoration-uri provider-id provider-type practice-id record-count) axioms))
+
 	 ;; restoration material is located in the tooth
 	 (push `(object-property-assertion !'is located in'@ohd
 					   ,crown-material-uri ,tooth-uri) axioms)
@@ -203,8 +209,6 @@
 	 
 	 ) ;; end loop
     
-    ;;(pprint axioms)
-
     ;; return axioms
     axioms))
 
