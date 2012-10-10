@@ -147,11 +147,11 @@
     (cond 
       (limit-rows
        (setf limit-rows (format nil "~a" limit-rows)) ;ensure that limit rows is a string
-       (setf sql (str+ sql " SELECT  TOP " limit-rows " * "))) 
-      (t (setf sql (str+ sql " SELECT * "))))
+       (setf sql (str+ sql " SELECT  DISTINCT TOP " limit-rows " patient_id, birth_date, sex "))) 
+      (t (setf sql (str+ sql " SELECT DISTINCT patient_id, birth_date, sex "))))
 
     ;; FROM clause
-    (setf sql (str+ sql " FROM PPM.patient "))
+    (setf sql (str+ sql " FROM patient_history "))
 
     ;; WHERE clause
     (setf sql (str+ sql " WHERE LENGTH(birth_date) > 0 "))

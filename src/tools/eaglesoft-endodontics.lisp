@@ -30,9 +30,8 @@
     (with-ontology ont (:collecting t 
 			:base *eaglesoft-individual-endodontics-iri-base*
 			:ontology-iri *eaglesoft-endodontics-ontology-iri*)
-	( ;; import the ohd and patient ontology
-	 (as `(imports ,(make-uri *ohd-ontology-iri*)))
-	 (as `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)))
+	(;; import needed ontologies
+	 (as (get-ohd-import-axioms))
 
 	 ;; get axioms for declaring annotation, object, and data properties used for ohd
 	 (as (get-ohd-declaration-axioms))
@@ -54,7 +53,7 @@
 		     occurrence-date
 		     (#"getString" results "tooth_data")
 		     (#"getString" results "ada_code")
-		     count))
+		     (#"getString" results "row_id")))
 		(incf count))))
 
       ;; return the ontology
