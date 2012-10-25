@@ -6,6 +6,8 @@
     owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-5-se-september/query")
 (defparameter 
     owlim-se-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-5-se-september/query")
+(defparameter 
+    owlim-se-remote "http://den287.sdm.buffalo.edu:8080/openrdf-workbench/repositories/test-repo/query")
 
 
 (defun r21query (query  &rest args &key (expressivity "RL") (reasoner 'stardog-r21) &allow-other-keys)
@@ -196,13 +198,13 @@ SELECT ?super {
   ;; return nil
   nil)
 
-(defun test2 ()
+(defun test-owlim2 ()
   (r21query 
    '(:select (?s ?l)
      (:limit 10)
      (?s !rdf:type !obo:FMA_12516)
      (?s !rdfs:label ?l))
-   :reasoner 'owlim-se-r21
+   :reasoner 'owlim-se-remote
    :trace "test2")
 
    nil)
