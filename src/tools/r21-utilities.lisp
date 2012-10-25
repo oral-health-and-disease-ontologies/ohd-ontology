@@ -364,7 +364,10 @@ Usage:
   (let ((connection (make-symbol "CONNECTION-"))
 	 (statement (make-symbol "STATEMENT-"))
 	 (url (make-symbol "DB-URL-")))
-    `(unwind-protect
+    `(let ((,connection nil)
+	   (,statement nil)
+	   (,url nil))
+       (unwind-protect
 	  (progn
 	    (find-java-class "com.microsoft.sqlserver.jdbc.SQLServerDriver")
 	    (setf ,url (get-eaglesoft-database-url))
@@ -377,7 +380,7 @@ Usage:
 	    )
        (and ,connection (#"close" ,connection))
        (and ,results (#"close" ,results))
-       (and ,statement (#"close" ,statement)))))
+       (and ,statement (#"close" ,statement))))))
 
 (defun create-eaglesoft-ontologies (&key patient-id r21-provider-id 
 				    limit-rows save-to-path force-create-table)
@@ -389,6 +392,7 @@ As an example of use, this call would create the ontologies for patient 3000: (c
 	(endodontics nil)
 	(fillings nil)
 	(missing-teeth nil)
+	(unerupted-teeth nil)
 	(surgical-extractions nil))
 	
     ;; create ontologies
@@ -404,6 +408,8 @@ As an example of use, this call would create the ontologies for patient 3000: (c
     (setf fillings (get-eaglesoft-fillings-ont
 		   :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
     (setf missing-teeth (get-eaglesoft-missing-teeth-findings-ont
+		   :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+    (setf unerupted-teeth (get-eaglesoft-unerupted-teeth-findings-ont
 		   :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
     (setf surgical-extractions (get-eaglesoft-surgical-extractions-ont
 		   :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
@@ -434,7 +440,8 @@ As an example of use, this call would create the ontologies for patient 3000: (c
       (write-rdfxml dental-providers (str+ save-to-path "dental-providers.owl"))
       (write-rdfxml endodontics (str+ save-to-path "endodontics.owl"))
       (write-rdfxml fillings (str+ save-to-path "fillings.owl"))
-      (write-rdfxml missing-teeth (str+ save-to-path "missing-teeth.owl"))
+      (write-rdfxml missing-teeth (str+ save-to-path "missing-teeth-findings.owl"))
+      (write-rdfxml missing-teeth (str+ save-to-path "unerupted-teeth-findings.owl"))
       (write-rdfxml surgical-extractions (str+ save-to-path "surgical-extractions.owl")))
 
     ;; place ontologies in asscoiated list and return
@@ -444,6 +451,7 @@ As an example of use, this call would create the ontologies for patient 3000: (c
       (endodontics . ,endodontics)
       (fillings . ,fillings)
       (missing-teeth . ,missing-teeth)
+      (unerupted-teeth . ,unerupted-teeth)
       (surgical-extractions . ,surgical-extractions))))
 
 (defun  search-eaglesoft-database-schema (&key table-name field-name)
@@ -684,39 +692,157 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
     uri))
 
 
-(defun get-eaglesoft-dental-provider-axioms 
+(defun get-eaglesoft-dental-provider-participant-axioms 
     (procedure-uri r21-provider-id r21-provider-type practice-id row-id)
   (let ((axioms nil)
+	(temp-axioms nil)  ; used for getting instance axioms
 	(provider-uri nil)
 	(practice-uri nil))
 
-    (cond
-      (;; if the provider is a known person generate an iri
-       (equalp r21-provider-type "person") 
-       (setf provider-uri (get-eaglesoft-dental-provider-iri r21-provider-id)))
-      (t 
-       ;; there are number of unknown cases:
-       ;; 1. the provider is an unknown temporory worker generate the anonymous individual
-       ;; 2. the provider is simply listed as the practice or organization in which the
-       ;;    the procedure was performed.
-       ;; in each case create an anonymous indivdual using the unique row-id
-       (setf provider-uri `(:blank ,(format nil "anonymous dental provider ~a" row-id)))
 
-       ;; specify which practice the anonymous individual is a member of
-       ;; NB! do not do this if the the practice id dentote the practice itself
-       ;;     i.e., we do not want the practice to be a member of itself
-       (when practice-id
-	 (when (not (equalp r21-provider-type "practice"))
+
+    ;; ensure that there is a r21 provider id
+    (when r21-provider-id
+      ;; given that we know that a provider id has been given, there are four cases to consider
+      ;; 1. the provider type is a known person; in this case add axioms for the provider
+      ;; 2. the provider type is temporary worker; in this create a blank node (anonymous individual)
+      ;;    and make it a member of practice (if there is one)
+      ;; 3. the provider type is practice; in which case we create a blank node (anonymous individual)
+      ;;    and make it a member of the practice
+      ;; 4. the provder type is uknown, but we know the practice; in which case we create a blank node
+      ;;    (anonymous individual) and make it a member of the practice (if known)
+      (cond
+	( ;; case 1
+	 (equalp r21-provider-type "person")
+	 (setf provider-uri (get-eaglesoft-dental-provider-iri r21-provider-id)))
+	(t ;; cases 2, 3, 4
+	 ;; In all these cases we know there is a provider, but just not who it is
+	 ;; i.e., the provider is anonymous
+	 (setf row-id (format nil "~a" row-id)) ; cast row-id to string
+	 (setf provider-uri `(:blank ,row-id))
+	 
+	 ;; make label for anonymous individual
+	 (push `(annotation-assertion !rdfs:label ,provider-uri 
+				      ,(str+ "anonymous dental provider " row-id)) axioms)
+
+	 ;; get instance of axioms for anonymous individual
+	 ;; note: case 1 instance axioms are covered in eaglesoft-dental-providers.lisp
+	 (setf temp-axioms (get-ohd-instance-axioms provider-uri !'dental health care provider'@ohd))
+	 (setf axioms (append temp-axioms axioms))
+
+	 ;; if a practice is given, make anonymous provider a member of it
+	 ;; note: case 1 members are covered in eaglesoft-dental-providers.lisp
+	 (when practice-id
 	   (setf practice-uri (get-eaglesoft-dental-practice-iri practice-id))
-	   (push `(object-property-assertion !'member of'@ohd
-					     ,provider-uri ,practice-uri) axioms)))))
+	   (push `(object-property-assertion !'member of'@ohd ,provider-uri ,practice-uri) axioms))))
+
+      ;; the procedure 'has participant' the provider
+      (push `(object-property-assertion !'has participant'@ohd ,procedure-uri ,provider-uri) axioms))
     
-    ;; the procedure 'has participant' the provider
-    (push `(object-property-assertion !'has participant'@ohd
-				      ,procedure-uri ,provider-uri) axioms)
     ;; return axioms
     axioms))
 
+(defun get-eaglesoft-dental-exam-axioms 
+    (finding-uri r21-provider-id r21-provider-type practice-id row-id)
+  (let ((axioms nil)
+	(temp-axioms nil) ; used for getting instance axioms
+	(provider-uri nil)
+	(provider-label nil)
+	(provider-role-uri nil)
+	(exam-uri nil)
+	(practice-uri nil))
+
+    ;; ensure that there is a r21 provider id
+    (when r21-provider-id
+      ;; given that we know that a provider id has been given, there are four cases to consider
+      ;; 1. the provider type is a known person; in this case add axioms for the provider
+      ;; 2. the provider type is temporary worker; in this create a blank node (anonymous individual)
+      ;;    and make it a member of practice (if there is one)
+      ;; 3. the provider type is practice; in which case we create a blank node (anonymous individual)
+      ;;    and make it a member of the practice
+      ;; 4. the provder type is uknown, but we know the practice; in which case we create a blank node
+      ;;    (anonymous individual) and make it a member of the practice (if known)
+      (cond
+	(;; case 1
+	 (equalp r21-provider-type "person")
+	 (setf provider-uri (get-eaglesoft-dental-provider-iri r21-provider-id))
+	 
+	 ;; format provider's label
+	 (setf provider-label (format nil "dental provider ~a" r21-provider-id))
+
+	 ;; get role for known provider
+	 (setf provider-role-uri (get-eaglesoft-dental-provider-role-iri r21-provider-id)))
+	(t ;; cases 2, 3, 4
+	 ;; In all these cases we know there is a provider, but just not who it is
+	 ;; i.e., the provider is anonymous
+	 (setf row-id (format nil "~a" row-id)) ; cast row-id to string
+	 (setf provider-uri `(:blank ,row-id))
+
+	 ;; format provider's label
+	 (setf provider-label (format nil "anonymous dental provider ~a" row-id))
+
+	 ;; get provider role for anonymous provider
+	 ;; note: use row-id instead of r21-provider-id
+	 (setf provider-role-uri (get-eaglesoft-dental-provider-role-iri row-id))
+	 
+	 ;; make label for anonymous individual
+	 (push `(annotation-assertion !rdfs:label ,provider-uri ,provider-label) axioms)
+
+	 ;; get instance of axioms for anonymous individual
+	 ;; note: case 1 instance axioms are covered in eaglesoft-dental-providers.lisp
+	 (setf temp-axioms (get-ohd-instance-axioms provider-uri !'dental health care provider'@ohd))
+	 (setf axioms (append temp-axioms axioms))
+
+	 ;; if a practice is given, make anonymous provider a member of it
+	 ;; note: case 1 members are covered in eaglesoft-dental-providers.lisp
+	 (when practice-id
+	   (setf practice-uri (get-eaglesoft-dental-practice-iri practice-id))
+	   (push `(object-property-assertion !'member of'@ohd ,provider-uri ,practice-uri) axioms))))
+      
+      ;; get uri and axioms for instance of exam
+      (setf exam-uri (get-eaglesoft-dental-exam-iri row-id))
+      (setf temp-axioms (get-ohd-instance-axioms exam-uri !'dental exam'@ohd))
+      (setf axioms (append temp-axioms axioms))
+      
+      ;; add annotation about exam
+      (push `(annotation-assertion !rdfs:label
+				   ,exam-uri
+				   ,(str+ "dental exam performed by " provider-label)) axioms)
+
+      ;; get axioms for instance of dental health care provider role
+      (setf temp-axioms (get-ohd-instance-axioms provider-role-uri 
+						 !'dental health care provider role'@ohd))
+      (setf axioms (append temp-axioms axioms))
+
+      ;; add annotation about provider role
+      (push `(annotation-assertion !rdfs:label
+				   ,provider-role-uri
+				   ,(str+ "dental health care provider role for " provider-label)) axioms)
+      
+      ;; the provider role inheres in the provider
+      (push `(object-property-assertion !'inheres in'@ohd 
+					,provider-role-uri ,provider-uri) axioms)
+
+      ;; the exam realizes the provider role
+      (push `(object-property-assertion !'realizes'@ohd ,exam-uri ,provider-role-uri) axioms)
+      
+      ;; the exam has specified output the finding
+      (push `(object-property-assertion !'has_specified_output'@ohd 
+				       ,exam-uri ,finding-uri) axioms))
+    
+    ;; return axioms
+    axioms))
+
+
+(defun get-eaglesoft-dental-exam-iri (row-id)
+  "Returns an iri for a dental exam that is generated by the row-id. The row-id is unique integer that identifies each record in the patient_history table."
+  (let ((uri nil))
+    (setf uri (get-unique-individual-iri row-id 
+					    :salt *eaglesoft-salt*
+					    :iri-base *eaglesoft-individual-dental-providers-iri-base*
+					    :class-type !'dental exam'@ohd))
+    ;; return uri
+    uri))
 
 (defun get-eaglesoft-dental-provider-iri (r21-provider-id)
   "Returns an iri for a provider that is generated by the r21-provider-id."
@@ -724,7 +850,17 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
     (setf uri (get-unique-individual-iri r21-provider-id 
 					    :salt *eaglesoft-salt*
 					    :iri-base *eaglesoft-individual-dental-providers-iri-base*
-					    :class-type !'dental care provider'@ohd))
+					    :class-type !'dental health care provider'@ohd))
+    ;; return uri
+    uri))
+
+(defun get-eaglesoft-dental-provider-role-iri (r21-provider-id)
+  "Returns an iri for a provider that is generated by the r21-provider-id."
+  (let ((uri nil))
+    (setf uri (get-unique-individual-iri r21-provider-id 
+					    :salt *eaglesoft-salt*
+					    :iri-base *eaglesoft-individual-dental-providers-iri-base*
+					    :class-type !'dental health care provider role'@ohd))
     ;; return uri
     uri))
 
@@ -1272,6 +1408,30 @@ ORDER BY
 "
 )
 
+(defun how-to-create-the-r21-provider-table ()
+  "Describes the process for creating the r21_provider table."
+
+  "In order to create the provider ontology (i.e., the r21-eaglesoft-dental-providers.owl file), it was necessary to clean up the providers table, for the provider table contained a number of junk entries that didn't make sense, and individuals were entered twice (once for each practice), but there was no information indicating these entries were about the same person.  
+
+The steps for creating the r21_provider table are as follows:
+
+1. Copy the provider table into a new table named 'r21_provider'.
+
+2. Add the following columns to r21_provider:
+  a. r21_provider_id as INT
+  b. r21_provider_type as VARCHAR(20)
+
+3. Delete from the r21_provider table records in which the provider_id does not appear in the patient_history table; i.e., provider's that have not been involved in a patient's history.  This has the effect of elimatiing a number of junk records.
+
+4. Sort the r21_provider table by last_name and first_name, and manually assign a r21_provider_id to each provider (starting at 1).  In cases where two records appear to be the same person (e.g., the records contain the same last_name and first_name), give both of the records the same r21_provider_id number.
+
+5. Assign a r21_provider_type to each entity using the following scheme.
+  a. If the provider is identifiable as a named person, use the value 'person'.
+  b. If the provider is temporory worker that is a person, use the value 'person temporary'.
+  c. If the provider is a practice (as indentified in the practice table), use the value 'practice'.
+  d. If none of a-c is applicable, use the value 'unknown'.
+")
+
 ;;****************************************************************
 ;;; global variables ;;;;
 
@@ -1347,6 +1507,12 @@ ORDER BY
   "http://purl.obolibrary.org/obo/ohd/individuals/")
 (defparameter *eaglesoft-missing-teeth-findings-ontology-iri* 
   "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-missing-teeth-findings.owl")
+
+;; eaglesoft unerupted teeth findings
+(defparameter *eaglesoft-individual-unerupted-teeth-findings-iri-base* 
+  "http://purl.obolibrary.org/obo/ohd/individuals/")
+(defparameter *eaglesoft-unerupted-teeth-findings-ontology-iri* 
+  "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-unerupted-teeth-findings.owl")
 
 ;; eaglesoft dental providers
 (defparameter *eaglesoft-individual-dental-providers-iri-base* 
