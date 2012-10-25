@@ -42,6 +42,7 @@
 	     (:file "eaglesoft-surgical-extractions")
 	     (:file "eaglesoft-endodontics")
 	     (:file "eaglesoft-missing-teeth-findings")
+	     (:file "eaglesoft-unerupted-teeth-findings")
 	     (:file "eaglesoft-dental-providers")
 	     )
 	    :depends-on
