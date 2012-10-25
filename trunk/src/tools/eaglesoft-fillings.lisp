@@ -53,15 +53,19 @@
 		     	  (#"getString" results "tooth_data")
 		     	  (#"getString" results "surface")
 		     	  (#"getString" results "ada_code")
+			  (#"getString" results "r21_provider_id")
+			  (#"getString" results "r21_provider_type")
+			  (#"getString" results "practice_id")
 		     	  (#"getString" results "row_id")))
 		     (incf count))))
 
       ;; return the ontology
       (values ont count))))
 
-(defun get-eaglesoft-filling-axioms 
-    (patient-id occurrence-date tooth-data surface ada-code record-count)
+(defun get-eaglesoft-filling-axioms (patient-id occurrence-date tooth-data surface ada-code 
+				     provider-id provider-type practice-id record-count)
   (let ((axioms nil)
+	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(cdt-class-uri nil)
 	(cdt-uri nil)
 	(material-name nil)
@@ -105,8 +109,8 @@
 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
 	 
          ;; note: append puts lists together and doesn't put items in list (like push)
-	 (setf axioms
-	       (append (get-ohd-instance-axioms tooth-uri tooth-type-uri) axioms))
+	 (setf temp-axioms (get-ohd-instance-axioms tooth-uri tooth-type-uri))
+	 (setf axioms (append temp-axioms axioms))
 	 
 	 ;; add annotation about tooth
 	 (push `(annotation-assertion !rdfs:label 
@@ -119,8 +123,8 @@
 			       patient-id tooth-name record-count))
 		
 	 (push `(declaration (named-individual ,tooth-role-uri)) axioms)
-	 (setf axioms
-	       (append (get-ohd-instance-axioms tooth-role-uri !'tooth to be filled role'@ohd) axioms))
+	 (setf temp-axioms (get-ohd-instance-axioms tooth-role-uri !'tooth to be filled role'@ohd))
+	 (setf axioms (append temp-axioms axioms))
 
 	 ;; add annotation about 'tooth to be filled role'
 	 (push `(annotation-assertion !rdfs:label 
@@ -135,8 +139,8 @@
 			     patient-id tooth-name ohd-material-uri record-count))
 
 	 (push `(declaration (named-individual ,material-uri)) axioms)
-	 (setf axioms
-	       (append (get-ohd-instance-axioms material-uri ohd-material-uri) axioms))
+	 (setf temp-axioms (get-ohd-instance-axioms material-uri ohd-material-uri))
+	 (setf axioms (append temp-axioms axioms))
 
 	 ;; add annotation about this instance of material
 	 (setf material-name (get-eaglesoft-material-name ada-code))
@@ -151,8 +155,8 @@
 				patient-id tooth-name ohd-restoration-uri record-count))
 		     		
 	 (push `(declaration (named-individual ,restoration-uri)) axioms)
-	 (setf axioms
-	       (append (get-ohd-instance-axioms restoration-uri ohd-restoration-uri) axioms))
+	 (setf temp-axioms (get-ohd-instance-axioms restoration-uri ohd-restoration-uri))
+	 (setf axioms (append temp-axioms axioms))
 
 	 ;; add annotation about this restoration procedure
 	 (setf restoration-name (get-eaglesoft-restoraton-name ada-code))
@@ -181,8 +185,8 @@
 	      (setf surface-uri (get-eaglesoft-surface-iri patient-id surface-type-uri 
 							   tooth-name record-count))
 	      (push `(declaration (named-individual ,surface-uri)) axioms)
-	      (setf axioms
-		    (append (get-ohd-instance-axioms surface-uri surface-type-uri) axioms))
+	      (setf temp-axioms (get-ohd-instance-axioms surface-uri surface-type-uri))
+	      (setf axioms (append temp-axioms axioms))
 
 	      
 	      ;; relate surface to tooth
@@ -208,8 +212,8 @@
 	 (setf cdt-class-uri (get-cdt-class-iri ada-code))
 	 (setf cdt-uri (get-eaglesoft-cdt-instance-iri patient-id ada-code cdt-class-uri record-count))
 	 (push `(declaration (named-individual ,cdt-uri)) axioms)
-	 (setf axioms
-	       (append (get-ohd-instance-axioms cdt-uri cdt-class-uri) axioms))
+	 (setf temp-axioms (get-ohd-instance-axioms cdt-uri cdt-class-uri))
+	 (setf axioms (append temp-axioms axioms))
 	 
 	 ;; add annotion about cdt code
 	 (push `(annotation-assertion !rdfs:label
@@ -251,6 +255,14 @@
          ;; cdt code instance is about the restoration process
 	 (push `(object-property-assertion !'is about'@ohd
 					   ,cdt-uri ,restoration-uri) axioms)
+
+         ;; if a provider is given,  get axioms that a 'restoration procedure' has particpant provider
+	 (when provider-id
+	   (setf temp-axioms (get-eaglesoft-dental-provider-participant-axioms
+			      restoration-uri provider-id provider-type practice-id record-count))
+	   ;; ensure that axioms were returned
+	   (when temp-axioms (setf axioms (append temp-axioms axioms))))
+
 	 ) ;; end loop
     
     ;;(pprint axioms)
@@ -410,6 +422,10 @@ the surface_detail array.
                  patient_id, 
                  tooth_data, 
                  ada_code, 
+                 r21_provider_id,
+                 r21_provider_type,
+                 practice_id,
+                 row_id,
                  get_surface_summary_from_detail(surface_detail, tooth) as surface "))
 
     ;; FROM clause

@@ -53,6 +53,9 @@
 		     occurrence-date
 		     (#"getString" results "tooth_data")
 		     (#"getString" results "ada_code")
+		     (#"getString" results "r21_provider_id")
+		     (#"getString" results "r21_provider_type")
+		     (#"getString" results "practice_id")
 		     (#"getString" results "row_id")))
 		(incf count))))
 
@@ -60,8 +63,9 @@
       (values ont count))))
 
 (defun get-eaglesoft-surgical-extraction-axioms 
-    (patient-id occurrence-date tooth-data ada-code record-count)
+    (patient-id occurrence-date tooth-data ada-code provider-id provider-type practice-id record-count)
   (let ((axioms nil)
+	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(cdt-class-uri nil)
 	(cdt-uri nil)
 	(patient-uri nil)
@@ -91,8 +95,8 @@
 
 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
          ;; note: append puts lists together and doesn't put items in list (like push)
-	 (setf axioms
-	       (append (get-ohd-instance-axioms tooth-uri tooth-type-uri) axioms))
+	 (setf temp-axioms (get-ohd-instance-axioms tooth-uri tooth-type-uri))
+	 (setf axioms (append temp-axioms axioms))
 	 
         ;; add annotation about tooth
 	 (push `(annotation-assertion !rdfs:label 
@@ -105,10 +109,9 @@
 	       (get-eaglesoft-tooth-to-be-extracted-role-iri patient-id tooth record-count))
 		
 	 (push `(declaration (named-individual ,extraction-role-uri)) axioms)
-	 (setf axioms
-	       (append (get-ohd-instance-axioms extraction-role-uri !'tooth to be extracted role'@ohd) 
-		       axioms))
-
+	 (setf temp-axioms (get-ohd-instance-axioms extraction-role-uri !'tooth to be extracted role'@ohd))
+	 (setf axioms (append temp-axioms axioms))
+	 
 	 ;; add annotation about 'tooth to be extracted role'
 	 (push `(annotation-assertion !rdfs:label 
 				      ,extraction-role-uri
@@ -123,8 +126,8 @@
 	       (get-eaglesoft-tooth-extraction-procedure-iri
 		patient-id tooth-name procedure-type-uri record-count))
 	 (push `(declaration (named-individual ,extraction-procedure-uri)) axioms)
-	 (setf axioms
-	       (append (get-ohd-instance-axioms extraction-procedure-uri procedure-type-uri) axioms))
+	 (setf temp-axioms (get-ohd-instance-axioms extraction-procedure-uri procedure-type-uri))
+	 (setf axioms (append temp-axioms axioms))
 
 	 ;; add annotation about this extraction procedure
 	 (push `(annotation-assertion !rdfs:label 
@@ -142,8 +145,8 @@
 	 (setf cdt-class-uri (get-cdt-class-iri ada-code))
 	 (setf cdt-uri (get-eaglesoft-cdt-instance-iri patient-id ada-code cdt-class-uri record-count))
 	 (push `(declaration (named-individual ,cdt-uri)) axioms)
-	 (setf axioms
-	       (append (get-ohd-instance-axioms cdt-uri cdt-class-uri) axioms))
+	 (setf temp-axioms (get-ohd-instance-axioms cdt-uri cdt-class-uri))
+	 (setf axioms (append temp-axioms axioms))
 	 
 	 ;; add annotion about cdt code
 	 (push `(annotation-assertion !rdfs:label
@@ -173,6 +176,14 @@
 	 ;; cdt code instance is about the 'crown restoration' process
 	 (push `(object-property-assertion !'is about'@ohd
 					   ,cdt-uri ,extraction-procedure-uri) axioms)
+
+	 ;; if a provider is given,  get axioms that an 'extraction procedure' has particpant provider
+	 (when provider-id
+	   (setf temp-axioms (get-eaglesoft-dental-provider-participant-axioms
+			      extraction-procedure-uri provider-id provider-type practice-id record-count))
+	   ;; ensure that axioms were returned
+	   (when temp-axioms (setf axioms (append temp-axioms axioms))))
+
 	 ) ;; end loop
     
     ;;(pprint axioms)

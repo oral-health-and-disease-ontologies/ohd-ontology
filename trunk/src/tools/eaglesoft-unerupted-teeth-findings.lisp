@@ -10,10 +10,10 @@
 ;; action_codes and patient_history tables exist.  This is done by calling 
 ;; prepare-eaglesoft-db.  However, this only tests that these tables exist in the 
 ;; user's database. If these table need to be recreated, the call 
-;; get-eaglesoft-missing-teeth-findings-ont with :force-create-table key set to t.
+;; get-eaglesoft-unerupted-teeth-findings-ont with :force-create-table key set to t.
 
-(defun get-eaglesoft-missing-teeth-findings-ont (&key patient-id tooth limit-rows force-create-table)
-  "Returns an ontology of the missing teeth findings contained in the Eaglesoft database. The patient-id key creates an ontology based on that specific patient. The tooth key is used to limit results to a specific tooth, and can be used in combination with the patient-id. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
+(defun get-eaglesoft-unerupted-teeth-findings-ont (&key patient-id tooth limit-rows force-create-table)
+  "Returns an ontology of the unerupted findings contained in the Eaglesoft database.  This includes both impacted and embedded teeth. The patient-id key creates an ontology based on that specific patient. The tooth key is used to limit results to a specific tooth, and can be used in combination with the patient-id. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
   (let ((results nil)
 	(query nil)
 	(occurrence-date nil)
@@ -23,12 +23,12 @@
     (prepare-eaglesoft-db :force-create-table force-create-table)
 
     ;; get query string for restorations
-    (setf query (get-eaglesoft-missing-teeth-findings-query 
+    (setf query (get-eaglesoft-unerupted-teeth-findings-query 
 		 :patient-id patient-id :tooth tooth :limit-rows limit-rows))
 
     (with-ontology ont (:collecting t 
-			:base *eaglesoft-individual-missing-teeth-findings-iri-base*
-			:ontology-iri *eaglesoft-missing-teeth-findings-ontology-iri*)
+			:base *eaglesoft-individual-unerupted-teeth-findings-iri-base*
+			:ontology-iri *eaglesoft-unerupted-teeth-findings-ontology-iri*)
 	(;; import needed ontologies
 	 (as (get-ohd-import-axioms))
 
@@ -47,7 +47,7 @@
 		       (#"getString" results "tran_date")))
 
 	        ;; generate axioms
-		(as (get-eaglesoft-missing-tooth-finding-axioms 
+		(as (get-eaglesoft-unerupted-tooth-finding-axioms 
 		     (#"getString" results "patient_id")
 		     occurrence-date
 		     (#"getString" results "tooth_data")
@@ -60,90 +60,81 @@
       ;; return the ontology
       (values ont count))))
 
-(defun get-eaglesoft-missing-tooth-finding-axioms 
+
+(defun get-eaglesoft-unerupted-tooth-finding-axioms 
     (patient-id occurrence-date tooth-data provider-id provider-type practice-id record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(patient-uri nil)
 	(finding-uri nil)
 	(finding-type-uri nil)
+	(tooth-uri nil)
+	(tooth-type-uri nil)
 	(tooth-name nil)
 	(tooth-num nil)
-	;;(tooth-type-uri nil)
-	(dentition-uri nil)
-	(dentition-type-uri nil)
 	(teeth-list nil))
 
-    
+
     ;; make sure *ohd-label-source* hash table has been created
     ;; this value will be discarded below when the patient uri is set
     ;; again. 
     (setf patient-uri !'dental patient'@ohd)
-
-    ;; get uri of patient
-    (setf patient-uri  (get-eaglesoft-dental-patient-iri patient-id))
-	 
+    
+     ;; get uri of patient
+    (setf patient-uri (get-eaglesoft-dental-patient-iri patient-id))
 
     ;; tooth_data
     ;; get list of teeth in tooth_data array
     (setf teeth-list (get-eaglesoft-teeth-list tooth-data))
-    
+
     (loop for tooth in teeth-list do
          ;;;;  declare instances of participating entities ;;;;
 	 
-         ;; get info about the type of missing tooth
-	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-name t))
-	 ;;(setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
-	 (setf tooth-num (format nil "~a" tooth)) ; converts tooth number to string
+	 ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
+	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-with-number t))
+	 (setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
+	 (setf tooth-uri (get-eaglesoft-tooth-iri patient-id tooth-type-uri))
 	 
-	 ;; get iri associated with the type of missing tooth finding
+	 (push `(declaration (named-individual ,tooth-uri)) axioms)
+	 (setf temp-axioms (get-ohd-instance-axioms tooth-uri tooth-type-uri))
+	 (setf axioms (append temp-axioms axioms))
+
+	 ;; add annotation about tooth
+	 (push `(annotation-assertion !rdfs:label ,tooth-uri
+				      ,(str+ "unerupted " tooth-name " of patient " patient-id)) axioms)
+
+	 ;; get iri associated with the type of unerupted tooth finding
 	 ;; note: tooth-num is the string representation of the tooth number
-	 ;; this can also be done using:
-	 ;;(make-uri-from-label-source :OHD "missing tooth finding" nil)
-	 ;; (make-uri-from-label-source :OHD 
-	 ;;       (str+ "missing tooth " tooth-num " finding") nil)
-	 (setf finding-type-uri 
-	       (gethash (str+ "missing tooth " tooth-num " finding") *ohd-label-source*))
+       	 ;;(setf finding-type-uri 
+	 ;;      (gethash (str+ "unerupted tooth " tooth-num " finding") *ohd-label-source*))
+
+	 (setf finding-type-uri !'unerupted tooth finding'@ohd)
 	 
-         ;; declare instance of !ohd:'missing tooth finding'
+         ;; declare instance of !ohd:'unerupted tooth finding'
 	 (setf finding-uri
-	       (get-eaglesoft-missing-tooth-finding-iri patient-id tooth-name record-count))
+	       (get-eaglesoft-unerupted-tooth-finding-iri patient-id tooth-name record-count))
 	 (setf temp-axioms (get-ohd-instance-axioms finding-uri finding-type-uri))
 	 (setf axioms (append temp-axioms axioms))
 
-         ;; add annotation about missing tooth finding
+         ;; add annotation about unerupted tooth finding
 	 (push `(annotation-assertion !rdfs:label 
 				      ,finding-uri
-				      ,(str+ "missing tooth " tooth-num " finding "
+				      ,(str+ "unerupted tooth " tooth-num " finding "
 					     "for patient " patient-id )) axioms)
          
-         ;; get iri for secondary dentition
-	 (setf dentition-uri
-	       (get-eaglesoft-secondary-dentition-iri patient-id))
+         ;; instance of unerupted tooth finding 'is about' the unerupted tooth
+	 (push `(object-property-assertion !'is about'@ohd ,finding-uri ,tooth-uri) axioms)
 	 
-         ;; make dentition instance of 'Secondary dentition'
-	 (setf dentition-type-uri !'Secondary dentition'@ohd)
-	 (setf temp-axioms (get-ohd-instance-axioms dentition-uri dentition-type-uri))
-	 (setf axioms (append temp-axioms axioms))
-
-	 (push `(annotation-assertion 
-		 !rdfs:label ,dentition-uri
-		 ,(str+ "secondary dentition of patient " patient-id)) axioms)
-	 
-         ;; instance of secondary dentition is part of patient
-	 (push `(object-property-assertion !'is part of'@ohd ,dentition-uri ,patient-uri) axioms)
-
-         ;; instance of missing tooth finding 'is about' the dentition instance
-	 (push `(object-property-assertion !'is about'@ohd ,finding-uri ,dentition-uri) axioms)
-	 
-         ;; add data property !ohd:'occurrence date' of the missing tooth finding
+         ;; add data property !ohd:'occurrence date' of the un tooth finding
 	 (push `(data-property-assertion !'occurrence date'@ohd
 					 ,finding-uri
 					 (:literal ,occurrence-date !xsd:date)) axioms)
 
+	 ;; the unerupted tooth 'is part of' the patient
+	 (push `(object-property-assertion !'is part of'@ohd ,tooth-uri ,patient-uri) axioms)
 
          ;; insert axioms about the dental exam in which the provider (if known)
-         ;; found the missing tooth
+         ;; found the unerupted  tooth
 	 (when provider-id
 	   (setf temp-axioms (get-eaglesoft-dental-exam-axioms 
 			      finding-uri provider-id provider-type practice-id record-count))
@@ -157,40 +148,25 @@
     ;; return axioms
     axioms))
 
-(defun get-eaglesoft-missing-tooth-finding-iri (patient-id tooth-name instance-count)
-  "Returns an iri for a 'missing tooth finding' that is generated by the patient id, the name of the type of the tooth, and a count variable that differentiates multipe missing teeth finds that are about the same tooth."
+(defun get-eaglesoft-unerupted-tooth-finding-iri (patient-id tooth-name instance-count)
+  "Returns an iri for a 'unerepted tooth finding' that is generated by the patient id, the name of the type of the tooth, and a count variable that differentiates multipe unerupted teeth findingss that are about the same tooth."
   (let ((uri nil))
     (setf uri 
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
 				     :iri-base *eaglesoft-individual-teeth-iri-base*
-				     :class-type !'missing tooth finding'@ohd
+				     :class-type !'unerupted tooth finding'@ohd
 				     :args `(,tooth-name ,instance-count "eaglesoft")))
     ;; return uri
     uri))
 
-(defun get-eaglesoft-secondary-dentition-iri (patient-id)
-  "Returns an iri for a 'secondary dentition' that is generated by the patient id."
-  (let ((uri nil))
-    (setf uri 
-	  (get-unique-individual-iri patient-id 
-				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-teeth-iri-base*
-				     :class-type !'Secondary dentition'@ohd
-				     :args `("eaglesoft")))
-    ;; return uri
-    uri))
-
-(defun get-eaglesoft-missing-teeth-findings-query (&key patient-id tooth limit-rows)
+(defun get-eaglesoft-unerupted-teeth-findings-query (&key patient-id tooth limit-rows)
   "Returns query string for retrieving data. The patient-id key restricts records only that patient or patients.  Multiple are patients are specified using commas; e.g: \"123, 456, 789\".  The tooth key is used to limit results to a specific tooth, and can be used in combination with the patient-id. However, the tooth key only takes a single value. The limit-rows key restricts the number of records to the number specified."
 
 #|
-Returns records that indicate a tooth has been found to be missing.
-I.e., Records that have an action code '1'.
-16,750 records returned.
-Note:
-- The query does not filter out primary (baby) teeth.
-- The some multiple enteries for the same missing tooth.
+Returns records that indicate a tooth is unerupted
+I.e., Records that have an action code '18'.
+289 records returned.
 |#
 
   (let ((sql nil))
@@ -211,11 +187,8 @@ Note:
     (setf sql
 	  (str+ sql
 		"WHERE
-                   action_code = '1'
-                AND LENGTH(tooth_data) > 31
-                AND description IN ('Missing/Extracted tooth',
-                                    'Missing Tooth',
-                                    'Missing tooth, more than a year') "))
+                   action_code = '18'
+                AND LENGTH(tooth_data) > 31 "))
     
     ;; check for patient id
     (when patient-id
@@ -233,6 +206,4 @@ Note:
     (setf sql
 	  (str+ sql " ORDER BY patient_id "))
 
-    ;; return query string
-    ;;(pprint sql)
     sql))
