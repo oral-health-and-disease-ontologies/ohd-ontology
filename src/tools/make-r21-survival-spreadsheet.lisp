@@ -3,11 +3,11 @@
 ;;(defparameter
 ;;    owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/ohd-top-10-patients/query")
 (defparameter
-    owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-5-se-september/query")
+    owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2012.10.25/query")
 (defparameter 
-    owlim-se-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-5-se-september/query")
+    owlim-se-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2012.10.25/query")
 (defparameter 
-    owlim-se-remote "http://den287.sdm.buffalo.edu:8080/openrdf-workbench/repositories/test-repo/query")
+    owlim-se-r21-remote "http://den287.sdm.buffalo.edu:8080/openrdf-workbench/repositories/test-repo/query")
 
 
 (defun r21query (query  &rest args &key (expressivity "RL") (reasoner 'stardog-r21) &allow-other-keys)
@@ -61,17 +61,21 @@
   "Start of the query. Next need to figure out how ?code is to be bound - it isn't in this version. It also appears to return incorrect answers."
   (let ((res 
 	 (funcall (if explain 'explain-r21query (if translate 'sparql-stringify 'r21query) )
-		  '(:select (?person  
-			     ?sex
-			     ?bdate 
-			     ?code
-			     ;;?codecategory
-			     ?procedure 
-			     ?proceduredate
-			     ?toothn 
-			     ?surface
-			     ?material
-			     ) 
+		  '(:select (?patientid ;A. the patient id  
+			     ?sex ;B. the patient's sex
+			     ?bdate ;C. the patient's birth date 
+			     ?toothn ;D. the tooth number
+			     ?date ;E. date of procedure or finding
+			     ;;## ?procedureclass ;F. FX for finding PR for procedure 
+			     ?adacode ;G. the ada code of the procedure
+			     ;;## ?codecategory ;H. we need to pull out category info codes THIS CAN BE DELETED
+			     ;;## ?toothpresent ;I. indicates tooth was presetn as the exam
+					;values are Y (yes), N (no), U (unerupted)
+			     ?material ;J - N. material used on tooth / surfaces
+			     ?surface ;O - S. diagnosis on each of the five coronal surfaces
+			     ;;## ?toothfinding ; diagnosis about whole tooth
+			     ?provider ; T. provider who performed procedure
+			     )
 		    (:limit 10 :order-by (?person ?toothn))
 
 		    ;; billd: general not about 'asserted type'
@@ -83,71 +87,58 @@
 		    ;; we, however, are only concerned with matching to type 'Tooth 1'.
 		    ;; thus, we would use "toothi !'asserted type'@ohd !'Tooth 1'@ohd"
 
-		    ;; get info about persons
-		    (?persontype !rdfs:subClassOf !'dental patient'@ohd)
-		    ;;(?personi !rdf:type !'homo sapiens'@ohd) 
-		    (?personi !'asserted type'@ohd ?persontype) 
-		    (?personi !rdfs:label ?person)	; their label 
-		    (?persontype !rdfs:label ?sex)	; their sex
-		    (?personi !'birth_date'@ohd ?bdate) ; their birth date
+		    ;; A - C: get info abou patient
+		    (?patienttype !rdfs:subClassOf !'dental patient'@ohd)
+		    (?patienti !'asserted type'@ohd ?patienttype) 
+		    (?patienti !rdfs:label ?patientid)	; their label 
+		    (?patienttype !rdfs:label ?sex)	; their sex
+		    (?patienti !'birth_date'@ohd ?bdate) ; their birth date
 		    
-		    ;; and the tooth that was worked on
+		    ;; D. tooth number - the tooth that is part of the patient
 		    (?toothtype !rdfs:subClassOf !'tooth'@ohd)
-		    ;;(?toothi !rdf:type ?toothtype)
 		    (?toothi !'asserted type'@ohd ?toothtype)
-		    ;;(?toothi !rdf:type !'tooth'@ohd)
-		    (?toothi !'is part of'@ohd ?personi) ; that is part of the person
+		    (?toothi !'is part of'@ohd ?patienti) ; that is part of the patient
 		    ;;(?toothi !rdfs:label ?tooth) ; the label of the tooth
 		    (?toothtype !'ADA universal tooth number'@ohd ?toothn) ; ADA tooth number of tooth
-		    		    
-		    ;; not all procedures include surfaces -- I'm not sure if this works
-		    ;; (:optional (?surfacei !rdf:type !'Surface enamel of tooth'@ohd))
-		    ;; (:optional (?surfacei !'is part of'@ohd ?toothi)) ; surface instance is part of tooth instance
-		    ;; (:optional (?surfacei !rdfs:label ?surface)) ; get label of surface instance
-		    (:optional 
- 		     (?surfacei !rdf:type !'Surface enamel of tooth'@ohd)
-		     (?surfacei !'is part of'@ohd ?toothi) ; surface instance is part of tooth instance
-		     (?surfacei !rdfs:label ?surface)) ; get label of surface instance
 		    
-		    ;; and procedure performed on that tooth
+		    ;;E. the date of the procedure or finding on the patient
 		    (?proceduretype !rdfs:subClassOf !'dental procedure'@ohd)
-		    ;;(?procedurei !rdf:type ?proceduretype) ; that are dental procedures
 		    (?procedurei !'asserted type'@ohd ?proceduretype) 
-		    ;;(?procedurei !rdf:type !'dental procedure'@ohd) ; that are dental procedures
-		    (?procedurei !'has participant'@ohd ?personi) ; involving that person
+		    (?procedurei !'has participant'@ohd ?patienti) ; involving that patient
 		    (?procedurei !'has participant'@ohd ?toothi) ; and involving that tooth
-		    (?procedurei !'has participant'@ohd ?surfacei) ; involving that surface
-		    ;;(:optional (?procedurei !'has participant'@ohd ?surfacei)) ; involving that surface
-		    (?procedurei !'occurrence date'@ohd ?proceduredate) ; of which occurs on ?date
-		    (?proceduretype !rdfs:label ?procedure) ; label for the procedure instance
+		    (?procedurei !'occurrence date'@ohd ?date) ; of which occurs on ?date
+		    
+		    ;; F. procedure class FX for finding PR for procedure
 
-		    ;; and cdt code info for the procedure
+		    ;;G. ada code of procedure 
 		    (?codetype !rdfs:subClassOf !'current dental terminology code'@ohd)
-		    ;;(?codei !rdf:type ?codetype)
 		    (?codei !'asserted type'@ohd ?codetype)
-		    ;;(?codei !rdf:type !'current dental terminology code'@ohd)
-		    (?codei !'is about'@ohd ?procedurei) ; get CDT code
-		    (?codetype !rdfs:label ?code) ; then get the label of that code type
-		    
-		    ;; get the super class (or cateogory) that the ada code belongs to
-		    ;; according to the ada classification scheme
-		    ;; or (in different terms) the direct super class
-		    ;; (:optional 
-		    ;;  (?codetype !rdfs:subClassOf ?adacategory)
-		    ;;  (?adacategory !rdfs:label ?codecategory)
-		    ;;  (?adacategory !rdfs:subClassOf ?x))
-		    ;; (:filter (not (bound ?x)))
-		    
-		    ;; and the material used in the procedure
+		    (?codei !'is about'@ohd ?procedurei) ; get cdt code for the procedure
+		    (?codetype !rdfs:label ?adacode) ; then get the label of that code type
+
+		    ;; H. category of ada code THIS IS DELETED
+
+		    ;; J - N. material used in the procedure
 		    (:optional
 		     (?materialtype !rdfs:subClassOf !'dental restoration material'@ohd)
 		     (?materiali !rdf:type ?materialtype)
 		     (?procedurei !'has participant'@ohd ?materiali)
 		     (?materialtype !rdfs:label ?material))
-
-		    ;; this was used for testing
-		    ;;(:filter (equal (str ?person) "patient 1096"))
-		    ;;(:filter (and (equal (str ?person) "patient 1096") (equal (str ?toothn) "Tooth 5")))
+		    
+		    ;; O - S. diagnosis on surfaces (note: not all procedures include surfaces)
+		    (:optional 
+ 		     (?surfacei !rdf:type !'Surface enamel of tooth'@ohd)
+		     (?surfacei !'is part of'@ohd ?toothi) ; surface instance is part of tooth instance
+		     (?surfacei !rdfs:label ?surface)) ; get label of surface instance
+		    
+		    ;; ADDED tooth finding about the tooth as a whole (e.g., low density test)
+		    
+		    
+		    ;; T. provider who performed procedure / finding
+		    (?providertype !rdfs:subClassOf !'dental health care provider'@ohd)
+		    (?provideri !'asserted type'@ohd ?providertype)
+		    (?procedurei !'has participant'@ohd ?provideri)
+		    (?provideri !rdfs:label ?provider)
 		    
 		    )
 	    :expressivity "RL" :reasoner reasoner :trace "story of some teeth" :values nil)))
@@ -204,7 +195,7 @@ SELECT ?super {
      (:limit 10)
      (?s !rdf:type !obo:FMA_12516)
      (?s !rdfs:label ?l))
-   :reasoner 'owlim-se-remote
+   :reasoner 'owlim-se-r21-remote
    :trace "test2")
 
    nil)
