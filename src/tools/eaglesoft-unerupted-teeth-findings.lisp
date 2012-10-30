@@ -99,10 +99,6 @@
 	 (setf temp-axioms (get-ohd-instance-axioms tooth-uri tooth-type-uri))
 	 (setf axioms (append temp-axioms axioms))
 
-	 ;; add annotation about tooth
-	 (push `(annotation-assertion !rdfs:label ,tooth-uri
-				      ,(str+ "unerupted " tooth-name " of patient " patient-id)) axioms)
-
 	 ;; get iri associated with the type of unerupted tooth finding
 	 ;; note: tooth-num is the string representation of the tooth number
        	 ;;(setf finding-type-uri 
