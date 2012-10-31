@@ -3,9 +3,9 @@
 ;;(defparameter
 ;;    owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/ohd-top-10-patients/query")
 (defparameter
-    owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2012.10.25/query")
+    owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2012.10.30/query")
 (defparameter 
-    owlim-se-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2012.10.25/query")
+    owlim-se-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2012.10.30/query")
 (defparameter 
     owlim-se-r21-remote "http://den287.sdm.buffalo.edu:8080/openrdf-workbench/repositories/test-repo/query")
 
@@ -105,11 +105,7 @@
 		    ;;(?toothi !rdfs:label ?tooth) ; the label of the tooth
 		    (?toothtype !'ADA universal tooth number'@ohd ?toothn) ; ADA tooth number of tooth
 
-		    ;; now get the instance of 'Universal tooth number' that is about the tooh type
-		    ;; this will be needed in order to link missing tooth finding to a
-		    ;; particular tooth number (via the 'has part' universal tooth number)
-		    (?utoothi !rdf:type !'Universal tooth number'@ohd)
-		    (?utoothi !'is about'@ohd ?toothtype)
+		    
 		    
 		    
 		    ;; E. the date of the procedure or finding on the patient
@@ -125,18 +121,30 @@
 		       (?proceduretype !rdfs:label ?actionclass)) ; label for the procedure type
 
 		      ;; unerupted tooth finding
-		      ((?uneruptedtoothfindng !rdf:type !'unerupted tooth finding'@ohd)
-		       (?uneruptedtoothfindng !'is about'@ohd ?toothi) ;about the tooth
-		       (?uneruptedtoothfindng !'occurrence date'@ohd ?date) ;date of finding
+		      ((?untoothfxi !'asserted type'@ohd !'unerupted tooth finding'@ohd)
+		       (?untoothfxi !'is about'@ohd ?toothi) ;about the tooth
+		       (?untoothfxi !'occurrence date'@ohd ?date) ;date of finding
 		       (!'unerupted tooth finding'@ohd !rdfs:label ?actionclass)) ;label for finding
 
 		      ;; missing tooth finding
-		      ((?missingtooth !rdf:type !'missing tooth finding'@ohd)
-		       (?dentition !rdf:type !'Secondary dentition'@ohd) ;dentition of patient
+		      (;; get the instance of 'Universal tooth number' that is about the tooh type
+		       ;; this will be needed in order to link missing tooth finding to a
+		       ;; particular tooth number (via the 'has part' universal tooth number)
+		       (?utoothnumi !rdf:type !'Universal tooth number'@ohd)
+		       (?utoothnumi !'is about'@ohd ?toothtype)
+		       
+		       ;; get instance of missing tooth finding
+		       (?mstoothfxtype !rdf:subClassOf !'missing tooth finding'@ohd)
+		       (?mstoothfxi !'asserted type'@ohd ?mstoothfxtype)
+
+		       ;; get instance of dentition of patient that the finding is about
+		       (?dentition !'asserted type'@ohd !'Secondary dentition'@ohd)
 		       (?dentition !'is part of'@ohd ?patienti)
-		       (?missingtooth !'is about'@ohd ?dentition) ;dentition that the finding is about
-		       (?missingtooth !'has part'@ohd ?utoothi) ;that has part universal tooth number of tooth
-		       (!'missing tooth finding'@ohd !rdfs:label ?actionclass))) ; label for finding
+		       (?mstoothfxi !'is about'@ohd ?dentition)
+
+		       ;; link the finding to the universal tooth number
+		       (?mstoothfxi !'has part'@ohd ?utoothnumi) ;that has part universal tooth number of tooth
+		       (?mstoothfxtype !rdfs:label ?actionclass))) ; label for finding
 		    
 
 		    ;; G. ada code of procedure 
