@@ -22,7 +22,7 @@
     ;; verify that the eaglesoft db has the action_codes and patient_history tables
     (prepare-eaglesoft-db :force-create-table force-create-table)
 
-    ;; get query string for restorations
+    ;; get query string for findings
     (setf query (get-eaglesoft-missing-teeth-findings-query 
 		 :patient-id patient-id :tooth tooth :limit-rows limit-rows))
 
@@ -215,7 +215,10 @@ Note:
                 AND LENGTH(tooth_data) > 31
                 AND description IN ('Missing/Extracted tooth',
                                     'Missing Tooth',
-                                    'Missing tooth, more than a year') "))
+                                    'Missing tooth, more than a year') 
+                   AND tooth_data IS NOT NULL
+                   AND LENGTH(tooth_data) > 31
+                   AND tooth_data LIKE '%Y%' "))
     
     ;; check for patient id
     (when patient-id
