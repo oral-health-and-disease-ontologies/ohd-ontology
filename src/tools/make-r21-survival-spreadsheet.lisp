@@ -1,13 +1,10 @@
 (defvar stardog-r21 "http://127.0.0.1:5822/r21db/query")
-;;(defvar owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/ohd/query)
-;;(defparameter
-;;    owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/ohd-top-10-patients/query")
 (defparameter
     owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2012.10.30/query")
 (defparameter 
-    owlim-se-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2012.10.30/query")
+    owlim-se-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2012.11.23/query")
 (defparameter 
-    owlim-se-r21-remote "http://den287.sdm.buffalo.edu:8080/openrdf-workbench/repositories/test-repo/query")
+    owlim-se-r21-remote "http://den287.sdm.buffalo.edu:8080/openrdf-workbench/repositories/ohd-r21-nightly/query")
 
 
 (defun r21query (query  &rest args &key (expressivity "RL") (reasoner 'stardog-r21) &allow-other-keys)
@@ -57,7 +54,7 @@
 	 (return-from cdt2string (cdt2string uri)))))
 
 ;; patients are asserted to be male organism or female organism.
-(defun build-spreadsheet (&key explain translate (reasoner 'stardog-r21))
+(defun build-spreadsheet (&key explain translate (reasoner 'owlim-se-r21))
   "Start of the query. Next need to figure out how ?code is to be bound - it isn't in this version. It also appears to return incorrect answers."
   (let ((res 
 	 (funcall (if explain 'explain-r21query (if translate 'sparql-stringify 'r21query) )
@@ -76,7 +73,7 @@
 			     ;;## ?toothfinding ; diagnosis about whole tooth
 			     ?provider ; T. provider who performed procedure
 			     )
-		    (:limit 10 :order-by (?patientid ?date ?toothn))
+		    (:limit 10);; :order-by (?patientid ?date ?toothn))
 
 		    ;; billd: the letters in comments below (e.g. "A - C") refer
 		    ;; to the columns in Dan's spread sheet.  I did to make it easier to
@@ -112,39 +109,40 @@
 		    ;; F. action class FX for finding PR for procedure
 		    ;; this done using a union query to cover the possible matches
 		    (:union
-		      ;; procedures performed on the tooth
-		      ((?proceduretype !rdfs:subClassOf !'dental procedure'@ohd)
-		       (?procedurei !'asserted type'@ohd ?proceduretype) 
-		       (?procedurei !'has participant'@ohd ?patienti) ; involving that patient
-		       (?procedurei !'has participant'@ohd ?toothi) ; and involving that tooth
-		       (?procedurei !'occurrence date'@ohd ?date) ; and occurs on ?date
-		       (?proceduretype !rdfs:label ?actionclass)) ; label for the procedure type
+		     ;; procedures performed on the tooth
+		     ((?proceduretype !rdfs:subClassOf !'dental procedure'@ohd)
+		      ;;(?proceduretype !rdfs:subClassOf !'filling restoration'@ohd) ; used for testing
+		      (?procedurei !'asserted type'@ohd ?proceduretype) 
+		      (?procedurei !'has participant'@ohd ?patienti) ; involving that patient
+		      (?procedurei !'has participant'@ohd ?toothi) ; and involving that tooth
+		      (?procedurei !'occurrence date'@ohd ?date) ; and occurs on ?date
+		      (?proceduretype !rdfs:label ?actionclass)) ; label for the procedure type
 
-		      ;; unerupted tooth finding
-		      ((?untoothfxi !'asserted type'@ohd !'unerupted tooth finding'@ohd)
-		       (?untoothfxi !'is about'@ohd ?toothi) ;about the tooth
-		       (?untoothfxi !'occurrence date'@ohd ?date) ;date of finding
-		       (!'unerupted tooth finding'@ohd !rdfs:label ?actionclass)) ;label for finding
+		     ;; unerupted tooth finding
+		     ((?untoothfxi !'asserted type'@ohd !'unerupted tooth finding'@ohd)
+		      (?untoothfxi !'is about'@ohd ?toothi) ;about the tooth
+		      (?untoothfxi !'occurrence date'@ohd ?date) ;date of finding
+		      (!'unerupted tooth finding'@ohd !rdfs:label ?actionclass)) ;label for finding
 
-		      ;; missing tooth finding
-		      (;; get the instance of 'Universal tooth number' that is about the tooh type
-		       ;; this will be needed in order to link missing tooth finding to a
-		       ;; particular tooth number (via the 'has part' universal tooth number)
-		       (?utoothnumi !rdf:type !'Universal tooth number'@ohd)
-		       (?utoothnumi !'is about'@ohd ?toothtype)
+		     ;; missing tooth finding
+		     ( ;; get the instance of 'Universal tooth number' that is about the tooh type
+		      ;; this will be needed in order to link missing tooth finding to a
+		      ;; particular tooth number (via the 'has part' universal tooth number)
+		      (?utoothnumi !rdf:type !'Universal tooth number'@ohd)
+		      (?utoothnumi !'is about'@ohd ?toothtype)
 		       
-		       ;; get instance of missing tooth finding
-		       (?mstoothfxtype !rdf:subClassOf !'missing tooth finding'@ohd)
-		       (?mstoothfxi !'asserted type'@ohd ?mstoothfxtype)
+		      ;; get instance of missing tooth finding
+		      (?mstoothfxtype !rdf:subClassOf !'missing tooth finding'@ohd)
+		      (?mstoothfxi !'asserted type'@ohd ?mstoothfxtype)
 
-		       ;; get instance of dentition of patient that the finding is about
-		       (?dentition !'asserted type'@ohd !'Secondary dentition'@ohd)
-		       (?dentition !'is part of'@ohd ?patienti)
-		       (?mstoothfxi !'is about'@ohd ?dentition)
+		      ;; get instance of dentition of patient that the finding is about
+		      (?dentition !'asserted type'@ohd !'Secondary dentition'@ohd)
+		      (?dentition !'is part of'@ohd ?patienti)
+		      (?mstoothfxi !'is about'@ohd ?dentition)
 
-		       ;; link the finding to the universal tooth number
-		       (?mstoothfxi !'has part'@ohd ?utoothnumi) ;that has part universal tooth number of tooth
-		       (?mstoothfxtype !rdfs:label ?actionclass))) ; label for finding
+		      ;; link the finding to the universal tooth number
+		      (?mstoothfxi !'has part'@ohd ?utoothnumi) ;that has part universal tooth number of tooth
+		      (?mstoothfxtype !rdfs:label ?actionclass))) ; label for finding
 		    
 
 		    ;; G. ada code of procedure 
@@ -161,11 +159,11 @@
 		    ;; note: not al procedures have materials
 		    (:optional
 		     (?materialtype !rdfs:subClassOf !'dental restoration material'@ohd)
-		     (?materiali !rdf:type ?materialtype)
+		     (?materiali !'asserted type'@ohd ?materialtype)
 		     (?procedurei !'has participant'@ohd ?materiali)
 		     (?materialtype !rdfs:label ?material))
 		    
-		    ;; O - S. diagnosis on surfaces 
+		    ;; O - S. findings or procedures on surfaces 
 		    ;; note: not all procedures include surfaces
 		    (:optional 
  		     (?surfacei !rdf:type !'Surface enamel of tooth'@ohd)
@@ -183,6 +181,7 @@
 		     (?procedurei !'has participant'@ohd ?provideri)
 		     (?provideri !rdfs:label ?provider))
 		    
+		    ;;(:filter (equal ?proceduretype !'dental procedure'@ohd))
 		    )
 	    :expressivity "RL" :reasoner reasoner :trace "story of some teeth" :values nil)))
   (if explain res nil)
@@ -331,12 +330,12 @@ order by ?patient ?tooth ?surface ?procedure ?date")
 
   (sparql 
    (str+ (owlim-prefixes)
-"select ?adacode (count(*) as ?total)
+"select ?adacode (count(?adacodei) as ?total)
 where {
-  ?adacodetype rdfs:subClassOf obo:CDT_1000001 . 
+  ?adacodetype rdfs:subClassOf obo:CDT_1000001 . # obo:CDT_1000001 -> 'current dental terminology code'
   ?adacodei rdf:type ?adacodetype .
   ?adacodei obo:OHD_0000092 ?adacodetype . # obo:OHD_0000092 -> 'asserted type' 
-  ?adacodei rdfs:label ?adacode .
+  ?adacodetype rdfs:label ?adacode .
 
 }
 group by ?adacode
