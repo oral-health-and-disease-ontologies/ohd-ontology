@@ -63,17 +63,19 @@
 			     ?bdate ;C. the patient's birth date 
 			     ?toothn ;D. the tooth number
 			     ?date ;E. date of procedure or finding
-			     ?acitonclass ;F. FX for finding PR for procedure 
+			     ?fx_or_pr ;F. FX for finding PR for procedure 
+			     ?fx_or_pr_type ; the type of finding or procedure
 			     ?adacode ;G. the ada code of the procedure
 			     ;;## ?codecategory ;H. we need to pull out category info codes THIS CAN BE DELETED
-			     ;;## ?toothpresent ;I. indicates tooth was presetn as the exam
+			     ;;## ?toothpresent ;I. indicates tooth was present at the exam
 					;values are Y (yes), N (no), U (unerupted)
 			     ?material ;J - N. material used on tooth / surfaces
 			     ?surface ;O - S. diagnosis on each of the five coronal surfaces
-			     ;;## ?toothfinding ; diagnosis about whole tooth
+			     ;;## ?toothfinding ; diagnosis about whole tooth; WE DON'T HAVE WHOLE TOOTH FINDING YET
 			     ?provider ; T. provider who performed procedure
 			     )
-		    (:limit 10);; :order-by (?patientid ?date ?toothn))
+		    (:limit 10)  ;; experimenting with order by clause
+		    ;;(:limit 10 :order-by (?patientid ?date ?toothn))
 
 		    ;; billd: the letters in comments below (e.g. "A - C") refer
 		    ;; to the columns in Dan's spread sheet.  I did to make it easier to
@@ -109,30 +111,33 @@
 		    ;; F. action class FX for finding PR for procedure
 		    ;; this done using a union query to cover the possible matches
 		    (:union
+		     #|
 		     ;; procedures performed on the tooth
-		     ((?proceduretype !rdfs:subClassOf !'dental procedure'@ohd)
-		      ;;(?proceduretype !rdfs:subClassOf !'filling restoration'@ohd) ; used for testing
+		     ((!'dental procedure'@ohd !rdfs:label ?fx_or_pr) ; print message for fx or pr
+		      (?proceduretype !rdfs:subClassOf !'dental procedure'@ohd)
 		      (?procedurei !'asserted type'@ohd ?proceduretype) 
 		      (?procedurei !'has participant'@ohd ?patienti) ; involving that patient
 		      (?procedurei !'has participant'@ohd ?toothi) ; and involving that tooth
 		      (?procedurei !'occurrence date'@ohd ?date) ; and occurs on ?date
-		      (?proceduretype !rdfs:label ?actionclass)) ; label for the procedure type
-
+		      (?proceduretype !rdfs:label ?fx_or_pr_type)) ; label for the procedure type
+		     
 		     ;; unerupted tooth finding
-		     ((?untoothfxi !'asserted type'@ohd !'unerupted tooth finding'@ohd)
+		     ((!'dental finding'@ohd !rdfs:label ?fx_or_pr) ; print message for fx or pr
+		      (?untoothfxi !'asserted type'@ohd !'unerupted tooth finding'@ohd)
 		      (?untoothfxi !'is about'@ohd ?toothi) ;about the tooth
 		      (?untoothfxi !'occurrence date'@ohd ?date) ;date of finding
-		      (!'unerupted tooth finding'@ohd !rdfs:label ?actionclass)) ;label for finding
-
+		      (!'unerupted tooth finding'@ohd !rdfs:label ?fx_or_pr_type)) ;label for finding type
+		     |#
 		     ;; missing tooth finding
-		     ( ;; get the instance of 'Universal tooth number' that is about the tooh type
+		     ( ;; get the instance of 'Universal tooth number' that is about the tooth type
 		      ;; this will be needed in order to link missing tooth finding to a
 		      ;; particular tooth number (via the 'has part' universal tooth number)
+		      (!'dental finding'@ohd !rdfs:label ?fx_or_pr) ; print message for fx or pr
 		      (?utoothnumi !rdf:type !'Universal tooth number'@ohd)
 		      (?utoothnumi !'is about'@ohd ?toothtype)
 		       
 		      ;; get instance of missing tooth finding
-		      (?mstoothfxtype !rdf:subClassOf !'missing tooth finding'@ohd)
+		      (?mstoothfxtype !rdfs:subClassOf !'missing tooth finding'@ohd)
 		      (?mstoothfxi !'asserted type'@ohd ?mstoothfxtype)
 
 		      ;; get instance of dentition of patient that the finding is about
@@ -142,7 +147,7 @@
 
 		      ;; link the finding to the universal tooth number
 		      (?mstoothfxi !'has part'@ohd ?utoothnumi) ;that has part universal tooth number of tooth
-		      (?mstoothfxtype !rdfs:label ?actionclass))) ; label for finding
+		      (?mstoothfxtype !rdfs:label ?fx_or_pr_type))) ; label for finding
 		    
 
 		    ;; G. ada code of procedure 
@@ -181,7 +186,9 @@
 		     (?procedurei !'has participant'@ohd ?provideri)
 		     (?provideri !rdfs:label ?provider))
 		    
-		    ;;(:filter (equal ?proceduretype !'dental procedure'@ohd))
+		    ;;(:filter (equal (str ?fx_or_pr_type) "dental procedure"))
+		    ;;(:filter (regex (str ?fx_or_pr_type) "dental procedure" "i")) 
+		    ;;(:filter (equal ?fx_or_pr_type !'unerupted tooth finding'@ohd))
 		    )
 	    :expressivity "RL" :reasoner reasoner :trace "story of some teeth" :values nil)))
   (if explain res nil)
@@ -402,4 +409,5 @@ PREFIX dbp-ont:<http://dbpedia.org/ontology/>
 PREFIX ub:<http://www.lehigh.edu/~zhp2/2004/0401/univ-bench.owl#>
 PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
 PREFIX oboInOwl:<http://www.geneontology.org/formats/oboInOwl#>
-PREFIX skos:<http://www.w3.org/2004/02/skos/core#>")
+PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
+")
