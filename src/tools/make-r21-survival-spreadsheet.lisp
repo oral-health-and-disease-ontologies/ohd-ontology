@@ -111,7 +111,7 @@
 		    ;; F. action class FX for finding PR for procedure
 		    ;; this done using a union query to cover the possible matches
 		    (:union
-		     #|
+		     
 		     ;; procedures performed on the tooth
 		     ((!'dental procedure'@ohd !rdfs:label ?fx_or_pr) ; print message for fx or pr
 		      (?proceduretype !rdfs:subClassOf !'dental procedure'@ohd)
@@ -127,7 +127,7 @@
 		      (?untoothfxi !'is about'@ohd ?toothi) ;about the tooth
 		      (?untoothfxi !'occurrence date'@ohd ?date) ;date of finding
 		      (!'unerupted tooth finding'@ohd !rdfs:label ?fx_or_pr_type)) ;label for finding type
-		     |#
+		     
 		     ;; missing tooth finding
 		     ( ;; get the instance of 'Universal tooth number' that is about the tooth type
 		      ;; this will be needed in order to link missing tooth finding to a
@@ -189,11 +189,355 @@
 		    ;;(:filter (equal (str ?fx_or_pr_type) "dental procedure"))
 		    ;;(:filter (regex (str ?fx_or_pr_type) "dental procedure" "i")) 
 		    ;;(:filter (equal ?fx_or_pr_type !'unerupted tooth finding'@ohd))
+		    ;;(:filter (equal ?patientid "patient 3000"))
 		    )
-	    :expressivity "RL" :reasoner reasoner :trace "story of some teeth" :values nil)))
+	    :expressivity "RL" :reasoner reasoner :trace "story of some teeth" :values t)))
   (if explain res nil)
   )) ;; RL fastest for this?
 
+
+(defun get-caplan-spreadsheet (&key explain translate (reasoner 'owlim-se-r21))
+  "Start of the query. Next need to figure out how ?code is to be bound - it isn't in this version. It also appears to return incorrect answers."
+  (let ((res 
+	 (funcall (if explain 'explain-r21query (if translate 'sparql-stringify 'r21query) )
+		  ;; variable names in select clause are intended to match with Caplan's spreadsheet: 
+		  ;; 2011-10-27 Output suitable for statistical analysis - Caplan (revised after ftf meeting).xls
+		  ;; associated column letters are also provided (if possble)
+		  ;; see spreadsheet for further details
+		  `(:select
+		    (?patientid ;A. the patient id  
+		     ?sex ;B. the patient's sex
+		     ?birthdate ;C. the patient's birth date 
+		     ?tthnum ;D. the tooth number
+		     ?procdate ;E. date of procedure or finding
+		     ?procclass ;F. FX for finding PR for procedure 
+		     ?proccode ;G. the ada code of the procedure
+		     ?proctype ; H. the type of finding or procedure
+		     ;;## ?tthpres ;I. indicates tooth was present at the exam
+					;values are Y (yes), N (no), U (unerupted) ; not implmented yet
+		     ?matm ; J. material for mesial surface
+		     ?mato ; K. material for occlusal surface
+		     ?matd ; L. material for distal surface
+		     ?matf ; M. material for facial surface
+		     ?matl ; N. material for lingual surface
+		     ?dxm ; O. diagnosis on mesial surface
+		     ?dxo ; P. diagnosis on occlusial surface
+		     ?dxd ; Q. diagnosis on distal surface
+		     ?dxf ; R. diagnosis on facial surface (buccal surface)
+		     ?dxl ; S. diagnosis on lingual surface
+		     ?provider ; T. provider who performed procedure / finding
+		     ?test ;;used for testing
+		     )
+		    (:limit 10)
+		    ;;(:limit 10 :order-by (?patientid ?date ?toothn)) ; experimenting with order by clause
+					
+		    ;; billd: general not about 'asserted type'
+		    ;; the 'assert type' relation is used to restrict matching so that
+		    ;; instances are matched only with their most direct parent.
+		    ;; for example, an instance of tooth 1 is matched not only with the
+		    ;; type 'Tooth 1', but also with the types 'Secondary upper molar' and
+		    ;; the most general type 'Tooth'.
+		    ;; we, however, are only concerned with matching to type 'Tooth 1'.
+		    ;; thus, we would use "toothi !'asserted type'@ohd !'Tooth 1'@ohd"
+		    ;; A - C: get info about patient
+		    (?patienttype !rdfs:subClassOf !'dental patient'@ohd)
+		    (?patienti !'asserted type'@ohd ?patienttype) 
+		    (?patienti !rdfs:label ?patientid)	; their label 
+		    (?patienttype !rdfs:label ?sex)	; their sex
+		    (?patienti !'birth_date'@ohd ?birthdate) ; their birth date
+		    
+		    ;; D. tooth number - the tooth that is part of the patient
+		    (?toothtype !rdfs:subClassOf !'Tooth'@ohd)
+		    (?toothi !'asserted type'@ohd ?toothtype)
+		    (?toothi !'is part of'@ohd ?patienti) ; that is part of the patient
+		    ;;(?toothi !rdfs:label ?tooth) ; the label of the tooth
+		    (?toothtype !'ADA universal tooth number'@ohd ?tthnum) ; ADA tooth number of tooth
+		    
+		    ;; E. the date of the procedure or finding on the patient
+		    ;; F. action class FX for finding PR for procedure
+		    ;; H. procedure class: finding or procedure
+		    ;; this done using a union query to cover the possible matches
+		    (:union
+		     ;; procedures performed on the tooth
+		     (,@(get-caplan-spreadsheet-procedure-info))
+		     
+		     ;; unerupted tooth findingp
+		     (,@(get-caplan-spreadsheet-unerupted-tooth-findings-info))
+		     
+		     ;; caries finding
+		     (,@(get-caplan-spreadsheet-caries-findings-info))
+		     
+		     ;; missing tooth finding
+		     (,@(get-caplan-spreadsheet-missing-tooth-findings-info))
+		     
+		     )
+		    (:filter (equal ?patientid "patient 3000"))
+		    )
+	    :expressivity "RL" :reasoner reasoner :trace "story of some teeth" :values t)))
+  (if explain res nil)
+  ))
+
+(defun get-caplan-spreadsheet-surfaces-info ()
+  ;; surfaces are part of tooth of patient (?toothi)
+
+  ;; mesial surface
+  '((:optional
+     (?surfacemi !'asserted type'@ohd !'Mesial surface enamel of tooth'@ohd) 
+     (?surfacemi !'is part of'@ohd ?toothi))
+		      
+    ;; occlusal surface (note: occlusal is misspelled in the ontology)
+    ;; both incisal and occlusal surfaces are included in occlusal surface
+    (:optional
+     (:union
+      ((?surfaceoi !'asserted type'@ohd !'Occlusial surface enamel of tooth'@ohd))
+      ;; ontology doesn't have incisal surfaces yet, uncomment code when added
+      ;;((?surfaceoi !'asserted type'@ohd !'Incisal surface enamel of tooth'@ohd))
+      )
+     (?surfaceoi !'is part of'@ohd ?toothi))
+		       
+    ;; distal surface
+    (:optional
+     (?surfacedi !'asserted type'@ohd !'Distal surface enamel of tooth'@ohd) 
+     (?surfacedi !'is part of'@ohd ?toothi))
+		       
+    ;; facial surface
+    ;; both libial and buccal surfaces are included in facial surface
+    (:optional
+     (:union
+      ((?surfacefi !'asserted type'@ohd !'Labial surface enamel of tooth'@ohd))
+      ((?surfacefi !'asserted type'@ohd !'Buccal surface enamel of tooth'@ohd)))
+     (?surfacefi !'is part of'@ohd ?toothi))
+		       		       
+    ;; lingual surface
+    (:optional
+     (?surfaceli !'asserted type'@ohd !'Lingual surface enamel of tooth'@ohd) 
+     (?surfaceli !'is part of'@ohd ?toothi))))
+
+(defun get-caplan-spreadsheet-procedure-info ()
+  `((!'dental procedure'@ohd !rdfs:label ?procclass) ; label for procclass
+    (?proceduretype !rdfs:label ?proctype) ; label for proctype
+    (?proceduretype !rdfs:subClassOf !'dental procedure'@ohd) 
+    (?procedurei !'asserted type'@ohd ?proceduretype) ; instance of procedure
+    (?procedurei !'has participant'@ohd ?patienti) ; involving that patient
+    (?procedurei !'has participant'@ohd ?toothi) ; and involving that tooth
+    (?procedurei !'occurrence date'@ohd ?procdate) ; and occurs on ?procdate
+		      
+    ;; G. ada code of procedure 
+    (:optional
+     (?codetype !rdfs:subClassOf !'current dental terminology code'@ohd)
+     (?codei !'asserted type'@ohd ?codetype)
+     (?codei !'is about'@ohd ?procedurei) ; get cdt code for the procedure
+     (?codetype !rdfs:label ?proccode)) ; then get the label of that code type
+
+    (?stype !rdfs:subClassOf !'Surface enamel of tooth'@ohd)
+    (?si !'asserted type'@ohd ?sytpe)
+    (?si !'is part of'@ohd ?toothi)
+    (?si !rdfs:label ?test)
+
+    ;; bind surface variables: 
+    ;; ?surfacemi, ?surfaceoi, ?surfacedi, ?surfacefi, ?surfaceli
+    ;; these will be used to determine location of materials
+    ,@(get-caplan-spreadsheet-surfaces-info)
+    
+    ;; J - N. material used in the procedure
+    ;; J. material on mesial surface
+    (:optional
+     ;; instance of material that participated in the procedure 
+     ;; and is located in tooth and is a retoration of that suface
+     (?materialtypem !rdfs:subClassOf !'dental restoration material'@ohd)
+     (?matmi !'asserted type'@ohd ?materialtypem)
+     (?procedurei !'has participant'@ohd ?matmi)
+     (?matmi !'is located in'@ohd ?toothi)
+     (?matmi !'is dental restoration of'@ohd ?surfacemi)
+     (?materialtypem !rdfs:label ?matm))
+		      
+    ;; K. material on occlusial surface
+    (:optional
+     ;; instance of material that participated in the procedure 
+     ;; and is located in tooth and is a retoration of that suface
+     (?materialtypeo !rdfs:subClassOf !'dental restoration material'@ohd)
+     (?matoi !'asserted type'@ohd ?materialtypeo)
+     (?procedurei !'has participant'@ohd ?matoi)
+     (?matoi !'is located in'@ohd ?toothi)
+     (?matoi !'is dental restoration of'@ohd ?surfaceoi)
+     (?materialtypeo !rdfs:label ?mato))
+
+    ;; L. material on distal surface
+    (:optional
+     ;; instance of material that participated in the procedure 
+     ;; and is located in tooth and is a retoration of that suface
+     (?materialtyped !rdfs:subClassOf !'dental restoration material'@ohd)
+     (?matdi !'asserted type'@ohd ?materialtyped)
+     (?procedurei !'has participant'@ohd ?matdi)
+     (?matdi !'is located in'@ohd ?toothi)
+     (?matdi !'is dental restoration of'@ohd ?surfacedi)
+     (?materialtyped !rdfs:label ?matd))
+
+    ;; M. materal on facial surface
+    (:optional
+     ;; instance of material that participated in the procedure 
+     ;; and is located in tooth and is a retoration of that suface
+     (?materialtypef !rdfs:subClassOf !'dental restoration material'@ohd)
+     (?matfi !'asserted type'@ohd ?materialtypef)
+     (?procedurei !'has participant'@ohd ?matfi)
+     (?matfi !'is located in'@ohd ?toothi)
+     (?matfi !'is dental restoration of'@ohd ?surfacefi)
+     (?materialtypef !rdfs:label ?matf))
+
+    ;; N. material on lingual sufrace
+    (:optional
+     ;; instance of material that participated in the procedure 
+     ;; and is located in tooth and is a retoration of that suface
+     (?materialtypel !rdfs:subClassOf !'dental restoration material'@ohd)
+     (?matli !'asserted type'@ohd ?materialtypel)
+     (?procedurei !'has participant'@ohd ?matli)
+     (?matli !'is located in'@ohd ?toothi)
+     (?matli !'is dental restoration of'@ohd ?surfaceli)
+     (?materialtypel !rdfs:label ?matl))
+    
+    ;; T. provider who performed procedure
+    (:optional 
+     (?providertype !rdfs:subClassOf !'dental health care provider'@ohd)
+     (?provideri !'asserted type'@ohd ?providertype)
+     (?procedurei !'has participant'@ohd ?provideri)
+     (?provideri !rdfs:label ?provider))))
+
+(defun get-caplan-spreadsheet-unerupted-tooth-findings-info ()
+  '((!'dental finding'@ohd !rdfs:label ?procclass) ; label for procclass
+    (!'unerupted tooth finding'@ohd !rdfs:label ?proctype) ;label for proctype
+    (?untoothfxi !'asserted type'@ohd !'unerupted tooth finding'@ohd)
+    (?untoothfxi !'is about'@ohd ?toothi)	 ;about the tooth
+    (?untoothfxi !'occurrence date'@ohd ?procdate) ;date of finding
+
+    ;; T. provider who reported the finding
+    (:optional 
+     ;; find exam that has specified output the finding 
+     (?exami !'asserted type'@ohd !'dental exam'@ohd)
+     (?exami !'has_specified_output'@ohd ?untoothfxi)
+		       
+     ;; find provider role that is realized by exam
+     (?providerroletype !rdfs:subClassOf !'dental health care provider role'@ohd)
+     (?providerrolei !'asserted type'@ohd ?providerroletype)
+     (?exami !'realizes'@ohd ?providerrolei)
+
+     ;; find the provider that role inhers in
+     (?providertype !rdfs:subClassOf !'dental health care provider'@ohd)
+     (?provideri !'asserted type'@ohd ?providertype)
+     (?providerrolei !'inheres in'@ohd ?provideri)
+     (?provideri !rdfs:label ?provider))))
+
+(defun get-caplan-spreadsheet-caries-findings-info ()
+  `((!'dental finding'@ohd !rdfs:label ?procclass) ; label for procclass
+    (!'caries finding'@ohd !rdfs:label ?proctype)  ;label for proctype
+    (?lesioni !'asserted type'@ohd !'carious lesion of tooth'@ohd) ; instance of lesion
+    (?lesioni !'is part of'@ohd ?toothi) ; part of patient's tooth
+		      
+    ;; get caries finding that is about the lesion
+    (?cariesfxi !'asserted type'@ohd !'caries finding'@ohd) ; instance of finding
+    (?cariesfxi !'is about'@ohd ?lesioni)
+    (?cariesfxi !'occurrence date'@ohd ?procdate) ;date of finding
+
+    ;; used for testing
+    ;;(?surfacetype !rdfs:subClassOf !'Surface enamel of tooth'@ohd)
+    ;;(?surfacei !'asserted type'@ohd ?surfacetype)
+    ;;(?lesioni !'is part of'@ohd ?surfacei)
+    ;;(?surfacei !rdfs:label ?test)
+  
+    ;; bind surface variables: 
+    ;; ?surfacemi, ?surfaceoi, ?surfacedi, ?surfacefi, ?surfaceli
+    ;; these will be used to determine the findings on the surfaces
+    ,@(get-caplan-spreadsheet-surfaces-info)
+
+    ;; O - S. findings on surfaces 
+    ;; O. finding on mesial surface
+    (:optional
+     (?lesioni !'is part of'@ohd ?surfacemi)
+     (!'caries finding'@ohd !rdfs:label ?dxm))
+    ;;(?surfacemi !rdfs:label ?dxm))
+  
+    ;; P. finding on occlusial surface
+    ;;    both incisal and occlusial surfaces count as occlusial
+    (:optional
+     ;; find surface that carious lesion is part of
+     (?lesioni !'is part of'@ohd ?surfaceoi)
+     (!'caries finding'@ohd !rdfs:label ?dxo))
+    ;;(?surfaceoi !rdfs:label ?dxo))
+		      		      
+    ;; Q. finding on distal suface
+    (:optional
+     (?lesioni !'is part of'@ohd ?surfacedi)
+     (!'caries finding'@ohd !rdfs:label ?dxd))
+    ;;(?surfacedi !rdfs:label ?dxd))
+  
+    ;; R. finding on facial surface
+    ;;    both buccal and labial surfaces count as a facial surface
+    (:optional
+     (?lesioni !'is part of'@ohd ?surfacefi)
+     (!'caries finding'@ohd !rdfs:label ?dxf))
+  
+    ;; S. finding on lingual suface
+    (:optional
+     (?lesioni !'is part of'@ohd ?surfaceli)
+     (!'caries finding'@ohd !rdfs:label ?dxl))
+    ;; (?surfaceli !rdfs:label ?dxl))
+  
+    ;; T. provider who reported the finding
+    (:optional 
+     ;; find exam that has specified output the finding 
+     (?exami !'asserted type'@ohd !'dental exam'@ohd)
+     (?exami !'has_specified_output'@ohd ?cariesfxi)
+		       
+     ;; find provider role that is realized by exam
+     (?providerroletype !rdfs:subClassOf !'dental health care provider role'@ohd)
+     (?providerrolei !'asserted type'@ohd ?providerroletype)
+     (?exami !'realizes'@ohd ?providerrolei)
+
+     ;; find the provider that role inhers in
+     (?providertype !rdfs:subClassOf !'dental health care provider'@ohd)
+     (?provideri !'asserted type'@ohd ?providertype)
+     (?providerrolei !'inheres in'@ohd ?provideri)
+     (?provideri !rdfs:label ?provider))))
+
+(defun get-caplan-spreadsheet-missing-tooth-findings-info ()
+  '( ;; get the instance of 'Universal tooth number' that is about the tooth type
+    ;; this will be needed in order to link missing tooth finding to a
+    ;; particular tooth number (via the 'has part' universal tooth number)
+    (!'dental finding'@ohd !rdfs:label ?procclass) ; label for procclass
+    (!'missing tooth finding'@ohd !rdfs:label ?proctype) ; label for proctype
+    (?utoothnumi !rdf:type !'Universal tooth number'@ohd)
+    (?utoothnumi !'is about'@ohd ?toothtype)
+		       
+    ;; get instance of missing tooth finding
+    (?mstoothfxtype !rdfs:subClassOf !'missing tooth finding'@ohd)
+    (?mstoothfxi !'asserted type'@ohd ?mstoothfxtype)
+    (?mstoothfxi !'occurrence date'@ohd ?procdate) ;date of finding
+		      
+
+    ;; get instance of dentition of patient that the finding is about
+    (?dentition !'asserted type'@ohd !'Secondary dentition'@ohd)
+    (?dentition !'is part of'@ohd ?patienti)
+    (?mstoothfxi !'is about'@ohd ?dentition)
+
+    ;; link the finding to the universal tooth number
+    (?mstoothfxi !'has part'@ohd ?utoothnumi) ;that has part universal tooth number of tooth
+		     
+    ;; T. provider who reported the finding
+    (:optional 
+     ;; find exam that has specified output the finding 
+     (?exami !'asserted type'@ohd !'dental exam'@ohd)
+     (?exami !'has_specified_output'@ohd ?mstoothfxi)
+		       
+     ;; find provider role that is realized by exam
+     (?providerroletype !rdfs:subClassOf !'dental health care provider role'@ohd)
+     (?providerrolei !'asserted type'@ohd ?providerroletype)
+     (?exami !'realizes'@ohd ?providerrolei)
+
+     ;; find the provider that role inhers in
+     (?providertype !rdfs:subClassOf !'dental health care provider'@ohd)
+     (?provideri !'asserted type'@ohd ?providertype)
+     (?providerrolei !'inheres in'@ohd ?provideri)
+     (?provideri !rdfs:label ?provider)))
+)
 
 (defun test-stardog-query ()
  (r21query '(:select (?s ?l)
@@ -219,21 +563,21 @@
    :trace "test owlim query")
   
 #|
-;; try to work with query like this to get direct super class:
-;; code adapted from: http://www.mail-archive.com/owlim-discussion@ontotext.com/msg01728.html
+;; try to work with query like this to get direct super class: ;
+;; code adapted from: http://www.mail-archive.com/owlim-discussion@ontotext.com/msg01728.html ;
 
-SELECT ?super {
-    BIND( obo:FMA_55696 as ?concept )
-    ?concept rdfs:subClassOf ?super .
-    OPTIONAL {
-    ?concept rdfs:subClassOf ?inbetweener .
-    ?inbetweener rdfs:subClassOf ?super .
-    FILTER( ?inbetweener != ?concept && ?inbetweener != ?super )
-  }
-  FILTER( ! BOUND(?inbetweener) && ?super != ?concept)
-}
+   SELECT ?super {
+   BIND( obo:FMA_55696 as ?concept )
+   ?concept rdfs:subClassOf ?super .
+   OPTIONAL {
+   ?concept rdfs:subClassOf ?inbetweener .
+   ?inbetweener rdfs:subClassOf ?super .
+   FILTER( ?inbetweener != ?concept && ?inbetweener != ?super )
+   }
+   FILTER( ! BOUND(?inbetweener) && ?super != ?concept)
+   }
 
-|#
+   |#
   
   ;; return nil
   nil)
