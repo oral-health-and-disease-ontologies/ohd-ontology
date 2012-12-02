@@ -140,8 +140,7 @@
 	 (push `(data-property-assertion !'occurrence date'@ohd
 					 ,finding-uri
 					 (:literal ,occurrence-date !xsd:date)) axioms)
-
-
+	 
          ;; insert axioms about the dental exam in which the provider (if known)
          ;; found the missing tooth
 	 (when provider-id
