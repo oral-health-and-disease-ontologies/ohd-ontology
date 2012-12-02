@@ -6,9 +6,38 @@
   (let ((files (append (directory "ohd:ontology;ohd.owl")
 		       (directory "ohd:ontology;imports;BFO2;*.owl")
 		       (directory "ohd:ontology;imports;*.owl")
-		       (directory "ohd:ontology;dropbox;full;*.owl"))))
+		       (directory "ohd:ontology;dropbox;*.owl"))))
     (loop for file in files do
 	 (format t "load <file://~a>;~%" file))))
+
+#|
+My loads:
+
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/ohd.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/BFO2/bfo2.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/BFO2/bfo2-relations.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/BFO2/bfo2-regions.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/BFO2/bfo2-classes.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/protege-dc.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/ontology-metadata.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/ogms.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/obi-imports.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/ncbi-imports.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/iao-imports.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/fma-jaws-teeth.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/cdt-imports.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/caro-imports.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-unerupted-teeth-findings.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-surgical-extractions.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-missing-teeth-findings.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-caries-findings.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-fillings.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-endodontics.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-dental-providers.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-dental-patients.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-crowns.owl>;
+
+|#
 
 (register-namespace "openrdf:" "http://www.openrdf.org/config/repository#")
 
