@@ -225,10 +225,10 @@
 		     ?dxd ; Q. diagnosis on distal surface
 		     ?dxf ; R. diagnosis on facial surface (buccal surface)
 		     ?dxl ; S. diagnosis on lingual surface
-		     ?provider ; T. provider who performed procedure / finding
+		     ?provider ; T. provider who performed procedure finding
 		     ?test ;;used for testing
 		     )
-		    (:limit 10)
+		    (:limit 20)
 		    ;;(:limit 10 :order-by (?patientid ?date ?toothn)) ; experimenting with order by clause
 					
 		    ;; billd: general not about 'asserted type'
@@ -328,17 +328,24 @@
      (?codei !'asserted type'@ohd ?codetype)
      (?codei !'is about'@ohd ?procedurei) ; get cdt code for the procedure
      (?codetype !rdfs:label ?proccode)) ; then get the label of that code type
-
-    (?stype !rdfs:subClassOf !'Surface enamel of tooth'@ohd)
-    (?si !'asserted type'@ohd ?sytpe)
-    (?si !'is part of'@ohd ?toothi)
-    (?si !rdfs:label ?test)
+    
+    ;; used for testing
+    ;; (?stype !rdfs:subClassOf !'Surface enamel of tooth'@ohd)
+    ;; (?si !'asserted type'@ohd ?sytpe)
+    ;; (?si !'is part of'@ohd ?toothi)
+    ;; (?si !rdfs:label ?test)
 
     ;; bind surface variables: 
     ;; ?surfacemi, ?surfaceoi, ?surfacedi, ?surfacefi, ?surfaceli
     ;; these will be used to determine location of materials
     ,@(get-caplan-spreadsheet-surfaces-info)
     
+
+    ;; before determing the materials the following has already been determined
+    ;; the surface is part of tooth
+    ;; the patient participated in the procedure
+    ;; the tooth participates in the procedure
+
     ;; J - N. material used in the procedure
     ;; J. material on mesial surface
     (:optional
@@ -346,11 +353,13 @@
      ;; and is located in tooth and is a retoration of that suface
      (?materialtypem !rdfs:subClassOf !'dental restoration material'@ohd)
      (?matmi !'asserted type'@ohd ?materialtypem)
+     (?procedurei !'has participant'@ohd ?surfacemi)
      (?procedurei !'has participant'@ohd ?matmi)
      (?matmi !'is located in'@ohd ?toothi)
      (?matmi !'is dental restoration of'@ohd ?surfacemi)
-     (?materialtypem !rdfs:label ?matm))
-		      
+     ;;(?materialtypem !rdfs:label ?matm))
+     (?matmi !rdfs:label ?matm))
+    
     ;; K. material on occlusial surface
     (:optional
      ;; instance of material that participated in the procedure 
@@ -360,7 +369,8 @@
      (?procedurei !'has participant'@ohd ?matoi)
      (?matoi !'is located in'@ohd ?toothi)
      (?matoi !'is dental restoration of'@ohd ?surfaceoi)
-     (?materialtypeo !rdfs:label ?mato))
+     ;;(?materialtypeo !rdfs:label ?mato))
+     (?matoi !rdfs:label ?mato))
 
     ;; L. material on distal surface
     (:optional
@@ -371,9 +381,10 @@
      (?procedurei !'has participant'@ohd ?matdi)
      (?matdi !'is located in'@ohd ?toothi)
      (?matdi !'is dental restoration of'@ohd ?surfacedi)
-     (?materialtyped !rdfs:label ?matd))
+     ;;(?materialtyped !rdfs:label ?matd))
+     (?matdi !rdfs:label ?matd))
 
-    ;; M. materal on facial surface
+    ;; M. material on facial surface
     (:optional
      ;; instance of material that participated in the procedure 
      ;; and is located in tooth and is a retoration of that suface
@@ -382,7 +393,8 @@
      (?procedurei !'has participant'@ohd ?matfi)
      (?matfi !'is located in'@ohd ?toothi)
      (?matfi !'is dental restoration of'@ohd ?surfacefi)
-     (?materialtypef !rdfs:label ?matf))
+     ;;(?materialtypef !rdfs:label ?matf))
+     (?matfi !rdfs:label ?matf))
 
     ;; N. material on lingual sufrace
     (:optional
@@ -393,7 +405,8 @@
      (?procedurei !'has participant'@ohd ?matli)
      (?matli !'is located in'@ohd ?toothi)
      (?matli !'is dental restoration of'@ohd ?surfaceli)
-     (?materialtypel !rdfs:label ?matl))
+     ;;(?materialtypel !rdfs:label ?matl))
+     (?matli !rdfs:label ?matl))
     
     ;; T. provider who performed procedure
     (:optional 
