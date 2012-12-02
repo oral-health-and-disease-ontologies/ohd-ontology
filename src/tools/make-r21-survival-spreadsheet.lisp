@@ -262,13 +262,13 @@
 		     (,@(get-caplan-spreadsheet-procedures-info))
 		     
 		     ;; unerupted tooth findingp
-		     (,@(get-caplan-spreadsheet-unerupted-tooth-findings-info))
+		     ;(,@(get-caplan-spreadsheet-unerupted-tooth-findings-info))
 		     
 		     ;; caries finding
-		     (,@(get-caplan-spreadsheet-caries-findings-info))
+		     ;(,@(get-caplan-spreadsheet-caries-findings-info))
 		     
 		     ;; missing tooth finding
-		     (,@(get-caplan-spreadsheet-missing-tooth-findings-info))
+		     ;(,@(get-caplan-spreadsheet-missing-tooth-findings-info))
 		     
 		     )
 		    (:filter (equal ?patientid "patient 3000"))
@@ -278,7 +278,8 @@
   ))
 
 (defun get-caplan-spreadsheet-surfaces-info ()
-  ;; surfaces are part of tooth of patient (?toothi)
+  ;; precondition:
+  ;; tooth (toothni) part of patient (?patienti))
 
   ;; mesial surface
   '((:optional
@@ -288,11 +289,10 @@
     ;; occlusal surface (note: occlusal is misspelled in the ontology)
     ;; both incisal and occlusal surfaces are included in occlusal surface
     (:optional
-     (:union
-      ((?surfaceoi !'asserted type'@ohd !'Occlusial surface enamel of tooth'@ohd))
-      ;; ontology doesn't have incisal surfaces yet, uncomment code when added
-      ;;((?surfaceoi !'asserted type'@ohd !'Incisal surface enamel of tooth'@ohd))
-      )
+     ;; ontology doesn't have incisal surfaces yet, uncomment code when added
+     ;(:union     ;(
+       (?surfaceoi !'asserted type'@ohd !'Occlusial surface enamel of tooth'@ohd);)
+      ;;((?surfaceoi !'asserted type'@ohd !'Incisal surface enamel of tooth'@ohd)))
      (?surfaceoi !'is part of'@ohd ?toothi))
 		       
     ;; distal surface
@@ -313,7 +313,65 @@
      (?surfaceli !'asserted type'@ohd !'Lingual surface enamel of tooth'@ohd) 
      (?surfaceli !'is part of'@ohd ?toothi))))
 
+(defun get-caplan-spreadsheet-materials-info ()
+  ;; precondition:
+  ;; first call get-caplan-spreadsheet-surfaces-info
+  ;; this defines the following
+  ;; tooth (?toothni) part of patient (?patienti))
+  ;; and surface (?surfacemi ... ?surfaceli) part of tooth (?toothi)
+
+  ;; find instance of materials that are parts of surfaces
+  ;; material on mesial surface
+  '((:optional
+     (?materialtypem !rdfs:subClassOf !'dental restoration material'@ohd)
+     (?matmi !'asserted type'@ohd ?materialtypem)
+     (?matmi !'is located in'@ohd ?toothi)
+     (?matmi !'is dental restoration of'@ohd ?surfacemi))
+
+    ;; material on occlusial surface
+    (:optional
+     (?materialtypeo !rdfs:subClassOf !'dental restoration material'@ohd)
+     (?matoi !'asserted type'@ohd ?materialtypeo)
+     (?matoi !'is located in'@ohd ?toothi)
+     (?matoi !'is dental restoration of'@ohd ?surfaceoi))
+   
+    ;;  material on distal surface
+    (:optional
+     (?materialtyped !rdfs:subClassOf !'dental restoration material'@ohd)
+     (?matdi !'asserted type'@ohd ?materialtyped)
+     (?matdi !'is located in'@ohd ?toothi)
+     (?matdi !'is dental restoration of'@ohd ?surfacedi))
+   
+    ;;  material on facial surface
+    (:optional
+     (?materialtypef !rdfs:subClassOf !'dental restoration material'@ohd)
+     (?matfi !'asserted type'@ohd ?materialtypef)
+     (?matfi !'is located in'@ohd ?toothi)
+     (?matfi !'is dental restoration of'@ohd ?surfacefi))
+   
+  
+    ;;  material on lingual surface
+    (:optional
+     (?materialtypel !rdfs:subClassOf !'dental restoration material'@ohd)
+     (?matli !'asserted type'@ohd ?materialtypel)
+     (?matli !'is located in'@ohd ?toothi)
+     (?matli !'is dental restoration of'@ohd ?surfaceli))))
+   
+
+(defun get-caplan-spreadsheet-lesions-info ()
+  ;; precondition:
+  ;; first call get-caplan-spreadsheet-surfaces-info
+  ;; this defines the following
+  ;; tooth (?toothni) part of patient (?patienti))
+  ;; and surface (?surfacemi ... ?surfaceli) part of tooth (?toothi)
+
+)
+
 (defun get-caplan-spreadsheet-procedures-info ()
+  ;; precondition:
+  ;; tooth (?toothni) part of patient (?patienti))
+  ;; and surface (?surfacemi ... ?surfaceli) part of tooth (?toothi)
+
   `((!'dental procedure'@ohd !rdfs:label ?procclass) ; label for procclass
     (?proceduretype !rdfs:label ?proctype) ; label for proctype
     (?proceduretype !rdfs:subClassOf !'dental procedure'@ohd) 
@@ -321,14 +379,23 @@
     (?procedurei !'has participant'@ohd ?patienti) ; involving that patient
     (?procedurei !'has participant'@ohd ?toothi) ; and involving that tooth
     (?procedurei !'occurrence date'@ohd ?procdate) ; and occurs on ?procdate
-		      
+
+    ;; find which role the procedure realizes
+    (:union
+     ((?toothroletype !rdfs:subClassOf !'tooth to be restored role'@ohd))
+     ((?toothroletype !rdfs:subClassOf !'tooth to undergo endodontic procedure role'@ohd))
+     ((?toothroletype !rdfs:subClassOf !'tooth to be extracted role'@ohd)))
+    (?toothrolei !'asserted type'@ohd ?toothroletype)
+    (?toothrolei !'inheres in'@ohd ?toothi)
+    (?procedurei !'realizes'@ohd ?toothrolei)
+    
     ;; G. ada code of procedure 
     (:optional
      (?codetype !rdfs:subClassOf !'current dental terminology code'@ohd)
      (?codei !'asserted type'@ohd ?codetype)
      (?codei !'is about'@ohd ?procedurei) ; get cdt code for the procedure
      (?codetype !rdfs:label ?proccode)) ; then get the label of that code type
-    
+
     ;; used for testing
     ;; (?stype !rdfs:subClassOf !'Surface enamel of tooth'@ohd)
     ;; (?si !'asserted type'@ohd ?sytpe)
@@ -337,77 +404,58 @@
 
     ;; bind surface variables: 
     ;; ?surfacemi, ?surfaceoi, ?surfacedi, ?surfacefi, ?surfaceli
-    ;; these will be used to determine location of materials
-    ,@(get-caplan-spreadsheet-surfaces-info)
+    ;,@(get-caplan-spreadsheet-surfaces-info)
     
+    ;; bind material variables:
+    ;; ?matmi, ?matoi, ?matdi, ?matfi, ?matli
+    ;; note: surface variables must be prior to call
+    ,@(get-caplan-spreadsheet-materials-info)
 
-    ;; before determing the materials the following has already been determined
+    ;; before determining the materials used in procedure
     ;; the surface is part of tooth
     ;; the patient participated in the procedure
     ;; the tooth participates in the procedure
-
+    ;; material is located in instance of tooth
+    ;; material is a dental restoration of the suface
+    
     ;; J - N. material used in the procedure
+    
     ;; J. material on mesial surface
     (:optional
-     ;; instance of material that participated in the procedure 
-     ;; and is located in tooth and is a retoration of that suface
-     (?materialtypem !rdfs:subClassOf !'dental restoration material'@ohd)
-     (?matmi !'asserted type'@ohd ?materialtypem)
+     ;; instance of material that participates in the procedure 
      (?procedurei !'has participant'@ohd ?surfacemi)
      (?procedurei !'has participant'@ohd ?matmi)
-     (?matmi !'is located in'@ohd ?toothi)
-     (?matmi !'is dental restoration of'@ohd ?surfacemi)
-     ;;(?materialtypem !rdfs:label ?matm))
      (?matmi !rdfs:label ?matm))
-    
+             
     ;; K. material on occlusial surface
     (:optional
-     ;; instance of material that participated in the procedure 
-     ;; and is located in tooth and is a retoration of that suface
-     (?materialtypeo !rdfs:subClassOf !'dental restoration material'@ohd)
-     (?matoi !'asserted type'@ohd ?materialtypeo)
+     ;; instance of material that participates in the procedure 
+     (?procedurei !'has participant'@ohd ?surfaceoi)
      (?procedurei !'has participant'@ohd ?matoi)
-     (?matoi !'is located in'@ohd ?toothi)
-     (?matoi !'is dental restoration of'@ohd ?surfaceoi)
-     ;;(?materialtypeo !rdfs:label ?mato))
      (?matoi !rdfs:label ?mato))
-
+         
     ;; L. material on distal surface
     (:optional
-     ;; instance of material that participated in the procedure 
-     ;; and is located in tooth and is a retoration of that suface
-     (?materialtyped !rdfs:subClassOf !'dental restoration material'@ohd)
-     (?matdi !'asserted type'@ohd ?materialtyped)
+     ;; instance of material that participates in the procedure 
+     (?procedurei !'has participant'@ohd ?surfacedi)
      (?procedurei !'has participant'@ohd ?matdi)
-     (?matdi !'is located in'@ohd ?toothi)
-     (?matdi !'is dental restoration of'@ohd ?surfacedi)
-     ;;(?materialtyped !rdfs:label ?matd))
      (?matdi !rdfs:label ?matd))
 
     ;; M. material on facial surface
     (:optional
-     ;; instance of material that participated in the procedure 
-     ;; and is located in tooth and is a retoration of that suface
-     (?materialtypef !rdfs:subClassOf !'dental restoration material'@ohd)
-     (?matfi !'asserted type'@ohd ?materialtypef)
+     ;; instance of material that participates in the procedure 
+     (?procedurei !'has participant'@ohd ?surfacefi)
      (?procedurei !'has participant'@ohd ?matfi)
-     (?matfi !'is located in'@ohd ?toothi)
-     (?matfi !'is dental restoration of'@ohd ?surfacefi)
-     ;;(?materialtypef !rdfs:label ?matf))
      (?matfi !rdfs:label ?matf))
 
     ;; N. material on lingual sufrace
     (:optional
-     ;; instance of material that participated in the procedure 
-     ;; and is located in tooth and is a retoration of that suface
-     (?materialtypel !rdfs:subClassOf !'dental restoration material'@ohd)
-     (?matli !'asserted type'@ohd ?materialtypel)
+     ;; instance of material that participatesd in the procedure 
+     (?procedurei !'has participant'@ohd ?surfaceli)
      (?procedurei !'has participant'@ohd ?matli)
-     (?matli !'is located in'@ohd ?toothi)
-     (?matli !'is dental restoration of'@ohd ?surfaceli)
-     ;;(?materialtypel !rdfs:label ?matl))
      (?matli !rdfs:label ?matl))
-    
+
+
     ;; T. provider who performed procedure
     (:optional 
      (?providertype !rdfs:subClassOf !'dental health care provider'@ohd)
