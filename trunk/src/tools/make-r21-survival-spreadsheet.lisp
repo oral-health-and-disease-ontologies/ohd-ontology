@@ -259,7 +259,7 @@
 		    ;; this done using a union query to cover the possible matches
 		    (:union
 		     ;; procedures performed on the tooth
-		     (,@(get-caplan-spreadsheet-procedure-info))
+		     (,@(get-caplan-spreadsheet-procedures-info))
 		     
 		     ;; unerupted tooth findingp
 		     (,@(get-caplan-spreadsheet-unerupted-tooth-findings-info))
@@ -313,7 +313,7 @@
      (?surfaceli !'asserted type'@ohd !'Lingual surface enamel of tooth'@ohd) 
      (?surfaceli !'is part of'@ohd ?toothi))))
 
-(defun get-caplan-spreadsheet-procedure-info ()
+(defun get-caplan-spreadsheet-procedures-info ()
   `((!'dental procedure'@ohd !rdfs:label ?procclass) ; label for procclass
     (?proceduretype !rdfs:label ?proctype) ; label for proctype
     (?proceduretype !rdfs:subClassOf !'dental procedure'@ohd) 
