@@ -196,7 +196,7 @@
   )) ;; RL fastest for this?
 
 
-(defun get-caplan-spreadsheet (&key explain translate (reasoner 'owlim-se-r21))
+(defun get-caplan-spreadsheet (&key explain translate (reasoner 'owlim-se-r21) single-patient)
   "Start of the query. Next need to figure out how ?code is to be bound - it isn't in this version. It also appears to return incorrect answers."
   (let ((res 
 	 (funcall (if explain 'explain-r21query (if translate 'sparql-stringify 'r21query) )
@@ -226,7 +226,14 @@
 		     ?dxf ; R. diagnosis on facial surface (buccal surface)
 		     ?dxl ; S. diagnosis on lingual surface
 		     ?provider ; T. provider who performed procedure finding
-		     ;;?test ;;used for testing
+		    
+		     ;; the following variables are used for testing
+		     ?surfacem
+		     ?surfaceo
+		     ?surfaced
+		     ?surfacef
+		     ?surfacel
+		      ;;?test 
 		     )
 		    (:limit 20)
 		    ;;(:limit 10 :order-by (?patientid ?date ?toothn)) ; experimenting with order by clause
@@ -264,8 +271,10 @@
 		    ;; this done using a union query to cover the possible matches
 		    (:union
 		     ;; find procedures performed on the tooth, ada code, and provider
-		     (,@(get-caplan-spreadsheet-procedures-info))
-		      				     
+		     (,@(get-caplan-spreadsheet-procedures-info)
+		      	;; find materials used on surfaces (?matm, ... , ?matl)
+			,@(get-caplan-spreadsheet-materials-info))
+
 		     ;; unerupted tooth findings
 		     ;(,@(get-caplan-spreadsheet-unerupted-tooth-findings-info))
 		     
@@ -275,14 +284,15 @@
 		     ;; missing tooth findings
 		     ;(,@(get-caplan-spreadsheet-missing-tooth-findings-info))
 		     
-		     ;; find materials used on surfaces (?matm, ... , ?matl)
-		     (,@(get-caplan-spreadsheet-materials-info))
+			
 
 		     ;; find diagnosis info
 		     ;(,@(get-caplan-spreadsheet-diagnosis-info))
 		     
 		     )
 		    ;(:filter (equal ?patientid "patient 3000"))
+		    ,@(when single-patient 
+			    `((:filter (equal ?patientid ,(format nil "patient ~a" single-patient)))))
 		    )
 	    :expressivity "RL" :reasoner reasoner :trace "story of some teeth" :values t)))
   (if explain res nil)
@@ -295,7 +305,8 @@
   ;; mesial surface
   '((:optional
      (?surfacemi !'asserted type'@ohd !'Mesial surface enamel of tooth'@ohd) 
-     (?surfacemi !'is part of'@ohd ?toothi))
+     (?surfacemi !'is part of'@ohd ?toothi)
+     (?surfacemi !rdfs:label ?surfacem))
 		      
     ;; occlusal surface (note: occlusal is misspelled in the ontology)
     ;; both incisal and occlusal surfaces are included in occlusal surface
@@ -304,12 +315,14 @@
      ;(:union     ;(
        (?surfaceoi !'asserted type'@ohd !'Occlusial surface enamel of tooth'@ohd);)
       ;;((?surfaceoi !'asserted type'@ohd !'Incisal surface enamel of tooth'@ohd)))
-     (?surfaceoi !'is part of'@ohd ?toothi))
+     (?surfaceoi !'is part of'@ohd ?toothi)
+     (?surfaceoi !rdfs:label ?surfaceo))
 		       
     ;; distal surface
     (:optional
      (?surfacedi !'asserted type'@ohd !'Distal surface enamel of tooth'@ohd) 
-     (?surfacedi !'is part of'@ohd ?toothi))
+     (?surfacedi !'is part of'@ohd ?toothi)
+     (?surfacedi !rdfs:label ?surfaced))
 		       
     ;; facial surface
     ;; both libial and buccal surfaces are included in facial surface
@@ -317,12 +330,14 @@
      (:union
       ((?surfacefi !'asserted type'@ohd !'Labial surface enamel of tooth'@ohd))
       ((?surfacefi !'asserted type'@ohd !'Buccal surface enamel of tooth'@ohd)))
-     (?surfacefi !'is part of'@ohd ?toothi))
+     (?surfacefi !'is part of'@ohd ?toothi)
+     (?surfacefi !rdfs:label ?surfacef))
 		       		       
     ;; lingual surface
     (:optional
      (?surfaceli !'asserted type'@ohd !'Lingual surface enamel of tooth'@ohd) 
-     (?surfaceli !'is part of'@ohd ?toothi))))
+     (?surfaceli !'is part of'@ohd ?toothi)
+     (?surfaceli !rdfs:label ?surfacel))))
   
 (defun get-caplan-spreadsheet-procedures-info ()
   ;; precondition:
