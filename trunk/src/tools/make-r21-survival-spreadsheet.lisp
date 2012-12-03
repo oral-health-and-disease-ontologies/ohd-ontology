@@ -221,11 +221,11 @@
 			  ?matd	   ; L. material for distal surface
 			  ?matf	   ; M. material for facial surface
 			  ?matl	   ; N. material for lingual surface
-			  ;?dxm	   ; O. diagnosis on mesial surface
-			  ;?dxo	   ; P. diagnosis on occlusial surface
-			  ;?dxd	   ; Q. diagnosis on distal surface
-			  ;?dxf ; R. diagnosis on facial surface (buccal surface)
-			  ;?dxl ; S. diagnosis on lingual surface
+			  ?dxm	   ; O. diagnosis on mesial surface
+			  ?dxo	   ; P. diagnosis on occlusial surface
+			  ?dxd	   ; Q. diagnosis on distal surface
+			  ?dxf ; R. diagnosis on facial surface (buccal surface)
+			  ?dxl ; S. diagnosis on lingual surface
 			  ?provider ; T. provider who performed procedure finding
 		    
 			  ;; the following variables are used for testing
@@ -292,51 +292,10 @@
 				 `((:filter (equal ?patientid ,(format nil "patient ~a" single-patient)))))
 			 )
 		       :expressivity "RL" :reasoner reasoner :trace "story of some teeth" :values t))))
-    ;;(if explain res nil)
-    res
+    (if explain res nil)
+    ;;res
   ))
 
-(defun get-caplan-spreadsheet-surfaces-info ()
-  ;; precondition:
-  ;; tooth (toothni) part of patient (?patienti))
-
-  ;; mesial surface
-  '((:optional
-     (?surfacemi !'asserted type'@ohd !'Mesial surface enamel of tooth'@ohd) 
-     (?surfacemi !'is part of'@ohd ?toothi)
-     (?surfacemi !rdfs:label ?surfacem))
-		      
-    ;; occlusal surface (note: occlusal is misspelled in the ontology)
-    ;; both incisal and occlusal surfaces are included in occlusal surface
-    (:optional
-     ;; ontology doesn't have incisal surfaces yet, uncomment code when added
-     ;(:union     ;(
-       (?surfaceoi !'asserted type'@ohd !'Occlusial surface enamel of tooth'@ohd);)
-      ;;((?surfaceoi !'asserted type'@ohd !'Incisal surface enamel of tooth'@ohd)))
-     (?surfaceoi !'is part of'@ohd ?toothi)
-     (?surfaceoi !rdfs:label ?surfaceo))
-		       
-    ;; distal surface
-    (:optional
-     (?surfacedi !'asserted type'@ohd !'Distal surface enamel of tooth'@ohd) 
-     (?surfacedi !'is part of'@ohd ?toothi)
-     (?surfacedi !rdfs:label ?surfaced))
-		       
-    ;; facial surface
-    ;; both libial and buccal surfaces are included in facial surface
-    (:optional
-     (:union
-      ((?surfacefi !'asserted type'@ohd !'Labial surface enamel of tooth'@ohd))
-      ((?surfacefi !'asserted type'@ohd !'Buccal surface enamel of tooth'@ohd)))
-     (?surfacefi !'is part of'@ohd ?toothi)
-     (?surfacefi !rdfs:label ?surfacef))
-		       		       
-    ;; lingual surface
-    (:optional
-     (?surfaceli !'asserted type'@ohd !'Lingual surface enamel of tooth'@ohd) 
-     (?surfaceli !'is part of'@ohd ?toothi)
-     (?surfaceli !rdfs:label ?surfacel))))
-  
 
 (defun get-caplan-spreadsheet-procedures-info ()
   ;; precondition:
@@ -430,8 +389,8 @@
      (:union
       ((?surfacefi !'asserted type'@ohd !'Buccal surface enamel of tooth'@ohd))
       ((?surfacefi !'asserted type'@ohd !'Labial surface enamel of tooth'@ohd)))
-     (?surfacei !'is part of'@ohd ?toothi)
-     (?surfacei !rdfs:label ?surfacef)
+     (?surfacefi !'is part of'@ohd ?toothi)
+     (?surfacefi !rdfs:label ?surfacef)
      (?materialtypef !rdfs:subClassOf !'dental restoration material'@ohd)
      (?matfi !'asserted type'@ohd ?materialtypef)
      (?matfi !'is located in'@ohd ?toothi)
