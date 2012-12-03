@@ -378,7 +378,7 @@
      (?matmi !'asserted type'@ohd ?materialtypem)
      (?matmi !'is located in'@ohd ?toothi)
      (?matmi !'is dental restoration of'@ohd ?surfacemi)
-     (?prodcurei !'has participant'@ohd ?matmi)
+     (?procedurei !'has participant'@ohd ?matmi)
      (?matmi !rdfs:label ?matm))
 
     ;; K. material on occlusial surface
@@ -387,7 +387,7 @@
      (?matoi !'asserted type'@ohd ?materialtypeo)
      (?matoi !'is located in'@ohd ?toothi)
      (?matoi !'is dental restoration of'@ohd ?surfaceoi)
-     (?prodcurei !'has participant'@ohd ?matoi)
+     (?procedurei !'has participant'@ohd ?matoi)
      (?matoi !rdfs:label ?mato))
    
     ;; L.  material on distal surface
@@ -396,7 +396,7 @@
      (?matdi !'asserted type'@ohd ?materialtyped)
      (?matdi !'is located in'@ohd ?toothi)
      (?matdi !'is dental restoration of'@ohd ?surfacedi)
-     (?prodcurei !'has participant'@ohd ?matdi)
+     (?procedurei !'has participant'@ohd ?matdi)
      (?matdi !rdfs:label ?matd))
    
     ;; M.  material on facial surface
@@ -405,7 +405,7 @@
      (?matfi !'asserted type'@ohd ?materialtypef)
      (?matfi !'is located in'@ohd ?toothi)
      (?matfi !'is dental restoration of'@ohd ?surfacefi)
-     (?prodcurei !'has participant'@ohd ?matfi)
+     (?procedurei !'has participant'@ohd ?matfi)
      (?matfi !rdfs:label ?matf))
    
   
@@ -415,7 +415,7 @@
      (?matli !'asserted type'@ohd ?materialtypel)
      (?matli !'is located in'@ohd ?toothi)
      (?matli !'is dental restoration of'@ohd ?surfaceli)
-     (?prodcurei !'has participant'@ohd ?matli)
+     (?procedurei !'has participant'@ohd ?matli)
      (?matli !rdfs:label ?matl))))
 
 (defun get-caplan-spreadsheet-unerupted-tooth-findings-info ()
