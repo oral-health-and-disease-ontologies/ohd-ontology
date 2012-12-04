@@ -277,7 +277,7 @@
 			  ;;   ,@(get-caplan-spreadsheet-materials-info))
 
 			  ;; unerupted tooth findings
-			  (,@(get-caplan-spreadsheet-unerupted-tooth-findings-info))
+			  ;;(,@(get-caplan-spreadsheet-unerupted-tooth-findings-info))
 			  
 			  ;; ;; caries findings
 			  ;; (,@(get-caplan-spreadsheet-caries-findings-info)
@@ -544,9 +544,6 @@
     ;(!'missing tooth finding'@ohd !rdfs:label ?proctype) ; label for proctype
     (?mstoothfxi !rdfs:label ?procclass) ; label for procclass
 
-    (?utoothnumi !rdf:type !'Universal tooth number'@ohd)
-    (?utoothnumi !'is about'@ohd ?toothtype)
-		       
     ;; get instance of missing tooth finding
     (?mstoothfxtype !rdfs:subClassOf !'missing tooth finding'@ohd)
     (?mstoothfxi !'asserted type'@ohd ?mstoothfxtype)
@@ -559,6 +556,8 @@
     (?mstoothfxi !'is about'@ohd ?dentitioni)
 
     ;; link the finding to the universal tooth number
+    (?utoothnumi !rdf:type !'Universal tooth number'@ohd)
+    (?utoothnumi !'is about'@ohd ?toothtype)
     (?mstoothfxi !'has part'@ohd ?utoothnumi) ;that has part universal tooth number of tooth
 		     
     ;; T. provider who reported the finding
@@ -578,6 +577,38 @@
      (?providerrolei !'inheres in'@ohd ?provideri)
      (?provideri !rdfs:label ?provider)))
 )
+
+(defun test-tooth-17-patient-7291 ()
+
+  (sparql
+   '(:select (?patientid ?findingdate ?finding)
+     (:limit 10)
+     (?patienttype !rdfs:subClassOf !'dental patient'@ohd)
+     (?patienti !'asserted type'@ohd ?patienttype) 
+     (?patienti !rdfs:label ?patientid)
+	    
+     (?toothtype !rdfs:subClassOf !'Tooth'@ohd)
+     (?toothi !'asserted type'@ohd ?toothtype)
+     (?toothi !'is part of'@ohd ?patienti)
+	    
+     (?findingtype !rdfs:subClassOf !'missing tooth finding'@ohd)
+     (?findingi !'asserted type'@ohd ?findingtype)
+     (?findingi !'occurrence date'@ohd ?findingdate)
+	    
+     (?dentitioni !'asserted type'@ohd !'Secondary dentition'@ohd)
+     (?dentitioni !'is part of'@ohd ?patienti)
+     (?findingi !'is about'@ohd ?dentitioni)
+	    
+	    
+     (?utoothnumi !rdf:type !'Universal tooth number'@ohd)
+     (?utoothnumi !'is about'@ohd ?toothtype)
+     (?findingi !'has part'@ohd ?utoothnumi)
+	    
+     (?findingi !rdfs:label ?finding)
+     (:filter (equal ?patientid "patient 7291")))
+   :use-reasoner (eval 'owlim-se-r21)
+   :trace "test"
+   :values nil))
 
 (defun test-stardog-query ()
  (r21query '(:select (?s ?l)
