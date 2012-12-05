@@ -72,6 +72,7 @@
 	;;(tooth-type-uri nil)
 	(dentition-uri nil)
 	(dentition-type-uri nil)
+	(universal-tooth-num-uri nil)
 	(teeth-list nil))
 
     
@@ -93,7 +94,7 @@
 	 
          ;; get info about the type of missing tooth
 	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-name t))
-	 ;;(setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
+         ;;(setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
 	 (setf tooth-num (format nil "~a" tooth)) ; converts tooth number to string
 	 
 	 ;; get iri associated with the type of missing tooth finding
@@ -136,6 +137,14 @@
          ;; instance of missing tooth finding 'is about' the dentition instance
 	 (push `(object-property-assertion !'is about'@ohd ,finding-uri ,dentition-uri) axioms)
 	 
+         ;; get iri for universal tooth number of missing tooth
+	 (setf universal-tooth-num-uri
+	       (get-eaglesoft-universal-tooth-number-iri tooth-num))
+
+	 ;; relate missing tooth finding to universal tooth numberl
+	 (push `(object-property-assertion 
+		 !'has part'@ohd ,finding-uri ,universal-tooth-num-uri) axioms)
+	 
          ;; add data property !ohd:'occurrence date' of the missing tooth finding
 	 (push `(data-property-assertion !'occurrence date'@ohd
 					 ,finding-uri
@@ -177,6 +186,23 @@
 				     :iri-base *eaglesoft-individual-teeth-iri-base*
 				     :class-type !'Secondary dentition'@ohd
 				     :args `("eaglesoft")))
+    ;; return uri
+    uri))
+
+(defun get-eaglesoft-universal-tooth-number-iri (adatoothnum)
+  "Returns the iri for a universal tooth number that is associated with an ADA universal tooth number.  For example if adatoothnum is '17', this will return the iri for universal tooth number 17."
+  (let ((uri nil)
+	(uri-string nil))
+
+    ;; left zero pad the tooth number; e.g. 7 -> 07
+    (setf adatoothnum (str-right (str+ "0" adatoothnum) 2))
+    
+    ;; creath uri string using tooth number
+    (setf uri-string (format nil "OHD_00001~a" adatoothnum))
+
+    ;; create uri
+    (setf uri (make-uri-base-relative uri-string "obo:"))
+    
     ;; return uri
     uri))
 
