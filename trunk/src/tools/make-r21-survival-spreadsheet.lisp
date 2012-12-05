@@ -578,19 +578,62 @@
      (?provideri !rdfs:label ?provider)))
 )
 
-(defun test-tooth-17-patient-7291 ()
-
+(defun test-tooth-17-patient-7291-found ()
   (sparql
    '(:select (?patientid ?findingdate ?finding)
      (:limit 10)
      (?patienttype !rdfs:subClassOf !'dental patient'@ohd)
      (?patienti !'asserted type'@ohd ?patienttype) 
      (?patienti !rdfs:label ?patientid)
+
+     ;; This comes from the general query in
+     ;; get-caplan-spreadsheet
+     ;; tooth 17 is found when the below is commented out
+     ;; HOWEVER: I need ?toothtype and ?toothi to do matches
+     ;; in other sections of the query (e.g., finding materials)
+
+     ;;(?toothtype !rdfs:subClassOf !'Tooth'@ohd)
+     ;;(?toothi !'asserted type'@ohd ?toothtype)
+     ;;(?toothi !'is part of'@ohd ?patienti)
+
+     ;; link finding to universal tooth number
+     ;;(?utoothnumi !rdf:type !'Universal tooth number'@ohd)
+     ;;(?utoothnumi !'is about'@ohd ?toothtype)
+     ;;(?findingi !'has part'@ohd ?utoothnumi)
+
+     (?findingtype !rdfs:subClassOf !'missing tooth finding'@ohd)
+     (?findingi !'asserted type'@ohd ?findingtype)
+     (?findingi !'occurrence date'@ohd ?findingdate)
 	    
+     (?dentitioni !'asserted type'@ohd !'Secondary dentition'@ohd)
+     (?dentitioni !'is part of'@ohd ?patienti)
+     (?findingi !'is about'@ohd ?dentitioni)
+	    
+     (?findingi !rdfs:label ?finding)
+     (:filter (equal ?patientid "patient 7291")))
+   :use-reasoner (eval 'owlim-se-r21-remote)
+   :trace "test"
+   :values nil))
+
+(defun test-tooth-17-patient-7291-not-found ()
+  (sparql
+   '(:select (?patientid ?findingdate ?finding)
+     (:limit 10)
+     (?patienttype !rdfs:subClassOf !'dental patient'@ohd)
+     (?patienti !'asserted type'@ohd ?patienttype) 
+     (?patienti !rdfs:label ?patientid)
+
+     ;; when ?toothtype, ?toothni, and ?utoothnumi are included
+     ;; tooth 17 is not found
      (?toothtype !rdfs:subClassOf !'Tooth'@ohd)
      (?toothi !'asserted type'@ohd ?toothtype)
      (?toothi !'is part of'@ohd ?patienti)
-	    
+
+     ;; link finding to universal tooth number
+     (?utoothnumi !rdf:type !'Universal tooth number'@ohd)
+     (?utoothnumi !'is about'@ohd ?toothtype)
+     (?findingi !'has part'@ohd ?utoothnumi)
+
      (?findingtype !rdfs:subClassOf !'missing tooth finding'@ohd)
      (?findingi !'asserted type'@ohd ?findingtype)
      (?findingi !'occurrence date'@ohd ?findingdate)
@@ -600,13 +643,11 @@
      (?findingi !'is about'@ohd ?dentitioni)
 	    
 	    
-     (?utoothnumi !rdf:type !'Universal tooth number'@ohd)
-     (?utoothnumi !'is about'@ohd ?toothtype)
-     (?findingi !'has part'@ohd ?utoothnumi)
+
 	    
      (?findingi !rdfs:label ?finding)
      (:filter (equal ?patientid "patient 7291")))
-   :use-reasoner (eval 'owlim-se-r21)
+   :use-reasoner (eval 'owlim-se-r21-remote)
    :trace "test"
    :values nil))
 
