@@ -2,7 +2,7 @@
 (defparameter
     owlim-lite-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2012.10.30/query")
 (defparameter 
-    owlim-se-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2012.11.23/query")
+    owlim-se-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2012.12.05/query")
 (defparameter 
     owlim-se-r21-remote "http://den287.sdm.buffalo.edu:8080/openrdf-workbench/repositories/ohd-r21-nightly/query")
 
@@ -275,7 +275,7 @@
 			  ;; (,@(get-caplan-spreadsheet-procedures-info)
 			  ;;    ;; find materials used on surfaces (?matm, ... , ?matl)
 			  ;;   ,@(get-caplan-spreadsheet-materials-info))
-
+			  
 			  ;; unerupted tooth findings
 			  ;;(,@(get-caplan-spreadsheet-unerupted-tooth-findings-info))
 			  
@@ -537,7 +537,7 @@
 
 
 (defun get-caplan-spreadsheet-missing-tooth-findings-info ()
-  '( ;; get the instance of 'Universal tooth number' that is about the tooth type
+  '(;; get the instance of 'Universal tooth number' that is about the tooth type
     ;; this will be needed in order to link missing tooth finding to a
     ;; particular tooth number (via the 'has part' universal tooth number)
     ;(!'dental finding'@ohd !rdfs:label ?procclass) ; label for procclass
@@ -555,11 +555,17 @@
     (?dentitioni !'is part of'@ohd ?patienti)
     (?mstoothfxi !'is about'@ohd ?dentitioni)
 
+    
+
     ;; link the finding to the universal tooth number
     (?utoothnumi !rdf:type !'Universal tooth number'@ohd)
     (?utoothnumi !'is about'@ohd ?toothtype)
+
+    ;(?missingtoothtype !rdfs:subClassOf !'Tooth'@ohd)
+    ;(?utoothnumi !'is about'@ohd ?missingtoothtype)
+
     (?mstoothfxi !'has part'@ohd ?utoothnumi) ;that has part universal tooth number of tooth
-		     
+    
     ;; T. provider who reported the finding
     (:optional 
      ;; find exam that has specified output the finding 
@@ -580,26 +586,21 @@
 
 (defun test-tooth-17-patient-7291-found ()
   (sparql
-   '(:select (?patientid ?findingdate ?finding)
+   '(:select (?patientid ?findingdate ?missingtooth ?finding)
      (:limit 10)
      (?patienttype !rdfs:subClassOf !'dental patient'@ohd)
      (?patienti !'asserted type'@ohd ?patienttype) 
      (?patienti !rdfs:label ?patientid)
 
-     ;; This comes from the general query in
-     ;; get-caplan-spreadsheet
-     ;; tooth 17 is found when the below is commented out
-     ;; HOWEVER: I need ?toothtype and ?toothi to do matches
-     ;; in other sections of the query (e.g., finding materials)
-
-     ;;(?toothtype !rdfs:subClassOf !'Tooth'@ohd)
-     ;;(?toothi !'asserted type'@ohd ?toothtype)
-     ;;(?toothi !'is part of'@ohd ?patienti)
+     (?missingtoothtype !rdfs:subClassOf !'Tooth'@ohd)
+     ;;(?missingtoothtype !rdfs:label ?missingtooth)
+     (?missingtoothtype !'ADA universal tooth number'@ohd ?missingtooth)
 
      ;; link finding to universal tooth number
-     ;;(?utoothnumi !rdf:type !'Universal tooth number'@ohd)
-     ;;(?utoothnumi !'is about'@ohd ?toothtype)
-     ;;(?findingi !'has part'@ohd ?utoothnumi)
+     (?utoothnumi !rdf:type !'Universal tooth number'@ohd)
+     (?findingi !'has part'@ohd ?utoothnumi)
+     (?utoothnumi !'is about'@ohd ?missingtoothtype)
+      
 
      (?findingtype !rdfs:subClassOf !'missing tooth finding'@ohd)
      (?findingi !'asserted type'@ohd ?findingtype)
@@ -608,10 +609,10 @@
      (?dentitioni !'asserted type'@ohd !'Secondary dentition'@ohd)
      (?dentitioni !'is part of'@ohd ?patienti)
      (?findingi !'is about'@ohd ?dentitioni)
-	    
+	   
      (?findingi !rdfs:label ?finding)
      (:filter (equal ?patientid "patient 7291")))
-   :use-reasoner (eval 'owlim-se-r21-remote)
+   :use-reasoner (eval 'owlim-se-r21)
    :trace "test"
    :values nil))
 
@@ -642,12 +643,9 @@
      (?dentitioni !'is part of'@ohd ?patienti)
      (?findingi !'is about'@ohd ?dentitioni)
 	    
-	    
-
-	    
      (?findingi !rdfs:label ?finding)
      (:filter (equal ?patientid "patient 7291")))
-   :use-reasoner (eval 'owlim-se-r21-remote)
+   :use-reasoner (eval 'owlim-se-r21)
    :trace "test"
    :values nil))
 
