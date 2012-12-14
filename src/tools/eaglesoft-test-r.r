@@ -60,5 +60,7 @@ for (i in 1:1) {
 ##              "dxm", "dxo", "dxd", "dxf", "dxl", "provider")]
 
 
+
 ## write $results of dataframe to SAS file.  So, if my dataframe is df, the call would look like:
+## library(foreign)
 ## write.foreign(df, "~/Desktop/r21.txt", "~/Desktop/r21.sas", package="SAS")
