@@ -59,22 +59,21 @@ for (i in 1:2) {
   df.ordered <- df[order(df$tthnum, df$procdate), ]
 
   ## order results to match Caplan's spreadsheet
-  ##df.ordered[ , c("patientid", "sex", "birthdate", "tthnum", "procdate","procclass","proccode",
-  ##             "matm", "mato", "matd", "matf", "matl","dxm", "dxo", "dxd", "dxf", "dxl", "provider")]
-  ## df.ordered[ , c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18)]
-
-  df.temp <- df.ordered
-  for (colnum in 1:18) {
-    colname <- column.names[colnum]
-    ##print(colname)
-    df.temp[colnum] <- df.ordered[[colname]]
-  }
-  colnames(df.temp) <- column.names
+  df.ordered <- df.ordered[ , c("patientid", "sex", "birthdate", "tthnum", "procdate","procclass","proccode",
+                                "matm", "mato", "matd", "matf", "matl","dxm", "dxo", "dxd", "dxf", "dxl", "provider")]
   
-  ##print(df.temp)
+
+  ## this is another way to re-order columns ...
+  ## df.temp <- df.ordered
+  ## for (colnum in 1:18) {
+  ##   colname <- column.names[colnum]
+  ##   ##print(colname)
+  ##   df.temp[colnum] <- df.ordered[[colname]]
+  ## }
+  ## colnames(df.temp) <- column.names
   
   ## append rows to Caplan data frame
-  df.caplan <- rbind(df.caplan, df.temp)
+  df.caplan <- rbind(df.caplan, df.ordered)
   
 }
 
@@ -84,5 +83,3 @@ print(df.caplan)
 ## write $results of dataframe to SAS file.  So, if my dataframe is df, the call would look like:
 ## library(foreign)
 ## write.foreign(df, "~/Desktop/r21.txt", "~/Desktop/r21.sas", package="SAS")
-
-
