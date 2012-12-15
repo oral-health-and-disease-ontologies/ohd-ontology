@@ -6,9 +6,11 @@ source("eaglesoft-load-r-variables.r")
 df.caplan <- NULL
 
 ## column names in Caplan spreadsheet
-column.names <- c("patientid", "sex", "birthdate", "tthnum", "procdate","procclass",
-                  "proccode", "matm", "mato", "matd", "matf", "matl",
-                  "dxm", "dxo", "dxd", "dxf", "dxl", "provider")
+column.names <- c("patientid", "sex", "birthdate", "tthnum", "procdate","procclass", "proccode",
+                  "matm", "mato", "matd", "matf", "matl","dxm", "dxo", "dxd", "dxf", "dxl", "provider")
+
+## this will create and empty data frame with columns names
+df.test <- matrix(nrow=0, ncol=18, dimnames=list(NULL, column.names))
 
 ## get list of patient ids
 ## note: the query is ordered by patient id
@@ -39,6 +41,15 @@ for (i in 1:1) {
   ## I need different data types in order to sort by date
   df <- as.data.frame(res)
 
+
+  ## check data frame ot see what columns have been returned from query
+  ## if a column is missing put NA in column
+  for (colnum in 1:18) {
+    column.values <- df[[column.names[colnum]]]  ## note the use of [[ ]]
+    if (is.null(column.values)) {
+      df[[column.names[colnum]]] <- NA }
+  }
+  
   ## dates in df are in form "YYY-MM-DD^^http://www.w3.org/2001/XMLSchema#date"
   ## so I need to convert to R dates
   df$birthdate <- as.Date(df$birthdate)
@@ -46,21 +57,23 @@ for (i in 1:1) {
   
   ## order results by tooth number and procedure / finding date
   df.ordered <- df[order(df$tthnum, df$procdate), ]
-  
-  
+
+  ## order results to match Caplan's spreadsheet
+  df.ordered[ , c("patientid", "sex", "birthdate", "tthnum", "procdate","procclass","proccode",
+               "matm", "mato", "matd", "matf", "matl","dxm", "dxo", "dxd", "dxf", "dxl", "provider")]
+  ## df.ordered[ , c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18)]
+
+  ##df.ordered[, column.names]
   print(df.ordered)
+  
   ## append rows to Caplan data frame
   ##df.caplan <- rbind(df.caplan, df.ordered)
   
 }
 
-## order results to match Caplan's spreadsheet
-##df.ordered[c("patientid", "sex", "birthdate", "tthnum", "procdate","procclass",
-##              "proccode", "matm", "mato", "matd", "matf", "matl",
-##              "dxm", "dxo", "dxd", "dxf", "dxl", "provider")]
-
-
 
 ## write $results of dataframe to SAS file.  So, if my dataframe is df, the call would look like:
 ## library(foreign)
 ## write.foreign(df, "~/Desktop/r21.txt", "~/Desktop/r21.sas", package="SAS")
+
+
