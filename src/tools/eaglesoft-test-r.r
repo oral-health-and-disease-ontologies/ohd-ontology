@@ -9,8 +9,8 @@ df.caplan <- NULL
 column.names <- c("patientid", "sex", "birthdate", "tthnum", "procdate","procclass", "proccode",
                   "matm", "mato", "matd", "matf", "matl","dxm", "dxo", "dxd", "dxf", "dxl", "provider")
 
-## this will create and empty data frame with columns names
-df.test <- matrix(nrow=0, ncol=18, dimnames=list(NULL, column.names))
+## this will create and empty data frame with columns names; I don't need to do this though ...
+## df.test <- matrix(nrow=0, ncol=18, dimnames=list(NULL, column.names))
 
 ## get list of patient ids
 ## note: the query is ordered by patient id
@@ -63,7 +63,6 @@ for (i in 1:2) {
   ##             "matm", "mato", "matd", "matf", "matl","dxm", "dxo", "dxd", "dxf", "dxl", "provider")]
   ## df.ordered[ , c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18)]
 
-  ##df.temp <- matrix(nrow=0, ncol=18, dimnames=list(NULL, column.names))
   df.temp <- df.ordered
   for (colnum in 1:18) {
     colname <- column.names[colnum]
