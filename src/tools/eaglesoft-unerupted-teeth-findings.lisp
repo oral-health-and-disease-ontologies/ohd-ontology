@@ -71,7 +71,6 @@
 	(tooth-uri nil)
 	(tooth-type-uri nil)
 	(tooth-name nil)
-	(tooth-num nil)
 	(teeth-list nil))
 
 
@@ -115,9 +114,10 @@
 	 (setf axioms (append temp-axioms axioms))
 
          ;; add annotation about unerupted tooth finding
+	 ;; note: tooth-name has form "tooth X"
 	 (push `(annotation-assertion !rdfs:label 
 				      ,finding-uri
-				      ,(str+ "unerupted tooth " tooth-num " finding "
+				      ,(str+ "unerupted " tooth-name "finding "
 					     "for patient " patient-id )) axioms)
          
          ;; instance of unerupted tooth finding 'is about' the unerupted tooth
