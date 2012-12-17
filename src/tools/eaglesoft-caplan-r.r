@@ -59,14 +59,17 @@ for (i in 1:10) {
         colnames(res)[ncol(res)] <- column.name ## give column the name
       }
     }
-  
+
+    ## replace all NA values with "."
+    res[is.na(res)] <- "."
+    
     ## order results by tooth number and procedure / finding date
     res.ordered <- res[order(res[, "tthnum"], res[, "procdate"]), ]
 
     ## order results to match Caplan's spreadsheet
     res.ordered <- res.ordered[ , c("patientid", "sex", "birthdate", "tthnum", "procdate","procclass","proccode",
                                     "matm", "mato", "matd", "matf", "matl","dxm", "dxo", "dxd", "dxf", "dxl", "provider")]
-  
+
     ## append rows to Caplan data frame
     res.caplan <- rbind(res.caplan, res.ordered)
   }
