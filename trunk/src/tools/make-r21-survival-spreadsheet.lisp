@@ -243,7 +243,7 @@
 			  
 			  )
 			 (:limit 30)
-			 ;;(:limit 10 :order-by (?patientid ?date ?toothn)) ; experimenting with order by clause
+			 ;;(:limit 10 :order-by (?patientid ?tthnum ?procdate)) ; experimenting with order by clause
 					
 			 ;; billd: general not about 'asserted type'
 			 ;; the 'assert type' relation is used to restrict matching so that
@@ -262,8 +262,6 @@
 		    
 			 ;; D. tooth number - the tooth that is part of the patient
 			 (?toothtype !rdfs:subClassOf !'Tooth'@ohd)
-			 (?toothi !'asserted type'@ohd ?toothtype)
-			 (?toothi !'is part of'@ohd ?patienti) ; that is part of the patient
 			 (?toothtype !'ADA universal tooth number'@ohd ?tthnum) ; ADA tooth number of tooth
 			 
 			 ;; E. the date of the procedure or finding on the patient
@@ -272,17 +270,17 @@
 			 ;; this done using a union query to cover the possible matches
 			 (:union
 			  ;; find procedures performed on the tooth, ada code, and provider
-			  ;; (,@(get-caplan-spreadsheet-procedures-info)
-			  ;;    ;; find materials used on surfaces (?matm, ... , ?matl)
-			  ;;   ,@(get-caplan-spreadsheet-materials-info))
+			  (,@(get-caplan-spreadsheet-procedures-info)
+			     ;; find materials used on surfaces (?matm, ... , ?matl)
+			    ,@(get-caplan-spreadsheet-materials-info))
 			  
 			  ;; unerupted tooth findings
-			  ;;(,@(get-caplan-spreadsheet-unerupted-tooth-findings-info))
+			  (,@(get-caplan-spreadsheet-unerupted-tooth-findings-info))
 			  
-			  ;; ;; caries findings
-			  ;; (,@(get-caplan-spreadsheet-caries-findings-info)
-			  ;;    ;; find diagnosis info about caries lesions
-			  ;;    ,@(get-caplan-spreadsheet-diagnosis-info))
+			  ;; caries findings
+			  (,@(get-caplan-spreadsheet-caries-findings-info)
+			     ;; find diagnosis info about caries lesions
+			     ,@(get-caplan-spreadsheet-diagnosis-info))
 			  
 			  ;; missing tooth findings
 			  (,@(get-caplan-spreadsheet-missing-tooth-findings-info))
@@ -297,18 +295,22 @@
 
 
 (defun get-caplan-spreadsheet-procedures-info ()
-  ;; precondition:
-  ;; tooth (?toothni) part of patient (?patienti))
-  ;; and surface (?surfacemi ... ?surfaceli) part of tooth (?toothi)
-
   `(;(!'dental procedure'@ohd !rdfs:label ?procclass) ; label for procclass
-    (?proceduretype !rdfs:subClassOf !'dental procedure'@ohd) 
-    (?proceduretype !rdfs:label ?procclass) ; label for procclass
+  
+    ;; find tooth and procedure that involves that tooth
+    (?toothi !'asserted type'@ohd ?toothtype)
+    (?toothi !'is part of'@ohd ?patienti) ; that is part of the patient
 
+    (?proceduretype !rdfs:subClassOf !'dental procedure'@ohd) 
     (?procedurei !'asserted type'@ohd ?proceduretype) ; instance of procedure
     (?procedurei !'has participant'@ohd ?patienti) ; involving that patient
     (?procedurei !'has participant'@ohd ?toothi) ; and involving that tooth
+    (?proceduretype !rdfs:label ?procclass) ; label for procclass
+    
     (?procedurei !'occurrence date'@ohd ?procdate) ; and occurs on ?procdate
+
+    
+    
 
     ;; find which role the procedure realizes
     (:union
@@ -337,11 +339,9 @@
   ;; precondition:
   ;; the following have bee defined
   ;; tooth (?toothni) part of patient (?patienti))
-  ;; surface (?surfacemi ... ?surfaceli) part of tooth (?toothi)
   ;; procedure has participant tooth
   ;; procedure realizes some tooth role
 
-  
   ;; find instances of materials that restore / are part of surfaces
   '(;; J - N. material used in the procedure
     ;; J. material on mesial surface
@@ -356,7 +356,7 @@
      (?procedurei !'has participant'@ohd ?surfacemi)
      (?procedurei !'has participant'@ohd ?matmi)
      (?matmi !rdfs:label ?matm))
-
+    
     ;; K. material on occlusial surface
     (:optional
      ;(:union ;; OHD doesn't have Incicsal surface yet
@@ -415,14 +415,18 @@
      (?procedurei !'has participant'@ohd ?matli)
      (?matli !rdfs:label ?matl))))
 
-
 (defun get-caplan-spreadsheet-unerupted-tooth-findings-info ()
   '(;(!'dental finding'@ohd !rdfs:label ?procclass) ; label for procclass
     ;(!'unerupted tooth finding'@ohd !rdfs:label ?proctype) ;label for proctype
+
+    ;; find unerupted tooth that finding is about
+    (?utoothi !'asserted type'@ohd ?toothtype)
+    (?utoothi !'is part of'@ohd ?patienti) ; that is part of the patient
+
     (?untoothfxi !rdfs:label ?procclass) ; label for procclass
     
     (?untoothfxi !'asserted type'@ohd !'unerupted tooth finding'@ohd)
-    (?untoothfxi !'is about'@ohd ?toothi)	 ;about the tooth
+    (?untoothfxi !'is about'@ohd ?utoothi)	 ;about the tooth
     (?untoothfxi !'occurrence date'@ohd ?procdate) ;date of finding
 
     ;; T. provider who reported the finding
@@ -447,9 +451,13 @@
     ;(!'caries finding'@ohd !rdfs:label ?proctype)  ;label for proctype
     (?cariesfxi !rdfs:label ?procclass) ; label for procclass
 
+    ;; find tooth that has caries
+    (?cariestoothi !'asserted type'@ohd ?toothtype)
+    (?cariestoothi !'is part of'@ohd ?patienti) ; that is part of the patient
+
     ;; get caries finding that is about the some lesion that is part of tooh
     (?lesionontoothi !'asserted type'@ohd !'carious lesion of tooth'@ohd) ; instance of lesion
-    (?lesionontoothi !'is part of'@ohd ?toothi) ; part of patient's tooth
+    (?lesionontoothi !'is part of'@ohd ?cariestoothi) ; part of patient's tooth
         
     ;; find caries finding that is about the lesion
     (?cariesfxi !'asserted type'@ohd !'caries finding'@ohd) ; instance of finding
@@ -478,7 +486,7 @@
     ;,@(get-caplan-spreadsheet-lesions-info)
 
     ;; precondition:
-    ;; ?lesionontoothi is a lesion that is part of ?toothi
+    ;; ?lesionontoothi is a lesion that is part of ?cariestoothi
     ;; ?carisfxi is a caries finding that is about ?lesionontoothi
     
     ;; method:
@@ -490,7 +498,7 @@
 
     (:optional
      (?surfacemi !'asserted type'@ohd !'Mesial surface enamel of tooth'@ohd) 
-     (?surfacemi !'is part of'@ohd ?toothi)
+     (?surfacemi !'is part of'@ohd ?cariestoothi)
      (?surfacemi !rdfs:label ?surfacem)
      (?lesionontoothi !'is part of'@ohd ?surfacemi)
      (?lesionontoothi !rdfs:label ?dxm))
@@ -502,7 +510,7 @@
      ;; # note: occlusial is mispelled (
      (?surfaceoi !'asserted type'@ohd !'Occlusial surface enamel of tooth'@ohd)
      ;) ((?surfaceoi !'asserted type'@ohd !'Inscisal surface enamel of tooth'@ohd)))
-     (?surfaceoi !'is part of'@ohd ?toothi)
+     (?surfaceoi !'is part of'@ohd ?cariestoothi)
      (?surfaceoi !rdfs:label ?surfaceo)
      (?lesionontoothi !'is part of'@ohd ?surfaceoi)
      (?lesionontoothi !rdfs:label ?dxo))
@@ -510,7 +518,7 @@
     ;; Q. finding on distal suface
     (:optional
      (?surfacedi !'asserted type'@ohd !'Distal surface enamel of tooth'@ohd) 
-     (?surfacedi !'is part of'@ohd ?toothi)
+     (?surfacedi !'is part of'@ohd ?cariestoothi)
      (?surfacedi !rdfs:label ?surfaced)
      (?lesionontoothi !'is part of'@ohd ?surfacedi)
      (?lesionontoothi !rdfs:label ?dxd))
@@ -522,6 +530,7 @@
      (:union
       ((?surfacefi !'asserted type'@ohd !'Buccal surface enamel of tooth'@ohd))
       ((?surfacefi !'asserted type'@ohd !'Labial surface enamel of tooth'@ohd)))
+     (?surfacefi !'is part of'@ohd ?cariestoothi)
      (?surfacefi !rdfs:label ?surfacef)
      (?lesionontoothi !'is part of'@ohd ?surfacefi)
      (?lesionontoothi !rdfs:label ?dxf))
@@ -530,7 +539,7 @@
     ;; S. finding on lingual suface
     (:optional
      (?surfaceli !'asserted type'@ohd !'Lingual surface enamel of tooth'@ohd) 
-     (?surfaceli !'is part of'@ohd ?toothi)
+     (?surfaceli !'is part of'@ohd ?cariestoothi)
      (?surfaceli !rdfs:label ?surfacel)
      (?lesionontoothi !'is part of'@ohd ?surfaceli)
      (?lesionontoothi !rdfs:label ?dxl))))
