@@ -20,7 +20,8 @@ patients <- sparql.remote(owlim_se_r21, patient_list_query)
 patient_count <-  length(patients)
 #print(patient_count)
 
-for (i in 1:2) {
+for (i in 1:1) {
+##for (i in 1:patient_count) {
   ## get patient id
   patientid <- patients[i]
   #print(patientid)
@@ -36,48 +37,52 @@ for (i in 1:2) {
   res <-  sparql.remote(owlim_se_r21, patient_query)
   #print(res)
 
-  ## cast results in to data frame
-  ## I do this b/c the res is a matrix and cannot have different data types
-  ## I need different data types in order to sort by date
-  df <- as.data.frame(res)
+  ## make sure results where returned
+  print(patientid)
+  print(length(res))
+  print(length(res) > 0)
+  if (length(res) > 0) {
+    ## cast results in to data frame
+    ## I do this b/c the res is a matrix and cannot have different data types
+    ## I need different data types in order to sort by date
+    df <- as.data.frame(res)
+  
+    ## check data frame ot see what columns have been returned from query
+    ## if a column is missing put NA in column
+    for (colnum in 1:18) {
+      column.values <- df[[column.names[colnum]]] ## note the use of [[ ]]
+      if (is.null(column.values)) {
+        df[[column.names[colnum]]] <- NA }
+    }
+  
+    ## dates in df are in form "YYY-MM-DD^^http://www.w3.org/2001/XMLSchema#date"
+    ## so I need to convert to R dates
+    df$birthdate <- as.Date(df$birthdate)
+    df$procdate <- as.Date(df$procdate)
+  
+    ## order results by tooth number and procedure / finding date
+    df.ordered <- df[order(df$tthnum, df$procdate), ]
 
+    ## order results to match Caplan's spreadsheet
+    df.ordered <- df.ordered[ , c("patientid", "sex", "birthdate", "tthnum", "procdate","procclass","proccode",
+                                  "matm", "mato", "matd", "matf", "matl","dxm", "dxo", "dxd", "dxf", "dxl", "provider")]
+  
 
-  ## check data frame ot see what columns have been returned from query
-  ## if a column is missing put NA in column
-  for (colnum in 1:18) {
-    column.values <- df[[column.names[colnum]]]  ## note the use of [[ ]]
-    if (is.null(column.values)) {
-      df[[column.names[colnum]]] <- NA }
+    ## this is another way to re-order columns ...
+    ## df.temp <- df.ordered
+    ## for (colnum in 1:18) {
+    ##   colname <- column.names[colnum]
+    ##   ##print(colname)
+    ##   df.temp[colnum] <- df.ordered[[colname]]
+    ## }
+    ## colnames(df.temp) <- column.names
+  
+    ## append rows to Caplan data frame
+    df.caplan <- rbind(df.caplan, df.ordered)
   }
-  
-  ## dates in df are in form "YYY-MM-DD^^http://www.w3.org/2001/XMLSchema#date"
-  ## so I need to convert to R dates
-  df$birthdate <- as.Date(df$birthdate)
-  df$procdate <- as.Date(df$procdate)
-  
-  ## order results by tooth number and procedure / finding date
-  df.ordered <- df[order(df$tthnum, df$procdate), ]
-
-  ## order results to match Caplan's spreadsheet
-  df.ordered <- df.ordered[ , c("patientid", "sex", "birthdate", "tthnum", "procdate","procclass","proccode",
-                                "matm", "mato", "matd", "matf", "matl","dxm", "dxo", "dxd", "dxf", "dxl", "provider")]
-  
-
-  ## this is another way to re-order columns ...
-  ## df.temp <- df.ordered
-  ## for (colnum in 1:18) {
-  ##   colname <- column.names[colnum]
-  ##   ##print(colname)
-  ##   df.temp[colnum] <- df.ordered[[colname]]
-  ## }
-  ## colnames(df.temp) <- column.names
-  
-  ## append rows to Caplan data frame
-  df.caplan <- rbind(df.caplan, df.ordered)
-  
 }
 
-print(df.caplan)
+##print(df.caplan)
 
 
 ## write $results of dataframe to SAS file.  So, if my dataframe is df, the call would look like:
