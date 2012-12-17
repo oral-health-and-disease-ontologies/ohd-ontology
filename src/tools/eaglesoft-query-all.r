@@ -30,7 +30,10 @@ for (colnum in 1:18) {
     colnames(res)[ncol(res)] <- column.name ## give column the name
   }
 }
-  
+
+## replace all NA values with "."
+res[is.na(res)] <- "."
+
 ## order results by tooth number and procedure / finding date
 res.ordered <- res[order(res[, "patientid"], res[, "tthnum"], res[, "procdate"]), ]
 
@@ -40,4 +43,4 @@ res.ordered <- res.ordered[, c("patientid", "sex", "birthdate", "tthnum", "procd
 
 ## write $results of dataframe to SAS file.  So, if my dataframe is df, the call would look like:
 ## library(foreign)
-## write.foreign(res.caplan, "~/Desktop/r21.txt", "~/Desktop/r21.sas", package="SAS")
+## write.foreign(res.ordered, "~/Desktop/r21.txt", "~/Desktop/r21.sas", package="SAS")
