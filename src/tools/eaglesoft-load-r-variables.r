@@ -248,8 +248,6 @@ OPTIONAL {
 FILTER (?patientid = \"#patientid#\")} LIMIT 30"
 #FILTER (?patientid = \"patient 3000\") .} LIMIT 30"
 
-
-
 r21_query_all <-
 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX obo: <http://purl.obolibrary.org/obo/>
@@ -438,7 +436,7 @@ OPTIONAL {
 ?providertype rdfs:subClassOf obo:OHD_0000051 . 
 ?provideri obo:OHD_0000092 ?providertype . 
 ?providerrolei obo:BFO_0000052 ?provideri . 
-?provideri rdfs:label ?provider . }.}.} LIMIT 30 "
+?provideri rdfs:label ?provider . }.}.} LIMIT 30  "
   
 #FILTER (?patientid = \"patient 3000\")} LIMIT 30"
 

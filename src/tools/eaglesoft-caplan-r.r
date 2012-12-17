@@ -66,9 +66,22 @@ for (i in 1:10) {
     ## order results by tooth number and procedure / finding date
     res.ordered <- res[order(res[, "tthnum"], res[, "procdate"]), ]
 
-    ## order results to match Caplan's spreadsheet
-    res.ordered <- res.ordered[ , c("patientid", "sex", "birthdate", "tthnum", "procdate","procclass","proccode",
-                                    "matm", "mato", "matd", "matf", "matl","dxm", "dxo", "dxd", "dxf", "dxl", "provider")]
+    ## flip dates from YYYY-MM-DD to MM-DD-YYYY
+    ## NB: do this after ordering!
+    res.ordered[, "birthdate"] <-
+      paste(substring(res.ordered[, "birthdate"], 6, 7), "-",
+            substring(res.ordered[, "birthdate"], 9, 10), "-",
+            substring(res.ordered[, "birthdate"], 1, 4), sep="")
+
+    res.ordered[, "procdate"] <-
+      paste(substring(res.ordered[, "procdate"], 6, 7), "-",
+            substring(res.ordered[, "procdate"], 9, 10), "-",
+            substring(res.ordered[, "procdate"], 1, 4), sep="")
+
+    ## order columns to match Caplan's spreadsheet
+    res.ordered <-
+      res.ordered[ , c("patientid", "sex", "birthdate", "tthnum", "procdate","procclass","proccode",
+                       "matm", "mato", "matd", "matf", "matl","dxm", "dxo", "dxd", "dxf", "dxl", "provider")]
 
     ## append rows to Caplan data frame
     res.caplan <- rbind(res.caplan, res.ordered)
