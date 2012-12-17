@@ -1,6 +1,4 @@
-# load necessary libraries for SPARQL and saving file to SAS
-library(sparql)
-library(foreign)
+# load necessary libraries for sparql
 library(rrdf)
 
 
@@ -245,8 +243,9 @@ OPTIONAL {
 ?provideri obo:OHD_0000092 ?providertype . 
 ?providerrolei obo:BFO_0000052 ?provideri . 
 ?provideri rdfs:label ?provider . }.}.
-FILTER (?patientid = \"#patientid#\")} LIMIT 30"
-#FILTER (?patientid = \"patient 3000\") .} LIMIT 30"
+FILTER (?patientid = \"patient 3000\") .} LIMIT 30"
+#FILTER (?patientid = \"#patientid#\")} LIMIT 30"
+
 
 r21_query_all <-
 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
