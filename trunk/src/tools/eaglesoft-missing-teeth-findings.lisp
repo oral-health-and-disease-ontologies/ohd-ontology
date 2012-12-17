@@ -201,6 +201,7 @@
     (setf uri-string (format nil "OHD_00001~a" adatoothnum))
 
     ;; create uri
+    ;; note: I could also use (make-uri nil (str+ "obo:OHD_00001" adatoothnum))
     (setf uri (make-uri-base-relative uri-string "obo:"))
     
     ;; return uri
