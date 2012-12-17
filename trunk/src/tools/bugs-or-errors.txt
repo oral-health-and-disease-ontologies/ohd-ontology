@@ -12,3 +12,9 @@ When run from R/rrdf Bill gets.
 [1,] "Encountered \"<EOF>\" at line 9, column 10.\nWas expecting one of:\n    \"(\" ...\n    \"exists\" ...\n    \"not exists\" ...\n    \"str\" ...\n    \"lang\" ...\n    \"langmatches\" ...\n    \"datatype\" ...\n    \"bound\" ...\n    \"sameTerm\" ...\n    <IS_IRI> ...\n    \"isBlank\" ...\n    \"isLiteral\" ...\n    \"isNumeric\" ...\n    \"coalesce\" ...\n    \"bnode\" ...\n    \"strdt\" ...\n    \"strlang\" ...\n    <IRI> ...\n    \"if\" ...\n    \"regex\" ...\n    \"strlen\" ...\n    \"substr\" ...\n    \"strStarts\" ...\n    \"strEnds\" ...\n    \"strBefore\" ...\n    \"strAfter\" ...\n    \"replace\" ...\n    \"ucase\" ...\n    \"lcase\" ...\n    \"concat\" ...\n    \"contains\" ...\n    \"encode_for_URI\" ...\n    \"rand\" ...\n    \"abs\" ...\n    \"ceil\" ...\n    \"floor\" ...\n    \"round\" ...\n    \"now\" ...\n    \"year\" ...\n    \"month\" ...\n    \"day\" ...\n    \"hours\" ...\n    \"minutes\" ...\n    \"seconds\" ...\n    \"timezone\" ...\n    \"tz\" ...\n    \"md5\" ...\n    \"sha1\" ...\n    \"sha224\" ...\n    \"sha256\" ...\n    \"sha384\" ...\n    \"sha512\" ...\n    <Q_IRI_REF> ...\n    <PNAME_NS> ...\n    <PNAME_LN> ...\n    <VAR1> ...\n    <VAR2> ..."
 
 alan gets Error: unexpected symbol in "?patienttype rdfs"
+
+
+## run this query to see that sparql.remote does not return columns that have all NA and that the column order of the results is not the same as the query
+NB: make sure r21_query_all has "LIMIT 30" at end or you will get all 966,000 (or so) results!
+res <- sparql.remote(owlim_se_r21, r21_query_all)
+
