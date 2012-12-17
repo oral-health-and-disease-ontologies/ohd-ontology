@@ -1,0 +1,14 @@
+ sparql.remote("http://localhost:8080/openrdf-workbench/repositories/owlim-se-2012.12.05/query","PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT (count(distinct ?patientid) as ?count)
+WHERE { 
+?patienttype rdfs:subClassOf <http://purl.obolibrary.org/obo/OHD_0000012> . 
+?patienti <http://purl.obolibrary.org/obo/OHD_0000092> ?patienttype . 
+?patienti rdfs:label ?patientid . 
+} 
+")
+
+When run from R/rrdf Bill gets.
+
+[1,] "Encountered \"<EOF>\" at line 9, column 10.\nWas expecting one of:\n    \"(\" ...\n    \"exists\" ...\n    \"not exists\" ...\n    \"str\" ...\n    \"lang\" ...\n    \"langmatches\" ...\n    \"datatype\" ...\n    \"bound\" ...\n    \"sameTerm\" ...\n    <IS_IRI> ...\n    \"isBlank\" ...\n    \"isLiteral\" ...\n    \"isNumeric\" ...\n    \"coalesce\" ...\n    \"bnode\" ...\n    \"strdt\" ...\n    \"strlang\" ...\n    <IRI> ...\n    \"if\" ...\n    \"regex\" ...\n    \"strlen\" ...\n    \"substr\" ...\n    \"strStarts\" ...\n    \"strEnds\" ...\n    \"strBefore\" ...\n    \"strAfter\" ...\n    \"replace\" ...\n    \"ucase\" ...\n    \"lcase\" ...\n    \"concat\" ...\n    \"contains\" ...\n    \"encode_for_URI\" ...\n    \"rand\" ...\n    \"abs\" ...\n    \"ceil\" ...\n    \"floor\" ...\n    \"round\" ...\n    \"now\" ...\n    \"year\" ...\n    \"month\" ...\n    \"day\" ...\n    \"hours\" ...\n    \"minutes\" ...\n    \"seconds\" ...\n    \"timezone\" ...\n    \"tz\" ...\n    \"md5\" ...\n    \"sha1\" ...\n    \"sha224\" ...\n    \"sha256\" ...\n    \"sha384\" ...\n    \"sha512\" ...\n    <Q_IRI_REF> ...\n    <PNAME_NS> ...\n    <PNAME_LN> ...\n    <VAR1> ...\n    <VAR2> ..."
+
+alan gets Error: unexpected symbol in "?patienttype rdfs"
