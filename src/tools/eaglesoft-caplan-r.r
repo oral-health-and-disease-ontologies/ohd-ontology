@@ -1,44 +1,4 @@
-source("eaglesoft-load-r-variables.r")
-
-## function for writing data
-write.caplan.data <- function(results) {
-  ## get info about first row
-  row <- results[1, ]
-  ##print(row)
-
-  ## get info about 2nd through next to last row
-  for (i in 2:(nrow(results) - 1)) {
-    temprow <- results[i, ]
-    
-    ##print(temprow)
-
-    ## compare patient ids (index 1) and tooth (index 4) between row and temprow
-    ## if they match then "append" info to row
-    ## otherwise write to file and set row to temprow (this moves the row forward)
-    if (row[1] == temprow[1] && row[4] == temprow[4]) {
-      row <- c(row, temprow[5:18])
-    } else {
-      ## note: row need to be transposed
-      write.table(t(row), file="~/Desktop/r21.txt", sep="\t",
-                  col.names=FALSE, row.names=FALSE, append=TRUE)
-      row <- temprow
-    }
-  }
-
-  ## get info about last row
-  temprow <- res.caplan[nrow(res.caplan), ]
-  
-  if (row[1] == temprow[1] && row[4] == temprow[4]) {
-    row <- c(row, temprow[5:18])
-  } else {
-    row <- temprow
-  }
-
-  ## write last row
-  ## note: row need to be transposed
-  write.table(t(row), file="~/Desktop/r21.txt", sep="\t",
-              col.names=FALSE, row.names=FALSE, append=TRUE)
-}
+source("eaglesoft-caplan-functions.r")
 
 ## create matrix that will be used hold Caplan's results
 ## in the below code, results for each patient will be appended
