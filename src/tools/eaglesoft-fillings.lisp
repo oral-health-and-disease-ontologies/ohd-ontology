@@ -51,7 +51,8 @@
 		     	  (#"getString" results "patient_id")
 		     	  occurrence-date
 		     	  (#"getString" results "tooth_data")
-		     	  (#"getString" results "surface")
+		     	  (#"getString" results "billed_surface")
+			  (#"getString" results "charted_surface")
 		     	  (#"getString" results "ada_code")
 			  (#"getString" results "r21_provider_id")
 			  (#"getString" results "r21_provider_type")
@@ -62,7 +63,8 @@
       ;; return the ontology
       (values ont count))))
 
-(defun get-eaglesoft-filling-axioms (patient-id occurrence-date tooth-data surface ada-code 
+(defun get-eaglesoft-filling-axioms (patient-id occurrence-date tooth-data 
+				     billed-surface charted-surface ada-code 
 				     provider-id provider-type practice-id record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
@@ -77,12 +79,14 @@
 	(patient-uri nil)
 	(surface-uri nil)
 	(surface-type-uri nil)
-	(surface-list nil)
+	(billed-surface-list nil)
+	(charted-surface-list nil)
 	(tooth-uri nil)
 	(tooth-type-uri nil)
 	(tooth-role-uri nil)
 	(tooth-name nil)
 	(teeth-list nil))
+
 
     ;; alanr - parse the list since that's what's in our table 
     ;; billd - since we are using the tooth_data array, this procedure is skipped
@@ -92,6 +96,7 @@
     ;; tooth_data
     ;; get list of teeth in tooth_data array
     (setf teeth-list (get-eaglesoft-teeth-list tooth-data))
+    
 
     ;; get uri of patient
     (setf patient-uri (get-eaglesoft-dental-patient-iri patient-id))
@@ -172,12 +177,13 @@
 					 ,restoration-uri 
 					 (:literal ,occurrence-date !xsd:date)) axioms)
 
-         ;; add information about surfaces
+         ;; add information about surfaces charted in the databse
+	 ;; note: this may not be the same as the surfaces that are billed for 
 	 ;; the surface field often contains multiple surfaces; e.g., mobl
 	 ;; so create a list of these surfaces and add axioms about each one
-	 (setf surface-list (get-eaglesoft-surface-list surface))
+	 (setf charted-surface-list (get-eaglesoft-surface-list charted-surface))
 	 (loop 
-	    for surface-name in surface-list do
+	    for surface-name in charted-surface-list do
 	      ;; get the type of surface uri for the surface
 	      (setf surface-type-uri (get-fma-surface-uri surface-name))
 	      
@@ -255,6 +261,48 @@
          ;; cdt code instance is about the restoration process
 	 (push `(object-property-assertion !'is about'@ohd
 					   ,cdt-uri ,restoration-uri) axioms)
+	 
+	 ;; now for each billed surfac add annotation that the cdt code is about that surface
+	 ;; this need to be done b/c there are cases in which the surface restoration that is
+	 ;; billed for different from the surface restoration recorded in the chart
+	 (setf billed-surface-list (get-eaglesoft-surface-list billed-surface))
+	 (loop 
+	    for surface-name in billed-surface-list do
+	      ;; get the type of surface uri for the surface
+	      (setf surface-type-uri (get-fma-surface-uri surface-name))
+	      
+	      ;; create and instance of this surface
+	      (setf surface-uri (get-eaglesoft-surface-iri patient-id surface-type-uri 
+							   tooth-name record-count))
+
+	      ;; relate cdt code to billed surface
+	      ;; cdt code instance is about the billed surface
+	      (push `(object-property-assertion !'is about'@ohd
+						,cdt-uri ,surface-uri) axioms)
+	      
+	      (print-db surface-name)
+
+	      ;; if the instance of surface is not in the charted surface list above
+	      ;; then add the surface to the ontology (and relate it to tooth)
+	      ;; as an example of this look at resin restoration of tooth 19 in patient 304
+	      (when (not (member surface-name charted-surface-list :test #'equalp))
+		
+		;;(print-db record-count)
+		;;(print-db charted-surface-list)
+		;;(print-db billed-surface-list)
+		(print-db surface-name)
+		(push `(declaration (named-individual ,surface-uri)) axioms)
+		(setf temp-axioms (get-ohd-instance-axioms surface-uri surface-type-uri))
+		(setf axioms (append temp-axioms axioms))
+		(push `(object-property-assertion !'is part of'@ohd ,surface-uri ,tooth-uri) axioms)
+	      
+		;; add annoation about surface
+		(push `(annotation-assertion !rdfs:label
+					     ,surface-uri
+					     ,(str+ surface-name " surface of " tooth-name
+						    " in patient " patient-id)) axioms))
+
+	      ) ;; end bill surfaces loop
 
          ;; if a provider is given,  get axioms that a 'restoration procedure' has particpant provider
 	 (when provider-id
@@ -413,7 +461,8 @@ the surface_detail array.
                  r21_provider_type,
                  practice_id,
                  row_id,
-                 get_surface_summary_from_detail(surface_detail, tooth) as surface "))
+                 surface as billed_surface, 
+                 get_surface_summary_from_detail(surface_detail, tooth) as charted_surface "))
 
     ;; FROM clause
     (setf sql (str+ sql " FROM patient_history "))
