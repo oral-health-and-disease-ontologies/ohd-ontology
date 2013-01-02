@@ -18,3 +18,10 @@ alan gets Error: unexpected symbol in "?patienttype rdfs"
 NB: make sure r21_query_all has "LIMIT 30" at end or you will get all 966,000 (or so) results!
 res <- sparql.remote(owlim_se_r21, r21_query_all)
 
+"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT (count(distinct ?patientid) as ?count)
+WHERE { 
+?patienttype rdfs:subClassOf <http://purl.obolibrary.org/obo/OHD_0000012> . 
+?patienti <http://purl.obolibrary.org/obo/OHD_0000092> ?patienttype . 
+?patienti rdfs:label ?patientid . 
+} "
