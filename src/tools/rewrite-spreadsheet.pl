@@ -29,6 +29,13 @@
 # This rule works on columns that are named procclass<some number>. If the cell
 # ends with procedure, then it is rewritted to be the first word and "procedure" 
 # separated by an underscore "_".
+#
+# The script is run with two arguments and writes to standard output
+# Arg1: filename of the spreadsheet
+# Arg2: filename of the rules
+#
+# e.g.  perl rewrite-spreadsheet.pl myspreadsheet.txt myrules.txt > myrewritten.txt
+
 
 use strict;
 
