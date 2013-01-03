@@ -265,6 +265,18 @@
        :rationale "Pain on a tooth is an adverse event after a restoration.")))
     ))
 
+(defparameter *proctype-by-first-d-number*
+  '((0 "diagnostic")
+    (1 "preventive")
+    (2 "restoration")
+    (3 "endodontic")
+    (4 "periodontic")
+    (5 "removable")
+    (6 "fixed or implant")
+    (7 "oral surgery")
+    (8 "orthodontic")
+    (9 "misc")))
+
 ;; map over every minor group calling f with
 
 ;; major group label
@@ -293,3 +305,5 @@
 (defun describe-study-codes ()
   (foreach-study-code-group (lambda (major-label major-rationale minor-label minor-rationale codes)
 			       (print-db major-label major-rationale minor-label minor-rationale codes))))
+
+
