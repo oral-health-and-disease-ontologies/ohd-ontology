@@ -49,17 +49,22 @@ sub compilePatterns {
     chomp;
     #  print "processing \"$_\"\n\n";
     next if (/^#/ || /^\s*$/); # skip blank lines or lines starting with "#"
-    s/^\s*"//; s/\s*"$//; # remove leading or trailing quotes
+    my $beforeQuoteClean = $_;
+    s/^\s*"\s*//; s/\s*"\s*$//; # remove leading or trailing quotes
     ($columnpat,$cellpat,$cellrewrite) = split /"\s+"/; # split columns by space between quotes
     # compile the patterns by evaluating a subrouting which we will call to match or replace
-    push @pats,[ ( eval "sub { @\_[0] =~ m/(?i)^\"{0,1}$columnpat\"{0,1}\$/}"), # be permissive about quotes around headers
-		 (eval  "sub { \$a = @\_[0]; \$a =~ s/(?i)^\"$cellpat\"\$/\"$cellrewrite\"/; \$a}" )];
+    my $columnChecker = "sub { @\_[0] =~ m/(?i)^\"{0,1}$columnpat\"{0,1}\$/}";
+    my $cellRewriter =  "sub { \$a = @\_[0]; \$a =~ s/(?i)^\"$cellpat\"\$/\"$cellrewrite\"/; \$a}";
+    push @pats,[ ( eval $columnChecker), # be permissive about quotes around headers
+		 (eval  $cellRewriter ),
+	       $columnChecker, $cellRewriter,$columnpat,$cellpat,$cellrewrite,$beforeQuoteClean,$_]; # for debugging
   }
 }
 
 sub applyPatterns
   { my @headers = split(/\t/,<$datafile>);
-    print join("\t",@headers); print "\n";
+    map { if (/^".*"$/) { $_ } else { s/(.*)/"$1"/; }} @headers;
+    print join("\t",@headers);
     while (<$datafile>) {
       next if (/^#/ || /^\s*$/);
       chomp;
@@ -78,10 +83,9 @@ sub applyPatterns
   }
 compilePatterns();
 applyPatterns();
-$DB::single=1;
 
 1;
 
 sub usage 
-  { print "rewrite-spreadsheet.pl data-file pattern-file\n"; } #exit(); }
+  { print "rewrite-spreadsheet.pl data-file pattern-file\n"; exit(); }
 
