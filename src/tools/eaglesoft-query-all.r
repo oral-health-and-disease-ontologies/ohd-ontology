@@ -2,7 +2,7 @@ source("eaglesoft-caplan-functions.r")
 
 ## get list of patient ids
 ##res.query <- get.caplan.query(limit="100")
-res.query <- get.caplan.query()
+res.query <- get.caplan.query("30")
 res <- get.caplan.sparql(res.query)
 
 ## get column names returned with res
@@ -42,5 +42,5 @@ res.ordered[, "procdate"] <-
 res.ordered <- order.caplan.columns(res.ordered)
 
 ## write results to file
-write.caplan.spreadsheet(res.ordered)
-write.caplan.matrix(res.ordered)
+##write.caplan.spreadsheet(res.ordered)
+##write.caplan.matrix(res.ordered)
