@@ -26,6 +26,7 @@
  	    :components
 	    ((:file "write-cdt-xml")
 	     (:file "write-cdtcode-ont")
+	     (:file "r21-study-relevant-codes")
 	     )
  	    :depends-on ())
    )
