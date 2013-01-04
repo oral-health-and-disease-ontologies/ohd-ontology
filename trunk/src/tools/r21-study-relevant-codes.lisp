@@ -287,23 +287,30 @@
 
 (defun foreach-study-code-group (f)
   (loop for major-entry in *study-codes*
-       do
-       (destructuring-bind (major-label &key include rationale) major-entry
-	 (loop with major-include = include and major-rationale = rationale 
-	    for minor-entry in major-include
-	    do
-	      (destructuring-bind (minor-label &key include rationale) minor-entry
-		(funcall f major-label major-rationale minor-label rationale
-			 (mapcar (lambda(el) (subseq (car el) 0 5)) include)))))))
+     do
+     (destructuring-bind (major-label &key include rationale) major-entry
+       (loop with major-include = include and major-rationale = rationale 
+	  for minor-entry in major-include
+	  do
+	  (destructuring-bind (minor-label &key include rationale) minor-entry
+	    (funcall f major-label major-rationale minor-label rationale
+		     (mapcar (lambda(el) (subseq (car el) 0 5)) include)))))))
+
+(defun study-codes-for-major-group-label (regex &aux all)
+  (foreach-study-code-group (lambda(major-label major-rationale minor-label minor-rationale codes)
+			      (if (all-matches major-label regex)
+				  (setq all (append codes all)))))
+  all)
+
 
 (defun all-study-codes (&aux all)
   (foreach-study-code-group
    (lambda (major-label major-rationale minor-label minor-rationale codes)
      (setq all (append codes all))))
-   all)
+  all)
 
 (defun describe-study-codes ()
   (foreach-study-code-group (lambda (major-label major-rationale minor-label minor-rationale codes)
-			       (print-db major-label major-rationale minor-label minor-rationale codes))))
+			      (print-db major-label major-rationale minor-label minor-rationale codes))))
 
 
