@@ -292,15 +292,39 @@
        (loop with major-include = include and major-rationale = rationale 
 	  for minor-entry in major-include
 	  do
-	  (destructuring-bind (minor-label &key include rationale) minor-entry
-	    (funcall f major-label major-rationale minor-label rationale
-		     (mapcar (lambda(el) (subseq (car el) 0 5)) include)))))))
+	    (destructuring-bind (minor-label &key include rationale) minor-entry
+	      (funcall f major-label major-rationale minor-label rationale
+		       (mapcar (lambda(el) (subseq (car el) 0 5)) include)))))))
 
 (defun study-codes-for-major-group-label (regex &aux all)
   (foreach-study-code-group (lambda(major-label major-rationale minor-label minor-rationale codes)
 			      (if (all-matches major-label regex)
 				  (setq all (append codes all)))))
   all)
+
+(defun study-codes-for-group-label (major-regex &optional minor-regex)
+  (let ((major-codes nil)
+	(minor-codes nil)
+	(all-codes nil))
+    ;; first get matches major codes
+    (foreach-study-code-group (lambda(major-label major-rationale minor-label minor-rationale codes)
+			      (if (all-matches major-label major-regex)
+				  (setq major-codes (append codes major-codes)))))
+
+    ;; get matches for minor codes
+    (when minor-regex
+      (foreach-study-code-group (lambda(major-label major-rationale minor-label minor-rationale codes)
+				  (if (all-matches minor-label minor-regex)
+				      (setq minor-codes (append codes minor-codes))))))
+    
+    ;; if getting minor codes, then get matches of intersection of major and minor codes
+    ;; other wise all-codes are the major codes
+    (if minor-regex
+	(setf all-codes (intersection minor-codes major-codes :test #'equalp))
+	(setf all-codes major-codes))
+
+    ;; return all matching codes
+    all-codes))
 
 
 (defun all-study-codes (&aux all)
