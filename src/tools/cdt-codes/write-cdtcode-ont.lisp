@@ -4,15 +4,19 @@
 (defparameter *meta-class-id-ht*
   "Global hash table to store the auto-generated id's of the cdt categories.")
 
-;; *** for now I will used 'editor note' for this. 12-19-2011
+;; *** use 'editor note' for this. 12-19-2011
 ;;(defparameter *cdt-definition-uri* nil
 ;;  "Global variable to hold the uri of the cdt_definition annotation.")
 
 (defparameter *cdt-label-uri* nil
   "Global variable to hold the uri of the cdt_label annotation.")
 
+(defparameter *cdt-version-uri* nil
+  "Global variable to hold the uri of the cdt_version annotation.")
+
 ;;;; main driver function
-(defun get-cdtcode-ont (xmlfile &key iri ont-iri cdt-codes-as-classes)
+(defun get-cdtcode-ont (xmlfile &key iri ont-iri 
+			(cdt-codes-as-classes t) (cdt-version "11") ada-code-list)
   "This functions Builds an ontology of the CDT Codes.
 Returns:
    An ontology of the CDT codes.
@@ -21,6 +25,9 @@ Parmaters:
   xmlfile: The xml file containing the CDT codes
   ont-iri: an optional iri that can be assigned to the ontology itself.
            i.e., the ontology-iri parmater to with-ontology
+  cdt-codes-as-classes: If true (by default), the cdt codes are repesented as classes.
+          If false (nil), the cdt classes are named individuals.
+  cdt-version: Specifies the version of the cdt code.  Default is 11.
 Usage:
   (get-cdtcode-ont \"http://test.com\" \"CDTCodes.xml\")
   (get-cdtcode-ont \"http://test.com\" \"CDTCodes.xml\" \"http://example.com/foo.owl\")"
@@ -34,6 +41,10 @@ Usage:
     (when (null iri) 
       (setf iri "http://purl.obolibrary.org/obo/"))
 
+    ;; verify the iri ends with "/"
+    (unless (equal (subseq iri (- (length iri) 1)) "/")
+      (setf iri (str+ iri "/")))
+
     ;; set default ontology iri
     (when (null ont-iri)
       (setf ont-iri "http://purl.obolibrary.org/obo/iao/cdt.owl"))
@@ -44,22 +55,18 @@ Usage:
     ;; get list of tags
     (setf meta-class-name-list (what-tags xmls-parse))
 
-    ;; remove non-meta tags; i.e., remove tags that pertain to codes, labels, and comments
-    ;; I am only intersted in the upper level grouping of cdt codes
-    (loop for item in meta-class-name-list do
-	 (when (member item (list "CDTCode-List" "CDTCode" 
-				  "Code" "CDTLabel" "CDTComment") :test 'equal)
-	   (setf meta-class-name-list (remove item meta-class-name-list))))	 
-    
+    ;; remove non-meta tags from meta-class-name-list
+    ;; that is, remove "code" "label" "comment" tags
+    (setf meta-class-name-list 
+	  (reduce-meta-class-name-list meta-class-name-list
+				       :xmls-parse xmls-parse :ada-code-list ada-code-list))
+
     ;; make id associated with meta classes
     (make-meta-class-id-hash-table meta-class-name-list)
 
     ;; create hash table for child/parent class info
     (make-parent-class-hash-table meta-class-name-list xmls-parse)
     
-    ;; verify the iri ends with "/"
-    (unless (equal (subseq iri (- (length iri) 1)) "/")
-      (setf iri (str+ iri "/")))
 
     (with-ontology ont (:collecting t :base iri :ontology-iri ont-iri)
 	( ;;import IAO meta data	 
@@ -80,7 +87,7 @@ Usage:
 	 ;; make uri for cdt description annotation property
 	 ;; this will be used to annotate cdt codes (and categories) with
 	 ;; the descriptions provided by the ADA
-	 ;; *** for now will I will use 'edit note' for this
+	 ;; *** use 'edit note' for cdt definition
 	 ;;(setf *cdt-definition-uri* (make-uri (str+ iri "cdt_definition"))) 
 
 	 ;; make uri for cdt label annotation property
@@ -101,7 +108,7 @@ Usage:
 					  ,(make-uri (str+ iri 
 							   (get-meta-class-id "cdt-code")))))
 	 #|
-	 ;; *** for now I will used 'editor note' for this. 12-19-2011
+	 ;; *** use 'editor note' for the cdt definition. 12-19-2011
 	 (as `(declaration (annotation-property ,*cdt-definition-uri*)))
 	 (as `(annotation-assertion !rdfs:comment ,*cdt-definition-uri* 
 				    "This annotation is used for the definitions (and descriptions) of the CDT codes provided by the American Dental Association."))
@@ -120,7 +127,7 @@ Usage:
 	 (loop 
 	    for item in meta-class-name-list do
 	      (setf cdt-list (find-element-with-tag xmls-parse item))
-
+	      
 	    ;; create a temp list from meta class
 	    ;; meta class has form:
 	    ;; (CLASS-NAME NIL (CLASS-LABEL ...) (CDTCOMMENT ..) (.......)
@@ -140,11 +147,12 @@ Usage:
 	     (if cdt-codes-as-classes
 		 (as (get-cdt-code-as-classes-axioms iri item)) ;; as class
 		 (as (get-cdt-code-axioms iri item)))) ;; as individuals
-
-	 ;; ********* add disjoint class and different individual axioms
+	 
+	 
+	 ;; make meta-level classes disjoint
 	 (as (get-disjoint-class-axioms iri))
-)) ;; added - was unclosed
 
+	 ;; ********* add disjoint cdt class or different individual axioms
 	 ;; test whether cdt codes should be a list of 
 	 ;; disjoint classes or different individuals
 	 (if cdt-codes-as-classes
@@ -182,7 +190,7 @@ Usage:
        (parent-class nil)
        (parent-class-uri nil)
        (class-name nil)
-       (label nil) ;; used for the rdfs:labe
+       (label nil) ;; used for the rdfs:label
        (class-label nil) ;; used for ADA's lable of the class
        (class-comment nil))
 
@@ -219,11 +227,11 @@ Usage:
     (push `(annotation-assertion ,*cdt-label-uri* ,uri ,class-label) axioms)
 
     #|
-    ;; *** for now I will used 'editor note' for this. 12-19-2011
+    ;; *** use 'editor note' for this. 12-19-2011
     ;; if the ADA has provided a definition/description add the definition and its source
     (if (not (null class-comment))
 	(when (not (equal class-comment "NIL"))
-	  ;; *** for now I will used 'editor note' for this. 12-19-2011
+	  ;; *** use 'editor note' for this. 12-19-2011
 	  ;;(push `(annotation-assertion ,*cdt-definition-uri* ,uri ,class-comment) axioms)
 	  (push `(annotation-assertion 
 		  !<http://purl.obolibrary.org/obo/IAO_0000119>
@@ -545,7 +553,7 @@ Usage:
 		
 		  ;; add uri to list
 		  (push uri uri-list)))
-
+	   
 	   ;; add disjoint cdt classes to axioms
 	   (when (> (length uri-list) 1)
 	     (push `(disjoint-classes ,@uri-list) axioms))
@@ -567,6 +575,43 @@ Usage:
     (return-from get-cdtcode-xmls p)))
 
 ;;;;;;;;;;;;;;;;; Other helper Functions ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun reduce-meta-class-name-list (meta-class-name-list &key xmls-parse ada-code-list)
+  (let ((codes nil)
+	(common-codes nil))
+    ;; remove non-meta tags; i.e., remove tags that pertain to codes, labels, and comments
+    ;; I am only intersted in the upper level grouping of cdt codes
+    (loop for item in meta-class-name-list do
+	 (when (member item (list "CDTCode-List" "CDTCode" 
+				  "Code" "CDTLabel" "CDTComment") :test 'equal)
+	   (setf meta-class-name-list (remove item meta-class-name-list))))
+
+    ;; if only a subset of ada codes are to be used remove the meta tags that
+    ;; do not contain any of the ada code subset
+    (when ada-code-list
+      (loop for item in meta-class-name-list do
+	   ;; get list of codes for the meta tag
+	   ;; the inner find-element gets a list for the meta tag item
+	   ;; the outter find-elements gets a list of code tags for the met tag
+	   (setf codes 
+		 (find-elements-with-tag (find-element-with-tag xmls-parse item) "Code"))
+
+	   ;; check whether there any codes in common in the meta tag cods and ada code list 
+	   ;; codes is a list of lists of the form (("Code" NIL "D1234")("Code" NIL "D2345")...)
+	   ;; so, I use mapcar to check each sublist (i.e., ("Code" NIL "D1234"))
+	   ;; against the ada-code-list
+	   (setf common-codes 
+		 (mapcar #'(lambda(e) (intersection e ada-code-list :test #'equalp)) codes))
+
+	   ;; remove any nils from the common-codes list
+	   (setf common-codes (remove nil common-codes))
+	   
+	   ;; if there are no common-codes then remove the meta tag
+	   (when (not common-codes)
+	     (setf meta-class-name-list (remove item meta-class-name-list)))))
+	 
+    meta-class-name-list))
+    
 
 (defun get-meta-class-id (meta-class)
   "Returns the uri id for a class (e.g., CDT_0001234)."
