@@ -318,7 +318,8 @@
 				      (setq minor-codes (append codes minor-codes))))))
     
     ;; if getting minor codes, then get matches of intersection of major and minor codes
-    ;; other wise all-codes are the major codes
+    ;; I do this in case two minor labels happen to be the same
+    ;; otherwise all-codes are the major codes
     (if minor-regex
 	(setf all-codes (intersection minor-codes major-codes :test #'equalp))
 	(setf all-codes major-codes))
