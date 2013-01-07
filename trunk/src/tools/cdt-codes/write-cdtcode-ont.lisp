@@ -16,7 +16,7 @@
 
 ;;;; main driver function
 (defun get-cdtcode-ont (xmlfile &key iri ont-iri 
-			(cdt-codes-as-classes t) (cdt-version "11") ada-code-list)
+			(cdt-codes-as-classes t) ada-code-list)
   "This functions Builds an ontology of the CDT Codes.
 Returns:
    An ontology of the CDT codes.
@@ -27,7 +27,9 @@ Parmaters:
            i.e., the ontology-iri parmater to with-ontology
   cdt-codes-as-classes: If true (by default), the cdt codes are repesented as classes.
           If false (nil), the cdt classes are named individuals.
-  cdt-version: Specifies the version of the cdt code.  Default is 11.
+  ada-code-list: A list of ADA codes that are to be included in the ontology.  This is
+                 used for creating a paired down ontology that only has a subset of the
+                 ADA codes, e.g., the store of a tooth codes used in the r21 study.
 Usage:
   (get-cdtcode-ont \"http://test.com\" \"CDTCodes.xml\")
   (get-cdtcode-ont \"http://test.com\" \"CDTCodes.xml\" \"http://example.com/foo.owl\")"
@@ -65,7 +67,7 @@ Usage:
     (make-meta-class-id-hash-table meta-class-name-list)
 
     ;; create hash table for child/parent class info
-    (make-parent-class-hash-table meta-class-name-list xmls-parse)
+    (make-parent-class-hash-table meta-class-name-list xmls-parse :ada-code-list ada-code-list)
     
 
     (with-ontology ont (:collecting t :base iri :ontology-iri ont-iri)
@@ -141,16 +143,17 @@ Usage:
 	 ;; add cdt code axoms
 	 (setf cdt-list (find-elements-with-tag xmls-parse "CDTCode"))
 	 
-	(loop 
+	 (loop 
 	    for item in cdt-list do
-	     ;; test whether cdt codes should be classes or individuals
-	     (if cdt-codes-as-classes
-		 (as (get-cdt-code-as-classes-axioms iri item)) ;; as class
-		 (as (get-cdt-code-axioms iri item)))) ;; as individuals
+	      ;; test whether cdt codes should be classes or individuals
+	      (if cdt-codes-as-classes
+		  (as (get-cdt-code-as-classes-axioms iri item)) ;; as class
+		  (as (get-cdt-code-axioms iri item)))) ;; as individuals
 	 
 	 
 	 ;; make meta-level classes disjoint
-	 (as (get-disjoint-class-axioms iri))
+	 ;; not doing this -- 1/5/2013; billd
+	 ;;(as (get-disjoint-class-axioms iri))
 
 	 ;; ********* add disjoint cdt class or different individual axioms
 	 ;; test whether cdt codes should be a list of 
@@ -158,13 +161,72 @@ Usage:
 	 (if cdt-codes-as-classes
 	     (as (get-disjoint-cdt-classes-axioms iri))
 	     (as (get-different-individuals-axioms iri)))
-
-	 )
+	 
+	 ;; add historical codes
+	 (if cdt-codes-as-classes
+	     (as (get-historical-code-class-axoms iri))))
+      
       ;; return the ontology
-      ont
-      )))
+      ont)))
 
 ;;;;;;;;;;;;; Functions for getting axioms of meta and cdt classes ;;;;;;;;;;;;
+
+(defun get-historical-code-class-axoms (iri)
+  "Creates axioms for historical codes D7110 and D7120 that were part of CDT-3, but were replaced in CDT-4 with D7140."
+  (let ((axioms nil)
+	(uri-d7110 nil)
+	(uri-d7120 nil)
+	(uri-d7140 nil))
+    
+    ;; create uri's for D7110, D7120, D7140
+    (setf uri-d7110 (make-uri (str+ iri "CDT_0007110")))
+    (setf uri-d7120 (make-uri (str+ iri "CDT_0007120")))
+    (setf uri-d7140 (make-uri (str+ iri "CDT_0007140")))
+    
+    ;; create classes D7110 and D7120
+    (push `(declaration (class ,uri-d7110)) axioms)
+    (push `(declaration (class ,uri-d7120)) axioms)
+
+    ;; add annotations for D7110
+    (push `(annotation-assertion !rdfs:label ,uri-d7110 "billing code D7110: single tooth") axioms)
+    (push `(annotation-assertion ,*cdt-label-uri* ,uri-d7110 "single tooth") axioms)
+    (push `(annotation-assertion !dc:identifier ,uri-d7110 "D7110") axioms)
+    
+    ;; add info about when code D7110 was retired
+    (push `(annotation-assertion 
+	    !<http://purl.obolibrary.org/obo/IAO_0000604>
+	    ,uri-d7110
+	    (:literal "2003-01-01" !xsd:datetimestamp)) axioms)
+	    
+    ;; add annotations for D7120
+    (push `(annotation-assertion !rdfs:label ,uri-d7120 "billing code D7120: each additional tooth") axioms)
+    (push `(annotation-assertion ,*cdt-label-uri* ,uri-d7120 "each additional tooth") axioms)
+    (push `(annotation-assertion !dc:identifier ,uri-d7120 "D7120") axioms)
+
+    ;; add info about when code D7120 was retired
+    (push `(annotation-assertion 
+	    !<http://purl.obolibrary.org/obo/IAO_0000604>
+	    ,uri-d7120
+	    (:literal "2003-01-01" !xsd:datetimestamp)) axioms)
+
+    ;; add editor note about D7120
+    (push `(annotation-assertion 
+	    !<http://purl.obolibrary.org/obo/IAO_0000116>
+	    ,uri-d7120
+	    ,(format nil "To be reported for an additional extraction in the same quadrant at the same visit. ~%~%cdt3 users manual: current dental terminology version 2000"))
+	  axioms)
+     
+
+    ;; D7110 and D7120 are subclasses of D7140
+    (push `(subclass-of ,uri-d7110 ,uri-d7140) axioms)
+    (push `(subclass-of ,uri-d7120 ,uri-d7140) axioms)
+
+    ;; D7110 and D7120 are disjoint
+    (push `(disjoint-classes ,uri-d7110 ,uri-d7120) axioms)
+
+
+    
+    axioms))
 	 
 (defun get-top-level-cdt-class-axioms (iri)
   (let 
@@ -531,7 +593,7 @@ Usage:
 	(cdt-list nil)
 	(cdt-num nil)
 	(parent-class nil))
-
+    
 
     (loop 
        for child-class being the hash-keys of *parent-class-ht* do
@@ -637,7 +699,7 @@ Usage:
 	 (setf cdt-id (str+ "CDT_" (format nil "~7,'0d" cdt-num)))
 	 (setf (gethash item *meta-class-id-ht*) cdt-id))))
 
-(defun make-parent-class-hash-table (meta-class-name-list xmls-parse)
+(defun make-parent-class-hash-table (meta-class-name-list xmls-parse &key ada-code-list)
   "Creates a hash table that associates cdt code or meta class with a parent class"
   (let ((child-list nil)
 	(class-list nil)
@@ -687,7 +749,14 @@ Usage:
 	       (setf code (third (third cdt-code)))
 
 	      ;; add code to hash table with the class name as parent
-	      (setf (gethash code *parent-class-ht*) class)))
+	      ;; check to see if only a subset of codes are specified in ada-code-list
+	      (cond 
+		(ada-code-list
+		 ;; check to see if code is in the ada-code-list
+		 (when (member code ada-code-list :test #'equalp)
+		   (setf (gethash code *parent-class-ht*) class)))
+		(t
+		 (setf (gethash code *parent-class-ht*) class)))))
 	      
     ;; return hash table
     *parent-class-ht*))
