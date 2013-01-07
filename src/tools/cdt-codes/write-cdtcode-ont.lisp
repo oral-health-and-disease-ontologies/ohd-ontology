@@ -155,16 +155,16 @@ Usage:
 	 ;; not doing this -- 1/5/2013; billd
 	 ;;(as (get-disjoint-class-axioms iri))
 
+	 ;; add historical codes
+	 (if cdt-codes-as-classes
+	     (as (get-historical-code-class-axoms iri)))
+
 	 ;; ********* add disjoint cdt class or different individual axioms
 	 ;; test whether cdt codes should be a list of 
 	 ;; disjoint classes or different individuals
 	 (if cdt-codes-as-classes
 	     (as (get-disjoint-cdt-classes-axioms iri))
-	     (as (get-different-individuals-axioms iri)))
-	 
-	 ;; add historical codes
-	 (if cdt-codes-as-classes
-	     (as (get-historical-code-class-axoms iri))))
+	     (as (get-different-individuals-axioms iri))))
       
       ;; return the ontology
       ont)))
@@ -222,10 +222,65 @@ Usage:
     (push `(subclass-of ,uri-d7120 ,uri-d7140) axioms)
 
     ;; D7110 and D7120 are disjoint
+    ;; NB: this is a hack, I do this b/c I am adding a deeper level to the class hierarchy. if I was to add them to the *parent-class-ht* hash table
+    ;;     then I would have to modify my code in get-disjoint-cdt-classes-axioms that creates disjoint classes to go a level deeper
     (push `(disjoint-classes ,uri-d7110 ,uri-d7120) axioms)
-
-
     
+    ;; return axioms
+    axioms))
+
+(defun get-historical-code-individual-axoms (iri)
+  "Creates axioms for historical codes D7110 and D7120 that were part of CDT-3, but were replaced in CDT-4 with D7140."
+  (let ((axioms nil)
+	(uri-d7110 nil)
+	(uri-d7120 nil)
+	(parent-class nil)
+	(parent-class-uri nil))
+    
+    ;; create uri's for D7110, D7120, D7140
+    (setf uri-d7110 (make-uri (str+ iri "CDT_0007110")))
+    (setf uri-d7120 (make-uri (str+ iri "CDT_0007120")))
+        
+    ;; create named-individuals D7110 and D7120 and make them of type "billing code for extractions (includes local anesthesia, suturing, if needed, and routine postoperative care)"
+    ;; which is the same parent class of D7140
+    (setf parent-class (get-meta-class-id (get-parent-class "D7140")))
+    (setf parent-class-uri (make-uri (str+ iri parent-class)))
+	
+    (push `(declaration (named-individual ,uri-d7110)) axioms)
+    (push `(declaration (named-individual ,uri-d7120)) axioms)
+    (push `(class-assertion ,parent-class-uri ,uri-d7110) axioms)
+    (push `(class-assertion ,parent-class-uri ,uri-d7120) axioms)
+
+    ;; add annotations for D7110
+    (push `(annotation-assertion !rdfs:label ,uri-d7110 "billing code D7110: single tooth") axioms)
+    (push `(annotation-assertion ,*cdt-label-uri* ,uri-d7110 "single tooth") axioms)
+    (push `(annotation-assertion !dc:identifier ,uri-d7110 "D7110") axioms)
+    
+    ;; add info about when code D7110 was retired
+    (push `(annotation-assertion 
+	    !<http://purl.obolibrary.org/obo/IAO_0000604>
+	    ,uri-d7110
+	    (:literal "2003-01-01" !xsd:datetimestamp)) axioms)
+	    
+    ;; add annotations for D7120
+    (push `(annotation-assertion !rdfs:label ,uri-d7120 "billing code D7120: each additional tooth") axioms)
+    (push `(annotation-assertion ,*cdt-label-uri* ,uri-d7120 "each additional tooth") axioms)
+    (push `(annotation-assertion !dc:identifier ,uri-d7120 "D7120") axioms)
+
+    ;; add info about when code D7120 was retired
+    (push `(annotation-assertion 
+	    !<http://purl.obolibrary.org/obo/IAO_0000604>
+	    ,uri-d7120
+	    (:literal "2003-01-01" !xsd:datetimestamp)) axioms)
+
+    ;; add editor note about D7120
+    (push `(annotation-assertion 
+	    !<http://purl.obolibrary.org/obo/IAO_0000116>
+	    ,uri-d7120
+	    ,(format nil "To be reported for an additional extraction in the same quadrant at the same visit. ~%~%cdt3 users manual: current dental terminology version 2000"))
+	  axioms)
+     
+    ;; return axioms
     axioms))
 	 
 (defun get-top-level-cdt-class-axioms (iri)
@@ -564,7 +619,9 @@ Usage:
 	(uri nil)
 	(uri-list nil)
 	(cdt-id nil)
-	(cdt-num nil))
+	(cdt-num nil)
+	(uri-d7110 nil) ; D7110 and D7120 are historical codes
+	(uri-d7120 nil))
     
     ;; loop for child/parent hash table; if the name of the child class
     ;; has form "D\\d{4}" (i.e., a "D" followed by four numbers) it is 
@@ -577,6 +634,13 @@ Usage:
 	   (setf cdt-id (str+ "CDT_" (format nil "~7,'0d" cdt-num)))
 	   (setf uri (make-uri (str+ iri cdt-id)))
 	   (push uri uri-list)))
+    
+    ;; add axioms for historical codes
+    ;; NB: this is a hack!
+    (setf uri-d7110 (make-uri (str+ iri "CDT_0007110")))
+    (setf uri-d7120 (make-uri (str+ iri "CDT_0007120")))
+    (push uri-d7110 uri-list)
+    (push uri-d7120 uri-list)
 
     ;; add different individual axioms
     (when (> (length uri-list) 1)
