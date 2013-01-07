@@ -307,22 +307,31 @@
 	(minor-codes nil)
 	(all-codes nil))
     ;; first get matches major codes
-    (foreach-study-code-group (lambda(major-label major-rationale minor-label minor-rationale codes)
-			      (if (all-matches major-label major-regex)
-				  (setq major-codes (append codes major-codes)))))
+    ;; (foreach-study-code-group (lambda(major-label major-rationale minor-label minor-rationale codes)
+    ;; 			      (if (all-matches major-label major-regex)
+    ;; 				  (setq major-codes (append codes major-codes)))))
 
-    ;; get matches for minor codes
-    (when minor-regex
-      (foreach-study-code-group (lambda(major-label major-rationale minor-label minor-rationale codes)
-				  (if (all-matches minor-label minor-regex)
-				      (setq minor-codes (append codes minor-codes))))))
+    ;; ;; get matches for minor codes
+    ;; (when minor-regex
+    ;;   (foreach-study-code-group (lambda(major-label major-rationale minor-label minor-rationale codes)
+    ;; 				  (if (all-matches minor-label minor-regex)
+    ;; 				      (setq minor-codes (append codes minor-codes))))))
     
-    ;; if getting minor codes, then get matches of intersection of major and minor codes
-    ;; I do this in case two minor labels happen to be the same
-    ;; otherwise all-codes are the major codes
-    (if minor-regex
-	(setf all-codes (intersection minor-codes major-codes :test #'equalp))
-	(setf all-codes major-codes))
+    ;; ;; if getting minor codes, then get matches of intersection of major and minor codes
+    ;; ;; I do this in case two minor labels happen to be the same
+    ;; ;; otherwise all-codes are the major codes
+    ;; (if minor-regex
+    ;; 	(setf all-codes (intersection minor-codes major-codes :test #'equalp))
+    ;; 	(setf all-codes major-codes))
+    
+    (foreach-study-code-group 
+     (lambda(major-label major-rationale minor-label minor-rationale codes)
+       (if
+	(and 
+	 (all-matches major-label major-regex)
+	 (or (not minor-regex) (all-matches minor-label minor-regex))
+	 )
+	(setq all-codes (append codes all-codes)))))
 
     ;; return all matching codes
     all-codes))
