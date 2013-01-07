@@ -37,6 +37,7 @@ Usage:
   (let ((xmls-parse nil)
 	(meta-class-name-list nil)
 	(temp-list nil)
+	(cdt-code nil)
 	(cdt-list nil))
     
     ;; set default base iri
@@ -144,12 +145,25 @@ Usage:
 	 (setf cdt-list (find-elements-with-tag xmls-parse "CDTCode"))
 	 
 	 (loop 
-	    for item in cdt-list do
-	      ;; test whether cdt codes should be classes or individuals
-	      (if cdt-codes-as-classes
-		  (as (get-cdt-code-as-classes-axioms iri item)) ;; as class
-		  (as (get-cdt-code-axioms iri item)))) ;; as individuals
-	 
+	    for item in cdt-list do	    
+	      ;; get cdt code from item in cdt-list
+	      ;; the item has form  ("CDTCode" NIL ("Code" NIL "D1234") ("CDTLabel" nil "...") ("CDTComment" nil "...")
+	      (setf cdt-code (third (third item)))
+	      
+	      ;; if an ada code list has been specified, check to see if code is in the list
+	      ;; otherwise, create code
+	      (cond
+		(ada-code-list
+		 (when (member cdt-code ada-code-list :test #'equalp)
+		   ;; test whether cdt codes should be classes or individuals
+		   (if cdt-codes-as-classes
+		       (as (get-cdt-code-as-classes-axioms iri item)) ;; as class
+		       (as (get-cdt-code-axioms iri item))))) ;; as individuals
+		(t
+		 ;; test whether cdt codes should be classes or individuals
+		 (if cdt-codes-as-classes
+		     (as (get-cdt-code-as-classes-axioms iri item)) ;; as class
+		     (as (get-cdt-code-axioms iri item)))))) ;; as individuals
 	 
 	 ;; make meta-level classes disjoint
 	 ;; not doing this -- 1/5/2013; billd
@@ -157,7 +171,8 @@ Usage:
 
 	 ;; add historical codes
 	 (if cdt-codes-as-classes
-	     (as (get-historical-code-class-axoms iri)))
+	     (as (get-historical-code-class-axoms iri))
+	     (as (get-historical-code-individual-axoms iri)))
 
 	 ;; ********* add disjoint cdt class or different individual axioms
 	 ;; test whether cdt codes should be a list of 
@@ -475,8 +490,6 @@ Usage:
     (setf cdt-code (third (third cdt-code-list)))
     (setf cdt-label (third (fourth cdt-code-list)))
     (setf cdt-comment (third (fifth cdt-code-list)))
-
-
 
     ;; for testing
     ;;(print-db cdt-label)
