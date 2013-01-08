@@ -207,22 +207,38 @@ Usage:
     (push `(annotation-assertion ,*cdt-label-uri* ,uri-d7110 "single tooth") axioms)
     (push `(annotation-assertion !dc:identifier ,uri-d7110 "D7110") axioms)
     
-    ;; add info about when code D7110 was retired
+    ;; add info about when code D7110 was retired annotation "retired from use of"
+    ;; for info about xsd:datetimestamp see http://www.schemacentral.com/sc/xsd11/t-xsd_dateTimeStamp.html
     (push `(annotation-assertion 
 	    !<http://purl.obolibrary.org/obo/IAO_0000604>
 	    ,uri-d7110
-	    (:literal "2003-01-01" !xsd:datetimestamp)) axioms)
-	    
+	    (:literal "2003-01-01T00:00:00-5:00" !xsd:datetimestamp)) axioms)
+    
+    ;; add editor note about date time stamp format
+    (push `(annotation-assertion 
+	    !<http://purl.obolibrary.org/obo/IAO_0000116>
+	    ,uri-d7110
+	    "For information on the datetimestamp formate see: http://www.schemacentral.com/sc/xsd11/t-xsd_dateTimeStamp.html")
+	  axioms)
+
     ;; add annotations for D7120
     (push `(annotation-assertion !rdfs:label ,uri-d7120 "billing code D7120: each additional tooth") axioms)
     (push `(annotation-assertion ,*cdt-label-uri* ,uri-d7120 "each additional tooth") axioms)
     (push `(annotation-assertion !dc:identifier ,uri-d7120 "D7120") axioms)
 
     ;; add info about when code D7120 was retired
+    ;; for info about xsd:datetimestamp see http://www.schemacentral.com/sc/xsd11/t-xsd_dateTimeStamp.html
     (push `(annotation-assertion 
 	    !<http://purl.obolibrary.org/obo/IAO_0000604>
 	    ,uri-d7120
-	    (:literal "2003-01-01" !xsd:datetimestamp)) axioms)
+	    (:literal "2003-01-01T00:00:00-5:00" !xsd:datetimestamp)) axioms)
+
+    ;; add editor note about date time stamp format
+    (push `(annotation-assertion 
+	    !<http://purl.obolibrary.org/obo/IAO_0000116>
+	    ,uri-d7120
+	    "For information on the datetimestamp formate see: http://www.schemacentral.com/sc/xsd11/t-xsd_dateTimeStamp.html")
+	  axioms)
 
     ;; add editor note about D7120
     (push `(annotation-assertion 
@@ -236,11 +252,6 @@ Usage:
     (push `(subclass-of ,uri-d7110 ,uri-d7140) axioms)
     (push `(subclass-of ,uri-d7120 ,uri-d7140) axioms)
 
-    ;; D7110 and D7120 are disjoint
-    ;; NB: this is a hack, I do this b/c I am adding a deeper level to the class hierarchy. if I was to add them to the *parent-class-ht* hash table
-    ;;     then I would have to modify my code in get-disjoint-cdt-classes-axioms that creates disjoint classes to go a level deeper
-    (push `(disjoint-classes ,uri-d7110 ,uri-d7120) axioms)
-    
     ;; return axioms
     axioms))
 
@@ -667,11 +678,19 @@ Usage:
   (let ((axioms nil)
 	(uri nil)
 	(uri-list nil)
-	(cdt-list nil)
 	(cdt-num nil)
-	(parent-class nil))
-    
+	(cdt-id nil)
+	;;(cdt-list nil) ; no longer needed as of 1/8/2013
+	;;(parent-class nil) ; no longer needed as of 1/8/2013
+	(uri-d7110 nil) ; D7110 and D7120 are historical codes
+	(uri-d7120 nil))
 
+
+    
+    #| billd 1/8/2013:
+       Rather than looping through the hierarachy to create disjoint
+       lists for each heirarchical group, I will simply iterate over
+       hash table to create the list of disjoint classes 
     (loop 
        for child-class being the hash-keys of *parent-class-ht* do
 	 ;; test for cdt code that has not been processed
@@ -694,12 +713,36 @@ Usage:
 		  (push uri uri-list)))
 	   
 	   ;; add disjoint cdt classes to axioms
-	   (when (> (length uri-list) 1)
+           (when (> (length uri-list) 1)
 	     (push `(disjoint-classes ,@uri-list) axioms))
 	   (setf uri-list nil)
 	   
 	   (push child-class cdt-list)))
-	 
+    |#
+    
+    ;; loop for child/parent hash table; if the name of the child class
+    ;; has form "D\\d{4}" (i.e., a "D" followed by four numbers) it is 
+    ;; a cdt code (i.e., individual cdt code)
+    (loop 
+       for child-class being the hash-keys in *parent-class-ht* do
+	 (when (all-matches child-class "(D\\d{4})" 1)
+	   ;; build uri; note cdt uri is zero padded length 7: "~7,'0d"
+	   (setf cdt-num (parse-integer (subseq child-class 1)))
+	   (setf cdt-id (str+ "CDT_" (format nil "~7,'0d" cdt-num)))
+	   (setf uri (make-uri (str+ iri cdt-id)))
+	   (push uri uri-list)))
+    
+    ;; add axioms for historical codes
+    ;; NB: this is a hack!
+    (setf uri-d7110 (make-uri (str+ iri "CDT_0007110")))
+    (setf uri-d7120 (make-uri (str+ iri "CDT_0007120")))
+    (push uri-d7110 uri-list)
+    (push uri-d7120 uri-list)
+
+    ;; add disjoint cdt classes to axioms
+    (when (> (length uri-list) 1)
+      (push `(disjoint-classes ,@uri-list) axioms))
+
     ;; return axioms
     axioms))
 
