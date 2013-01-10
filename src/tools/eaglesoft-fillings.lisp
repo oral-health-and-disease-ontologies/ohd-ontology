@@ -476,6 +476,7 @@ the surface_detail array.
                                'D2160',
                                'D2161',
                                'D2330', -- Restorative: Resin
+                               'D2331',
                                'D2332',
                                'D2335',
                                --'D2390', -- D2390 is not a restoration, it's a crown
@@ -493,6 +494,7 @@ the surface_detail array.
                               '02160',
                               '02161',
                               '02330', -- Restorative: Resin
+                              '02331',
                               '02332',
                               '02335',
                               --'02390' -- 02390 is not a restoration, it's a crown
