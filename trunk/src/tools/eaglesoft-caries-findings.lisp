@@ -76,7 +76,6 @@
 	(tooth-uri nil)
 	(tooth-type-uri nil)
 	(tooth-name nil)
-	(tooth-num nil)
 	(teeth-list nil))
 
 
