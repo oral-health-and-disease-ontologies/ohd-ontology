@@ -144,7 +144,7 @@
     (setf uri 
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-fillings-iri-base*
+				     :iri-base *eaglesoft-individual-surfaces-iri-base*
 				     :class-type surface-type-iri
 				     :args `(,tooth-name "eaglesoft")))
     ;; return uri
@@ -302,6 +302,53 @@ Usage:
 
     ;; retun list of single-quoted items
     items))
+
+(defun get-ohd-material-name (ada-code)
+  "Returns the name the material used in a restoration based on ada code."
+  (let ((material-name nil))
+    ;; get the numeric part of code
+    (setf ada-code (str-right ada-code 4))
+    
+    ;; compare ada code to respective global code lists
+    (cond
+      ((member ada-code *amalgam-code-list* :test 'equal) 
+       (setf material-name "amalgam"))
+      ((member ada-code *resin-code-list* :test 'equal) 
+       (setf material-name "resin"))
+      ((member ada-code *gold-code-list* :test 'equal)
+       (setf material-name "gold"))
+      ((member ada-code *metallic-code-list* :test 'equal)
+       (setf material-name "metallic"))
+      ((member ada-code *ceramic-code-list* :test 'equal)
+       (setf material-name "ceramic"))
+      (t (setf material-name "dental restoration material")))
+
+    ;; return material name
+    material-name))
+
+(defun get-ohd-material-uri (ada-code)
+  "Returns the uri of the material used in a restoration based on ada code."
+  (let ((material-uri nil))
+    ;; get the numeric part of code
+    (setf ada-code (str-right ada-code 4))
+    
+    ;; compare ada code to respective global code lists
+    (cond
+      ((member ada-code *amalgam-code-list* :test 'equalp)
+       (setf material-uri !'amalgam dental restoration material'@ohd))
+      ((member ada-code *resin-code-list* :test 'equalp)
+       (setf material-uri !'resin dental restoration material'@ohd))
+      ((member ada-code *gold-code-list* :test 'equalp)
+       (setf material-uri !'gold dental restoration material'@ohd))
+      ((member ada-code *metallic-code-list* :test 'equalp)
+       (setf material-uri !'metallic dental restoration material'@ohd))
+      ((member ada-code *ceramic-code-list* :test 'equalp)
+       (setf material-uri !'ceramic dental restoration material'@ohd))
+      (t 
+       (setf material-uri !'dental restoration material'@ohd)))
+    
+    ;; return material uri
+    material-uri))
 	
 ;;;; database functions ;;;;
 
@@ -1460,19 +1507,22 @@ The steps for creating the r21_provider table are as follows:
 ;; it is loaded in get-eaglesoft-salt above
 (defparameter *eaglesoft-salt* (get-eaglesoft-salt))
 
-;; list of ada codes for amalgam, resin, and gold fillings/restorations
-(defparameter *eaglesoft-amalgam-code-list* 
-  '("D2140" "D2150" "D2160" "D2161"
-    "02140" "02150" "02160" "02161"))
+;; lists of ada codes that indicate a particual kind of material is used in a procedure
+;; NB: only the numeric portion of the codes is given. this is b/c the current
+;;     codes start with a "D" but older codes start with a "0"
+(defparameter *amalgam-code-list* 
+  '("2140" "2150" "2160" "2161"))
 
-;; Note: D2390/02390 is a resin-based crown; and thus not in the list
-(defparameter *eaglesoft-resin-code-list* 
-  '("D2330" "D2332" "D2335" "D2390" "D2391" "D2392" "D2393" "D2394"
-    "02330" "02332" "02335" "02390" "02391" "02392" "02393" "02394"))
+(defparameter *resin-code-list* 
+  '("2330" "2331" "2332" "2335" "2390" "2391" "2392" "2393" "2394"
+    "2650" "2651" "2652" "2662" "2663" "2664"))
 
-(defparameter *eaglesoft-gold-code-list* 
-  '("D2410" "D2420" "D2430"
-    "02410" "02420" "02430"))
+(defparameter *gold-code-list* '("2410" "2420" "2430"))
+
+(defparameter *metallic-code-list* '("2510" "2520" "2530" "2542" "2543" "2544"))
+
+(defparameter *ceramic-code-list* '("2610" "2620" "2630" "2642" "2643" "2644"))
+
 
 ;; global iri variables
 
@@ -1483,6 +1533,14 @@ The steps for creating the r21_provider table are as follows:
 ;; CDT code ontology
 (defparameter *cdt-iri-base* "http://purl.obolibrary.org/obo/")
 (defparameter *cdt-ontology-iri* "http://purl.obolibrary.org/obo/cdt.owl")
+
+;; base iri used for tooth surfaces in eaglesoft
+(defparameter *eaglesoft-individual-surfaces-iri-base* 
+  "http://purl.obolibrary.org/obo/ohd/individuals/")
+
+;; base iri used for individual teeth in eaglesoft
+(defparameter *eaglesoft-individual-teeth-iri-base*
+  "http://purl.obolibrary.org/obo/ohd/individuals/")
 
 ;; eaglesoft dental patients ontology 
 (defparameter *eaglesoft-individual-dental-patients-iri-base*
@@ -1496,9 +1554,17 @@ The steps for creating the r21_provider table are as follows:
 (defparameter *eaglesoft-fillings-ontology-iri* 
   "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-fillngs.owl")
 
-;; eaglesoft individual teeth
-(defparameter *eaglesoft-individual-teeth-iri-base*
+;; eaglesoft inlays ontology
+(defparameter *eaglesoft-individual-inlays-iri-base* 
   "http://purl.obolibrary.org/obo/ohd/individuals/")
+(defparameter *eaglesoft-inlays-ontology-iri* 
+  "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-inlays.owl")
+
+;; eaglesoft onlays ontology
+(defparameter *eaglesoft-individual-onlays-iri-base* 
+  "http://purl.obolibrary.org/obo/ohd/individuals/")
+(defparameter *eaglesoft-onlays-ontology-iri* 
+  "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-onlays.owl")
 
 ;; eaglesoft crowns ontology
 (defparameter *eaglesoft-individual-crowns-iri-base* 
