@@ -346,7 +346,9 @@
                               '02960',
                               '02961',
                               '02962',
-                              '02970') "))
+                              '02970') 
+
+                   AND LENGTH(tooth_data) > 31 "))
 
     ;; check for patient id
     (when patient-id
