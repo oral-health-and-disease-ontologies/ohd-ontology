@@ -452,7 +452,10 @@ As an example of use, this call would create the ontologies for patient 3000: (c
 	(missing-teeth nil)
 	(unerupted-teeth nil)
 	(caries nil)
-	(surgical-extractions nil))
+	(surgical-extractions nil)
+	(inlays nil)
+	(onlays nil))
+
 	
     ;; create ontologies
     (setf crowns (get-eaglesoft-crowns-ont
@@ -474,6 +477,10 @@ As an example of use, this call would create the ontologies for patient 3000: (c
 		   :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
     (setf surgical-extractions (get-eaglesoft-surgical-extractions-ont
 		   :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+    (setf inlays (get-eaglesoft-inlays-ont
+	      :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+    (setf inlays (get-eaglesoft-onlays-ont
+	      :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
 	
     ;; check to save
     (when save-to-path
@@ -504,7 +511,9 @@ As an example of use, this call would create the ontologies for patient 3000: (c
       (write-rdfxml missing-teeth (str+ save-to-path "missing-teeth-findings.owl"))
       (write-rdfxml unerupted-teeth (str+ save-to-path "unerupted-teeth-findings.owl"))
       (write-rdfxml caries (str+ save-to-path "caries-findings.owl"))
-      (write-rdfxml surgical-extractions (str+ save-to-path "surgical-extractions.owl")))
+      (write-rdfxml surgical-extractions (str+ save-to-path "surgical-extractions.owl"))
+      (write-rdfxml crowns (str+ save-to-path "inlays.owl"))
+      (write-rdfxml crowns (str+ save-to-path "onlays.owl")))
 
     ;; place ontologies in asscoiated list and return
     `((crowns . ,crowns)
@@ -515,7 +524,9 @@ As an example of use, this call would create the ontologies for patient 3000: (c
       (missing-teeth . ,missing-teeth)
       (unerupted-teeth . ,unerupted-teeth)
       (caries . ,caries)
-      (surgical-extractions . ,surgical-extractions))))
+      (surgical-extractions . ,surgical-extractions)
+      (inlays . ,inlays)
+      (onlays . ,onlays))))
 
 (defun  search-eaglesoft-database-schema (&key table-name field-name)
   "Searches the Eaglesoft database schema for specified table and field names, and prints the results to the screen.  If not parameters are given, all the results are printed to sceen."
