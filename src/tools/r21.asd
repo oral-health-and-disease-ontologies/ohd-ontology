@@ -45,6 +45,8 @@
 	     (:file "eaglesoft-unerupted-teeth-findings")
 	     (:file "eaglesoft-caries-findings")
 	     (:file "eaglesoft-dental-providers")
+	     (:file "eaglesoft-inlays")
+	     (:file "eaglesoft-onlays")
 	     )
 	    :depends-on
 	    (early)))
