@@ -280,8 +280,6 @@
 	      (push `(object-property-assertion !'is about'@ohd
 						,cdt-uri ,surface-uri) axioms)
 	      
-	      (print-db surface-name)
-
 	      ;; if the instance of surface is not in the charted surface list above
 	      ;; then add the surface to the ontology (and relate it to tooth)
 	      ;; as an example of this look at resin restoration of tooth 19 in patient 304
@@ -290,7 +288,7 @@
 		;;(print-db record-count)
 		;;(print-db charted-surface-list)
 		;;(print-db billed-surface-list)
-		(print-db surface-name)
+		
 		(push `(declaration (named-individual ,surface-uri)) axioms)
 		(setf temp-axioms (get-ohd-instance-axioms surface-uri surface-type-uri))
 		(setf axioms (append temp-axioms axioms))
@@ -359,13 +357,16 @@
 (defun get-eaglesoft-material-name (ada-code)
   "Returns the name the material used in a filling/restoration based on ada code."
   (let ((material-name nil))
+    ;; get the numeric part of code
+    (setf ada-code (str-right ada-code 4))
+    
     ;; compare ada code to respective global code lists
     (cond
-      ((member ada-code *eaglesoft-amalgam-code-list* :test 'equal) 
+      ((member ada-code *amalgam-code-list* :test 'equal) 
        (setf material-name "amalgam"))
-      ((member ada-code *eaglesoft-resin-code-list* :test 'equal) 
+      ((member ada-code *resin-code-list* :test 'equal) 
        (setf material-name "resin"))
-      ((member ada-code *eaglesoft-gold-code-list* :test 'equal)
+      ((member ada-code *gold-code-list* :test 'equal)
        (setf material-name "gold"))
       (t (setf material-name "other material")))
 
@@ -375,13 +376,16 @@
 (defun get-eaglesoft-restoraton-name (ada-code)
   "Returns the name the type of restoration based on ada code."
   (let ((restoration-name nil))
+    ;; get the numeric part of code
+    (setf ada-code (str-right ada-code 4))
+
     ;; compare ada code to respective global code lists
     (cond
-      ((member ada-code *eaglesoft-amalgam-code-list* :test 'equalp)
+      ((member ada-code *amalgam-code-list* :test 'equalp)
        (setf restoration-name "amalgam"))
-      ((member ada-code *eaglesoft-resin-code-list* :test 'equalp)
+      ((member ada-code *resin-code-list* :test 'equalp)
        (setf restoration-name "resin"))
-      ((member ada-code *eaglesoft-gold-code-list* :test 'equalp)
+      ((member ada-code *gold-code-list* :test 'equalp)
        (setf restoration-name "gold"))
       (t (setf restoration-name "other")))
 
@@ -391,13 +395,16 @@
 (defun get-eaglesoft-restoration-uri (ada-code)
   "Returns the uri of the restoration type based on ada code."
   (let ((restoration-uri nil))
+    ;; get the numeric part of code
+    (setf ada-code (str-right ada-code 4))
+    
     ;; compare ada code to respective global code lists
     (cond
-      ((member ada-code *eaglesoft-amalgam-code-list* :test 'equalp) 
+      ((member ada-code *amalgam-code-list* :test 'equalp) 
        (setf restoration-uri !'amalgam filling restoration'@ohd))
-      ((member ada-code *eaglesoft-resin-code-list* :test 'equalp)  
+      ((member ada-code *resin-code-list* :test 'equalp)  
        (setf restoration-uri !'resin filling restoration'@ohd))
-      ((member ada-code *eaglesoft-gold-code-list* :test 'equalp)
+      ((member ada-code *gold-code-list* :test 'equalp)
        (setf restoration-uri !'gold filling restoration'@ohd))
       (t (setf restoration-uri !'filling restoration'@ohd)))
 
@@ -407,14 +414,17 @@
 (defun get-eaglesoft-material-uri (ada-code)
   "Returns the uri of the material used in a filling/restoration based on ada code."
   (let ((material-uri nil))
+    ;; get the numeric part of code
+    (setf ada-code (str-right ada-code 4))
+    
     ;; compare ada code to respective global code lists
     (cond
-      ((member ada-code *eaglesoft-amalgam-code-list* :test 'equalp)
-       (setf material-uri !'amalgam restoration material'@ohd))
-      ((member ada-code *eaglesoft-resin-code-list* :test 'equalp)
-       (setf material-uri !'resin'@ohd))
-      ((member ada-code *eaglesoft-gold-code-list* :test 'equalp)
-       (setf material-uri !'gold restoration material'@ohd))
+      ((member ada-code *amalgam-code-list* :test 'equalp)
+       (setf material-uri !'amalgam dental restoration material'@ohd))
+      ((member ada-code *resin-code-list* :test 'equalp)
+       (setf material-uri !'resin dental restoration material'@ohd))
+      ((member ada-code *gold-code-list* :test 'equalp)
+       (setf material-uri !'gold dental restoration material'@ohd))
       (t 
        (setf material-uri !'dental restoration material'@ohd)))
     
