@@ -287,7 +287,7 @@
     (setf sql 
 	  (str+ sql 
 		"WHERE
-                 ada_code IN ('D2390', -- This was originally in the fillings query
+                 ada_code IN ('D2390', /* This was originally in the fillings query */
                               'D2710',
                               'D2712',
                               'D2721',
@@ -317,8 +317,8 @@
                               'D2962',
                               'D2970',
 
-                               -- Older ada codes beging with a '0'
-                              '02390', -- This was origanally in the fillings query
+                               /* Older ada codes beging with a '0' */
+                              '02390', /* This was origanally in the fillings query */
                               '02710',
                               '02712',
                               '02721',
