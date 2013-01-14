@@ -445,38 +445,38 @@ the surface_detail array.
     (setf sql
 	  (str+ sql 
 		"WHERE
-                  ada_code IN ('D2140', -- Restorative: Amalgam
+                  ada_code IN ('D2140', /* Restorative: Amalgam */
                                'D2150',
                                'D2160',
                                'D2161',
-                               'D2330', -- Restorative: Resin
+                               'D2330', /* Restorative: Resin */
                                'D2331',
                                'D2332',
                                'D2335',
-                               --'D2390', -- D2390 is not a restoration, it's a crown
+                               /* 'D2390', -- D2390 is not a restoration, it's a crown */
                               'D2391',
                               'D2392',
                               'D2393',
                               'D2394',
-                              'D2410', -- Restorative: Gold Foil
+                              'D2410', /* Restorative: Gold Foil */
                               'D2420',
                               'D2430',
 
-                               -- Older codes begin with a '0'
-                              '02140', -- Restorative: Amalgam
+                               /* Older codes begin with a '0' */
+                              '02140', /* Restorative: Amalgam */
                               '02150',
                               '02160',
                               '02161',
-                              '02330', -- Restorative: Resin
+                              '02330', /* Restorative: Resin */
                               '02331',
                               '02332',
                               '02335',
-                              --'02390' -- 02390 is not a restoration, it's a crown
+                              /* '02390' -- 02390 is not a restoration, it's a crown */
                              '02391',
                              '02392',
                              '02393',
                              '02394',
-                             '02410', -- Restorative: Gold Foil
+                             '02410', /* Restorative: Gold Foil */
                              '02420',
                              '02430' )
 
