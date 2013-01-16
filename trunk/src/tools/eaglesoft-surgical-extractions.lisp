@@ -47,7 +47,7 @@
 		       (#"getString" results "tran_date")))
 		     
 	        ;; get axioms
-		(as (get-eaglesoft-surgical-extraction-axioms 
+		(as (get-eaglesoft-surgical-extractions-axioms 
 
 		     (#"getString" results "patient_id")
 		     occurrence-date
@@ -62,7 +62,7 @@
       ;; return the ontology
       (values ont count))))
 
-(defun get-eaglesoft-surgical-extraction-axioms 
+(defun get-eaglesoft-surgical-extractions-axioms 
     (patient-id occurrence-date tooth-data ada-code provider-id provider-type practice-id record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
@@ -243,16 +243,14 @@ Note: This has not been filtered for primary (baby) teeth.
 	  (str+ sql 
 		"WHERE
                    length(tooth_data) > 31
-                 AND (
-                      ada_code IN ('D7110',
+                 AND RIGHT(ada_code, 4) IN 
+                                  ('D7110',
                                    'D7120',
                                    'D7140',
                                    'D7210')
-                 OR -- older codes begin with a '0'
-                    ada_code IN ('07110',
-                                 '07120',
-                                 '07140',
-                                 '07210')) "))
+                   /* older codes (previous to cdt4) being with a 0 
+                      codes cdt4 (2003) and later begin with a D */
+                   AND LEFT(ada_code, 1) IN ('D','0') "))
 
     ;; check for patient id
     (when patient-id

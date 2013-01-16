@@ -160,8 +160,7 @@
 	      (setf surface-type-uri (get-fma-surface-uri surface-name))
 	      
 	      ;; create and instance of this surface
-	      (setf surface-uri (get-eaglesoft-surface-iri patient-id surface-type-uri 
-							   tooth-name record-count))
+	      (setf surface-uri (get-eaglesoft-surface-iri patient-id surface-type-uri tooth-name))
 	      (push `(declaration (named-individual ,surface-uri)) axioms)
 	      (setf temp-axioms (get-ohd-instance-axioms surface-uri surface-type-uri))
 	      (setf axioms (append temp-axioms axioms))
