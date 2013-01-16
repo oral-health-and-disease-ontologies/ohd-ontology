@@ -73,6 +73,7 @@
 	(crown-restoration-uri nil)
 	(restoration-type-uri nil)
 	(material-type-uri nil)
+	(material-name nil)
 	(tooth-name nil)
 	(tooth-uri nil)
 	(tooth-type-uri nil)
@@ -119,8 +120,8 @@
 				      ,(str+ "tooth to be crowned role for " 
 					     tooth-name " of patient "patient-id)) axioms)
 
-         ;; declare instance of material (i.e.,  amalgam/resin/gold) used in tooth
-	 (setf material-type-uri !'dental restoration material'@ohd)
+         ;; declare instance of material used in tooth
+	 (setf material-type-uri (get-ohd-material-uri ada-code))
 	 (setf crown-material-uri 
 	       (get-eaglesoft-crown-material-iri 
 		patient-id tooth-name material-type-uri record-count))
@@ -130,9 +131,10 @@
 	 (setf axioms (append temp-axioms axioms))
 
 	 ;; add annotation about this instance of material
+	 (setf material-name (get-ohd-material-name ada-code))
 	 (push `(annotation-assertion !rdfs:label 
 				      ,crown-material-uri
-				      ,(str+ "restorative material used for crown on  " 
+				      ,(str+ material-name " used for crown on  " 
 					     tooth-name " of patient " patient-id)) axioms)
 
          ;; declare instance of restoration procedure
@@ -287,68 +289,54 @@
     (setf sql 
 	  (str+ sql 
 		"WHERE
-                 ada_code IN ('D2390', /* This was originally in the fillings query */
-                              'D2710',
-                              'D2712',
-                              'D2721',
-                              'D2722',
-                              'D2740',
-                              'D2750',
-                              'D2751',
-                              'D2752',
-                              'D2780',
-                              'D2781',
-                              'D2782',
-                              'D2783',
-                              'D2790',
-                              'D2791',
-                              'D2792',
-                              'D2794',
-                              'D2799',
-                              'D2931',
-                              'D2932',
-                              'D2933',
-                              'D2940',
-                              'D2950',
-                              'D2952',
-                              'D2954',
-                              'D2960',
-                              'D2961',
-                              'D2962',
-                              'D2970',
+                   RIGHT(ada_code, 4) IN
+                             ('2390', /* This was originally in the fillings query */
+                              '2710',
+                              '2712',
+                              '2721',
+                              '2722',
+                              '2740',
+                              '2750',
+                              '2751',
+                              '2752',
+                              '2780',
+                              '2781',
+                              '2782',
+                              '2783',
+                              '2790',
+                              '2791',
+                              '2792',
+                              '2794',
+                              '2799',
+                              '2931',
+                              '2932',
+                              '2933',
+                              '2970',
+ 
+                               /* Fixed Partial Denture Retainers - Crowns */
+                              '6710',
+                              '6720',
+                              '6721',
+                              '6722',
+                              '6740',
+                              '6750',
+                              '6751',
+                              '6752',
+                              '6780',
+                              '6781',
+                              '6782',
+                              '6783',
+                              '6790',
+                              '6791',
+                              '6792',
+                              '6793',
+                              '6794',
+                              '6795')
 
-                               /* Older ada codes beging with a '0' */
-                              '02390', /* This was origanally in the fillings query */
-                              '02710',
-                              '02712',
-                              '02721',
-                              '02722',
-                              '02740',
-                              '02750',
-                              '02751',
-                              '02752',
-                              '02780',
-                              '02781',
-                              '02782',
-                              '02783',
-                              '02790',
-                              '02791',
-                              '02792',
-                              '02794',
-                              '02799',
-                              '02931',
-                              '02932',
-                              '02933',
-                              '02940',
-                              '02950',
-                              '02952',
-                              '02954',
-                              '02960',
-                              '02961',
-                              '02962',
-                              '02970') 
-
-                   AND LENGTH(tooth_data) > 31 "))
+                   AND LENGTH(tooth_data) > 31 
+                   /* older codes (previous to cdt4) being with a 0 
+                      codes cdt4 (2003) and later begin with a D */
+                   AND LEFT(ada_code, 1) IN ('D','0') "))
 
     ;; check for patient id
     (when patient-id

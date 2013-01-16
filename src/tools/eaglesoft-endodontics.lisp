@@ -244,38 +244,26 @@ Note: This has not been filtered for primary (baby) teeth.
     (setf sql 
 	  (str+ sql 
 		"WHERE
-                  (
-                    ada_code IN ('D3220',
-                                 'D3221',
-                                 'D3222',
-                                 'D3310',
-                                 'D3320',
-                                 'D3330',
-                                 'D3346',
-                                 'D3347',
-                                 'D3348',
-                                 'D3410',
-                                 'D3421',
-                                 'D3425',
-                                 'D3450',
-                                 'D3920' )
-                 OR
-                   -- Older codes begin with a '0'
-                   ada_code IN ('03220',
-                                '03221',
-                                '03222',
-                                '03310',
-                                '03320',
-                                '03330',
-                                '03346',
-                                '03347',
-                                '03348',
-                                '03410',
-                                '03421',
-                                '03425',
-                               '03450',
-                               '03920' ) )
-                 AND length(tooth_data) > 31 "))
+                  RIGHT(ada_code, 4) IN 
+                                ('3220',
+                                 '3221',
+                                 '3222',
+                                 '3310',
+                                 '3320',
+                                 '3330',
+                                 '3346',
+                                 '3347',
+                                 '3348',
+                                 '3410',
+                                 '3421',
+                                 '3425',
+                                 '3450',
+                                 '3920' )
+
+                 AND length(tooth_data) > 31 
+                   /* older codes (previous to cdt4) being with a 0 
+                      codes cdt4 (2003) and later begin with a D */
+                 AND LEFT(ada_code, 1) IN ('D','0') "))
 
     ;; check for patient id
     (when patient-id

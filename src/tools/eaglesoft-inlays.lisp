@@ -189,8 +189,7 @@
 	      (setf surface-type-uri (get-fma-surface-uri surface-name))
 	      
 	      ;; create and instance of this surface
-	      (setf surface-uri (get-eaglesoft-surface-iri patient-id surface-type-uri 
-							   tooth-name record-count))
+	      (setf surface-uri (get-eaglesoft-surface-iri patient-id surface-type-uri tooth-name))
 	      (push `(declaration (named-individual ,surface-uri)) axioms)
 	      (setf temp-axioms (get-ohd-instance-axioms surface-uri surface-type-uri))
 	      (setf axioms (append temp-axioms axioms))
@@ -273,8 +272,7 @@
 	      (setf surface-type-uri (get-fma-surface-uri surface-name))
 	      
 	      ;; create and instance of this surface
-	      (setf surface-uri (get-eaglesoft-surface-iri patient-id surface-type-uri 
-							   tooth-name record-count))
+	      (setf surface-uri (get-eaglesoft-surface-iri patient-id surface-type-uri tooth-name))
 
 	      ;; relate cdt code to billed surface
 	      ;; cdt code instance is about the billed surface
@@ -363,12 +361,20 @@
 
     ;; compare ada code to respective global code lists
     (cond
-      ((member ada-code *metallic-code-list* :test 'equalp)
-       (setf restoration-name "metallic"))
+      ((member ada-code *metal-code-list* :test 'equalp)
+       (setf restoration-name "metal"))
       ((member ada-code *resin-code-list* :test 'equalp)
        (setf restoration-name "resin"))
       ((member ada-code *ceramic-code-list* :test 'equalp)
        (setf restoration-name "ceramic"))
+      ((member ada-code *noble-metal-code-list* :test 'equalp) 
+       (setf restoration-name "noble metal"))
+      ((member ada-code *high-noble-metal-code-list* :test 'equalp) 
+       (setf restoration-name "high noble metal"))
+      ((member ada-code *predominantly-base-metal-code-list* :test 'equalp) 
+       (setf restoration-name "predominantly base metal"))
+      ((member ada-code *titanium-code-list* :test 'equalp) 
+       (setf restoration-name "titanium"))
       (t (setf restoration-name "other")))
 
     ;; return material name
@@ -382,12 +388,20 @@
     
     ;; compare ada code to respective global code lists
     (cond
-      ((member ada-code *metallic-code-list* :test 'equalp) 
+      ((member ada-code *metal-code-list* :test 'equalp) 
        (setf restoration-uri !'metallic inlay restoration'@ohd))
       ((member ada-code *resin-code-list* :test 'equalp)  
        (setf restoration-uri !'resin inlay restoration'@ohd))
       ((member ada-code *ceramic-code-list* :test 'equalp)
        (setf restoration-uri !'ceramic inlay restoration'@ohd))
+      ((member ada-code *noble-metal-code-list* :test 'equalp) 
+       (setf restoration-uri !'noble metal inlay restoration'@ohd))
+      ((member ada-code *high-noble-metal-code-list* :test 'equalp) 
+       (setf restoration-uri !'high noble metal inlay restoration'@ohd))
+      ((member ada-code *predominantly-base-metal-code-list* :test 'equalp) 
+       (setf restoration-uri !'predominantly base metal inlay restoration'@ohd))
+      ((member ada-code *titanium-code-list* :test 'equalp) 
+       (setf restoration-uri !'titanium inlay restoration'@ohd))
       (t (setf restoration-uri !'inlay restoration'@ohd)))
 
     ;; return restoration
@@ -440,7 +454,7 @@ the surface_detail array.
     (setf sql
 	  (str+ sql 
 		"WHERE
-                  RIGHT(ada_code, 4) IN ('2510',
+                  RIGHT(ada_code, 4) IN ('2510', /* Restorative codes */
                                          '2520',
                                          '2530',
                                          '2610',
@@ -448,7 +462,17 @@ the surface_detail array.
                                          '2630',
                                          '2650',
                                          '2651',
-                                         '2652')
+                                         '2652',
+                                         
+                                         '6600', /* Fixed Partial Denture Retainers - Inlays/Onlays */
+                                         '6601',
+                                         '6602',
+                                         '6603',
+                                         '6604',
+                                         '6605',
+                                         '6606',
+                                         '6607',
+                                         '6624')
                    AND LENGTH(tooth_data) > 31
                    AND surface_detail IS NOT NULL 
                    /* older codes (previous to cdt4) being with a 0 

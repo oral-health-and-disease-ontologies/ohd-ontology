@@ -6,13 +6,13 @@
 
 ;;****************************************************************
 ;; Database preparation: 
-;; When get-eaglesoft-fillings-ont is ran, the program verifies that the action_codes and
+;; When get-eaglesoft-veneers-ont is ran, the program verifies that the action_codes and
 ;; patient_history tables exist.  This is done by calling prepare-eaglesoft-db.  However, this
 ;; only tests that these tables exist in the user's database. If these table need to be 
-;; recreated, the call get-eaglesoft-fillings-ont with :force-create-table key set to t.
+;; recreated, the call get-eaglesoft-veneers-ont with :force-create-table key set to t.
 
-(defun get-eaglesoft-fillings-ont (&key patient-id tooth limit-rows force-create-table)
-  "Returns an ontology of the fillings contained in the Eaglesoft database. The patient-id key creates an ontology based on that specific patient. The tooth key is used to limit results to a specific tooth, and can be used in combination with the patient-id. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
+(defun get-eaglesoft-veneers-ont (&key patient-id tooth limit-rows force-create-table)
+  "Returns an ontology of the veneers contained in the Eaglesoft database. The patient-id key creates an ontology based on that specific patient. The tooth key is used to limit results to a specific tooth, and can be used in combination with the patient-id. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
 
   (let ((results nil)
 	(query nil)
@@ -23,12 +23,12 @@
     (prepare-eaglesoft-db :force-create-table force-create-table)
 
     ;; get query string for restorations
-    (setf query (get-eaglesoft-fillings-query 
+    (setf query (get-eaglesoft-veneers-query 
 		 :patient-id patient-id :tooth tooth :limit-rows limit-rows))
 
     (with-ontology ont (:collecting t
-			:base *eaglesoft-individual-fillings-iri-base*
-			:ontology-iri  *eaglesoft-fillings-ontology-iri*)
+			:base *eaglesoft-individual-veneers-iri-base*
+			:ontology-iri  *eaglesoft-veneers-ontology-iri*)
 	(;; import needed ontologies
 	 (as (get-ohd-import-axioms))
 
@@ -47,7 +47,7 @@
 			    (#"getString" results "tran_date")))
 		     
 		     ;; get axioms
-		     (as (get-eaglesoft-filling-axioms 
+		     (as (get-eaglesoft-veneers-axioms 
 		     	  (#"getString" results "patient_id")
 		     	  occurrence-date
 		     	  (#"getString" results "tooth_data")
@@ -63,7 +63,7 @@
       ;; return the ontology
       (values ont count))))
 
-(defun get-eaglesoft-filling-axioms (patient-id occurrence-date tooth-data 
+(defun get-eaglesoft-veneers-axioms (patient-id occurrence-date tooth-data 
 				     billed-surface charted-surface ada-code 
 				     provider-id provider-type practice-id record-count)
   (let ((axioms nil)
@@ -91,7 +91,8 @@
     ;; alanr - parse the list since that's what's in our table 
     ;; billd - since we are using the tooth_data array, this procedure is skipped
     ;;(setf teeth-list (parse-teeth-list tooth-data)) ; commented out by billd
-    
+
+
     ;; tooth_data
     ;; get list of teeth in tooth_data array
     (setf teeth-list (get-eaglesoft-teeth-list tooth-data))
@@ -122,24 +123,25 @@
 				      ,(str+ tooth-name
 					     " of patient " patient-id)) axioms)
 	 
-         ;; declare instance of !ohd:'tooth to be filled role'
-	 (setf tooth-role-uri (get-eaglesoft-tooth-to-be-filled-role-iri 
+         ;; declare instance of !ohd:'tooth to undergo veneer procedure role'
+	 (setf tooth-role-uri (get-eaglesoft-tooth-to-undergo-veneer-procedure-role-iri
 			       patient-id tooth-name record-count))
-	 
+		
 	 (push `(declaration (named-individual ,tooth-role-uri)) axioms)
-	 (setf temp-axioms (get-ohd-instance-axioms tooth-role-uri !'tooth to be filled role'@ohd))
+	 (setf temp-axioms (get-ohd-instance-axioms tooth-role-uri 
+						    !'tooth to undergo veneer procedure role'@ohd))
 	 (setf axioms (append temp-axioms axioms))
 
-	 ;; add annotation about 'tooth to be filled role'
+	 ;; add annotation about tooth role
 	 (push `(annotation-assertion !rdfs:label 
 				      ,tooth-role-uri
-				      ,(str+ "tooth to be filled role for " 
+				      ,(str+ "tooth to undergo veneer procedure role for " 
 					     tooth-name " of patient " 
 					     patient-id)) axioms)
 
-         ;; declare instance of material (i.e.,  amalgam/resin/gold) used in tooth
+         ;; declare instance of material used in tooth
 	 (setf ohd-material-uri (get-ohd-material-uri ada-code))
-	 (setf material-uri (get-eaglesoft-filling-material-iri 
+	 (setf material-uri (get-eaglesoft-veneer-material-iri 
 			     patient-id tooth-name ohd-material-uri record-count))
 
 	 (push `(declaration (named-individual ,material-uri)) axioms)
@@ -150,12 +152,12 @@
 	 (setf material-name (get-ohd-material-name ada-code))
 	 (push `(annotation-assertion !rdfs:label 
 				      ,material-uri
-				      ,(str+ material-name " placed in " tooth-name
+				      ,(str+ material-name " placed on " tooth-name
 					     " of patient " patient-id)) axioms)
 
          ;; declare instance of restoration 
-	 (setf ohd-restoration-uri (get-eaglesoft-filling-restoration-uri ada-code))
-	 (setf restoration-uri (get-eaglesoft-filling-restoration-iri 
+	 (setf ohd-restoration-uri (get-eaglesoft-veneer-restoration-uri ada-code))
+	 (setf restoration-uri (get-eaglesoft-veneer-restoration-iri 
 				patient-id tooth-name ohd-restoration-uri record-count))
 		     		
 	 (push `(declaration (named-individual ,restoration-uri)) axioms)
@@ -163,11 +165,11 @@
 	 (setf axioms (append temp-axioms axioms))
 
 	 ;; add annotation about this restoration procedure
-	 (setf restoration-name (get-eaglesoft-filling-restoration-name ada-code))
+	 (setf restoration-name (get-eaglesoft-veneer-restoration-name ada-code))
 	 (push `(annotation-assertion !rdfs:label 
 				      ,restoration-uri
 				      ,(str+ restoration-name 
-					     " filling restoration on " 
+					     " veneer restoration on " 
 					     tooth-name " in patient " 
 					     patient-id)) axioms)
 
@@ -196,7 +198,7 @@
 	      ;; relate surface to tooth
 	      (push `(object-property-assertion !'is part of'@ohd ,surface-uri ,tooth-uri) axioms)
 	      
-	      ;; relate filling material to surface
+	      ;; relate  material to surface
 	      (push `(object-property-assertion !'is dental restoration of'@ohd
 						,material-uri ,surface-uri) axioms)
 
@@ -223,7 +225,7 @@
 	 (push `(annotation-assertion !rdfs:label
 				      ,cdt-uri
 				      ,(str+ "billing code " ada-code " for " restoration-name 
-					     " filling restoration on " tooth-name 
+					     " veneer restoration on " tooth-name 
 					     " of patient " patient-id)) axioms)
 
 	  ;;;; relate instances ;;;;
@@ -232,23 +234,23 @@
 	 (push `(object-property-assertion !'is part of'@ohd
 					   ,tooth-uri ,patient-uri) axioms)
 
-         ;; 'tooth to be filled role' inheres in tooth
+         ;; tooth role inheres in tooth
 	 (push `(object-property-assertion !'inheres in'@ohd
 					   ,tooth-role-uri ,tooth-uri) axioms)
 
-         ;; 'filling restoration' realizes 'tooth to be filled role'
+         ;; restoration realizes tooth role
 	 (push `(object-property-assertion !'realizes'@ohd
 					   ,restoration-uri ,tooth-role-uri) axioms)
 
-         ;; 'filling restoration' has particpant tooth
+         ;; restoration has particpant tooth
 	 (push `(object-property-assertion !'has participant'@ohd
 					   ,restoration-uri ,tooth-uri) axioms)
 	 
-         ;; 'filling restoration' has particpant restoration material
+         ;; restoration has particpant restoration material
 	 (push `(object-property-assertion !'has participant'@ohd
 					   ,restoration-uri ,material-uri) axioms)
 
-         ;; 'filling restoration' has particpant patient
+         ;; restoration has particpant patient
 	 (push `(object-property-assertion !'has participant'@ohd
 					   ,restoration-uri ,patient-uri) axioms)
 
@@ -285,7 +287,7 @@
 		;;(print-db record-count)
 		;;(print-db charted-surface-list)
 		;;(print-db billed-surface-list)
-		
+		(print-db surface-name)
 		(push `(declaration (named-individual ,surface-uri)) axioms)
 		(setf temp-axioms (get-ohd-instance-axioms surface-uri surface-type-uri))
 		(setf axioms (append temp-axioms axioms))
@@ -313,47 +315,45 @@
     ;; return axioms
     axioms))
 
-(defun get-eaglesoft-tooth-to-be-filled-role-iri (patient-id tooth-name instance-count)
-  "Returns an iri for a 'tooth to be filled role' that is generated by the patient id, the name of the type of the tooth, and a count variable that used differientiate tooth role intances that have the same patient-id/tooth-name but are numerically distinct."
+(defun get-eaglesoft-tooth-to-undergo-veneer-procedure-role-iri (patient-id tooth-name instance-count)
+  "Returns an iri for a 'tooth to undergo veneer procedure role' that is generated by the patient id, the name of the type of the tooth, and a count variable that used differientiate tooth role intances that have the same patient-id/tooth-name but are numerically distinct."
   (let ((uri nil))
     (setf uri 
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
 				     :iri-base *eaglesoft-individual-teeth-iri-base*
-				     :class-type !'tooth to be filled role'@ohd
+				     :class-type !'tooth to undergo veneer procedure role'@ohd
 				     :args `(,tooth-name ,instance-count "eaglesoft")))
     ;; return uri
     uri))
 
-(defun get-eaglesoft-filling-restoration-iri (patient-id tooth-name
+(defun get-eaglesoft-veneer-restoration-iri (patient-id tooth-name
 					      restoration-type-iri instance-count)
-  "Returns an iri for a restoration filling procedure that is generated by the patient id, the name of the type of tooth, the type of restoration's iri, and a count variable that used differientiate restoration procedure intances that have the same patient-id/restoration-type-iri but are numerically distinct."
+  "Returns an iri for a restoration procedure that is generated by the patient id, the name of the type of tooth, the type of restoration's iri, and a count variable that used differientiate restoration procedure intances that have the same patient-id/restoration-type-iri but are numerically distinct."
   (let ((uri nil))
     (setf uri 
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-fillings-iri-base*
+				     :iri-base *eaglesoft-individual-veneers-iri-base*
 				     :class-type restoration-type-iri
 				     :args `(,tooth-name ,instance-count "eaglesoft")))
     ;; return uri
     uri))
 
-(defun get-eaglesoft-filling-material-iri (patient-id tooth-name
+(defun get-eaglesoft-veneer-material-iri (patient-id tooth-name
 					      material-type-iri instance-count)
-  "Returns an iri for the material used in restoration filling procedure that is generated by the patient id, the name of the type of tooth, the type of restoration's material, and a count variable that used differientiate restoration procedure intances that have the same patient-id/material-type-iri but are numerically distinct."
+  "Returns an iri for the material used in restoration procedure that is generated by the patient id, the name of the type of tooth, the type of restoration's material, and a count variable that used differientiate restoration procedure intances that have the same patient-id/material-type-iri but are numerically distinct."
   (let ((uri nil))
     (setf uri 
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-fillings-iri-base*
+				     :iri-base *eaglesoft-individual-veneers-iri-base*
 				     :class-type material-type-iri
 				     :args `(,tooth-name ,instance-count "eaglesoft")))
     ;; return uri
     uri))
   
-
-
-(defun get-eaglesoft-filling-restoration-name (ada-code)
+(defun get-eaglesoft-veneer-restoration-name (ada-code)
   "Returns the name the type of restoration based on ada code."
   (let ((restoration-name nil))
     ;; get the numeric part of code
@@ -361,18 +361,16 @@
 
     ;; compare ada code to respective global code lists
     (cond
-      ((member ada-code *amalgam-code-list* :test 'equalp)
-       (setf restoration-name "amalgam"))
       ((member ada-code *resin-code-list* :test 'equalp)
-       (setf restoration-name "resin"))
-      ((member ada-code *gold-code-list* :test 'equalp)
-       (setf restoration-name "gold"))
-      (t (setf restoration-name "other")))
+       (setf restoration-name "resin laminate"))
+      ((member ada-code *porcelain-code-list* :test 'equalp) 
+       (setf restoration-name "porcelain laminate"))
+      (t (setf restoration-name "other laminate")))
 
     ;; return material name
     restoration-name))
 
-(defun get-eaglesoft-filling-restoration-uri (ada-code)
+(defun get-eaglesoft-veneer-restoration-uri (ada-code)
   "Returns the uri of the restoration type based on ada code."
   (let ((restoration-uri nil))
     ;; get the numeric part of code
@@ -380,27 +378,21 @@
     
     ;; compare ada code to respective global code lists
     (cond
-      ((member ada-code *amalgam-code-list* :test 'equalp) 
-       (setf restoration-uri !'amalgam filling restoration'@ohd))
+      ((member ada-code *porcelain-code-list* :test 'equalp) 
+       (setf restoration-uri !'porcelain laminate veneer restoration'@ohd))
       ((member ada-code *resin-code-list* :test 'equalp)  
-       (setf restoration-uri !'resin filling restoration'@ohd))
-      ((member ada-code *gold-code-list* :test 'equalp)
-       (setf restoration-uri !'gold filling restoration'@ohd))
-      (t (setf restoration-uri !'filling restoration'@ohd)))
+       (setf restoration-uri !'resin laminate veneer restoration'@ohd))
+      (t (setf restoration-uri !'veneer restoration'@ohd)))
 
     ;; return restoration
     restoration-uri))
 
-
-(defun get-eaglesoft-fillings-query (&key patient-id tooth limit-rows)
+(defun get-eaglesoft-veneers-query (&key patient-id tooth limit-rows)
   "Returns query string for retrieving data. The patient-id key restricts records only that patient or patients.  Multiple are patients are specified using commas; e.g: \"123, 456, 789\". The tooth key is used to limit results to a specific tooth, and can be used in combination with the patient-id. However, the tooth key only takes a single value. The limit-rows key restricts the number of records to the number specified."
 
 #| 
-This queries the eaglesoft database for all ADA codes that indicate a filling procedure
+This queries the eaglesoft database for all ADA codes that indicate an veneer procedure
 has been performed.
-Note: Code D2390/02390 is a crown. Not a filling.  Also, porcelain fillings are not included.
-Also, this program filters out primary/baby teeth.  
-To filter out primary teeth from the query you add the line:   AND isnumeric(tooth) <> 0
 
 get_surface_summary_from_detail is used with the surface_detail array in order to ensure that the 
 correct surfaces names are used. For example, some records list an occlusal surface for an incisor tooth.
@@ -442,30 +434,15 @@ the surface_detail array.
     (setf sql
 	  (str+ sql 
 		"WHERE
-                  RIGHT(ada_code, 4) IN 
-                              ('2140', /* Restorative: Amalgam */
-                               '2150',
-                               '2160',
-                               '2161',
-                               '2330', /* Restorative: Resin */
-                               '2331',
-                               '2332',
-                               '2335',
-                               /* '2390', -- 2390 is not a restoration, it's a crown */
-                              '2391',
-                              '2392',
-                              '2393',
-                              '2394',
-                              '2410', /* Restorative: Gold Foil */
-                              '2420',
-                              '2430')
+                  RIGHT(ada_code, 4) IN ('2960',
+                                         '2961',
+                                         '2962')
 
-                   AND tooth_data IS NOT NULL
                    AND LENGTH(tooth_data) > 31
                    AND surface_detail IS NOT NULL 
                    /* older codes (previous to cdt4) being with a 0 
                       codes cdt4 (2003) and later begin with a D */
-                   AND LEFT(ada_code, 1) IN ('D','0') "))
+                   AND LEFT(ada_code, 1) IN ('D','0')"))
 
 
     ;; check for patient id
