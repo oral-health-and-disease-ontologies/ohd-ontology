@@ -36,6 +36,9 @@ load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r
 load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-dental-providers.owl>;
 load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-dental-patients.owl>;
 load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-crowns.owl>
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-inlays.owl>
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-onlays.owl>
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-veneers.owl>
 
 |#
 
