@@ -32,7 +32,11 @@ Parmaters:
                  ADA codes, e.g., the store of a tooth codes used in the r21 study.
 Usage:
   (get-cdtcode-ont \"http://test.com\" \"CDTCodes.xml\")
-  (get-cdtcode-ont \"http://test.com\" \"CDTCodes.xml\" \"http://example.com/foo.owl\")"
+  (get-cdtcode-ont \"http://test.com\" \"CDTCodes.xml\" \"http://example.com/foo.owl\")
+
+To create cdt-imports ontology for OHD use:
+  (get-cdtcode-ont \"CDTCodes8.xml\" :ont-iri \"http://purl.obolibrary.org/obo/ohd/r21cdtcodes.owl\"
+                                     :ada-code-list ada-code-list)"
 
   (let ((xmls-parse nil)
 	(meta-class-name-list nil)
