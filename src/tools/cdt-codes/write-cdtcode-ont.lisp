@@ -15,7 +15,7 @@
   "Global variable to hold the uri of the cdt_version annotation.")
 
 ;;;; main driver function
-(defun get-cdtcode-ont (xmlfile &key iri ont-iri 
+(defun get-cdtcode-ont (xmlfile &key iri ont-iri import-iris
 			(cdt-codes-as-classes t) ada-code-list)
   "This functions Builds an ontology of the CDT Codes.
 Returns:
@@ -25,6 +25,8 @@ Parmaters:
   xmlfile: The xml file containing the CDT codes
   ont-iri: an optional iri that can be assigned to the ontology itself.
            i.e., the ontology-iri parmater to with-ontology
+  import-iris: An optional list of iris that the ontology of will import. By default the 
+               the ontology will import IAO at <purl.obolibrary.org/obo/iao/dev/iao.owl>
   cdt-codes-as-classes: If true (by default), the cdt codes are repesented as classes.
           If false (nil), the cdt classes are named individuals.
   ada-code-list: A list of ADA codes that are to be included in the ontology.  This is
@@ -36,6 +38,7 @@ Usage:
 
 To create cdt-imports ontology for OHD use:
   (get-cdtcode-ont \"CDTCodes8.xml\" :ont-iri \"http://purl.obolibrary.org/obo/ohd/r21cdtcodes.owl\"
+                                     :import-iris '(\"http://purl.obolibrary.org/obo/dev/iao-imports.owl\")
                                      :ada-code-list ada-code-list)"
 
   (let ((xmls-parse nil)
@@ -76,11 +79,13 @@ To create cdt-imports ontology for OHD use:
     
 
     (with-ontology ont (:collecting t :base iri :ontology-iri ont-iri)
-	( ;;import IAO meta data	 
-	 ;;(as `(imports !<http://purl.obolibrary.org/obo/iao/ontology-metadata.owl>))
-
-	 ;; import IAO
-	 (as `(imports !<http://purl.obolibrary.org/obo/iao/dev/iao-dev.owl>))
+	( ;; check for imports
+	 (cond
+	   (import-iris
+	    (loop for u in import-iris do
+		 (as `(imports ,(make-uri u)))))
+	   (t ;; the default is to import IAO
+	    (as `(imports !<http://purl.obolibrary.org/obo/dev/iao.owl>))))
 
 	 ;; add ontology annotations
 	 (as `(annotation !dc:creator "American Dental Association; see www.ada.org/dentalcode"))
