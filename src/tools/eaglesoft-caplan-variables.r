@@ -1,10 +1,12 @@
 ## variables used for getting Caplan data
 
 ## column names in Caplan spreadsheet
-._caplan.column.names <- c("patientid", "sex", "birthdate", "tthnum", "procdate","procclass", "proccode",
-                          "matm", "mato", "matd", "matf", "matl","dxm", "dxo", "dxd", "dxf", "dxl", "provider")
+._caplan.column.names <-
+  c("patientid", "sex", "birthdate", "tthnum", "procdate","procclass", "proccode",
+    "matm", "mato", "matd", "matf", "matl","dxm", "dxo", "dxd", "dxf", "dxl", "provider")
+
 ## string for test query
-._test_query <-
+._test.query <-
 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX obo: <http://purl.obolibrary.org/obo/>
 select ?s ?l where {
@@ -20,41 +22,31 @@ PREFIX obo: <http://purl.obolibrary.org/obo>
 PREFIX assertedtype: <http://purl.obolibrary.org/obo/OHD_0000092>
 PREFIX dentalpatient: <http://purl.obolibrary.org/obo/OHD_0000012> "
 
-## strings for finding patients
-._patients_query_count <- 
+## strings for finding number of patients
+._caplan.patient.count.query <- 
 "SELECT (count(distinct ?patientid) as ?count)
 WHERE { 
 ?patienttype rdfs:subClassOf dentalpatient: . 
 ?patienti assertedtype: ?patienttype . 
 ?patienti rdfs:label ?patientid . 
 } "
-._patients_query_count <- paste(._prefixes,._patients_query_count)
+._caplan.patient.count.query<- paste(._prefixes,._caplan.patient.count.query)
 
-._patient_get_count_query <- 
-"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-SELECT (count(distinct ?patientid) as ?count)
-WHERE { 
-?patienttype rdfs:subClassOf <http://purl.obolibrary.org/obo/OHD_0000012> . 
-?patienti <http://purl.obolibrary.org/obo/OHD_0000092> ?patienttype . 
-?patienti rdfs:label ?patientid . 
-} "
-
-._patient_list_query <- 
+._caplan.patient.id.list.query <-
 "SELECT distinct ?patientid
 WHERE { 
 ?patienttype rdfs:subClassOf dentalpatient: . 
 ?patienti assertedtype: ?patienttype . 
 ?patienti rdfs:label ?patientid . 
 }
-ORDER BY ?patientid
-LIMIT 10 "
-._patient_list_query <- paste(._prefixes, ._patient_list_query)
+ORDER BY ?patientid "
+._caplan.patient.id.list.query <- paste(._prefixes, ._caplan.patient.id.list.query)
 
 
 ## this query is used to retrieve data for Caplan spreadsheet
 ## NB: it is syntactically not complete. the missing bits at
 ##     the end are filled in by get.caplan.query()
-._caplan.query <-
+._caplan.data.query <-
 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX obo: <http://purl.obolibrary.org/obo/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -245,7 +237,7 @@ OPTIONAL {
 ?provideri rdfs:label ?provider . }.} "
 
 ## string for materials query:
-._materials_query <-
+._materials.query <-
 "PREFIX obo: <http://purl.obolibrary.org/obo/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT ?patientid ?sex ?birthdate ?tthnum ?procdate ?procclass ?proccode ?matm ?mato ?matd ?matf ?matl ?dxm ?dxo ?dxd ?dxf ?dxl ?provider
@@ -345,7 +337,7 @@ OPTIONAL {
 ?matli rdfs:label ?matl . }.}.} LIMIT 30 "
 
 ## string for unerupted query
-._unerupted_query <-
+._unerupted.teeth.query <-
 "PREFIX obo: <http://purl.obolibrary.org/obo/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT ?patientid ?sex ?birthdate ?tthnum ?procdate ?procclass ?proccode ?matm ?mato ?matd ?matf ?matl ?dxm ?dxo ?dxd ?dxf ?dxl ?provider
@@ -376,7 +368,7 @@ OPTIONAL {
 ?provideri rdfs:label ?provider . }.}.} LIMIT 30 "
 
 ## string for caries query
-._caries_query <-
+._caries.query <-
 "PREFIX obo: <http://purl.obolibrary.org/obo/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT ?patientid ?sex ?birthdate ?tthnum ?procdate ?procclass ?proccode ?matm ?mato ?matd ?matf ?matl ?dxm ?dxo ?dxd ?dxf ?dxl ?provider
@@ -442,7 +434,7 @@ OPTIONAL {
 ?lesionontoothi rdfs:label ?dxl . }.}.} LIMIT 30 "
 
 ## query for missing teeth:
-._missing_query <- 
+._missing.teeth.query <- 
 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX obo: <http://purl.obolibrary.org/obo/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
