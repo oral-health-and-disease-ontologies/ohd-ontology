@@ -1,8 +1,24 @@
 ## load variables 
 source("eaglesoft-caplan-variables.r")
 
-# load necessary libraries for sparql
+# load necessary libraries for sparql and writing SAS data
 library(rrdf)
+library(foreign)
+
+## function for converting caplan text files to SAS files
+convert.caplan.file.to.sas <- function(file.name,
+                                       sas.data.file="~/Desktop/caplan.sas.data.txt",
+                                       sas.code.file="~/Desktop/caplan.code.sas") {
+  ## read data from the text file into a matrix
+  caplan.data <- as.matrix(read.table(file.name, na.string=c(".", " ", ""),
+                                      header=TRUE, fill=TRUE, strip.white=TRUE))
+
+  ## put data into data frame
+  caplan.df <- as.data.frame(caplan.data)
+
+  ## write data in SAS format
+  write.foreign(caplan.df, sas.data.file, sas.code.file, package="SAS")
+}
 
 ## function for simply writing out matrix
 write.caplan.matrix <- function(results, file.name="~/Desktop/caplan.matrix.txt") {
@@ -21,18 +37,32 @@ write.caplan.spreadsheet <- function(results, file.name="~/Desktop/caplan.spread
   if (file.exists(file.name) == TRUE) { file.remove(file.name) }
 
   ## write column names
+  ## spreadsheet.column.names <-
+  ##   c("ID", "SEX", "BIRTHDATE", "TTHNUM",
+  ##     "PROCDATE1", "PROCCLASS1", "PROCCODE1", "MATM1", "MATO1", "MATD1", "MATF1", "MATL1", "DXM1", "DXO1", "DXD1", "DXF1", "DXL1", "DENTIST1",
+  ##     "PROCDATE2", "PROCCLASS2", "PROCCODE2", "MATM2", "MATO2", "MATD2", "MATF2", "MATL2", "DXM2", "DXO2", "DXD2", "DXF2", "DXL2", "DENTIST2",
+  ##     "PROCDATE3", "PROCCLASS3", "PROCCODE3", "MATM3", "MATO3", "MATF3", "MATF2", "MATL2", "DXM3", "DXO3", "DXD3", "DXF3", "DXL3", "DENTIST3",
+  ##     "PROCDATE4", "PROCCLASS4", "PROCCODE4", "MATM4", "MATO4", "MATD4", "MATF4", "MATL4", "DXM4", "DXO4", "DXD4", "DXF4", "DXL4", "DENTIST4",
+  ##     "PROCDATE5", "PROCCLASS5", "PROCCODE5", "MATM5", "MATO5", "MATD5", "MATF5", "MATL5", "DXM5", "DXO5", "DXD5", "DXF5", "DXL5", "DENTIST5",
+  ##     "PROCDATE6", "PROCCLASS6", "PROCCODE6", "MATM6", "MATO6", "MATD6", "MATF6", "MATL6", "DXM6", "DXO6", "DXD6", "DXF6", "DXL6", "DENTIST6",
+  ##     "PROCDATE7", "PROCCLASS7", "PROCCODE7", "MATM7", "MATO7", "MATD7", "MATF7", "MATL7", "DXM7", "DXO7", "DXD7", "DXF7", "DXL7", "DENTIST7",
+  ##     "PROCDATE8", "PROCCLASS8", "PROCCODE8", "MATM8", "MATO8", "MATD8", "MATF8", "MATL8", "DXM8", "DXO8", "DXD8", "DXF8", "DXL8", "DENTIST8",
+  ##     "PROCDATE9", "PROCCLASS9", "PROCCODE9", "MATM9", "MATO9", "MATD9", "MATF9", "MATL9", "DXM9", "DXO9", "DXD9", "DXF9", "DXL9", "DENTIST9",
+  ##     "PROCDATE10", "PROCCLASS10", "PROCCODE10", "MATM10", "MATO10", "MATD10", "MATF10", "MATL10", "DXM10", "DXO10", "DXD10", "DXF10", "DXL10", "DENTIST10")
+  
+  ## in order to save in SAS format column/variable names can only be 8 characters
   spreadsheet.column.names <-
-    c("ID", "SEX", "BIRTHDATE", "TTHNUM",
-      "PROCDATE1", "PROCCLASS1", "PROCCODE1", "MATM1", "MATO1", "MATD1", "MATF1", "MATL1", "DXM1", "DXO1", "DXD1", "DXF1", "DXL1", "DENTIST1",
-      "PROCDATE2", "PROCCLASS2", "PROCCODE2", "MATM2", "MATO2", "MATD2", "MATF2", "MATL2", "DXM2", "DXO2", "DXD2", "DXF2", "DXL2", "DENTIST2",
-      "PROCDATE3", "PROCCLASS3", "PROCCODE3", "MATM3", "MATO3", "MATF3", "MATF2", "MATL2", "DXM3", "DXO3", "DXD3", "DXF3", "DXL3", "DENTIST3",
-      "PROCDATE4", "PROCCLASS4", "PROCCODE4", "MATM4", "MATO4", "MATD4", "MATF4", "MATL4", "DXM4", "DXO4", "DXD4", "DXF4", "DXL4", "DENTIST4",
-      "PROCDATE5", "PROCCLASS5", "PROCCODE5", "MATM5", "MATO5", "MATD5", "MATF5", "MATL5", "DXM5", "DXO5", "DXD5", "DXF5", "DXL5", "DENTIST5",
-      "PROCDATE6", "PROCCLASS6", "PROCCODE6", "MATM6", "MATO6", "MATD6", "MATF6", "MATL6", "DXM6", "DXO6", "DXD6", "DXF6", "DXL6", "DENTIST6",
-      "PROCDATE7", "PROCCLASS7", "PROCCODE7", "MATM7", "MATO7", "MATD7", "MATF7", "MATL7", "DXM7", "DXO7", "DXD7", "DXF7", "DXL7", "DENTIST7",
-      "PROCDATE8", "PROCCLASS8", "PROCCODE8", "MATM8", "MATO8", "MATD8", "MATF8", "MATL8", "DXM8", "DXO8", "DXD8", "DXF8", "DXL8", "DENTIST8",
-      "PROCDATE9", "PROCCLASS9", "PROCCODE9", "MATM9", "MATO9", "MATD9", "MATF9", "MATL9", "DXM9", "DXO9", "DXD9", "DXF9", "DXL9", "DENTIST9",
-      "PROCDATE10", "PROCCLASS10", "PROCCODE10", "MATM10", "MATO10", "MATD10", "MATF10", "MATL10", "DXM10", "DXO10", "DXD10", "DXF10", "DXL10", "DENTIST10")
+    c("ID", "SEX", "BDATE", "TTHNUM",
+      "PDATE1", "PCLASS1", "PCODE1", "MATM1", "MATO1", "MATD1", "MATF1", "MATL1", "DXM1", "DXO1", "DXD1", "DXF1", "DXL1", "DENT1",
+      "PDATE2", "PCLASS2", "PCODE2", "MATM2", "MATO2", "MATD2", "MATF2", "MATL2", "DXM2", "DXO2", "DXD2", "DXF2", "DXL2", "DENT2",
+      "PDATE3", "PCLASS3", "PCODE3", "MATM3", "MATO3", "MATF3", "MATF2", "MATL2", "DXM3", "DXO3", "DXD3", "DXF3", "DXL3", "DENT3",
+      "PDATE4", "PCLASS4", "PCODE4", "MATM4", "MATO4", "MATD4", "MATF4", "MATL4", "DXM4", "DXO4", "DXD4", "DXF4", "DXL4", "DENT4",
+      "PDATE5", "PCLASS5", "PCODE5", "MATM5", "MATO5", "MATD5", "MATF5", "MATL5", "DXM5", "DXO5", "DXD5", "DXF5", "DXL5", "DENT5",
+      "PDATE6", "PCLASS6", "PCODE6", "MATM6", "MATO6", "MATD6", "MATF6", "MATL6", "DXM6", "DXO6", "DXD6", "DXF6", "DXL6", "DENT6",
+      "PDATE7", "PCLASS7", "PCODE7", "MATM7", "MATO7", "MATD7", "MATF7", "MATL7", "DXM7", "DXO7", "DXD7", "DXF7", "DXL7", "DENT7",
+      "PDATE8", "PCLASS8", "PCODE8", "MATM8", "MATO8", "MATD8", "MATF8", "MATL8", "DXM8", "DXO8", "DXD8", "DXF8", "DXL8", "DENT8",
+      "PDATE9", "PCLASS9", "PCODE9", "MATM9", "MATO9", "MATD9", "MATF9", "MATL9", "DXM9", "DXO9", "DXD9", "DXF9", "DXL9", "DENT9",
+      "PDATE10", "PCLASS10", "PCODE10", "MATM10", "MATO10", "MATD10", "MATF10", "MATL10", "DXM10", "DXO10", "DXD10", "DXF10", "DXL10", "DENT10")
 
   ## write column names
   write.table(t(spreadsheet.column.names), file=paste(file.name), sep="\t",
