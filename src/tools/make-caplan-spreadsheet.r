@@ -22,6 +22,8 @@ make.caplan.spreadsheet <-
     if (print.results == TRUE) {
       print(res)
     }
+
+    invisible(res)
     
   }
 
@@ -76,5 +78,7 @@ make.caplan.spreadsheet.by.patient <-
     if (print.results == TRUE) {
       print(res.caplan)
     }
+
+    invisible(res.caplan)
   }
            
