@@ -1,12 +1,12 @@
 source("eaglesoft-caplan-functions.r")
 
 make.caplan.spreadsheet <-
-  function(limit.rows="", patient.id="", filter="", write.spreadsheet=TRUE, write.matrix=TRUE,
+  function(limit.rows="", patient.id="", filter="", endpoint="local",
+           write.spreadsheet=TRUE, write.matrix=TRUE,
            spreadsheet.file.name="~/Desktop/caplan.spreadsheet.txt",
            matrix.file.name="~/Desktop/caplan.matrix.txt", print.query=FALSE, print.results=FALSE) {
-
     ## get triples
-    res <- get.caplan.data(limit.rows, patient.id, print.query, filter)
+    res <- get.caplan.data(limit.rows, patient.id, print.query, filter, endpoint)
 
     ## transform data into Caplan format
     res <- transform.caplan.data(res)
@@ -24,9 +24,21 @@ make.caplan.spreadsheet <-
     }
 
     invisible(res)
-    
   }
 
+test.sas <- function(limit="5", col.limit=0, url="local") {
+  res <- make.caplan.spreadsheet(limit.rows=limit, endpoint=url)
+
+  if (col.limit > 0) {
+    res <- res[, 1:col.limit]
+  }
+  
+  res.list <- get.caplan.ragged.list(res)
+  res.df <- get.caplan.ragged.data.frame(res.list)
+
+  write.caplan.sas(res.df)
+  return(res.df)
+}
 
 make.caplan.spreadsheet.by.patient <-
   function(limit.rows="", patient.count=0, patient.id="", filter="",

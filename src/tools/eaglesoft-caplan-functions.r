@@ -1,7 +1,7 @@
 ## load variables 
 source("eaglesoft-caplan-variables.r")
 
-# load necessary libraries for sparql and writing SAS data
+# load necessary libraries
 library(rrdf)
 library(foreign)
 
@@ -16,6 +16,30 @@ convert.caplan.file.to.sas <- function(file.name,
   ## put data into data frame
   caplan.df <- as.data.frame(caplan.data)
 
+  ## coerce date columns
+  column.names <- colnames(caplan.df)
+  for (name in column.names) {
+    if(length(grep("DATE", name, ignore.case=TRUE)) > 0) {
+      caplan.df[[name]] <- as.Date(caplan.df[[name]], format="%m-%d-%Y")
+    }
+  }
+  
+  ## write data in SAS format
+  write.foreign(caplan.df, sas.data.file, sas.code.file, package="SAS")
+}
+
+## function for writing SAS file from the dataframe
+write.caplan.sas <- function(caplan.df,
+                             sas.data.file="~/Desktop/caplan.sas.data.txt",
+                             sas.code.file="~/Desktop/caplan.code.sas") {
+  ## coerce date columns
+  column.names <- colnames(caplan.df)
+  for (name in column.names) {
+    if(length(grep("DATE", name, ignore.case=TRUE)) > 0) {
+      caplan.df[[name]] <- as.Date(caplan.df[[name]], format="%m-%d-%Y")
+    }
+  }
+  
   ## write data in SAS format
   write.foreign(caplan.df, sas.data.file, sas.code.file, package="SAS")
 }
@@ -35,21 +59,79 @@ write.caplan.matrix <- function(results, file.name="~/Desktop/caplan.matrix.txt"
 write.caplan.spreadsheet <- function(results, file.name="~/Desktop/caplan.spreadsheet.txt") {
   ## delete file if it already exists
   if (file.exists(file.name) == TRUE) { file.remove(file.name) }
-
-  ## write column names
-  ## spreadsheet.column.names <-
-  ##   c("ID", "SEX", "BIRTHDATE", "TTHNUM",
-  ##     "PROCDATE1", "PROCCLASS1", "PROCCODE1", "MATM1", "MATO1", "MATD1", "MATF1", "MATL1", "DXM1", "DXO1", "DXD1", "DXF1", "DXL1", "DENTIST1",
-  ##     "PROCDATE2", "PROCCLASS2", "PROCCODE2", "MATM2", "MATO2", "MATD2", "MATF2", "MATL2", "DXM2", "DXO2", "DXD2", "DXF2", "DXL2", "DENTIST2",
-  ##     "PROCDATE3", "PROCCLASS3", "PROCCODE3", "MATM3", "MATO3", "MATF3", "MATF2", "MATL2", "DXM3", "DXO3", "DXD3", "DXF3", "DXL3", "DENTIST3",
-  ##     "PROCDATE4", "PROCCLASS4", "PROCCODE4", "MATM4", "MATO4", "MATD4", "MATF4", "MATL4", "DXM4", "DXO4", "DXD4", "DXF4", "DXL4", "DENTIST4",
-  ##     "PROCDATE5", "PROCCLASS5", "PROCCODE5", "MATM5", "MATO5", "MATD5", "MATF5", "MATL5", "DXM5", "DXO5", "DXD5", "DXF5", "DXL5", "DENTIST5",
-  ##     "PROCDATE6", "PROCCLASS6", "PROCCODE6", "MATM6", "MATO6", "MATD6", "MATF6", "MATL6", "DXM6", "DXO6", "DXD6", "DXF6", "DXL6", "DENTIST6",
-  ##     "PROCDATE7", "PROCCLASS7", "PROCCODE7", "MATM7", "MATO7", "MATD7", "MATF7", "MATL7", "DXM7", "DXO7", "DXD7", "DXF7", "DXL7", "DENTIST7",
-  ##     "PROCDATE8", "PROCCLASS8", "PROCCODE8", "MATM8", "MATO8", "MATD8", "MATF8", "MATL8", "DXM8", "DXO8", "DXD8", "DXF8", "DXL8", "DENTIST8",
-  ##     "PROCDATE9", "PROCCLASS9", "PROCCODE9", "MATM9", "MATO9", "MATD9", "MATF9", "MATL9", "DXM9", "DXO9", "DXD9", "DXF9", "DXL9", "DENTIST9",
-  ##     "PROCDATE10", "PROCCLASS10", "PROCCODE10", "MATM10", "MATO10", "MATD10", "MATF10", "MATL10", "DXM10", "DXO10", "DXD10", "DXF10", "DXL10", "DENTIST10")
   
+  ## create ragged list and data frame from the results
+  ragged.list <- get.caplan.ragged.list(results)
+  ragged.df <- get.caplan.ragged.data.frame(ragged.list)
+
+  ## replace NA's with "."
+  ragged.df <-  fill.missing.caplan.values(ragged.df)
+
+  ##print(ragged.df)
+  
+  ## save to file
+  write.table(ragged.df, file=file.name, sep="\t",
+              col.names=TRUE, row.names=FALSE, append=FALSE)
+}
+
+get.caplan.ragged.list <- function(results, print.list=FALSE) {
+  ## initialize list to store ragged arrays
+  ## and determine length of results
+  results.list <- list()
+  results.length <- nrow(results)
+
+  ## get first row of results and iterate
+  ## over the rest of results
+  row <- results[1, ]
+  for (i in 2: results.length) {
+    temprow <- results[i, ]
+    
+    ## compare patient ids (index 1) and tooth (index 4) between row and temprow
+    ## if they match then "append" info to row
+    ## otherwise add row to list and set row to temprow (this moves the row forward)
+    if (row[1] == temprow[1] && row[4] == temprow[4]) {
+      row <- c(row, temprow[5:18])
+    } else {
+      results.list <- c(results.list, list(row))
+      row <- temprow
+    }
+
+    ## check to see if we on last record, if so add row to list
+    if (i == results.length) {
+      results.list <- c(results.list, list(row))
+    }
+  }
+
+  ## make each element in list to be of equal length
+  ## fill missing values with an NA
+  list.max <- max(sapply(results.list, length))
+  for (i in 1:length(results.list)) {
+    length(results.list[[i]]) <- list.max
+  }
+  
+  if (print.list == TRUE) {
+    print(results.list)
+  }
+  
+  invisible(results.list)
+}
+
+get.caplan.ragged.data.frame <- function(caplan.list) {
+  caplan.df <- NULL
+  for (i in 1:length(caplan.list)) {
+    caplan.df <- rbind(caplan.df, caplan.list[[i]], deparse.level=0)
+  }
+
+  ## convert to data frame
+  caplan.df <- as.data.frame(caplan.df, stringsAsFactors=FALSE, row.names=NULL)
+
+  ## put column names on data frame
+  colnames(caplan.df) <- get.caplan.column.names(caplan.df)
+  
+  invisible(caplan.df)
+}
+
+get.caplan.column.names <- function(caplan.df) {
   ## in order to save in SAS format column/variable names can only be 8 characters
   spreadsheet.column.names <-
     c("ID", "SEX", "BDATE", "TTHNUM",
@@ -64,46 +146,11 @@ write.caplan.spreadsheet <- function(results, file.name="~/Desktop/caplan.spread
       "PDATE9", "PCLASS9", "PCODE9", "MATM9", "MATO9", "MATD9", "MATF9", "MATL9", "DXM9", "DXO9", "DXD9", "DXF9", "DXL9", "DENT9",
       "PDATE10", "PCLASS10", "PCODE10", "MATM10", "MATO10", "MATD10", "MATF10", "MATL10", "DXM10", "DXO10", "DXD10", "DXF10", "DXL10", "DENT10")
 
-  ## write column names
-  write.table(t(spreadsheet.column.names), file=paste(file.name), sep="\t",
-              col.names=FALSE, row.names=FALSE, append=TRUE)
-  
-  ## get info about first row
-  row <- results[1, ]
-  ##print(row)
+  ## find length of data frame row
+  row.length <- length(caplan.df[1, ])
 
-  ## get info about 2nd through next to last row
-  for (i in 2:(nrow(results) - 1)) {
-    temprow <- results[i, ]
-    
-    ##print(temprow)
-
-    ## compare patient ids (index 1) and tooth (index 4) between row and temprow
-    ## if they match then "append" info to row
-    ## otherwise write to file and set row to temprow (this moves the row forward)
-    if (row[1] == temprow[1] && row[4] == temprow[4]) {
-      row <- c(row, temprow[5:18])
-    } else {
-      ## note: row need to be transposed
-      write.table(t(row), file=paste(file.name), sep="\t",
-                  col.names=FALSE, row.names=FALSE, append=TRUE)
-      row <- temprow
-    }
-  }
-
-  ## get info about last row
-  temprow <- results[nrow(results), ]
-  
-  if (row[1] == temprow[1] && row[4] == temprow[4]) {
-    row <- c(row, temprow[5:18])
-  } else {
-    row <- temprow
-  }
-
-  ## write last row
-  ## note: row need to be transposed
-  write.table(t(row), file=file.name, sep="\t",
-              col.names=FALSE, row.names=FALSE, append=TRUE)
+  ## return portion of column names that match
+  spreadsheet.column.names[1:row.length]
 }
 
 get.caplan.data.query <- function(limit="", patientid="", print.query=FALSE, filter="") {
@@ -252,7 +299,7 @@ transform.caplan.data <- function(results) {
   results.ordered <- order.caplan.rows(results)
 
   ## replace all NA values with "."
-  results.ordered <- fill.missing.caplan.values(results.ordered)
+  ##results.ordered <- fill.missing.caplan.values(results.ordered)
 
   ## flip dates from YYYY-MM-DD to MM-DD-YYYY
   ## NB: do this after ordering rows!
