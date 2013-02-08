@@ -137,7 +137,7 @@ get.caplan.column.names <- function(caplan.df) {
     c("ID", "SEX", "BDATE", "TTHNUM",
       "PDATE1", "PCLASS1", "PCODE1", "MATM1", "MATO1", "MATD1", "MATF1", "MATL1", "DXM1", "DXO1", "DXD1", "DXF1", "DXL1", "DENT1",
       "PDATE2", "PCLASS2", "PCODE2", "MATM2", "MATO2", "MATD2", "MATF2", "MATL2", "DXM2", "DXO2", "DXD2", "DXF2", "DXL2", "DENT2",
-      "PDATE3", "PCLASS3", "PCODE3", "MATM3", "MATO3", "MATF3", "MATF2", "MATL2", "DXM3", "DXO3", "DXD3", "DXF3", "DXL3", "DENT3",
+      "PDATE3", "PCLASS3", "PCODE3", "MATM3", "MATO3", "MATD3", "MATF3", "MATL3", "DXM3", "DXO3", "DXD3", "DXF3", "DXL3", "DENT3",
       "PDATE4", "PCLASS4", "PCODE4", "MATM4", "MATO4", "MATD4", "MATF4", "MATL4", "DXM4", "DXO4", "DXD4", "DXF4", "DXL4", "DENT4",
       "PDATE5", "PCLASS5", "PCODE5", "MATM5", "MATO5", "MATD5", "MATF5", "MATL5", "DXM5", "DXO5", "DXD5", "DXF5", "DXL5", "DENT5",
       "PDATE6", "PCLASS6", "PCODE6", "MATM6", "MATO6", "MATD6", "MATF6", "MATL6", "DXM6", "DXO6", "DXD6", "DXF6", "DXL6", "DENT6",
