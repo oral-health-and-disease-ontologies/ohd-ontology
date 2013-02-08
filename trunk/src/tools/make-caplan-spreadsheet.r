@@ -37,7 +37,7 @@ test.sas <- function(limit="5", col.limit=0, url="local") {
   res.df <- get.caplan.ragged.data.frame(res.list)
 
   write.caplan.sas(res.df)
-  return(res.df)
+  invisible(res.df)
 }
 
 make.caplan.spreadsheet.by.patient <-
