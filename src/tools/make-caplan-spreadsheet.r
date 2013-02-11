@@ -2,9 +2,13 @@ source("eaglesoft-caplan-functions.r")
 
 make.caplan.spreadsheet <-
   function(limit.rows="", patient.id="", filter="", endpoint="local",
-           write.spreadsheet=TRUE, write.matrix=TRUE,
+           write.spreadsheet=TRUE, write.matrix=TRUE, write.sas=TRUE,
            spreadsheet.file.name="~/Desktop/caplan.spreadsheet.txt",
-           matrix.file.name="~/Desktop/caplan.matrix.txt", print.query=FALSE, print.results=FALSE) {
+           matrix.file.name="~/Desktop/caplan.matrix.txt",
+           sas.code.file="~/Desktop/caplan.code.sas",
+           sas.data.file="~/Desktop/caplan.sas.data.txt",
+           print.query=FALSE, print.results=FALSE) {
+    
     ## get triples
     res <- get.caplan.data(limit.rows, patient.id, print.query, filter, endpoint)
 
@@ -23,6 +27,13 @@ make.caplan.spreadsheet <-
       print(res)
     }
 
+    if (write.sas == TRUE) {
+      res.list <- get.caplan.ragged.list(res)
+      res.df <- get.caplan.ragged.data.frame(res.list)
+      res.df <- fill.missing.caplan.values(res.df)
+      write.caplan.sas(res.df, sas.data.file=sas.data.file, sas.code.file=sas.code.file)
+    }
+
     invisible(res)
   }
 
@@ -35,6 +46,8 @@ test.sas <- function(limit="5", col.limit=0, url="local") {
   
   res.list <- get.caplan.ragged.list(res)
   res.df <- get.caplan.ragged.data.frame(res.list)
+
+  res.df <- fill.missing.caplan.values(res.df)
 
   write.caplan.sas(res.df)
   invisible(res.df)
