@@ -204,7 +204,7 @@ get.caplan.sparql <-  function(query.string, endpoint="local") {
       ##"http://localhost:8080/openrdf-workbench/repositories/owlim-se-2013.01.21"
   } else if (endpoint == "remote") {
     url <-
-      "http://den287.sdm.buffalo.edu:8080/openrdf-workbench/repositories/ohd-r21-nightly/query"
+      "http://365-imac.sdm.buffalo.edu:8080/openrdf-workbench/repositories/ohd-r21-nightly/query"
   } else {
     url <- endpoint
   }
