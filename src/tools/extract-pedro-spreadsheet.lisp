@@ -17,7 +17,7 @@ C-x RET f UNIX RET
     (setf ohd (make-uri "http://purl.obolibrary.org/obo/ohd/dev/ohd.owl"))
     
     ;; create uri for editor note
-    (setf editor-note-uri (make-uri "http://purl.obolibrary.org/IAO_0000116"))
+    (setf editor-note-uri (make-uri "http://purl.obolibrary.org/obo/IAO_0000116"))
 
     (with-ontology ont (:collecting t
 			:ontology-iri "http://purl.obolibrary.org/ohd/dev/ohd-pedro-definitions.owl")
@@ -40,8 +40,9 @@ C-x RET f UNIX RET
 		    (setf note (concatenate 'string note " (defintion source: " source ")")))
 		  
 		  ;; add annaaotation axiom to list
+		  ;;(print-db note)
 		  (push `(annotation-assertion ,editor-note-uri ,uri ,note) axioms))))
-		  ;;(as `(annotation-assertion ,editor-note-uri ,uri ,note)))))
+	         ;;(as `(annotation-assertion ,editor-note-uri ,uri ,note)))))
 	 ;;(print-db axioms)
 	 (as axioms))
 	 
