@@ -73,7 +73,7 @@ sub applyPatterns
       chomp;
       my $columnCounter = 0;
       #my @cells = split(/\t/);
-      my @cells = csvsplit; # or csvsplit($line, $my_custom_seperator)
+      my @cells = csvsplit($_); # or csvsplit($line, $my_custom_seperator)
       for my $cell (@cells)
 	{ for my $patternEntry (@pats)
 	    {
