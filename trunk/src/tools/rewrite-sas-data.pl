@@ -64,12 +64,10 @@ sub compilePatterns {
 }
 
 sub applyPatterns
-  { # I'm not sure if headers aren't needed for SAS data file
-    # my @headers = split(/\t/,<$datafile>);
-    # map { if (/^".*"$/) { $_ } else { s/(.*)/"$1"/; }} @headers;
+  { # my @headers = split(/\t/,<$datafile>);
+    my @headers = getheaders();
+    map { if (/^".*"$/) { $_ } else { s/(.*)/"$1"/; }} @headers;
     #print join("\t",@headers);
-
-    getheaders();
 
     while (<$datafile>) {
       next if (/^#/ || /^\s*$/);
@@ -80,8 +78,8 @@ sub applyPatterns
       for my $cell (@cells)
 	{ for my $patternEntry (@pats)
 	    {
-            # if ($patternEntry->[0]->(@headers[$columnCounter]))
-	    # 	{ $cell = $patternEntry->[1]->($cell) }
+	      if ($patternEntry->[0]->(@headers[$columnCounter]))
+		{ $cell = $patternEntry->[1]->($cell) }
 	    }
 	      #print "$cell\t";
 	      print "$cell,";
@@ -100,7 +98,8 @@ sub getheaders {
     # if header flag is on, put variable names in header list
     if ($headerflag == 1) {
       chomp($line);
-      @headers[$index] = $line;
+      $line =~ s/^\s+|\s+$//g ;     # remove both leading and trailing whitespace
+      @headers[$index] = "\"$line\""; # header name should be in quotes
       $index++;
     }
 
@@ -114,9 +113,12 @@ sub getheaders {
       $headerflag = 0;
 
       # remove '$' from end of line by searching up the first word boundary
+      $line =~ s/^\s+|\s+$//g ;     # remove both leading and trailing whitespace
       ($temp) = $line =~ m/(.*\b)/;
-      @headers[$index - 1] = $temp;
+      @headers[$index - 1] = "\"$temp\""; # header name should be in quotes
     }
+
+    return @headers;
   }
 
 # found at: http://stackoverflow.com/questions/3065095/how-do-i-efficiently-parse-a-csv-file-in-perl
