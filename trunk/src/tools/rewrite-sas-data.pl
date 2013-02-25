@@ -42,6 +42,7 @@ use strict;
 #open(my $testfile,"<",$ARGV[0]) or usage();
 open(my $patternfile,"<",$ARGV[0]) or usage();
 open(my $datafile,"<",$ARGV[1]) or usage();
+open(my $sasfile,"<",$ARGV[2]) or usage();
 my @pats;
 my ($columnpat,$cellpat,$cellrewrite);
 
@@ -68,6 +69,8 @@ sub applyPatterns
     # map { if (/^".*"$/) { $_ } else { s/(.*)/"$1"/; }} @headers;
     #print join("\t",@headers);
 
+    getheaders();
+
     while (<$datafile>) {
       next if (/^#/ || /^\s*$/);
       chomp;
@@ -88,6 +91,33 @@ sub applyPatterns
     }
   }
 
+
+sub getheaders {
+  $index = 0;
+  $headerflag = 0;
+
+  while ($line = <$sasfile>) {
+    # if header flag is on, put variable names in header list
+    if ($headerflag == 1) {
+      chomp($line);
+      @headers[$index] = $line;
+      $index++;
+    }
+
+    # when we see the line "INPUT" start collecting headers
+    if ($line =~ /INPUT/) {
+      $headerflag = 1;
+    }
+
+    # when we see the line that ends with a "$" stop collecting headers
+    if (($headerflag == 1) && ($line =~ /(.|\s)*\$/)) {
+      $headerflag = 0;
+
+      # remove '$' from end of line by searching up the first word boundary
+      ($temp) = $line =~ m/(.*\b)/;
+      @headers[$index - 1] = $temp;
+    }
+  }
 
 # found at: http://stackoverflow.com/questions/3065095/how-do-i-efficiently-parse-a-csv-file-in-perl
 sub csvsplit {
