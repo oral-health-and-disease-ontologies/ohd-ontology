@@ -39,7 +39,6 @@
 
 use strict;
 
-#open(my $testfile,"<",$ARGV[0]) or usage();
 open(my $patternfile,"<",$ARGV[0]) or usage();
 open(my $datafile,"<",$ARGV[1]) or usage();
 open(my $sasfile,"<",$ARGV[2]) or usage();
@@ -87,6 +86,7 @@ sub applyPatterns
 	  }
       print "\n";
     }
+    # print "@headers\n";
   }
 
 
@@ -136,25 +136,13 @@ sub csvsplit {
         my $re = qr/(?:^|$sep)(?:"([^"]*)"|([^$sep]*))/;
 
         while($line =~ /$re/g) {
-                my $value = defined $1 ? $1 : $2;
-                push @cells, (defined $value ? $value : '');
+	  # my $value = defined $1 ? $1 : $2;
+	  my $value = defined $1 ? "\"$1\"" : "\"$2\"";
+	  push @cells, (defined $value ? $value : '');
         }
 
         return @cells;
 }
-
-# sub testcsv {
-#   while(my $line = <$testfile>) {
-#     my @cells = csvsplit($line); # or csvsplit($line, $my_custom_seperator)
-#     #print @cells;
-#     for my $cell (@cells) {
-#       print "$cell,";
-#     }
-#     print "\n";
-#   }
-# }
-
-#testcsv();
 
 compilePatterns();
 applyPatterns();
