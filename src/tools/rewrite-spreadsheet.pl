@@ -31,10 +31,10 @@
 # separated by an underscore "_".
 #
 # The script is run with two arguments and writes to standard output
-# Arg1: filename of the spreadsheet
-# Arg2: filename of the rules
+# Arg1: filename of the rules
+# Arg2: filename of the spreadsheet
 #
-# e.g.  perl rewrite-spreadsheet.pl myspreadsheet.txt myrules.txt > myrewritten.txt
+# e.g.  perl rewrite-spreadsheet.pl myrules.txt myspreadsheet.txt > myrewritten.txt
 
 
 use strict;
