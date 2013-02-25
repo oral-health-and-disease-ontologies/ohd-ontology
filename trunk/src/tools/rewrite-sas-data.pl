@@ -80,10 +80,11 @@ sub applyPatterns
 	      if ($patternEntry->[0]->(@headers[$columnCounter]))
 		{ $cell = $patternEntry->[1]->($cell) }
 	    }
-	      #print "$cell\t";
-	      print "$cell,";
-	      $columnCounter++
-	  }
+	  #print "$cell\t";
+	  $cell =~ s/\s/_/g; # substitute spaces with underscores
+	  print "$cell,";
+	  $columnCounter++
+	}
       print "\n";
     }
     # print "@headers\n";
