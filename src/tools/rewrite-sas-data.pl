@@ -31,10 +31,11 @@
 # separated by an underscore "_".
 #
 # The script is run with two arguments and writes to standard output
-# Arg1: filename of the spreadsheet
-# Arg2: filename of the rules
+# Arg1: filename of the rules
+# Arg2: filename of the SAS data
+# Arg3: filename of the SAS code file
 #
-# e.g.  perl rewrite-spreadsheet.pl myspreadsheet.txt myrules.txt > myrewritten.txt
+# e.g.  perl rewrite-spreadsheet.pl myrules.txt mySASdata.txt mySAScode.sas > myrewritten.txt
 
 
 use strict;
