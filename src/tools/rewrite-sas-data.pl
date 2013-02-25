@@ -91,10 +91,11 @@ sub applyPatterns
 
 
 sub getheaders {
-  $index = 0;
-  $headerflag = 0;
+  my $index = 0;
+  my $headerflag = 0;
+  my @headers = [];
 
-  while ($line = <$sasfile>) {
+  while (my $line = <$sasfile>) {
     # if header flag is on, put variable names in header list
     if ($headerflag == 1) {
       chomp($line);
@@ -114,12 +115,13 @@ sub getheaders {
 
       # remove '$' from end of line by searching up the first word boundary
       $line =~ s/^\s+|\s+$//g ;     # remove both leading and trailing whitespace
-      ($temp) = $line =~ m/(.*\b)/;
+      my ($temp) = $line =~ m/(.*\b)/;
       @headers[$index - 1] = "\"$temp\""; # header name should be in quotes
     }
-
-    return @headers;
   }
+
+  return @headers;
+}
 
 # found at: http://stackoverflow.com/questions/3065095/how-do-i-efficiently-parse-a-csv-file-in-perl
 sub csvsplit {
