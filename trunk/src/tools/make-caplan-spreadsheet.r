@@ -46,11 +46,16 @@ test.sas <- function(limit="5", col.limit=0, url="local") {
   
   res.list <- get.caplan.ragged.list(res)
   res.df <- get.caplan.ragged.data.frame(res.list)
-
   res.df <- fill.missing.caplan.values(res.df)
 
-  write.caplan.sas(res.df)
+  #write.caplan.sas(res.df)
   invisible(res.df)
+}
+
+profile.test.sas <- function(limit="100") {
+  Rprof("profilesas.txt")
+  test.sas(limit=limit)
+  Rprof(NULL)
 }
 
 make.caplan.spreadsheet.by.patient <-
