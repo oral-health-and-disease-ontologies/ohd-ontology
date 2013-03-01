@@ -79,7 +79,7 @@ get.caplan.ragged.list <- function(results, print.list=FALSE) {
   ## and determine length of results
   results.list <- list()
   results.length <- nrow(results)
-
+  
   ## get first row of results and iterate
   ## over the rest of results
   row <- results[1, ]
@@ -155,11 +155,11 @@ get.caplan.column.names <- function(caplan.df) {
 
 get.caplan.data.query <- function(limit="", patientid="", print.query=FALSE, filter="") {
   query.string <- ._caplan.data.query
-
+  
   ## check for query on single patient or other custom filter
   if (nchar(patientid) > 0 || nchar(filter) > 0) {
     if (nchar(patientid) > 0) {
-      query.string <- paste(query.string, ". FILTER (?patientid = \"", patientid, "\") ", sep="")
+      query.string <- paste(query.string, ". FILTER (?patientid = \"patient ", patientid, "\") ", sep="")
     } else {
       query.string <- paste(query.string, ". ", filter)
     }
