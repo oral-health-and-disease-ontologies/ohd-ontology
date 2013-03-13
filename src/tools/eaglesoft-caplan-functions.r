@@ -4,6 +4,7 @@ source("eaglesoft-caplan-variables.r")
 # load necessary libraries
 library(rrdf)
 library(foreign)
+library(plyr)
 
 ## function for converting caplan text files to SAS files
 convert.caplan.file.to.sas <- function(file.name,
@@ -108,6 +109,8 @@ get.caplan.ragged.list <- function(results, print.list=FALSE) {
   for (i in 1:length(results.list)) {
     length(results.list[[i]]) <- list.max
   }
+
+  ##print(list.max)
   
   if (print.list == TRUE) {
     print(results.list)
@@ -131,6 +134,105 @@ get.caplan.ragged.data.frame <- function(caplan.list) {
   invisible(caplan.df)
 }
 
+get.caplan.longest.row.count <- function(results){
+  ## determine number of rows needed to iterate over
+  results.length <- nrow(results)
+  
+  ## get first row of results
+  ## and set the max and temp length variables
+  ## at the beginning of the loop these will be
+  ## equal, but as the length of row changes
+  ## the values will change
+  row <- results[1, ]
+  max.length <- length(row)
+  temp.length <- max.length
+
+  ## iterate over the rest of results
+  for (i in 2: results.length) {
+    temprow <- results[i, ]
+    
+    ## compare patient ids (index 1) and tooth (index 4) between row and temprow
+    ## if they match then the value of the temp length variable will increase
+    ## otherwise update (if necessary) the max length variable
+    if (row[1] == temprow[1] && row[4] == temprow[4]) {
+      ## temp row matched prev row, so update the temp lenght
+      temp.length <- temp.length + 14 # add length 
+    } else {
+      ## we are moving on to the next row, so compare the temp length
+      ## to the store max length and update if needed
+      row <- temprow
+      if (temp.length > max.length) {
+        max.length <- temp.length
+      }
+
+      # reset temp length
+      temp.length <- length(row)
+    }
+
+    ## check to see if we on last record, if so compare temp and max length
+    if (i == results.length) {
+      if (temp.length > max.length) {
+        max.length <- temp.length
+      }
+    }
+  }
+
+  ## return the max length
+  invisible(max.length)
+}
+
+get.caplan.data.frame <- function(results, row.length) {
+  ## create matrix with a row of NAs
+  caplan.matrix <- matrix(rep(NA, row.length), nrow=1, ncol=row.length)
+    
+  ## get first row of results and iterate
+  ## over the rest of results
+  row <- results[1, ]
+  results.length <- length(results[,1])
+  for (i in 2: results.length) {
+    temprow <- results[i, ]
+
+    ## compare patient ids (index 1) and tooth (index 4) between row and temprow
+    ## if they match then "append" info to row
+    ## otherwise add row to list and set row to temprow (this moves the row forward)
+    if (row[1] == temprow[1] && row[4] == temprow[4]) {
+      row <- c(row, temprow[5:18])
+    } else {
+      ## bind new row with rbind.fill from plyr library
+      ## note: matrix row must be transposed with t()
+
+      ## remove column names; this is necessary in order for rbind.fill.matrix
+      ## to correctly bind the row.  If the column names are present, rbind
+      ## appends the non-matching column names
+      ## note: the row must be transposed
+      ##colnames(row) <- NULL
+      names(row) <- NULL
+
+      caplan.matrix <- rbind.fill.matrix(caplan.matrix, t(row))
+            
+      row <- temprow
+    }
+
+    ## check to see if we on last record, if so add row to data frame
+    if (i == results.length) {
+      names(row) <- NULL
+      caplan.matrix <- rbind.fill.matrix(caplan.matrix, t(row))
+    }
+  }
+
+  ## remove first row of NAs
+  caplan.matrix <- caplan.matrix[-1, ]
+  
+  ## convert to data frame
+  caplan.df <- as.data.frame(caplan.matrix, stringsAsFactors=FALSE, row.names=NULL)
+
+  ## assign column names to data frame
+  colnames(caplan.df) <- get.caplan.column.names(caplan.df)
+
+  ##print(colnames(results))
+  invisible(caplan.df)
+}
+
 get.caplan.column.names <- function(caplan.df) {
   ## in order to save in SAS format column/variable names can only be 8 characters
   spreadsheet.column.names <-
@@ -144,7 +246,17 @@ get.caplan.column.names <- function(caplan.df) {
       "PDATE7", "PCLASS7", "PCODE7", "MATM7", "MATO7", "MATD7", "MATF7", "MATL7", "DXM7", "DXO7", "DXD7", "DXF7", "DXL7", "DENT7",
       "PDATE8", "PCLASS8", "PCODE8", "MATM8", "MATO8", "MATD8", "MATF8", "MATL8", "DXM8", "DXO8", "DXD8", "DXF8", "DXL8", "DENT8",
       "PDATE9", "PCLASS9", "PCODE9", "MATM9", "MATO9", "MATD9", "MATF9", "MATL9", "DXM9", "DXO9", "DXD9", "DXF9", "DXL9", "DENT9",
-      "PDATE10", "PCLASS10", "PCODE10", "MATM10", "MATO10", "MATD10", "MATF10", "MATL10", "DXM10", "DXO10", "DXD10", "DXF10", "DXL10", "DENT10")
+      "PDATE10", "PCLASS10", "PCODE10", "MATM10", "MATO10", "MATD10", "MATF10", "MATL10", "DXM10", "DXO10", "DXD10", "DXF10", "DXL10", "DENT10",
+      "PDATE11", "PCLASS11", "PCODE11", "MATM11", "MATO11", "MATD11", "MATF11", "MATL11", "DXM11", "DXO11", "DXD11", "DXF11", "DXL11", "DENT11",
+      "PDATE12", "PCLASS12", "PCODE12", "MATM12", "MATO12", "MATD12", "MATF12", "MATL12", "DXM12", "DXO12", "DXD12", "DXF12", "DXL12", "DENT12",
+      "PDATE13", "PCLASS13", "PCODE13", "MATM13", "MATO13", "MATD13", "MATF13", "MATL13", "DXM13", "DXO13", "DXD13", "DXF13", "DXL13", "DENT13",
+      "PDATE14", "PCLASS14", "PCODE14", "MATM14", "MATO14", "MATD14", "MATF14", "MATL14", "DXM14", "DXO14", "DXD14", "DXF14", "DXL14", "DENT14",
+      "PDATE15", "PCLASS15", "PCODE15", "MATM15", "MATO15", "MATD15", "MATF15", "MATL15", "DXM15", "DXO15", "DXD15", "DXF15", "DXL15", "DENT15",
+      "PDATE16", "PCLASS16", "PCODE16", "MATM16", "MATO16", "MATD16", "MATF16", "MATL16", "DXM16", "DXO16", "DXD16", "DXF16", "DXL16", "DENT16",
+      "PDATE17", "PCLASS17", "PCODE17", "MATM17", "MATO17", "MATD17", "MATF17", "MATL17", "DXM17", "DXO17", "DXD17", "DXF17", "DXL17", "DENT17",
+      "PDATE18", "PCLASS18", "PCODE18", "MATM18", "MATO18", "MATD18", "MATF18", "MATL18", "DXM18", "DXO18", "DXD18", "DXF18", "DXL18", "DENT18",
+      "PDATE19", "PCLASS19", "PCODE19", "MATM19", "MATO19", "MATD19", "MATF19", "MATL19", "DXM19", "DXO19", "DXD19", "DXF19", "DXL19", "DENT19",
+      "PDATE20", "PCLASS20", "PCODE20", "MATM20", "MATO20", "MATD20", "MATF20", "MATL20", "DXM20", "DXO20", "DXD20", "DXF20", "DXL20", "DENT20")
 
   ## find length of data frame row
   row.length <- length(caplan.df[1, ])
