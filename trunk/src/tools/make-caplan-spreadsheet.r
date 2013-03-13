@@ -16,11 +16,11 @@ make.caplan.spreadsheet <-
     res <- transform.caplan.data(res)
 
     if (write.spreadsheet == TRUE) {
-      write.caplan.spreadsheet(res, spreadsheet.file.name)
+      ##write.caplan.spreadsheet(res, spreadsheet.file.name)
     }
 
     if (write.matrix == TRUE) {
-      write.caplan.matrix(res, matrix.file.name)
+      ##write.caplan.matrix(res, matrix.file.name)
     }
 
     if (print.results == TRUE) {
@@ -28,9 +28,17 @@ make.caplan.spreadsheet <-
     }
 
     if (write.sas == TRUE) {
-      res.list <- get.caplan.ragged.list(res)
-      res.df <- get.caplan.ragged.data.frame(res.list)
+      ##res.list <- get.caplan.ragged.list(res)
+      ##res.df <- get.caplan.ragged.data.frame(res.list)
+      ##res.df <- fill.missing.caplan.values(res.df)
+
+      ## find what the longest row in a ragged format would be
+      res.length <- get.caplan.longest.row.count(res)
+
+      ## create data frame
+      res.df <- get.caplan.data.frame(res, res.length)
       res.df <- fill.missing.caplan.values(res.df)
+
       write.caplan.sas(res.df, sas.data.file=sas.data.file, sas.code.file=sas.code.file)
     }
 
@@ -52,10 +60,29 @@ test.sas <- function(limit="5", col.limit=0, url="local") {
   invisible(res.df)
 }
 
-profile.test.sas <- function(limit="100") {
+profile.test.sas <- function(limit="100", patient.id) {
   Rprof("profilesas.txt")
-  test.sas(limit=limit)
+  ##test.sas(limit=limit)
+  ## get triples
+  ##res <- get.caplan.data(limit.rows, patient.id, print.query, filter, endpoint)
+  res <- get.caplan.data(limit, patient.id)
+
+  ## transform data elements into Caplan format
+  res <- transform.caplan.data(res)
+
+  ## find what the longest row in a ragged format would be
+  res.length <- get.caplan.longest.row.count(res)
+
+  ## create data frame
+  res.df <- get.caplan.data.frame(res, res.length)
+  res.df <- fill.missing.caplan.values(res.df)
+
+  ## create SAS file
+  ##write.caplan.sas(res.df, sas.data.file=sas.data.file, sas.code.file=sas.code.file)
+  write.caplan.sas(res.df)
+  
   Rprof(NULL)
+  invisible(res.df)
 }
 
 make.caplan.spreadsheet.by.patient <-
