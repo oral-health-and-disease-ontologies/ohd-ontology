@@ -23,10 +23,13 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <owl:Ontology rdf:about="&obo;ohd/dev/ohd.owl">
         <dc:contributor>Titus Schleyer</dc:contributor>
+        <rdfs:comment>Status of this document: This is a work in progress and we do not yet make any promises about the stability of URIs. A known issue is that the upper level of this ontology is an exploratory version of BFO developed in the interim between when BFO 1 was current and before BFO 2 development started. The representation of the CDT codes is tentative - we are discussing this with the ADA. The integration between OBI and OGMS is not complete - we add some axioms here in order to use both in a consistent way. The version of the subject of the FMA used here is an automatic translation of a portion of the entities and relations present in the original FMA. Work is ongoing on improving this subset and using an up-to-date version of the FMA as its basis.</rdfs:comment>
         <dc:contributor>Bill Duncan</dc:contributor>
         <rdfs:comment>The Oral Health and Disease Ontology is an ontology built to be compatible with the OBO Foundry ontologies, and is a collaboration between researchers at the University at Buffalo School of Dental Medicine, the University of Pittsburg School of Dental Medicine, and the Oregon Health and Science University.
 
-This ontology is licensed under the CC-BY License. Please see http://creativecommons.org/licenses/by/3.0/</rdfs:comment>
+This ontology is licensed under the CC-BY License. Please see http://creativecommons.org/licenses/by/3.0/
+
+Attribution is satisfied by using the URIs defined in this file when using terms from this ontology.</rdfs:comment>
         <dc:contributor>Mei Song</dc:contributor>
         <dc:contributor>Melissa Haendel</dc:contributor>
         <dc:contributor>Dan Caplan</dc:contributor>
@@ -1363,10 +1366,18 @@ for now.</obo:IAO_0000116>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000052"/>
-                <owl:someValuesFrom rdf:resource="&obo;FMA_12516"/>
-            </owl:Restriction>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;BFO_0000052"/>
+                        <owl:someValuesFrom rdf:resource="&obo;FMA_12516"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;BFO_0000052"/>
+                        <owl:allValuesFrom rdf:resource="&obo;FMA_12516"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
         </rdfs:subClassOf>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
@@ -1469,14 +1480,18 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
     <!-- http://purl.obolibrary.org/obo/OHD_0000012 -->
 
     <owl:Class rdf:about="&obo;OHD_0000012">
-        <rdfs:label xml:lang="en">dental patient</rdfs:label>
+        <rdfs:label xml:lang="en">human dental patient</rdfs:label>
         <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000190"/>
-            </owl:Restriction>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&obo;NCBITaxon_9606"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000190"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&obo;NCBITaxon_9606"/>
     </owl:Class>
     
 
@@ -1528,7 +1543,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&obo;OHD_0000051"/>
     </owl:Class>
     
 
@@ -1573,7 +1587,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&obo;OHD_0000051"/>
     </owl:Class>
     
 
@@ -2056,6 +2069,7 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&obo;CARO_0000028"/>
+                    <rdf:Description rdf:about="&obo;NCBITaxon_9606"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
                         <owl:someValuesFrom rdf:resource="&obo;OHD_0000190"/>
@@ -2082,7 +2096,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&obo;NCBITaxon_9606"/>
     </owl:Class>
     
 
@@ -2105,6 +2118,7 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="&obo;CARO_0000027"/>
+                    <rdf:Description rdf:about="&obo;NCBITaxon_9606"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
                         <owl:someValuesFrom rdf:resource="&obo;OHD_0000190"/>
