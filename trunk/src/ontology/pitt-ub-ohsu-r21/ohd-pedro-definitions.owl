@@ -1,15 +1,4 @@
 <?xml version="1.0"?>
-
-
-<!DOCTYPE rdf:RDF [
-    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
-    <!ENTITY obo "http://purl.obolibrary.org/obo/" >
-    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
-    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
-    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-]>
-
-
 <rdf:RDF xmlns="http://purl.obolibrary.org/ohd/dev/ohd-pedro-definitions.owl#"
      xml:base="http://purl.obolibrary.org/ohd/dev/ohd-pedro-definitions.owl"
      xmlns:obo="http://purl.obolibrary.org/obo/"
@@ -18,7 +7,7 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <owl:Ontology rdf:about="http://purl.obolibrary.org/ohd/dev/ohd-pedro-definitions.owl">
-        <owl:imports rdf:resource="&obo;ohd/dev/ohd.owl"/>
+        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/ohd/dev/ohd.owl"/>
     </owl:Ontology>
     
 
@@ -36,7 +25,7 @@
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000116 -->
 
-    <owl:AnnotationProperty rdf:about="&obo;IAO_0000116"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000116"/>
     
 
 
@@ -53,37 +42,37 @@
 
     <!-- http://purl.obolibrary.org/obo/CDT_0007110 -->
 
-    <rdf:Description rdf:about="&obo;CDT_0007110">
-        <rdfs:subClassOf rdf:resource="&obo;CDT_1000031"/>
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0007110">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000031"/>
     </rdf:Description>
     
 
 
     <!-- http://purl.obolibrary.org/obo/CDT_0007120 -->
 
-    <rdf:Description rdf:about="&obo;CDT_0007120">
-        <rdfs:subClassOf rdf:resource="&obo;CDT_1000031"/>
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0007120">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000031"/>
     </rdf:Description>
     
 
 
     <!-- http://purl.obolibrary.org/obo/OHD_0000002 -->
 
-    <rdf:Description rdf:about="&obo;OHD_0000002">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000002">
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&obo;BFO_0000050"/>
-                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000009"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000009"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&obo;BFO_0000055"/>
-                        <owl:someValuesFrom rdf:resource="&obo;OBI_0000093"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000093"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="&obo;BFO_0000055"/>
-                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000052"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000052"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
@@ -95,8 +84,8 @@
 
     <!-- http://purl.obolibrary.org/obo/OHD_0000007 -->
 
-    <rdf:Description rdf:about="&obo;OHD_0000007">
-        <rdfs:subClassOf rdf:resource="&obo;OBI_0000444"/>
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000007">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000444"/>
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: that state in which a tooth with missing tooth structure will be replaced (defintion source: Pedro)</obo:IAO_0000116>
     </rdf:Description>
     
@@ -104,7 +93,7 @@
 
     <!-- http://purl.obolibrary.org/obo/OHD_0000009 -->
 
-    <rdf:Description rdf:about="&obo;OHD_0000009">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000009">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A meeting between a health care professional and a patient for diagnostic, therapeutic, or consultative reasons, usually a scheduled appointment in a professional office&quot;</obo:IAO_0000116>
     </rdf:Description>
     
@@ -112,7 +101,7 @@
 
     <!-- http://purl.obolibrary.org/obo/OHD_0000052 -->
 
-    <rdf:Description rdf:about="&obo;OHD_0000052">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000052">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: role is a function</obo:IAO_0000116>
     </rdf:Description>
     
@@ -120,9 +109,9 @@
 
     <!-- http://purl.obolibrary.org/obo/Shea_CL0000008 -->
 
-    <rdf:Description rdf:about="&obo;Shea_CL0000008">
-        <rdfs:subClassOf rdf:resource="&obo;OBI_0000319"/>
-    </rdf:Description>
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/Shea_CL0000008">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000319"/>
+    </owl:Class>
     
 
 
@@ -134,226 +123,226 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <rdf:Description rdf:about="&obo;OHD_0000078">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000078">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000077">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000077">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000079">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000079">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000074">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000074">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000073">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000073">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000076">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000076">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000075">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000075">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000070">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000070">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000100">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000100">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A label naming a type of secondary tooth canonically found in humans, adopted by the American Dental Association, and commonly used as labels on odontograms and in clinical notes. The Universal Numbering System uses No. 1 through 32 for the 32 teeth in the permanent dentition, starting with 1 for the maxillary right third molar, going around the arch to the maxillary left third molar as 16; dropping down on the same side, the left mandibular third molar becomes 17, and then the numbers increase around the lower arch to 32, which is the lower right third molar.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000004">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000004">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: steps followed to replace missing tooth structure; a method or mode of action that reestablishes or reforms a tooth or teeth or portions thereof to anatomic or functional form and health (defintion source: Mosby&apos;s Dental Dictionary 2nd ed)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000033">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000033">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: an artificial crown replacing the natural dental crown (defintion source: Jablonski)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000034">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000034">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: an alloy in which the principal ingredient is gold (defintion source: inferred from Mosby)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000005">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000005">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;a series of steps followed in a regular, orderly, definite way, performed by a dentist/surgeon by manual operation&quot; (defintion source: inferred from Mosby&apos;s Dental Dictionary 2nd ed)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000006">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000006">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: (1) material used to fill a space and (2) colloquial term for restoration (defintion source: Mosby&apos;s Dental Dictionary 2nd ed)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000072">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000072">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000035">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000035">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: a ceramic material used for tooth-colored restorations (defintion source: Pedro)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000071">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000071">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000036">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000036">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: a material made from a mixture of resin and silica used in tooth-colored fillings (defintion source: Mosby&apos;s Dental Dictionary 2nd ed)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000008">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000008">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: that state in which a tooth with missing tooth structure will be replaced (defintion source: Pedro)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000030">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000030">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: an observation of a tooth showing a break or rupture (defintion source: Pedro)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000031">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000031">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: an observation of a permanent maxillary first molar showing a break or rupture (defintion source: Pedro)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000032">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000032">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;The intraoral soft tissue examination includes checking the soft tissues of the mouth, the throat, the tongue and the gum&quot; (defintion source: Pedro)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000001">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000001">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;an alloy consisting of mercury and other metals (e.g. silver, copper or tin)&quot; (defintion source: Mosby&apos;s Dental Dictionary 2nd ed)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000038">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000038">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: A filling restoration whereby the restorative material is preformed prior to placement onto the tooth.</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000000">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000000">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: a physical substance that is used to restore a tooth (defintion source: Pedro)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000037">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000037">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: A filling restoration whereby the restorative material is formed directly onto the tooth</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000003">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000003">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: a dental procedure that operates on the root canal of a tooth or parts thereof (defintion source: Pedro)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000039">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000039">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: An restoration made from gold that is cast in a laboratory prior to insertion in the oral cavity and finished during placement.</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000089">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000089">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000088">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000088">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000087">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000087">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000086">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000086">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000085">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000085">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000084">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000084">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000083">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000083">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000046">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000046">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: an indirect restoration made from a ceramic material that is cast in a laboratory prior to insertion in the oral cavity and finished during placement.</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000047">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000047">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: a restoration made from a tooth colored composite or resin material</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000082">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000082">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000081">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000081">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000044">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000044">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: see surgical procedure</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000045">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000045">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: An indirect restoration made from metal that is cast in a laboratory prior to insertion in the oral cavity and finished during placement.</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000080">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000080">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000042">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000042">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: a direct tooth colored restoration made from a material made from a mixture of resin and silica which is carved and contoured after placement and usually hardens with visible light. (defintion source: Pedro)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000043">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000043">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: a break or rupture in a tooth (fractured tooth) or part or a tooth (fractured crown)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000040">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000040">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: An restoration made from a cermic material that is cast in a laboratory prior to insertion in the oral cavity and finished during placement. (defintion source: Pedro)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000041">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000041">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;a direct restoration made from an alloy consisting of mercury and other metals, which is carved and contoured after placement in the tooth&quot; (defintion source: Mosby&apos;s Dental Dictionary 2nd ed)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000049">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000049">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: A woman recipient of dental care services (defintion source: Pedro)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000048">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000048">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A metal is an element, compound, or alloy that is a good conductor of both electricity and heat. Metals are usually shiny,malleable and ductile and used in dentistry because of its hardness properties.&quot; (defintion source: wiki)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000051">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000051">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: THE Dentist (defintion source: Pedro)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000054">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000054">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: A men recipient of dental care services (defintion source: Pedro)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000057">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000057">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: the process by which a tooth is removed from the oral cavity (defintion source: pedro)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000010">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000010">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: a finding is an observation (defintion source: from Jablonki)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000011">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000011">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;should use obi class with modifications to not include restriction that has specified output is a diagnosis, and/or subclass the obi class&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000012">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000012">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: n a person under dental care. (defintion source: Mosby&apos;s Dental Dictionary 2nd ed)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000090">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000090">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000019">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000019">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A visual, tactile and radiographic  examination of the hard and soft tissues of the  oral cavity,  the maxillofacial area, and/or the adjacent and associated structures, or their parts, or pathological anatomical entities derived from them.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000059">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000059">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000064">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000064">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000063">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000063">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000062">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000062">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000069">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000069">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000068">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000068">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000067">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000067">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000066">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000066">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000021">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000021">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A disorder that is part of a tooth that includes both the infectious organisms, the material they generate from the tooth and any immune effectors that are response to the presence of the disorder. It is the physical basis for the disease dental caries.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000024">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000024">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: an observation of decay</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000061">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000061">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000060">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000060">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number. The criteria for determing that a tooth is missing includes its absence in either a visual exam or a radiograph exam. Thus, an unerrupted tooth seen in radiograph is not considered missing.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000025">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000025">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot; A dental exam which includes a complete cavity check, performed tooth by tooth. In addition the conditions of the teeth and mouth are documented. Specifically, existing work done on the teeth, decay, leakage, treatments which need to be done, positions of teeth, and impactions. The dental provider will check fracturelines, old fillings, broken teeth, identify congentinally missing teeth, and keep on the lookout for deformed teeth, or teeth with abnormal wear, which may or may not be caused by drifting teeth. The exam may include checking for abnormal jaw bone growth.&quot;</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000022">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000022">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: an observation of decay on a permanent maxillary left first molar</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000029">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000029">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: a tooth showing a break or rupture (defintion source: Mosby&apos;s Dental Dictionary 2nd ed)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000028">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000028">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: an observation of tooth #14 absent from its expected anatomical position. (defintion source: Pedro)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000027">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000027">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: &quot;(restoration): n broad term applied to any filling, inlay, crown, bridge, partial denture, or complete denture that restores or replaces lost tooth structure, teeth, or oral tissues. (inlay): n a restoration of metal, fired porcelain, or plastic made to fit a tapered cavity preparation and fastened to or luted into it with a cementing medium. (onlay) n a cast type of restoration that is retained by frictional and mechanical factors in the preparation of the tooth and restores one or more cusps and adjoining occlusal surfaces of the tooth.&quot; (defintion source: Mosby&apos;s Dental Dictionary 2nd ed)</obo:IAO_0000116>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;OHD_0000026">
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000026">
         <obo:IAO_0000116>Bill Duncan 2/13/2013: Pedro suggests the following definition: an observation of a tooth absent from its expected anatomical position. (defintion source: Pedro)</obo:IAO_0000116>
     </rdf:Description>
 </rdf:RDF>
