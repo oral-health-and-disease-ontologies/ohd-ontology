@@ -34,6 +34,9 @@ write.caplan.sas <- function(caplan.df,
                              sas.data.file="~/Desktop/caplan.sas.data.txt",
                              sas.code.file="~/Desktop/caplan.code.sas") {
   ## coerce date columns
+  ## NOTE: this has the unwanted side effect of replacing "." values with an NA
+  ##       which in turn gets saved as a blank (i.e., ",,") in the csv file
+  ##       I re-replace the ",," values with "." below
   column.names <- colnames(caplan.df)
   for (name in column.names) {
     if(length(grep("DATE", name, ignore.case=TRUE)) > 0) {
@@ -43,6 +46,21 @@ write.caplan.sas <- function(caplan.df,
   
   ## write data in SAS format
   write.foreign(caplan.df, sas.data.file, sas.code.file, package="SAS")
+
+  ## now re-open file and replace ",," with "." (i.e., replace blank values with ".")
+  output <- as.matrix(read.csv(sas.data.file, header=FALSE))
+  output[output == ""] <- "."
+
+  ##print(head(output, 1))
+
+  ## resave file
+  ## this is a very hacky way to get around the problem!
+  file.remove(sas.data.file)
+
+  ## write out matrix
+  ## note: row need to be transposed
+  write.table(output, file=paste(sas.data.file), sep=",",
+              col.names=FALSE, row.names=FALSE, append=FALSE)
 }
 
 ## function for simply writing out matrix
