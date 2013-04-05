@@ -64,31 +64,37 @@ sub compilePatterns {
 }
 
 sub applyPatterns
-  { # my @headers = split(/\t/,<$datafile>);
-    my @headers = getheaders();
+  { my @headers = getheaders();
     map { if (/^".*"$/) { $_ } else { s/(.*)/"$1"/; }} @headers;
-    #print join("\t",@headers);
+    #print join(",",@headers) . "\n"; # use this to have the first line contain the column names
 
+    my $numberColumns = scalar(@headers); # determine the number of columns
     while (<$datafile>) {
       next if (/^#/ || /^\s*$/);
       chomp;
       my $columnCounter = 0;
       #my @cells = split(/\t/);
       my @cells = csvsplit($_); # or csvsplit($line, $my_custom_seperator)
+      #print @cells;
       for my $cell (@cells)
 	{ for my $patternEntry (@pats)
 	    {
 	      if ($patternEntry->[0]->(@headers[$columnCounter]))
 		{ $cell = $patternEntry->[1]->($cell) }
 	    }
-	  #print "$cell\t";
+
 	  $cell =~ s/\s/_/g; # substitute spaces with underscores
-	  print "$cell,";
-	  $columnCounter++
+       	  $columnCounter++;
+	
+	  ## if we are on the last column don't print comma
+	  if ($columnCounter == $numberColumns) {
+	    print "$cell";
+	  } else {
+	    print "$cell,";
+	  }
 	}
       print "\n";
     }
-    # print "@headers\n";
   }
 
 
@@ -134,8 +140,7 @@ sub csvsplit {
 
         my @cells;
         $line =~ s/\r?\n$//;
-
-        my $re = qr/(?:^|$sep)(?:"([^"]*)"|([^$sep]*))/;
+	my $re = qr/(?:^|$sep)(?:"([^"]*)"|([^$sep]*))/;
 
         while($line =~ /$re/g) {
 	  # my $value = defined $1 ? $1 : $2;
@@ -152,5 +157,5 @@ applyPatterns();
 1;
 
 sub usage 
-  { print STDERR "usage: rewrite-spreadsheet.pl data-file pattern-file\n"; exit(); }
+  { print STDERR "usage: rewrite-spreadsheet.pl pattern-file data-file sas-code-file\n"; exit(); }
 
