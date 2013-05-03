@@ -4,6 +4,8 @@ library(MASS)
 
 library(SPARQL)
 
+set_rdf_type_converter("http://www.w3.org/2001/XMLSchema#date",identity)
+
 # variables for connecting to triple store
 dungeon_r21_nightly <- "http://dungeon.ctde.net:8080/openrdf-sesame/repositories/ohd-r21-nightly"
 
