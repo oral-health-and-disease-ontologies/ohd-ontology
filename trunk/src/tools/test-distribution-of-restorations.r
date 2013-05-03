@@ -1,6 +1,5 @@
-## query to return list of patients that have at least one restoration
-## so we need distinct patientid birthdate
-library(rrdf)
+
+library(rrdf) ## NOTE: rrdf does not work for aggregates!!!
 library(SPARQL)
 
 get.distribution.data <- function(limit="10", patientid="", print.query=FALSE, filter="", endpoint="local") {
@@ -30,7 +29,7 @@ get.distribution.sparql <-  function(query.string, endpoint="local") {
   return(results)    
 }
 
-get.query.prefixes <- function() {
+query.prefixes <- function() {
   "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX obo: <http://purl.obolibrary.org/obo/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -43,6 +42,7 @@ PREFIX male_dental_patient: <http://purl.obolibrary.org/obo/OHD_0000054>
 PREFIX asserted_type: <http://purl.obolibrary.org/obo/OHD_0000092>
 PREFIX inheres_in: <http://purl.obolibrary.org/obo/BFO_0000052>
 PREFIX birth_date: <http://purl.obolibrary.org/obo/OHD_0000050>
+PREFIX occurrence_date: <http://purl.obolibrary.org/obo/OHD_0000015>
 PREFIX tooth: <http://purl.obolibrary.org/obo/FMA_12516>
 PREFIX is_part_of: <http://purl.obolibrary.org/obo/BFO_0000050>"
 }
@@ -57,7 +57,8 @@ WHERE {
 # get teeth that are part of the patient that restoration role iheres in
 ?toothi rdf:type tooth: . 
 ?toothi is_part_of: ?patienti .
-?restorationrolei inheres_in: ?toothi . # that the restoration role inheres in
+?rolei rdf:type tooth_to_be_restored_role: .
+?rolei inheres_in: ?toothi . # that the restoration role inheres in
 
 " ## note the "}" is missing; it is appended later
 
@@ -82,9 +83,51 @@ WHERE {
     cat("\n")
   }
 
-  return(paste(get.query.prefixes(), query.string, sep="\n"))
+  return(paste(query.prefixes(), query.string, sep="\n"))
 }
 
+test.aggregate.query <- function() {
+  query.string <-
+    "
+SELECT ?patientid (MIN (?procdate) AS ?min_procdate)
 
-     
+WHERE {
+  ?patient rdf:type dental_patient: .
+  ?patient rdfs:label ?patientid .
+  ?proci rdf:type tooth_restoration_procedure: .
+  ?proci occurrence_date: ?procdate .
+} GROUP BY ?patientid"
+  
 
+  return(paste(query.prefixes(), query.string, sep="\n"))
+}
+
+patient.restoration.count.query <- function() {
+  query.string <-
+    "
+SELECT ?patientid ?role (COUNT (?proci) AS ?proc_count)
+
+WHERE {
+  # get instances of patients
+  ?patienti rdf:type dental_patient: .
+  ?patienti rdfs:label ?patientid .
+
+  # get teeth that are part of the patient
+  ?toothi rdf:type tooth: . 
+  ?toothi is_part_of: ?patienti .
+
+  # get roles that inhere in patients' teeth
+  ?rolei rdf:type tooth_to_be_restored_role: .
+  ?rolei inheres_in: ?toothi .
+  ?rolei rdfs:label ?role .
+
+  # get procures that realize tooth restoration roles
+  ?proci rdf:type tooth_restoration_procedure: .
+  ?proci realizes: ?rolei .
+
+} GROUP BY ?patientid ?role
+LIMIT 20"
+  
+
+  return(paste(query.prefixes(), query.string, sep="\n"))
+}
