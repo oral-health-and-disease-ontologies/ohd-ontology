@@ -13,6 +13,8 @@
 # of course change the path to adjust to where your repo is
 
 source("SPARQL.R") ; # patch to SPARQL.R
+.GlobalEnv[["interpret_type"]]=interpret_rdf_type;
+
 source("environment.r"); # endpoints etc
 source("simple-statistics.r") # simple statistical functions on the repo
 
