@@ -1,6 +1,12 @@
 ## query to return list of patients that have at least one restoration
 ## so we need distinct patientid birthdate
 library(rrdf)
+library(SPARQL)
+
+get.distribution.data <- function(limit="10", patientid="", print.query=FALSE, filter="", endpoint="local") {
+  query.string <- get.distribution.data.query(limit, patientid, print.query, filter)
+  results <- get.distribution.sparql(query.string, endpoint)
+}
 
 get.distribution.sparql <-  function(query.string, endpoint="local") {
   ## check to see what endpoint to use
@@ -20,17 +26,12 @@ get.distribution.sparql <-  function(query.string, endpoint="local") {
 
   ## execute query and return results
   results <- sparql.remote(url, query.string)
+  ##results <- SPARQL(url=url, query=query.string)
   return(results)    
 }
 
-get.distribution.data <- function(limit="10", patientid="", print.query=FALSE, filter="", endpoint="local") {
-  query.string <- get.distribution.data.query(limit, patientid, print.query, filter)
-  results <- get.distribution.sparql(query.string, endpoint)
-}
-
-get.distribution.data.query <- function(limit="", patientid="", print.query=FALSE, filter="") {
-  query.string <-
-    "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+get.query.prefixes <- function() {
+  "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX obo: <http://purl.obolibrary.org/obo/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX tooth_restoration_procedure: <http://purl.obolibrary.org/obo/OHD_0000004>
@@ -43,9 +44,12 @@ PREFIX asserted_type: <http://purl.obolibrary.org/obo/OHD_0000092>
 PREFIX inheres_in: <http://purl.obolibrary.org/obo/BFO_0000052>
 PREFIX birth_date: <http://purl.obolibrary.org/obo/OHD_0000050>
 PREFIX tooth: <http://purl.obolibrary.org/obo/FMA_12516>
-PREFIX is_part_of: <http://purl.obolibrary.org/obo/BFO_0000050>
+PREFIX is_part_of: <http://purl.obolibrary.org/obo/BFO_0000050>"
+}
 
-SELECT DISTINCT ?patienti ?birthdate
+get.distribution.data.query <- function(limit="", patientid="", print.query=FALSE, filter="") {
+  query.string <-
+    "SELECT DISTINCT ?patienti ?birthdate
 WHERE {
 ?patienti rdf:type dental_patient: . # get instances of dental patients
 ?patienti birth_date: ?birthdate . # and has a birth date
@@ -77,6 +81,8 @@ WHERE {
     cat(query.string)
     cat("\n")
   }
+
+  return(paste(get.query.prefixes(), query.string, sep="\n"))
 }
 
 
