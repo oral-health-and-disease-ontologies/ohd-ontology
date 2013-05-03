@@ -4,19 +4,18 @@ years_difference_from_dates <- function(first_date,second_date)
       (end-start)/365.25
     }
 
-      
 mean_and_sd_from_dates_in_years <- function (first_date,second_date,print=TRUE)
 {  
   years <- years_difference_from_dates(first_date,second_date);
   if (print)  { cat(paste("mean is ", mean(years), " and standard deviation is ",sd(years),"\n"))}
-  c(mean,sd);
+  c(mean(years),sd(years));
 }
 
+## not working yet
 histogram_fit_to_distribution <- function ()
 {
   ages_histogram <- hist(as.numeric(years),breaks=50,plot=FALSE)
   age_normal_distribution <- fitdistr(ages,"normal")
-
   age_mean = age_normal_distribution$estimate[1]
   age_sd = age_normal_distribution$estimate[2]
 }
