@@ -1,3 +1,7 @@
+## Author: Alan Ruttenberg
+## Project: OHD
+## Date: May, 2013
+
 # you might want to compiler::enableJIT(2) in your ~/.RProfile
 
 # Variables to customize:
@@ -11,6 +15,7 @@
 
 # To load, use source("~/repos/ohd-ontology/trunk/src/analysis/load.r",chdir=T)
 # of course change the path to adjust to where your repo is
+# Demo: age_to_first_treatment_statistics()
 
 source("SPARQL.R") ; # patch to SPARQL.R
 .GlobalEnv[["interpret_type"]]=interpret_rdf_type;

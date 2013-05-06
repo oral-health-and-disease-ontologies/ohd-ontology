@@ -12,157 +12,157 @@ commonns <- c('xsd','<http://www.w3.org/2001/XMLSchema#>',
               'wgs84','<http://www.w3.org/2003/01/geo/wgs84_pos#>',
               'qb','<http://purl.org/linked-data/cube#>')
 
-sparqltest <- function(...) {
-  SPARQL(url='http://semanticweb.cs.vu.nl/lop/sparql/',
-         query='SELECT ?et ?r ?at ?t 
-                WHERE { 
-                  ?e sem:eventType ?et .
-                  ?e sem:hasActor ?a . 
-                  ?a sem:actorType ?at . 
-                  ?e sem:hasPlace ?p . 
-                  ?p eez:inPiracyRegion ?r .
-                  ?e sem:hasTimeStamp ?t . }',
-         ns=c('lop','<http://semanticweb.cs.vu.nl/poseidon/ns/instances/>',
-              'eez','<http://semanticweb.cs.vu.nl/poseidon/ns/eez/>'),
-         ...)
-}
+## sparqltest <- function(...) {
+##   SPARQL(url='http://semanticweb.cs.vu.nl/lop/sparql/',
+##          query='SELECT ?et ?r ?at ?t 
+##                 WHERE { 
+##                   ?e sem:eventType ?et .
+##                   ?e sem:hasActor ?a . 
+##                   ?a sem:actorType ?at . 
+##                   ?e sem:hasPlace ?p . 
+##                   ?p eez:inPiracyRegion ?r .
+##                   ?e sem:hasTimeStamp ?t . }',
+##          ns=c('lop','<http://semanticweb.cs.vu.nl/poseidon/ns/instances/>',
+##               'eez','<http://semanticweb.cs.vu.nl/poseidon/ns/eez/>'),
+##          ...)
+## }
 
-#
-# Read SPARQL results from end-point
-#
-SPARQL <- function(url="http://localhost/", query="", update="", 
-                   ns=NULL, param="", extra=NULL, format="xml", curl_args=NULL, parser_args=NULL) {
-  if (!is.null(extra)) {
-    extrastr <- paste('&', sapply(seq(1,length(extra)),
-                                  function (i) { paste(names(extra)[i],'=',URLencode(extra[[i]]), sep="") }),
-                      collapse="&", sep='')
-  } else {
-    extrastr <- ""
-  }
-  tf <- tempfile()
-  if (query != "") {
-    if (param == "") {
-      param <- "query"
-    }
-    if(format == 'xml') {
-      tf <- do.call(getURL,append(list(url = paste(url, '?', param, '=', gsub('\\+','%2B',URLencode(query,reserved=TRUE)), extrastr, sep=""),
-                                       httpheader = c(Accept="application/sparql-results+xml")),
-                                  curl_args))
-      DOM <- do.call(xmlParse, append(list(tf), parser_args))
-      if(length(getNodeSet(DOM, '//s:result[1]', namespaces=sparqlns)) == 0) {
-        rm(DOM)
-        df <- data.frame(c())
-      } else {
-        attrs <- unlist(xpathApply(DOM,
-                                   paste('//s:head/s:variable', sep=""),
-                                   namespaces=sparqlns,
-                                   quote(xmlGetAttr(x, "name"))))			
-        ns2 <- noBrackets(ns)
-        res <- get_attr(attrs, DOM, ns2)
+## #
+## # Read SPARQL results from end-point
+## #
+## SPARQL <- function(url="http://localhost/", query="", update="", 
+##                    ns=NULL, param="", extra=NULL, format="xml", curl_args=NULL, parser_args=NULL) {
+##   if (!is.null(extra)) {
+##     extrastr <- paste('&', sapply(seq(1,length(extra)),
+##                                   function (i) { paste(names(extra)[i],'=',URLencode(extra[[i]]), sep="") }),
+##                       collapse="&", sep='')
+##   } else {
+##     extrastr <- ""
+##   }
+##   tf <- tempfile()
+##   if (query != "") {
+##     if (param == "") {
+##       param <- "query"
+##     }
+##     if(format == 'xml') {
+##       tf <- do.call(getURL,append(list(url = paste(url, '?', param, '=', gsub('\\+','%2B',URLencode(query,reserved=TRUE)), extrastr, sep=""),
+##                                        httpheader = c(Accept="application/sparql-results+xml")),
+##                                   curl_args))
+##       DOM <- do.call(xmlParse, append(list(tf), parser_args))
+##       if(length(getNodeSet(DOM, '//s:result[1]', namespaces=sparqlns)) == 0) {
+##         rm(DOM)
+##         df <- data.frame(c())
+##       } else {
+##         attrs <- unlist(xpathApply(DOM,
+##                                    paste('//s:head/s:variable', sep=""),
+##                                    namespaces=sparqlns,
+##                                    quote(xmlGetAttr(x, "name"))))			
+##         ns2 <- noBrackets(ns)
+##         res <- get_attr(attrs, DOM, ns2)
 
-        df <- data.frame(res)
+##         df <- data.frame(res)
 
-		rm(res)
-        rm(DOM)
+## 		rm(res)
+##         rm(DOM)
         
-        # FIXME: find neater way to unlist columns
-        n = names(df)
-        for(r in 1:length(n)) {
-          name <- n[r]
-          df[name] <- as.vector(unlist(df[name]))
-        }
+##         # FIXME: find neater way to unlist columns
+##         n = names(df)
+##         for(r in 1:length(n)) {
+##           name <- n[r]
+##           df[name] <- as.vector(unlist(df[name]))
+##         }
         
-      }
-    } else if (format == 'csv') {
-      tf <- do.call(getURL,append(list(url=paste(url, '?', param, '=', gsub('\\+','%2B',URLencode(query,reserved=TRUE)), extrastr, sep="")),
-                                  curl_args))
-      df <- do.call(readCSVstring,append(list(tf, blank.lines.skip=TRUE, strip.white=TRUE),
-                                         parser_args))
-      if (!is.null(ns)) 
-        df <- dropNS(df,ns)
-    } else if (format == 'tsv') {
-      tf <- do.call(getURL,append(list(url=paste(url, '?', param, '=', gsub('\\+','%2B',URLencode(query,reserved=TRUE)), extrastr, sep="")),
-                                  curl_args))
-      df <- do.call(readTSVstring,append(list(tf, blank.lines.skip=TRUE, strip.white=TRUE),
-                                         parser_args))
-      if (!is.null(ns)) 
-        df <- dropNS(df,ns)
-    } else {
-      cat('unknown format "',format,'"\n\n',sep="")
-      return(list(results=NULL,namespaces=ns))
-    }
-    list(results=df, namespaces=ns)
-  } else if (update != "") {
-    if (param == "") {
-      param <- "update"
-    }
-    extra[[param]] <- update
-    do.call(postForm,append(list(url, .params=extra),curl_args))
-  }
-}
+##       }
+##     } else if (format == 'csv') {
+##       tf <- do.call(getURL,append(list(url=paste(url, '?', param, '=', gsub('\\+','%2B',URLencode(query,reserved=TRUE)), extrastr, sep="")),
+##                                   curl_args))
+##       df <- do.call(readCSVstring,append(list(tf, blank.lines.skip=TRUE, strip.white=TRUE),
+##                                          parser_args))
+##       if (!is.null(ns)) 
+##         df <- dropNS(df,ns)
+##     } else if (format == 'tsv') {
+##       tf <- do.call(getURL,append(list(url=paste(url, '?', param, '=', gsub('\\+','%2B',URLencode(query,reserved=TRUE)), extrastr, sep="")),
+##                                   curl_args))
+##       df <- do.call(readTSVstring,append(list(tf, blank.lines.skip=TRUE, strip.white=TRUE),
+##                                          parser_args))
+##       if (!is.null(ns)) 
+##         df <- dropNS(df,ns)
+##     } else {
+##       cat('unknown format "',format,'"\n\n',sep="")
+##       return(list(results=NULL,namespaces=ns))
+##     }
+##     list(results=df, namespaces=ns)
+##   } else if (update != "") {
+##     if (param == "") {
+##       param <- "update"
+##     }
+##     extra[[param]] <- update
+##     do.call(postForm,append(list(url, .params=extra),curl_args))
+##   }
+## }
 
-readTSVstring <- function(text, ...) {
-  dfr <- read.delim(tc <- textConnection(text), ...)
-  close(tc)
-  dfr
-}
+## readTSVstring <- function(text, ...) {
+##   dfr <- read.delim(tc <- textConnection(text), ...)
+##   close(tc)
+##   dfr
+## }
 
-readCSVstring <- function(text, ...) {
-  dfr <- read.csv(tc <- textConnection(text), ...)
-  close(tc)
-  dfr
-}
+## readCSVstring <- function(text, ...) {
+##   dfr <- read.csv(tc <- textConnection(text), ...)
+##   close(tc)
+##   dfr
+## }
 
-get_attr <- function(attrs, DOM, ns) {
-  rs <- getNodeSet(DOM,'//s:result',namespaces=sparqlns)
-  t(sapply(rs,
-           function(r) { 
-             sapply(attrs,
-                    function(attr) {
-                      get_value(getNodeSet(xmlDoc(r),
-                                           paste('//s:binding[@name="',attr,'"]/*[1]',
-                                                 sep=''),
-                                           namespaces=sparqlns)[[1]],
-                                ns)
-                    },simplify=FALSE)
-           },simplify=TRUE))
-}
+## get_attr <- function(attrs, DOM, ns) {
+##   rs <- getNodeSet(DOM,'//s:result',namespaces=sparqlns)
+##   t(sapply(rs,
+##            function(r) { 
+##              sapply(attrs,
+##                     function(attr) {
+##                       get_value(getNodeSet(xmlDoc(r),
+##                                            paste('//s:binding[@name="',attr,'"]/*[1]',
+##                                                  sep=''),
+##                                            namespaces=sparqlns)[[1]],
+##                                 ns)
+##                     },simplify=FALSE)
+##            },simplify=TRUE))
+## }
 
-get_value <- function(node,ns) {
-  # FIXME: very slow...
-  if (is.null(node)) { return(NA) }
-  doc <- xmlDoc(node)
-  uri = xpathSApply(doc, '/s:uri', xmlValue, namespaces=sparqlns)
-  if(length(uri) == 0) {
-    literal = xpathSApply(doc, '/s:literal', xmlValue, namespaces=sparqlns)
-    if(length(literal) == 0) {
-      bnode = xpathSApply(doc, '/s:bnode', xmlValue, namespaces=sparqlns)
-      if (length(bnode) == 0) { # error
-        '***oops***'
-      } else { # found bnode
-        paste('_:genid', bnode, sep='')
-      }
-    } else { # found literal
-      lang = xpathApply(doc, '/s:literal', xmlGetAttr, "xml:lang", namespaces=sparqlns)
-      if(is.null(lang[[1]])) {
-        type = xpathApply(doc, '/s:literal', xmlGetAttr, "datatype", namespaces=sparqlns)
-        if(is.null(type[[1]])) {
-          literal
-        } else {
-          interpret_type(type,literal,ns)
-        }
-      } else {
-        paste('"', literal, '"@', lang, sep='')
-      }
-    }
-  } else { # found URI
-    qname = qnames(uri, ns)
-    if(qname == uri)
-      paste('<', uri, '>', sep="")
-    else
-      qname
-  }
-}
+## get_value <- function(node,ns) {
+##   # FIXME: very slow...
+##   if (is.null(node)) { return(NA) }
+##   doc <- xmlDoc(node)
+##   uri = xpathSApply(doc, '/s:uri', xmlValue, namespaces=sparqlns)
+##   if(length(uri) == 0) {
+##     literal = xpathSApply(doc, '/s:literal', xmlValue, namespaces=sparqlns)
+##     if(length(literal) == 0) {
+##       bnode = xpathSApply(doc, '/s:bnode', xmlValue, namespaces=sparqlns)
+##       if (length(bnode) == 0) { # error
+##         '***oops***'
+##       } else { # found bnode
+##         paste('_:genid', bnode, sep='')
+##       }
+##     } else { # found literal
+##       lang = xpathApply(doc, '/s:literal', xmlGetAttr, "xml:lang", namespaces=sparqlns)
+##       if(is.null(lang[[1]])) {
+##         type = xpathApply(doc, '/s:literal', xmlGetAttr, "datatype", namespaces=sparqlns)
+##         if(is.null(type[[1]])) {
+##           literal
+##         } else {
+##           interpret_type(type,literal,ns)
+##         }
+##       } else {
+##         paste('"', literal, '"@', lang, sep='')
+##       }
+##     }
+##   } else { # found URI
+##     qname = qnames(uri, ns)
+##     if(qname == uri)
+##       paste('<', uri, '>', sep="")
+##     else
+##       qname
+##   }
+## }
 
 noBrackets <- function(ns) {
   sapply(ns,function(br_ns) {
