@@ -63,17 +63,19 @@ age_to_first_treatment_statistics <- function ()
 	     ?procedure occurrence_date: ?treatdatei .
    	     ?patient birth_date: ?birth_date
            } group by ?patient");
-  # count how many procedures had a patient participate (bug?: select distinct ?patient ?procedure returns more!)
-  withpatient <- length(queryc("SELECT distinct ?procedure
-	   WHERE 
+  
+  # count how many procedures had a patient participate
+  withpatient <- nrow(queryc("SELECT distinct ?procedure
+  	   WHERE 
 	   { ?patient rdf:type dental_patient: . 
 	     ?patient participates_in: ?procedure. 
              ?procedure rdf:type dental_procedure: .
 	     ?procedure occurrence_date: ?treatdatei .
    	     ?patient birth_date: ?birth_date
            } "))
-  # count the total procedures
-  total <- length(queryc("SELECT distinct ?procedure WHERE { ?procedure rdf:type dental_procedure:  . } "));
+
+  ## count the total procedures
+  total <- nrow(queryc("SELECT distinct ?procedure WHERE { ?procedure rdf:type dental_procedure:  . } "));
 
   # compute mean, median, sd
   meansd<-mean_median_and_sd_from_dates_in_years(queryRes[,"bdate"],queryRes[,"treatdate"])
