@@ -11,7 +11,7 @@ years_difference_from_dates <- function(first_date,second_date)
   }
 
 mean_median_and_sd_from_dates_in_years <- function (first_date,second_date,print=TRUE)
-{  
+{
   years <- years_difference_from_dates(first_date,second_date);
   if (print)  { cat(paste("mean: ", mean(years),", median: ", median(years),  ", standard deviation: ",sd(years),"\n"))}
   c(as.numeric(mean(years)),as.numeric(median(years)),as.numeric(sd(years)));
@@ -56,19 +56,19 @@ histogram_fit_to_distribution_of_dates_in_years <- function (first_date,second_d
 age_to_first_treatment_statistics <- function ()
 { # retrieve a row for each patient with the birth date first treatment date for each
   queryRes <- queryc("SELECT ?patient (sample(?birth_date) as ?bdate) (min(?treatdatei) as ?treatdate)
-	   WHERE 
-	   { ?patient rdf:type dental_patient: . 
-	     ?patient participates_in: ?procedure. 
+	   WHERE
+	   { ?patient rdf:type dental_patient: .
+	     ?patient participates_in: ?procedure.
              ?procedure rdf:type dental_procedure: .
 	     ?procedure occurrence_date: ?treatdatei .
    	     ?patient birth_date: ?birth_date
            } group by ?patient");
-  
+
   # count how many procedures had a patient participate
   withpatient <- nrow(queryc("SELECT distinct ?procedure
-  	   WHERE 
-	   { ?patient rdf:type dental_patient: . 
-	     ?patient participates_in: ?procedure. 
+  	   WHERE
+	   { ?patient rdf:type dental_patient: .
+	     ?patient participates_in: ?procedure.
              ?procedure rdf:type dental_procedure: .
 	     ?procedure occurrence_date: ?treatdatei .
    	     ?patient birth_date: ?birth_date
@@ -89,3 +89,33 @@ age_to_first_treatment_statistics <- function ()
       dim(queryRes)[1],"first from",withpatient,"procedures of ",total)
     );
 }
+
+which_distribution_for_ages <- function ()
+{   queryRes <- queryc("SELECT ?patient (sample(?birth_date) as ?bdate) (min(?treatdatei) as ?treatdate)
+	   WHERE
+	   { ?patient rdf:type dental_patient: .
+	     ?patient participates_in: ?procedure.
+             ?procedure rdf:type dental_procedure: .
+	     ?procedure occurrence_date: ?treatdatei .
+   	     ?patient birth_date: ?birth_date
+           } group by ?patient");
+    compare_normal_to_beta_distribution(years_difference_from_dates(queryRes[,"bdate"],queryRes[,"treatdate"])/115);
+}
+
+
+# See http://en.wikipedia.org/wiki/Kolmogorov–Smirnov_test - a way of testing goodness of fit of a probability distribution to a sample
+compare_normal_to_beta_distribution <- function (data)
+{ beta_parameter_estimates <- estimate_beta_distribution_parameters(mean(data),sd(data));
+  # compute the beta distribution
+  beta_parameters <- fitdistr(data,"beta",beta_parameter_estimates);
+  # compute the normal distribution
+  normal_parameters <- fitdistr(data,"normal")
+  # Now do the KS test for the normal distribution and print
+  cat("Normal\n");
+  print(ks.test(data,"pnorm",normal_parameters$estimate[1],normal_parameters$estimate[2]))
+  # And do the KS test for the beta distribution and print
+  cat("Beta\n");
+  print(ks.test(data,"pbeta",beta_parameters$estimate[1],beta_parameters$estimate[2]))
+}
+
+
