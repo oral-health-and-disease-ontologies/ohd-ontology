@@ -35,6 +35,14 @@ PREFIX occurrence_date:  <http://purl.obolibrary.org/obo/OHD_0000015>
 PREFIX inheres_in: <http://purl.obolibrary.org/obo/BFO_0000052>
 PREFIX participates_in: <http://purl.obolibrary.org/obo/BFO_0000056>
 PREFIX dental_procedure: <http://purl.obolibrary.org/obo/OHD_0000002>
+PREFIX crown_restoration: <http://purl.obolibrary.org/obo/OHD_0000033>
+PREFIX tooth_restoration_procedure: <http://purl.obolibrary.org/obo/OHD_0000004>
+PREFIX intracoronal_restoration: <http://purl.obolibrary.org/obo/OHD_0000006>
+PREFIX veneer_restoration: <http://purl.obolibrary.org/obo/OHD_0000027>
+PREFIX inlay_restoration: <http://purl.obolibrary.org/obo/OHD_0000133>
+PREFIX onlay_restoration: <http://purl.obolibrary.org/obo/OHD_0000134>
+PREFIX surgical_procedure: <http://purl.obolibrary.org/obo/OHD_0000044>
+PREFIX endodontic_procedure: <http://purl.obolibrary.org/obo/OHD_0000003>
 PREFIX tooth_restoration_procedure: <http://purl.obolibrary.org/obo/OHD_0000004>
 PREFIX tooth_to_be_restored_role: <http://purl.obolibrary.org/obo/OHD_0000007>
 PREFIX realizes: <http://purl.obolibrary.org/obo/BFO_0000055>
