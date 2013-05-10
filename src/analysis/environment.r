@@ -15,11 +15,15 @@ set_rdf_type_converter("http://www.w3.org/2001/XMLSchema#date",identity)
 # variables for connecting to triple store.
 dungeon_r21_nightly <- "http://dungeon.ctde.net:8080/openrdf-sesame/repositories/ohd-r21-nightly"
 
-current_endpoint <- dungeon_r21_nightly
-current_sparqlr <- "rrdf";
+
+if(is.null(.GlobalEnv$current_endpoint))
+    { current_endpoint <<- dungeon_r21_nightly }
+
+if(is.null(.GlobalEnv$current_sparqlr))
+    { current_sparqlr <<- "rrdf"; }
 
 # strings for prefixes
-prefixes <- function  ()
+default_ohd_prefixes <- function  ()
 {
   "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -31,18 +35,24 @@ PREFIX occurrence_date:  <http://purl.obolibrary.org/obo/OHD_0000015>
 PREFIX inheres_in: <http://purl.obolibrary.org/obo/BFO_0000052>
 PREFIX participates_in: <http://purl.obolibrary.org/obo/BFO_0000056>
 PREFIX dental_procedure: <http://purl.obolibrary.org/obo/OHD_0000002>
+PREFIX tooth_restoration_procedure: <http://purl.obolibrary.org/obo/OHD_0000004>
+PREFIX tooth_to_be_restored_role: <http://purl.obolibrary.org/obo/OHD_0000007>
+PREFIX realizes: <http://purl.obolibrary.org/obo/BFO_0000055>
+PREFIX inheres_in: <http://purl.obolibrary.org/obo/BFO_0000052>
+PREFIX tooth: <http://purl.obolibrary.org/obo/FMA_12516>
+PREFIX is_part_of: <http://purl.obolibrary.org/obo/BFO_0000050>
 "}
 
 lastSparqlQuery <- NULL;
 
-querystring <- function(string)
+querystring <- function(string,prefixes=default_ohd_prefixes)
   { lastSparqlQuery <- paste(prefixes(),"\n",string,"\n");
     lastSparqlQuery
   }
 
 # this cache is more painful that it should be. Surely there is an idiomatic way to do this in R...
 
-sessionQueryCache <- new.env();
+sessionQueryCache <- new.env(hash=TRUE);
 
 cachedQuery <- function (query,endpoint)
   { endpointCache <- mget(endpoint,sessionQueryCache,ifnotfound=notfound);
@@ -69,29 +79,29 @@ cacheQuery <- function (query,endpoint,result)
             result;
           }}
     else
-      { assign(endpoint,new.env(),sessionQueryCache);
+      { assign(endpoint,new.env(hash=TRUE),sessionQueryCache);
         cacheQuery(query,endpoint,result)
       }
   }
 
 queryCache <- function() { sessionQueryCache }
 
-queryc <- function(string)
-{ cached <- cachedQuery(querystring(string),current_endpoint);
+queryc <- function(string,endpoint=current_endpoint,prefixes=default_ohd_prefixes)
+{ cached <- cachedQuery(querystring(string,prefixes=prefixes),endpoint);
   # cat("length(cached): ",length(cached),"\n");
   if (!is.null(cached))
     cached
   else
     { queryres <- if (current_sparqlr=="rrdf")
-                {sparql.remote(current_endpoint,querystring(string)) }
+                {sparql.remote(endpoint,querystring(string,prefixes=prefixes)) }
                 else if (current_sparqlr=="SPARQL")
-                {SPARQL(current_endpoint,querystring(string))
+                {SPARQL(endpoint,querystring(string,prefixes=prefixes))
                  res$results}
       # cat("query had ",length(queryres)," results\n");
-      cacheQuery(querystring(string),current_endpoint,queryres);
+      cacheQuery(querystring(string,prefixes=prefixes),endpoint,queryres);
       queryres
     }
-      
+
 }
 
 lastSparql <- function() { cat(lastSparqlQuery) }
