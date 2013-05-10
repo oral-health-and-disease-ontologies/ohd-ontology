@@ -45,7 +45,6 @@ PREFIX surgical_procedure: <http://purl.obolibrary.org/obo/OHD_0000044>
 PREFIX endodontic_procedure: <http://purl.obolibrary.org/obo/OHD_0000003>
 PREFIX tooth_to_be_restored_role: <http://purl.obolibrary.org/obo/OHD_0000007>
 PREFIX realizes: <http://purl.obolibrary.org/obo/BFO_0000055>
-PREFIX inheres_in: <http://purl.obolibrary.org/obo/BFO_0000052>
 PREFIX tooth: <http://purl.obolibrary.org/obo/FMA_12516>
 PREFIX is_part_of: <http://purl.obolibrary.org/obo/BFO_0000050>
 "}
