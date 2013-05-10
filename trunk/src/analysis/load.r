@@ -2,9 +2,10 @@
 ## Project: OHD
 ## Date: May, 2013
 
-# you might want to compiler::enableJIT(2) in your ~/.RProfile
+# you might want to compiler::enableJIT(2) in your ~/.Rprofile
 
 # Variables to customize:
+# Customize these variables by either setting them in your ~/.Rprofile, or setting them after loading this file.
 
 # current_endpoint default: dungeon_r21_nightly "http://dungeon.ctde.net:8080/openrdf-sesame/repositories/ohd-r21-nightly"
 # current_sparqlr default: "rrdf", can be changed to "SPARQL" to use the SPARQL R package instead (which is slower)
