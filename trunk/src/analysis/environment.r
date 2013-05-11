@@ -8,19 +8,19 @@
 # load necessary libraries for sparql
 library(rrdf)
 library(MASS)
-
 library(SPARQL)
+
+# if we use SPARQ library don't translate xsd:Date, so we can be compatible with RRDF
 set_rdf_type_converter("http://www.w3.org/2001/XMLSchema#date",identity)
 
-# variables for connecting to triple store.
+# triple store nightly build on the imac in the dungeon
 dungeon_r21_nightly <- "http://dungeon.ctde.net:8080/openrdf-sesame/repositories/ohd-r21-nightly"
 
+if(!exists(current_endpoint))
+{ current_endpoint <<- dungeon_r21_nightly }
 
-if(is.null(.GlobalEnv$current_endpoint))
-    { current_endpoint <<- dungeon_r21_nightly }
-
-if(is.null(.GlobalEnv$current_sparqlr))
-    { current_sparqlr <<- "rrdf"; }
+if(!exists(current_sparqlr))
+{ current_sparqlr <<- "rrdf"; }
 
 # strings for prefixes
 default_ohd_prefixes <- function  ()
@@ -56,58 +56,45 @@ querystring <- function(string,prefixes=default_ohd_prefixes)
     lastSparqlQuery
   }
 
-# this cache is more painful that it should be. Surely there is an idiomatic way to do this in R...
-
 sessionQueryCache <- new.env(hash=TRUE);
 
+## See if we have a cached result for query executed at endpoint
 cachedQuery <- function (query,endpoint)
-  { endpointCache <- mget(endpoint,sessionQueryCache,ifnotfound=notfound);
-    if (is.environment(endpointCache[[1]]))
-      { result<-mget(query,endpointCache[[1]],ifnotfound=notfound);
-        if (result[[1]][1]!=notfound[[1]])
-          {result[[1]]}
-      }
-  }
+{ if (exists(endpoint,sessionQueryCache))
+  { endpointCache <- get(endpoint,sessionQueryCache);
+    if (exists(query,endpointCache)) return(get(query,endpointCache)) }
+  NULL
+}
 
-notfound <- as.list(c("notfound"));
-
+## Cache result for query executed at endpoint
 cacheQuery <- function (query,endpoint,result)
-  { endpointCache <- mget(endpoint,sessionQueryCache,ifnotfound=notfound);
-#    cat("endpointcache is ",ls.str(endpointCache[[1]]),"\n");
-    if (is.environment(endpointCache[[1]]))
-      { cached <- mget(query,endpointCache[[1]],ifnotfound=notfound);
-        if (cached[[1]]!=notfound)
-          { #cat("returning cached\n");
-            cached[[1]] }
-        else
-          { # cat("saving query\n");
-            assign(query,result,endpointCache[[1]])
-            result;
-          }}
-    else
-      { assign(endpoint,new.env(hash=TRUE),sessionQueryCache);
-        cacheQuery(query,endpoint,result)
-      }
-  }
+{ if (exists(endpoint,sessionQueryCache))
+  { endpointCache <- get(endpoint,sessionQueryCache)}
+  else
+  { endpointCache <<- new.env(hash=TRUE)
+    assign(endpoint,endpointCache,sessionQueryCache) }
+  assign(query,result,endpointCache)
+  result
+}
 
+## return the session cache
 queryCache <- function() { sessionQueryCache }
 
+## execute a sparql query. endpoint defaults to current_endpoint, sparql library defaults to "rrdf"
 queryc <- function(string,endpoint=current_endpoint,prefixes=default_ohd_prefixes)
 { cached <- cachedQuery(querystring(string,prefixes=prefixes),endpoint);
-  # cat("length(cached): ",length(cached),"\n");
   if (!is.null(cached))
     cached
   else
     { queryres <- if (current_sparqlr=="rrdf")
                 {sparql.remote(endpoint,querystring(string,prefixes=prefixes)) }
                 else if (current_sparqlr=="SPARQL")
-                {SPARQL(endpoint,querystring(string,prefixes=prefixes))
+                {res<-SPARQL(endpoint,querystring(string,prefixes=prefixes))
                  res$results}
-      # cat("query had ",length(queryres)," results\n");
       cacheQuery(querystring(string,prefixes=prefixes),endpoint,queryres);
       queryres
     }
-
 }
 
+## retrieve the last sparql query result
 lastSparql <- function() { cat(lastSparqlQuery) }
