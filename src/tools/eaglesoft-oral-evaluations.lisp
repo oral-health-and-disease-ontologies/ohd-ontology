@@ -47,7 +47,7 @@
 			    (#"getString" results "tran_date")))
 		     
 		     ;; get axioms
-		     (as (get-eaglesoft-dental-exam-axioms 
+		     (as (get-eaglesoft-oral-evaluation-axioms 
 		     	  (#"getString" results "patient_id")
 		     	  occurrence-date
 			  (#"getString" results "ada_code")
@@ -60,7 +60,7 @@
       ;; return the ontology
       (values ont count))))
 
-(defun get-eaglesoft-dental-exam-axioms (patient-id occurrence-date ada-code 
+(defun get-eaglesoft-oral-evaluation-axioms (patient-id occurrence-date ada-code 
 					 provider-id provider-type practice-id record-id)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
@@ -124,12 +124,6 @@
     (push `(object-property-assertion !'realizes'@ohd ,visit-uri ,patient-role-uri) axioms)
 
     ;; visit realizes provider role
-    
-
-    ;; cdt code instance is about the oral evaluation
-    (push `(object-property-assertion !'is about'@ohd ,cdt-uri ,oral-eval-uri) axioms)
-	 
-         
     ;; if a provider is given,  get axioms that a dental visit has particpant provider
     (when provider-id
       (setf temp-axioms (get-eaglesoft-dental-provider-participant-axioms
@@ -139,6 +133,9 @@
 
 
     
+    ;; cdt code instance is about the oral evaluation
+    (push `(object-property-assertion !'is about'@ohd ,cdt-uri ,oral-eval-uri) axioms)
+	 
     ;;(pprint axioms)
 
     ;; return axioms
