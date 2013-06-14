@@ -863,7 +863,7 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
 
 (defun get-eaglesoft-dental-visit-name (patient-id occurrence-date)
   "Returns a string that is used as the label of a dental visit iri."
-  (let (visit-name nil)
+  (let ((visit-name nil))
     (setf visit-name (str+ "dental visit for patient " patient-id " on " occurrence-date))
 
     ;; return name of visit
