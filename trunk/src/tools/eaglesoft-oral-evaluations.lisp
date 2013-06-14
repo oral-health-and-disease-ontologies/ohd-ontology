@@ -61,70 +61,51 @@
       (values ont count))))
 
 (defun get-eaglesoft-dental-exam-axioms (patient-id occurrence-date ada-code 
-					 provider-id provider-type practice-id record-count)
+					 provider-id provider-type practice-id record-id)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(cdt-class-uri nil)
 	(cdt-uri nil)
-	(exam-name nil)
-	(exam-uri nil)
+	(oral-eval-name nil)
+	(oral-eval-uri nil)
 	(visit-name nil)
 	(visit-uri nil)
 	(patient-uri nil)
-	(patient-role-name nil)
 	(patient-role-uri nil)
 	(provider-role-name nil)
 	(provider-uri nil))
 
-    ;; get uri of patient
+    ;; get uri of patient and that patient's role
     (setf patient-uri (get-eaglesoft-dental-patient-iri patient-id))
+    (setf patient-role-uri (get-eaglesoft-dental-patient-role-iri patient-id))
 
-    ;; declare instance of patient role
-    
-    ;; declare instance of !ohd:'tooth to undergo inlay procedure role'
-    (setf tooth-role-uri (get-eaglesoft-tooth-to-undergo-inlay-procedure-role-iri
-			  patient-id tooth-name record-count))
-		
-    (push `(declaration (named-individual ,tooth-role-uri)) axioms)
-    (setf temp-axioms (get-ohd-instance-axioms tooth-role-uri 
-					       !'tooth to undergo inlay procedure role'@ohd))
-    (setf axioms (append temp-axioms axioms))
 
-    ;; add annotation about tooth role
-    (push `(annotation-assertion !rdfs:label 
-				 ,tooth-role-uri
-				 ,(str+ "tooth to undergo inlay procedure role for " 
-					tooth-name " of patient " 
-					patient-id)) axioms)
-
-    					" of patient " patient-id)) axioms)
-
-    ;; declare instance of restoration 
-    (setf ohd-restoration-uri (get-eaglesoft-inlay-restoration-uri ada-code))
-    (setf restoration-uri (get-eaglesoft-inlay-restoration-iri 
-			   patient-id tooth-name ohd-restoration-uri record-count))
-		     		
-    (push `(declaration (named-individual ,restoration-uri)) axioms)
-    (setf temp-axioms (get-ohd-instance-axioms restoration-uri ohd-restoration-uri))
-    (setf axioms (append temp-axioms axioms))
-
-    ;; add annotation about this restoration procedure
-    (setf restoration-name (get-eaglesoft-inlay-restoration-name ada-code))
-    (push `(annotation-assertion !rdfs:label 
-				 ,restoration-uri
-				 ,(str+ restoration-name 
-					" inlay restoration on " 
-					tooth-name " in patient " 
-					patient-id)) axioms)
-
-    ;; add data property !ohd:'occurrence date' to restoration
+    ;; declare instance of dental visit with annotations and date of visit
+    (setf visit-uri (get-eaglesoft-dental-visit-iri patient-id occurrence-date))
+    (setf visit-name (get-eaglesoft-dental-visit-name patient-id occurrence-date))
+    (push `(annotation-assertion !rdfs:label visit-uri visit-name) axioms)
     (push `(data-property-assertion !'occurrence date'@ohd
-				    ,restoration-uri 
+				    ,visit-uri 
 				    (:literal ,occurrence-date !xsd:date)) axioms)
+    (push `(declaration (named-individual ,visit-uri)) axioms)
+    (setf temp-axioms (get-ohd-instance-axioms visit-uri !'dental visit'@ohd))
+    (setf axioms (append temp-axioms axioms))
+
+    ;; declare instance of oral evaluation with annotations and date of evaluation
+    ;; note: the oral evaluation is part of the visit
+    (setf oral-eval-uri (get-eaglesoft-oral-evaluation-iri patient-id occurrence-date))
+    (setf oral-eval-name (get-eaglesoft-oral-evaluation-name ada-code patient-id))
+    (push `(annotation-assertion !rdfs:label oral-eval-uri oral-eval-name) axioms)
+    (push `(data-property-assertion !'occurrence date'@ohd
+				    ,oral-eval-uri 
+				    (:literal ,occurrence-date !xsd:date)) axioms)
+    (push `(declaration (named-individual ,oral-eval-uri)) axioms)
+    (setf temp-axioms (get-ohd-instance-axioms oral-eval-uri !'dental exam'@ohd))
+    (setf axioms (append temp-axioms axioms))
 
     ;; declare instance of cdt code as identified by the ada code that is about the procedure
     (setf cdt-class-uri (get-cdt-class-iri ada-code))
-    (setf cdt-uri (get-eaglesoft-cdt-instance-iri patient-id ada-code cdt-class-uri record-count))
+    (setf cdt-uri (get-eaglesoft-cdt-instance-iri patient-id ada-code cdt-class-uri record-id))
     (push `(declaration (named-individual ,cdt-uri)) axioms)
     (setf temp-axioms (get-ohd-instance-axioms cdt-uri cdt-class-uri))
     (setf axioms (append temp-axioms axioms))
@@ -132,49 +113,27 @@
     ;; add annotion about cdt code
     (push `(annotation-assertion !rdfs:label
 				 ,cdt-uri
-				 ,(str+ "billing code " ada-code " for " restoration-name 
-					" inlay restoration on " tooth-name 
-					" of patient " patient-id)) axioms)
+				 ,(str+ "billing code " ada-code " for " oral-eval-name)) axioms)
 
 ;;;; relate instances ;;;;
+    
+    ;; oral evaluation processual part of visit
+    (push `(object-property-assertion !'is part of'@ohd ,oral-eval-uri ,visit-uri) axioms)
 
-    ;; tooth is located in the patient
-    (push `(object-property-assertion !'is part of'@ohd
-				      ,tooth-uri ,patient-uri) axioms)
+    ;; visit realizes patient role
+    (push `(object-property-assertion !'realizes'@ohd ,visit-uri ,patient-role-uri) axioms)
 
-    ;; tooth role inheres in tooth
-    (push `(object-property-assertion !'inheres in'@ohd
-				      ,tooth-role-uri ,tooth-uri) axioms)
+    ;; visit realizes provider role
+    
 
-    ;; restoration realizes tooth role
-    (push `(object-property-assertion !'realizes'@ohd
-				      ,restoration-uri ,tooth-role-uri) axioms)
-
-    ;; restoration has particpant tooth
-    (push `(object-property-assertion !'has participant'@ohd
-				      ,restoration-uri ,tooth-uri) axioms)
-	 
-    ;; restoration has particpant restoration material
-    (push `(object-property-assertion !'has participant'@ohd
-				      ,restoration-uri ,material-uri) axioms)
-
-    ;; restoration has particpant patient
-    (push `(object-property-assertion !'has participant'@ohd
-				      ,restoration-uri ,patient-uri) axioms)
-
-    ;; restoration material is located in the tooth
-    (push `(object-property-assertion !'is located in'@ohd
-				      ,material-uri ,tooth-uri) axioms)
-
-    ;; cdt code instance is about the restoration process
-    (push `(object-property-assertion !'is about'@ohd
-				      ,cdt-uri ,restoration-uri) axioms)
+    ;; cdt code instance is about the oral evaluation
+    (push `(object-property-assertion !'is about'@ohd ,cdt-uri ,oral-eval-uri) axioms)
 	 
          
-    ;; if a provider is given,  get axioms that a 'restoration procedure' has particpant provider
+    ;; if a provider is given,  get axioms that a dental visit has particpant provider
     (when provider-id
       (setf temp-axioms (get-eaglesoft-dental-provider-participant-axioms
-			 restoration-uri provider-id provider-type practice-id record-count))
+			 restoration-uri provider-id provider-type practice-id record-id))
       ;; ensure that axioms were returned
       (when temp-axioms (setf axioms (append temp-axioms axioms))))
 
@@ -186,6 +145,18 @@
     axioms))
 
 
+
+(defun get-eaglesoft-oral-evaluation-iri (patient-id occurrence-date)
+  "Returns a uri for a dental visit that is generated by the patient id."
+  (let ((uri nil))
+    (setf uri 
+	  (get-unique-individual-iri patient-id 
+				     :salt *eaglesoft-salt*
+				     :iri-base *eaglesoft-individual-oral-evaluations-iri-base*
+				     :class-type !'dental exam'@ohd 			
+				     :args `(,occurrence-date "oral evaluation" "eaglesoft")))
+    ;; return uri
+    uri))
   
 (defun get-eaglesoft-oral-evaluation-name (ada-code patient-id)
   "Returns the name the type of restoration based on ada code."
