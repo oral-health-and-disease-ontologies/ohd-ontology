@@ -23,10 +23,7 @@
     ;; verify that the eaglesoft db has the action_codes and patient_history tables
     (prepare-eaglesoft-db :force-create-table force-create-table)
 
-    ;; get query string for restorations
-    (setf query (get-eaglesoft-dental-providers-query
-		 :r21-provider-id r21-provider-id :limit-rows limit-rows))
-
+    
     (with-ontology ont (:collecting t 
 			:base *eaglesoft-individual-dental-providers-iri-base*
 			:ontology-iri *eaglesoft-dental-providers-ontology-iri*)
@@ -35,20 +32,39 @@
 
 	 ;; get axioms for declaring annotation, object, and data properties used for ohd
 	 (as (get-ohd-declaration-axioms))
-
+	 
 	 ;; get records from eaglesoft db and create axioms
 
 	 ;; first get axioms to describe practices
 	 ;; this is needed so that a provider can be member of a practice
 	 (as (get-eaglesoft-dental-practice-axioms :dental-organization-id dental-organization-id))
 
-	 ;; now
+
+	 ;; get query string for known dental health care providers
+	 (setf query (get-eaglesoft-dental-providers-query
+		      :r21-provider-id r21-provider-id :limit-rows limit-rows))
+	 ;; get axioms for known providers
 	 (with-eaglesoft (results query)
 	   (loop while (#"next" results) do
 	        ;; get axioms
 		(as (get-eaglesoft-dental-provider-axioms 
 		     (#"getString" results "r21_provider_id")
 		     (#"getString" results "r21_provider_type")
+		     (#"getString" results "practice_id")))
+		(incf count)))
+
+	 ;; make sure to clear out results
+	 (setf results nil)
+
+	 ;; get query string for anonymous dental health care providers
+	 (setf query (get-eaglesoft-anonymous-providers-query :limit-rows limit-rows))
+
+	 ;; get axioms for anonymous providers
+	 (with-eaglesoft (results query)
+	   (loop while (#"next" results) do
+	        ;; get axioms
+		(as (get-eaglesoft-anonymous-dental-provider-axioms 
+		     (#"getString" results "row_id")
 		     (#"getString" results "practice_id")))
 		(incf count))))
 
@@ -58,20 +74,38 @@
 (defun get-eaglesoft-dental-provider-axioms (r21-provider-id r21-provider-type practice-id)
   "Returns a list of axioms about a dental provider (a human) that is identified by the r21-provider-id."
   (let ((axioms nil)
+	(temp-axioms nil) ; used for appending instance axioms
 	(provider-uri nil)
+	(provider-label nil)
+	(provider-role-uri nil)
 	(practice-uri nil))
     
     ;; if the provider is a person; create instance and assign the person to practice (if known)
     (when (equalp r21-provider-type "person")
       
+      ;; get axioms for instance of provider
       (setf provider-uri (get-eaglesoft-dental-provider-iri r21-provider-id))
-      (setf axioms
-	    (append (get-ohd-instance-axioms provider-uri
-					     !'dental health care provider'@ohd) axioms))
+      (setf temp-axioms (get-ohd-instance-axioms provider-uri !'dental health care provider'@ohd))
+      (setf axioms (append temp-axioms axioms))
       
+      ;; format provider's label
+      (setf provider-label (format nil "dental health care provider ~a" r21-provider-id))
+      (push `(annotation-assertion !rdfs:label ,provider-uri ,provider-label) axioms)
+
+
+      ;; get axioms for instance of dental health care provider role
+      (setf provider-role-uri (get-eaglesoft-dental-provider-role-iri r21-provider-id))
+      (setf temp-axioms (get-ohd-instance-axioms provider-role-uri !'dental health care provider role'@ohd))
+      (setf axioms (append temp-axioms axioms))
+
+      ;; add annotation about provider role
       (push `(annotation-assertion !rdfs:label
-				   ,provider-uri
-				   ,(str+ "dental provider " r21-provider-id)) axioms)
+				   ,provider-role-uri
+				   ,(str+ "dental health care provider role for " provider-label)) axioms)
+
+      ;; the provider role inheres in the provider
+      (push `(object-property-assertion !'inheres in'@ohd 
+					,provider-role-uri ,provider-uri) axioms)
 
       ;; make provider member of practice (if one exists)
       (when practice-id
@@ -81,6 +115,46 @@
     ;; return axioms
     axioms))
 
+(defun get-eaglesoft-anonymous-dental-provider-axioms (row-id practice-id)
+  "Return a list of axioms about anonymous providers in the patient_history table."
+  (let ((axioms nil)
+	(temp-axioms nil) ; used for appending instance axioms
+	(provider-uri nil)
+	(provider-label nil)
+	(provider-role-uri nil)
+	(practice-uri nil))
+    
+    ;; to get uri for iri for anonymous provider pass a dummy variable for the first arg
+    ;; and then provide a unique identifer (in this case the row id) for the anonymous-id key
+    (setf provider-uri (get-eaglesoft-dental-provider-iri "x" :anonymous-id row-id))
+    (setf temp-axioms (get-ohd-instance-axioms provider-uri !'dental health care provider'@ohd))
+    (setf axioms (append temp-axioms axioms))
+
+    ;; format provider's label
+    (setf provider-label (format nil "anonymous dental health care provider ~a" row-id))
+    (push `(annotation-assertion !rdfs:label ,provider-uri ,provider-label) axioms)
+
+    ;; now anonymous provider's role
+    (setf provider-role-uri (get-eaglesoft-dental-provider-role-iri "x":anonymous-id row-id))
+    (setf temp-axioms (get-ohd-instance-axioms provider-role-uri !'dental health care provider role'@ohd))
+    (setf axioms (append temp-axioms axioms))
+
+    ;; add annotation about provider role
+    (push `(annotation-assertion !rdfs:label
+				 ,provider-role-uri
+				 ,(str+ "dental health care provider role for " provider-label)) axioms)
+
+    ;; the provider role inheres in the provider
+    (push `(object-property-assertion !'inheres in'@ohd 
+				      ,provider-role-uri ,provider-uri) axioms)
+
+    ;; make provider member of practice (if one exists)
+    (when practice-id
+      (setf practice-uri (get-eaglesoft-dental-practice-iri practice-id))
+      (push `(object-property-assertion !'member of'@ohd ,provider-uri ,practice-uri) axioms))
+
+    ;; return axioms
+    axioms))
 
 (defun get-eaglesoft-dental-practice-axioms (&key dental-organization-id)
   (let ((axioms nil)
@@ -199,3 +273,201 @@
     ;;return query string
     sql))
 
+(defun get-eaglesoft-anonymous-providers-query (&key limit-rows)
+  "Returns query string for the those records in the patient_history where no provider is indicated."
+  (let ((sql nil))
+    ;; build query string
+    (setf sql "SET rowcount 0 ")
+    
+    ;; determine number of rows for SELECT clause
+    (cond 
+      (limit-rows
+       (setf limit-rows (format nil "~a" limit-rows)) ;ensure that limit rows is a string
+       (setf sql (str+ sql " SELECT  TOP " limit-rows " "))) 
+      (t (setf sql (str+ sql " SELECT "))))
+
+    ;; append field names to select clause
+    (setf sql (str+ sql "row_id, practice_id "))
+    
+    ;; FROM clause
+    (setf sql (str+ sql "FROM patient_history "))
+
+    ;; WHERE clause - get those records where provide is not a person or is null
+    (setf sql (str+ sql "WHERE (r21_provider_type <> 'person' or r21_provider_id IS NULL) "))
+    
+    ;; get codes that begin with 'D' or '0'
+    (setf sql (str+ sql "AND LEFT(ada_code, 1) IN ('D', '0') "))
+
+    ;; filter by ADA codes in R21 study
+    (setf sql (str+ sql "
+/*
+This is a list of the ADA codes needed for R21 OHD study.
+*/
+
+AND RIGHT(ada_code, 4) IN (
+             -- diagnostic codes
+             '0120',
+             '0140',
+             '0150',
+             '0180',
+             
+             -- preventitive codes
+             '1351',
+             '1352',
+             
+             -- fillings codes
+             '2140', -- Restorative: Amalgam
+             '2150',
+             '2160',
+             '2161',
+             '2330', -- Restorative: Resin
+             '2331',
+             '2332',
+             '2335',
+             '2390',
+             '2391',
+             '2392',
+             '2393',
+             '2394',
+             '2410', -- Restorative: Gold Foil
+             '2420',
+             '2430',
+             
+             -- inlay/onlay restorative
+             '2510',
+             '2520',
+             '2530',
+             '2542',
+             '2543',
+             '2544',
+             '2610',
+             '2620',
+             '2630',
+             '2642',
+             '2643',
+             '2644',
+             '2650',
+             '2651',
+             '2652',
+             '2662',
+             '2663',
+             '2664',
+             
+             -- crown codes
+             '2710',
+             '2712',
+             '2721',
+             '2722',
+             '2740',
+             '2750',
+             '2751',
+             '2752',
+             '2780',
+             '2781',
+             '2782',
+             '2783',
+             '2790',
+             '2791',
+             '2792',
+             '2794',
+             '2799',
+             '2931',
+             '2932',
+             '2933',
+             '2940',
+             '2950',
+             '2952',
+             '2954',
+             '2960',
+             '2961',
+             '2962',
+             '2970',
+             
+             -- endodontics codes
+             '3220',
+             '3221',
+             '3222',
+             '3310',
+             '3320',
+             '3330',
+             '3346',
+             '3347',
+             '3348',
+             '3410',
+             '3421',
+             '3425',
+             '3450',
+             '3920',
+             
+             -- pontics
+             '6205',
+             '6210',
+             '6211',
+             '6212',
+             '6214',
+             '6240',
+             '6241',
+             '6242',
+             '6245',
+             '6250',
+             '6251',
+             '6252',
+             '6253',
+             '6254',
+             
+             -- fixed retainers inlay/onlay
+             '6545',
+             '6548',
+             '6600',
+             '6601',
+             '6602',
+             '6603',
+             '6604',
+             '6605',
+             '6606',
+             '6607',
+             '6608',
+             '6609',
+             '6610',
+             '6611',
+             '6612',
+             '6613',
+             '6614',
+             '6615',
+             '6624',
+             '6634',
+             
+             -- fixed retainers crowns
+             '6710',
+             '6720',
+             '6721',
+             '6722',
+             '6740',
+             '6750',
+             '6751',
+             '6752',
+             '6780',
+             '6781',
+             '6782',
+             '6783',
+             '6790',
+             '6791',
+             '6792',
+             '6793',
+             '6794',
+             '6795',
+             
+             -- other fixed retainers
+             '6970',
+             '6972',
+             '6973',
+             
+             -- surgical extractions codes
+             '7110',
+             '7120',
+             '7140',
+             '7210',
+             
+             -- pallative treatment
+             '9110')"))))
+    
