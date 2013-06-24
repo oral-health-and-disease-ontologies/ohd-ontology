@@ -52,8 +52,6 @@
 		      (#"getString" results "tooth_data")
 		      (#"getString" results "ada_code")
 		      (#"getString" results "r21_provider_id")
-		      (#"getString" results "r21_provider_type")
-		      (#"getString" results "practice_id")
 		      (#"getString" results "row_id")))
 		 (incf count))))
 
@@ -62,7 +60,7 @@
       (values ont count))))
 
 (defun get-eaglesoft-crown-axioms 
-    (patient-id occurrence-date tooth-data ada-code provider-id provider-type practice-id record-count)
+    (patient-id occurrence-date tooth-data ada-code provider-id record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(cdt-class-uri nil)
@@ -85,7 +83,7 @@
 
     ;; get uri of patient
     (setf patient-uri (get-eaglesoft-dental-patient-iri patient-id))
-
+    
     (loop for tooth in teeth-list do
          ;;;;  declare instances of participating entities ;;;;
 	 	 
@@ -158,6 +156,10 @@
 					 ,crown-restoration-uri 
 					 (:literal ,occurrence-date !xsd:date)) axioms)
 
+         ;; get axioms that describe how the restoration realizes the patient and provider roles
+	 (setf temp-axioms (get-eaglesoft-patient-provider-realization-axioms crown-restoration-uri patient-id provider-id record-count))
+	 (setf axioms (append temp-axioms axioms))
+
          ;; declare instance of cdt code as identified by the ada code that is about the procedure
 	 (setf cdt-class-uri (get-cdt-class-iri ada-code))
 	 (setf cdt-uri (get-eaglesoft-cdt-instance-iri patient-id ada-code cdt-class-uri record-count))
@@ -192,18 +194,6 @@
          ;; 'crown restoration' has particpant restoration material
 	 (push `(object-property-assertion !'has participant'@ohd
 					   ,crown-restoration-uri ,crown-material-uri) axioms)
-
-	 ;;  'crown restoration' has particpant patient
-	 (push `(object-property-assertion !'has participant'@ohd
-					   ,crown-restoration-uri ,patient-uri) axioms)
-
-         ;; if a provider is given,  get axioms that a 'crown restoration' has particpant provider
-	 (when provider-id
-	   (setf temp-axioms (get-eaglesoft-dental-provider-participant-axioms
-			      crown-restoration-uri provider-id provider-type practice-id record-count))
-	   ;; ensure that axioms were returned
-	   (when temp-axioms (setf axioms (append temp-axioms axioms))))
-	 
 
 	 ;; restoration material is located in the tooth
 	 (push `(object-property-assertion !'is located in'@ohd
