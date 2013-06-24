@@ -54,8 +54,6 @@
 		     (#"getString" results "tooth_data")
 		     (#"getString" results "ada_code")
 		     (#"getString" results "r21_provider_id")
-		     (#"getString" results "r21_provider_type")
-		     (#"getString" results "practice_id")
 		     (#"getString" results "row_id")))
 		(incf count))))
 
@@ -63,7 +61,7 @@
       (values ont count))))
 
 (defun get-eaglesoft-endodontic-axioms 
-    (patient-id occurrence-date tooth-data ada-code provider-id provider-type practice-id record-count)
+    (patient-id occurrence-date tooth-data ada-code provider-id record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(cdt-class-uri nil)
@@ -141,6 +139,10 @@
 					 ,endodontic-procedure-uri
 					 (:literal ,occurrence-date !xsd:date)) axioms)
 
+	 ;; get axioms that describe how the endo procedure realizes the patient and provider roles
+	 (setf temp-axioms (get-eaglesoft-patient-provider-realization-axioms endodontic-procedure-uri patient-id provider-id record-count))
+	 (setf axioms (append temp-axioms axioms))
+	 
          ;; declare instance of cdt code as identified by the ada code that is about the procedure
 	 (setf cdt-class-uri (get-cdt-class-iri ada-code))
 	 (setf cdt-uri (get-eaglesoft-cdt-instance-iri patient-id ada-code cdt-class-uri record-count))
@@ -177,14 +179,7 @@
 	  ;; cdt code instance is about the restoration process
 	 (push `(object-property-assertion !'is about'@ohd
 					   ,cdt-uri ,endodontic-procedure-uri) axioms)
-
-         ;; if a provider is given,  get axioms that an 'endodontic procedure' has particpant provider
-	 (when provider-id
-	   (setf temp-axioms (get-eaglesoft-dental-provider-participant-axioms
-			      endodontic-procedure-uri provider-id provider-type practice-id record-count))
-	   ;; ensure that axioms were returned
-	   (when temp-axioms (setf axioms (append temp-axioms axioms))))
-
+	 
 	 ) ;; end loop
     
     ;;(pprint axioms)
