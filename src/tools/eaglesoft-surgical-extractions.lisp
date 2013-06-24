@@ -54,8 +54,6 @@
 		     (#"getString" results "tooth_data")
 		     (#"getString" results "ada_code")
 		     (#"getString" results "r21_provider_id")
-		     (#"getString" results "r21_provider_type")
-		     (#"getString" results "practice_id")
 		     (#"getString" results "row_id")))
 		(incf count))))
 
@@ -63,7 +61,7 @@
       (values ont count))))
 
 (defun get-eaglesoft-surgical-extractions-axioms 
-    (patient-id occurrence-date tooth-data ada-code provider-id provider-type practice-id record-count)
+    (patient-id occurrence-date tooth-data ada-code provider-id record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(cdt-class-uri nil)
@@ -136,10 +134,14 @@
 					     tooth-name " of patient " 
 					     patient-id)) axioms)
 
-	 ;; add data property !ohd:'occurrence date' to restoration
+	 ;; add data property !ohd:'occurrence date' to extraction procedure
 	 (push `(data-property-assertion !'occurrence date'@ohd
 					 ,extraction-procedure-uri
 					 (:literal ,occurrence-date !xsd:date)) axioms)
+
+         ;; get axioms that describe how the extraction procedure realizes the patient and provider roles
+	 (setf temp-axioms (get-eaglesoft-patient-provider-realization-axioms extraction-procedure-uri patient-id provider-id record-count))
+	 (setf axioms (append temp-axioms axioms))
 
 	 ;; declare instance of cdt code as identified by the ada code that is about the procedure
 	 (setf cdt-class-uri (get-cdt-class-iri ada-code))
@@ -169,20 +171,9 @@
 	 (push `(object-property-assertion !'has participant'@ohd
 					   ,extraction-procedure-uri ,tooth-uri) axioms)
 
-         ;;  'tooth extraction procedure' has particpant patient
-	 (push `(object-property-assertion !'has participant'@ohd
-					   ,extraction-procedure-uri ,patient-uri) axioms)
-
-	 ;; cdt code instance is about the 'crown restoration' process
+         ;; cdt code instance is about the 'crown restoration' process
 	 (push `(object-property-assertion !'is about'@ohd
 					   ,cdt-uri ,extraction-procedure-uri) axioms)
-
-	 ;; if a provider is given,  get axioms that an 'extraction procedure' has particpant provider
-	 (when provider-id
-	   (setf temp-axioms (get-eaglesoft-dental-provider-participant-axioms
-			      extraction-procedure-uri provider-id provider-type practice-id record-count))
-	   ;; ensure that axioms were returned
-	   (when temp-axioms (setf axioms (append temp-axioms axioms))))
 
 	 ) ;; end loop
     
