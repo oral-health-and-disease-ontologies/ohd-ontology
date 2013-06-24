@@ -55,8 +55,6 @@
 			  (#"getString" results "charted_surface")
 		     	  (#"getString" results "ada_code")
 			  (#"getString" results "r21_provider_id")
-			  (#"getString" results "r21_provider_type")
-			  (#"getString" results "practice_id")
 		     	  (#"getString" results "row_id")))
 		     (incf count))))
 
@@ -65,7 +63,7 @@
 
 (defun get-eaglesoft-filling-axioms (patient-id occurrence-date tooth-data 
 				     billed-surface charted-surface ada-code 
-				     provider-id provider-type practice-id record-count)
+				     provider-id record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(cdt-class-uri nil)
@@ -102,9 +100,7 @@
 
     (loop for tooth in teeth-list do
          ;;;;  declare instances of participating entities ;;;;
-	 
-       
-	 
+	 	 
          ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
 	 (setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
 	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-with-number t))
@@ -211,6 +207,10 @@
 						  " in patient " patient-id)) axioms)
 	      
 	      ) ;; end surface loop
+	 
+	 ;; get axioms that describe how the endo procedure realizes the patient and provider roles
+	 (setf temp-axioms (get-eaglesoft-patient-provider-realization-axioms restoration-uri patient-id provider-id record-count))
+	 (setf axioms (append temp-axioms axioms))
 
          ;; declare instance of cdt code as identified by the ada code that is about the procedure
 	 (setf cdt-class-uri (get-cdt-class-iri ada-code))
@@ -248,11 +248,7 @@
 	 (push `(object-property-assertion !'has participant'@ohd
 					   ,restoration-uri ,material-uri) axioms)
 
-         ;; 'filling restoration' has particpant patient
-	 (push `(object-property-assertion !'has participant'@ohd
-					   ,restoration-uri ,patient-uri) axioms)
-
-	 ;; restoration material is located in the tooth
+       	 ;; restoration material is located in the tooth
 	 (push `(object-property-assertion !'is located in'@ohd
 					   ,material-uri ,tooth-uri) axioms)
 
@@ -299,14 +295,7 @@
 
 	      ) ;; end bill surfaces loop
 
-         ;; if a provider is given,  get axioms that a 'restoration procedure' has particpant provider
-	 (when provider-id
-	   (setf temp-axioms (get-eaglesoft-dental-provider-participant-axioms
-			      restoration-uri provider-id provider-type practice-id record-count))
-	   ;; ensure that axioms were returned
-	   (when temp-axioms (setf axioms (append temp-axioms axioms))))
-
-	 ) ;; end loop
+       	 ) ;; end loop
     
     ;;(pprint axioms)
 
@@ -467,6 +456,8 @@ the surface_detail array.
                       codes cdt4 (2003) and later begin with a D */
                    AND LEFT(ada_code, 1) IN ('D','0') "))
 
+    ;; FOR NOW ONLY GET RECORDS FROM TRANSACTIONS TABLE
+    (setf sql (str+ sql " AND table_name = 'transactions' "))
 
     ;; check for patient id
     (when patient-id
