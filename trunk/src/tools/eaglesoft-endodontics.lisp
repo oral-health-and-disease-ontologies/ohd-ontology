@@ -172,10 +172,7 @@
 	 (push `(object-property-assertion !'has participant'@ohd
 					   ,endodontic-procedure-uri ,tooth-uri) axioms)
 
-         ;;  'endodontic procedure' has particpant patient
-	 (push `(object-property-assertion !'has participant'@ohd
-					   ,endodontic-procedure-uri ,patient-uri) axioms)
-
+	 
 	  ;; cdt code instance is about the restoration process
 	 (push `(object-property-assertion !'is about'@ohd
 					   ,cdt-uri ,endodontic-procedure-uri) axioms)
