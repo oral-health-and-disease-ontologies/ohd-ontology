@@ -902,57 +902,6 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
     ;; return axioms
     axioms))
 
-
-(defun get-eaglesoft-dental-provider-participant-axioms 
-    (procedure-uri r21-provider-id r21-provider-type practice-id row-id)
-  (let ((axioms nil)
-	(temp-axioms nil)  ; used for getting instance axioms
-	(provider-uri nil)
-	(practice-uri nil))
-
-
-
-    ;; ensure that there is a r21 provider id
-    (when r21-provider-id
-      ;; given that we know that a provider id has been given, there are four cases to consider
-      ;; 1. the provider type is a known person; in this case add axioms for the provider
-      ;; 2. the provider type is temporary worker; in this create a blank node (anonymous individual)
-      ;;    and make it a member of practice (if there is one)
-      ;; 3. the provider type is practice; in which case we create a blank node (anonymous individual)
-      ;;    and make it a member of the practice
-      ;; 4. the provder type is uknown, but we know the practice; in which case we create a blank node
-      ;;    (anonymous individual) and make it a member of the practice (if known)
-      (cond
-	( ;; case 1
-	 (equalp r21-provider-type "person")
-	 (setf provider-uri (get-eaglesoft-dental-provider-iri r21-provider-id)))
-	(t ;; cases 2, 3, 4
-	 ;; In all these cases we know there is a provider, but just not who it is
-	 ;; i.e., the provider is anonymous
-	 (setf row-id (format nil "~a" row-id)) ; cast row-id to string
-	 (setf provider-uri `(:blank ,row-id))
-	 
-	 ;; make label for anonymous individual
-	 (push `(annotation-assertion !rdfs:label ,provider-uri 
-				      ,(str+ "anonymous dental provider " row-id)) axioms)
-
-	 ;; get instance of axioms for anonymous individual
-	 ;; note: case 1 instance axioms are covered in eaglesoft-dental-providers.lisp
-	 (setf temp-axioms (get-ohd-instance-axioms provider-uri !'dental health care provider'@ohd))
-	 (setf axioms (append temp-axioms axioms))
-
-	 ;; if a practice is given, make anonymous provider a member of it
-	 ;; note: case 1 members are covered in eaglesoft-dental-providers.lisp
-	 (when practice-id
-	   (setf practice-uri (get-eaglesoft-dental-practice-iri practice-id))
-	   (push `(object-property-assertion !'member of'@ohd ,provider-uri ,practice-uri) axioms))))
-
-      ;; the procedure 'has participant' the provider
-      (push `(object-property-assertion !'has participant'@ohd ,procedure-uri ,provider-uri) axioms))
-    
-    ;; return axioms
-    axioms))
-
 (defun get-eaglesoft-dental-exam-axioms 
     (finding-uri r21-provider-id r21-provider-type practice-id row-id)
   (let ((axioms nil)
