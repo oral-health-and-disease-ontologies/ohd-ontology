@@ -55,9 +55,7 @@
 			  (#"getString" results "charted_surface")
 		     	  (#"getString" results "ada_code")
 			  (#"getString" results "r21_provider_id")
-			  (#"getString" results "r21_provider_type")
-			  (#"getString" results "practice_id")
-		     	  (#"getString" results "row_id")))
+			  (#"getString" results "row_id")))
 		     (incf count))))
 
       ;; return the ontology
@@ -65,7 +63,7 @@
 
 (defun get-eaglesoft-veneers-axioms (patient-id occurrence-date tooth-data 
 				     billed-surface charted-surface ada-code 
-				     provider-id provider-type practice-id record-count)
+				     provider-id record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(cdt-class-uri nil)
@@ -214,6 +212,10 @@
 	      
 	      ) ;; end surface loop
 
+	 ;; get axioms that describe how the veneer procedure realizes the patient and provider roles
+	 (setf temp-axioms (get-eaglesoft-patient-provider-realization-axioms restoration-uri patient-id provider-id record-count))
+	 (setf axioms (append temp-axioms axioms))
+	 
          ;; declare instance of cdt code as identified by the ada code that is about the procedure
 	 (setf cdt-class-uri (get-cdt-class-iri ada-code))
 	 (setf cdt-uri (get-eaglesoft-cdt-instance-iri patient-id ada-code cdt-class-uri record-count))
@@ -249,11 +251,7 @@
          ;; restoration has particpant restoration material
 	 (push `(object-property-assertion !'has participant'@ohd
 					   ,restoration-uri ,material-uri) axioms)
-
-         ;; restoration has particpant patient
-	 (push `(object-property-assertion !'has participant'@ohd
-					   ,restoration-uri ,patient-uri) axioms)
-
+	 
 	 ;; restoration material is located in the tooth
 	 (push `(object-property-assertion !'is located in'@ohd
 					   ,material-uri ,tooth-uri) axioms)
@@ -287,7 +285,7 @@
 		;;(print-db record-count)
 		;;(print-db charted-surface-list)
 		;;(print-db billed-surface-list)
-		(print-db surface-name)
+		;;(print-db surface-name)
 		(push `(declaration (named-individual ,surface-uri)) axioms)
 		(setf temp-axioms (get-ohd-instance-axioms surface-uri surface-type-uri))
 		(setf axioms (append temp-axioms axioms))
@@ -301,14 +299,7 @@
 
 	      ) ;; end bill surfaces loop
 
-         ;; if a provider is given,  get axioms that a 'restoration procedure' has particpant provider
-	 (when provider-id
-	   (setf temp-axioms (get-eaglesoft-dental-provider-participant-axioms
-			      restoration-uri provider-id provider-type practice-id record-count))
-	   ;; ensure that axioms were returned
-	   (when temp-axioms (setf axioms (append temp-axioms axioms))))
-
-	 ) ;; end loop
+       	 ) ;; end loop
     
     ;;(pprint axioms)
 
