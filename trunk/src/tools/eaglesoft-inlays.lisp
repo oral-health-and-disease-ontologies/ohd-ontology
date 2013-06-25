@@ -212,7 +212,7 @@
 	      
 	      ) ;; end surface loop
 
-	 ;; get axioms that describe how the inlay procedure realizes the patient and provider roles
+         ;; get axioms that describe how the inlay procedure realizes the patient and provider roles
 	 (setf temp-axioms (get-eaglesoft-patient-provider-realization-axioms restoration-uri patient-id provider-id record-count))
 	 (setf axioms (append temp-axioms axioms))
 
