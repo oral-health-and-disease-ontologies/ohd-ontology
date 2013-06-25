@@ -235,10 +235,10 @@ Note: This has not been filtered for primary (baby) teeth.
 		"WHERE
                    length(tooth_data) > 31
                  AND RIGHT(ada_code, 4) IN 
-                                  ('D7110',
-                                   'D7120',
-                                   'D7140',
-                                   'D7210')
+                                  ('7110',
+                                   '7120',
+                                   '7140',
+                                   '7210')
                    /* older codes (previous to cdt4) being with a 0 
                       codes cdt4 (2003) and later begin with a D */
                    AND LEFT(ada_code, 1) IN ('D','0') "))
