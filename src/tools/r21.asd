@@ -49,6 +49,7 @@
 	     (:file "eaglesoft-onlays")
 	     (:file "eaglesoft-veneers")
 	     (:file "eaglesoft-oral-evaluations")
+	     (:file "eaglesoft-dental-visits")
 	     )
 	    :depends-on
 	    (early)))
