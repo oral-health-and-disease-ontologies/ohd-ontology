@@ -67,7 +67,7 @@
 	(oral-eval-uri nil)
 	(visit-name nil)
 	(visit-uri nil))
-
+    
     ;; declare instance of dental visit with annotations and date of visit
     (setf visit-uri (get-eaglesoft-dental-visit-iri patient-id occurrence-date))
     (setf visit-name (get-eaglesoft-dental-visit-name patient-id occurrence-date))
