@@ -41,15 +41,14 @@
 
 
 	 ;; get query string for known dental health care providers
-	 (setf query (get-eaglesoft-dental-providers-query
+	 (setf query (get-eaglesoft-known-dental-providers-query
 		      :r21-provider-id r21-provider-id :limit-rows limit-rows))
 	 ;; get axioms for known providers
 	 (with-eaglesoft (results query)
 	   (loop while (#"next" results) do
 	        ;; get axioms
-		(as (get-eaglesoft-dental-provider-axioms 
+		(as (get-eaglesoft-known-dental-provider-axioms 
 		     (#"getString" results "r21_provider_id")
-		     (#"getString" results "r21_provider_type")
 		     (#"getString" results "practice_id")))
 		(incf count)))
 
@@ -71,46 +70,43 @@
       ;; return the ontology
       (values ont count))))
 
-(defun get-eaglesoft-dental-provider-axioms (r21-provider-id r21-provider-type practice-id)
+(defun get-eaglesoft-known-dental-provider-axioms (r21-provider-id practice-id)
   "Returns a list of axioms about a dental provider (a human) that is identified by the r21-provider-id."
   (let ((axioms nil)
-	(temp-axioms nil) ; used for appending instance axioms
+	(temp-axioms nil)	  ; used for appending instance axioms
 	(provider-uri nil)
 	(provider-label nil)
 	(provider-role-uri nil)
 	(practice-uri nil))
     
-    ;; if the provider is a person; create instance and assign the person to practice (if known)
-    (when (equalp r21-provider-type "person")
+    ;; get axioms for instance of provider
+    (setf provider-uri (get-eaglesoft-dental-provider-iri r21-provider-id))
+    (setf temp-axioms (get-ohd-instance-axioms provider-uri !'dental health care provider'@ohd))
+    (setf axioms (append temp-axioms axioms))
       
-      ;; get axioms for instance of provider
-      (setf provider-uri (get-eaglesoft-dental-provider-iri r21-provider-id))
-      (setf temp-axioms (get-ohd-instance-axioms provider-uri !'dental health care provider'@ohd))
-      (setf axioms (append temp-axioms axioms))
-      
-      ;; format provider's label
-      (setf provider-label (format nil "dental health care provider ~a" r21-provider-id))
-      (push `(annotation-assertion !rdfs:label ,provider-uri ,provider-label) axioms)
+    ;; format provider's label
+    (setf provider-label (format nil "dental health care provider ~a" r21-provider-id))
+    (push `(annotation-assertion !rdfs:label ,provider-uri ,provider-label) axioms)
 
 
-      ;; get axioms for instance of dental health care provider role
-      (setf provider-role-uri (get-eaglesoft-dental-provider-role-iri r21-provider-id))
-      (setf temp-axioms (get-ohd-instance-axioms provider-role-uri !'dental health care provider role'@ohd))
-      (setf axioms (append temp-axioms axioms))
+    ;; get axioms for instance of dental health care provider role
+    (setf provider-role-uri (get-eaglesoft-dental-provider-role-iri r21-provider-id))
+    (setf temp-axioms (get-ohd-instance-axioms provider-role-uri !'dental health care provider role'@ohd))
+    (setf axioms (append temp-axioms axioms))
 
-      ;; add annotation about provider role
-      (push `(annotation-assertion !rdfs:label
-				   ,provider-role-uri
-				   ,(str+ "dental health care provider role for " provider-label)) axioms)
+    ;; add annotation about provider role
+    (push `(annotation-assertion !rdfs:label
+				 ,provider-role-uri
+				 ,(str+ "dental health care provider role for " provider-label)) axioms)
 
-      ;; the provider role inheres in the provider
-      (push `(object-property-assertion !'inheres in'@ohd 
-					,provider-role-uri ,provider-uri) axioms)
+    ;; the provider role inheres in the provider
+    (push `(object-property-assertion !'inheres in'@ohd 
+				      ,provider-role-uri ,provider-uri) axioms)
 
-      ;; make provider member of practice (if one exists)
-      (when practice-id
-	(setf practice-uri (get-eaglesoft-dental-practice-iri practice-id))
-	(push `(object-property-assertion !'member of'@ohd ,provider-uri ,practice-uri) axioms)))
+    ;; make provider member of practice (if one exists)
+    (when practice-id
+      (setf practice-uri (get-eaglesoft-dental-practice-iri practice-id))
+      (push `(object-property-assertion !'member of'@ohd ,provider-uri ,practice-uri) axioms))
 
     ;; return axioms
     axioms))
@@ -230,7 +226,7 @@
     ;; return uri
     uri))
 
-(defun get-eaglesoft-dental-providers-query (&key r21-provider-id limit-rows)
+(defun get-eaglesoft-known-dental-providers-query (&key r21-provider-id limit-rows)
   "Returns query string for retrieving provider data. The r21-provider-id key restricts records only that provider or providers as identified in the r21_provider table.  Multiple are providers are specified using commas; e.g: \"123, 456, 789\".  The limit-rows key restricts the number of records to the number specified."
   (let ((sql nil))
 
@@ -253,10 +249,12 @@
     (setf sql (str+ sql " FROM r21_provider r LEFT JOIN positions p ON r.position_id = p.position_id "))
 
     ;; WHERE clause
+    (setf sql (str+ sql " WHERE r21_provider_type = 'person' "))
+
     ;; check for r21-provider-id
     (when r21-provider-id
       (setf sql
-	    (str+ sql " WHERE r21_provider_id IN (" (get-single-quoted-list r21-provider-id) ") ")))
+	    (str+ sql " AND r21_provider_id IN (" (get-single-quoted-list r21-provider-id) ") ")))
 
     ;; ORDER BY clause
     (setf sql (str+ sql " ORDER BY r21_provider_id  "))
@@ -293,8 +291,14 @@
     (setf sql (str+ sql "FROM patient_history "))
 
     ;; WHERE clause - get those records where provide is not a person or is null
-    (setf sql (str+ sql "WHERE (r21_provider_type <> 'person' or r21_provider_id IS NULL) "))
+    (setf sql (str+ sql "WHERE (r21_provider_type <> 'person' or r21_provider_id IS NULL) "))))
     
+#|
+billd 7/18/13:
+The purpose of filtering by these codes was to limit the number anonymous providers created.
+However, since we are concerned with all dental visits (not just those with specific ada codes),
+I need to retrieve all records where the provider is unknown.
+
     ;; get codes that begin with 'D' or '0'
     (setf sql (str+ sql "AND LEFT(ada_code, 1) IN ('D', '0') "))
 
@@ -470,4 +474,4 @@ AND RIGHT(ada_code, 4) IN (
              
              -- pallative treatment
              '9110')"))))
-    
+#|
