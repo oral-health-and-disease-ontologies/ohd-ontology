@@ -84,10 +84,6 @@
     (setf temp-axioms (get-eaglesoft-patient-provider-realization-axioms oral-eval-uri patient-id provider-id provider-type record-id))
     (setf axioms (append temp-axioms axioms))
 
-    ;; get axioms that describe how the oral evaluation realizes the patient and provider roles
-    (setf temp-axioms (get-eaglesoft-patient-provider-realization-axioms oral-eval-uri patient-id provider-id record-id))
-    (setf axioms (append temp-axioms axioms))
-
     ;; declare instance of cdt code as identified by the ada code that is about the procedure
     (setf cdt-class-uri (get-cdt-class-iri ada-code))
     (setf cdt-uri (get-eaglesoft-cdt-instance-iri patient-id ada-code cdt-class-uri record-id))
