@@ -52,33 +52,22 @@
 		     	  occurrence-date
 			  (#"getString" results "ada_code")
 			  (#"getString" results "r21_provider_id")
+			  (#"getString" results "r21_provider_type")
 			  (#"getString" results "row_id")))
 		     (incf count))))
 
       ;; return the ontology
       (values ont count))))
 
-(defun get-eaglesoft-oral-evaluation-axioms (patient-id occurrence-date ada-code provider-id record-id)
+(defun get-eaglesoft-oral-evaluation-axioms (patient-id occurrence-date ada-code provider-id provider-type record-id)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(cdt-class-uri nil)
 	(cdt-uri nil)
 	(oral-eval-name nil)
 	(oral-eval-uri nil)
-	(visit-name nil)
 	(visit-uri nil))
     
-    ;; declare instance of dental visit with annotations and date of visit
-    (setf visit-uri (get-eaglesoft-dental-visit-iri patient-id occurrence-date))
-    (setf visit-name (get-eaglesoft-dental-visit-name patient-id occurrence-date))
-    (push `(annotation-assertion !rdfs:label ,visit-uri ,visit-name) axioms)
-    (push `(data-property-assertion !'occurrence date'@ohd
-				    ,visit-uri 
-				    (:literal ,occurrence-date !xsd:date)) axioms)
-    (push `(declaration (named-individual ,visit-uri)) axioms)
-    (setf temp-axioms (get-ohd-instance-axioms visit-uri !'dental visit'@ohd))
-    (setf axioms (append temp-axioms axioms))
-
     ;; declare instance of oral evaluation with annotations and date of evaluation
     ;; note: the oral evaluation is part of the visit
     (setf oral-eval-uri (get-eaglesoft-oral-evaluation-iri patient-id occurrence-date))
@@ -91,8 +80,8 @@
     (setf temp-axioms (get-ohd-instance-axioms oral-eval-uri !'dental exam'@ohd))
     (setf axioms (append temp-axioms axioms))
 
-    ;; get axioms that describe how the visit realizes the patient and provider roles
-    (setf temp-axioms (get-eaglesoft-patient-provider-realization-axioms visit-uri patient-id provider-id record-id))
+    ;; get axioms that describe how the evaluation realizes the patient and provider roles
+    (setf temp-axioms (get-eaglesoft-patient-provider-realization-axioms oral-eval-uri patient-id provider-id provider-type record-id))
     (setf axioms (append temp-axioms axioms))
 
     ;; get axioms that describe how the oral evaluation realizes the patient and provider roles
@@ -112,9 +101,10 @@
 				 ,cdt-uri 
 				 ,(str+ "billing code " ada-code " for " oral-eval-name)) axioms)
 
-;;;; relate instances ;;;;
+    ;;;; relate instances ;;;;
     
     ;; oral evaluation processual part of visit
+    (setf visit-uri (get-eaglesoft-dental-visit-iri patient-id occurrence-date))
     (push `(object-property-assertion !'is part of'@ohd ,oral-eval-uri ,visit-uri) axioms)
     
     ;; cdt code instance is about the oral evaluation
