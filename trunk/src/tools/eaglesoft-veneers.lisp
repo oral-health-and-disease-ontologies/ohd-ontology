@@ -55,6 +55,7 @@
 			  (#"getString" results "charted_surface")
 		     	  (#"getString" results "ada_code")
 			  (#"getString" results "r21_provider_id")
+			  (#"getString" results "r21_provider_type")
 			  (#"getString" results "row_id")))
 		     (incf count))))
 
@@ -63,7 +64,7 @@
 
 (defun get-eaglesoft-veneers-axioms (patient-id occurrence-date tooth-data 
 				     billed-surface charted-surface ada-code 
-				     provider-id record-count)
+				     provider-id provider-type record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(cdt-class-uri nil)
@@ -214,7 +215,7 @@
 	      ) ;; end surface loop
 
 	 ;; get axioms that describe how the veneer procedure realizes the patient and provider roles
-	 (setf temp-axioms (get-eaglesoft-patient-provider-realization-axioms restoration-uri patient-id provider-id record-count))
+	 (setf temp-axioms (get-eaglesoft-patient-provider-realization-axioms restoration-uri patient-id provider-id provider-type record-count))
 	 (setf axioms (append temp-axioms axioms))
 	 
          ;; declare instance of cdt code as identified by the ada code that is about the procedure
@@ -233,7 +234,7 @@
 
 	  ;;;; relate instances ;;;;
 
-	 ;; tooth is located in the patient
+         ;; tooth is located in the patient
 	 (push `(object-property-assertion !'is part of'@ohd
 					   ,tooth-uri ,patient-uri) axioms)
 
