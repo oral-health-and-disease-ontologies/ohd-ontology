@@ -83,7 +83,8 @@
 	(tooth-type-uri nil)
 	(tooth-role-uri nil)
 	(tooth-name nil)
-	(teeth-list nil))
+	(teeth-list nil)
+	(visit-uri nil))
 
 
     ;; alanr - parse the list since that's what's in our table 
@@ -256,7 +257,11 @@
 	 (push `(object-property-assertion !'is about'@ohd
 					   ,cdt-uri ,restoration-uri) axioms)
 	 
-	 ;; now for each billed surfac add annotation that the cdt code is about that surface
+	 ;; determine the visit that procedure is part of
+	 (setf visit-uri (get-eaglesoft-dental-visit-iri patient-id occurrence-date))
+	 (push `(object-property-assertion !'is part of'@ohd ,restoration-uri visit-uri) axioms)
+
+	 ;; now for each billed surface add annotation that the cdt code is about that surface
 	 ;; this need to be done b/c there are cases in which the surface restoration that is
 	 ;; billed for different from the surface restoration recorded in the chart
 	 (setf billed-surface-list (get-eaglesoft-surface-list billed-surface))
