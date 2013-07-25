@@ -76,11 +76,6 @@
 	(teeth-list nil))
 
     
-    ;; make sure *ohd-label-source* hash table has been created
-    ;; this value will be discarded below when the patient uri is set
-    ;; again. 
-    (setf patient-uri !'dental patient'@ohd)
-
     ;; get uri of patient
     (setf patient-uri  (get-eaglesoft-dental-patient-iri patient-id))
 	 
