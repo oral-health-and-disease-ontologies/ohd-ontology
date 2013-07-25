@@ -260,7 +260,7 @@
 
          ;; determine the visit that procedure is part of
 	 (setf visit-uri (get-eaglesoft-dental-visit-iri patient-id occurrence-date))
-	 (push `(object-property-assertion !'is part of'@ohd ,restoration-uri visit-uri) axioms)
+	 (push `(object-property-assertion !'is part of'@ohd ,restoration-uri ,visit-uri) axioms)
 	 
          ;; cdt code instance is about the restoration process
 	 (push `(object-property-assertion !'is about'@ohd
