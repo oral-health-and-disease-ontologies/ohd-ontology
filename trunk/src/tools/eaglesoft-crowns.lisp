@@ -75,7 +75,8 @@
 	(tooth-name nil)
 	(tooth-uri nil)
 	(tooth-type-uri nil)
-	(teeth-list nil))
+	(teeth-list nil)
+	(visit-uri nil))
 
     ;; tooth_data
     ;; get list of teeth in tooth_data array
@@ -202,6 +203,11 @@
          ;; cdt code instance is about the 'crown restoration' process
 	 (push `(object-property-assertion !'is about'@ohd
 					   ,cdt-uri ,crown-restoration-uri) axioms)
+
+         ;; determine the visit that procedure is part of
+	 (setf visit-uri (get-eaglesoft-dental-visit-iri patient-id occurrence-date))
+	 (push `(object-property-assertion !'is part of'@ohd ,crown-restoration-uri visit-uri) axioms)
+
 	 
 	 ) ;; end loop
     
