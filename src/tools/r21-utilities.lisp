@@ -527,7 +527,9 @@ As an example of use, this call would create the ontologies for patient 3000: (c
 	(caries nil)
 	(surgical-extractions nil)
 	(inlays nil)
-	(onlays nil))
+	(onlays nil)
+	(oral-evaluations nil)
+	(visits nil))
 
 	
     ;; create ontologies
@@ -552,9 +554,14 @@ As an example of use, this call would create the ontologies for patient 3000: (c
 		   :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
     (setf inlays (get-eaglesoft-inlays-ont
 	      :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
-    (setf inlays (get-eaglesoft-onlays-ont
+    (setf onlays (get-eaglesoft-onlays-ont
 	      :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
-	
+    (setf oral-evaluations (get-eaglesoft-oral-evaluations-ont
+	      :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+    (setf visits (get-eaglesoft-dental-visits-ont
+		  :patient-id patient-id :r21-provider-id r21-provider-id
+		  :limit-rows limit-rows :force-create-table force-create-table))
+
     ;; check to save
     (when save-to-path
       ;; ensure save-to-path is a string
@@ -585,8 +592,10 @@ As an example of use, this call would create the ontologies for patient 3000: (c
       (write-rdfxml unerupted-teeth (str+ save-to-path "unerupted-teeth-findings.owl"))
       (write-rdfxml caries (str+ save-to-path "caries-findings.owl"))
       (write-rdfxml surgical-extractions (str+ save-to-path "surgical-extractions.owl"))
-      (write-rdfxml crowns (str+ save-to-path "inlays.owl"))
-      (write-rdfxml crowns (str+ save-to-path "onlays.owl")))
+      (write-rdfxml inlays (str+ save-to-path "inlays.owl"))
+      (write-rdfxml onlays (str+ save-to-path "onlays.owl"))
+      (write-rdfxml oral-evaluations (str+ save-to-path "oral-evaluations.owl"))
+      (write-rdfxml visits (str+ save-to-path "dental-visits.owl")))
 
     ;; place ontologies in asscoiated list and return
     `((crowns . ,crowns)
@@ -599,7 +608,9 @@ As an example of use, this call would create the ontologies for patient 3000: (c
       (caries . ,caries)
       (surgical-extractions . ,surgical-extractions)
       (inlays . ,inlays)
-      (onlays . ,onlays))))
+      (onlays . ,onlays)
+      (oral-evaluations . ,oral-evaluations)
+      (visits . ,visits))))
 
 (defun  search-eaglesoft-database-schema (&key table-name field-name)
   "Searches the Eaglesoft database schema for specified table and field names, and prints the results to the screen.  If not parameters are given, all the results are printed to sceen."
