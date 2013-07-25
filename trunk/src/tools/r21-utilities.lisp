@@ -870,7 +870,7 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
     ;; return name of visit
     visit-name))
 
-(defun get-eaglesoft-patient-provider-realization-axioms (process-uri patient-id provider-id record-id)
+(defun get-eaglesoft-patient-provider-realization-axioms (process-uri patient-id provider-id provider-type record-id)
   "Returns a list of axioms that specify how a particular process (e.g., visit or exam) realizes patient and provider roles"
   (let ((axioms nil)
 	(patient-uri nil)
@@ -882,10 +882,10 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
     (setf patient-uri (get-eaglesoft-dental-patient-iri patient-id))
     (setf patient-role-uri (get-eaglesoft-dental-patient-role-iri patient-id))
     
-    ;; get provider iri and provider-role iri
-    ;; when no provider id exists, use anonymous-id for provider iri and role iri
+    ;; if provider has been identified as a specific person use r21-provider-id; 
+    ;; otherwise use record-id
     (cond 
-      (provider-id
+      ((equalp provider-type "person")
        (setf provider-uri (get-eaglesoft-dental-provider-iri provider-id))
        (setf provider-role-uri (get-eaglesoft-dental-provider-role-iri provider-id)))
       (t
@@ -896,7 +896,7 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
     (push `(object-property-assertion !'realizes'@ohd ,process-uri ,patient-role-uri) axioms)
     (push `(object-property-assertion !'realizes'@ohd ,process-uri ,provider-role-uri) axioms)
 
-    ;; patient and provider participate in visit
+    ;; patient and provider participate in process
     (push `(object-property-assertion !'has participant'@ohd ,process-uri ,patient-uri) axioms)
     (push `(object-property-assertion !'has participant'@ohd ,process-uri ,provider-uri) axioms)
 
