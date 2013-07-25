@@ -260,7 +260,7 @@
 	 
 	 ;; determine the visit that procedure is part of
 	 (setf visit-uri (get-eaglesoft-dental-visit-iri patient-id occurrence-date))
-	 (push `(object-property-assertion !'is part of'@ohd ,restoration-uri visit-uri) axioms)
+	 (push `(object-property-assertion !'is part of'@ohd ,restoration-uri ,visit-uri) axioms)
 
 	 ;; now for each billed surface add annotation that the cdt code is about that surface
 	 ;; this need to be done b/c there are cases in which the surface restoration that is
