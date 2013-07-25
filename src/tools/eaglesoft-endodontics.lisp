@@ -72,7 +72,8 @@
 	(tooth-name nil)
 	(tooth-uri nil)
 	(tooth-type-uri nil)
-	(teeth-list nil))
+	(teeth-list nil)
+	(visit-uri nil))
 
     ;; tooth_data
     ;; get list of teeth in tooth_data array
@@ -159,6 +160,10 @@
 
 	  ;;;; relate instances ;;;;
 	 
+	 ;; tooth is located in the patient
+	 (push `(object-property-assertion !'is part of'@ohd
+					   ,tooth-uri ,patient-uri) axioms)
+	 
          ;; 'tooth to undergo endodontic procedure role' inheres in tooth
 	 (push `(object-property-assertion !'inheres in'@ohd
 					   ,endodontic-role-uri ,tooth-uri) axioms)
@@ -172,6 +177,9 @@
 	 (push `(object-property-assertion !'has participant'@ohd
 					   ,endodontic-procedure-uri ,tooth-uri) axioms)
 
+	 ;; determine the visit that procedure is part of
+	 (setf visit-uri (get-eaglesoft-dental-visit-iri patient-id occurrence-date))
+	 (push `(object-property-assertion !'is part of'@ohd ,endodontic-procedure-uri visit-uri) axioms)
 	 
 	  ;; cdt code instance is about the restoration process
 	 (push `(object-property-assertion !'is about'@ohd
