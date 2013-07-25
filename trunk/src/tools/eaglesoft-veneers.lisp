@@ -83,7 +83,8 @@
 	(tooth-type-uri nil)
 	(tooth-role-uri nil)
 	(tooth-name nil)
-	(teeth-list nil))
+	(teeth-list nil)
+	(visit-uri nil))
 
 
     ;; alanr - parse the list since that's what's in our table 
@@ -256,6 +257,10 @@
 	 (push `(object-property-assertion !'is located in'@ohd
 					   ,material-uri ,tooth-uri) axioms)
 
+	 ;; determine the visit that procedure is part of
+	 (setf visit-uri (get-eaglesoft-dental-visit-iri patient-id occurrence-date))
+	 (push `(object-property-assertion !'is part of'@ohd ,restoration-uri visit-uri) axioms)
+	 
          ;; cdt code instance is about the restoration process
 	 (push `(object-property-assertion !'is about'@ohd
 					   ,cdt-uri ,restoration-uri) axioms)
