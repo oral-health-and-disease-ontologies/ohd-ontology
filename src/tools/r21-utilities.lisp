@@ -543,21 +543,21 @@ As an example of use, this call would create the ontologies for patient 3000: (c
     (setf endodontics (get-eaglesoft-endodontics-ont
 		  :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
     (setf fillings (get-eaglesoft-fillings-ont
-		   :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+		  :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
     (setf missing-teeth (get-eaglesoft-missing-teeth-findings-ont
 		   :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
     (setf unerupted-teeth (get-eaglesoft-unerupted-teeth-findings-ont
-		   :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+		  :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
     (setf caries (get-eaglesoft-caries-findings-ont
-		   :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+		  :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
     (setf surgical-extractions (get-eaglesoft-surgical-extractions-ont
-		   :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+		  :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
     (setf inlays (get-eaglesoft-inlays-ont
-	      :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+       	          :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
     (setf onlays (get-eaglesoft-onlays-ont
-	      :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+	          :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
     (setf oral-evaluations (get-eaglesoft-oral-evaluations-ont
-	      :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
+	          :patient-id patient-id :limit-rows limit-rows :force-create-table force-create-table))
     (setf visits (get-eaglesoft-dental-visits-ont
 		  :patient-id patient-id :r21-provider-id r21-provider-id
 		  :limit-rows limit-rows :force-create-table force-create-table))
