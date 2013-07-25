@@ -236,12 +236,13 @@ Usage:
     cdt-iri))
 
 (defun get-ohd-import-axioms ()
-  "Returns a list of axioms for importing ontologies that are needed to link procedures and finding to patients and providers.  For example, if a crown procedure was performed, we need to know both the patient it was performed on and provider who did the procedure.  This requires the we import patient and provider ontologies."
+  "Returns a list of axioms for importing ontologies that are needed to link procedures and finding to patients, providers, and visits.  For example, if a crown procedure was performed, we need to know the patient it was performed on, provider who did the procedure, and when the procedure occurred.  This requires the we import patient, provider, and visit ontologies."
   (let ((axioms nil))
     ;; import the ohd, patient, and provider ontologies
     (push `(imports ,(make-uri *ohd-ontology-iri*)) axioms)
     (push `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)) axioms)
     (push `(imports ,(make-uri *eaglesoft-dental-providers-ontology-iri*)) axioms)
+    (push `(imports ,(make-uri *eaglesoft-dental-visits-ontology-iri*)) axioms)
 
     ;; return axioms
     axioms))
