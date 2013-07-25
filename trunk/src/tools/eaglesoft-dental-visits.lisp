@@ -56,13 +56,14 @@
 		     (#"getString" results "patient_id")
 		     occurrence-date
 		     (#"getString" results "r21_provider_id")
+		     (#"getString" results "r21_provider_type")
 		     (#"getString" results "row_id")))
 		(incf count))))
-
+      
       ;; return the ontology
       (values ont count))))
 
-(defun get-eaglesoft-dental-visits-axioms (patient-id occurrence-date provider-id record-id)
+(defun get-eaglesoft-dental-visits-axioms (patient-id occurrence-date provider-id provider-type record-id)
   "Returns a list of axioms about patient's dental visits."
   (let ((axioms nil)
 	(temp-axioms nil)	  ; used for appending instance axioms
@@ -75,26 +76,27 @@
     (setf visit-uri (get-eaglesoft-dental-visit-iri patient-id occurrence-date))
     (setf temp-axioms (get-ohd-instance-axioms visit-uri !'dental visit'@ohd))
     (setf axioms (append temp-axioms axioms))
-    
+        
     ;; format visit's label and add annotation
     (setf visit-name (get-eaglesoft-dental-visit-name patient-id occurrence-date)) 
     (push `(annotation-assertion !rdfs:label ,visit-uri ,visit-name) axioms)
     
     
     ;; get patient-role and provider-role iri
-    (setf patient-role-iri (get-eaglesoft-dental-patient-role-iri patient-id))
+    (setf patient-role-uri (get-eaglesoft-dental-patient-role-iri patient-id))
     
-    ;; if provider-id exists use r21-provider-id; otherwise use record-id
+    ;; if provider has been identified as a specific person use r21-provider-id; 
+    ;; otherwise use record-id
     (cond
-      (provider-id
+      ((equalp provider-type "person")
        (setf provider-role-uri (get-eaglesoft-dental-provider-role-iri provider-id)))
       (t
        (setf provider-role-uri (get-eaglesoft-dental-provider-role-iri "x" :anonymous-id record-id))))
-    
+
     ;; visit realizes patient-role and provider-role
     (push `(object-property-assertion !'realizes'@ohd ,visit-uri ,patient-role-uri) axioms)
     (push `(object-property-assertion !'realizes'@ohd ,visit-uri ,provider-role-uri) axioms)
-    
+
     ;; return axioms
     axioms))
 
@@ -122,6 +124,7 @@
                  tran_date, 
                  patient_id, 
                  r21_provider_id,
+                 r21_provider_type, 
                  row_id "))
 
     ;; FROM clause
