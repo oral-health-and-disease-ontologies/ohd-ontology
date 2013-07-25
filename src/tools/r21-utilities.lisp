@@ -844,7 +844,7 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
 				     :iri-base *eaglesoft-individual-dental-patients-iri-base*
-				     :class-type !'patient role'@ohd 			
+				     :class-type !'patient role'@ohd
 				     :args "eaglesoft"))
     ;; return uri
     uri))
@@ -1027,7 +1027,7 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
     (when anonymous-id 
       ;; ensure that anonymous-id is a string 
       (setf anonymous-id (format nil "~a" anonymous-id))
-      (setf r21-provider-id (str+ "anonymous eaglesoft dental provider role" anonymous-id)))
+      (setf r21-provider-id (str+ "anonymous eaglesoft dental provider role " anonymous-id)))
 
     (setf uri (get-unique-individual-iri r21-provider-id 
 					    :salt *eaglesoft-salt*
