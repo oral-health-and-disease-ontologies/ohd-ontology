@@ -183,7 +183,7 @@
 
          ;; determine the visit that procedure is part of
 	 (setf visit-uri (get-eaglesoft-dental-visit-iri patient-id occurrence-date))
-	 (push `(object-property-assertion !'is part of'@ohd ,extraction-procedure-uri visit-uri) axioms)
+	 (push `(object-property-assertion !'is part of'@ohd ,extraction-procedure-uri ,visit-uri) axioms)
 
 	 ) ;; end loop
     
