@@ -176,7 +176,7 @@
 	 (push `(object-property-assertion !'has participant'@ohd
 					   ,extraction-procedure-uri ,tooth-uri) axioms)
 
-         ;; cdt code instance is about the 'crown restoration' process
+         ;; cdt code instance is about the 'tooth extraction procedure' process
 	 (push `(object-property-assertion !'is about'@ohd
 					   ,cdt-uri ,extraction-procedure-uri) axioms)
 
