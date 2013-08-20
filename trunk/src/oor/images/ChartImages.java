@@ -18,7 +18,7 @@ import javax.imageio.ImageIO;
  */
 public class ChartImages {
 	@SuppressWarnings("unused")
-	private static final String __REV__ = "$Date : Rev$";
+	private static final String __REV__ = "$Date$ : $Rev$";
 	
 	public enum ImageTypes {
 		ORIGINAL_IMAGE,

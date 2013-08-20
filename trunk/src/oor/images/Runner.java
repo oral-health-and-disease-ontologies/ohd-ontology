@@ -14,7 +14,10 @@ import oor.images.output.ChartOutput;
 import oor.images.output.XmlGenerator;
 
 public class Runner {
-
+	
+	@SuppressWarnings("unused")
+	private static final String __REV__ = "$Date$ : $Rev$";
+	
 	/**
 	 * @param args
 	 * @throws IOException 
