@@ -87,5 +87,5 @@ applyPatterns();
 1;
 
 sub usage 
-  { print STDERR "usage: rewrite-spreadsheet.pl data-file pattern-file\n"; exit(); }
+  { print STDERR "usage: rewrite-spreadsheet.pl pattern-file data-file\n"; exit(); }
 
