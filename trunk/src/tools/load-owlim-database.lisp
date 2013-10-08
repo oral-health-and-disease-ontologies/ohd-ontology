@@ -1,3 +1,4 @@
+
 (defparameter owlim-repository-id "OHD")
 (defparameter sesame-owlim-repository (format nil "http://localhost:8080/openrdf-workbench/repositories/~a" owlim-repository-id))
 (defparameter sesame-manager "http://localhost:8080/openrdf-sesame/")
@@ -35,10 +36,10 @@ load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r
 load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-endodontics.owl>;
 load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-dental-providers.owl>;
 load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-dental-patients.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-crowns.owl>
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-inlays.owl>
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-onlays.owl>
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-veneers.owl>
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-crowns.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-inlays.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-onlays.owl>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-veneers.owl>;
 
 |#
 

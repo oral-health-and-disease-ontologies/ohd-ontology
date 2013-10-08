@@ -1,8 +1,8 @@
 (defvar stardog-r21 "http://127.0.0.1:5822/r21db/query")
 (defparameter 
-    owlim-se-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2012.12.05/query")
+    owlim-se-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2013.01.21/query")
 ;;(defparameter 
-;;    owlim-se-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2012.12.05")
+;;    owlim-se-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2013.01.21")
 (defparameter 
     owlim-se-r21-remote "http://den287.sdm.buffalo.edu:8080/openrdf-workbench/repositories/ohd-r21-nightly/query")
 
