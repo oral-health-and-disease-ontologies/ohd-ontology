@@ -423,6 +423,81 @@ Usage:
     ;; return material uri
     material-uri))
 	
+(defun get-eaglesoft-finding-type-iri (action-code)
+  "Determine the iri of the type of finding based on one of eaglesoft's action codes."
+  (let ((finding-type-uri nil))       
+    ;; make sure action-code is a string
+    (setf action-code (sting-trim " " (format nil "~a" action-code)))
+    
+    (cond
+      ((equalp action-code "1") ;; missing tooth finding
+       (setf finding-type-uri !'missing tooth finding'@ohd))
+      ((equalp action-code "18") ;; unerupted tooth finding
+       (setf finding-type-uri !'unerupted tooth finding'@ohd))
+      ((member action-code '("2" "3" "4") :test #'equalp) ;; caries finding
+       (setf finding-type-uri !'caries finding'@ohd))
+      (t
+       (setf finding-type-uri !'dental finding'@ohd))) ;; dental finding
+    
+
+    ;; return uri
+    finding-type-uri))
+
+(defun get-eaglesoft-individual-finding-iri-base (action-code)
+  "Return the IRI base for finding based on the action code."
+  (let ((iri-base nil))
+    ;; make sure action-code is a string
+    (setf action-code (sting-trim " " (format nil "~a" action-code)))
+
+    (cond
+      ((equalp action-code "1") ;; missing tooth finding
+       (setf iri-base *eaglesoft-individual-missing-teeth-findings-iri-base* ))
+      ((equalp action-code "18") ;; unerupted tooth finding
+       (setf iri-base *eaglesoft-individual-unerupted-teeth-findings-iri-base*))
+      ((member action-code '("2" "3" "4") :test #'equalp) ;; caries finding
+       (setf iri-base *eaglesoft-individual-caries-findings-iri-base*))
+      (t
+       (setf iri-base *eaglesoft-individual-dental-findings-iri-base*))) ;; dental finding
+
+    ;; return iri base
+    iri-base))
+
+(defun get-eaglesoft-finding-rdfs-label (patient-id action-code tooth)
+  "Determine the rdfs:label for a finding based on one of eaglesoft's action codes."
+  (let ((label nil))       
+    ;; make sure action-code is a string
+    (setf action-code (sting-trim " " (format nil "~a" action-code)))
+    
+    (cond
+      ((equalp action-code "1") ;; missing tooth finding
+       (setf label (str+ "missing tooth " tooth " finding for patient " patient-id )))
+      ((equalp action-code "18") ;; unerupted tooth finding
+       (setf label (str+ "unerupted tooth " tooth " finding for patient " patient-id )))
+      ((member action-code '("2" "3" "4") :test #'equalp) ;; caries finding
+       (setf label (str+ "caries finding on " tooth " of patient " patient-id )))
+      (t
+       (setf label (str+ "dental finding on " tooth " of patient " patient-id )))) ;; dental finding
+    
+    ;; return rdfs:label
+    label))
+
+(defun get-eaglesoft-individual-finding-iri (patient-id action-code tooth-name instance-count)
+  "Determine the iri of an individual/instance of finding."
+  (let ((finding-uri nil))
+
+    ;; make sure action-code is a string
+    (setf action-code (sting-trim " " (format nil "~a" action-code)))
+    
+    ;; get uri for instance of fininding
+    (setf finding-uri 
+	  (get-unique-individual-iri patient-id 
+				     :salt *eaglesoft-salt*
+				     :iri-base (get-eaglesoft-individual-finding-iri-base action-code)
+				     :class-type (get-eaglesoft-finding-type-iri action-code)
+				     :args `(,tooth-name ,instance-count "eaglesoft")))
+    ;; return uri
+    finding-uri))
+      
 ;;;; database functions ;;;;
 
 (defun table-exists (table-name url)
@@ -1783,6 +1858,12 @@ The steps for creating the r21_provider table are as follows:
   "http://purl.obolibrary.org/obo/ohd/individuals/")
 (defparameter *eaglesoft-endodontics-ontology-iri* 
   "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-endodontics.owl")
+
+;; eaglesoft dental findings (in general)
+(defparameter *eaglesoft-individual-dental-findings-iri-base* 
+  "http://purl.obolibrary.org/obo/ohd/individuals/")
+(defparameter *eaglesoft-missing-dental-findings-ontology-iri* 
+  "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-findings.owl")
 
 ;; eaglesoft missing teeth findings
 (defparameter *eaglesoft-individual-missing-teeth-findings-iri-base* 
