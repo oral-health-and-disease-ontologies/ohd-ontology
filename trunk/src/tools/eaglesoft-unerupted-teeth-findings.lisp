@@ -92,7 +92,7 @@
 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
 	 (setf temp-axioms (get-ohd-instance-axioms tooth-uri tooth-type-uri))
 	 (setf axioms (append temp-axioms axioms))
-
+	 
 	 ;; add annotation about tooth
 	 (push `(annotation-assertion !rdfs:label 
 				      ,tooth-uri
