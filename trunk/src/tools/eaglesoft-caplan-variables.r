@@ -52,7 +52,11 @@ PREFIX obo: <http://purl.obolibrary.org/obo/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT ?patientid ?sex ?birthdate ?tthnum ?procdate ?procclass ?proccode ?matm ?mato ?matd ?matf ?matl ?dxm ?dxo ?dxd ?dxf ?dxl ?provider
 WHERE { 
-?patienttype rdfs:subClassOf obo:OHD_0000012 . 
+#?patienttype rdfs:subClassOf obo:OHD_0000012 .
+{
+  ?patienttype rdfs:subClassOf obo:OHD_0000049 . } UNION
+{
+  ?patienttype rdfs:subClassOf obo:OHD_0000054 . }  .
 ?patienti obo:OHD_0000092 ?patienttype . 
 ?patienti rdfs:label ?patientid . 
 ?patienttype rdfs:label ?sex . 

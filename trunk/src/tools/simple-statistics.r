@@ -3,10 +3,12 @@ library(rrdf)
 library(MASS)
 
 # variables for connecting to triple store
-owlim_se_r21 <- "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2012.12.05/query"
+#owlim_se_r21 <- "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2012.12.05/query"
+owlim_se_r21 <- "http://localhost:8080/openrdf-workbench/repositories/ohd-r21-nightly/query"
 owlim_se_r21_remote <- "http://dungeon.ctde.net:8080/openrdf-sesame/repositories/ohd-r21-nightly"
 
-current <- owlim_se_r21_remote
+#current <- owlim_se_r21_remote
+current <- owlim_se_r21
 
 queryc <- function(string) { query(querystring(string),current) }
 
