@@ -31,7 +31,7 @@ convert.caplan.file.to.sas <- function(file.name,
 
 ## function for writing SAS file from the dataframe
 write.caplan.sas <- function(caplan.df,
-                             sas.data.file="~/Desktop/caplan.sas.data.txt",
+                             sas.data.file="~/Desktop/caplan.sas.data.csv",
                              sas.code.file="~/Desktop/caplan.code.sas") {
   ## coerce date columns
   ## NOTE: this has the unwanted side effect of replacing "." values with an NA
@@ -40,7 +40,11 @@ write.caplan.sas <- function(caplan.df,
   column.names <- colnames(caplan.df)
   for (name in column.names) {
     if(length(grep("DATE", name, ignore.case=TRUE)) > 0) {
+      ##tempdate <- as.Date(caplan.df[[name]])
+      ##tempdate <- format.Date(tempdate, "%m-%d-%Y")
       caplan.df[[name]] <- as.Date(caplan.df[[name]], format="%m-%d-%Y")
+      ##print(caplan.df[[name]])
+      ##print(tempdate)
     }
   }
   
@@ -329,12 +333,17 @@ get.caplan.data <- function(limit="", patientid="", print.query=FALSE, filter=""
 get.caplan.sparql <-  function(query.string, endpoint="local") {
   ## check to see what endpoint to use
   if (endpoint == "local") {
+
     url <-
-      "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2013.01.21/query"
-      ##"http://localhost:8080/openrdf-workbench/repositories/owlim-se-2013.01.21"
+      "http://localhost:8080/openrdf-workbench/repositories/ohd-r21-nightly/query"
+    ##"http://localhost:8080/openrdf-workbench/repositories/owlim-se-2013.01.21/query"
+    ##"http://localhost:8080/openrdf-workbench/repositories/owlim-se-2013.01.21"
   } else if (endpoint == "remote") {
     url <-
       "http://365-imac.sdm.buffalo.edu:8080/openrdf-workbench/repositories/ohd-r21-nightly/query"
+  } else if (endpoint == "claudio-only") {
+    url <-
+      "http://localhost:8080/openrdf-workbench/repositories/owlim-se-claudio-only/query"
   } else {
     url <- endpoint
   }
