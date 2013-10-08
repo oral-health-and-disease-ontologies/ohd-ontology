@@ -346,3 +346,40 @@
 			      (print-db major-label major-rationale minor-label minor-rationale codes))))
 
 
+(defun trace-all-study-codes () ;;(&aux all)
+    (let ((all nil))
+  ;; (trace-foreach-study-code-group
+  ;;  (lambda (major-label major-rationale minor-label minor-rationale codes)
+  ;;   (setq all (append codes all))))
+  (trace-foreach-study-code-group (function trace-f1))
+   ;;(trace-f1 major-label major-rationale minor-label minor-rationale codes))
+  all))
+
+(defun trace-describe-study-codes ()
+  (trace-foreach-study-code-group (lambda (major-label major-rationale minor-label minor-rationale codes)
+			      (print-db major-label major-rationale minor-label minor-rationale codes))))
+
+
+(defun trace-foreach-study-code-group (f)
+  (loop for major-entry in *study-codes* do
+       (destructuring-bind (major-label &key include rationale) major-entry
+	 (loop with major-include = include and major-rationale = rationale 
+	    for minor-entry in major-include do
+	      (destructuring-bind (minor-label &key include rationale) minor-entry
+		(funcall f major-label major-rationale minor-label rationale
+			 (trace-f2 include)))))))
+;;(mapcar (lambda(el) (subseq (car el) 0 5)) include)))))))
+
+(defun trace-f1 (major-label major-rationale minor-label minor-rationale codes)
+  (setq all (append codes all))) 
+
+(defun trace-f2 (el)
+  (subseq (car el) 0 5))
+
+
+
+
+
+
+
+
