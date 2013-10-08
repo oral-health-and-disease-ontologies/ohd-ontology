@@ -72,7 +72,7 @@
 	 (setf axioms
 	       (append (get-ohd-instance-axioms patient-uri !'male dental patient'@ohd) axioms))))
 
-	 
+      
       ;; add data property 'patient id' to patient
       (push `(data-property-assertion !'patient ID'@ohd 
 				      ,patient-uri 
@@ -82,15 +82,15 @@
       (push `(data-property-assertion !'birth_date'@ohd ,patient-uri 
 				      (:literal ,birth-date !xsd:date)) axioms)
 
-    ;; add label annotation about patient
-    (push `(annotation-assertion !rdfs:label 
-				 ,patient-uri 
-				 ,(str+ "patient " patient-id)) axioms)
+      ;; add label annotation about patient
+      (push `(annotation-assertion !rdfs:label 
+				   ,patient-uri 
+				   ,(str+ "patient " patient-id)) axioms)
 
-    ;; add axioms about dental patient role
-    ;; note: append puts lists together and doesn't put items in list (like push)
-    (setf axioms 
-	  (append (get-eaglesoft-dental-patient-role-axioms patient-uri patient-id) axioms)))
+      ;; add axioms about dental patient role
+      ;; note: append puts lists together and doesn't put items in list (like push)
+      (setf axioms 
+	    (append (get-eaglesoft-dental-patient-role-axioms patient-uri patient-id) axioms)))
 
     ;;(pprint axioms)
     ;; return axioms

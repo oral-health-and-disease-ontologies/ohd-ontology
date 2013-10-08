@@ -19,6 +19,9 @@ select * from patient_conditions where length(date_entered) = 0 -- no rows found
 
 |#
 
+(defparameter 
+    owlim-se-sanity-check "http://localhost:8080/openrdf-workbench/repositories/ohd-r21-nightly/query")
+
 (defun check-patient-visits-for-date (&key patient-id visit-date)
   "Check that the number of visits in the ontology matches the database"
 (let ((query-string nil)
@@ -42,8 +45,20 @@ select (count (*) as ?X) where {
 )
 
 (defun sparql-prefixes ()
-  
-)
+  (let ((results nil))
+    (setf results (sparql 
+		   '(:select (?label)
+		     ()
+		     (?uri !rdf:type !owl:Class)
+		     (?uri !rdfs:label ?label))
+		   :use-reasoner owlim-string
+		   :trace "class names"
+		   :values nil))
+
+    (loop for label in results do
+	 
+
+))
 
 (defun print-ohd-sparql-prefixes ()
   ;; do a sparql query to pull out ohd iris with lables

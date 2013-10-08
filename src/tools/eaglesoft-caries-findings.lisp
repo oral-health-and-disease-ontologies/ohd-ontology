@@ -98,7 +98,7 @@
 	 (setf temp-axioms (get-ohd-instance-axioms tooth-uri tooth-type-uri))
 	 (setf axioms (append temp-axioms axioms))
 
-	 ;; get iri associated with the type 'caries finding'
+         ;; get iri associated with the type 'caries finding'
 	 (setf finding-type-uri !'caries finding'@ohd)
 	 
 	 ;; add annotation about tooth
