@@ -214,65 +214,94 @@
     eval-name))
 
 
-
-(defun get-eaglesoft-oral-evaluations-query (&key patient-id limit-rows)
+(defun get-eaglesoft-oral-evaluations-query
+ (&key patient-id limit-rows)
   "Returns query string for retrieving data. The patient-id key restricts records only that patient or patients.  Multiple are patients are specified using commas; e.g: \"123, 456, 789\". The tooth key is used to limit results to a specific tooth, and can be used in combination with the patient-id. However, the tooth key only takes a single value. The limit-rows key restricts the number of records to the number specified."
 
 #| 
 This queries the eaglesoft database for all ADA codes that indicate an oral 
 evaluation has been performed for ADA codes D0120, D0140, D0150, D0180.
-
 |#
 
   (let ((sql nil))
     ;; build query string
-    (setf sql "SET rowcount 0 ")
-    
+    ;; first add sql to create temp tables
+    (setf sql 
+	  "
+SET rowcount 0
+
+/* create temp table with just oral evals */
+SELECT patient_id, tran_date, description, ada_code, ada_code_description, tooth_data, surface_detail, r21_provider_id, r21_provider_type,
+  practice_id, action_code, row_id, get_surface_summary_from_detail(surface_detail, tooth) AS surface, surface AS billed_surface
+INTO #oral_evals
+FROM patient_history
+WHERE RIGHT(ada_code, 4) IN (
+                             /* Periodic Oral Evaluation */
+                             '0120',
+                             /* Limited Oral Evaluation */
+                             '0140',
+                             /* Comprehensive Oral Evaluation */
+                             '0150',
+                             /* Comprehensive Periodontal Evaluation */
+                             '0180')
+AND LEFT(ada_code, 1) IN ('D', '0')
+AND table_name = 'transactions'
+ORDER BY patient_id, tran_date
+
+/* create temp table of patients with condtions whose date entered match oral_eval transaction date */
+/* note: I used the patient_history table to avoid having to do a join with patient_conditions_extra */
+SELECT patient_id, date_entered, description, action_code, tooth_data, surface_detail, tooth
+INTO #condition_findings
+FROM patient_history
+WHERE date_entered IN
+                       (SELECT DISTINCT tran_date
+                    FROM #oral_evals)
+AND patient_id IN
+                   (SELECT DISTINCT patient_id
+                FROM #oral_evals)
+AND table_name = 'patient_conditions'
+  /*
+  filter by the descriptions we are  using to create findings
+  findings descriptions below are for:
+  action codes 2,3,4 - caries
+  action code 1 - missing teeth
+  action code 18 - unerrupted teeth
+  */
+AND description IN (
+                    /* caries findings */
+                    'Decay', 'Decalcification', 'Dicalsification', 'Deep dentinal/cemental caries',
+                    /* missing teeth findings */
+                    'Missing/Extracted tooth', 'Missing Tooth', 'Missing tooth, more than a year',
+                    /* unerrupted teeth */
+                    'Unerupted Tooth', 'Impacted Mesial', 'Impacted Distal', 'Impacted')
+  
+  /* ensure that finding has tooth / surface data associated with it */
+AND LENGTH(tooth_data) > 31
+AND tooth_data LIKE '%Y%' 
+")
+
+    ;; now build rest of query string by joining temp tables
     ;; SELECT clause
     (cond 
       (limit-rows
        (setf limit-rows (format nil "~a" limit-rows)) ;ensure that limit rows is a string
        (setf sql (str+ sql " SELECT  TOP " limit-rows "  "))) 
       (t (setf sql (str+ sql " SELECT "))))
-    
     (setf sql  
-	  (str+ sql 
-		"table_name, 
-                 date_entered, 
-                 date_completed, 
-                 tran_date, 
-                 patient_id, 
-                 ada_code, 
-                 r21_provider_id,
-                 r21_provider_type,
-                 practice_id,
-                 row_id,
-                 surface as billed_surface "))
+	  (str+ sql " o.patient_id, o.tran_date, o.description, c.description AS condition_description, o.ada_code, o.ada_code_description, c.action_code, c.tooth "))
 
     ;; FROM clause
-    (setf sql (str+ sql " FROM patient_history "))
-
+    (setf sql (str+ sql " FROM #oral_evals o LEFT JOIN #condition_findings c ON o.patient_id = c.patient_id AND o.tran_date = c.date_entered "))
+    
     ;; WHERE clause
-    (setf sql
-	  (str+ sql 
-		"WHERE
-                  RIGHT(ada_code, 4) IN ('0120', /* Periodic Oral Evaluation */
-                                         '0140', /* Limited Oral Evaluation */
-                                         '0150', /* Comprehensive Oral Evaluation */
-                                         '0160', /* Detailed and Extensive Oral Evaluation */
-                                         '0180') /* Comprehensive Periodontal Evaluation */
-                   AND LEFT(ada_code, 1) IN ('D','0')"))
-
-
     ;; check for patient id
     (when patient-id
       (setf sql
-	    (str+ sql " AND patient_id IN (" (get-single-quoted-list patient-id) ") ")))
-
+	    (str+ sql " WHERE o.patient_id IN (" (get-single-quoted-list patient-id) ") ")))
 
     ;; ORDER BY clause
     (setf sql
-	  (str+ sql " ORDER BY patient_id "))
+	  (str+ sql " ORDER BY o.patient_id, o.tran_date "))
 
     ;; return query string
     ;;(pprint sql)
