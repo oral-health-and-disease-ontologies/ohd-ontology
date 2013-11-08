@@ -427,7 +427,7 @@ Usage:
   "Determine the iri of the type of finding based on one of eaglesoft's action codes."
   (let ((finding-type-uri nil))       
     ;; make sure action-code is a string
-    (setf action-code (sting-trim " " (format nil "~a" action-code)))
+    (setf action-code (string-trim " " (format nil "~a" action-code)))
     
     (cond
       ((equalp action-code "1") ;; missing tooth finding
@@ -447,7 +447,7 @@ Usage:
   "Return the IRI base for finding based on the action code."
   (let ((iri-base nil))
     ;; make sure action-code is a string
-    (setf action-code (sting-trim " " (format nil "~a" action-code)))
+    (setf action-code (string-trim " " (format nil "~a" action-code)))
 
     (cond
       ((equalp action-code "1") ;; missing tooth finding
@@ -466,7 +466,7 @@ Usage:
   "Determine the rdfs:label for a finding based on one of eaglesoft's action codes."
   (let ((label nil))       
     ;; make sure action-code is a string
-    (setf action-code (sting-trim " " (format nil "~a" action-code)))
+    (setf action-code (string-trim " " (format nil "~a" action-code)))
     
     (cond
       ((equalp action-code "1") ;; missing tooth finding
@@ -486,7 +486,7 @@ Usage:
   (let ((finding-uri nil))
 
     ;; make sure action-code is a string
-    (setf action-code (sting-trim " " (format nil "~a" action-code)))
+    (setf action-code (string-trim " " (format nil "~a" action-code)))
     
     ;; get uri for instance of fininding
     (setf finding-uri 
