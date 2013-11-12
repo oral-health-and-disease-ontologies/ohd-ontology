@@ -1225,14 +1225,14 @@ for now.</obo:IAO_0000116>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000007"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000434"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000434"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000007"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1318,14 +1318,14 @@ for now.</obo:IAO_0000116>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000008"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000008"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000117>PERSON: William Duncan</obo:IAO_0000117>
@@ -1343,6 +1343,12 @@ for now.</obo:IAO_0000116>
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tooth to be restored role</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000444"/>
         <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000004"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
@@ -1355,12 +1361,6 @@ for now.</obo:IAO_0000116>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000004"/>
-            </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
@@ -1543,8 +1543,8 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000057"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000010"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000052"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1555,8 +1555,8 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000052"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000010"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">A physical examination of the oral cavity, maxillofacial area, and/or the adjacent and associated structures, or their parts, or pathological anatomical entities derived from them.</obo:IAO_0000115>
@@ -1705,6 +1705,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000114"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -1721,12 +1727,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000114"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2132,14 +2132,14 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000007"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000033"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000033"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
@@ -2259,6 +2259,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000102"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2277,12 +2283,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000102"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2292,12 +2292,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000061">
         <rdfs:label>missing tooth 3 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000103"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2316,6 +2310,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000103"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2364,6 +2364,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000105"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2382,12 +2388,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000105"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2397,6 +2397,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000064">
         <rdfs:label>missing tooth 6 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000106"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2417,12 +2423,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000106"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2432,6 +2432,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000066">
         <rdfs:label>missing tooth 7 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000107"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2452,12 +2458,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000107"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2467,6 +2467,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000067">
         <rdfs:label>missing tooth 8 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000108"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2485,12 +2491,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000108"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2539,6 +2539,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000110"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2555,12 +2561,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000110"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2679,6 +2679,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000115"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2697,12 +2703,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000115"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2712,6 +2712,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000074">
         <rdfs:label>missing tooth 16 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000116"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2732,12 +2738,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000116"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2747,12 +2747,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000075">
         <rdfs:label>missing tooth 17 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000117"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2773,6 +2767,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000117"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2782,12 +2782,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000076">
         <rdfs:label>missing tooth 18 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000118"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2808,6 +2802,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000118"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2817,12 +2817,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000077">
         <rdfs:label>missing tooth 19 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000119"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2843,6 +2837,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000119"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2852,12 +2852,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000078">
         <rdfs:label>missing tooth 20 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000120"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2876,6 +2870,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000120"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2924,6 +2924,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000122"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2942,12 +2948,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000122"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2957,6 +2957,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000081">
         <rdfs:label>missing tooth 23 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000123"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2977,12 +2983,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000123"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2992,12 +2992,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000082">
         <rdfs:label>missing tooth 24 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000124"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -3018,6 +3012,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000124"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3027,6 +3027,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000083">
         <rdfs:label>missing tooth 25 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000125"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -3047,12 +3053,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000125"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3062,6 +3062,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000084">
         <rdfs:label>missing tooth 26 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000126"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -3082,12 +3088,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000126"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3097,12 +3097,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000085">
         <rdfs:label>missing tooth 27 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000127"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -3121,6 +3115,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000127"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3169,6 +3169,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000129"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -3187,12 +3193,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000129"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3202,12 +3202,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000088">
         <rdfs:label>missing tooth 30 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000130"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -3226,6 +3220,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000130"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3274,6 +3274,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000132"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -3290,12 +3296,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000132"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4417,14 +4417,14 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000319"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
+                <owl:allValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000004"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
-                <owl:allValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000004"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">A role borne by a material entity that is realized in a dental restoration where it contributes to the structural strength of the tooth or jaw.</obo:IAO_0000115>
@@ -4514,6 +4514,38 @@ ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_000
     
 
 
+    <!-- http://purl.obolibrary.org/obo/OHD_0000197 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000197">
+        <rdfs:label>oral evaluation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000057"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000019"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000117>Person: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000116>This class was created in order to associate oral evaluations with dental findings that came about as the result of a dental exam. The data source I am working with has records that show multiple oral evalutions were performed on the same day. For example, the data source may have records that show a periodic oral evaluation, comprehensive oral evaluation, and comprehensive periodontal evaluation are performed on the same day. However, the finding(s) for these evaluations is/are stored in a separate table with only the patient id and date to associate the finding with the exam. There is no information to link the finding to a particular evaluation. 
+
+As a work around (i.e., hack!), I&apos;ve made oral evaluations be part of the dental examination. There is a case to be made that oral evaluations should be a subclass of dental exam, but, such a representation, would make representing the finding information (associated with a particular oral evaluation) difficult.</obo:IAO_0000116>
+        <obo:IAO_0000115>A physical examination in which the health of the patient&apos;s oral cavity and related areas are evaluated. An oral evaluation is performed as part of an dental exam.</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000198 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000198">
+        <rdfs:label>periodic oral evaluation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000197"/>
+        <obo:IAO_0000119>ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
+        <obo:IAO_0000117>Person: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>An oral evaluation performed on a patient of record to determine any changes in the patient’s dental and medical health status since a previous comprehensive or periodic evaluation. This includes an oral cancer evaluation and periodontal screening where indicated, and may require interpretation of information acquired through additional diagnostic procedures.</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/OHD_0000199 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000199">
@@ -4542,6 +4574,46 @@ ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_000
         <obo:IAO_0000116>The intent of the class is to represent those case in which a dental exam is performed on patient, but the examiner has no problems to report.  This could mean that the patients mouth is healthy; or (perhaps) that the patient has some oral health issue, but there are no new issues to report.
 
 The label of the class probably need to be changed.</obo:IAO_0000116>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000201 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000201">
+        <rdfs:label>limited oral evaluation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000197"/>
+        <obo:IAO_0000115>An oral evaluation limited to a specific oral health problem or complaint. This may require interpretation of information acquired through additional diagnostic procedures. 
+
+Typically, patients receiving this type of evaluation present with a specific problem and/or dental emergencies, trauma, acute infections, etc.</obo:IAO_0000115>
+        <obo:IAO_0000119>ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
+        <obo:IAO_0000117>Person: Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000202 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000202">
+        <rdfs:label>comprehensive oral evaluation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000197"/>
+        <obo:IAO_0000119>ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
+        <obo:IAO_0000115>An oral evaluation that is performed on new patients; established patients who have had a significant change in health conditions or other unusual circumstances; or established patients who have been absent from active treatment for three or more years. It is a thorough evaluation and recording of the extraoral and intraoral hard and soft tissues. It may require interpretation of information acquired through additional diagnostic procedures. 
+
+This includes an evaluation for oral cancer where indicated, the evaluation and recording of the patients dental and medical history and a general health assessment.  It may include the evaluation and recording of dental caries, missing or unerupted teeth, restorations, existing prostheses, occlusal relationships, periodontal conditions (including periodontal screening and/or charting), hard and soft tissue anomalies, etc. </obo:IAO_0000115>
+        <obo:IAO_0000117>Person: Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000203 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000203">
+        <rdfs:label>comprehensive periodontal evaluation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000197"/>
+        <obo:IAO_0000115>An oral evaluation performed on patients showing signs or symptoms of periodontal disease and for patients with risk factors such as smoking or diabetes.  It includes evaluation of periodontal conditions, probing and charting, evaluation and recording of the patients dental and medical history and general health assessment.  It may include the evaluation and recording of dental caries, missing or unerupted teeth, restorations, occlusal relationships and oral cancer evaluation. </obo:IAO_0000115>
+        <obo:IAO_0000119>ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
+        <obo:IAO_0000117>Person: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
