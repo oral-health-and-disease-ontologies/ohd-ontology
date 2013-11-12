@@ -25,9 +25,9 @@
     ;; get query string for restorations
     (setf query (get-eaglesoft-fillings-query 
 		 :patient-id patient-id :tooth tooth :limit-rows limit-rows))
-
+    
     (with-ontology ont (:collecting t
-			:base *eaglesoft-individual-fillings-iri-base*
+		        :base *eaglesoft-individual-fillings-iri-base*
 			:ontology-iri  *eaglesoft-fillings-ontology-iri*)
 	(;; import needed ontologies
 	 (as (get-ohd-import-axioms))
