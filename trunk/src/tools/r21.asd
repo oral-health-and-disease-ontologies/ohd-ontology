@@ -31,8 +31,8 @@
   ((:module early
 	    :pathname ""
 	    :components ((:file "label-source")
-			 (:file "r21-utilities") 
-			 (:file "findings-utilities") ))
+			 (:file "r21-utilities") ))
+
    (:module tools :pathname ""
 	    :components
 	    ((:file "queries")
