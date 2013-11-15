@@ -40,6 +40,24 @@
 ;; 			    (mapcar 'cdr (sort alist '< :key 'car))) 'vector)))
 
 
+(defmacro push-items (lst &rest items)
+"macro used for pushing muliple items onto a list. 
+For example, instead of doing multiple push operations like so:
+  (push `(declaration (class !A)) axioms)
+  (push `(declaration (class !B)) axioms)
+  (push `(declaration (class !C)) axioms)
+
+push-items can be called like so:
+  (push-items axioms
+              (declaration (class !A))
+              (declaration (class !B))
+              (declaration (class !C))
+
+Note: The items being pushed on the list are not quoted."
+
+;; created by Jon Bona 11/15/2013
+`(map 'list (lambda (x) (push x ,lst)) (quote ,items)))
+
 (defun number-to-fma-tooth (number &key return-tooth-uri return-tooth-name return-tooth-with-number)
   "Translates a tooth number into corresponding fma class.  By default, a cons is returned consisting of the (fma-class . name).  The :return-tooth-uri key specifies that only the uri is returned.  The :return-tooth-name key specifies that only the name is returned."
   (let ((teeth nil)
