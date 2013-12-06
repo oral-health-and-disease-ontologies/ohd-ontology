@@ -53,9 +53,6 @@
 		     (#"getString" results "tooth_data")
 		     (#"getString" results "surface")
 		     (#"getString" results "r21_provider_id")
-		     (#"getString" results "r21_provider_type")
-		     (#"getString" results "practice_id")
-		     (#"getString" results "action_code")
 		     (#"getString" results "row_id")))
 		(incf count))))
 
@@ -64,12 +61,12 @@
 
 
 (defun get-eaglesoft-caries-finding-axioms 
-    (patient-id occurrence-date tooth-data surface provider-id provider-type practice-id action-code record-count)
+    (patient-id occurrence-date tooth-data surface provider-id record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(patient-uri nil)
 	(finding-uri nil)
-	(finding-type-uri nil)
+	(exam-uri nil)
 	(lesion-uri nil)
 	(surface-uri nil)
 	(surface-type-uri nil)
@@ -80,6 +77,7 @@
 	(teeth-list nil))
 
 
+
     ;; get uri of patient
     (setf patient-uri (get-eaglesoft-dental-patient-iri patient-id))
 
@@ -87,6 +85,10 @@
     ;; get list of teeth in tooth_data array
     (setf teeth-list (get-eaglesoft-teeth-list tooth-data))
 
+    ;; generate instances of the dental exam and visit in which the caries was discovered
+    ;; annotations about the dental exam are in the import of the dental exam ontology
+    (setf exam-uri (get-eaglesoft-dental-exam-iri patient-id occurrence-date provider-id))
+    
     (loop for tooth in teeth-list do
          ;;;;  declare instances of participating entities ;;;;
 	 
@@ -99,33 +101,12 @@
 	 (setf temp-axioms (get-ohd-instance-axioms tooth-uri tooth-type-uri))
 	 (setf axioms (append temp-axioms axioms))
 
-         ;; get iri associated with the type 'caries finding'
-	 ;;(setf finding-type-uri !'caries finding'@ohd)
-	 (setf finding-type-uri (get-eaglesoft-finding-type-iri action-code))
-
-	 
 	 ;; add annotation about tooth
 	 (push `(annotation-assertion !rdfs:label ,tooth-uri
 				      ,(str+ tooth-name
 					     " of patient " patient-id)) axioms)
 
-         ;; declare instance of !ohd:'caries finding'
-	 ;;(setf finding-uri
-	   ;;    (get-eaglesoft-caries-finding-iri patient-id tooth-name record-count))
-
-	 (setf finding-uri
-	       (get-eaglesoft-individual-finding-iri 
-		patient-id action-code tooth-name record-count))
-	 (setf temp-axioms (get-ohd-instance-axioms finding-uri finding-type-uri))
-	 (setf axioms (append temp-axioms axioms))
-
-         ;; add annotation about caries finding
-	 (push `(annotation-assertion !rdfs:label 
-				      ,finding-uri
-				      ,(get-eaglesoft-finding-rdfs-label 
-					patient-id action-code tooth-name)) axioms)
-	 
-         ;; the tooth 'is part of' the patient
+	 ;; the tooth 'is part of' the patient
 	 (push `(object-property-assertion !'is part of'@ohd ,tooth-uri ,patient-uri) axioms)
          
 	 ;; declare instance of the carious lesion
@@ -138,19 +119,31 @@
 				      ,(str+ "carious lesion on " 
 					     tooth-name " of patient " patient-id)) axioms)
 
-
-         ;; instance of caries finding 'is about' the 'carious lesion
+	 ;; the carious lesion is part of the tooth
+	 ;; this should not be necessary since the lesion is asserted to be part of surface (below)
+	 ;;(push `(object-property-assertion !'is part of'@ohd ,lesion-uri ,tooth-uri) axioms)
+	 
+         ;; declare instance of !ohd:'caries finding'
+	 (setf finding-uri
+	       (get-eaglesoft-caries-finding-iri patient-id tooth-name record-count))
+	 (setf temp-axioms (get-ohd-instance-axioms finding-uri !'caries finding'@ohd))
+	 (setf axioms (append temp-axioms axioms))
+	 
+         ;; add annotation about caries finding
+	 (push `(annotation-assertion !rdfs:label 
+				      ,finding-uri
+				      ,(str+ "caries finding on " tooth " of patient " patient-id )) axioms)
+	 
+	 ;; instance of caries finding 'is about' the 'carious lesion
 	 (push `(object-property-assertion !'is about'@ohd ,finding-uri ,lesion-uri) axioms)
 
-         ;; the carious lesion is part of the tooth
-	 (push `(object-property-assertion !'is part of'@ohd ,lesion-uri ,tooth-uri) axioms)
-
+	 ;; instance of caries finding is the specified output of the dental exam
+	 (push `(object-property-assertion !'has_specified_output'@ohd ,exam-uri ,finding-uri) axioms)
+                  
          ;; add data property !ohd:'occurrence date' of the caries finding
 	 (push `(data-property-assertion !'occurrence date'@ohd
 					 ,finding-uri
 					 (:literal ,occurrence-date !xsd:date)) axioms)
-
-
 
          ;; add information about surfaces
          ;; the surface field often contains multiple surfaces; e.g., mobl
@@ -170,7 +163,7 @@
 	      
 	      ;; relate surface to tooth
 	      (push `(object-property-assertion !'is part of'@ohd ,surface-uri ,tooth-uri) axioms)
-	      
+
 	      ;; the carious lesion is part of the surface
 	      (push `(object-property-assertion !'is part of'@ohd ,lesion-uri ,surface-uri) axioms)
 	      
@@ -180,19 +173,9 @@
 					   ,(str+ surface-name " surface of " tooth-name
 						  " in patient " patient-id)) axioms)
 	      
-	      ) ;; end surface loop
+	      ) ;; end surface loop	 
+	 ) ;; end tooth loop
 
-
-         ;; insert axioms about the dental exam in which the provider (if known)
-         ;; found the caries
-	 (when provider-id
-	   (setf temp-axioms (get-eaglesoft-dental-exam-axioms 
-			      finding-uri provider-id provider-type practice-id record-count))
-
-	   ;; ensure that axioms were returned
-	   (when temp-axioms (setf axioms (append temp-axioms axioms))))
-	 
-	 ) ;; end loop
         ;;(pprint axioms)
 
     ;; return axioms
@@ -221,7 +204,6 @@
 				     :args `(,tooth-name ,instance-count "eaglesoft")))
     ;; return uri
     uri))
-
 
 (defun get-eaglesoft-caries-findings-query (&key patient-id tooth limit-rows)
   "Returns query string for retrieving data. The patient-id key restricts records only that patient or patients.  Multiple are patients are specified using commas; e.g: \"123, 456, 789\".  The tooth key is used to limit results to a specific tooth, and can be used in combination with the patient-id. However, the tooth key only takes a single value. The limit-rows key restricts the number of records to the number specified."
@@ -259,11 +241,7 @@ Only records that contain surface data are returned
                  tran_date, 
                  patient_id, 
                  tooth_data, 
-                 ada_code, 
                  r21_provider_id,
-                 r21_provider_type,
-                 practice_id,
-                 action_code,
                  row_id,
                  get_surface_summary_from_detail(surface_detail, tooth) as surface "))
 
