@@ -9,10 +9,10 @@
 ;; When get-eaglesoft-oral-evaluations-ont is ran, the program verifies that the action_codes and
 ;; patient_history tables exist.  This is done by calling prepare-eaglesoft-db.  However, this
 ;; only tests that these tables exist in the user's database. If these table need to be 
-;; recreated, the call get-eaglesoft-dental-exams-ont with :force-create-table key set to t.
+;; recreated, the call get-eaglesoft-oral-evaluations-ont with :force-create-table key set to t.
 
 (defun get-eaglesoft-oral-evaluations-ont (&key patient-id limit-rows force-create-table)
-  "Returns an ontology of the dental exams contained in the Eaglesoft database. The patient-id key creates an ontology based on that specific patient. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
+  "Returns an ontology of the oral evaluations contained in the Eaglesoft database. The patient-id key creates an ontology based on that specific patient. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
 
   (let ((results nil)
 	(query nil)
@@ -37,29 +37,31 @@
 	 
 	 ;; get records from eaglesoft db and create axioms
 	 (with-eaglesoft (results query)
-		(loop while (#"next" results) do
-		     ;; determine this occurrence date
-		     (setf occurrence-date
-			   (get-eaglesoft-occurrence-date 
-			    (#"getString" results "table_name")
-			    (#"getString" results "date_entered")
-			    (#"getString" results "date_completed")
-			    (#"getString" results "tran_date")))
-		     
-		     ;; get axioms
-		     (as (get-eaglesoft-oral-evaluation-axioms 
-		     	  (#"getString" results "patient_id")
-		     	  occurrence-date
-			  (#"getString" results "ada_code")
-			  (#"getString" results "r21_provider_id")
-			  (#"getString" results "r21_provider_type")
-			  (#"getString" results "row_id")))
-		     (incf count))))
+	   (loop while (#"next" results) do
+		;; determine this occurrence date
+		(setf occurrence-date
+		      (get-eaglesoft-occurrence-date 
+		       (#"getString" results "table_name")
+		       (#"getString" results "date_entered")
+		       (#"getString" results "date_completed")
+		       (#"getString" results "tran_date")))
+
+	        ;; get axioms
+		(as (get-eaglesoft-oral-evaluation-axioms 
+		     (#"getString" results "patient_id")
+		     occurrence-date
+		     (#"getString" results "ada_code")
+		     (#"getString" results "action_code")
+		     (#"getString" results "tooth_data")
+		     (#"getString" results "r21_provider_id")
+		     (#"getString" results "r21_provider_type")
+		     (#"getString" results "row_id")))
+		(incf count))))
 
       ;; return the ontology
       (values ont count))))
 
-(defun get-eaglesoft-oral-evaluation-axioms (patient-id occurrence-date ada-code provider-id provider-type record-id)
+(defun get-eaglesoft-oral-evaluation-axioms (patient-id occurrence-date ada-code action-code tooth-data provider-id provider-type record-id)
   (let ((axioms nil)
 	(patient-uri nil)
 	(patient-role-uri nil)
@@ -71,7 +73,9 @@
 	(oral-eval-uri nil)
 	(mouth-uri nil)
 	(finding-uri nil)
-	(visit-uri nil))
+	(dental-exam-uri nil)
+	(tooth-name nil)
+	(tooth-list nil))
     
     ;; get uri of patient and patient's role
     (setf patient-uri (get-eaglesoft-dental-patient-iri patient-id))
@@ -110,10 +114,17 @@
     (setf temp-axioms (get-ohd-instance-axioms mouth-uri eval-type))
     (setf axioms (append temp-axioms axioms))
 
-    ;; declare instance of 'dental finding'
-    (setf finding-uri (get-eaglesoft-dental-finding-iri patient-id occurrence-date record-id))
-    (setf temp-axioms (get-ohd-instance-axioms finding-uri !'dental finding'@ohd))
-    (setf axioms (append temp-axioms axioms))
+    ;; determine the type of finding that 
+    (setf action-code (format nil "~a" action-code)) ; ensure action code is a string
+    (when (member action-code '("1" "2" "3" "4" "18"))
+      ;; get list of teeth from tooth-data array
+      (setf teeth-list (get-eaglesoft-teeth-list tooth-data))
+    
+      ;; for each tooth make a finding that is the ouput of exam
+      (loop for tooth in teeth-list do
+	   (setf tooth-name (number-to-fma-tooth tooth :return-tooth-name t))
+	   (setf finding-uri (get-eaglesoft-oral-eval-dental-finding-iri patient-id tooth-name record-id))))
+
 
     ;; add annotion about cdt code
     (push `(annotation-assertion !rdfs:label
@@ -125,7 +136,8 @@
     ;; oral evaluation realizes patient role
     (push `(object-property-assertion !'realizes'@ohd ,oral-eval-uri ,patient-role-uri) axioms)
         
-    ;; oral evaluation processual part of visit
+    ;; oral evaluation processual part of a dental exam that is part of a visit
+    
     (setf visit-uri (get-eaglesoft-dental-visit-iri patient-id occurrence-date))
     (push `(object-property-assertion !'is part of'@ohd ,oral-eval-uri ,visit-uri) axioms)
     
@@ -144,14 +156,30 @@
     axioms))
 
 
-(defun get-eaglesoft-dental-finding-iri (patient-id occurrence-date instance-count)
+(defun get-eaglesoft-oral-eval-dental-finding-iri (patient-id action-code tooth-name record-count)
   "Returns an iri for a 'dental finding' that is generated by the patient id, the occurrence date of the finding, and a count variable that differentiates multipe caries findings that are about the same tooth."
+  (let ((uri nil))
+	
+    
+
+
+	 (setf uri 
+	       (get-unique-individual-iri patient-id 
+				     :salt *eaglesoft-salt*
+				     :iri-base *eaglesoft-individual-teeth-iri-base*
+				     :class-type !'dental finding'@ohd
+				     :args `(,occurrence-date ,instance-count "eaglesoft"))))
+    ;; return uri
+    uri))
+
+(defun get-eaglesoft-dental-exam-iri (patient-id occurrence-date)
+  "Returns an iri for a 'dental exam' that is generated by the patient id, the occurrence date of the dental exam. I am assuming that a patient only has only one dental exam on a given date."
   (let ((uri nil))
     (setf uri 
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
 				     :iri-base *eaglesoft-individual-teeth-iri-base*
-				     :class-type !'dental finding'@ohd
+				     :class-type !'dental exam'@ohd
 				     :args `(,occurrence-date ,instance-count "eaglesoft")))
     ;; return uri
     uri))
@@ -207,7 +235,7 @@
        (setf eval-name "comprehensive periodontal evaluation "))
       (t (setf eval-name "other oral evaluation ")))
 
-    ;; append patient id to name of exam
+    ;; append patient id to name of oral eval
     (setf eval-name (str+ eval-name "for patient " patient-id))
 
     ;; return name of evaluation
@@ -232,7 +260,7 @@ SET rowcount 0
 
 /* create temp table with just oral evals */
 SELECT patient_id, tran_date, description, ada_code, ada_code_description, tooth_data, surface_detail, r21_provider_id, r21_provider_type,
-  practice_id, action_code, row_id, get_surface_summary_from_detail(surface_detail, tooth) AS surface, surface AS billed_surface
+  practice_id, row_id
 INTO #oral_evals
 FROM patient_history
 WHERE RIGHT(ada_code, 4) IN (
@@ -245,12 +273,11 @@ WHERE RIGHT(ada_code, 4) IN (
                              /* Comprehensive Periodontal Evaluation */
                              '0180')
 AND LEFT(ada_code, 1) IN ('D', '0')
-AND table_name = 'transactions'
 ORDER BY patient_id, tran_date
 
-/* create temp table of patients with condtions whose date entered match oral_eval transaction date */
+/* create temp table of patients with condtions whose date entered match an oral_eval transaction date */
 /* note: I used the patient_history table to avoid having to do a join with patient_conditions_extra */
-SELECT patient_id, date_entered, description, action_code, tooth_data, surface_detail, tooth
+SELECT patient_id, date_entered, description, action_code, tooth_data, get_surface_summary_from_detail(surface_detail, tooth) AS surface
 INTO #condition_findings
 FROM patient_history
 WHERE date_entered IN
@@ -277,7 +304,8 @@ AND description IN (
   
   /* ensure that finding has tooth / surface data associated with it */
 AND LENGTH(tooth_data) > 31
-AND tooth_data LIKE '%Y%' 
+AND tooth_data LIKE '%Y%'
+
 ")
 
     ;; now build rest of query string by joining temp tables
@@ -288,7 +316,8 @@ AND tooth_data LIKE '%Y%'
        (setf sql (str+ sql " SELECT  TOP " limit-rows "  "))) 
       (t (setf sql (str+ sql " SELECT "))))
     (setf sql  
-	  (str+ sql " o.patient_id, o.tran_date, o.description, c.description AS condition_description, o.ada_code, o.ada_code_description, c.action_code, c.tooth "))
+	  (str+ sql "o.patient_id, o.tran_date, o.description, c.description AS condition_description, o.ada_code, o.ada_code_description, o.r21_provider_id,
+  o.r21_provider_type, o.practice_id, o.row_id, c.action_code, c.tooth_data, c.surface"))
 
     ;; FROM clause
     (setf sql (str+ sql " FROM #oral_evals o LEFT JOIN #condition_findings c ON o.patient_id = c.patient_id AND o.tran_date = c.date_entered "))
