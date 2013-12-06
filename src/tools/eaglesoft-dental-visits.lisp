@@ -102,7 +102,7 @@
 
 
 (defun get-eaglesoft-dental-visits-query (&key patient-id r21-provider-id limit-rows)
-  "Returns query string for retrieving provider data. The r21-provider-id key restricts records only that provider or providers as identified in the r21_provider table.  Multiple are providers are specified using commas; e.g: \"123, 456, 789\".  The limit-rows key restricts the number of records to the number specified."
+  "Returns query string for retrieving visit data. The r21-provider-id key restricts records only that provider or providers as identified in the r21_provider table.  Multiple are providers are specified using commas; e.g: \"123, 456, 789\".  The limit-rows key restricts the number of records to the number specified."
   (let ((sql nil))
 
     ;; build query string
