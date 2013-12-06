@@ -91,19 +91,19 @@
 	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-with-number t))
 	 (setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
 	 (setf tooth-uri (get-eaglesoft-tooth-iri patient-id tooth-type-uri))
-
+	 
 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
          ;; note: append puts lists together and doesn't put items in list (like push)
 	 (setf temp-axioms (get-ohd-instance-axioms tooth-uri tooth-type-uri))
 	 (setf axioms (append temp-axioms axioms))
 	 
-        ;; add annotation about tooth
+         ;; add annotation about tooth
 	 (push `(annotation-assertion !rdfs:label 
 				      ,tooth-uri
 				      ,(str+ tooth-name
 					     " of patient " patient-id)) axioms)
 	 
-       ;; declare instance of !ohd:'tooth to undergo endodontic procedure role'
+         ;; declare instance of !ohd:'tooth to undergo endodontic procedure role'
 	 (setf endodontic-role-uri
 	       (get-eaglesoft-tooth-to-undergo-endodontic-procedure-role-iri
 		patient-id tooth record-count))
@@ -142,7 +142,8 @@
 					 (:literal ,occurrence-date !xsd:date)) axioms)
 
 	 ;; get axioms that describe how the endo procedure realizes the patient and provider roles
-	 (setf temp-axioms (get-eaglesoft-patient-provider-realization-axioms endodontic-procedure-uri patient-id provider-id provider-type record-count))
+	 (setf temp-axioms (get-eaglesoft-patient-provider-realization-axioms 
+			    endodontic-procedure-uri patient-id provider-id provider-type record-count))
 	 (setf axioms (append temp-axioms axioms))
 	 
          ;; declare instance of cdt code as identified by the ada code that is about the procedure
