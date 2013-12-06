@@ -210,8 +210,9 @@
 	      
 	      ) ;; end surface loop
 	 
-         ;; get axioms that describe how the endo procedure realizes the patient and provider roles
-	 (setf temp-axioms (get-eaglesoft-patient-provider-realization-axioms restoration-uri patient-id provider-id provider-type record-count))
+         ;; get axioms that describe how the procedure realizes the patient and provider roles
+	 (setf temp-axioms (get-eaglesoft-patient-provider-realization-axioms 
+			    restoration-uri patient-id provider-id provider-type record-count))
 	 (setf axioms (append temp-axioms axioms))
 
          ;; declare instance of cdt code as identified by the ada code that is about the procedure
