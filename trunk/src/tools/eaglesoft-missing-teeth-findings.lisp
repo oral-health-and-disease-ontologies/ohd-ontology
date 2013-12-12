@@ -52,8 +52,7 @@
 		     occurrence-date
 		     (#"getString" results "tooth_data")
 		     (#"getString" results "r21_provider_id")
-		     (#"getString" results "r21_provider_type")
-		     (#"getString" results "practice_id")
+		     (#"getString" results "action_code")
 		     (#"getString" results "row_id")))
 		(incf count))))
 
@@ -61,12 +60,13 @@
       (values ont count))))
 
 (defun get-eaglesoft-missing-tooth-finding-axioms 
-    (patient-id occurrence-date tooth-data provider-id provider-type practice-id record-count)
+    (patient-id occurrence-date tooth-data provider-id action-code record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(patient-uri nil)
 	(finding-uri nil)
 	(finding-type-uri nil)
+	(exam-uri nil)
 	(tooth-name nil)
 	(tooth-num nil)
 	;;(tooth-type-uri nil)
@@ -84,6 +84,10 @@
     ;; get list of teeth in tooth_data array
     (setf teeth-list (get-eaglesoft-teeth-list tooth-data))
     
+    ;; generate instances of the dental exam in which the missing tooth/teeth was/were discovered
+    ;; annotations about the dental exam are in the import of the dental exam ontology
+    (setf exam-uri (get-eaglesoft-dental-exam-iri patient-id occurrence-date provider-id))
+
     (loop for tooth in teeth-list do
          ;;;;  declare instances of participating entities ;;;;
 	 
@@ -92,26 +96,20 @@
          ;;(setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
 	 (setf tooth-num (format nil "~a" tooth)) ; converts tooth number to string
 	 
-	 ;; get iri associated with the type of missing tooth finding
-	 ;; note: tooth-num is the string representation of the tooth number
-	 ;; this can also be done using:
-	 ;;(make-uri-from-label-source :OHD "missing tooth finding" nil)
-	 ;; (make-uri-from-label-source :OHD 
-	 ;;       (str+ "missing tooth " tooth-num " finding") nil)
-	 (setf finding-type-uri 
-	       (gethash (str+ "missing tooth " tooth-num " finding") *ohd-label-source*))
-	 
          ;; declare instance of !ohd:'missing tooth finding'
-	 (setf finding-uri
-	       (get-eaglesoft-missing-tooth-finding-iri patient-id tooth-name record-count))
+	 (setf finding-type-uri
+	       (get-eaglesoft-finding-type-iri action-code :tooth-num tooth-num))
+	 (setf finding-uri 
+	       (get-eaglesoft-finding-iri 
+		patient-id action-code :tooth-name tooth-name :tooth-num tooth-num  :instance-count record-count))
 	 (setf temp-axioms (get-ohd-instance-axioms finding-uri finding-type-uri))
 	 (setf axioms (append temp-axioms axioms))
 
          ;; add annotation about missing tooth finding
-	 (push `(annotation-assertion !rdfs:label 
-				      ,finding-uri
-				      ,(str+ "missing tooth " tooth-num " finding "
-					     "for patient " patient-id )) axioms)
+	 (push `(annotation-assertion 
+		 !rdfs:label 
+		 ,finding-uri
+		 ,(get-eaglesoft-finding-rdfs-label patient-id action-code :tooth tooth)) axioms)
          
          ;; get iri for secondary dentition
 	 (setf dentition-uri
@@ -123,54 +121,48 @@
 	 (setf axioms (append temp-axioms axioms))
 
 	 (push `(annotation-assertion 
-		 !rdfs:label ,dentition-uri
+		 !rdfs:label 
+		 ,dentition-uri
 		 ,(str+ "secondary dentition of patient " patient-id)) axioms)
 	 
          ;; instance of secondary dentition is part of patient
-	 (push `(object-property-assertion !'is part of'@ohd ,dentition-uri ,patient-uri) axioms)
-
+	 (push `(object-property-assertion 
+		 !'is part of'@ohd 
+		 ,dentition-uri 
+		 ,patient-uri) axioms)
+	 
          ;; instance of missing tooth finding 'is about' the dentition instance
-	 (push `(object-property-assertion !'is about'@ohd ,finding-uri ,dentition-uri) axioms)
+	 (push `(object-property-assertion 
+		 !'is about'@ohd 
+		 ,finding-uri
+		 ,dentition-uri) axioms)
 	 
          ;; get iri for universal tooth number of missing tooth
 	 (setf universal-tooth-num-uri
 	       (get-eaglesoft-universal-tooth-number-iri tooth-num))
 
-	 ;; relate missing tooth finding to universal tooth numberl
+	 ;; relate missing tooth finding to universal tooth number
 	 (push `(object-property-assertion 
-		 !'has part'@ohd ,finding-uri ,universal-tooth-num-uri) axioms)
+		 !'has part'@ohd 
+		 ,finding-uri 
+		 ,universal-tooth-num-uri) axioms)
 	 
          ;; add data property !ohd:'occurrence date' of the missing tooth finding
-	 (push `(data-property-assertion !'occurrence date'@ohd
-					 ,finding-uri
-					 (:literal ,occurrence-date !xsd:date)) axioms)
-	 
-         ;; insert axioms about the dental exam in which the provider (if known)
-         ;; found the missing tooth
-	 (when provider-id
-	   (setf temp-axioms (get-eaglesoft-dental-exam-axioms 
-			      finding-uri provider-id provider-type practice-id record-count))
+	 (push `(data-property-assertion 
+		 !'occurrence date'@ohd
+		 ,finding-uri
+		 (:literal ,occurrence-date !xsd:date)) axioms)
 
-	   ;; ensure that axioms were returned
-	   (when temp-axioms (setf axioms (append temp-axioms axioms))))
+         ;; instance of missing tooth finding is the specified output of the dental exam
+	 (push `(object-property-assertion !'has_specified_output'@ohd ,exam-uri ,finding-uri) axioms)
 	 
+       	 
 	 ) ;; end loop
         ;;(pprint axioms)
 
     ;; return axioms
     axioms))
 
-(defun get-eaglesoft-missing-tooth-finding-iri (patient-id tooth-name instance-count)
-  "Returns an iri for a 'missing tooth finding' that is generated by the patient id, the name of the type of the tooth, and a count variable that differentiates multipe missing teeth finds that are about the same tooth."
-  (let ((uri nil))
-    (setf uri 
-	  (get-unique-individual-iri patient-id 
-				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-teeth-iri-base*
-				     :class-type !'missing tooth finding'@ohd
-				     :args `(,tooth-name ,instance-count "eaglesoft")))
-    ;; return uri
-    uri))
 
 (defun get-eaglesoft-universal-tooth-number-iri (adatoothnum)
   "Returns the iri for a universal tooth number that is associated with an ADA universal tooth number.  For example if adatoothnum is '17', this will return the iri for universal tooth number 17."

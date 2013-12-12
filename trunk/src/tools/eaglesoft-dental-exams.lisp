@@ -32,6 +32,7 @@
 	 (as `(imports ,(make-uri *ohd-ontology-iri*)))
 	 (as `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)))
 	 (as `(imports ,(make-uri *eaglesoft-dental-providers-ontology-iri*)))
+	 (as `(imports ,(make-uri *eaglesoft-dental-visits-ontology-iri*)))
 
 	 ;; get axioms for declaring annotation, object, and data properties used for ohd
 	 (as (get-ohd-declaration-axioms))
@@ -82,6 +83,12 @@
     (setf exam-name (get-eaglesoft-dental-exam-name patient-id occurrence-date)) 
     (push `(annotation-assertion !rdfs:label ,exam-uri ,exam-name) axioms)
     
+    ;; add data property !ohd:'occurrence date' of the exam
+    (push `(data-property-assertion 
+	    !'occurrence date'@ohd
+	    ,exam-uri
+	    (:literal ,occurrence-date !xsd:date)) axioms)
+
     ;; get the visit that the dental exam is part of
     (setf visit-uri (get-eaglesoft-dental-visit-iri patient-id occurrence-date))
     (push `(object-property-assertion !'is part of'@ohd ,exam-uri ,visit-uri) axioms)
@@ -147,7 +154,7 @@
                              '0150',
                              /* Comprehensive Periodontal Evaluation */
                              '0180')
-               AND LEFT(ada_code, 1) IN ('D', '0') "
+               AND LEFT(ada_code, 1) IN ('D', '0') "))
     
     ;; check to see if both patient-id and r21-provider-id are specified
     (cond
