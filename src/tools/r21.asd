@@ -33,7 +33,8 @@
 	    :components ((:file "label-source")
 			 (:file "r21-utilities") ))
 
-   (:module tools :pathname ""
+   (:module tools 
+	    :pathname ""
 	    :components
 	    ((:file "queries")
 	     (:file "make-r21-survival-spreadsheet")

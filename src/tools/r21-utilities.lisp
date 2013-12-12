@@ -54,7 +54,7 @@ push-items can be called like so:
               `(declaration (class !C))"
 
 ;; created by Alan Ruttenberg 11/26/2013
-`(setf ,place (append (list ,@items) ,place))))
+`(setf ,place (append (list ,@items) ,place)))
 
 (defun number-to-fma-tooth (number &key return-tooth-uri return-tooth-name return-tooth-with-number)
   "Translates a tooth number into corresponding fma class.  By default, a cons is returned consisting of the (fma-class . name).  The :return-tooth-uri key specifies that only the uri is returned.  The :return-tooth-name key specifies that only the name is returned."
@@ -440,7 +440,7 @@ Usage:
     ;; return material uri
     material-uri))
 	
-(defun get-eaglesoft-finding-type-iri (action-code)
+(defun get-eaglesoft-finding-type-iri (action-code &key tooth-num)
   "Determine the iri of the type of finding based on one of eaglesoft's action codes."
   (let ((finding-type-uri nil))       
     ;; make sure action-code is a string
@@ -448,7 +448,15 @@ Usage:
     
     (cond
       ((equalp action-code "1") ;; missing tooth finding
-       (setf finding-type-uri !'missing tooth finding'@ohd))
+       ;; get iri associated with the type of missing tooth finding
+       ;; note: tooth-num is the string representation of the tooth number
+       ;; this can also be done using:
+       ;;(make-uri-from-label-source :OHD "missing tooth finding" nil)
+       ;; (make-uri-from-label-source :OHD 
+       ;;       (str+ "missing tooth " tooth-num " finding") nil)
+       (setf tooth-num (string-trim " " (format nil "~a" tooth-num)))
+       (setf finding-type-uri 
+	     (gethash (str+ "missing tooth " tooth-num " finding") *ohd-label-source*)))
       ((equalp action-code "18") ;; unerupted tooth finding
        (setf finding-type-uri !'unerupted tooth finding'@ohd))
       ((member action-code '("2" "3" "4") :test #'equalp) ;; caries finding
@@ -479,38 +487,38 @@ Usage:
     ;; return iri base
     iri-base))
 
-(defun get-eaglesoft-finding-rdfs-label (patient-id action-code tooth)
+(defun get-eaglesoft-finding-rdfs-label (patient-id action-code &key tooth)
   "Determine the rdfs:label for a finding based on one of eaglesoft's action codes."
   (let ((label nil))       
-    ;; make sure action-code is a string
+    ;; make sure action-code and tooth are strings
     (setf action-code (string-trim " " (format nil "~a" action-code)))
-    
+    (setf tooth (string-trim " " (format nil "~a" tooth)))
+
     (cond
       ((equalp action-code "1") ;; missing tooth finding
        (setf label (str+ "missing tooth " tooth " finding for patient " patient-id )))
       ((equalp action-code "18") ;; unerupted tooth finding
        (setf label (str+ "unerupted tooth " tooth " finding for patient " patient-id )))
       ((member action-code '("2" "3" "4") :test #'equalp) ;; caries finding
-       (setf label (str+ "caries finding on " tooth " of patient " patient-id )))
+       (setf label (str+ "caries finding on tooth " tooth " of patient " patient-id )))
       (t
-       (setf label (str+ "dental finding on " tooth " of patient " patient-id )))) ;; dental finding
+       (setf label (str+ "dental finding on tooth " tooth " of patient " patient-id )))) ;; dental finding
     
     ;; return rdfs:label
     label))
 
-(defun get-eaglesoft-individual-finding-iri (patient-id action-code tooth-name instance-count)
+(defun get-eaglesoft-finding-iri (patient-id action-code &key tooth-name tooth-num instance-count)
   "Determine the iri of an individual/instance of finding."
   (let ((finding-uri nil))
-
     ;; make sure action-code is a string
     (setf action-code (string-trim " " (format nil "~a" action-code)))
-    
+        
     ;; get uri for instance of fininding
     (setf finding-uri 
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
 				     :iri-base (get-eaglesoft-individual-finding-iri-base action-code)
-				     :class-type (get-eaglesoft-finding-type-iri action-code)
+				     :class-type (get-eaglesoft-finding-type-iri action-code :tooth-num tooth-num)
 				     :args `(,tooth-name ,instance-count "eaglesoft")))
     ;; return uri
     finding-uri))
