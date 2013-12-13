@@ -18,7 +18,7 @@
 	(query nil)
 	(occurrence-date nil)
 	(count 0))
-
+    
     ;; verify that the eaglesoft db has the action_codes and patient_history tables
     (prepare-eaglesoft-db :force-create-table force-create-table)
 
@@ -63,19 +63,18 @@
 
 (defun get-eaglesoft-oral-evaluation-axioms (patient-id occurrence-date ada-code action-code tooth-data provider-id provider-type record-id)
   (let ((axioms nil)
-	(patient-uri nil)
 	(patient-role-uri nil)
+	(provider-role-uri nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(cdt-class-uri nil)
 	(cdt-uri nil)
 	(eval-type nil)
 	(oral-eval-name nil)
 	(oral-eval-uri nil)
-	(mouth-uri nil)
+	(exam-uri nil)
 	(finding-uri nil)
-	(dental-exam-uri nil)
 	(tooth-name nil)
-	(tooth-list nil))
+	(teeth-list nil))
     
     ;; get uri of patient and patient's role
     (setf patient-uri (get-eaglesoft-dental-patient-iri patient-id))
@@ -88,32 +87,36 @@
     ;; note: the oral evaluation is part of the visit
     (setf oral-eval-uri (get-eaglesoft-oral-evaluation-iri patient-id eval-type occurrence-date))
     (setf oral-eval-name (get-eaglesoft-oral-evaluation-name ada-code patient-id))
-    (push `(annotation-assertion !rdfs:label ,oral-eval-uri ,oral-eval-name) axioms)
-    (push `(data-property-assertion !'occurrence date'@ohd
-				    ,oral-eval-uri 
-				    (:literal ,occurrence-date !xsd:date)) axioms)
     (push `(declaration (named-individual ,oral-eval-uri)) axioms)
     (setf temp-axioms (get-ohd-instance-axioms oral-eval-uri eval-type))
     (setf axioms (append temp-axioms axioms))
-
-    ;; get axioms that describe how the evaluation realizes the patient and provider roles
-    (setf temp-axioms (get-eaglesoft-patient-provider-realization-axioms oral-eval-uri patient-id provider-id provider-type record-id))
-    (setf axioms (append temp-axioms axioms))
+    (push `(annotation-assertion ; label for eval
+	    !rdfs:label 
+	    ,oral-eval-uri 
+	    ,oral-eval-name) axioms)
+    (push `(data-property-assertion ; date of eval
+	    !'occurrence date'@ohd
+	    ,oral-eval-uri 
+	    (:literal ,occurrence-date !xsd:date)) axioms)
     
+        
     ;; declare instance of cdt code as identified by the ada code that is about the procedure
     (setf cdt-class-uri (get-cdt-class-iri ada-code))
     (setf cdt-uri (get-eaglesoft-cdt-instance-iri patient-id ada-code cdt-class-uri record-id))
     (push `(declaration (named-individual ,cdt-uri)) axioms)
     (setf temp-axioms (get-ohd-instance-axioms cdt-uri cdt-class-uri))
     (setf axioms (append temp-axioms axioms))
-    
-    ;; an oral evaluation has a dental finding about the patient's mouth as output
-    ;; so, create instances of dental finding and mouth
-    (setf mouth-uri (get-eaglesoft-mouth-iri patient-id))
-    (push `(declaration (named-individual ,mouth-uri)) axioms)
-    (setf temp-axioms (get-ohd-instance-axioms mouth-uri eval-type))
-    (setf axioms (append temp-axioms axioms))
 
+    ;; add annotion about cdt code
+    (push `(annotation-assertion 
+	    !rdfs:label
+	    ,cdt-uri 
+	    ,(str+ "billing code " ada-code " for " oral-eval-name)) axioms)
+    
+    ;; determine the dental exam that oral eval is part of
+    ;; note: annotations for the dental exam are in the dental exam ontology
+    (setf exam-uri (get-eaglesoft-dental-exam-iri patient-id occurrence-date provider-id))
+    
     ;; determine the type of finding that 
     (setf action-code (format nil "~a" action-code)) ; ensure action code is a string
     (when (member action-code '("1" "2" "3" "4" "18"))
@@ -123,30 +126,33 @@
       ;; for each tooth make a finding that is the ouput of exam
       (loop for tooth in teeth-list do
 	   (setf tooth-name (number-to-fma-tooth tooth :return-tooth-name t))
-	   (setf finding-uri (get-eaglesoft-oral-eval-dental-finding-iri patient-id tooth-name record-id))))
+	   (setf finding-uri 
+		 (get-eaglesoft-finding-iri 
+		  patient-id action-code :tooth-name tooth-name :tooth-num tooth :instance-count record-id))
+	   (push `(object-property-assertion
+		   !'has_specified_output'@ohd
+		   ,exam-uri
+		   ,finding-uri) axioms)))
 
-
-    ;; add annotion about cdt code
-    (push `(annotation-assertion !rdfs:label
-				 ,cdt-uri 
-				 ,(str+ "billing code " ada-code " for " oral-eval-name)) axioms)
+    ;; if provider has been identified as a specific person use r21-provider-id; 
+    ;; otherwise use record-id
+    (cond
+      ((equalp provider-type "person")
+       (setf provider-role-uri (get-eaglesoft-dental-provider-role-iri provider-id)))
+      (t
+       (setf provider-role-uri (get-eaglesoft-dental-provider-role-iri "x" :anonymous-id record-id))))
 
     ;;;; relate instances ;;;;
     
     ;; oral evaluation realizes patient role
     (push `(object-property-assertion !'realizes'@ohd ,oral-eval-uri ,patient-role-uri) axioms)
+
+    ;; oral evaluation realizes provider role
+    (push `(object-property-assertion !'realizes'@ohd ,oral-eval-uri ,provider-role-uri) axioms)
         
-    ;; oral evaluation processual part of a dental exam that is part of a visit
+    ;; oral evaluation processual part of a dental exam
+    (push `(object-property-assertion !'is part of'@ohd ,oral-eval-uri ,exam-uri) axioms)
     
-    (setf visit-uri (get-eaglesoft-dental-visit-iri patient-id occurrence-date))
-    (push `(object-property-assertion !'is part of'@ohd ,oral-eval-uri ,visit-uri) axioms)
-    
-    ;; mouth is part of patient
-    (push `(object-property-assertion !'is part of'@ohd ,mouth-uri ,patient-uri) axioms)
-
-    ;; finding is about patient's mouth
-    (push `(object-property-assertion !'is about'@ohd ,finding-uri ,mouth-uri) axioms)
-
     ;; cdt code instance is about the oral evaluation
     (push `(object-property-assertion !'is about'@ohd ,cdt-uri ,oral-eval-uri) axioms)
 	 
@@ -156,47 +162,19 @@
     axioms))
 
 
-(defun get-eaglesoft-oral-eval-dental-finding-iri (patient-id action-code tooth-name record-count)
-  "Returns an iri for a 'dental finding' that is generated by the patient id, the occurrence date of the finding, and a count variable that differentiates multipe caries findings that are about the same tooth."
-  (let ((uri nil))
-	
-    
-
-
-	 (setf uri 
-	       (get-unique-individual-iri patient-id 
-				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-teeth-iri-base*
-				     :class-type !'dental finding'@ohd
-				     :args `(,occurrence-date ,instance-count "eaglesoft"))))
-    ;; return uri
-    uri))
-
-(defun get-eaglesoft-dental-exam-iri (patient-id occurrence-date)
-  "Returns an iri for a 'dental exam' that is generated by the patient id, the occurrence date of the dental exam. I am assuming that a patient only has only one dental exam on a given date."
-  (let ((uri nil))
-    (setf uri 
-	  (get-unique-individual-iri patient-id 
-				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-teeth-iri-base*
-				     :class-type !'dental exam'@ohd
-				     :args `(,occurrence-date ,instance-count "eaglesoft")))
-    ;; return uri
-    uri))
-
 (defun get-eaglesoft-oral-evaluation-type (ada-code)
   "Returns the uri for they type/class of evaluation as determined by the ada code"
   (let ((eval-type nil))
     ;; check ada code to determine class type
+    ;; note: only look at right 4 characters; e.g. D0120 -> 0120
+    (setf ada-code (str-right ada-code 4))
     (cond
       ((equalp ada-code "0120") 
        (setf eval-type !'periodic oral evaluation'@ohd))
       ((equalp ada-code "0140") 
-       (setf eval-type !'problem focused oral evaluation'@ohd))
+       (setf eval-type !'limited oral evaluation'@ohd))
       ((equalp ada-code "0150") 
        (setf eval-type !'comprehensive oral evaluation'@ohd))
-      ((equalp ada-code "0160") 
-       (setf eval-type !'extensive problem focused oral evaluation'@ohd))
       ((equalp ada-code "0180") 
        (setf eval-type !'comprehensive periodontal evaluation'@ohd)))
     
@@ -226,11 +204,9 @@
       ((equalp ada-code "0120") 
        (setf eval-name "periodic oral evaluation "))
       ((equalp ada-code "0140") 
-       (setf eval-name "problem focused oral evaluation "))
+       (setf eval-name "limited oral evaluation "))
       ((equalp ada-code "0150") 
        (setf eval-name "comprehensive oral evaluation "))
-      ((equalp ada-code "0160") 
-       (setf eval-name "extensive problem focused oral evaluation"))
       ((equalp ada-code "0180") 
        (setf eval-name "comprehensive periodontal evaluation "))
       (t (setf eval-name "other oral evaluation ")))
@@ -259,8 +235,8 @@ evaluation has been performed for ADA codes D0120, D0140, D0150, D0180.
 SET rowcount 0
 
 /* create temp table with just oral evals */
-SELECT patient_id, tran_date, description, ada_code, ada_code_description, tooth_data, surface_detail, r21_provider_id, r21_provider_type,
-  practice_id, row_id
+SELECT patient_id, table_name, tran_date, date_completed, date_entered, description, ada_code, ada_code_description, 
+       tooth_data, surface_detail, r21_provider_id, r21_provider_type, practice_id, row_id
 INTO #oral_evals
 FROM patient_history
 WHERE RIGHT(ada_code, 4) IN (
@@ -316,8 +292,9 @@ AND tooth_data LIKE '%Y%'
        (setf sql (str+ sql " SELECT  TOP " limit-rows "  "))) 
       (t (setf sql (str+ sql " SELECT "))))
     (setf sql  
-	  (str+ sql "o.patient_id, o.tran_date, o.description, c.description AS condition_description, o.ada_code, o.ada_code_description, o.r21_provider_id,
-  o.r21_provider_type, o.practice_id, o.row_id, c.action_code, c.tooth_data, c.surface"))
+	  (str+ sql "o.patient_id, o.table_name, o.tran_date, o.date_completed, o.date_entered, 
+                     o.description, c.description AS condition_description, o.ada_code, o.ada_code_description, 
+                     o.r21_provider_id, o.r21_provider_type, o.practice_id, o.row_id, c.action_code, c.tooth_data, c.surface"))
 
     ;; FROM clause
     (setf sql (str+ sql " FROM #oral_evals o LEFT JOIN #condition_findings c ON o.patient_id = c.patient_id AND o.tran_date = c.date_entered "))
