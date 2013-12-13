@@ -86,7 +86,7 @@
     
     ;; generate instances of the dental exam in which the missing tooth/teeth was/were discovered
     ;; annotations about the dental exam are in the import of the dental exam ontology
-    (setf exam-uri (get-eaglesoft-dental-exam-iri patient-id occurrence-date provider-id))
+    (setf exam-uri (get-eaglesoft-dental-exam-iri patient-id occurrence-date))
 
     (loop for tooth in teeth-list do
          ;;;;  declare instances of participating entities ;;;;

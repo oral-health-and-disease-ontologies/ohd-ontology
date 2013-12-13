@@ -75,7 +75,7 @@
 	(patient-role-uri nil))
 
     ;; get axioms for instance of exam
-    (setf exam-uri (get-eaglesoft-dental-exam-iri patient-id occurrence-date provider-id))
+    (setf exam-uri (get-eaglesoft-dental-exam-iri patient-id occurrence-date))
     (setf temp-axioms (get-ohd-instance-axioms exam-uri !'dental exam'@ohd))
     (setf axioms (append temp-axioms axioms))
         
@@ -154,7 +154,8 @@
                              '0150',
                              /* Comprehensive Periodontal Evaluation */
                              '0180')
-               AND LEFT(ada_code, 1) IN ('D', '0') "))
+               AND LEFT(ada_code, 1) IN ('D', '0') 
+               OR action_code <> 'n/a' "))
     
     ;; check to see if both patient-id and r21-provider-id are specified
     (cond
