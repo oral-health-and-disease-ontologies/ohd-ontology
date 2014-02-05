@@ -51,8 +51,7 @@
 		     (#"getString" results "patient_id")
 		     occurrence-date
 		     (#"getString" results "tooth_data")
-		     (#"getString" results "r21_provider_id")
-		     (#"getString" results "action_code")
+		     (#"getString" results "description")
 		     (#"getString" results "row_id")))
 		(incf count))))
 
@@ -60,16 +59,14 @@
       (values ont count))))
 
 (defun get-eaglesoft-missing-tooth-finding-axioms 
-    (patient-id occurrence-date tooth-data provider-id action-code record-count)
+    (patient-id occurrence-date tooth-data description record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(patient-uri nil)
 	(finding-uri nil)
 	(finding-type-uri nil)
 	(exam-uri nil)
-	(tooth-name nil)
 	(tooth-num nil)
-	;;(tooth-type-uri nil)
 	(dentition-uri nil)
 	(dentition-type-uri nil)
 	(universal-tooth-num-uri nil)
@@ -89,27 +86,21 @@
     (setf exam-uri (get-eaglesoft-dental-exam-iri patient-id occurrence-date))
 
     (loop for tooth in teeth-list do
-         ;;;;  declare instances of participating entities ;;;;
-	 
-         ;; get info about the type of missing tooth
-	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-name t))
-         ;;(setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
-	 (setf tooth-num (format nil "~a" tooth)) ; converts tooth number to string
+       	 (setf tooth-num (format nil "~a" tooth)) ; converts tooth number to string
 	 
          ;; declare instance of !ohd:'missing tooth finding'
 	 (setf finding-type-uri
-	       (get-eaglesoft-finding-type-iri action-code :tooth-num tooth-num))
+	       (get-eaglesoft-finding-type-iri description :tooth-num tooth-num))
 	 (setf finding-uri 
 	       (get-eaglesoft-finding-iri 
-		patient-id action-code :tooth-name tooth-name :tooth-num tooth-num  :instance-count record-count))
-	 (setf temp-axioms (get-ohd-instance-axioms finding-uri finding-type-uri))
-	 (setf axioms (append temp-axioms axioms))
-
+		patient-id description :tooth-num tooth-num :instance-count record-count))
+	 (push-instance axioms finding-uri finding-type-uri)
+	
          ;; add annotation about missing tooth finding
 	 (push `(annotation-assertion 
 		 !rdfs:label 
 		 ,finding-uri
-		 ,(get-eaglesoft-finding-rdfs-label patient-id action-code :tooth tooth)) axioms)
+		 ,(get-eaglesoft-finding-rdfs-label patient-id description :tooth tooth-num)) axioms)
          
          ;; get iri for secondary dentition
 	 (setf dentition-uri
@@ -187,7 +178,6 @@
 
 #|
 Returns records that indicate a tooth has been found to be missing.
-I.e., Records that have an action code '1'.
 16,750 records returned.
 Note:
 - The query does not filter out primary (baby) teeth.
@@ -211,15 +201,11 @@ Note:
     ;; WHERE clause
     (setf sql
 	  (str+ sql
-		"WHERE
-                   action_code = '1'
-                AND LENGTH(tooth_data) > 31
-                AND description IN ('Missing/Extracted tooth',
-                                    'Missing Tooth',
-                                    'Missing tooth, more than a year') 
-                   AND tooth_data IS NOT NULL
-                   AND LENGTH(tooth_data) > 31
-                   AND tooth_data LIKE '%Y%' "))
+		" WHERE action_code <> 'n/a'
+                  AND description like '%missing%'  
+                  AND LENGTH(tooth_data) > 31
+                  AND tooth_data IS NOT NULL
+                  AND tooth_data LIKE '%Y%' "))
     
     ;; check for patient id
     (when patient-id

@@ -52,8 +52,7 @@
 		     occurrence-date
 		     (#"getString" results "tooth_data")
 		     (#"getString" results "surface")
-		     (#"getString" results "r21_provider_id")
-		     (#"getString" results "action_code")
+		     (#"getString" results "description")
 		     (#"getString" results "row_id")))
 		(incf count))))
 
@@ -62,7 +61,7 @@
 
 
 (defun get-eaglesoft-caries-finding-axioms 
-    (patient-id occurrence-date tooth-data surface provider-id action-code record-count)
+    (patient-id occurrence-date tooth-data surface description record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(patient-uri nil)
@@ -124,10 +123,10 @@
 	 ;; this should not be necessary since the lesion is asserted to be part of surface (below)
 	 ;;(push `(object-property-assertion !'is part of'@ohd ,lesion-uri ,tooth-uri) axioms)
 	 
-         ;; declare instance of !ohd:'caries finding' - action codes: 2, 3, 4
+         ;; declare instance of !ohd:'caries finding' 
 	 (setf finding-uri 
 	       (get-eaglesoft-finding-iri 
-		patient-id action-code :tooth-name tooth-name :instance-count record-count))
+		patient-id description :tooth-num tooth :instance-count record-count))
 	 (setf temp-axioms (get-ohd-instance-axioms finding-uri !'caries finding'@ohd))
 	 (setf axioms (append temp-axioms axioms))
 	 
@@ -135,7 +134,7 @@
 	 (push `(annotation-assertion 
 		 !rdfs:label 
 		 ,finding-uri
-		 ,(get-eaglesoft-finding-rdfs-label patient-id action-code :tooth tooth)) axioms)
+		 ,(get-eaglesoft-finding-rdfs-label patient-id description :tooth tooth)) axioms)
 
 	 ;; instance of caries finding 'is about' the 'carious lesion
 	 (push `(object-property-assertion !'is about'@ohd ,finding-uri ,lesion-uri) axioms)
@@ -203,8 +202,7 @@
 
 #|
 Returns records that indicate a tooth has caries
-These are records that have an action code '18', but we are only looking for
-description that contain:
+These have description that contain:
 'Decay'
 'Decalcification'
 'Dicalsification'
@@ -236,7 +234,7 @@ Only records that contain surface data are returned
                  tooth_data, 
                  r21_provider_id,
                  row_id,
-                 action_code,
+                 description,
                  get_surface_summary_from_detail(surface_detail, tooth) as surface "))
 
     ;; FROM clause
@@ -245,18 +243,17 @@ Only records that contain surface data are returned
     ;; WHERE clause
     (setf sql
 	  (str+ sql
-		"WHERE
-                   action_code IN ('2', '3', '4')
-                AND LENGTH(tooth_data) > 31
-                AND description IN ('Decay',
-                                    'Decalcification',
-                                    'Dicalsification',
-                                    'Deep dentinal/cemental caries') 
-                AND tooth_data IS NOT NULL
-                AND LENGTH(tooth_data) > 31
-                AND tooth_data LIKE '%Y%' 
-                AND surface_detail IS NOT NULL 
-                AND surface_detail LIKE '%Y%' "))
+		" WHERE action_code <> 'n/a' "
+                " AND LENGTH(tooth_data) > 31 "
+                " AND description IN ('Decay', "
+		"                     'Decalcification', "
+		"                     'Dicalsification', "
+		"                     'Deep dentinal/cemental caries') "
+                " AND tooth_data IS NOT NULL "
+                " AND LENGTH(tooth_data) > 31 "
+                " AND tooth_data LIKE '%Y%' "
+                " AND surface_detail IS NOT NULL "
+                " AND surface_detail LIKE '%Y%' "))
     
     ;; check for patient id
     (when patient-id
