@@ -51,10 +51,41 @@ push-items can be called like so:
   (push-items axioms
               `(declaration (class !A))
               `(declaration (class !B))
-              `(declaration (class !C))"
+              `(declaration (class !C))
 
-;; created by Alan Ruttenberg 11/26/2013
+created by Alan Ruttenberg 11/26/2013"
 `(setf ,place (append (list ,@items) ,place)))
+
+
+(defmacro push-instance (axioms instance class)
+  "macro used for creating instances of OHD data.
+example usage: (push-instance x !a !A)
+created by: Bill Duncan 1/8/2014"
+  `(progn 
+     (push (list 'declaration (list 'named-individual ,instance)) ,axioms)
+     (push (list 'class-assertion ,class ,instance) ,axioms)
+     (push (list 'annotation-assertion !'asserted type'@ohd ,instance ,class) ,axioms)))
+
+;; THIS ALSO WORKS
+;; (defmacro push-instance (axioms instance class)
+;;   "macro used for creating instances of OHD data.
+;; example usage: (push-instance x !a !A)
+;; created by: Bill Duncan 1/8/2014"
+;;   `(push-items ,axioms
+;; 	       (list 'declaration (list 'named-individual ,instance))
+;; 	       (list 'class-assertion ,class ,instance)
+;; 	       (list 'annotation-assertion !'asserted type'@ohd ,instance ,class)))
+
+;; THIS ALSO WORKS
+;; (defmacro push-instance (axioms instance class)
+;;   "macro used for creating instances of OHD data.
+;; example usage: (push-instance x !a !A)
+;; created by: Bill Duncan 1/8/2014"
+;;   `(setf ,axioms
+;; 	 (append 
+;; 	  (list (list 'declaration (list 'named-individual ,instance)))
+;; 	  (list (list 'class-assertion ,class ,instance))
+;; 	  (list (list 'annotation-assertion !'asserted type'@ohd ,instance ,class)) ,axioms)))
 
 (defun number-to-fma-tooth (number &key return-tooth-uri return-tooth-name return-tooth-with-number)
   "Translates a tooth number into corresponding fma class.  By default, a cons is returned consisting of the (fma-class . name).  The :return-tooth-uri key specifies that only the uri is returned.  The :return-tooth-name key specifies that only the name is returned."
@@ -212,6 +243,16 @@ If no leading '!' is present, the iri is simply returned as string."
     (#"processString" it)
     (#"getStringDigest" it)))
 
+(defun print-hash-table (hash-table &key limit)
+  "prints out the key/value pairs in a hash table; the param limit limits the number of entries printed."
+  (let ((count 0))
+    (loop 
+       for k being the hash-keys in hash-table using (hash-value v) do
+	 (when limit 
+	   (if (>= count limit) (return)))
+         (format t "~a ~a ~%" k v)
+	 (incf count))))
+
 (defun str+ (&rest values)
   "A shortcut for concatenting a list of strings. Code found at:
 http://stackoverflow.com/questions/5457346/lisp-function-to-concatenate-a-list-of-strings
@@ -288,6 +329,7 @@ Usage:
 (defun get-ohd-instance-axioms (instance class)
   "Returns a list of axioms that 1) asserts the 'instance' to be a member of 'class'; 2) annotates that 'class' is a 'asserted type' of 'instance'." 
   (let ((axioms nil))
+    (push `(declaration (named-individual , instance)) axioms)
     (push `(class-assertion ,class ,instance) axioms)
     (push `(annotation-assertion !'asserted type'@ohd ,instance ,class) axioms)
     
@@ -440,26 +482,42 @@ Usage:
     ;; return material uri
     material-uri))
 	
-(defun get-eaglesoft-finding-type-iri (action-code &key tooth-num)
-  "Determine the iri of the type of finding based on one of eaglesoft's action codes."
+(defun get-eaglesoft-finding-type-iri (description &key tooth-num)
+  "Determine the iri of the type of finding based on eaglesoft's description of findings."
   (let ((finding-type-uri nil))       
+
+    ;; NOTE: the action codes are not reliable for certain findings. For example, I found a number
+    ;; of records in which an unerupted tooth (action code 18) was entered in the database using 
+    ;; the action code for missing teeth (action code 1)
+
     ;; make sure action-code is a string
-    (setf action-code (string-trim " " (format nil "~a" action-code)))
+    ;;(setf action-code (string-trim " " (format nil "~a" action-code)))
     
     (cond
-      ((equalp action-code "1") ;; missing tooth finding
+      ((all-matches description "(?i)missing+" 0) ;; missing tooth finding
+      ;;((equalp action-code "1") 
+      
        ;; get iri associated with the type of missing tooth finding
        ;; note: tooth-num is the string representation of the tooth number
        ;; this can also be done using:
        ;;(make-uri-from-label-source :OHD "missing tooth finding" nil)
        ;; (make-uri-from-label-source :OHD 
        ;;       (str+ "missing tooth " tooth-num " finding") nil)
-       (setf tooth-num (string-trim " " (format nil "~a" tooth-num)))
-       (setf finding-type-uri 
-	     (gethash (str+ "missing tooth " tooth-num " finding") *ohd-label-source*)))
-      ((equalp action-code "18") ;; unerupted tooth finding
+       
+       ;; if a tooth number is given, set type to the particular missing tooth type
+       ;; otherwise, simple make it a 'missing tooth finding'
+       (cond
+	 (tooth-num
+	  (setf tooth-num (string-trim " " (format nil "~a" tooth-num)))
+	  (setf finding-type-uri 
+		(gethash (str+ "missing tooth " tooth-num " finding") *ohd-label-source*)))
+	 (t
+	  (setf finding-type-uri !'missing tooth finding'@ohd))))
+      ((all-matches description "(?i)(unerupted+|impacted+)" 1) ;; unerupted tooth finding
+       ;;(equalp action-code "18") 
        (setf finding-type-uri !'unerupted tooth finding'@ohd))
-      ((member action-code '("2" "3" "4") :test #'equalp) ;; caries finding
+      ((all-matches description "(?i)(caries+|Decay|Decalcification+|Dicalsification+)" 1)  ;; caries finding
+       ;;(member action-code '("2" "3" "4") :test #'equalp)
        (setf finding-type-uri !'caries finding'@ohd))
       (t
        (setf finding-type-uri !'dental finding'@ohd))) ;; dental finding
@@ -468,18 +526,16 @@ Usage:
     ;; return uri
     finding-type-uri))
 
-(defun get-eaglesoft-individual-finding-iri-base (action-code)
-  "Return the IRI base for finding based on the action code."
+(defun get-eaglesoft-individual-finding-iri-base (description)
+  "Return the IRI base for finding based on the description of the finding."
   (let ((iri-base nil))
-    ;; make sure action-code is a string
-    (setf action-code (string-trim " " (format nil "~a" action-code)))
-
+    
     (cond
-      ((equalp action-code "1") ;; missing tooth finding
+      ((all-matches description "(?i)missing+" 0) ;; missing tooth finding
        (setf iri-base *eaglesoft-individual-missing-teeth-findings-iri-base* ))
-      ((equalp action-code "18") ;; unerupted tooth finding
+      ((all-matches description "(?i)(unerupted+|impacted+)" 1) ;; unerupted tooth finding
        (setf iri-base *eaglesoft-individual-unerupted-teeth-findings-iri-base*))
-      ((member action-code '("2" "3" "4") :test #'equalp) ;; caries finding
+      ((all-matches description "(?i)(caries+|Decay|Decalcification+|Dicalsification+)" 1)  ;; caries finding
        (setf iri-base *eaglesoft-individual-caries-findings-iri-base*))
       (t
        (setf iri-base *eaglesoft-individual-dental-findings-iri-base*))) ;; dental finding
@@ -487,38 +543,41 @@ Usage:
     ;; return iri base
     iri-base))
 
-(defun get-eaglesoft-finding-rdfs-label (patient-id action-code &key tooth)
+(defun get-eaglesoft-finding-rdfs-label (patient-id description &key tooth)
   "Determine the rdfs:label for a finding based on one of eaglesoft's action codes."
   (let ((label nil))       
-    ;; make sure action-code and tooth are strings
-    (setf action-code (string-trim " " (format nil "~a" action-code)))
+    ;; make sure tooth is a string
     (setf tooth (string-trim " " (format nil "~a" tooth)))
 
     (cond
-      ((equalp action-code "1") ;; missing tooth finding
+      ((all-matches description "(?i)missing+" 0) ;; missing tooth finding
        (setf label (str+ "missing tooth " tooth " finding for patient " patient-id )))
-      ((equalp action-code "18") ;; unerupted tooth finding
+      ((all-matches description "(?i)(unerupted+|impacted+)" 1) ;; unerupted tooth finding
        (setf label (str+ "unerupted tooth " tooth " finding for patient " patient-id )))
-      ((member action-code '("2" "3" "4") :test #'equalp) ;; caries finding
+      ((all-matches description "(?i)(caries+|Decay|Decalcification+|Dicalsification+)" 1)  ;; caries finding
        (setf label (str+ "caries finding on tooth " tooth " of patient " patient-id )))
+      ((equalp description "none")
+       (setf label (str+ "no dental findings reported for patient " patient-id )))
       (t
        (setf label (str+ "dental finding on tooth " tooth " of patient " patient-id )))) ;; dental finding
     
     ;; return rdfs:label
     label))
 
-(defun get-eaglesoft-finding-iri (patient-id action-code &key tooth-name tooth-num instance-count)
-  "Determine the iri of an individual/instance of finding."
+(defun get-eaglesoft-finding-iri (patient-id description &key tooth-name tooth-num instance-count finding-type)
+  "Determine the iri of an individual/instance of finding based on the finding's description."
   (let ((finding-uri nil))
-    ;; make sure action-code is a string
-    (setf action-code (string-trim " " (format nil "~a" action-code)))
-        
+    
+    ;; check for finding type
+    (when (not finding-type)
+      (setf finding-type (get-eaglesoft-finding-type-iri description :tooth-num tooth-num)))
+    
     ;; get uri for instance of fininding
     (setf finding-uri 
 	  (get-unique-individual-iri patient-id 
 				     :salt *eaglesoft-salt*
-				     :iri-base (get-eaglesoft-individual-finding-iri-base action-code)
-				     :class-type (get-eaglesoft-finding-type-iri action-code :tooth-num tooth-num)
+				     :iri-base (get-eaglesoft-individual-finding-iri-base description)
+				     :class-type finding-type
 				     :args `(,tooth-name ,instance-count "eaglesoft")))
     ;; return uri
     finding-uri))
@@ -1800,7 +1859,7 @@ The steps for creating the r21_provider table are as follows:
 ;; eaglesoft dental findings (in general)
 (defparameter *eaglesoft-individual-dental-findings-iri-base* 
   "http://purl.obolibrary.org/obo/ohd/individuals/")
-(defparameter *eaglesoft-missing-dental-findings-ontology-iri* 
+(defparameter *eaglesoft-dental-findings-ontology-iri* 
   "http://purl.obolibrary.org/obo/ohd/dev/r21-eaglesoft-dental-findings.owl")
 
 ;; eaglesoft missing teeth findings

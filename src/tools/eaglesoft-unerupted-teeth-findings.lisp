@@ -51,8 +51,7 @@
 		     (#"getString" results "patient_id")
 		     occurrence-date
 		     (#"getString" results "tooth_data")
-		     (#"getString" results "r21_provider_id")
-		     (#"getString" results "action_code")
+		     (#"getString" results "description")
 		     (#"getString" results "row_id")))
 		(incf count))))
 
@@ -61,7 +60,7 @@
 
 
 (defun get-eaglesoft-unerupted-tooth-finding-axioms 
-    (patient-id occurrence-date tooth-data provider-id action-code record-count)
+    (patient-id occurrence-date tooth-data description record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(patient-uri nil)
@@ -69,7 +68,6 @@
 	(exam-uri nil)
 	(tooth-uri nil)
 	(tooth-type-uri nil)
-	(tooth-name nil)
 	(teeth-list nil))
 
 
@@ -82,13 +80,12 @@
 
     ;; generate instances of the dental exam in which the unerupted was discovered
     ;; annotations about the dental exam are in the import of the dental exam ontology
-    (setf exam-uri (get-eaglesoft-dental-exam-iri patient-id occurrence-date)
+    (setf exam-uri (get-eaglesoft-dental-exam-iri patient-id occurrence-date))
 
     (loop for tooth in teeth-list do
          ;;;;  declare instances of participating entities ;;;;
 	 
 	 ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
-	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-with-number t))
 	 (setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
 	 (setf tooth-uri (get-eaglesoft-tooth-iri patient-id tooth-type-uri))
 	 
@@ -97,24 +94,24 @@
 	 (setf axioms (append temp-axioms axioms))
 	 
 	 ;; add annotation about tooth
+	 (setf tooth (format nil "~a" tooth)) ; ensure tooth is a string
 	 (push `(annotation-assertion !rdfs:label 
 				      ,tooth-uri
-				      ,(str+ tooth-name
+				      ,(str+ "tooth " tooth 
 					     " of patient " patient-id)) axioms)
 	 
          ;; declare instance of !ohd:'unerupted tooth finding'
 	 (setf finding-uri 
 	       (get-eaglesoft-finding-iri 
-		patient-id action-code :tooth-name tooth-name  :instance-count record-count))
+		patient-id description :tooth-num tooth  :instance-count record-count))
 	 (setf temp-axioms (get-ohd-instance-axioms finding-uri !'unerupted tooth finding'@ohd))
 	 (setf axioms (append temp-axioms axioms))
 
          ;; add annotation about unerupted tooth finding
-	 ;; note: tooth-name has form "tooth X"
 	 (push `(annotation-assertion 
 		 !rdfs:label 
 		 ,finding-uri
-		 ,(get-eaglesoft-finding-rdfs-label patient-id action-code :tooth tooth)) axioms)
+		 ,(get-eaglesoft-finding-rdfs-label patient-id description :tooth tooth)) axioms)
 	          
          ;; instance of unerupted tooth finding 'is about' the unerupted tooth
 	 (push `(object-property-assertion !'is about'@ohd ,finding-uri ,tooth-uri) axioms)
@@ -143,7 +140,6 @@
 
 #|
 Returns records that indicate a tooth is unerupted
-I.e., Records that have an action code '18'.
 289 records returned.
 |#
 
@@ -164,11 +160,12 @@ I.e., Records that have an action code '18'.
     ;; WHERE clause
     (setf sql
 	  (str+ sql
-		"WHERE
-                   action_code = '18'
-                 AND tooth_data IS NOT NULL
-                 AND LENGTH(tooth_data) > 31
-                 AND tooth_data LIKE '%Y%' "))
+		" WHERE action_code <> 'n/a' "
+		" AND (description LIKE '%unerupt%' "
+		"      OR description like '%impact%') "
+		" AND tooth_data IS NOT NULL "
+		" AND LENGTH(tooth_data) > 31 "
+		" AND tooth_data LIKE '%Y%' "))
     
     ;; check for patient id
     (when patient-id
