@@ -14,7 +14,7 @@
 (defun get-eaglesoft-oral-evaluations-ont (&key patient-id limit-rows force-create-table)
   "Returns an ontology of the oral evaluations contained in the Eaglesoft database. The patient-id key creates an ontology based on that specific patient. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
 
-  (let ((results nil)
+  (Let ((results nil)
 	(query nil)
 	(id nil)
 	(occurrence-date nil)
@@ -24,10 +24,16 @@
 	(key nil)
 	(eval-uri nil)
 	(eval-type nil)
+	(eval-finding-description nil)
 	(tooth nil)
 	(surface nil)
+	(finding-uri nil)
+	(condition-description nil)
+	(provider-id nil)
+	(provider-type nil)
+	(record-id nil)
 	(evals-ht (make-hash-table :test #'equalp))
-	(eval-info-ht (make-hash-table :test #'equalp)))
+	(eval-uri-ht (make-hash-table :test #'equalp)))
      
     ;; verify that the eaglesoft db has the action_codes and patient_history tables
     (prepare-eaglesoft-db :force-create-table force-create-table)
@@ -38,17 +44,34 @@
     
     ;; as part of the onotlogy, we need to determine if a dental finding was a result
     ;; of the oral evaluation. the result set, however, is not explicit about which evaluation
-    ;; matches up to a finding (f indings are determined by action codes). for example, on given
+    ;; matches up to a finding (f indings are determined by finding description). for example, on given
     ;; date there may be three oral evaluations listed in the record set for a given date, and
-    ;; each have the same finding. E.g.:
-    ;; Patient id Date      ADA Code  Action Code
-    ;; ---------- --------  --------  ----------
-    ;; 200        1/1/2000  D0120     2
-    ;; 200        1/1/2000  D0150     2
-    ;; 200        1/1/2000  D0180     2
+    ;; each have the same finding.
+    ;; For exmaple, if you run the query:
     ;;
-    ;; Thus, it not possible to determine which evaluation (D0120, D0150, D0180) had the 
-    ;; dental finding 2.
+    ;; SELECT *
+    ;; FROM transactions
+    ;; WHERE patient_id = 4199
+    ;; AND tran_date = '2006-07-08'
+    ;; AND type = 'S'
+    ;;
+    ;; you will find the following results:
+    ;;
+    ;; Patient id Date          Service code (ADA code)
+    ;; ---------- -----------  ------------------------
+    ;; 4199       2006-07-08    00120
+    ;; 4199       2006-07-08    00180
+    ;;
+    ;; When this patient is cross-referenced in the patient conditions table:
+    ;;
+    ;; SELECT *
+    ;; FROM patient_conditions
+    ;; WHERE patient_id = 4199
+    ;; AND date_entered = '2006-07-08'
+    ;; 
+    ;; you will find multiple results with an action code of "1" (missing tooth).
+    ;;
+    ;; Thus, it not possible to determine which evaluation (D0120, D0180) has a missing tooth finding.
     ;; 
     ;; To represent this in the onology, the evaluations are grouped using the ObjectOneOf construct
     ;; and the finding is then related to this group of evaluations the following manner:
@@ -61,11 +84,11 @@
     ;; and at least one of (eval1, eval2, eval3) stand in the !has_specified_output relation to !finding
     ;;
     ;; my method for grouping evaluation togehter (i.e., eval1 ... evaln) is to first build a hash table
-    ;; with the (patient id, date, action code) as key and a list of the evaluation uris that occurred on that date
-    ;; for the patient with the action code as values. E.g.:
+    ;; with the (patient id, date, description) as key and a list of the evaluation uris that occurred on that date
+    ;; for the patient with the finding description as values. E.g.:
     ;;
-    ;;  (patient 200, 1/1/2000, 2) => (!D0120, !D0150, !D0180)
-    ;;  note: (!D0120, !D0150, !D0180) are uris
+    ;;  (patient 4199, 20006-07-08, "Missing tooth") => (!D0120, !D0180)
+    ;;  note: (!D0120, !D0180) are uris
     ;;
     ;; other necessary information associated with the uri is then stored in a separate hash table
     ;; the ontology will then be built by iterating over hash table and building axioms from the uris
@@ -74,7 +97,7 @@
     ;; get records from eaglesoft db and fill hash table
     (with-eaglesoft  (results query)
       (loop while (#"next" results) do
-	 ;; determine patient-id, action-code,ada-code, occurrence date, tooth, surface
+	 ;; determine patient-id, action-code,ada-code, occurrence date, tooth, surface, condition description
 	 ;; note: the db has already been checked that all tooth fields contains a single tooth
 	   (setf id (#"getString" results "patient_id"))
 	   (setf action-code (#"getString" results "action_code"))
@@ -82,28 +105,38 @@
 	   (setf ada-code (#"getString" results "ada_code"))
 	   (setf tooth (#"getString" results "tooth"))
 	   (setf surface (#"getString" results "surface"))
+	   (setf condition-description (#"getString" results "condition_description"))
+	   (setf provider-id (#"getString" results "r21_provider_id"))
+	   (setf provider-type (#"getString" results "r21_provider_type"))
+	   (setf record-id (#"getString" results "row_id"))
 
+	 ;; if no condition description then set it to "none"
+	 ;; this is needed to work functions that use the description
+	   (if (equalp condition-description nil) 
+	       (setf condition-description "none"))
+	   
 	 ;; determine the type of oral evaluation
 	   (setf eval-type (get-eaglesoft-oral-evaluation-type ada-code))
-		
+	   
 	 ;; declare instance of oral evaluation with annotations and date of evaluation
 	 ;; note: the oral evaluation is part of the visit
 	   (setf eval-uri (get-eaglesoft-oral-evaluation-iri patient-id eval-type occurrence-date))
 	   
-
+	   
 	 ;; fill evaluatons hash table
-	   (setf key (list id occurrence-date action-code))
+	   (setf key (list id occurrence-date condition-description))
 	   (cond
 	     ;; if key is found, push new value onto value list
 	     ((gethash key evals-ht)
-	      (setf (gethash key evals-ht) (push eval-uri (gethash key evals-ht))))
+	      (setf (gethash key evals-ht) 
+		    (remove-duplicates (push eval-uri (gethash key evals-ht)))))
 
 	     ;; if value not found, create list of values
 	     (t
 	      (setf (gethash key evals-ht) (list eval-uri))))
 	   
-	 ;; now add info for that eval in a separate hash table
-	   (setf (gethash eval-uri eval-info-ht)
+	 ;; now add info about that eval uri in a separate hash table
+	   (setf (gethash eval-uri eval-uri-ht)
 		 (list 
 		  id
 		  occurrence-date
@@ -111,54 +144,106 @@
 		  action-code 
 		  tooth
 		  surface 
-		  (#"getString" results "r21_provider_id")
-		  (#"getString" results "r21_provider_type")
-		  (#"getString" results "row_id")))
+		  condition-description
+		  provider-id
+		  provider-type
+		  record-id))
 	   (incf count)))
-
+        
   
     ;; build the ontology
     (with-ontology ont (:collecting t
 		        :base *eaglesoft-individual-oral-evaluations-iri-base*
 		        :ontology-iri  *eaglesoft-oral-evaluations-ontology-iri*)
-
+	
     	( ;; import needed ontologies
 	 (as (get-ohd-import-axioms))
 
 	 ;; get axioms for declaring annotation, object, and data properties used for ohd
 	 (as (get-ohd-declaration-axioms))
 	 
-	 ;; get records from eaglesoft db and create axioms
 	 ;; now with the hash tables built, iterate over evaluatons hash table 
-	 ;; (the one with multiple uris) to build axioms
-	 '(loop 
-	     for k being the hash-keys in evals-ht do ;; using (hash-values v) do
-	     ;; get axioms
-	     '(as (get-eaglesoft-oral-evaluation-axioms 
-		   (#"getString" results "patient_id")
-		   occurrence-date
-		   (#"getString" results "ada_code")
-		   (#"getString" results "action_code")
-		   (#"getString" results "tooth")
-		   (#"getString" results "r21_provider_id")
-		   (#"getString" results "r21_provider_type")
-		   (#"getString" results "row_id"))))
-	 )
+	 ;; (the one with potentially multiple uris per eval date) to build axioms
+	 (loop 
+	    for key being the hash-keys in evals-ht using (hash-value values) do
+	    ;; get the finding uri based description of finding
+	    ;; this the third element in key
+	      (setf eval-finding-description (third key))
+	      (cond
+		( ;; if "none", then this is a "no oral health issues reported" finding
+		  ;; so, uri is determined by occurrence date
+		 (equalp eval-finding-description "none")
+		 (setf finding-uri 
+		       (get-eaglesoft-finding-iri id "none" :occurrence-date occurrence-date))
+		
+		(t ;; otherwise determine the type of finding based on the description and tooth
+		 (setf finding-uri 
+		       (get-eaglesoft-finding-iri id eval-finding-description :tooth-num tooth)))))
+	      
+	      
+	    ;; add finding to ontology
+	      (as `((declaration (named-individual ,finding-uri))
+		       (object-property-assertion 
+			!rdfs:label
+			,finding-uri
+			,(get-eaglesoft-finding-rdfs-label 
+			  id 
+			  eval-finding-description))))
 
-      (loop
-	   for k being the hash-keys in evals-ht using (hash-value val) 
-	   for i from 1 to 10 do
-	   (when (> (length val) 1)
-	     (format t "~a~%" val)
-	     (loop
-		for uri in val do
-		  (format t "	~a ~a ~%" uri (gethash uri eval-info-ht)))))
+	    ;; if the length of the values list is > 1, then we have a situation where there
+	    ;; are multiple evalations (e.g., D0120, D0180) that have a finding associated 
+	    ;; with them on that date, so build a class assertion / object one of axiom
+	    ;; for that finding
+	      (cond
+		((> (length values) 1)
+		 (as (get-oral-eval-object-one-of-axiom values finding-uri)))
+		
+		(t ;; otherwise finding is for single evaluation
+		 (as `(object-property-assertion
+		       !'has_specified_output'@ohd
+		       ,(car values)
+		       ,finding-uri)))))
+
+
+	 ;; now iterate over eval uri hash table and build axioms about the uri
+	 ;; for each evaluation
+	 '(loop for uri being the hash-keys in eval-uri-ht using (hash-value values) do
+	      (setf id (first values))
+	      (setf occurrence-date (third values))
+	      (setf ada-code (fourth values))
+	      (setf tooth (fifth values))
+	      (setf provider-id (eighth values))
+	      (setf provider-type (ninth values))
+	      (setf record-id (tenth values))
+	      
+	      (as (get-eaglesoft-oral-evaluation-axioms
+		   uri
+		   id 
+		   occurrence-date
+		   ada-code 
+		   tooth
+		   provider-id 
+		   provider-type 
+		   record-id)))
+
+	 )
       
-      
+
+	 ;; used for testing
+	 ;; (loop
+	 ;;    for k being the hash-keys in evals-ht using (hash-value val)
+	 ;;    for i from 1 to 10 
+	 ;;    do
+	 ;;    (when (> (length val) 1)
+	 ;;      (format t "~a ~a~%" k val)
+	 ;;      (loop for uri in val do
+	 ;; 	   (format t "	~a ~a ~%" uri (gethash uri eval-uri-ht)))))
+
       ;; return the ontology
       (values ont count))))
 
-(defun get-eaglesoft-oral-evaluation-axioms (patient-id occurrence-date ada-code action-code tooth-data provider-id provider-type record-id)
+(defun get-eaglesoft-oral-evaluation-axioms 
+    (oral-eval-uri patient-id occurrence-date ada-code tooth provider-id provider-type record-id)
   (let ((axioms nil)
 	(patient-role-uri nil)
 	(provider-role-uri nil)
@@ -166,12 +251,7 @@
 	(cdt-class-uri nil)
 	(cdt-uri nil)
 	(eval-type nil)
-	(oral-eval-name nil)
-	(oral-eval-uri nil)
-	(exam-uri nil)
-	(finding-uri nil)
-	(tooth-name nil)
-	(teeth-list nil))
+	(oral-eval-name nil))
     
     ;; get uri of patient and patient's role
     (setf patient-uri (get-eaglesoft-dental-patient-iri patient-id))
@@ -182,7 +262,6 @@
     
     ;; declare instance of oral evaluation with annotations and date of evaluation
     ;; note: the oral evaluation is part of the visit
-    (setf oral-eval-uri (get-eaglesoft-oral-evaluation-iri patient-id eval-type occurrence-date))
     (setf oral-eval-name (get-eaglesoft-oral-evaluation-name ada-code patient-id))
     (push-instance axioms oral-eval-uri eval-type)
     
@@ -229,17 +308,23 @@
     ;; oral evaluation realizes provider role
     (push `(object-property-assertion !'realizes'@ohd ,oral-eval-uri ,provider-role-uri) axioms)
         
-    ;; oral evaluation processual part of a dental exam
-    (push `(object-property-assertion !'is part of'@ohd ,oral-eval-uri ,exam-uri) axioms)
-    
     ;; cdt code instance is about the oral evaluation
     (push `(object-property-assertion !'is about'@ohd ,cdt-uri ,oral-eval-uri) axioms)
 	 
     ;;(pprint axioms)
-
+    
     ;; return axioms
     axioms))
 
+(defun get-oral-eval-object-one-of-axiom (uri-list finding)
+  (let ((axiom nil))
+    ;; set axiom to the class-assertion / object-one-of axiom
+    ;; I do it like this so that it might be more amenable to debugging ...
+    (setf axiom `(class-assertion 
+		  (object-some-values-from !'has_specified_output'@ohd  
+					   (object-one-of ,@uri-list)) ,finding))
+    ;; return object-one-of axioms
+    axiom))
 
 (defun get-eaglesoft-oral-evaluation-type (ada-code)
   "Returns the uri for they type/class of evaluation as determined by the ada code"
@@ -271,6 +356,7 @@
 				     :args `(,occurrence-date "oral evaluation" "eaglesoft")))
     ;; return uri
     uri))
+
   
 (defun get-eaglesoft-oral-evaluation-name (ada-code patient-id)
   "Returns the name the type of restoration based on ada code."
@@ -366,7 +452,6 @@ I do this in order to simplfy the readability of the table joins."
       ELSE date_entered
     END
 
-
   INTO 
     #oral_evals 
   FROM 
@@ -404,5 +489,3 @@ I do this in order to simplfy the readability of the table joins."
     c.patient_id, c.date_entered 
 
 ")
- 
- 
