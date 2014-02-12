@@ -253,6 +253,11 @@ If no leading '!' is present, the iri is simply returned as string."
          (format t "~a ~a ~%" k v)
 	 (incf count))))
 
+(defmacro setf+ (string1 &rest string2)
+  "A shortcut for str+:
+ (setf+ x (str+ x y z)) is the same as (setf+ x y z)"
+  `(setf ,string1 (str+ ,string1 ,@string2)))
+
 (defun str+ (&rest values)
   "A shortcut for concatenting a list of strings. Code found at:
 http://stackoverflow.com/questions/5457346/lisp-function-to-concatenate-a-list-of-strings
@@ -489,7 +494,7 @@ Usage:
     ;; NOTE: the action codes are not reliable for certain findings. For example, I found a number
     ;; of records in which an unerupted tooth (action code 18) was entered in the database using 
     ;; the action code for missing teeth (action code 1)
-
+    
     ;; make sure action-code is a string
     ;;(setf action-code (string-trim " " (format nil "~a" action-code)))
     
@@ -519,6 +524,8 @@ Usage:
       ((all-matches description "(?i)(caries+|Decay|Decalcification+|Dicalsification+)" 1)  ;; caries finding
        ;;(member action-code '("2" "3" "4") :test #'equalp)
        (setf finding-type-uri !'caries finding'@ohd))
+      ((equalp description "none")
+       (setf finding-type-uri !'no oral health issues reported'@ohd))
       (t
        (setf finding-type-uri !'dental finding'@ohd))) ;; dental finding
     
@@ -557,14 +564,15 @@ Usage:
       ((all-matches description "(?i)(caries+|Decay|Decalcification+|Dicalsification+)" 1)  ;; caries finding
        (setf label (str+ "caries finding on tooth " tooth " of patient " patient-id )))
       ((equalp description "none")
-       (setf label (str+ "no dental findings reported for patient " patient-id )))
+       (setf label (str+ "no oral health issues reported for patient " patient-id )))
       (t
        (setf label (str+ "dental finding on tooth " tooth " of patient " patient-id )))) ;; dental finding
     
     ;; return rdfs:label
     label))
 
-(defun get-eaglesoft-finding-iri (patient-id description &key tooth-name tooth-num instance-count finding-type)
+(defun get-eaglesoft-finding-iri (patient-id description 
+				  &key tooth-name tooth-num instance-count finding-type occurrence-date)
   "Determine the iri of an individual/instance of finding based on the finding's description."
   (let ((finding-uri nil))
     
@@ -578,7 +586,7 @@ Usage:
 				     :salt *eaglesoft-salt*
 				     :iri-base (get-eaglesoft-individual-finding-iri-base description)
 				     :class-type finding-type
-				     :args `(,tooth-name ,instance-count "eaglesoft")))
+				     :args `(,tooth-name ,instance-count ,occurrence-date "eaglesoft")))
     ;; return uri
     finding-uri))
       
