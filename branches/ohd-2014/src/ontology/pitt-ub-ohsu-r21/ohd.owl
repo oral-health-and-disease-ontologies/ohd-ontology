@@ -1258,16 +1258,21 @@ for now.</obo:IAO_0000116>
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000000">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dental restoration material</rdfs:label>
         <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000191"/>
-            </owl:Restriction>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000047"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000191"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
         <obo:IAO_0000115>A processed material that bears the dental restorative material role.</obo:IAO_0000115>
-        <obo:IAO_0000116>Bill Duncan 7/18/2014: updated definition</obo:IAO_0000116>
         <obo:IAO_0000117 xml:lang="en">PERSON: Alan Ruttenberg</obo:IAO_0000117>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000116>Bill Duncan 7/18/2014: updated definition</obo:IAO_0000116>
         <obo:IAO_0000118 xml:lang="en">any material  entity that bears the dental restorative material role</obo:IAO_0000118>
         <obo:IAO_0000118 xml:lang="en">restoration material</obo:IAO_0000118>
     </owl:Class>
@@ -1320,13 +1325,13 @@ Added &quot;A healthcare encounter in which ...&quot; to the beginning of the de
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A dental procedure that is performed on the pulp chamber and/or root canal of a tooth, or a part thereof.</obo:IAO_0000115>
@@ -1343,28 +1348,8 @@ Added &quot;A healthcare encounter in which ...&quot; to the beginning of the de
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000189"/>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                                <owl:someValuesFrom>
-                                    <owl:Class>
-                                        <owl:intersectionOf rdf:parseType="Collection">
-                                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_12516"/>
-                                            <owl:Restriction>
-                                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
-                                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000007"/>
-                                            </owl:Restriction>
-                                        </owl:intersectionOf>
-                                    </owl:Class>
-                                </owl:someValuesFrom>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000011"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1393,20 +1378,40 @@ Added &quot;A healthcare encounter in which ...&quot; to the beginning of the de
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000011"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000007"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000189"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:intersectionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_12516"/>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000007"/>
+                                            </owl:Restriction>
+                                        </owl:intersectionOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
                 <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000050"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000007"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A dental procedure in which a part of a tooth that has been lost due to disease, trauma or other causes is replaced by dental restoration material in order to reestablish the tooth&apos;s anatomical form and function.</obo:IAO_0000115>
@@ -1431,13 +1436,13 @@ QUESTION: Since veneers do not necessarily restore functionality, should we say 
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000041"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1452,10 +1457,16 @@ QUESTION: Since veneers do not necessarily restore functionality, should we say 
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000115>A coronal restoration procedure in which the dental restoration material is placed into some intracoronal preparation site.</obo:IAO_0000115>
-        <obo:IAO_0000117>PERSON: Alan Ruttenberg</obo:IAO_0000117>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000116>Titus Schleyer 1/14/2014: updated definition</obo:IAO_0000116>
+        <obo:IAO_0000117>PERSON: Alan Ruttenberg</obo:IAO_0000117>
         <obo:IAO_0000116>Bill Duncan 10/03/2014:
 Edited definition to say that the dental restoration mater is placed into an &quot;intracoronal preparation site&quot;.</obo:IAO_0000116>
     </owl:Class>
@@ -1467,6 +1478,12 @@ Edited definition to say that the dental restoration mater is placed into an &qu
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000007">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tooth to be restored role</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000444"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000004"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -1480,12 +1497,6 @@ Edited definition to say that the dental restoration mater is placed into an &qu
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000004"/>
-            </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
@@ -1538,6 +1549,12 @@ Edited definition to say that the dental restoration mater is placed into an &qu
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000010">
         <rdfs:label xml:lang="en">dental finding</rdfs:label>
         <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OGMS_0000014"/>
@@ -1547,12 +1564,6 @@ Edited definition to say that the dental restoration mater is placed into an &qu
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
-            </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000116>Titus Schleyer1/14/2014: made a minor modification to the definition. This particular definition brings up the issue of language. This one is written in a very &quot;ontology-compliant&quot; way (&quot;... specified output of ...&quot;). The question is to what degree this would be understandable to the layman.</obo:IAO_0000116>
         <obo:IAO_0000115 xml:lang="en">A clinical finding is a specified output of a dental exam and is about the oral cavity, maxillofacial area, and/or the adjacent and associated structures, or their parts, or pathological anatomical entities derived from them. The finding has a part that is about when the exam that led to the finding occured well as other data items specifying the nature of the finding.
@@ -1651,14 +1662,14 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000057"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000009"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000190"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000190"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000009"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2107,14 +2118,14 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000057"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000057"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
@@ -2178,12 +2189,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000101"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2200,6 +2205,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000101"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2248,12 +2259,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000103"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2270,6 +2275,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000103"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2388,6 +2399,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000107"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2406,12 +2423,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000107"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2421,6 +2432,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000067">
         <rdfs:label>missing tooth 8 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000108"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2439,12 +2456,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000108"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2493,6 +2504,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000110"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2511,12 +2528,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000110"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2526,12 +2537,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000070">
         <rdfs:label>missing tooth 11 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000111"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2552,6 +2557,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000111"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2561,12 +2572,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000071">
         <rdfs:label>missing tooth 12 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000112"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2587,6 +2592,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000112"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2596,12 +2607,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000072">
         <rdfs:label>missing tooth 13 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000113"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2622,6 +2627,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000113"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2631,6 +2642,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000073">
         <rdfs:label>missing tooth 15 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000115"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2649,12 +2666,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000115"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2703,12 +2714,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000117"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2727,6 +2732,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000117"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2736,6 +2747,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000076">
         <rdfs:label>missing tooth 18 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000118"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2756,12 +2773,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000118"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2771,12 +2782,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000077">
         <rdfs:label>missing tooth 19 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000119"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2797,6 +2802,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000119"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2806,6 +2817,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000078">
         <rdfs:label>missing tooth 20 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000120"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2824,12 +2841,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000120"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2913,6 +2924,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000123"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2931,12 +2948,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000123"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2946,12 +2957,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000082">
         <rdfs:label>missing tooth 24 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000124"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2970,6 +2975,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000124"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3228,6 +3239,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000132"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -3244,12 +3261,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000132"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3519,14 +3530,14 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000319"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
+                <owl:allValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000004"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
-                <owl:allValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000004"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000119>PERSON: Alan Ruttenberg</obo:IAO_0000119>
@@ -3546,14 +3557,14 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000019"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000019"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000052"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000052"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000019"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000116>This class was created in order to associate oral evaluations with dental findings that came about as the result of a dental exam. The data source I am working with has records that show multiple oral evalutions were performed on the same day. For example, the data source may have records that show a periodic oral evaluation, comprehensive oral evaluation, and comprehensive periodontal evaluation are performed on the same day. However, the finding(s) for these evaluations is/are stored in a separate table with only the patient id and date to associate the finding with the exam. There is no information to link the finding to a particular evaluation. 
@@ -3643,6 +3654,12 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000036"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000042"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
                 <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000053"/>
             </owl:Restriction>
@@ -3652,6 +3669,117 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A coronal restoration procedure in which the dental restoration material is placed into an extracoronal restoration site that surrounds or covers all or part of the exposed crown.</obo:IAO_0000115>
         <obo:IAO_0000119>Scheid, Rickne C.. Woelfel&apos;s Dental Anatomy: Its Relevance to Dentistry, 7th Edition. Lippincott Williams &amp; Wilkins. page 434. </obo:IAO_0000119>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.planning-ontology.org/OHD_0000001 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000001">
+        <rdfs:label>coronal site filling objective</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000011"/>
+        <obo:IAO_0000115>A tooth site filling objective to place dental restoration material in some coronal preparation site.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.planning-ontology.org/OHD_0000002 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000002">
+        <rdfs:label>tooth site filling process</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000015"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000037"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000011"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000015"/>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A site filling process that achieves some tooth filling site objective.</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.planning-ontology.org/OHD_0000003 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000003">
+        <rdfs:label>coronal site filling process</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000002"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000001"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000002"/>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A tooth filling site process that achieves some coronal site filling objective.</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.planning-ontology.org/OHD_0000004 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000004">
+        <rdfs:label>intracoronal site filling process</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000003"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000052"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000003"/>
+        <obo:IAO_0000115>A coronal site filling process that achieves some intracoronal site filling objective.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.planning-ontology.org/OHD_0000005 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000005">
+        <rdfs:label>extracoronal site filling process</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000005"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000055"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000003"/>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A coronal site filling process that achieves some extracoronal site filling objective.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3718,10 +3846,10 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
     <!-- http://purl.planning-ontology.org/OHD_0000008 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000008">
-        <rdfs:label>direct addition of dental restoration material objective</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000011"/>
+        <rdfs:label>direct site filling objective</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000010"/>
+        <obo:IAO_0000117>A site filling objective to place a liquified or moldable material directly into or on a site. The material then hardens and becomes (essentially) part of the entity that hosts the site.</obo:IAO_0000117>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000117>An add material to tooth site objective to place a moldable dental restoration material directly into or on a tooth. The material then hardens and becomes (essentially) part of the tooth.</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3729,9 +3857,9 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
     <!-- http://purl.planning-ontology.org/OHD_0000009 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000009">
-        <rdfs:label>indirect addition of dental restoration material objective</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000011"/>
-        <obo:IAO_0000115>A add material to tooth site objective to place a prefabricated (i.e., fabricated outside the mouth) piece of rigid dental restoration material on or in a tooth by using some form of cement or glue.</obo:IAO_0000115>
+        <rdfs:label>indirect site filling objective</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000010"/>
+        <obo:IAO_0000115>A site filling objective to place a prefabricated piece of rigid material on or in a site by using some form of cement or glue.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -3740,11 +3868,14 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
     <!-- http://purl.planning-ontology.org/OHD_0000010 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000010">
-        <rdfs:label>add material to site objective</rdfs:label>
+        <rdfs:label>site filling objective</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000434"/>
-        <obo:IAO_0000116>This class may not be necessary. It may be the case that all additions of material go into some site.</obo:IAO_0000116>
         <obo:IAO_0000115>An add material objective to add some material to a site that is hosted by the target material.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000116>Bill Duncan 10/8/2014:
+The purpose of the class is to provide at least one clear case when a material is &quot;added&quot; to another another. The examples I have in mind are filling in a hole or filling in a tooth cavity. This adds material into a site (e.g., hole, cavity) hosted by the entity, which in turn adds material the to entity as whole. 
+
+An unclear case (for me) is when you add sugar to coffee. The sugar material is added (in some sense) to the coffee, but is it added into a site hosted within the coffee? Depends on how you understand what a site is. If you you answer &quot;yes&quot; to the sugar / coffee scenario, then it may be the case that all additions of material go into some site. And this class is not needed.</obo:IAO_0000116>
     </owl:Class>
     
 
@@ -3752,10 +3883,10 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
     <!-- http://purl.planning-ontology.org/OHD_0000011 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000011">
-        <rdfs:label>add material to tooth site objective</rdfs:label>
+        <rdfs:label>tooth site filling objective</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000010"/>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>An add material to site objective to restore a tooth by placing dental restoraton material in some tooth preparation site.</obo:IAO_0000115>
+        <obo:IAO_0000115>A site filling objective to place dental restoraton material in some tooth preparation site.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3802,7 +3933,19 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000025"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
                 <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000055"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000013"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A extracoronal restoration procedure in which the dental restoration material is placed into a cusp preparation site so that the material either replaces the cusp or overlays the cusp.</obo:IAO_0000115>
@@ -3814,7 +3957,7 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
     <!-- http://purl.planning-ontology.org/OHD_0000015 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000015">
-        <rdfs:label>material addition to site process</rdfs:label>
+        <rdfs:label>site filling process</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -3826,6 +3969,8 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
+        <obo:IAO_0000115>A material combination process that achieves some filling site objective.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3834,19 +3979,15 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000016">
         <rdfs:label>inlay restoration procedure</rdfs:label>
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000006"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000047"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000036"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000006"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000020"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>An intracoronal restoration procedure in which the dental restoration material is placed into some inlay preparation site.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3866,18 +4007,124 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000018">
         <rdfs:label>onlay restoration procedure</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/mspd/demographic/OHD_0000001"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000014"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>An extracoronal restoration procedure in which the dental restoration material is placed in some onlay preparation site.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.planning-ontology.org/OHD_0000019 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000019">
+        <rdfs:label>inlay preparation site</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000038"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000295"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000020"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A intracoronal preparation site that permits the placement of an inlay.</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.planning-ontology.org/OHD_0000020 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000020">
+        <rdfs:label>inlay preparation procedure</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000041"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000019"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>An intracoronal preparation procedure that forms a site for the placement of an inlay.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.planning-ontology.org/OHD_0000021 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000021">
+        <rdfs:label>inlay site filling objective</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000052"/>
+        <obo:IAO_0000115>An intracoronal site objective to place dental restoration material in some inlay preparation site.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.planning-ontology.org/OHD_0000022 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000022">
+        <rdfs:label>inlay site filling process</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000014"/>
+                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000004"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000047"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000052"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000036"/>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000004"/>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A intracoronal site filling process that achieves some inlay site filling objective.</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.planning-ontology.org/OHD_0000023 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000023">
+        <rdfs:label>cusp site filling process</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000003"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000053"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000005"/>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>An extracoronal site filling process that achieves some cusp site filling objective.</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.planning-ontology.org/OHD_0000024 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000024">
+        <rdfs:label>complete crown restoration procedure</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/mspd/demographic/OHD_0000001"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.planning-ontology.org/OHD_0000025 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000025">
+        <rdfs:label>cusp restoration objective</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000017"/>
+        <obo:IAO_0000115>A coronal restoration objective to restore the cusp of tooth&apos;s functional, structural, or aethetic properties.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3889,14 +4136,14 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000004"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000017"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000044"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000017"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A tooth restoration procedure that restores the anatomical crown of the tooth.</obo:IAO_0000115>
@@ -3984,14 +4231,14 @@ Dentistry, 5th Edition. C.V. Mosby, 2006.</obo:IAO_0000116>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
-                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000037"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000037"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
@@ -4061,14 +4308,14 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000040"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
-                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000043"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_55623"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_55623"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000043"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A tooth preparation procedure that forms a site within, on, or around the crown of the tooth.</obo:IAO_0000115>
@@ -4077,43 +4324,14 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     
 
 
-    <!-- http://purl.planning-ontology.org/OHD_0000045 -->
+    <!-- http://purl.planning-ontology.org/OHD_0000046 -->
 
-    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000045">
-        <rdfs:label>dental restoration material addition process</rdfs:label>
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000046">
+        <rdfs:label>direct filling site process</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000015"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000037"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000010"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <obo:IAO_0000115>A material combintation (process) to achieve some dental restoration material combination objective.</obo:IAO_0000115>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.planning-ontology.org/OHD_0000046 -->
-
-    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000046">
-        <rdfs:label>direct dental restoration material addition process</rdfs:label>
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000045"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
                         <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000008"/>
@@ -4121,8 +4339,8 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000045"/>
-        <obo:IAO_0000115>A dental restoration material combinaton process to achieve some direct dental restoration material combination objective.</obo:IAO_0000115>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000015"/>
+        <obo:IAO_0000115>A site filling process to achieve some direct site filling objective.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -4131,11 +4349,11 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     <!-- http://purl.planning-ontology.org/OHD_0000047 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000047">
-        <rdfs:label>indirect dental restoration material addition process</rdfs:label>
+        <rdfs:label>indirect filling site process</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000045"/>
+                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000015"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
                         <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000009"/>
@@ -4143,7 +4361,8 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <obo:IAO_0000115>A dental restoration addition process in which a rigid restoration material is fabricated outside the mouth. The restoration material is then attached to a tooth using some form of cement or glue.</obo:IAO_0000115>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000015"/>
+        <obo:IAO_0000115>A site filling process to achieve some indirect site filling objective.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -4173,23 +4392,12 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     
 
 
-    <!-- http://purl.planning-ontology.org/OHD_0000051 -->
-
-    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000051">
-        <rdfs:label>add material to coronal site objective</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000011"/>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>An add material to tooth site objective to restore the anatomical crown of a tooth by placing dental restoraton material in some coronal preparation site.</obo:IAO_0000115>
-    </owl:Class>
-    
-
-
     <!-- http://purl.planning-ontology.org/OHD_0000052 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000052">
-        <rdfs:label>add material to intracoronal site objective</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000051"/>
-        <obo:IAO_0000115>A add material to coronal site objective to restore a tooth by placing dental restoration material into some intracoronal preparation site.</obo:IAO_0000115>
+        <rdfs:label>intracoronal site filling objective</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000001"/>
+        <obo:IAO_0000115>A coronal site objective to place dental restoration material in some intracoronal preparation site.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -4198,10 +4406,10 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     <!-- http://purl.planning-ontology.org/OHD_0000053 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000053">
-        <rdfs:label>add material to extracoronal site objective</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000051"/>
-        <obo:IAO_0000115>An add material to coronal site objective objective to restore a tooth by placing dental restoration material into an extracoronal perparation site.</obo:IAO_0000115>
+        <rdfs:label>extracoronal site filling objective</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000001"/>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A coronal site filling objective to place dental restoration material in an extracoronal perparation site.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -4209,10 +4417,10 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     <!-- http://purl.planning-ontology.org/OHD_0000055 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000055">
-        <rdfs:label>add material to cusp site objective</rdfs:label>
+        <rdfs:label>cusp site filling objective</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000053"/>
+        <obo:IAO_0000115>An extracoronal site filling objective to place dental restoration material in a cusp preparation site.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>An add material to extracoronal site objective to restore or protect the cusp of a tooth by placing dental restoration material into a cusp preparation site.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -4220,9 +4428,11 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     <!-- http://purl.planning-ontology.org/OHD_0000057 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000057">
-        <rdfs:label>complete addition of material to extracoronal site objective</rdfs:label>
+        <rdfs:label>complete extracoronal site filling objective</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000053"/>
         <obo:IAO_0000118>full addition of material to extracoronal site objective</obo:IAO_0000118>
+        <obo:IAO_0000115>An extracoronal site filling objective to place dental restoration material in an extracoronal perparation site that covers most or all of the exposed crown of the tooth.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -4230,8 +4440,10 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     <!-- http://purl.planning-ontology.org/OHD_0000058 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000058">
-        <rdfs:label>3/4 addition of material to extracoronal site objective</rdfs:label>
+        <rdfs:label>3/4 extracoronal site filling objective</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000053"/>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>An extracoronal site filling objective to place dental restoration material in an extracoronal perparation site that covers 3/4 of the exposed crown of the tooth.</obo:IAO_0000115>
     </owl:Class>
     
 
