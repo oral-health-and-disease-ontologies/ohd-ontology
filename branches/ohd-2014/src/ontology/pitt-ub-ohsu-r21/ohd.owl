@@ -1343,12 +1343,6 @@ Added &quot;A healthcare encounter in which ...&quot; to the beginning of the de
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000434"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -1393,8 +1387,26 @@ Added &quot;A healthcare encounter in which ...&quot; to the beginning of the de
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000040"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000011"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000007"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000050"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A dental procedure in which a part of a tooth that has been lost due to disease, trauma or other causes is replaced by dental restoration material in order to reestablish the tooth&apos;s anatomical form and function.</obo:IAO_0000115>
@@ -1414,7 +1426,7 @@ QUESTION: Since veneers do not necessarily restore functionality, should we say 
     <!-- http://purl.obolibrary.org/obo/OHD_0000006 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000006">
-        <rdfs:label xml:lang="en">intracoronal tooth restoration procedure</rdfs:label>
+        <rdfs:label xml:lang="en">intracoronal restoration procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000036"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1910,9 +1922,19 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <!-- http://purl.obolibrary.org/obo/OHD_0000037 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000037">
-        <rdfs:label xml:lang="en">direct restoration</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000004"/>
-        <obo:IAO_0000115>A tooth restoration procedure in which a moldable restorative material is placed directly into or on the tooth. The material then hardens and becomes (essentially) part of the tooth. (Compare with indirect restoration)</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">direct coronal restoration</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000036"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000046"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000115>A coronal restoration procedure in which a moldable restorative material is placed directly into or on the tooth. The material then hardens and becomes (essentially) part of the tooth. (Compare with indirect restoration)</obo:IAO_0000115>
         <obo:IAO_0000116>Titus Schleyer 1/1/2014: made definition clearer</obo:IAO_0000116>
         <obo:IAO_0000116>Bill Duncan 7/21/2014: updated definition</obo:IAO_0000116>
     </owl:Class>
@@ -1922,10 +1944,20 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <!-- http://purl.obolibrary.org/obo/OHD_0000038 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000038">
-        <rdfs:label xml:lang="en">indirect restoration</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000004"/>
-        <obo:IAO_0000115>A tooth restoration procedure in which a rigid restoration, such as a gold inlay, is attached to a tooth. The restoration is attached to the tooth by some form of cement or glue. (Compare with direct restoration)</obo:IAO_0000115>
+        <rdfs:label xml:lang="en">indirect coronal restoration</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000036"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000047"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <obo:IAO_0000116>Titus Schleyer 1/14/2014: made the definition consistent with that of direct restoration</obo:IAO_0000116>
+        <obo:IAO_0000115>A coronal restoration procedure in which a rigid restoration, such as a gold inlay, is attached to a tooth. The restoration is attached to the tooth by some form of cement or glue. (Compare with direct restoration)</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3607,27 +3639,19 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
     <!-- http://purl.obolibrary.org/obo/mspd/demographic/OHD_0000001 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/mspd/demographic/OHD_0000001">
-        <rdfs:label>extracoronal tooth restoration procedure</rdfs:label>
+        <rdfs:label>extracoronal restoration procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000036"/>
-        <obo:IAO_0000115>A coronal restoration procedure in which the dental restoration material is placed into an extracoronal restoration site surrounds or covers all or part of the exposed crown.</obo:IAO_0000115>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000053"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000116>Bill Duncan 10/03/2014:
 Edited the definition to say &quot;into an extracoronal restoration site surrounds or covers all or part of the exposed crown.&quot;</obo:IAO_0000116>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A coronal restoration procedure in which the dental restoration material is placed into an extracoronal restoration site that surrounds or covers all or part of the exposed crown.</obo:IAO_0000115>
         <obo:IAO_0000119>Scheid, Rickne C.. Woelfel&apos;s Dental Anatomy: Its Relevance to Dentistry, 7th Edition. Lippincott Williams &amp; Wilkins. page 434. </obo:IAO_0000119>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/mspd/demographic/OHD_0000002 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/mspd/demographic/OHD_0000002">
-        <rdfs:label>filling restoration procedure</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000006"/>
-        <obo:IAO_0000119>Gladwin, Marcia A.. Clinical Aspects of Dental Materials: Theory, Practice, and Cases, 3rd Edition. Lippincott Williams &amp; Wilkins. page 8.</obo:IAO_0000119>
-        <obo:IAO_0000116>Bill Duncan 7/22/2014: Filling restorations are often simply refered to as &apos;restorations&apos; in the literature. I use the term &apos;filling&apos; to differentiate these restorations from inlays.</obo:IAO_0000116>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>An intracoronal tooth restoration procedure in which the dental restoration material is held to the tooth by undercuts (mechanical locks), adhesion, or both. Filling restorations may be either direct or inderect.
-</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3696,8 +3720,8 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000008">
         <rdfs:label>direct addition of dental restoration material objective</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000011"/>
-        <obo:IAO_0000117>A dental restoration material combinaton objective to place a moldable restorative material directly into or on a tooth. The material then hardens and becomes (essentially) part of the tooth.</obo:IAO_0000117>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000117>An add material to tooth site objective to place a moldable dental restoration material directly into or on a tooth. The material then hardens and becomes (essentially) part of the tooth.</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3707,8 +3731,8 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000009">
         <rdfs:label>indirect addition of dental restoration material objective</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000011"/>
+        <obo:IAO_0000115>A add material to tooth site objective to place a prefabricated (i.e., fabricated outside the mouth) piece of rigid dental restoration material on or in a tooth by using some form of cement or glue.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>A dental restoration combination objective to place a prefabricated (i.e., fabricated outside the mouth) piece of rigid dental restoration material on or in a tooth by using some form of cement or glue.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3718,6 +3742,9 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000010">
         <rdfs:label>add material to site objective</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000434"/>
+        <obo:IAO_0000116>This class may not be necessary. It may be the case that all additions of material go into some site.</obo:IAO_0000116>
+        <obo:IAO_0000115>An add material objective to add some material to a site that is hosted by the target material.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3727,6 +3754,8 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000011">
         <rdfs:label>add material to tooth site objective</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000010"/>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>An add material to site objective to restore a tooth by placing dental restoraton material in some tooth preparation site.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3736,6 +3765,14 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000012">
         <rdfs:label>cusp preparation site</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000039"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000295"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000013"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A extracoronal preparation site that permits the placement of dental restoraton material so that it overlays or replaces a cusp.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3745,6 +3782,14 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000013">
         <rdfs:label>cusp preparation procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000042"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000012"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A extracoronal preparation procedure that forms a site in, on, or around the cusp of the tooth. The site may also be where the cusp of a tooth once was or should be.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3754,6 +3799,85 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000014">
         <rdfs:label>cusp restoration procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/mspd/demographic/OHD_0000001"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000055"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A extracoronal restoration procedure in which the dental restoration material is placed into a cusp preparation site so that the material either replaces the cusp or overlays the cusp.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.planning-ontology.org/OHD_0000015 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000015">
+        <rdfs:label>material addition to site process</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000652"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000010"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.planning-ontology.org/OHD_0000016 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000016">
+        <rdfs:label>inlay restoration procedure</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000006"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000047"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000036"/>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.planning-ontology.org/OHD_0000017 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000017">
+        <rdfs:label>coronal restoration objective</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000050"/>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A tooth restoration objective to restore the anatomical crown of tooth&apos;s functional, structural, or aethetic properties.</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.planning-ontology.org/OHD_0000018 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000018">
+        <rdfs:label>onlay restoration procedure</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000014"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000047"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000036"/>
     </owl:Class>
     
 
@@ -3763,6 +3887,18 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000036">
         <rdfs:label>coronal restoraton procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000004"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000017"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000051"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000115>A tooth restoration procedure that restores the anatomical crown of the tooth.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
@@ -3944,8 +4080,26 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     <!-- http://purl.planning-ontology.org/OHD_0000045 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000045">
-        <rdfs:label>dental restoration material combination process</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000652"/>
+        <rdfs:label>dental restoration material addition process</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000015"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000037"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000010"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <obo:IAO_0000115>A material combintation (process) to achieve some dental restoration material combination objective.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
@@ -3955,12 +4109,17 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     <!-- http://purl.planning-ontology.org/OHD_0000046 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000046">
-        <rdfs:label>direct dental restoration material combination process</rdfs:label>
+        <rdfs:label>direct dental restoration material addition process</rdfs:label>
         <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000008"/>
-            </owl:Restriction>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000045"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000008"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000045"/>
         <obo:IAO_0000115>A dental restoration material combinaton process to achieve some direct dental restoration material combination objective.</obo:IAO_0000115>
@@ -3972,15 +4131,19 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     <!-- http://purl.planning-ontology.org/OHD_0000047 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000047">
-        <rdfs:label>indirect dental restoration material combination process</rdfs:label>
+        <rdfs:label>indirect dental restoration material addition process</rdfs:label>
         <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000009"/>
-            </owl:Restriction>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000045"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000009"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000045"/>
-        <obo:IAO_0000115>A dental restoration combination process in which a rigid restoration material is fabricated outside the mouth. The restoration material is then attached to a tooth using some form of cement or glue.</obo:IAO_0000115>
+        <obo:IAO_0000115>A dental restoration addition process in which a rigid restoration material is fabricated outside the mouth. The restoration material is then attached to a tooth using some form of cement or glue.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -4013,10 +4176,10 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     <!-- http://purl.planning-ontology.org/OHD_0000051 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000051">
-        <rdfs:label>add material to crown site objective</rdfs:label>
+        <rdfs:label>add material to coronal site objective</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000011"/>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>A tooth restoration objective to restore the anatomical crown of a tooth.</obo:IAO_0000115>
+        <obo:IAO_0000115>An add material to tooth site objective to restore the anatomical crown of a tooth by placing dental restoraton material in some coronal preparation site.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -4026,7 +4189,8 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000052">
         <rdfs:label>add material to intracoronal site objective</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000051"/>
-        <obo:IAO_0000115>A coronal restoration objective to restore a tooth by placing dental restoration material into some intracoronal preparation site.</obo:IAO_0000115>
+        <obo:IAO_0000115>A add material to coronal site objective to restore a tooth by placing dental restoration material into some intracoronal preparation site.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -4036,8 +4200,8 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000053">
         <rdfs:label>add material to extracoronal site objective</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000051"/>
+        <obo:IAO_0000115>An add material to coronal site objective objective to restore a tooth by placing dental restoration material into an extracoronal perparation site.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>A coronal restoration objective to restore a tooth by placing dental restoration material into an extracoronal restoration site.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -4045,8 +4209,10 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     <!-- http://purl.planning-ontology.org/OHD_0000055 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000055">
-        <rdfs:label>onlay restoration objective</rdfs:label>
+        <rdfs:label>add material to cusp site objective</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000053"/>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>An add material to extracoronal site objective to restore or protect the cusp of a tooth by placing dental restoration material into a cusp preparation site.</obo:IAO_0000115>
     </owl:Class>
     
 
