@@ -352,7 +352,7 @@ There is a problem with occurrence date.  The date on which an event occurred an
                         <owl:someValuesFrom>
                             <owl:Class>
                                 <owl:intersectionOf rdf:parseType="Collection">
-                                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000038"/>
+                                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000061"/>
                                     <owl:Restriction>
                                         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
                                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000001"/>
@@ -1288,9 +1288,9 @@ for now.</obo:IAO_0000116>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
         <obo:IAO_0000115>A processed material that bears the dental restorative material role.</obo:IAO_0000115>
-        <obo:IAO_0000116>Bill Duncan 7/18/2014: updated definition</obo:IAO_0000116>
         <obo:IAO_0000117 xml:lang="en">PERSON: Alan Ruttenberg</obo:IAO_0000117>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000116>Bill Duncan 7/18/2014: updated definition</obo:IAO_0000116>
         <obo:IAO_0000118 xml:lang="en">any material  entity that bears the dental restorative material role</obo:IAO_0000118>
         <obo:IAO_0000118 xml:lang="en">restoration material</obo:IAO_0000118>
     </owl:Class>
@@ -1383,6 +1383,10 @@ Added &quot;A healthcare encounter in which ...&quot; to the beginning of the de
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000015"/>
+                    </owl:Restriction>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                         <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000040"/>
@@ -1491,6 +1495,7 @@ Edited definition to say that the dental restoration mater is placed into an &qu
                 </owl:intersectionOf>
             </owl:Class>
         </rdfs:subClassOf>
+        <obo:IAO_0000117>A role that inheres in a tooth and is realized when a tooth undergoes a restorative procedure.</obo:IAO_0000117>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -1503,16 +1508,17 @@ Edited definition to say that the dental restoration mater is placed into an &qu
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000007"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000006"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A role that inheres in a tooth and is realized when a tooth undergoes an intrcoronal restoration procedure.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -1542,12 +1548,6 @@ Edited definition to say that the dental restoration mater is placed into an &qu
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000010">
         <rdfs:label xml:lang="en">dental finding</rdfs:label>
         <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OGMS_0000014"/>
@@ -1557,6 +1557,12 @@ Edited definition to say that the dental restoration mater is placed into an &qu
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+            </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000116>Titus Schleyer1/14/2014: made a minor modification to the definition. This particular definition brings up the issue of language. This one is written in a very &quot;ontology-compliant&quot; way (&quot;... specified output of ...&quot;). The question is to what degree this would be understandable to the layman.</obo:IAO_0000116>
         <obo:IAO_0000115 xml:lang="en">A clinical finding is a specified output of a dental exam and is about the oral cavity, maxillofacial area, and/or the adjacent and associated structures, or their parts, or pathological anatomical entities derived from them. The finding has a part that is about when the exam that led to the finding occured well as other data items specifying the nature of the finding.
@@ -1592,6 +1598,8 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
+        <obo:IAO_0000115>A person that bears some dental patient role.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -1614,7 +1622,9 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000016">
         <rdfs:label>dental hygienist role</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000052"/>
+        <obo:IAO_0000119>Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 325.</obo:IAO_0000119>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000119>A role that inheres in a person who is a licensed dental professional that specializes in preventative care. Professional prophylaxis, radiographs, sealants, and nonsurgical periodontal therapy are among the procedures performed by a hygienist. Most are licensed to administer local anesthesia, depending on applicable regulations in their area. They usually work for a dentist in a dental office or clinic under a form of supervision. In some locations hygienists are allowed to practice without a dentist&apos;s supervision. </obo:IAO_0000119>
     </owl:Class>
     
 
@@ -1624,7 +1634,11 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000017">
         <rdfs:label>dentist role</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000052"/>
+        <obo:IAO_0000119>Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 173.</obo:IAO_0000119>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A role that inheres in a person who is qualified by training and licensed by a state or region to diagnose and treat abnormalities of the teeth, gums, and underlying bone, including conditions caused by disease, trauma, and heredity.
+
+</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -1644,6 +1658,8 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A person that bears some dentist role.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -1653,6 +1669,12 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000019">
         <rdfs:label xml:lang="en">dental exam</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000057"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000010"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
@@ -1669,12 +1691,6 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000052"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000010"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000116>Bill Duncan 7/17/2014:
@@ -1705,6 +1721,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A person that bears some dental hygienist role.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -1718,16 +1736,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
 </rdfs:comment>
         <obo:IAO_0000115 xml:lang="en">A disorder that affects a tooth that includes both the infectious organisms, the material they generate from the tooth, any immune effectors that are a response to the presence of the disorder and the physical changes to the tooth (i.e., demineralization or a cavity) resulting from the disorder. It is the physical basis for the disease &quot;dental caries.&quot;</obo:IAO_0000115>
         <obo:IAO_0000116>Titus Schleyer 1/14/2014: updated definition</obo:IAO_0000116>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000023 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000023">
-        <rdfs:label>dental practice employee status role</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000166"/>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -1769,15 +1777,15 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000010"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/FMA_75152"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/FMA_75152"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000116>Bill Duncan 5/14/2012: We have added the necessary condtion that a missing tooth finding is about &apos;exactly 1 Secondary Dentition&apos;.  </obo:IAO_0000116>
@@ -1846,6 +1854,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;14&quot; is missing.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -1865,6 +1875,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:intersectionOf>
             </owl:Class>
         </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000117>A tooth that has a fracture.</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -1884,6 +1896,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
+        <rdfs:comment>A dental finding that a tooth is fractured.</rdfs:comment>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -1893,6 +1907,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000032">
         <rdfs:label xml:lang="en">soft tissue exam</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000019"/>
+        <obo:IAO_0000115>A dental exam which includes an examination of the soft tissues in the mouth, such as the tongue, lips, cheeks, palates, gingiva, and the floor of the mouth.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -1936,7 +1952,7 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <!-- http://purl.obolibrary.org/obo/OHD_0000037 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000037">
-        <rdfs:label xml:lang="en">direct coronal restoration</rdfs:label>
+        <rdfs:label xml:lang="en">direct coronal restoration procedure</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -1958,7 +1974,7 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <!-- http://purl.obolibrary.org/obo/OHD_0000038 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000038">
-        <rdfs:label xml:lang="en">indirect coronal restoration</rdfs:label>
+        <rdfs:label xml:lang="en">indirect coronal restoration procedure</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -2011,6 +2027,7 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000027"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000115>A role that inheres in a tooth and is realized when a tooth undergoes a veneer restoration procedure.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -2036,15 +2053,16 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CARO_0000028"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000012"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000190"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OMRSE_00000009"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
+        <obo:IAO_0000115>A human dental patient that bears a female gender role.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2064,6 +2082,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
+        <obo:IAO_0000115>A person that bears some dental health care provider role.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2072,7 +2092,22 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000052">
         <rdfs:label xml:lang="en">dental healthcare provider role</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000023"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000119>A role that inheres in a person who is licensed to provide dental health care.</obo:IAO_0000119>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -2085,15 +2120,16 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CARO_0000027"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000012"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000190"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OMRSE_00000008"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A human dental patient that bears some male gender role.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -2110,6 +2146,7 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000117>A role that inheres in a tooth and is realized when a tooth undergoes a extracoronal restoration procedure.</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2132,6 +2169,7 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000117>A role that inheres in a tooth and is realized when a tooth is extracted.</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2144,13 +2182,13 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Titus Schleyer 1/14/2014: I think the instrumentation (&quot; ...  by means of elevators and/or forceps&quot;)  is not relevant to this definition.  I have extracted certain teeth with two fingers.</rdfs:comment>
@@ -2170,17 +2208,18 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000003"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000117>A role that inheres in a tooth and is realized when a tooth undergoes an endodontic procedure.</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2190,12 +2229,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000059">
         <rdfs:label>missing tooth 1 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000101"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2216,6 +2249,14 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000101"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;1&quot; is missing.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -2225,12 +2266,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000060">
         <rdfs:label>missing tooth 2 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000102"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2251,6 +2286,14 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000102"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;2&quot; is missing.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2260,12 +2303,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000061">
         <rdfs:label>missing tooth 3 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000103"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2286,6 +2323,14 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000103"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;3&quot; is missing.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2295,6 +2340,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000062">
         <rdfs:label>missing tooth 4 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000104"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2315,12 +2366,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000104"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;4&quot; is missing.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2356,6 +2403,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;5&quot; is missing.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2365,6 +2414,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000064">
         <rdfs:label>missing tooth 6 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000106"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2385,12 +2440,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000106"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;6&quot; is missing.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2400,6 +2451,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000066">
         <rdfs:label>missing tooth 7 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000107"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2420,12 +2477,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000107"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;7&quot; is missing.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -2461,6 +2514,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;8&quot; is missing.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -2496,6 +2551,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000109"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;9&quot; is missing.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2531,6 +2588,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000110"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;10&quot; is missing.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -2540,6 +2599,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000070">
         <rdfs:label>missing tooth 11 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000111"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2560,12 +2625,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000111"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;11&quot; is missing.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2601,6 +2662,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000112"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;12&quot; is missing.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -2610,12 +2673,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000072">
         <rdfs:label>missing tooth 13 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000113"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2636,6 +2693,14 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000113"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;13&quot; is missing.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2671,6 +2736,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000115"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;15&quot; is missing.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2706,6 +2773,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;16&quot; is missing.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -2741,6 +2810,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;17&quot; is missing.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -2776,6 +2847,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000118"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;18&quot; is missing.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -2785,6 +2858,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000077">
         <rdfs:label>missing tooth 19 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000119"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2805,12 +2884,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000119"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;19&quot; is missing.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2846,6 +2921,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000120"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;20&quot; is missing.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -2881,6 +2958,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000121"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;21&quot; is missing.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2916,6 +2995,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000122"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;22&quot; is missing.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -2925,6 +3006,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000081">
         <rdfs:label>missing tooth 23 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000123"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2945,12 +3032,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000123"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;23&quot; is missing.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2986,6 +3069,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000124"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;24&quot; is missing.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -2995,6 +3080,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000083">
         <rdfs:label>missing tooth 25 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000125"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -3015,12 +3106,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000125"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;25&quot; is missing.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3056,6 +3143,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;26&quot; is missing.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3091,6 +3180,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;27&quot; is missing.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3100,6 +3191,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000086">
         <rdfs:label>missing tooth 28 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000128"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -3120,12 +3217,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000128"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;28&quot; is missing.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3161,6 +3254,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000129"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;29&quot; is missing.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3170,12 +3265,6 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000088">
         <rdfs:label>missing tooth 30 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000130"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -3196,6 +3285,14 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000130"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;30&quot; is missing.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3231,6 +3328,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;31&quot; is missing.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3240,6 +3339,12 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000090">
         <rdfs:label>missing tooth 32 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000132"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -3260,12 +3365,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000132"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A dental finding that the tooth identified by the universal tooth number &quot;32&quot; is missing.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3281,6 +3382,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000117>A dental finding that some tooth is present in the mouth.</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3289,7 +3392,8 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000098">
         <rdfs:label>tooth to undergo inlay procedure role</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000007"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000008"/>
+        <obo:IAO_0000115>A tooth to be filled role that inheres in a tooth and is realized when a tooth undergoes an inlay restoration procedure.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -3301,6 +3405,7 @@ The evaluation may be conversational, visual, or tactile in nature.</obo:IAO_000
         <rdfs:label>tooth to undergo onlay procedure role</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000007"/>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A role that inheres in a tooth and is realized when a tooth undergoes an onlay restoration procedure.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3366,92 +3471,15 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
     
 
 
-    <!-- http://purl.obolibrary.org/obo/OHD_0000159 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000159">
-        <rdfs:label>dental practice permanent employee status role</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000023"/>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000160 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000160">
-        <rdfs:label>dental practice temporary employee status role</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000023"/>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000161 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000161">
-        <rdfs:label>dental practice manager role</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000166"/>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000162 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000162">
-        <rdfs:label>dental practice administrative manager role</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000161"/>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000163 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000163">
-        <rdfs:label>dental practice facility manager role</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000161"/>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000164 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000164">
-        <rdfs:label>dental practice office manager role</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000161"/>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-    </owl:Class>
-    
-
-
     <!-- http://purl.obolibrary.org/obo/OHD_0000165 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000165">
         <rdfs:label>dental assistant role</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000052"/>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000166 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000166">
-        <rdfs:label>dental practice employee role</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000167 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000167">
-        <rdfs:label>dental practice office staff role</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000166"/>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A role that inheres in a person who is a an auxiliary to the dental operator. 
+</obo:IAO_0000115>
+        <obo:IAO_0000119>Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 55.</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -3533,14 +3561,14 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000319"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
-                <owl:allValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000004"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
+                <owl:allValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000004"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000119>PERSON: Alan Ruttenberg</obo:IAO_0000119>
@@ -3792,30 +3820,19 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
     <!-- http://purl.planning-ontology.org/OHD_0000006 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000006">
-        <rdfs:label>restored crown of tooth</rdfs:label>
+        <rdfs:label>3/4 crown restoration procedure</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
-                            </owl:Restriction>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OHD_0000091"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_55623"/>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/mspd/demographic/OHD_0000001"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000189"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000056"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
+        <obo:IAO_0000115>An extracoronal restoration procedure that replaces all (or almost all) of the of 3 of the 4 surfaces on an anterior tooth with dental restoration material. The dental restoration material extends to (or almost to) the gum line.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3823,27 +3840,20 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
     <!-- http://purl.planning-ontology.org/OHD_0000007 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000007">
-        <rdfs:label>intracoronally restored crown of tooth</rdfs:label>
+        <rdfs:label>dental assisant</rdfs:label>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000006"/>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
-                            </owl:Restriction>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000082"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_55623"/>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000051"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000165"/>
+                    </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
+        <obo:IAO_0000115>A person that bears some dental assistant role.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3853,7 +3863,7 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000008">
         <rdfs:label>direct site filling objective specification</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000010"/>
-        <obo:IAO_0000117>A site filling objective to place a liquified or moldable material directly into or on a site. The material then hardens and becomes (essentially) part of the entity that hosts the site.</obo:IAO_0000117>
+        <obo:IAO_0000117>A site filling objective specification that is attained by placing a liquified or moldable material directly into or on a site. The material then hardens and becomes (essentially) part of the entity that hosts the site.</obo:IAO_0000117>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -3864,7 +3874,7 @@ Edited the definition to say &quot;into an extracoronal restoration site surroun
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000009">
         <rdfs:label>indirect site filling objective specification</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000010"/>
-        <obo:IAO_0000115>A site filling objective to place a prefabricated piece of rigid material on or in a site by using some form of cement or glue.</obo:IAO_0000115>
+        <obo:IAO_0000115>A site filling objective specification that is attained by placing a prefabricated piece of rigid material on or in a site by using some form of cement or glue.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -3890,8 +3900,8 @@ An unclear case (for me) is when you add sugar to coffee. The sugar material is 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000011">
         <rdfs:label>tooth site filling objective specification</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000010"/>
+        <obo:IAO_0000115>A site filling objective specification that is attained by placing dental restoration material in some tooth preparation site.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>A site filling objective specification that is attained by placing dental restoraton material in some tooth preparation site.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -4012,6 +4022,31 @@ An unclear case (for me) is when you add sugar to coffee. The sugar material is 
     
 
 
+    <!-- http://purl.planning-ontology.org/OHD_0000018 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000018">
+        <rdfs:label>indirect intracoronal restoration procedure</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000038"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000041"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000045"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000115>an indirect coronal restoration procedure in which the dental restoration material is placed within the crown of the tooth.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
     <!-- http://purl.planning-ontology.org/OHD_0000019 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000019">
@@ -4049,10 +4084,10 @@ An unclear case (for me) is when you add sugar to coffee. The sugar material is 
     <!-- http://purl.planning-ontology.org/OHD_0000021 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000021">
-        <rdfs:label>inlay site filling objective</rdfs:label>
+        <rdfs:label>inlay site filling objective specification</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000052"/>
-        <obo:IAO_0000115>An intracoronal site objective to place dental restoration material in some inlay preparation site.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>An intracoronal site objective specification that is attained by placing dental restoration material in some inlay preparation site.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -4067,12 +4102,11 @@ An unclear case (for me) is when you add sugar to coffee. The sugar material is 
                     <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000004"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000052"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000021"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000004"/>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A intracoronal site filling process that achieves some inlay site filling objective.</obo:IAO_0000115>
     </owl:Class>
@@ -4086,15 +4120,14 @@ An unclear case (for me) is when you add sugar to coffee. The sugar material is 
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000003"/>
+                    <rdf:Description rdf:about="http://purl.planning-ontology.org/OHD_0000005"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000053"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000055"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000005"/>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>An extracoronal site filling process that achieves some cusp site filling objective.</obo:IAO_0000115>
     </owl:Class>
@@ -4116,6 +4149,8 @@ An unclear case (for me) is when you add sugar to coffee. The sugar material is 
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
+        <obo:IAO_0000115>An extracoronal restoration procedure that replaces all (or almost all) of the enamel on crown of a tooth with dental restoration material. The dental restoration material extends to (or almost to) the gum line.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -4183,6 +4218,31 @@ An unclear case (for me) is when you add sugar to coffee. The sugar material is 
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000028"/>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>An extracoronal restoration objective specification in which all (or almost all) of the enamel on crown of a tooth with dental restoration material.</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.planning-ontology.org/OHD_0000030 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000030">
+        <rdfs:label>indirect extracoronal restoration procedure</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000038"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000042"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000048"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000115>an indirect coronal restoration procedure in which the dental restoration material is placed on or around the crown of the tooth.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -4442,6 +4502,7 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A tooth preparation site within, on, or around the anatomical crown of a tooth.
 </obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -4453,14 +4514,14 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000040"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_55623"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
+                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000043"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
-                <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000043"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_55623"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A tooth preparation procedure that forms a site within, on, or around the crown of the tooth.</obo:IAO_0000115>
@@ -4559,13 +4620,38 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     
 
 
+    <!-- http://purl.planning-ontology.org/OHD_0000051 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000051">
+        <rdfs:label>direct extracoronal restoration procedure</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000037"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000042"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000048"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>an direct coronal restoration procedure in which the dental restoration material is placed on or around the crown of the tooth.</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
     <!-- http://purl.planning-ontology.org/OHD_0000052 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000052">
-        <rdfs:label>intracoronal site filling objective</rdfs:label>
+        <rdfs:label>intracoronal site filling objective specification</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000001"/>
-        <obo:IAO_0000115>A coronal site objective to place dental restoration material in some intracoronal preparation site.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A coronal site objective specification that is attained by placing dental restoration material in some intracoronal preparation site.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -4573,10 +4659,10 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     <!-- http://purl.planning-ontology.org/OHD_0000053 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000053">
-        <rdfs:label>extracoronal site filling objective</rdfs:label>
+        <rdfs:label>extracoronal site filling objective specification</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000001"/>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>A coronal site filling objective to place dental restoration material in an extracoronal perparation site.</obo:IAO_0000115>
+        <obo:IAO_0000115>A coronal site filling objective specification that is attained by placing dental restoration material in an extracoronal perparation site.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -4595,9 +4681,9 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     <!-- http://purl.planning-ontology.org/OHD_0000055 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000055">
-        <rdfs:label>cusp site filling objective</rdfs:label>
+        <rdfs:label>cusp site filling objective specification</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000053"/>
-        <obo:IAO_0000115>An extracoronal site filling objective to place dental restoration material in a cusp preparation site.</obo:IAO_0000115>
+        <obo:IAO_0000115>An extracoronal site filling objective specification that is attained by placing dental restoration material in a cusp preparation site.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -4617,10 +4703,10 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     <!-- http://purl.planning-ontology.org/OHD_0000057 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000057">
-        <rdfs:label>complete extracoronal site filling objective</rdfs:label>
+        <rdfs:label>complete extracoronal site filling objective specification</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000053"/>
         <obo:IAO_0000118>full addition of material to extracoronal site objective</obo:IAO_0000118>
-        <obo:IAO_0000115>An extracoronal site filling objective to place dental restoration material in an extracoronal perparation site that covers most or all of the exposed crown of the tooth.</obo:IAO_0000115>
+        <obo:IAO_0000115>An extracoronal site filling objective specification that is attained by placing dental restoration material in an extracoronal perparation site that covers most or all of the exposed crown of the tooth.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -4629,10 +4715,10 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
     <!-- http://purl.planning-ontology.org/OHD_0000058 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000058">
-        <rdfs:label>3/4 extracoronal site filling objective</rdfs:label>
+        <rdfs:label>3/4 extracoronal site filling objective specification</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000053"/>
+        <obo:IAO_0000115>An extracoronal site filling objective specification that is attained by placing dental restoration material in an extracoronal perparation site that covers 3 of the 4 surfaces of the exposed crown of an anterior tooth.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>An extracoronal site filling objective to place dental restoration material in an extracoronal perparation site that covers 3/4 of the exposed crown of the tooth.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -4655,6 +4741,31 @@ Science of Operative Dentistry, 6th Edition. Mosby, 2013.</obo:IAO_0000119>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000045"/>
         <obo:IAO_0000115>An intracoronal restoration objective specification that is attained by placing dental restoration material within the grooves and pits of the occlusal surface of a tooth.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.planning-ontology.org/OHD_0000061 -->
+
+    <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000061">
+        <rdfs:label>direct intracoronal restoration procedure</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000037"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000041"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.planning-ontology.org/OHD_0000045"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000117>an direct coronal restoration procedure in which the dental restoration material is placed within the crown of the tooth.</obo:IAO_0000117>
     </owl:Class>
     
 
