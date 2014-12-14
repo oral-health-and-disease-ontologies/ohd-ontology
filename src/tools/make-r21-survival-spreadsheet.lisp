@@ -4,7 +4,7 @@
 ;;(defparameter 
 ;;    owlim-se-r21 "http://localhost:8080/openrdf-workbench/repositories/owlim-se-2013.01.21")
 (defparameter 
-    owlim-se-r21-remote "http://den287.sdm.buffalo.edu:8080/openrdf-workbench/repositories/ohd-r21-nightly/query")
+    owlim-se-r21-remote "http://365-imac.sdm.buffalo.edu:8080/openrdf-workbench/repositories/ohd-r21-nightly/query")
 
 
 (defun r21query (query  &rest args &key (expressivity "RL") (reasoner 'stardog-r21) &allow-other-keys)

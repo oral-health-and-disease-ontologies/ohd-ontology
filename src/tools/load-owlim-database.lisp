@@ -14,32 +14,46 @@
 #|
 My loads:
 
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/ohd.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/BFO2/bfo2.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/BFO2/bfo2-relations.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/BFO2/bfo2-regions.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/BFO2/bfo2-classes.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/protege-dc.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/ontology-metadata.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/ogms.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/obi-imports.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/ncbi-imports.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/iao-imports.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/fma-jaws-teeth.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/cdt-imports.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/caro-imports.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-unerupted-teeth-findings.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-surgical-extractions.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-missing-teeth-findings.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-caries-findings.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-fillings.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-endodontics.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-dental-providers.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-dental-patients.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-crowns.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-inlays.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-onlays.owl>;
-load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-veneers.owl>;
+Used to load snomed files
+load <file:///Users/williamduncan/repos/git/iop/snomed-icd/UMLS-SNOMED/icd-to-snomed-mapping.owl>;
+load <file:///Users/williamduncan/repos/git/iop/snomed-icd/UMLS-SNOMED/snomed-2013-09-01-xml.owl>;
+load <file:///Users/williamduncan/repos/git/iop/snomed-icd/test-conversion/snomed-split1.ttl>;
+load <file:///Users/williamduncan/repos/git/iop/snomed-icd/UMLS-SNOMED/snomed-reasoned/ntriple-split-300k/snomed-split1.n3>;
+load <file:///Users/williamduncan/repos/git/iop/snomed-icd/UMLS-SNOMED/ontotex-triples/snomed-2013-09-01-xml.nt>;
+load <file:///Users/williamduncan/Desktop/snomed-icd/split-300k/nsplit300k-1.nt>;
+load <file:///Users/williamduncan/Desktop/snomed-icd/split-11-100k/nsplit-11-20k-1.nt>;
+
+
+
+-------
+
+Used for ohd owl files
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/ohd.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/BFO2/bfo2.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/BFO2/bfo2-relations.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/BFO2/bfo2-regions.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/BFO2/bfo2-classes.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/protege-dc.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/ontology-metadata.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/ogms.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/obi-imports.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/ncbi-imports.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/iao-imports.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/fma-jaws-teeth.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/cdt-imports.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/imports/caro-imports.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-unerupted-teeth-findings.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-surgical-extractions.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-missing-teeth-findings.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-caries-findings.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-fillings.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-endodontics.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-dental-providers.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-dental-patients.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-crowns.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-inlays.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-onlays.owl>;
+load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-veneers.owl>;
 
 |#
 

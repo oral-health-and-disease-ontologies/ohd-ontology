@@ -30,7 +30,7 @@
 
     (with-ontology ont (:collecting t 
 			:base *eaglesoft-individual-dental-patients-iri-base*
-			:ontology-iri *eaglesoft-dental-patients-ontology-iri*)
+			:ontology-iri *eaglesoft-dental-patients-ontology-iri*) 
 	(;; import the ohd ontology
 	 (as `(imports ,(make-uri *ohd-ontology-iri*)))
 
