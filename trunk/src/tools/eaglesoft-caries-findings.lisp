@@ -140,7 +140,7 @@
 	 (push `(object-property-assertion !'is about'@ohd ,finding-uri ,lesion-uri) axioms)
 
          ;; instance of caries finding is the specified output of the dental exam
-	 (push `(object-property-assertion !'has_specified_output'@ohd ,exam-uri ,finding-uri) axioms)
+	 ;;(push `(object-property-assertion !'has_specified_output'@ohd ,exam-uri ,finding-uri) axioms)
                   
          ;; add data property !ohd:'occurrence date' of the caries finding
 	 (push `(data-property-assertion 

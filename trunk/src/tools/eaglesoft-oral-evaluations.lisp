@@ -115,13 +115,22 @@
 	   (if (equalp condition-description nil) 
 	       (setf condition-description "none"))
 	   
+	 ;; some records have empty fields recorded as empty strings instead of null
+	 ;; so check for this
+	   (if (< (length action-code) 1) (setf action-code nil))
+	   (if (< (length ada-code) 1) (setf ada-code nil))
+	   (if (< (length tooth) 1) (setf tooth nil))
+	   (if (< (length surface) 1) (setf surface nil))
+	   (if (< (length condition-description) 1) (setf condition-description nil))
+	   (if (< (length provider-id) 1) (setf provider-id nil))
+	   (if (< (length provider-type) 1) (setf provider-type nil))
+	   
 	 ;; determine the type of oral evaluation
 	   (setf eval-type (get-eaglesoft-oral-evaluation-type ada-code))
 	   
 	 ;; declare instance of oral evaluation with annotations and date of evaluation
 	 ;; note: the oral evaluation is part of the visit
 	   (setf eval-uri (get-eaglesoft-oral-evaluation-iri patient-id eval-type occurrence-date))
-	   
 	   
 	 ;; fill evaluatons hash table
 	   (setf key (list id occurrence-date condition-description))
@@ -136,6 +145,11 @@
 	      (setf (gethash key evals-ht) (list eval-uri))))
 	   
 	 ;; now add info about that eval uri in a separate hash table
+	 ;; TODO: change so that an oral eval can have multiple records
+	 ;; e.g. uri -> ((.....)(....)) 
+	 ;; this is needed when multple missing teeth findings are recorded as part of the same
+	 ;; oral eval -> the uri for the eval is the same (since it occurred on same date), but
+	 ;; different multiple findings are associated the single uri
 	   (setf (gethash eval-uri eval-uri-ht)
 		 (list 
 		  id
@@ -148,9 +162,23 @@
 		  provider-id
 		  provider-type
 		  record-id))
+	   
+	   ;;(format t "	~a ~a ~%" eval-uri (gethash eval-uri eval-uri-ht))
+
+	   ;; update count of records
 	   (incf count)))
         
   
+    ;;used for testing
+    (loop
+       for k being the hash-keys in evals-ht using (hash-value val)
+       ;;for i from 1 to 10 
+       do
+	 (when (> (length val) 0)
+	   (format t "~a ~a~%" k val)
+	   (loop for uri in val do
+		(format t "	~a ~a ~%" uri (gethash uri eval-uri-ht)))))
+
     ;; build the ontology
     (with-ontology ont (:collecting t
 		        :base *eaglesoft-individual-oral-evaluations-iri-base*
@@ -166,20 +194,26 @@
 	 ;; (the one with potentially multiple uris per eval date) to build axioms
 	 (loop 
 	    for key being the hash-keys in evals-ht using (hash-value values) do
-	    ;; get the finding uri based description of finding
+	    ;; get the finding uri based on the description of finding
 	    ;; this the third element in key
 	      (setf eval-finding-description (third key))
+	      
+	    ;; get the occurrence date of the evaluations
+	    ;; this is hte second element in key
+	      (setf occurrence-date (second key))
+
 	      (cond
 		( ;; if "none", then this is a "no oral health issues reported" finding
 		  ;; so, uri is determined by occurrence date
 		 (equalp eval-finding-description "none")
 		 (setf finding-uri 
-		       (get-eaglesoft-finding-iri id "none" :occurrence-date occurrence-date))
+		       (get-eaglesoft-finding-iri id "none" :occurrence-date occurrence-date)))
 		
-		(t ;; otherwise determine the type of finding based on the description and tooth
+		(t ;; otherwise determine the type of finding based on the description, date, and tooth
+		 (setf tooth (fifth (gethash (car values) eval-uri-ht)))
 		 (setf finding-uri 
-		       (get-eaglesoft-finding-iri id eval-finding-description :tooth-num tooth)))))
-	      
+		       (get-eaglesoft-finding-iri id eval-finding-description 
+						  :tooth-num tooth :occurrence-date occurrence-date))))
 	      
 	    ;; add finding to ontology
 	      (as `((declaration (named-individual ,finding-uri))
@@ -202,15 +236,15 @@
 		 (as `(object-property-assertion
 		       !'has_specified_output'@ohd
 		       ,(car values)
-		       ,finding-uri)))))
+		       ,finding-uri))))) ;; end loop
 
-
+	 
 	 ;; now iterate over eval uri hash table and build axioms about the uri
 	 ;; for each evaluation
-	 '(loop for uri being the hash-keys in eval-uri-ht using (hash-value values) do
+	 (loop for uri being the hash-keys in eval-uri-ht using (hash-value values) do
 	      (setf id (first values))
-	      (setf occurrence-date (third values))
-	      (setf ada-code (fourth values))
+	      (setf occurrence-date (second values))
+	      (setf ada-code (third values))
 	      (setf tooth (fifth values))
 	      (setf provider-id (eighth values))
 	      (setf provider-type (ninth values))
@@ -224,21 +258,11 @@
 		   tooth
 		   provider-id 
 		   provider-type 
-		   record-id)))
+		   record-id))) ;; end loop
 
-	 )
+	 ) ;; end axiom  portion of with-ontology
       
-
-	 ;; used for testing
-	 ;; (loop
-	 ;;    for k being the hash-keys in evals-ht using (hash-value val)
-	 ;;    for i from 1 to 10 
-	 ;;    do
-	 ;;    (when (> (length val) 1)
-	 ;;      (format t "~a ~a~%" k val)
-	 ;;      (loop for uri in val do
-	 ;; 	   (format t "	~a ~a ~%" uri (gethash uri eval-uri-ht)))))
-
+     
       ;; return the ontology
       (values ont count))))
 
@@ -256,7 +280,7 @@
     ;; get uri of patient and patient's role
     (setf patient-uri (get-eaglesoft-dental-patient-iri patient-id))
     (setf patient-role-uri (get-eaglesoft-dental-patient-role-iri patient-id))
-
+    
     ;; determine the type of oral evaluation
     (setf eval-type (get-eaglesoft-oral-evaluation-type ada-code))
     
@@ -265,11 +289,14 @@
     (setf oral-eval-name (get-eaglesoft-oral-evaluation-name ada-code patient-id))
     (push-instance axioms oral-eval-uri eval-type)
     
-    (push `(annotation-assertion ; label for eval
+    ;; label for eval
+    (push `(annotation-assertion 
 	    !rdfs:label 
 	    ,oral-eval-uri 
 	    ,oral-eval-name) axioms)
-    (push `(data-property-assertion ; date of eval
+
+    ;; date of eval
+    (push `(data-property-assertion
 	    !'occurrence date'@ohd
 	    ,oral-eval-uri 
 	    (:literal ,occurrence-date !xsd:date)) axioms)
@@ -332,6 +359,7 @@
     ;; check ada code to determine class type
     ;; note: only look at right 4 characters; e.g. D0120 -> 0120
     (setf ada-code (str-right ada-code 4))
+
     (cond
       ((equalp ada-code "0120") 
        (setf eval-type !'periodic oral evaluation'@ohd))
@@ -341,7 +369,7 @@
        (setf eval-type !'comprehensive oral evaluation'@ohd))
       ((equalp ada-code "0180") 
        (setf eval-type !'comprehensive periodontal evaluation'@ohd)))
-    
+
     ;; return the type of evaluation
     eval-type))
 
