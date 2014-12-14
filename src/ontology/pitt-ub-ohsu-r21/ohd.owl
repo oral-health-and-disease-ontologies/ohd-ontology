@@ -1905,6 +1905,30 @@ for now.</obo:IAO_0000116>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000007"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000189"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -1931,33 +1955,9 @@ for now.</obo:IAO_0000116>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000007"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000434"/>
             </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000189"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
         </rdfs:subClassOf>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A dental procedure in which a part of a tooth that has been lost due to disease, trauma or other causes is replaced by dental restoration material in order to reestablish the tooth&apos;s anatomical and functional form and function.</obo:IAO_0000115>
         <obo:IAO_0000116 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mosby&apos;s Dental Dictionary 2nd ed</obo:IAO_0000116>
@@ -1989,25 +1989,25 @@ for now.</obo:IAO_0000116>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000190"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2241,8 +2241,8 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000057"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000009"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000010"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2253,8 +2253,8 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000010"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000009"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">A conversational, visual and tactile examination in which the clinician evaluates the status of the patient&apos;s medical, dental and oral health. </obo:IAO_0000115>
@@ -2335,15 +2335,15 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000010"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/FMA_75152"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/FMA_75152"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000116>Bill Duncan 5/14/2012: We have added the necessary condtion that a missing tooth finding is about &apos;exactly 1 Secondary Dentition&apos;.  </obo:IAO_0000116>
@@ -2375,6 +2375,12 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000114"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2391,12 +2397,6 @@ This class needs to be defined.  Currently, it acts as a place holder.</obo:IAO_
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000114"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2545,13 +2545,13 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000116>Bill Duncan 12/11/2014:
@@ -2800,12 +2800,6 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000101"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2824,6 +2818,12 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000101"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2833,12 +2833,6 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000060">
         <rdfs:label>missing tooth 2 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000102"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -2857,6 +2851,12 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000102"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2905,6 +2905,12 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000104"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -2921,12 +2927,6 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000104"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3185,12 +3185,6 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000112"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -3209,6 +3203,12 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000112"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3218,6 +3218,12 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000072">
         <rdfs:label>missing tooth 13 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000113"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -3236,12 +3242,6 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000113"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3395,12 +3395,6 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000119"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -3419,6 +3413,12 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000119"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3428,6 +3428,12 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000078">
         <rdfs:label>missing tooth 20 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000120"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -3446,12 +3452,6 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000120"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3640,6 +3640,12 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000126"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -3656,12 +3662,6 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000126"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3815,6 +3815,12 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000131"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -3833,12 +3839,6 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000131"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3848,12 +3848,6 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000090">
         <rdfs:label>missing tooth 32 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000132"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -3872,6 +3866,12 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000132"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4243,7 +4243,7 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
     <!-- http://purl.planning-ontology.org/OHD_0000001 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000001">
-        <rdfs:label>prothesis</rdfs:label>
+        <rdfs:label>prosthesis</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
         <obo:IAO_0000115>a processed material that replaces a missing body part,
 which may be lost through trauma, disease, or congenital conditions</obo:IAO_0000115>
@@ -4259,9 +4259,10 @@ ttp://en.wikipedia.org/wiki/Prosthesis</obo:IAO_0000119>
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000002">
         <rdfs:label>artificial tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000001"/>
-        <obo:IAO_0000115>a processed material that has been fabricated for use as a substitute for a natural tooth in a prosthesis; usually made of porcelain or plastic </obo:IAO_0000115>
+        <obo:IAO_0000116>usually made of porcelain or plastic </obo:IAO_0000116>
         <obo:IAO_0000119>Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 689</obo:IAO_0000119>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a prosthesis that has been fabricated for use as a substitute for a natural tooth</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -4397,10 +4398,15 @@ ttp://en.wikipedia.org/wiki/Prosthesis</obo:IAO_0000119>
     <!-- http://purl.planning-ontology.org/OHD_0000011 -->
 
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000011">
-        <rdfs:label>tooth-born partial denture</rdfs:label>
+        <rdfs:label>tooth-borne partial denture</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000010"/>
         <obo:IAO_0000119>Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 175-176</obo:IAO_0000119>
-        <obo:IAO_0000115>a partial denture that is supported entirely by the teeth that bound the edentulous area covered by the base</obo:IAO_0000115>
+        <obo:IAO_0000116>Dan Caplan 12/13/2014:
+Mosby&apos;s definition is not quite corrrect. The support could also include other teeth that are not adjacent to the endentulous area. The importan point is that the prosthesis is supported by existing teeth (wherever they are in the arch), and not by the gingiva.
+</obo:IAO_0000116>
+        <obo:IAO_0000116>Bill Duncan 12/13/2014:
+Definition updated to reflect Dan&apos;s comments.</obo:IAO_0000116>
+        <obo:IAO_0000115>a partial denture that is supported entirely by existing teeth</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -4411,7 +4417,7 @@ ttp://en.wikipedia.org/wiki/Prosthesis</obo:IAO_0000119>
     <owl:Class rdf:about="http://purl.planning-ontology.org/OHD_0000012">
         <rdfs:label>fixed partial denture</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.planning-ontology.org/OHD_0000011"/>
-        <obo:IAO_0000115>a tooth-borne partial denture that is intended to be permanently attached to the teeth or roots that furnish support to the restoration</obo:IAO_0000115>
+        <obo:IAO_0000115>a tooth-borne partial denture that is intended to be permanently attached to the teeth that furnish support to the restoration</obo:IAO_0000115>
         <obo:IAO_0000119>Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 175</obo:IAO_0000119>
         <obo:IAO_0000118>bridge</obo:IAO_0000118>
     </owl:Class>
