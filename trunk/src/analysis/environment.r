@@ -6,20 +6,22 @@
 ## Cache query results during session so debugging is easier.
 
 # load necessary libraries for sparql
-library(rrdf)
+library(rrdf) # defunct
 library(MASS)
 library(SPARQL)
 
-# if we use SPARQ library don't translate xsd:Date, so we can be compatible with RRDF
+# if we use SPARQL library don't translate xsd:Date, so we can be compatible with RRDF
 set_rdf_type_converter("http://www.w3.org/2001/XMLSchema#date",identity)
 
 # triple store nightly build on the imac in the dungeon
 dungeon_r21_nightly <- "http://dungeon.ctde.net:8080/openrdf-sesame/repositories/ohd-r21-nightly"
 
-if(!exists(current_endpoint))
-{ current_endpoint <<- dungeon_r21_nightly }
+duncan_r21 <- "http://192.168.1.137:8080/openrdf-sesame/repositories/owlim-se-claudio-only"
 
-if(!exists(current_sparqlr))
+if(!exists("current_endpoint"))
+ { print("You have to set current_endpoint first"); } # <<- duncan_r21 }
+
+if(!exists("current_sparqlr"))
 { current_sparqlr <<- "rrdf"; }
 
 # strings for prefixes
