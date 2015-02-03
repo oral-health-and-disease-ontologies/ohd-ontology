@@ -2,6 +2,8 @@
 ## Project: OHD
 ## Date: May, 2013
 
+# necessary packages: SPARQL, RCurl, bitops
+
 # you might want to compiler::enableJIT(2) in your ~/.Rprofile
 
 # Variables to customize:
