@@ -1,6 +1,6 @@
 
 library(rrdf) ## NOTE: rrdf does not work for aggregates!!!
-##library(SPARQL)
+library(SPARQL)
 source("SPARQL.R")
 
 get.distribution.data <- function(limit="10", patientid="", print.query=FALSE, filter="", endpoint="local") {

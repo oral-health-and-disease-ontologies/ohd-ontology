@@ -26,4 +26,3 @@ source("SPARQL.R") ; # patch to SPARQL.R
 source("environment.r"); # endpoints etc
 source("simple-statistics.r") # simple statistical functions on the repo
 
-
