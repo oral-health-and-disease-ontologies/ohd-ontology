@@ -10,203 +10,164 @@ source("SPARQL.R") ; # patch to SPARQL.R
 
 source("environment.r") # load environment variables
 
-average.time.to.restoration.failure <- function ()  {
-    #query.string <- all.tooth.restorations.query.string()
-    #query.string <- multiple.restorations.on.same.tooth.query.string()
-    #query.string <- test.query.string()
-    query.string <- test.query.string2()
+average.time.to.restoration.failure <- function (limit=0, print.query=FALSE, days=FALSE)
+{
 
-  #query.string <- "select ?s ?p ?o where { ?s ?p ?o } limit 10"
-  #cat(query.string)
-  cat(querystring(query.string))
-  #res <- queryc(query.string, current_endpoint)
-  res <- queryc(query.string)
-  res
+  ## get restults
+  res <- failed.restoration.results(limit, print.query)
 
+  ## build matrix with only the restoration procedure dates
+  dates <- matrix(c(res[,"date1"], res[,"date2"]), ncol=2)
+
+  ## add column to dates matrix that contains the difference
+  ## between the dates in days
+  dates <- cbind(dates, abs(floor(difftime(res[,"date2"], res[,"date1"], units = "days"))))
+
+  ## determine average number of days to failure
+  ave.failure.days <- as.numeric(mean(as.numeric(dates[,3])))
+
+  ##  determine average number of years to failure
+  if(ave.failure.days > 0) {
+      ave.failure.years <- ave.failure.days/365.25
+  } else {
+      ave.failure.years <- 0
+  }
+
+  ## if days is true return average in days
+  if (days) {
+      ave.failure.days
+  } else {
+      ave.failure.years
+  }
  }
 
-all.tooth.restorations.query.string <- function () {
-"
-select ?tooth ?procedure ?surface ?date
+failed.restoration.results <- function (limit=0, print.query=FALSE)
+{
+  ## get query.string
+  query.string <- first.and.second.restoration.query.string(limit)
+
+  ## print query.string when print.query true
+  if (print.query)
+  {
+    cat(query.string)
+  }
+
+  ## return restults
+  queryc(query.string)
+}
+
+first.and.second.restoration.query.string <- function (limit=0)
+{
+    query.string <- "
+select distinct ?patienttype ?birthdate ?tooth ?toothtype ?surface ?surfacetype ?procedure1 ?date1 ?procedure2 ?date2
+
+## look for surface specific for now. Find two procedures and an optional third
 where
 {
-    ## patient's tooth
+    ## patient's sex and birth date
+    ?patienti rdf:type patient: .
+    ?patienti asserted_type: ?patienttypei .
+    ?patienti birth_date: ?birthdate .
+
+    ## patient's tooth & tooth type
     ?toothi rdf:type tooth: .
-    ?toothi rdfs:label ?tooth .
+    ?toothi asserted_type: ?toothtypei .
+    ?toothi is_part_of: ?patienti .
 
-    ## tooth to be restored role that inheres in tooth
-    ?rolei rdf:type tooth_to_be_restored_role: .
-    ?rolei inheres_in: ?toothi .
+## surfaces and their types that are part of tooth
+    ?surfacei rdf:type tooth_surface: .
+    ?surfacei asserted_type: ?surfacetypei .
+    ?surfacei is_part_of: ?toothi .
 
-    ## restoration procedure that realizes role
+##- get restoration procedure in general
+## this is done by finding the procedures that realize
+## some tooth to be resotred role that is borne by the tooth
+## the procedures occurrence date (?date) is used to determine
+## the first restoration date by taking the min of ?date
+## see having clause below
     ?proci rdf:type tooth_restoration_procedure: .
-    ?proci realizes: ?rolei .
-    ?proci occurrence_date: ?date .
-    ?proci rdfs:label ?procedure .
-
-    ## restored sufaces(if one exists) are determined by
-    ## the surface that participates in the restoration procedure
-    optional {
-        ?surfacei rdf:type tooth_surface: .
-        ?surfacei participates_in: ?proci .
-        ?surfacei rdfs:label ?surface .
-    }
-}
-order by ?tooth ?date ?procedure ?surface
-limit 10
-"
-}
-
-multiple.restorations.on.same.tooth.query.string <- function () {
-"
-select ?tooth ?procedure ?surface ?date (count(?procedure) as ?proc_count)
-where
-{
-    ## patient's tooth
-    ?toothi rdf:type tooth: .
-    ?toothi rdfs:label ?tooth .
-
-    ## tooth to be restored role that inheres in tooth
     ?rolei rdf:type tooth_to_be_restored_role: .
+
+    ## the tooth to be restored role inheres in the tooth
+    ## and is realized by the procedure
     ?rolei inheres_in: ?toothi .
-
-    ## restoration procedure that realizes role
-    ?proci rdf:type tooth_restoration_procedure: .
     ?proci realizes: ?rolei .
-    ?proci occurrence_date: ?date .
-    ?proci rdfs:label ?procedure .
+    ?proci occurrence_date: ?date . # date of procedure
 
-    ## restored sufaces(if one exists) are determined by
-    ## the surface that participates in the restoration procedure
-    optional {
-        ?surfacei rdf:type tooth_surface: .
-        ?surfacei is_part_of: ?toothi .
-        ?proci has_participant: ?surfacei .
-        ?surfacei rdfs:label ?surface .
-    }
+##- first procedure: the tooth is same as the general procedure above.
+## the first procedure is determined in a manner similar to the
+## general procedure above
+    ?proci1 rdf:type tooth_restoration_procedure: .
+    ?rolei1 rdf:type tooth_to_be_restored_role: .
 
-    #{
-    #    select ?date (min(?date) as ?min)
-    #    where { ?proci occurrence_date: ?date . }
-    #    group by ?date
-    #}
+    ## the tooth to be restored role inheres in the tooth
+    ## and is realized by the procedure
+    ?rolei1 inheres_in: ?toothi .
+    ?proci1 realizes: ?rolei1 .
+    ?proci1 occurrence_date: ?date1 . # date of procedure 1
 
-    #filter(?min = ?date)
+    ## surfaces that have been restored particpate in the procedure
+    ?proci1 has_participant: ?surfacei .
 
-    #{
-    #    select ?proci (count(?proci) as ?proc_count_on_tooth)
-    #    where { ?proci has_participant: ?toothi . }
-    #    group by ?proci
-    #}
+##- second process: the tooth and surface remain the same as the first
+## but a new process that realizes a new role is searched for
+    ?proci2 rdf:type tooth_restoration_procedure: .
+    ?rolei2 rdf:type tooth_to_be_restored_role: .
 
-    #filter (?proc_count_on_tooth > 1)
-    filter (?tooth = \"tooth 10 of patient 1091\")
-}
-group by ?tooth ?date ?procedure ?surface ?date
-having (?proc_count > 1)
-order by ?tooth ?date ?procedure ?surface ?date
-limit 50
-"
-}
+    ## the tooth to be restored role inheres in the tooth
+    ## and is realized by the procedure
+    ?rolei2 inheres_in: ?toothi .
+    ?proci2 realizes: ?rolei2 .
+    ?proci2 occurrence_date: ?date2 . # date fo procedure 2
 
-test.query.string <- function () {
-"
-select distinct ?tooth ?procedure ?surface ?date ?tooth_procedure_count
-where
-{
-    ## patient's tooth
-    ?toothi rdf:type tooth: .
+    ## surfaces that have been restored particpate in the procedure
+    ?proci2 has_participant: ?surfacei .
+
+## we only those second procedure that are after the first
+filter (?date2 > ?date1 && ?proci1 != ?proci2)
+
+##- third process: the tooth and surface remain the same,
+## but the date is between the other two
+## (we check later that this doesn't succeed)
+   optional {
+    ?proci3 rdf:type tooth_restoration_procedure: .
+    ?rolei3 rdf:type tooth_to_be_restored_role: .
+
+    ## the tooth to be restored role inheres in the tooth
+    ## and is realized by the procedure
+    ?rolei3 inheres_in: ?toothi .
+    ?proci3 realizes: ?rolei3 .
+    ?proci3 occurrence_date: ?date3 . # date of procedure 3
+
+    ## surfaces that have been restored particpate in the procedure
+    ?proci3 has_participant: ?surfacei .
+
+    ## we want only that procedures that are between
+    ## two other procedures
+    filter (?date3<?date2 && ?date3>?date1)}
+
+    ## assign labels
+    ?patienttypei rdfs:label ?patienttype .
     ?toothi rdfs:label ?tooth .
+    ?toothtypei tooth_number: ?toothtype .
+    ?surfacei rdfs:label ?surface .
+    ?surfacetypei rdfs:label ?surfacetype .
+    ?proci1 rdfs:label ?procedure1 .
+    ?proci2 rdfs:label ?procedure2 .
 
-    ## tooth to be restored role that inheres in tooth
-    ?rolei rdf:type tooth_to_be_restored_role: .
-    ?rolei inheres_in: ?toothi .
-
-    ## restoration procedure that realizes role
-    ?proci rdf:type tooth_restoration_procedure: .
-    ?proci realizes: ?rolei .
-    ?proci occurrence_date: ?date .
-    ?proci rdfs:label ?procedure .
-
-    ## restored sufaces(if one exists) are determined by
-    ## the surface that participates in the restoration procedure
-    optional {
-        ?surfacei rdf:type tooth_surface: .
-        ?surfacei is_part_of: ?toothi .
-        ?proci has_participant: ?surfacei .
-        ?surfacei rdfs:label ?surface .
-    }
-
-    {
-        select ?toothi (count(?toothi) as ?tooth_procedure_count)
-        where { ?proci has_participant: ?toothi . }
-        group by ?toothi
-    }
-
-    #filter (?tooth_procedure_count > 1)
-
-    filter (?tooth = \"tooth 10 of patient 1091\")
+    ## we only those records where the in between date (?date3)
+    ## is not bound, this gives us adjacent dates
+    filter (!bound(?date3))
 }
-#group by ?tooth ?date ?procedure ?surface ?date
-#having (?proc_count > 1)
-order by ?tooth ?date ?procedure ?surface ?date
-limit 50
+group by ?patienttype ?birthdate ?tooth ?toothtype ?surface ?surfacetype ?procedure1 ?date1 ?procedure2 ?date2
+## match the min and first procedure dates
+having (?date1 = min(?date))
+order by ?tooth ?surface ?date1
+
 "
+  if (limit > 0)
+     query.string <- paste(query.string,"limit ", limit, "\n", sep="")
+
+query.string
 }
 
-test.query.string2 <- function () {
-"
-select distinct ?tooth ?procedure ?surface ?date (min(?date) as ?min_date)
-where
-{
-    ## patient's tooth
-    ?toothi rdf:type tooth: .
-    ?toothi rdfs:label ?tooth .
-
-    ## tooth to be restored role that inheres in tooth
-    ?rolei rdf:type tooth_to_be_restored_role: .
-    ?rolei inheres_in: ?toothi .
-
-    ## restoration procedure that realizes role
-    ?proci rdf:type tooth_restoration_procedure: .
-    ?proci realizes: ?rolei .
-    ?proci occurrence_date: ?date .
-    ?proci rdfs:label ?procedure .
-
-    ## restored sufaces(if one exists) are determined by
-    ## the surface that participates in the restoration procedure
-    optional {
-        ?surfacei rdf:type tooth_surface: .
-        ?surfacei is_part_of: ?toothi .
-        ?proci has_participant: ?surfacei .
-        ?surfacei rdfs:label ?surface .
-    }
-
-
-    {
-        select ?toothi (count(?toothi) as ?tooth_procedure_count)
-        where
-        {
-            ## tooth to be restored role that inheres in tooth
-            ?rolei2 rdf:type tooth_to_be_restored_role: .
-            ?rolei2 inheres_in: ?toothi .
-
-            ## restoration procedure that realizes role
-            ?proci2 rdf:type tooth_restoration_procedure: .
-            ?proci2 realizes: ?rolei2 .
-            ?proci occurrence_date: ?date2 .
-
-            filter(?date2 > ?min_date) .
-        }
-        group by ?toothi
-    }
-
-
-    filter (?tooth = \"tooth 10 of patient 1091\")
-}
-group by ?tooth ?date ?procedure ?surface ?date
-#having (?proc_count > 1)
-order by ?tooth ?date ?procedure ?surface ?date
-limit 50
-"
-}
