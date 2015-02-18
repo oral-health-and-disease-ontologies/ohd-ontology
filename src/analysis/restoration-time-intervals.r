@@ -39,6 +39,39 @@ average.time.to.restoration.failure <- function (limit=0, print.query=FALSE, day
   } else {
       ave.failure.years
   }
+}
+
+average.time.to.restoration.failure.by.sex <- function (limit=0, print.query=FALSE, days=FALSE)
+{
+
+  ## get restults
+  res <- failed.restoration.results(limit, print.query)
+
+  ## build matrix with the patient type (i.e., sex) and restoration procedure dates
+  data <- matrix(c(res[, "patienttype"], res[,"date1"], res[,"date2"]), ncol=3)
+
+  ## add column to dates matrix that contains the difference
+  ## between the dates in days
+  data <- cbind(data, abs(floor(difftime(res[,"date2"], res[,"date1"], units = "days"))))
+
+  ## add meaningful names
+  colnames(data) <- c("sex", "date1", "date2", "ave")
+
+  ## split the data by the patient type and give groups more appropriate names
+  data.sex <- split(as.numeric(data[,"ave"]), data[,"sex"])
+  names(data.sex) <- c("female", "male")
+
+  ## determine average number of days to failure for each group (female/male)
+  sex.mean <- lapply(data.sex, FUN=mean)
+
+  ## if days is false calculate average in years
+  if (days==FALSE) {
+      if (sex.mean$female > 0) sex.mean$female <- sex.mean$female/365.25
+      if (sex.mean$female > 0) sex.mean$male <- sex.mean$male/365.25
+  }
+
+  ## print results
+  print(sex.mean)
  }
 
 failed.restoration.results <- function (limit=0, print.query=FALSE)
