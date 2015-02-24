@@ -47,32 +47,108 @@ average.time.to.restoration.failure.by.sex <- function (limit=0, print.query=FAL
   ## get restults
   res <- failed.restoration.results(limit, print.query)
 
+### *** This commented code below uses matrices to calculate mean durations
+###      I'm keeping it around for posterity
+        
   ## build matrix with the patient type (i.e., sex) and restoration procedure dates
-  data <- matrix(c(res[, "patienttype"], res[,"date1"], res[,"date2"]), ncol=3)
+#   data <- matrix(c(res[, "patienttype"], res[,"date1"], res[,"date2"]), ncol=3)
+# 
+#   ## add column to dates matrix that contains the difference
+#   ## between the dates in days
+#   data <- cbind(data, abs(floor(difftime(res[,"date2"], res[,"date1"], units = "days"))))
+# 
+#   ## add meaningful names
+#   colnames(data) <- c("sex", "date1", "date2", "ave")
+# 
+#   ## split the data by the patient type and give groups more appropriate names
+#   data.sex <- split(as.numeric(data[,"ave"]), data[,"sex"])
+#   names(data.sex) <- c("female", "male")
+# 
+#   ## determine average number of days to failure for each group (female/male)
+#   sex.mean <- lapply(data.sex, FUN=mean)
 
+### *** Instead of using matrices (as above) to calculate means, use data frames
+###     and tapply function to get mean restoration failure time
+
+  ## build data frame from sparql result set, note: stringsAsFactors must be false
+  df <- as.data.frame(res, stringsAsFactors = F)
+  
   ## add column to dates matrix that contains the difference
-  ## between the dates in days
-  data <- cbind(data, abs(floor(difftime(res[,"date2"], res[,"date1"], units = "days"))))
+  ## between the date1 and date2 in days
+  df$datediff <- as.numeric(abs(floor(difftime(df$date2, df$date1, units = "days"))))
 
-  ## add meaningful names
-  colnames(data) <- c("sex", "date1", "date2", "ave")
-
-  ## split the data by the patient type and give groups more appropriate names
-  data.sex <- split(as.numeric(data[,"ave"]), data[,"sex"])
-  names(data.sex) <- c("female", "male")
-
-  ## determine average number of days to failure for each group (female/male)
-  sex.mean <- lapply(data.sex, FUN=mean)
-
+  ## build table data of the mean time for restoration differences by sex
   ## if days is false calculate average in years
+  ## set up custome labels for barplot
   if (days==FALSE) {
-      if (sex.mean$female > 0) sex.mean$female <- sex.mean$female/365.25
-      if (sex.mean$female > 0) sex.mean$male <- sex.mean$male/365.25
+    info <- tapply(df$datediff, df$patienttype, function(x) { mean(x) / 365.25 })
+    y.label <- "mean years until failure"
+    main.label <- "mean time in years until restoration failure by sex"  
+  } else {
+    info <- tapply(df$datediff, df$patienttype, mean)  
+    y.label <- "mean days until failure"
+    main.label <- "mean time in days until restoration failure by sex"
   }
+ 
+  ##  common labels
+  x.label <- "sex of patient"
+  y.lim <- ceiling(max(info[[1]], info[[2]]))
+#   print(info[[1]])
+#   print(info[[2]])
+#   print(y.lim)
 
-  ## print results
-  print(sex.mean)
+  ## draw barplot of info
+  barplot(info, 
+          main=main.label,
+          xlab=x.label,
+          ylab=y.label,
+          ylim=c(0, as.numeric(y.lim)),
+          names.arg=c("female", "male"), 
+          col=c("pink", "blue"))
+
+  ## return info about mean time to failure
+  info
  }
+
+average.time.to.restoration.failure.by.tooth <- function (limit=0, print.query=FALSE, days=FALSE)
+{
+  
+  ## get restults
+  res <- failed.restoration.results(limit, print.query)
+  
+  ## build data frame from sparql result set, note: stringsAsFactors must be false
+  df <- as.data.frame(res, stringsAsFactors = F)
+  
+  ## add column to dates matrix that contains the difference
+  ## between the date1 and date2 in days
+  df$datediff <- as.numeric(abs(floor(difftime(df$date2, df$date1, units = "days"))))
+  
+  ## build table data of the mean time for restoration differences by tooth
+  ## if days is false calculate average in years
+  ## set up custome labels for barplot
+  if (days==FALSE) {
+    info <- tapply(df$datediff, df$toothtype, function(x) { mean(x) / 365.25 })
+    y.label <- "mean years until failure"
+    main.label <- "mean time in years until restoration failure by tooth"  
+  } else {
+    info <- tapply(df$datediff, df$toothtype, mean)  
+    y.label <- "mean days until failure"
+    main.label <- "mean time in days until restoration failure by tooth"
+  }
+  
+  ##  common labels
+  x.label <- "tooth of patient"
+  
+  ## draw barplot of info
+  barplot(info, 
+          main=main.label,
+          xlab=x.label,
+          ylab=y.label,
+          col=rainbow(32))
+          
+  ## return info about mean time to failure
+  info
+}
 
 failed.restoration.results <- function (limit=0, print.query=FALSE)
 {
