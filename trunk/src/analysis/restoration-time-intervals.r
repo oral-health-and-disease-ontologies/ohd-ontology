@@ -73,7 +73,7 @@ average.time.to.restoration.failure.by.sex <- function (limit=0, print.query=FAL
   ## build data frame from sparql result set, note: stringsAsFactors must be false
   df <- as.data.frame(res, stringsAsFactors = F)
   
-  ## add column to dates matrix that contains the difference
+  ## add column to data frame that contains the difference
   ## between the date1 and date2 in days
   df$datediff <- as.numeric(abs(floor(difftime(df$date2, df$date1, units = "days"))))
 
@@ -119,25 +119,30 @@ average.time.to.restoration.failure.by.tooth <- function (limit=0, print.query=F
   ## build data frame from sparql result set, note: stringsAsFactors must be false
   df <- as.data.frame(res, stringsAsFactors = F)
   
-  ## add column to dates matrix that contains the difference
+  ## add column the data frame that contains the difference
   ## between the date1 and date2 in days
   df$datediff <- as.numeric(abs(floor(difftime(df$date2, df$date1, units = "days"))))
+  
+  ## add a column to the data frame the contains the integer that represents the tooth number
+  ## e.g., for tooth type "Tooth 12", this column contains the number 12
+  ## this is needed for ordering the data properly (i.e., by tooth number)
+  df$toothnum <- match.tooth.position(df$toothtype)
   
   ## build table data of the mean time for restoration differences by tooth
   ## if days is false calculate average in years
   ## set up custome labels for barplot
   if (days==FALSE) {
-    info <- tapply(df$datediff, df$toothtype, function(x) { mean(x) / 365.25 })
+    info <- tapply(df$datediff, df$toothnum, function(x) { mean(x) / 365.25 })
     y.label <- "mean years until failure"
     main.label <- "mean time in years until restoration failure by tooth"  
   } else {
-    info <- tapply(df$datediff, df$toothtype, mean)  
+    info <- tapply(df$datediff, df$toothnum, mean)  
     y.label <- "mean days until failure"
     main.label <- "mean time in days until restoration failure by tooth"
   }
   
   ##  common labels
-  x.label <- "tooth of patient"
+  x.label <- "tooth number of patient"
   
   ## draw barplot of info
   barplot(info, 
@@ -148,6 +153,21 @@ average.time.to.restoration.failure.by.tooth <- function (limit=0, print.query=F
           
   ## return info about mean time to failure
   info
+}
+
+match.tooth.position <- function(toothtype.string)
+{
+  ## vector of teeth
+  teeth <- c("tooth 1", "tooth 2", "tooth 3", "tooth 4", "tooth 5", "tooth 6", "tooth 7", "tooth 8",
+             "tooth 9", "tooth 10", "tooth 11", "tooth 12", "tooth 13", "tooth 14", "tooth 15", "tooth 16", 
+             "tooth 17", "tooth 18", "tooth 19", "tooth 20", "tooth 21", "tooth 22", "tooth 23", "tooth 24", 
+             "tooth 25", "tooth 26", "tooth 27", "tooth 28", "tooth 29", "tooth 30", "tooth 31", "tooth 32")
+  
+  ## find postion of toothtype
+  position <- match(tolower(toothtype.string), teeth, nomatch = 0)
+  
+  ## return position
+  position
 }
 
 failed.restoration.results <- function (limit=0, print.query=FALSE)
