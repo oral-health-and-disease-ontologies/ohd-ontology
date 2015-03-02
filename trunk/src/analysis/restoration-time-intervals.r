@@ -5,10 +5,40 @@
 ##
 ## Summary: Statics on the time intervals between restoration proceedures
 
-source("SPARQL.R") ; # patch to SPARQL.R
 .GlobalEnv[["interpret_type"]]=interpret_rdf_type;
 
+source("sparql-restoration-queries.r")
+source("SPARQL.R") ; # patch to SPARQL.R
 source("environment.r") # load environment variables
+
+restoration.counts.by.tooth <- function (limit=0, print.query=FALSE) 
+{
+  ## get results
+  res <- restoration.counts.by.tooth.results(limit, print.query)
+  df <- as.data.frame(res, stringsAsFactors = F)
+  
+  ## when res is coverted to a data frame, the data types of the values are chars
+  ## so, convert the count column into numeric data type
+  mode(df$count) <- "numeric"
+  
+  ## add a column to the data frame the contains the integer that represents the tooth number
+  ## e.g., for tooth type "Tooth 12", this column contains the number 12
+  ## this is needed for ordering the data properly (i.e., by tooth number)
+  df$toothnum <- match.tooth.position(df$toothtype)
+  
+  ## build summary table
+  info <- tapply(df$count, df$toothnum, sum)
+  
+  ## create barplot of info
+  barplot(info, 
+          main="number of restorations per tooth",
+          xlab="tooth number of patient", 
+          ylab="number of restoration procedures",
+          col="blue")
+  
+  ## return info
+  info
+}
 
 average.time.to.restoration.failure <- function (limit=0, print.query=FALSE, days=FALSE)
 {
@@ -110,7 +140,7 @@ average.time.to.restoration.failure.by.sex <- function (limit=0, print.query=FAL
   info
  }
 
-average.time.to.restoration.failure.by.tooth <- function (limit=0, print.query=FALSE, days=FALSE)
+average.time.to.restoration.failure.by.tooth <- function (limit=0, print.query=FALSE, days=FALSE, by.sex=FALSE)
 {
   
   ## get restults
@@ -129,28 +159,139 @@ average.time.to.restoration.failure.by.tooth <- function (limit=0, print.query=F
   df$toothnum <- match.tooth.position(df$toothtype)
   
   ## build table data of the mean time for restoration differences by tooth
-  ## if days is false calculate average in years
+  ## determine if results should be differentiated by sex
+  if (by.sex==FALSE) {
+    ## note: if days is false calculate average in years
+    info <- tapply(df$datediff, df$toothnum, 
+                   function(x) { ifelse(days==FALSE, mean(x) / 365.25, mean(x)) })
+  } else {
+    ## get subsets bases on sex
+    females <- subset(df, patienttype == "female dental patient")
+    males <- subset(df, patienttype == "male dental patient")
+    
+    ## get means for subsets
+    females.mean <- tapply(females$datediff, females$toothnum,
+                           function(x) { ifelse(days==FALSE, mean(x) / 365.25, mean(x)) })
+    males.mean <- tapply(males$datediff, males$toothnum,
+                         function(x) { ifelse(days==FALSE, mean(x) / 365.25, mean(x)) })
+    
+    ## combine male and female means
+    info <- rbind(females.mean, males.mean)
+  }
+  
   ## set up custome labels for barplot
+  x.label <- "tooth number of patient"
+  
   if (days==FALSE) {
-    info <- tapply(df$datediff, df$toothnum, function(x) { mean(x) / 365.25 })
     y.label <- "mean years until failure"
     main.label <- "mean time in years until restoration failure by tooth"  
   } else {
-    info <- tapply(df$datediff, df$toothnum, mean)  
     y.label <- "mean days until failure"
     main.label <- "mean time in days until restoration failure by tooth"
   }
   
-  ##  common labels
-  x.label <- "tooth number of patient"
+  ## draw barplot of info
+  if (by.sex==FALSE) {
+    barplot(info, 
+            main=main.label,
+            xlab=x.label,
+            ylab=y.label,
+            col="red3")
+  } else {
+    barplot(info, 
+            main=main.label,
+            xlab=x.label,
+            ylab=y.label,
+            col=c("pink", "blue"),
+            beside=TRUE)
+    legend("topleft", c("female","male"), pch=15, 
+          col=c("pink","blue"), bty="n")
+  }
+          
+  ## return info about mean time to failure
+  info
+}
+
+average.time.to.restoration.failure.by.surface <- function (limit=0, print.query=FALSE, days=FALSE, by.sex=FALSE, by.surface.letter=FALSE)
+{
+  
+  ## get restults
+  res <- failed.restoration.results(limit, print.query)
+  
+  ## build data frame from sparql result set, note: stringsAsFactors must be false
+  df <- as.data.frame(res, stringsAsFactors = F)
+  
+  ## add column the data frame that contains the difference
+  ## between the date1 and date2 in days
+  df$datediff <- as.numeric(abs(floor(difftime(df$date2, df$date1, units = "days"))))
+  
+  ## add a column to the data frame the contains the normalized surface
+  ## e.g., "Occlusial surface enamel of tooth" -> "occlusal" or "o"
+  ## NB: you must call "unlist" for surfacenaem to be an atomic vector
+  ##     this necessary for tapply to work (below)
+  if (by.surface.letter==FALSE) {
+      df$surfacename <- unlist(lapply(df$surfacetype, FUN = function(x) { match.surface.name(x)}))
+  } else {
+      df$surfacename <- unlist(lapply(df$surfacetype, FUN = function(x) { match.surface.letter(x)}))
+  }
+  
+  ## build table data of the mean time for restoration differences by surface
+  ## determine if results should be differentiated by sex
+  if (by.sex==FALSE) {
+    ## note: if days is false calculate average in years
+    #info <- tapply(df$datediff, df$surfacename, 
+    #               function(x) { ifelse(days==FALSE, mean(x) / 365.25, mean(x)) })
+    print(str(df$surfacename))
+    
+    info <- tapply(df$datediff, df$surfacename, mean)
+  } else {
+    ## get subsets bases on sex
+    females <- subset(df, patienttype == "female dental patient")
+    males <- subset(df, patienttype == "male dental patient")
+    
+    print(head(females$surfacename))
+    print(length(females$datediff))
+    
+    ## get means for subsets
+    females.mean <- tapply(females$datediff, females$surfacename,
+                           function(x) { ifelse(days==FALSE, mean(x) / 365.25, mean(x)) })
+    
+    males.mean <- tapply(males$datediff, males$surfacename,
+                         function(x) { ifelse(days==FALSE, mean(x) / 365.25, mean(x)) })
+    
+    ## combine male and female means
+    info <- rbind(females.mean, males.mean)
+  }
+  
+  ## set up custome labels for barplot
+  x.label <- "surface of tooth"
+  
+  if (days==FALSE) {
+    y.label <- "mean years until failure"
+    main.label <- "mean time in years until restoration failure by tooth"  
+  } else {
+    y.label <- "mean days until failure"
+    main.label <- "mean time in days until restoration failure by tooth"
+  }
   
   ## draw barplot of info
-  barplot(info, 
-          main=main.label,
-          xlab=x.label,
-          ylab=y.label,
-          col=rainbow(32))
-          
+  if (by.sex==FALSE) {
+    barplot(info, 
+            main=main.label,
+            xlab=x.label,
+            ylab=y.label,
+            col="red3")
+  } else {
+    barplot(info, 
+            main=main.label,
+            xlab=x.label,
+            ylab=y.label,
+            col=c("pink", "blue"),
+            beside=TRUE)
+    legend("topleft", c("female","male"), pch=15, 
+           col=c("pink","blue"), bty="n")
+  }
+  
   ## return info about mean time to failure
   info
 }
@@ -163,11 +304,65 @@ match.tooth.position <- function(toothtype.string)
              "tooth 17", "tooth 18", "tooth 19", "tooth 20", "tooth 21", "tooth 22", "tooth 23", "tooth 24", 
              "tooth 25", "tooth 26", "tooth 27", "tooth 28", "tooth 29", "tooth 30", "tooth 31", "tooth 32")
   
-  ## find postion of toothtype
-  position <- match(tolower(toothtype.string), teeth, nomatch = 0)
+  ## get vector of postions for toothtypes
+  positions <- match(tolower(toothtype.string), teeth, nomatch = 0)
   
   ## return position
-  position
+  positions
+}
+
+match.surface.letter <- function (surfacetype.string) {
+  ## cast to lower case
+  surfacetype.string <- tolower(surfacetype.string)
+  
+  #### ***** Occlusal is MISPELLED
+  if (surfacetype.string == "occlusial surface enamel of tooth") {
+      surface.letter <- "o"
+  } else if (surfacetype.string == "distal surface enamel of tooth") {
+      surface.letter <- "d"
+  } else if (surfacetype.string == "mesial surface enamel of tooth") {
+      surface.letter <- "m"
+  } else if (surfacetype.string == "buccal surface enamel of tooth") {
+      surface.letter <- "b"
+  } else if (surfacetype.string == "labial surface enamel of tooth") {
+      surface.letter <- "f"
+  } else if (surfacetype.string == "lingual surface enamel of tooth") {
+      surface.letter <- "l"
+  } else if (surfacetype.string == "incisal surface enamel of tooth") {
+      surface.letter <- "i"  
+  } else {
+      surface.letter <- surfacetype.string
+  }
+  
+  ## return the surface letter
+  surface.letter
+}
+
+match.surface.name <- function (surfacetype.string) {
+  ## cast to lower case
+  surfacetype.string <- tolower(surfacetype.string)
+  
+  #### ***** Occlusal is MISPELLED
+  if (surfacetype.string == "occlusial surface enamel of tooth") {
+      surface.name <- "occlusal"
+  } else if (surfacetype.string == "distal surface enamel of tooth") {
+      surface.name <- "distal"
+  } else if (surfacetype.string == "mesial surface enamel of tooth") {
+      surface.name <- "mesial"
+  } else if (surfacetype.string == "buccal surface enamel of tooth") {
+      surface.name <- "buccal"
+  } else if (surfacetype.string == "labial surface enamel of tooth") {
+      surface.name <- "labial"
+  } else if (surfacetype.string == "lingual surface enamel of tooth") {
+      surface.name <- "lingual"
+  } else if (surfacetype.string == "incisal surface enamel of tooth") {
+      surface.name <- "incisal"
+  } else {
+      surface.name <- surfacetype.string
+  }
+  
+  ## return the surface name
+  surface.name
 }
 
 failed.restoration.results <- function (limit=0, print.query=FALSE)
@@ -185,118 +380,17 @@ failed.restoration.results <- function (limit=0, print.query=FALSE)
   queryc(query.string)
 }
 
-first.and.second.restoration.query.string <- function (limit=0)
+restoration.counts.by.tooth.results <- function (limit=0, print.query=FALSE)
 {
-    query.string <- "
-select distinct ?patienttype ?birthdate ?tooth ?toothtype ?surface ?surfacetype ?procedure1 ?date1 ?procedure2 ?date2
-
-## look for surface specific for now. Find two procedures and an optional third
-where
-{
-    ## patient's sex and birth date
-    ?patienti rdf:type patient: .
-    ?patienti asserted_type: ?patienttypei .
-    ?patienti birth_date: ?birthdate .
-
-    ## patient's tooth & tooth type
-    ?toothi rdf:type tooth: .
-    ?toothi asserted_type: ?toothtypei .
-    ?toothi is_part_of: ?patienti .
-
-## surfaces and their types that are part of tooth
-    ?surfacei rdf:type tooth_surface: .
-    ?surfacei asserted_type: ?surfacetypei .
-    ?surfacei is_part_of: ?toothi .
-
-##- get restoration procedure in general
-## this is done by finding the procedures that realize
-## some tooth to be resotred role that is borne by the tooth
-## the procedures occurrence date (?date) is used to determine
-## the first restoration date by taking the min of ?date
-## see having clause below
-    ?proci rdf:type tooth_restoration_procedure: .
-    ?rolei rdf:type tooth_to_be_restored_role: .
-
-    ## the tooth to be restored role inheres in the tooth
-    ## and is realized by the procedure
-    ?rolei inheres_in: ?toothi .
-    ?proci realizes: ?rolei .
-    ?proci occurrence_date: ?date . # date of procedure
-
-##- first procedure: the tooth is same as the general procedure above.
-## the first procedure is determined in a manner similar to the
-## general procedure above
-    ?proci1 rdf:type tooth_restoration_procedure: .
-    ?rolei1 rdf:type tooth_to_be_restored_role: .
-
-    ## the tooth to be restored role inheres in the tooth
-    ## and is realized by the procedure
-    ?rolei1 inheres_in: ?toothi .
-    ?proci1 realizes: ?rolei1 .
-    ?proci1 occurrence_date: ?date1 . # date of procedure 1
-
-    ## surfaces that have been restored particpate in the procedure
-    ?proci1 has_participant: ?surfacei .
-
-##- second process: the tooth and surface remain the same as the first
-## but a new process that realizes a new role is searched for
-    ?proci2 rdf:type tooth_restoration_procedure: .
-    ?rolei2 rdf:type tooth_to_be_restored_role: .
-
-    ## the tooth to be restored role inheres in the tooth
-    ## and is realized by the procedure
-    ?rolei2 inheres_in: ?toothi .
-    ?proci2 realizes: ?rolei2 .
-    ?proci2 occurrence_date: ?date2 . # date fo procedure 2
-
-    ## surfaces that have been restored particpate in the procedure
-    ?proci2 has_participant: ?surfacei .
-
-## we only those second procedure that are after the first
-filter (?date2 > ?date1 && ?proci1 != ?proci2)
-
-##- third process: the tooth and surface remain the same,
-## but the date is between the other two
-## (we check later that this doesn't succeed)
-   optional {
-    ?proci3 rdf:type tooth_restoration_procedure: .
-    ?rolei3 rdf:type tooth_to_be_restored_role: .
-
-    ## the tooth to be restored role inheres in the tooth
-    ## and is realized by the procedure
-    ?rolei3 inheres_in: ?toothi .
-    ?proci3 realizes: ?rolei3 .
-    ?proci3 occurrence_date: ?date3 . # date of procedure 3
-
-    ## surfaces that have been restored particpate in the procedure
-    ?proci3 has_participant: ?surfacei .
-
-    ## we want only that procedures that are between
-    ## two other procedures
-    filter (?date3<?date2 && ?date3>?date1)}
-
-    ## assign labels
-    ?patienttypei rdfs:label ?patienttype .
-    ?toothi rdfs:label ?tooth .
-    ?toothtypei tooth_number: ?toothtype .
-    ?surfacei rdfs:label ?surface .
-    ?surfacetypei rdfs:label ?surfacetype .
-    ?proci1 rdfs:label ?procedure1 .
-    ?proci2 rdfs:label ?procedure2 .
-
-    ## we only those records where the in between date (?date3)
-    ## is not bound, this gives us adjacent dates
-    filter (!bound(?date3))
+  ## get query.string
+  query.string <- restoration.count.by.tooth.query.string(limit)
+  
+  ## print query.string when print.query true
+  if (print.query)
+  {
+    cat(query.string)
+  }
+  
+  ## return restults
+  queryc(query.string)
 }
-group by ?patienttype ?birthdate ?tooth ?toothtype ?surface ?surfacetype ?procedure1 ?date1 ?procedure2 ?date2
-## match the min and first procedure dates
-having (?date1 = min(?date))
-order by ?tooth ?surface ?date1
-
-"
-  if (limit > 0)
-     query.string <- paste(query.string,"limit ", limit, "\n", sep="")
-
-query.string
-}
-
