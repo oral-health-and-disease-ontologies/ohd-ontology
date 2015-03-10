@@ -5,11 +5,12 @@
 ##
 ## Summary: Statics on the time intervals between restoration proceedures
 
-.GlobalEnv[["interpret_type"]]=interpret_rdf_type;
-
-source("sparql-restoration-queries.r")
 source("SPARQL.R") ; # patch to SPARQL.R
+source("sparql-restoration-queries.r")
 source("environment.r") # load environment variables
+
+## NB: this lines comes after sourcing above files!
+.GlobalEnv[["interpret_type"]]=interpret_rdf_type;
 
 restoration.counts.by.tooth <- function (limit=0, print.query=FALSE) 
 {
@@ -68,6 +69,37 @@ average.time.to.restoration.failure <- function (limit=0, print.query=FALSE, day
       ave.failure.days
   } else {
       ave.failure.years
+  }
+}
+
+average.time.to.amalgam.restoration.failure <- function (limit=0, print.query=FALSE, days=FALSE)
+{
+  
+  ## get restults
+  res <- failed.amalgam.restoration.results(limit, print.query)
+  
+  ## build matrix with only the restoration procedure dates
+  dates <- matrix(c(res[,"date1"], res[,"date2"]), ncol=2)
+  
+  ## add column to dates matrix that contains the difference
+  ## between the dates in days
+  dates <- cbind(dates, abs(floor(difftime(res[,"date2"], res[,"date1"], units = "days"))))
+  
+  ## determine average number of days to failure
+  ave.failure.days <- as.numeric(mean(as.numeric(dates[,3])))
+  
+  ##  determine average number of years to failure
+  if(ave.failure.days > 0) {
+    ave.failure.years <- ave.failure.days/365.25
+  } else {
+    ave.failure.years <- 0
+  }
+  
+  ## if days is true return average in days
+  if (days) {
+    ave.failure.days
+  } else {
+    ave.failure.years
   }
 }
 
@@ -376,6 +408,21 @@ failed.restoration.results <- function (limit=0, print.query=FALSE)
     cat(query.string)
   }
 
+  ## return restults
+  queryc(query.string)
+}
+
+failed.amalgam.restoration.results <- function (limit=0, print.query=FALSE)
+{
+  ## get query.string
+  query.string <- first.and.second.amalgam.restoration.query.string(limit)
+  
+  ## print query.string when print.query true
+  if (print.query)
+  {
+    cat(query.string)
+  }
+  
   ## return restults
   queryc(query.string)
 }
