@@ -73,7 +73,8 @@ first.and.second.restoration.query.string <- function (limit=0)
   ?rolei inheres_in: ?toothi .
   ?proci realizes: ?rolei .
   ?proci occurrence_date: ?date . # date of procedure
-  
+  ?proci has_participant: ?surfacei . ## link surface to procedure
+
   ##- first procedure: the tooth is same as the general procedure above.
   ## the first procedure is determined in a manner similar to the
   ## general procedure above
@@ -85,10 +86,8 @@ first.and.second.restoration.query.string <- function (limit=0)
   ?rolei1 inheres_in: ?toothi .
   ?proci1 realizes: ?rolei1 .
   ?proci1 occurrence_date: ?date1 . # date of procedure 1
-  
-  ## surfaces that have been restored particpate in the procedure
-  ?proci1 has_participant: ?surfacei .
-  
+  ?proci1 has_participant: ?surfacei . ## link surface to procedure
+
   ##- second process: the tooth and surface remain the same as the first
   ## but a new process that realizes a new role is searched for
   ?proci2 rdf:type tooth_restoration_procedure: .
@@ -99,10 +98,8 @@ first.and.second.restoration.query.string <- function (limit=0)
   ?rolei2 inheres_in: ?toothi .
   ?proci2 realizes: ?rolei2 .
   ?proci2 occurrence_date: ?date2 . # date fo procedure 2
-  
-  ## surfaces that have been restored particpate in the procedure
-  ?proci2 has_participant: ?surfacei .
-  
+  ?proci2 has_participant: ?surfacei . ## link surface to procedure
+
   ## we only those second procedure that are after the first
   filter (?date2 > ?date1 && ?proci1 != ?proci2)
   
@@ -118,10 +115,8 @@ first.and.second.restoration.query.string <- function (limit=0)
   ?rolei3 inheres_in: ?toothi .
   ?proci3 realizes: ?rolei3 .
   ?proci3 occurrence_date: ?date3 . # date of procedure 3
-  
-  ## surfaces that have been restored particpate in the procedure
-  ?proci3 has_participant: ?surfacei .
-  
+  ?proci3 has_participant: ?surfacei . ## link surface to procedure
+
   ## we want only that procedures that are between
   ## two other procedures
   filter (?date3<?date2 && ?date3>?date1)}
@@ -277,3 +272,86 @@ nonfailed.restorations.count.query.string <- function(limit = 0) {
   query.string
 }
 
+tooth.2.of.patient.690.query.string <- function() {
+"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX dental_patient: <http://purl.obolibrary.org/obo/OHD_0000012>
+PREFIX birth_date:  <http://purl.obolibrary.org/obo/OHD_0000050>
+PREFIX occurrence_date:  <http://purl.obolibrary.org/obo/OHD_0000015>
+PREFIX inheres_in: <http://purl.obolibrary.org/obo/BFO_0000052>
+PREFIX participates_in: <http://purl.obolibrary.org/obo/BFO_0000056>
+PREFIX has_participant: <http://purl.obolibrary.org/obo/BFO_0000057>
+PREFIX dental_procedure: <http://purl.obolibrary.org/obo/OHD_0000002>
+PREFIX crown_restoration: <http://purl.obolibrary.org/obo/OHD_0000033>
+PREFIX tooth_restoration_procedure: <http://purl.obolibrary.org/obo/OHD_0000004>
+PREFIX intracoronal_restoration: <http://purl.obolibrary.org/obo/OHD_0000006>
+PREFIX veneer_restoration: <http://purl.obolibrary.org/obo/OHD_0000027>
+PREFIX inlay_restoration: <http://purl.obolibrary.org/obo/OHD_0000133>
+PREFIX onlay_restoration: <http://purl.obolibrary.org/obo/OHD_0000134>
+PREFIX surgical_procedure: <http://purl.obolibrary.org/obo/OHD_0000044>
+PREFIX endodontic_procedure: <http://purl.obolibrary.org/obo/OHD_0000003>
+PREFIX tooth_to_be_restored_role: <http://purl.obolibrary.org/obo/OHD_0000007>
+PREFIX tooth_to_be_filled_role: <http://purl.obolibrary.org/obo/OHD_0000008>
+PREFIX realizes: <http://purl.obolibrary.org/obo/BFO_0000055>
+PREFIX tooth: <http://purl.obolibrary.org/obo/FMA_12516>
+PREFIX is_part_of: <http://purl.obolibrary.org/obo/BFO_0000050>
+PREFIX tooth_surface: <http://purl.obolibrary.org/obo/FMA_no_fmaid_Surface_enamel_of_tooth>
+PREFIX mesial: <http://purl.obolibrary.org/obo/FMA_no_fmaid_Mesial_surface_enamel_of_tooth>
+PREFIX distal: <http://purl.obolibrary.org/obo/FMA_no_fmaid_Distal_surface_enamel_of_tooth>
+PREFIX occlusal: <http://purl.obolibrary.org/obo/FMA_no_fmaid_Occlusial_surface_enamel_of_tooth>
+PREFIX buccal: <http://purl.obolibrary.org/obo/FMA_no_fmaid_Buccal_surface_enamel_of_tooth>
+PREFIX labial: <http://purl.obolibrary.org/obo/FMA_no_fmaid_Labial_surface_enamel_of_tooth>
+PREFIX lingual: <http://purl.obolibrary.org/obo/FMA_no_fmaid_Lingual_surface_enamel_of_tooth>
+PREFIX is_dental_restoration_of: <http://purl.obolibrary.org/obo/OHD_0000091>
+PREFIX dental_restoration_material: <http://purl.obolibrary.org/obo/OHD_0000000>
+PREFIX has_specified_input: <http://purl.obolibrary.org/obo/OBI_0000293>
+PREFIX has_specified_output: <http://purl.obolibrary.org/obo/OBI_0000299>
+PREFIX asserted_type: <http://purl.obolibrary.org/obo/OHD_0000092>
+PREFIX tooth_number: <http://purl.obolibrary.org/obo/OHD_0000065>
+PREFIX female: <http://purl.obolibrary.org/obo/OHD_0000049>
+PREFIX male: <http://purl.obolibrary.org/obo/OHD_0000054>
+PREFIX patient: <http://purl.obolibrary.org/obo/OHD_0000012>
+
+select ?tooth ?surface ?proc ?date
+where 
+{
+## patient's sex and birth date
+?patienti rdf:type patient: .
+?patienti asserted_type: ?patienttypei .
+?patienti birth_date: ?birthdate .
+
+## patient's tooth & tooth type
+?toothi rdf:type tooth: .
+?toothi asserted_type: ?toothtypei .
+?toothi is_part_of: ?patienti .
+
+## surfaces and their types that are part of tooth
+?surfacei rdf:type tooth_surface: .
+?surfacei asserted_type: ?surfacetypei .
+?surfacei is_part_of: ?toothi .
+
+##- restoration procedure and tooth to be restored role
+?proci rdf:type tooth_restoration_procedure: .
+?rolei rdf:type tooth_to_be_restored_role: .
+
+## the tooth to be restored role inheres in the tooth
+## and is realized by the procedure
+?rolei inheres_in: ?toothi .
+?proci realizes: ?rolei .
+?proci occurrence_date: ?date . # date of procedure
+?proci has_participant: ?surfacei . ## link surface to procedure
+
+## assign labels 
+?toothi rdfs:label ?tooth .
+?surfacei rdfs:label  ?surface .
+?proci rdfs:label ?proc
+
+filter(?tooth = \"tooth 2 of patient 690\")
+
+}
+
+order by ?tooth ?surface ?proc ?date
+"
+}
