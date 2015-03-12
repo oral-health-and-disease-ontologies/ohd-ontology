@@ -255,7 +255,7 @@ If no leading '!' is present, the iri is simply returned as string."
 
 (defmacro setf+ (string1 &rest string2)
   "A shortcut for str+:
- (setf+ x (str+ y z)) is the same as (setf+ x y z)"
+ (setf x (str+ y z)) is the same as (setf+ x y z)"
   `(setf ,string1 (str+ ,string1 ,@string2)))
 
 (defun str+ (&rest values)
