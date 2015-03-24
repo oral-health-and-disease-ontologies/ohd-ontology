@@ -81,7 +81,11 @@
     (setf visit-name (get-eaglesoft-dental-visit-name patient-id occurrence-date)) 
     (push `(annotation-assertion !rdfs:label ,visit-uri ,visit-name) axioms)
     
-    
+    (push `(data-property-assertion
+	    !'occurrence date'@ohd
+	    ,visit-uri 
+	    (:literal ,occurrence-date !xsd:date)) axioms)
+
     ;; get patient-role and provider-role iri
     (setf patient-role-uri (get-eaglesoft-dental-patient-role-iri patient-id))
     
