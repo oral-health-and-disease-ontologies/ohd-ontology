@@ -6,7 +6,6 @@
 ## Summary: Statics on the time intervals between restoration proceedures
 
 source("SPARQL.R") ; # patch to SPARQL.R
-source("sparql-restoration-queries.r")
 source("environment.r") # load environment variables
 
 ## NB: this lines comes after sourcing above files!
@@ -34,12 +33,12 @@ read.sparql.file <- function (file, limit=0, print.query=FALSE){
 
 restoration.counts.by.tooth <- function (limit=0, print.query=FALSE) 
 {
-  ## build sparql query, note: use querystring function to add prefixes
+  ## build sparql query
   file <- "sparql/restoration-count-by-tooth.sparql"
-  query.string <- querystring(read.sparql.file(file, limit, print.query))
+  query.string <- read.sparql.file(file, limit, print.query)
   
   ## get results and convert to dataframe; note: stringsAsFactors must be false
-  res <- sparql.remote(current_endpoint, query.string)
+  res <- queryc(query.string)
   df <- as.data.frame(res, stringsAsFactors = F)
   
   ## when res is coverted to a data frame, the data types of the values are chars
@@ -69,22 +68,22 @@ non.failed.restorations <- function (limit=0, print.query=FALSE) {
   
   ## build sparql query, note: use querystring function to add prefixes
   file <- "sparql/non-failed-restorations.sparql"
-  query.string <- querystring(read.sparql.file(file, limit, print.query))
+  query.string <- read.sparql.file(file, limit, print.query)
   
   ## get results and convert to dataframe; note: stringsAsFactors must be false
-  res <- sparql.remote(current_endpoint, query.string)
+  res <- queryc(query.string)
   df <- as.data.frame(res, stringsAsFactors = F)    
 }
 
 average.time.to.restoration.failure <- function (limit=0, print.query=FALSE, days=FALSE)
 {
 
-  ## build sparql query, note: use querystring function to add prefixes
+  ## build sparql query
   file <- "sparql/first-and-second-restoration.sparql"
-  query.string <- querystring(read.sparql.file(file, limit, print.query))
+  query.string <- read.sparql.file(file, limit, print.query)
   
   ## get results
-  res <- sparql.remote(current_endpoint, query.string)
+  res <- queryc(query.string)
   
   ## build matrix with only the restoration procedure dates
   dates <- matrix(c(res[,"date1"], res[,"date2"]), ncol=2)
@@ -115,12 +114,12 @@ average.time.to.restoration.failure <- function (limit=0, print.query=FALSE, day
 average.time.to.restoration.failure.by.sex <- function (limit=0, print.query=FALSE, days=FALSE)
 {
 
-  ## build sparql query, note: use querystring function to add prefixes
+  ## build sparql query
   file <- "sparql/first-and-second-restoration.sparql"
-  query.string <- querystring(read.sparql.file(file, limit, print.query))
+  query.string <- read.sparql.file(file, limit, print.query)
   
   ## get results and convert to dataframe; note: stringsAsFactors must be false
-  res <- sparql.remote(current_endpoint, query.string)
+  res <- queryc(query.string)
   df <- as.data.frame(res, stringsAsFactors = F)
   
   ## add column to data frame that contains the difference
@@ -162,12 +161,12 @@ average.time.to.restoration.failure.by.sex <- function (limit=0, print.query=FAL
 
 average.time.to.restoration.failure.by.tooth <- function (limit=0, print.query=FALSE, days=FALSE, by.sex=FALSE)
 {
-  ## build sparql query, note: use querystring function to add prefixes
+  ## build sparql query
   file <- "sparql/first-and-second-restoration.sparql"
-  query.string <- querystring(read.sparql.file(file, limit, print.query))
+  query.string <- read.sparql.file(file, limit, print.query)
   
   ## get results and convert to dataframe; note: stringsAsFactors must be false
-  res <- sparql.remote(current_endpoint, query.string)
+  res <- queryc(query.string)
   df <- as.data.frame(res, stringsAsFactors = F)
   
   ## add column the data frame that contains the difference
@@ -236,12 +235,12 @@ average.time.to.restoration.failure.by.tooth <- function (limit=0, print.query=F
 average.time.to.restoration.failure.by.surface <- function (limit=0, print.query=FALSE, days=FALSE, by.sex=FALSE, by.surface.letter=FALSE)
 {
   
-  ## build sparql query, note: use querystring function to add prefixes
+  ## build sparql query
   file <- "sparql/first-and-second-restoration.sparql"
-  query.string <- querystring(read.sparql.file(file, limit, print.query))
+  query.string <- read.sparql.file(file, limit, print.query)
   
   ## get results and convert to dataframe; note: stringsAsFactors must be false
-  res <- sparql.remote(current_endpoint, query.string)
+  res <- queryc(query.string)
   df <- as.data.frame(res, stringsAsFactors = F)
   
   ## add column the data frame that contains the difference
