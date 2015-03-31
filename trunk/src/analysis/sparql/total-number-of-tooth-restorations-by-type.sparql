@@ -1,38 +1,4 @@
-## Author: Alan Ruttenberg
-## Project: OHD
-## Date: May, 2013
-##
-## Modified by Bill Duncan December, 2015
-##
-## Support functions for demos. See load.r
-## Cache query results during session so debugging is easier.
-
-# load necessary libraries for sparql
-library(rrdf) # defunct
-library(MASS)
-library(SPARQL)
-
-# if we use SPARQL library don't translate xsd:Date, so we can be compatible with RRDF
-set_rdf_type_converter("http://www.w3.org/2001/XMLSchema#date",identity)
-
-# triple store on local machine
-local_r21_nightly <- "http://localhost:8080/openrdf-sesame/repositories/ohd-partial"
-
-# triple store nightly build on the imac in the dungeon
-dungeon_r21_nightly <- "http://dungeon.ctde.net:8080/openrdf-sesame/repositories/ohd-r21-nightly"
-
-duncan_r21 <- "http://192.168.1.137:8080/openrdf-sesame/repositories/ohd-partial"
-
-if(!exists("current_endpoint"))
- { print("You have to set current_endpoint first"); } # <<- duncan_r21 }
-
-if(!exists("current_sparqlr"))
-{ current_sparqlr <<- "rrdf"; }
-
-# strings for prefixes
-default_ohd_prefixes <- function  ()
-{
-"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX obo: <http://purl.obolibrary.org/obo/>
@@ -73,54 +39,34 @@ PREFIX female: <http://purl.obolibrary.org/obo/OHD_0000049>
 PREFIX male: <http://purl.obolibrary.org/obo/OHD_0000054>
 PREFIX patient: <http://purl.obolibrary.org/obo/OHD_0000012>
 
-"}
-
-lastSparqlQuery <- NULL;
-
-querystring <- function(string,prefixes=default_ohd_prefixes)
-  { lastSparqlQuery <- paste(prefixes(),"\n",string,"\n");
-    lastSparqlQuery
-  }
-
-sessionQueryCache <- new.env(hash=TRUE);
-
-## See if we have a cached result for query executed at endpoint
-cachedQuery <- function (query,endpoint)
-{ if (exists(endpoint,sessionQueryCache))
-  { endpointCache <- get(endpoint,sessionQueryCache);
-    if (exists(query,endpointCache)) return(get(query,endpointCache)) }
-  NULL
+select ?restoration_procedure (count(*) as ?count)
+where 
+{
+  ## patient and patient's tooth
+  ?patienti rdf:type patient: .  
+  ?toothi rdf:type tooth: .
+  ?toothi is_part_of: ?patienti .
+  
+  ## surfaces that are part of tooth
+  ?surfacei rdf:type tooth_surface: .
+  ?surfacei is_part_of: ?toothi .
+  
+  ## restoration procedure and tooth be restored role
+  ?proct rdfs:subClassOf tooth_restoration_procedure: .
+  ?proci rdf:type ?proct .
+  ?rolei rdf:type tooth_to_be_restored_role: .
+  
+  ## the tooth to be restored role inheres in the tooth
+  ## and is realized by the procedure
+  ?rolei inheres_in: ?toothi .
+  ?proci realizes: ?rolei .
+  
+  ## the tooth's surface participated in the procedure
+  ?surfacei participates_in: ?proci .
+  
+  ## assign labels
+  ?proct rdfs:label ?restoration_procedure .
+  
 }
-
-## Cache result for query executed at endpoint
-cacheQuery <- function (query,endpoint,result)
-{ if (exists(endpoint,sessionQueryCache))
-  { endpointCache <- get(endpoint,sessionQueryCache)}
-  else
-  { endpointCache <<- new.env(hash=TRUE)
-    assign(endpoint,endpointCache,sessionQueryCache) }
-  assign(query,result,endpointCache)
-  result
-}
-
-## return the session cache
-queryCache <- function() { sessionQueryCache }
-
-## execute a sparql query. endpoint defaults to current_endpoint, sparql library defaults to "rrdf"
-queryc <- function(string,endpoint=current_endpoint,prefixes=default_ohd_prefixes)
-{ cached <- cachedQuery(querystring(string,prefixes=prefixes),endpoint);
-  if (!is.null(cached))
-    cached
-  else
-    { queryres <- if (current_sparqlr=="rrdf")
-                {sparql.remote(endpoint,querystring(string,prefixes=prefixes)) }
-                else if (current_sparqlr=="SPARQL")
-                {res<-SPARQL(endpoint,querystring(string,prefixes=prefixes))
-                 res$results}
-      cacheQuery(querystring(string,prefixes=prefixes),endpoint,queryres);
-      queryres
-    }
-}
-
-## retrieve the last sparql query result
-lastSparql <- function() { cat(lastSparqlQuery) }
+group by ?restoration_procedure
+order by ?restoration_procedure

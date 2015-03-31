@@ -12,10 +12,34 @@ source("environment.r") # load environment variables
 ## NB: this lines comes after sourcing above files!
 .GlobalEnv[["interpret_type"]]=interpret_rdf_type;
 
+read.sparql.file <- function (file, limit=0, print.query=FALSE){
+  ## read contents from file 
+  con <- file(file, "r", blocking = FALSE)
+  sparql <- readLines(con)
+  close(con)
+  
+  ## collapsed lines 
+  sparql <- paste(sparql, sep = "", collapse="  \n ")
+  
+  ## check for limit
+  if (limit > 0)
+    sparql <- paste(sparql," limit ", limit, " \n", sep="")
+  
+  ## check for print to screen
+  if (print.query) { cat(sparql) }
+  
+  ## return sparql query
+  sparql
+}
+
 restoration.counts.by.tooth <- function (limit=0, print.query=FALSE) 
 {
-  ## get results
-  res <- restoration.counts.by.tooth.results(limit, print.query)
+  ## build sparql query, note: use querystring function to add prefixes
+  file <- "sparql/restoration-count-by-tooth.sparql"
+  query.string <- querystring(read.sparql.file(file, limit, print.query))
+  
+  ## get results and convert to dataframe; note: stringsAsFactors must be false
+  res <- sparql.remote(current_endpoint, query.string)
   df <- as.data.frame(res, stringsAsFactors = F)
   
   ## when res is coverted to a data frame, the data types of the values are chars
@@ -41,12 +65,27 @@ restoration.counts.by.tooth <- function (limit=0, print.query=FALSE)
   info
 }
 
+non.failed.restorations <- function (limit=0, print.query=FALSE) {
+  
+  ## build sparql query, note: use querystring function to add prefixes
+  file <- "sparql/non-failed-restorations.sparql"
+  query.string <- querystring(read.sparql.file(file, limit, print.query))
+  
+  ## get results and convert to dataframe; note: stringsAsFactors must be false
+  res <- sparql.remote(current_endpoint, query.string)
+  df <- as.data.frame(res, stringsAsFactors = F)    
+}
+
 average.time.to.restoration.failure <- function (limit=0, print.query=FALSE, days=FALSE)
 {
 
-  ## get restults
-  res <- failed.restoration.results(limit, print.query)
-
+  ## build sparql query, note: use querystring function to add prefixes
+  file <- "sparql/first-and-second-restoration.sparql"
+  query.string <- querystring(read.sparql.file(file, limit, print.query))
+  
+  ## get results
+  res <- sparql.remote(current_endpoint, query.string)
+  
   ## build matrix with only the restoration procedure dates
   dates <- matrix(c(res[,"date1"], res[,"date2"]), ncol=2)
 
@@ -72,67 +111,16 @@ average.time.to.restoration.failure <- function (limit=0, print.query=FALSE, day
   }
 }
 
-average.time.to.amalgam.restoration.failure <- function (limit=0, print.query=FALSE, days=FALSE)
-{
-  
-  ## get restults
-  res <- failed.amalgam.restoration.results(limit, print.query)
-  
-  ## build matrix with only the restoration procedure dates
-  dates <- matrix(c(res[,"date1"], res[,"date2"]), ncol=2)
-  
-  ## add column to dates matrix that contains the difference
-  ## between the dates in days
-  dates <- cbind(dates, abs(floor(difftime(res[,"date2"], res[,"date1"], units = "days"))))
-  
-  ## determine average number of days to failure
-  ave.failure.days <- as.numeric(mean(as.numeric(dates[,3])))
-  
-  ##  determine average number of years to failure
-  if(ave.failure.days > 0) {
-    ave.failure.years <- ave.failure.days/365.25
-  } else {
-    ave.failure.years <- 0
-  }
-  
-  ## if days is true return average in days
-  if (days) {
-    ave.failure.days
-  } else {
-    ave.failure.years
-  }
-}
 
 average.time.to.restoration.failure.by.sex <- function (limit=0, print.query=FALSE, days=FALSE)
 {
 
-  ## get restults
-  res <- failed.restoration.results(limit, print.query)
-
-### *** This commented code below uses matrices to calculate mean durations
-###      I'm keeping it around for posterity
-        
-  ## build matrix with the patient type (i.e., sex) and restoration procedure dates
-#   data <- matrix(c(res[, "patienttype"], res[,"date1"], res[,"date2"]), ncol=3)
-# 
-#   ## add column to dates matrix that contains the difference
-#   ## between the dates in days
-#   data <- cbind(data, abs(floor(difftime(res[,"date2"], res[,"date1"], units = "days"))))
-# 
-#   ## add meaningful names
-#   colnames(data) <- c("sex", "date1", "date2", "ave")
-# 
-#   ## split the data by the patient type and give groups more appropriate names
-#   data.sex <- split(as.numeric(data[,"ave"]), data[,"sex"])
-#   names(data.sex) <- c("female", "male")
-# 
-#   ## determine average number of days to failure for each group (female/male)
-#   sex.mean <- lapply(data.sex, FUN=mean)
-
-### *** Instead of using matrices (as above) to calculate means, use data frames
-###     and tapply function to get mean restoration failure time
-
-  ## build data frame from sparql result set, note: stringsAsFactors must be false
+  ## build sparql query, note: use querystring function to add prefixes
+  file <- "sparql/first-and-second-restoration.sparql"
+  query.string <- querystring(read.sparql.file(file, limit, print.query))
+  
+  ## get results and convert to dataframe; note: stringsAsFactors must be false
+  res <- sparql.remote(current_endpoint, query.string)
   df <- as.data.frame(res, stringsAsFactors = F)
   
   ## add column to data frame that contains the difference
@@ -174,11 +162,12 @@ average.time.to.restoration.failure.by.sex <- function (limit=0, print.query=FAL
 
 average.time.to.restoration.failure.by.tooth <- function (limit=0, print.query=FALSE, days=FALSE, by.sex=FALSE)
 {
+  ## build sparql query, note: use querystring function to add prefixes
+  file <- "sparql/first-and-second-restoration.sparql"
+  query.string <- querystring(read.sparql.file(file, limit, print.query))
   
-  ## get restults
-  res <- failed.restoration.results(limit, print.query)
-  
-  ## build data frame from sparql result set, note: stringsAsFactors must be false
+  ## get results and convert to dataframe; note: stringsAsFactors must be false
+  res <- sparql.remote(current_endpoint, query.string)
   df <- as.data.frame(res, stringsAsFactors = F)
   
   ## add column the data frame that contains the difference
@@ -247,10 +236,12 @@ average.time.to.restoration.failure.by.tooth <- function (limit=0, print.query=F
 average.time.to.restoration.failure.by.surface <- function (limit=0, print.query=FALSE, days=FALSE, by.sex=FALSE, by.surface.letter=FALSE)
 {
   
-  ## get restults
-  res <- failed.restoration.results(limit, print.query)
+  ## build sparql query, note: use querystring function to add prefixes
+  file <- "sparql/first-and-second-restoration.sparql"
+  query.string <- querystring(read.sparql.file(file, limit, print.query))
   
-  ## build data frame from sparql result set, note: stringsAsFactors must be false
+  ## get results and convert to dataframe; note: stringsAsFactors must be false
+  res <- sparql.remote(current_endpoint, query.string)
   df <- as.data.frame(res, stringsAsFactors = F)
   
   ## add column the data frame that contains the difference
@@ -395,49 +386,4 @@ match.surface.name <- function (surfacetype.string) {
   
   ## return the surface name
   surface.name
-}
-
-failed.restoration.results <- function (limit=0, print.query=FALSE)
-{
-  ## get query.string
-  query.string <- first.and.second.restoration.query.string(limit)
-
-  ## print query.string when print.query true
-  if (print.query)
-  {
-    cat(query.string)
-  }
-
-  ## return restults
-  queryc(query.string)
-}
-
-failed.amalgam.restoration.results <- function (limit=0, print.query=FALSE)
-{
-  ## get query.string
-  query.string <- first.and.second.amalgam.restoration.query.string(limit)
-  
-  ## print query.string when print.query true
-  if (print.query)
-  {
-    cat(query.string)
-  }
-  
-  ## return restults
-  queryc(query.string)
-}
-
-restoration.counts.by.tooth.results <- function (limit=0, print.query=FALSE)
-{
-  ## get query.string
-  query.string <- restoration.count.by.tooth.query.string(limit)
-  
-  ## print query.string when print.query true
-  if (print.query)
-  {
-    cat(query.string)
-  }
-  
-  ## return restults
-  queryc(query.string)
 }

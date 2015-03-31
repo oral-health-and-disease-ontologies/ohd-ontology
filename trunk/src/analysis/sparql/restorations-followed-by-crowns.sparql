@@ -1,0 +1,92 @@
+select distinct 
+  ?patient
+  ?tooth
+  ?procedure
+  ?procedure_date
+  (group_concat(distinct ?surface; separator=\", \") as ?surfaces)
+  ?crown
+  ?crown_date
+
+
+## look for surface specific for now. Find two procedures and an optional third
+where
+{
+  ## patient's sex and birth date
+  ?patienti rdf:type patient: .
+  ?patienti asserted_type: ?patienttypei .
+  ?patienti birth_date: ?birthdate .
+  
+  ## patient's tooth & tooth type
+  ?toothi rdf:type tooth: .
+  ?toothi asserted_type: ?toothtypei .
+  ?toothi is_part_of: ?patienti .
+  
+  ## surfaces and their types that are part of tooth
+  ?surfacei rdf:type tooth_surface: .
+  ?surfacei asserted_type: ?surfacet .
+  ?surfacei is_part_of: ?toothi .
+  
+  ## - restoration procedure and role that it realizes
+  ?proci rdf:type tooth_restoration_procedure: .
+  ?rolei rdf:type tooth_to_be_restored_role: .
+  ?proci realizes: ?rolei .
+  ?proci occurrence_date: ?procedure_date . # date of procedure
+  ?proci has_participant: ?surfacei . ## link surface to procedure
+  
+  ## - second process: crown procecedure on same tooth
+  ## note: crowns don't have surface info
+  ?crown_proci rdf:type crown_restoration: .
+  ?crown_rolei rdf:type tooth_to_be_restored_role: .
+  ?crown_rolei inheres_in: ?toothi .
+  ?crown_proci realizes: ?crown_rolei .
+  ?crown_proci occurrence_date: ?crown_date . # date for crown
+  
+  ## we only those second procedure that are after the first
+  filter (?crown_date > ?procedure_date && ?proci != ?crown_proci) .
+  
+  ## assign labels
+  ?patienti rdfs:label ?patient .
+  ?toothi rdfs:label ?tooth .
+  ?proci rdfs:label ?procedure .
+  ?crown_proci rdfs:label ?crown .
+  ?surfacet rdfs:label ?surface .
+
+  
+  ## check for procedures that might have occurred
+  ## between the first and second procedures
+  optional 
+{
+  ?between_procedure rdf:type tooth_restoration_procedure: .
+  ?between_rolei rdf:type tooth_to_be_restored_role: .
+  
+  ## the tooth to be restored role inheres in the tooth
+  ## and is realized by the procedure
+  ?between_rolei inheres_in: ?toothi .
+  ?between_procedure realizes: ?between_rolei .
+  ?between_procedure occurrence_date: ?between_date . # date of procedure 3
+  #?between_procedure has_participant: ?surfacei . ## link surface to procedure
+  
+  ## we want only that procedures that are between
+  ## two other procedures
+  filter (?between_date > ?procedure_date && ?between_date < ?crown_date)
+}
+  
+  ## we only want those records where the in between date 
+  ## is not bound, this gives us adjacent dates
+  filter (!bound(?between_date))
+  
+}
+  
+  group by
+  ?patient
+  ?tooth 
+  ?procedure 
+  ?procedure_date
+  ?crown 
+  ?crown_date
+
+  order by
+  ?patient
+  ?tooth
+  ?procedure 
+  ?procedure_date
