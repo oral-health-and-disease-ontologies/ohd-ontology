@@ -1,0 +1,85 @@
+To get started, source("load.r")
+
+You need to set a sparql endpoint for queries, e.g.
+
+current_endpoint <- "http://localhost:8080/openrdf-sesame/repositories/ohd-partial"
+
+You can then query the repository using the function queryc. Standard
+prefixes are in prefix.r. If a prefix is registered there then you can
+omit the PREFIX statement in the query - it will be added.
+
+The function querystring (query) will show what the query looks like
+with the prefixes.
+
+e.g.
+
+test <- function()
+{ q<- "select  ?procedurel (count(?procedurei) as ?count)
+where
+{
+  # patient instances
+  ?patienti a dental_patient: .
+  # procedure instances
+  ?procedurei a dental_procedure: .
+  # link to role that the procedure realize
+  ?procedurei realizes: ?rolei .
+  # make sure it is a patient role  
+  ?rolei a patient_role: .
+  # and that it's one of the patient's
+  ?rolei inheres_in: ?patienti.
+  # technically we don't need the next check for participation
+  ?patienti participates_in: ?procedurei.
+  # get the type of procedure
+  ?procedurei a ?procedurec.
+  # and the label for that class, for reporting since we are summarizing by *type* of procedure
+  ?procedurec rdfs:label ?procedurel.
+  ?procedurec rdfs:label ?procedurel.
+}
+# group by controls what is counted. We get a count for every set of
+# results with the same procedure label
+group by ?procedurel
+# and sort with most frequent at the top
+order by desc(?count)
+";
+querystring(q)
+}
+
+test()
+->
+PREFIX dental_patient: <http://purl.obolibrary.org/obo/OHD_0000012>
+PREFIX dental_procedure: <http://purl.obolibrary.org/obo/OHD_0000002>
+PREFIX realizes: <http://purl.obolibrary.org/obo/BFO_0000055>
+PREFIX patient_role: <http://purl.obolibrary.org/obo/OHD_0000190>
+PREFIX inheres_in: <http://purl.obolibrary.org/obo/BFO_0000052>
+PREFIX participates_in: <http://purl.obolibrary.org/obo/BFO_0000056>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+ 
+ select  ?procedurel (count(?procedurei) as ?count)
+where
+{
+  # patient instances
+  ?patienti a dental_patient: .
+  # procedure instances
+  ?procedurei a dental_procedure: .
+  # link to role that the procedure realize
+  ?procedurei realizes: ?rolei .
+  # make sure it is a patient role  
+  ?rolei a patient_role: .
+  # and that it's one of the patient's
+  ?rolei inheres_in: ?patienti.
+  # technically we don't need the next check for participation
+  ?patienti participates_in: ?procedurei.
+  # get the type of procedure
+  ?procedurei a ?procedurec.
+  # and the label for that class, for reporting since we are summarizing by *type* of procedure
+  ?procedurec rdfs:label ?procedurel.
+  ?procedurec rdfs:label ?procedurel.
+}
+# group by controls what is counted. We get a count for every set of
+# results with the same procedure label
+group by ?procedurel
+# and sort with most frequent at the top
+order by desc(?count)
+
+
+

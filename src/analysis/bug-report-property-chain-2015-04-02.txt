@@ -1,0 +1,221 @@
+Inference problem. A propertychain axiom is not being acted on.
+
+We want to infer from
+  role inheres_in thing
+  process realizes role
+
+that
+  thing participates in process
+
+The solution is a property chain axiom, but we need to do some
+rearrangement because the properties aren't pointing the right
+direction. We rewrite as:
+
+We want to infer from
+  thing inverse(inheres_in) role
+  role inverse(realizes) process
+
+Now we have a chain: thing p1 role p2 process -> thing participates in process
+Or
+
+inverse(inheres_in) o inverse(realizes) -> participates_in
+
+To set up a test case,
+The query[1] will all distinct patterns of type of thing, type role, type of process
+We note that there are some results such as
+
+"human dental patient"	"patient role"	"tooth extraction procedure"
+"female dental patient"	"patient role"	"tooth extraction procedure"
+
+However at the start we have no cases where "human dental patient"
+participates_in "tooth extraction procedure"
+
+[2] is LSW code to generate the RDF for the properychain axioms
+[3] is the generated RDF
+
+Loading this into the triple store should create triples relating the
+thing to the process using the participates_in relation.
+
+It doesn't
+
+------
+
+[1]
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX dental_patient: <http://purl.obolibrary.org/obo/OHD_0000012>
+PREFIX inheres_in: <http://purl.obolibrary.org/obo/BFO_0000052>
+PREFIX participates_in: <http://purl.obolibrary.org/obo/BFO_0000056>
+PREFIX dental_procedure: <http://purl.obolibrary.org/obo/OHD_0000002>
+PREFIX realizes: <http://purl.obolibrary.org/obo/BFO_0000055>
+
+SELECT distinct ?thing ?role ?process 
+WHERE
+
+{
+  #chain. thing inv(inheres_in) role inv(realizes) process
+
+  ?thingi ?ip ?rolei .
+  ?rolei ?rp ?processi.
+  ?thingi participates_in: ?processi. # uncomment this and you no longer see patients as things
+  
+  # defined chained over properties (inverse of named ones)
+  ?ip owl:inverseOf inheres_in:.
+  ?rp owl:inverseOf realizes:.
+
+  #get type and label for display
+  ?thingi sesame:directType ?thingc.
+  ?thingc rdfs:label ?thing.
+
+  ?processi sesame:directType ?processc.
+  ?processc rdfs:label ?process.
+
+  ?rolei sesame:directType ?rolec.
+  ?rolec rdfs:label ?role
+
+}
+
+
+ 
+[2]
+;; generate propertychain rdf for inv(inheres_in) o inv(realizes) -> participates_in
+
+(with-ontology foo (:collecting t)
+	     ((asq (subObjectpropertyof 
+		    (objectpropertychain
+		     (ObjectInverseOf !<http://purl.obolibrary.org/obo/BFO_0000052>)
+		     (ObjectInverseOf !<http://purl.obolibrary.org/obo/BFO_0000055>))
+		    !<http://purl.obolibrary.org/obo/BFO_0000056>)))
+	   (to-owl-syntax foo :rdfxml)
+			)
+
+
+[3]
+
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    
+
+
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000056">
+        <propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description>
+                <inverseOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
+            </rdf:Description>
+            <rdf:Description>
+                <inverseOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+            </rdf:Description>
+        </propertyChainAxiom>
+    </rdf:Description>
+
+</rdf:RDF>
+
+
+****************************************************************
+
+WORKAROUND: SPARQL UPDATE
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX dental_patient: <http://purl.obolibrary.org/obo/OHD_0000012>
+PREFIX inheres_in: <http://purl.obolibrary.org/obo/BFO_0000052>
+PREFIX participates_in: <http://purl.obolibrary.org/obo/BFO_0000056>
+PREFIX dental_procedure: <http://purl.obolibrary.org/obo/OHD_0000002>
+PREFIX realizes: <http://purl.obolibrary.org/obo/BFO_0000055>
+
+INSERT
+  { ?thingi participates_in: ?processi }
+WHERE
+
+{
+  # chain. thing inv(inheres_in) role inv(realizes) process
+  ?rolei  inheres_in: ?thingi.
+  ?processi  realizes: ?rolei.
+}
+
+****************************************************************
+
+http://answers.semanticweb.com/questions/9125/what-is-owl-horst-reasoning
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dental_patient: <http://purl.obolibrary.org/obo/OHD_0000012>
+PREFIX participates_in: <http://purl.obolibrary.org/obo/BFO_0000056>
+PREFIX dental_procedure: <http://purl.obolibrary.org/obo/OHD_0000002>
+
+select  ?procedurel (count(?procedurei) as ?count)
+where
+{ ?patienti a dental_patient:.
+  ?procedurei a dental_procedure:.
+  ?patienti participates_in: ?procedurei.
+  ?procedurei sesame:directType ?procedure.
+  ?procedure rdfs:label ?procedurel.
+  }
+group by ?procedurel
+order by desc(?count)
+
+****************************************************************
+
+Modified bill query total-number-of-tooth-restorations-by-type.sparql
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX inheres_in: <http://purl.obolibrary.org/obo/BFO_0000052>
+PREFIX participates_in: <http://purl.obolibrary.org/obo/BFO_0000056>
+PREFIX tooth_restoration_procedure: <http://purl.obolibrary.org/obo/OHD_0000004>
+PREFIX tooth_to_be_restored_role: <http://purl.obolibrary.org/obo/OHD_0000007>
+PREFIX realizes: <http://purl.obolibrary.org/obo/BFO_0000055>
+PREFIX tooth: <http://purl.obolibrary.org/obo/FMA_12516>
+PREFIX is_part_of: <http://purl.obolibrary.org/obo/BFO_0000050>
+PREFIX tooth_surface: <http://purl.obolibrary.org/obo/FMA_no_fmaid_Surface_enamel_of_tooth>
+PREFIX dental_restoration_material: <http://purl.obolibrary.org/obo/OHD_0000000>
+PREFIX tooth_number: <http://purl.obolibrary.org/obo/OHD_0000065>
+PREFIX patient: <http://purl.obolibrary.org/obo/OHD_0000012>
+
+select ?restoration_procedure (count(*) as ?count)
+where 
+{
+  ## patient and patient's tooth
+  ?patienti rdf:type patient: .  
+  ?toothi rdf:type tooth: .
+  ?toothi is_part_of: ?patienti .
+  
+  ## surfaces that are part of tooth
+  ?surfacei rdf:type tooth_surface: .
+  ?surfacei is_part_of: ?toothi .
+  
+  ## restoration procedure and tooth be restored role
+  ?proct rdfs:subClassOf tooth_restoration_procedure: .
+  ?proci rdf:type ?proct .
+  ?rolei rdf:type tooth_to_be_restored_role: .
+  
+  ## the tooth to be restored role inheres in the tooth
+  ## and is realized by the procedure
+  ?rolei inheres_in: ?toothi .
+  ?proci realizes: ?rolei .
+  
+  ## the tooth's surface participated in the procedure
+  ?surfacei participates_in: ?proci .
+  
+  ## assign labels
+  ?proct rdfs:label ?restoration_procedure .
+  
+}
+group by ?restoration_procedure
+order by desc(?count)
