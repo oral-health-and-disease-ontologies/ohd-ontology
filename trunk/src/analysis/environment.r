@@ -11,6 +11,7 @@
 library(rrdf) # defunct
 library(MASS)
 library(SPARQL)
+source("SPARQL.r")
 
 # if we use SPARQL library don't translate xsd:Date, so we can be compatible with RRDF
 set_rdf_type_converter("http://www.w3.org/2001/XMLSchema#date",identity)
@@ -52,6 +53,8 @@ PREFIX onlay_restoration: <http://purl.obolibrary.org/obo/OHD_0000134>
 PREFIX surgical_procedure: <http://purl.obolibrary.org/obo/OHD_0000044>
 PREFIX endodontic_procedure: <http://purl.obolibrary.org/obo/OHD_0000003>
 PREFIX tooth_to_be_restored_role: <http://purl.obolibrary.org/obo/OHD_0000007>
+PREFIX dental_patient_role: <http://purl.obolibrary.org/obo/OHD_0000190>
+PREFIX dental_healthcare_provider_role: <http://purl.obolibrary.org/obo/OHD_0000052>
 PREFIX tooth_to_be_filled_role: <http://purl.obolibrary.org/obo/OHD_0000008>
 PREFIX realizes: <http://purl.obolibrary.org/obo/BFO_0000055>
 PREFIX tooth: <http://purl.obolibrary.org/obo/FMA_12516>
@@ -107,9 +110,9 @@ cacheQuery <- function (query,endpoint,result)
 queryCache <- function() { sessionQueryCache }
 
 ## execute a sparql query. endpoint defaults to current_endpoint, sparql library defaults to "rrdf"
-queryc <- function(string,endpoint=current_endpoint,prefixes=default_ohd_prefixes)
+queryc <- function(string,endpoint=current_endpoint,prefixes=default_ohd_prefixes,cache=TRUE)
 { cached <- cachedQuery(querystring(string,prefixes=prefixes),endpoint);
-  if (!is.null(cached))
+  if (!is.null(cached)) && cache)
     cached
   else
     { queryres <- if (current_sparqlr=="rrdf")
