@@ -1,0 +1,20 @@
+## This query returns the total for each type of patient
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dental_patient: <http://purl.obolibrary.org/obo/OHD_0000012>
+PREFIX asserted_type:<http://purl.obolibrary.org/obo/OHD_0000092>
+
+select ?patient_gender (count(distinct ?patienti) as ?count) 
+where 
+{
+  ## 
+  ?proci rdf:type dental_patient: .
+  ?proci asserted_type: ?proct .
+    
+  ## assign labels
+  ?proct rdfs:label ?patient_gender .
+  
+}
+group by ?patient_gender .
+order by desc(?count)

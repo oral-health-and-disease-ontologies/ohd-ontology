@@ -1,0 +1,75 @@
+##select distinct ?crown ?crown_date ?post_procedure ?post_date # used or getting indiviual procedures
+
+select ?crown ?post_procedure (count(*) as ?count)
+
+## find crown procedures that have been follow by antoher
+## procedure on the same tooth
+where
+{
+  ## patient's sex and birth date
+  ?patienti rdf:type patient: .
+  ?patienti asserted_type: ?patientt .
+  ?patienti birth_date: ?birthdate .
+  
+  ## patient's tooth & tooth type
+  ?toothi rdf:type tooth: .
+  ?toothi asserted_type: ?tootht .
+  ?toothi is_part_of: ?patienti .
+  
+  
+  ## crown procedures
+  ## find the crown procedures that realize some 
+  ## tooth to be restored role that is borne by the tooth
+  ?crowni rdf:type crown_restoration: .
+  ?crowni asserted_type: ?crownt .
+  ?rolei rdf:type tooth_to_be_restored_role: .
+  ?rolei inheres_in: ?toothi .
+  ?crowni realizes: ?rolei .
+  ?crowni occurrence_date: ?crown_date . # date of procedure
+  
+  ## find follow up procedure on same tooth
+  ?postproci rdf:type tooth_restoration_procedure: .
+  ?postproci asserted_type: ?postproct .
+  ?postrolei rdf:type tooth_to_be_restored_role: .
+  ?postrolei inheres_in: ?toothi .
+  ?postproci realizes: ?postrolei .
+  ?postproci occurrence_date: ?post_date . # date of follow up procedure
+  
+  filter(?post_date > ?crown_date) .
+  
+  ## we want the crown and follow up procedures to be adjacent
+  ## so, find the procedures that occur between the crown and follow up
+  optional
+  {
+    ?between_procedure rdf:type tooth_restoration_procedure: .
+    ?between_rolei rdf:type tooth_to_be_restored_role: .
+  
+    ## the tooth to be restored role inheres in the tooth
+    ## and is realized by the procedure
+    ?between_rolei inheres_in: ?toothi .
+    ?between_procedure realizes: ?between_rolei .
+    ?between_procedure occurrence_date: ?between_date . # date of between procedure
+
+    ## we want only that procedures that are between
+    ## two other procedures
+    filter (?between_date > ?crown_date && ?between_date < ?post_date) .
+  }
+  
+  ## we only want the matches where there is not an in between date
+  ## this gives us adjacent procedures
+  filter(!bound(?between_date))  
+  
+  ## assign labels
+  ## used for finding indiviuals
+  #?crowni rdfs:label ?crown .a
+  #?postproci rdfs:label ?post_procedure .
+  ?crownt rdfs:label ?crown .
+  ?postproct rdfs:label ?post_procedure .
+  
+}
+
+## used to order indiviuals
+#order by ?crown ?crown_date ?post_procedure ?post_date
+
+## used for summary data
+group by ?crown ?post_procedure
