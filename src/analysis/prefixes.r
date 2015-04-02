@@ -23,7 +23,7 @@ assign("surgical_procedure:", "<http://purl.obolibrary.org/obo/OHD_0000044>",env
 assign("endodontic_procedure:", "<http://purl.obolibrary.org/obo/OHD_0000003>",envir=prefixes)
 assign("tooth_to_be_restored_role:", "<http://purl.obolibrary.org/obo/OHD_0000007>",envir=prefixes)
 assign("dental_patient_role:", "<http://purl.obolibrary.org/obo/OHD_0000190>",envir=prefixes)
-assign("patient_role:", "<http://purl.obolibrary.org/obo/OHD_0000190>",envir=prefixes)
+assign("patient_role:", "<http://purl.obolibrary.org/obo/OBI_0000093>",envir=prefixes)
 assign("dental_healthcare_provider_role:", "<http://purl.obolibrary.org/obo/OHD_0000052>",envir=prefixes)
 assign("tooth_to_be_filled_role:", "<http://purl.obolibrary.org/obo/OHD_0000008>",envir=prefixes)
 assign("realizes:", "<http://purl.obolibrary.org/obo/BFO_0000055>",envir=prefixes)
