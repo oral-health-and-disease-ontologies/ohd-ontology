@@ -1,42 +1,15 @@
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
-PREFIX obo: <http://purl.obolibrary.org/obo/>
-PREFIX dental_patient: <http://purl.obolibrary.org/obo/OHD_0000012>
-PREFIX birth_date:  <http://purl.obolibrary.org/obo/OHD_0000050>
-PREFIX occurrence_date:  <http://purl.obolibrary.org/obo/OHD_0000015>
 PREFIX inheres_in: <http://purl.obolibrary.org/obo/BFO_0000052>
 PREFIX participates_in: <http://purl.obolibrary.org/obo/BFO_0000056>
-PREFIX has_participant: <http://purl.obolibrary.org/obo/BFO_0000057>
-PREFIX dental_procedure: <http://purl.obolibrary.org/obo/OHD_0000002>
-PREFIX crown_restoration: <http://purl.obolibrary.org/obo/OHD_0000033>
 PREFIX tooth_restoration_procedure: <http://purl.obolibrary.org/obo/OHD_0000004>
-PREFIX intracoronal_restoration: <http://purl.obolibrary.org/obo/OHD_0000006>
-PREFIX veneer_restoration: <http://purl.obolibrary.org/obo/OHD_0000027>
-PREFIX inlay_restoration: <http://purl.obolibrary.org/obo/OHD_0000133>
-PREFIX onlay_restoration: <http://purl.obolibrary.org/obo/OHD_0000134>
-PREFIX surgical_procedure: <http://purl.obolibrary.org/obo/OHD_0000044>
-PREFIX endodontic_procedure: <http://purl.obolibrary.org/obo/OHD_0000003>
 PREFIX tooth_to_be_restored_role: <http://purl.obolibrary.org/obo/OHD_0000007>
-PREFIX tooth_to_be_filled_role: <http://purl.obolibrary.org/obo/OHD_0000008>
 PREFIX realizes: <http://purl.obolibrary.org/obo/BFO_0000055>
 PREFIX tooth: <http://purl.obolibrary.org/obo/FMA_12516>
 PREFIX is_part_of: <http://purl.obolibrary.org/obo/BFO_0000050>
 PREFIX tooth_surface: <http://purl.obolibrary.org/obo/FMA_no_fmaid_Surface_enamel_of_tooth>
-PREFIX mesial: <http://purl.obolibrary.org/obo/FMA_no_fmaid_Mesial_surface_enamel_of_tooth>
-PREFIX distal: <http://purl.obolibrary.org/obo/FMA_no_fmaid_Distal_surface_enamel_of_tooth>
-PREFIX occlusal: <http://purl.obolibrary.org/obo/FMA_no_fmaid_Occlusial_surface_enamel_of_tooth>
-PREFIX buccal: <http://purl.obolibrary.org/obo/FMA_no_fmaid_Buccal_surface_enamel_of_tooth>
-PREFIX labial: <http://purl.obolibrary.org/obo/FMA_no_fmaid_Labial_surface_enamel_of_tooth>
-PREFIX lingual: <http://purl.obolibrary.org/obo/FMA_no_fmaid_Lingual_surface_enamel_of_tooth>
-PREFIX is_dental_restoration_of: <http://purl.obolibrary.org/obo/OHD_0000091>
 PREFIX dental_restoration_material: <http://purl.obolibrary.org/obo/OHD_0000000>
-PREFIX has_specified_input: <http://purl.obolibrary.org/obo/OBI_0000293>
-PREFIX has_specified_output: <http://purl.obolibrary.org/obo/OBI_0000299>
-PREFIX asserted_type: <http://purl.obolibrary.org/obo/OHD_0000092>
 PREFIX tooth_number: <http://purl.obolibrary.org/obo/OHD_0000065>
-PREFIX female: <http://purl.obolibrary.org/obo/OHD_0000049>
-PREFIX male: <http://purl.obolibrary.org/obo/OHD_0000054>
 PREFIX patient: <http://purl.obolibrary.org/obo/OHD_0000012>
 
 select ?restoration_procedure (count(*) as ?count)
@@ -69,4 +42,5 @@ where
   
 }
 group by ?restoration_procedure
-order by ?restoration_procedure
+order by desc(?count)
+
