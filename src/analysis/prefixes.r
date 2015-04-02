@@ -1,4 +1,7 @@
-prefixes = new.env(hash=TRUE)
+## prefixes are represented as an environment with the key the prefix
+## (terminated with ":") and the value the URI. 
+
+prefixes <- new.env(hash=TRUE)
 assign("rdf:", "<http://www.w3.org/1999/02/22-rdf-syntax-ns#>",prefixes)
 assign("rdfs:", "<http://www.w3.org/2000/01/rdf-schema#>",envir=prefixes)
 assign("owl:", "<http://www.w3.org/2002/07/owl#>",envir=prefixes)
@@ -43,6 +46,7 @@ assign("female:", "<http://purl.obolibrary.org/obo/OHD_0000049>",envir=prefixes)
 assign("male:", "<http://purl.obolibrary.org/obo/OHD_0000054>",envir=prefixes)
 assign("patient:", "<http://purl.obolibrary.org/obo/OHD_0000012>",envir=prefixes)
 
+## backwards compatibility - join these all into a single string.
 all_prefixes_as_string <-  function ()
 {
   paste(lapply(ls(prefixes),
@@ -50,15 +54,19 @@ all_prefixes_as_string <-  function ()
        collapse ="\n")}
 }
 
-;; oh is this ever ugly, because I'm not versed in R data structures. Maybe I will fix it some time.
+## oh is this ever ugly, because I'm not versed in R data structures. Maybe I will fix it some time.
 
+## given a list of prefixes, concatenate together the appropriate PREFIX statements for the query
 some_prefixes_as_string <- function (which,source="")
 {
-  paste(do.call(paste,append(cbind(lapply(as.list(which),
+  paste(do.call(paste,append(cbind(lapply(unique(as.list(which)),
               function(p) {
                 if(!(exists(p,prefixes))) stop("Didn't find prefix ",p,"used in:\n ", source);
                 paste("PREFIX ",p," ",get(p,prefixes),sep="")})),alist(sep="\n"))),"\n")
 }
+
+## given a sparql query (without prefixes) creates the necessary
+## PREFIX statements based on which prefixes are used in the query.
 
 prefixes_for_sparql <- function(query)
   { some_prefixes_as_string(as.list(cbind(regmatches(query,gregexpr("(\\S+:)", query,perl=TRUE))[[1]])),source=query) }
