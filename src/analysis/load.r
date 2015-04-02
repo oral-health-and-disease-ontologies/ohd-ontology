@@ -23,6 +23,7 @@
 source("SPARQL.R") ; # patch to SPARQL.R
 .GlobalEnv[["interpret_type"]]=interpret_rdf_type;
 
+source("prefixes.r"); #list of PREFIXes
 source("environment.r"); # endpoints etc
 source("simple-statistics.r") # simple statistical functions on the repo
 
