@@ -2,7 +2,7 @@
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX tooth_restoration_procedure: <http://purl.obolibrary.org/obo/OHD_0000004>
+PREFIX dental_procedure: <http://purl.obolibrary.org/obo/OHD_0000002>
 PREFIX asserted_type:<http://purl.obolibrary.org/obo/OHD_0000092>
 
 select ?restoration_procedure (count(distinct ?proci) as ?count) 
@@ -10,7 +10,7 @@ where
 {
   ## restoration procedure
   ## find each instance procedure and its asserted (i.e., direct) type
-  ?proci rdf:type tooth_restoration_procedure: .
+  ?proci rdf:type dental_procedure: .
   ?proci asserted_type: ?proct .
     
   ## assign label
