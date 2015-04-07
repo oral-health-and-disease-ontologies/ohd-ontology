@@ -26,4 +26,4 @@ source("SPARQL.R") ; # patch to SPARQL.R
 source("prefixes.r"); #list of PREFIXes
 source("environment.r"); # endpoints etc
 source("simple-statistics.r") # simple statistical functions on the repo
-
+source("summary.r") # 

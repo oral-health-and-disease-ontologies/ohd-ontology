@@ -66,10 +66,24 @@ how_many_patients <- function()
            "{ ?patient a dental_patient: }")  }
 
 how_many_patients_with_procedure <- function()
-  { queryc("select (count(distinct ?patient) as ?count) where { ?patient participates_in: ?proc. ?patient a dental_patient: . ?proc a dental_procedure:.}") }
+  { queryc("select (count(distinct ?patient) as ?count)",
+           "where ",
+           "{ ?patient participates_in: ?proc.",
+           "  ?patient a dental_patient: .",
+           "  ?proc a dental_procedure:.",
+           "}")
+  }
 
 how_many_procedures_not_part_of_visit <- function ()
-  {   queryc("select (count(distinct ?proc) as ?count)  where { ?proc a dental_procedure:. optional{?proc is_part_of: ?visit} FILTER (!bound(?visit))}") }
+  {   queryc("select (count(distinct ?proc) as ?count)",
+             "  where",
+             "  { ?proc a dental_procedure:.",
+             "    optional{?proc is_part_of: ?visit} ",
+             "    FILTER (!bound(?visit))",
+             "  }")
+    }
+             
+
 
 visit_summary <- function ()
   { 
@@ -94,4 +108,24 @@ visit_summary <- function ()
 
 
 
-    
+distribution_of_patient_in_practice_time <- function(threshold=10,breaks=20)
+  {
+    res <- queryc("select ?patient (min(?date) as ?earliest) (max(?date) as ?latest) where",
+                  "{",
+                  " ?visit a outpatient_encounter:.",
+                  " ?visit occurrence_date: ?date.",
+                  " ?patient participates_in: ?visit.",
+                  " ?patient a dental_patient:.",
+                  "} GROUP BY ?patient"
+                  #"  LIMIT 10"
+                  )
+    res <- data.frame(res);
+    res$timeInDays <- as.numeric(as.Date(res$latest)  - as.Date(res$earliest))
+    which <- res$timeInDays[res$timeInDays>threshold];
+    bplot(hist(which/365,plot=FALSE,breaks=breaks),
+          xlab="Years between first and last visit",
+          ylab="Number of patients",
+          main=paste("Time between patient first and last visit (",length(which)," patients)",sep="")
+          )
+  }
+
