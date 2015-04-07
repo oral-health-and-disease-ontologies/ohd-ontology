@@ -36,10 +36,14 @@ default_ohd_prefixes <- function  ()
 
 lastSparqlQuery <- NULL;
 
-querystring <- function(string,prefixes=default_ohd_prefixes)
-  { lastSparqlQuery <- paste(prefixes_for_sparql(string),"\n",string,"\n");
+querystring <- function(...,prefixes=default_ohd_prefixes)
+  { string <- paste(...,sep="\n");
+    lastSparqlQuery <<- paste(prefixes_for_sparql(string),"\n",string,"\n");
     lastSparqlQuery
   }
+
+clearSPARQLSessionCache <- function ()
+ { sessionQueryCache <<- new.env(hash=TRUE); }
 
 sessionQueryCache <- new.env(hash=TRUE);
 
@@ -66,8 +70,9 @@ cacheQuery <- function (query,endpoint,result)
 queryCache <- function() { sessionQueryCache }
 
 ## execute a sparql query. endpoint defaults to current_endpoint, sparql library defaults to "rrdf"
-queryc <- function(string,endpoint=current_endpoint,prefixes=default_ohd_prefixes,cache=TRUE)
-{ if (identical(prefixes,FALSE))  { prefixes <- (function () {}) }
+queryc <- function(...,endpoint=current_endpoint,prefixes=default_ohd_prefixes,cache=TRUE)
+{ string <- paste(..., sep="\n");
+  if (identical(prefixes,FALSE))  { prefixes <- (function () {}) }
   cached <- cachedQuery(querystring(string,prefixes=prefixes),endpoint);
   if ((!is.null(cached)) && cache)
     cached
@@ -84,3 +89,12 @@ queryc <- function(string,endpoint=current_endpoint,prefixes=default_ohd_prefixe
 
 ## retrieve the last sparql query result
 lastSparql <- function() { cat(lastSparqlQuery) }
+
+## describe a term.
+rdfd <- function(uri)
+{  cat("What things have it as subject\n")
+   queryc(paste("select distinct ?pl ?vl  where { <",uri,"> ?p ?v. ?p rdfs:label ?pl. optional { ?v rdfs:label ?vl}}",sep="")) 
+   cat("What things have it as object\n")
+   queryc(paste("select distinct ?sl ?pl  where { ?s ?p <",uri,"> . ?p rdfs:label ?pl. optional { ?s rdfs:label ?sl}}",sep=""))
+ }
+
