@@ -82,7 +82,10 @@ queryc <- function(...,endpoint=current_endpoint,prefixes=default_ohd_prefixes,c
                 else if (current_sparqlr=="SPARQL")
                 {res<-SPARQL(endpoint,querystring(string,prefixes=prefixes))
                  res$results}
-      cacheQuery(querystring(string,prefixes=prefixes),endpoint,queryres);
+      if (length(queryres)==2 && Reduce("==",dim(queryres)==cbind(0,0))) # the function returned a 0x0 empty matrix, i.e. error
+        { cat("There was an error in the SPARQL query") }
+      else 
+        { cacheQuery(querystring(string,prefixes=prefixes),endpoint,queryres) }
       queryres
     }
 }
