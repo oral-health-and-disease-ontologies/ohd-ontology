@@ -108,9 +108,10 @@ visit_summary <- function ()
 
 
 
-distribution_of_patient_in_practice_time <- function(threshold=10,breaks=20)
+distribution_of_patient_in_practice_time <- function(atleastvisits=2,atmostvisits=200,breaks=20)
   {
-    res <- queryc("select ?patient (min(?date) as ?earliest) (max(?date) as ?latest) where",
+    res <- queryc("select ?patient (min(?date) as ?earliest) (max(?date) as ?latest)",
+                  "       (count(?date) as ?nvisits) where",
                   "{",
                   " ?visit a outpatient_encounter:.",
                   " ?visit occurrence_date: ?date.",
@@ -119,13 +120,32 @@ distribution_of_patient_in_practice_time <- function(threshold=10,breaks=20)
                   "} GROUP BY ?patient"
                   #"  LIMIT 10"
                   )
-    res <- data.frame(res);
-    res$timeInDays <- as.numeric(as.Date(res$latest)  - as.Date(res$earliest))
-    which <- res$timeInDays[res$timeInDays>threshold];
-    bplot(hist(which/365,plot=FALSE,breaks=breaks),
+    res <- data.frame(res,stringsAsFactors = FALSE);
+    lastDataTime <- max(as.Date(res$latest))
+    res$nvisits <- as.numeric(res$nvisits)
+    res$timeBetweenVisitsAsDays <- as.numeric(as.Date(res$latest)  - as.Date(res$earliest))
+    res$firstToEndPracticeDays <- as.numeric(lastDataTime  - as.Date(res$earliest))
+    which <-((res$nvisits <= atmostvisits) & (res$nvisits >=atleastvisits));
+    cat(length(res$nvisits[which]));
+    svg(filename="/tmp/rsvg.svg")
+    par(mfrow=c(3,1))
+    plot(hist(res$firstToEndPracticeDays[which]/365,plot=FALSE,breaks=breaks),
+          xlab="Years between first visit and last date of practice data",
+          ylab="Number of patients",
+          main=paste("Time between patient first visit and end of practice data \n(",length(res$firstToEndPracticeDays[which])," patients, at least ",atleastvisits," visits)",sep="")
+          )
+    plot(hist(res$timeBetweenVisitsAsDays[which]/365,plot=FALSE,breaks=breaks),
           xlab="Years between first and last visit",
           ylab="Number of patients",
-          main=paste("Time between patient first and last visit (",length(which)," patients)",sep="")
+          main=paste("Time between patient first and last visit \n(",length(res$timeBetweenVisitsAsDays[which])," patients, at least ",atleastvisits," visits)",sep="")
           )
+    plot(hist(as.numeric(res$nvisits),plot=FALSE,breaks=breaks),
+          xlab="Total number of visits",
+          ylab="Number of patients",
+           main=paste("Number of visits per patient (",length(res$nvisits)," patients)",sep="")
+           )
+    dev.off()
+    browseURL("file:///tmp/rsvg.svg")
+    res
   }
 
