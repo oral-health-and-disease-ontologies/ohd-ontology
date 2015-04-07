@@ -50,8 +50,9 @@ how_many_patients_with_visit_without_procedure <- function()
 how_many_patients_with_no_information <- function ()
  {
    queryc("select (count(distinct ?patient) as ?count) where",
+          " {",
           " ?patient a dental_patient:. ",
-          " { optional {",
+          "  optional {",
           "    ?patient participates_in: ?proc. ",
           "    ?proc a dental_procedure:.",
           "            }",
