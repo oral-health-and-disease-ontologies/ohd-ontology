@@ -98,3 +98,10 @@ rdfd <- function(uri)
    queryc(paste("select distinct ?sl ?pl  where { ?s ?p <",uri,"> . ?p rdfs:label ?pl. optional { ?s rdfs:label ?sl}}",sep=""))
  }
 
+# plot using SVG in the browser
+bplot <- function (...)
+  { svg(filename="/tmp/rsvg.svg")
+    plot(...)
+    dev.off()
+    browseURL("file:///tmp/rsvg.svg")
+  }
