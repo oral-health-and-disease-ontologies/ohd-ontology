@@ -45,13 +45,18 @@ assign("tooth_number:", "<http://purl.obolibrary.org/obo/OHD_0000065>",envir=pre
 assign("female:", "<http://purl.obolibrary.org/obo/OHD_0000049>",envir=prefixes)
 assign("male:", "<http://purl.obolibrary.org/obo/OHD_0000054>",envir=prefixes)
 assign("patient:", "<http://purl.obolibrary.org/obo/OHD_0000012>",envir=prefixes)
-
+assign("dental_visit:", "<http://purl.obolibrary.org/obo/OHD_0000009>", envir=prefixes)
+assign("physical_exam:", "<http://purl.obolibrary.org/obo/OGMS_0000057>", envir=prefixes)
+assign("health_care_encounter:", "<http://purl.obolibrary.org/obo/OGMS_0000096>", envir=prefixes)
+assign("occurrence_date:", "<http://purl.obolibrary.org/obo/OHD_0000015>", envir=prefixes)
+assign("outpatient_encounter:", "<http://purl.obolibrary.org/obo/OGMS_0000099>", envir=prefixes)
+  
 ## backwards compatibility - join these all into a single string.
 all_prefixes_as_string <-  function ()
 {
   paste(lapply(ls(prefixes),
               function(p) {paste("PREFIX ",p," ",get(p,prefixes),sep="")}),
-       collapse ="\n")}
+       collapse ="\n")
 }
 
 ## oh is this ever ugly, because I'm not versed in R data structures. Maybe I will fix it some time.
@@ -61,7 +66,7 @@ some_prefixes_as_string <- function (which,source="")
 {
   paste(do.call(paste,append(cbind(lapply(unique(as.list(which)),
               function(p) {
-                if(!(exists(p,prefixes))) stop("Didn't find prefix ",p,"used in:\n ", source);
+                if(!(exists(p,prefixes))) { if (p == "<http:") {return("")} else { cat(paste("Didn't find prefix ",p,"used in:\n ", source)); return("") }};
                 paste("PREFIX ",p," ",get(p,prefixes),sep="")})),alist(sep="\n"))),"\n")
 }
 
@@ -70,3 +75,5 @@ some_prefixes_as_string <- function (which,source="")
 
 prefixes_for_sparql <- function(query)
   { some_prefixes_as_string(as.list(cbind(regmatches(query,gregexpr("(\\S+:)", query,perl=TRUE))[[1]])),source=query) }
+
+## to remove PREFIX gsub("PREFIX[ ]*[^\n]*\n","",querystring(q))
