@@ -16,8 +16,14 @@ source("SPARQL.r")
 # if we use SPARQL library don't translate xsd:Date, so we can be compatible with RRDF
 set_rdf_type_converter("http://www.w3.org/2001/XMLSchema#date",identity)
 
-# triple store on local machine
-local_r21_nightly <- "http://localhost:8080/openrdf-sesame/repositories/ohd-partial"
+## triple store on local machine
+local_r21_nightly <- "http://localhost:8080/openrdf-sesame/repositories/OHDRL20150412"
+
+## note form of sparql update query is not as documented. Should be
+## openrdf-sesame/repositories/OHDRL20150412/statements but that
+## doesn't work.
+
+local_r21_nightly_update <- "http://localhost:8080/openrdf-workbench/repositories/OHDRL20150412/update"
 
 # triple store nightly build on the imac in the dungeon
 dungeon_r21_nightly <- "http://dungeon.ctde.net:8080/openrdf-sesame/repositories/ohd-r21-nightly"
@@ -107,4 +113,26 @@ bplot <- function (...)
     plot(...)
     dev.off()
     browseURL("file:///tmp/rsvg.svg")
+  }
+
+sparqlUpdate <- function (...)
+  { update <- querystring(paste(...,sep="\n"));
+    postForm(current_update_endpoint,update=update,style='POST')
+  }
+
+## need to fix so that it can figure out the repo label itself
+setOWLIMQueryTimeout <- function(timeout_seconds)
+{ update=paste(
+    "DELETE { graph ?ctx ",
+    "{?place owlim:query-timeout ?current.} } ",
+    "INSERT { graph ?ctx ",
+    "   {?place owlim:query-timeout ",timeout_seconds,". }}",
+    "WHERE ",
+    " { ?ctx a rep:RepositoryContext.",
+    "   graph ?ctx",
+    "   {  _:a rdfs:label \"OHD R21 2015-04-08 RL\".",
+    "      _:a  a rep:Repository.",
+    "     ?place owlim:query-timeout ?current.",
+    "     }",sep="\n");
+  sparqlUpdate
   }

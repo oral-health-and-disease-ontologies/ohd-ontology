@@ -50,7 +50,14 @@ assign("physical_exam:", "<http://purl.obolibrary.org/obo/OGMS_0000057>", envir=
 assign("health_care_encounter:", "<http://purl.obolibrary.org/obo/OGMS_0000096>", envir=prefixes)
 assign("occurrence_date:", "<http://purl.obolibrary.org/obo/OHD_0000015>", envir=prefixes)
 assign("outpatient_encounter:", "<http://purl.obolibrary.org/obo/OGMS_0000099>", envir=prefixes)
-  
+assign("process:", "<http://purl.obolibrary.org/obo/BFO_0000007>", envir=prefixes)
+assign("owlim:", "<http://www.ontotext.com/trree/owlim#>", envir=prefixes)
+assign("sr:", "<http://www.openrdf.org/config/repository/sail#>", envir=prefixes)
+assign("rep:", "<http://www.openrdf.org/config/repository#>", envir=prefixes)
+assign("is_about:", "<http://purl.obolibrary.org/obo/IAO_0000136>", envir=prefixes)
+assign("cdt_code:", "<http://purl.obolibrary.org/obo/CDT_1000001>", envir=prefixes)
+
+
 ## backwards compatibility - join these all into a single string.
 all_prefixes_as_string <-  function ()
 {
