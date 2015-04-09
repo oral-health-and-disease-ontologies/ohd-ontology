@@ -1,0 +1,135 @@
+## snippets for now
+
+PREFIX translated: <file:///triplestores/r21-owl/>
+load translated:bfo2-classes.owl;
+load translated:bfo2-regions.owl;
+load translated:bfo2-relations.owl;
+load translated:bfo2.owl;
+load translated:caro-imports.owl;
+load translated:cdt-imports.owl;
+load translated:fma-jaws-teeth.owl;
+load translated:iao-imports.owl;
+load translated:ncbi-imports.owl;
+load translated:obi-imports.owl;
+load translated:ogms.owl;
+load translated:ohd.owl;
+load translated:ontology-metadata.owl;
+load translated:protege-dc.owl;
+load translated:r21-eaglesoft-crowns.owl;
+load translated:r21-eaglesoft-dental-patients.owl;
+load translated:r21-eaglesoft-dental-providers.owl;
+load translated:r21-eaglesoft-dental-visits.owl;
+load translated:r21-eaglesoft-endodontics.owl;
+load translated:r21-eaglesoft-fillings.owl;
+load translated:r21-eaglesoft-inlays.owl;
+load translated:r21-eaglesoft-onlays.owl;
+load translated:r21-eaglesoft-surgical-extractions.owl;
+load translated:r21-eaglesoft-veneers.owl;
+
+
+From the configurator. Left entity index at 200000
+
+[] a rep:Repository ;
+   rep:repositoryID "ohd-partial-2015-04-08-RL" ;
+   rdfs:label "ohd-partial-2015-04-08-RL" ;
+   rep:repositoryImpl [
+      rep:repositoryType "openrdf:SailRepository" ;
+      sr:sailImpl [
+        sail:sailType "owlim:Sail" ;
+        owlim:ruleset "owl2-rl-optimized" ;
+        owlim:storage-folder "storage" ;
+
+        owlim:repository-type "file-repository" ;
+        owlim:base-URL "http://example.org/owlim#" ;
+        owlim:imports "" ;
+        owlim:defaultNS "" ;
+
+        owlim:entity-index-size "200000" ;
+        owlim:cache-memory "6976m" ;
+        owlim:tuple-index-memory "4186m" ;
+        owlim:enable-context-index "false" ;
+        owlim:enablePredicateList "true" ;
+        owlim:predicate-memory "2790m" ;
+        owlim:fts-memory "0" ;
+        owlim:ftsIndexPolicy "never" ;
+        owlim:ftsLiteralsOnly "true" ;
+        owlim:in-memory-literal-properties "false" ;
+        owlim:transaction-mode "fast" ;
+        owlim:transaction-isolation "false" ;
+        ]
+    ].
+
+
+PREFIX owlim: <http://www.ontotext.com/trree/owlim#>
+PREFIX sr: <http://www.openrdf.org/config/repository/sail#>
+PREFIX rep: <http://www.openrdf.org/config/repository#>
+
+select * where
+ {graph ?ctx
+ {  _:a rdfs:label "OHD R21 2015-04-08 RL".
+    _:a  a rep:Repository.
+    _:a ?p ?o.}
+    ?ctx ?p1 ?o1.
+    ?ctx a rep:RepositoryContext.
+#   ?ctx owlim:owlim-license ?license.
+#   ?ctx rdfs:label "OHD R21 2015-04-08 RL".
+#   ?impl rdfs:label ?v.
+#   ?sailimpl sr:sailImpl ?ctx.
+   #  ?repoimp rep:repositoryImp ?ctx.
+   }
+
+### fix the license
+PREFIX owlim: <http://www.ontotext.com/trree/owlim#>
+PREFIX sr: <http://www.openrdf.org/config/repository/sail#>
+PREFIX rep: <http://www.openrdf.org/config/repository#>
+
+DELETE { graph ?ctx 
+   {?place owlim:owlim-license ?license.} } 
+INSERT { graph ?ctx 
+   {_:t owlim:query-timeout " ?place owlim:owlim-license "/triplestores/UNIVERSITYOF_BUFFALO_OWLIM_SE_latest-30-09-2014_4cores.license". }}
+WHERE 
+ { ?ctx a rep:RepositoryContext.
+   graph ?ctx
+   {  _:a rdfs:label "OHD R21 2015-04-08 RL".
+      _:a  a rep:Repository.
+     _:b owlim:owlim-license ?license.
+     }
+   }
+
+### change the timeout
+PREFIX owlim: <http://www.ontotext.com/trree/owlim#>
+PREFIX sr: <http://www.openrdf.org/config/repository/sail#>
+PREFIX rep: <http://www.openrdf.org/config/repository#>
+
+DELETE { graph ?ctx 
+   {?place owlim:query-timeout ?current.} } 
+INSERT { graph ?ctx 
+   {?place owlim:query-timeout "-1". }}
+WHERE 
+ { ?ctx a rep:RepositoryContext.
+   graph ?ctx
+   {  _:a rdfs:label "OHD R21 2015-04-08 RL".
+      _:a  a rep:Repository.
+     ?place owlim:query-timeout ?current.
+     }
+   }
+
+### property chain
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX dental_patient: <http://purl.obolibrary.org/obo/OHD_0000012>
+PREFIX inheres_in: <http://purl.obolibrary.org/obo/BFO_0000052>
+PREFIX participates_in: <http://purl.obolibrary.org/obo/BFO_0000056>
+PREFIX dental_procedure: <http://purl.obolibrary.org/obo/OHD_0000002>
+PREFIX realizes: <http://purl.obolibrary.org/obo/BFO_0000055>
+
+INSERT
+  { ?thingi participates_in: ?processi }
+WHERE
+
+{
+  # chain. thing inv(inheres_in) role inv(realizes) process
+  ?rolei  inheres_in: ?thingi.
+  ?processi  realizes: ?rolei.
+}
