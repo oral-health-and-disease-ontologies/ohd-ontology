@@ -3,33 +3,13 @@
 ## Project: OHD
 ## Date: Dec. 1, 2015
 ##
-## Summary: Statics on the time intervals between restoration proceedures
+## Summary: Statics on dental proceedures
 
-source("SPARQL.R") ; # patch to SPARQL.R
-source("environment.r") # load environment variables
+source("load.r")
 
 ## NB: this lines comes after sourcing above files!
 .GlobalEnv[["interpret_type"]]=interpret_rdf_type;
 
-read.sparql.file <- function (file, limit=0, print.query=FALSE){
-  ## read contents from file 
-  con <- file(file, "r", blocking = FALSE)
-  sparql <- readLines(con)
-  close(con)
-  
-  ## collapsed lines 
-  sparql <- paste(sparql, sep = "", collapse="  \n ")
-  
-  ## check for limit
-  if (limit > 0)
-    sparql <- paste(sparql," limit ", limit, " \n", sep="")
-  
-  ## check for print to screen
-  if (print.query) { cat(sparql) }
-  
-  ## return sparql query
-  sparql
-}
 
 restoration.counts.by.tooth <- function (limit=0, print.query=FALSE) 
 {
@@ -386,3 +366,4 @@ match.surface.name <- function (surfacetype.string) {
   ## return the surface name
   surface.name
 }
+

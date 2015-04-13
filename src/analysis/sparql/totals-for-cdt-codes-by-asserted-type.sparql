@@ -1,0 +1,31 @@
+## This query returns a comparison of the number of instances of billed CDT codes against
+## the number of health care process.
+## Health care processes include dental procedures as well as periodic evaluations.
+## The purpose of this query is to act as a sanity check. The number of billed CDT codes should
+## match the number of health care processes.
+## The instances are grouped according to their asserted types, that is, their most direct parent class.
+
+PREFIX is_about: <http://purl.obolibrary.org/obo/IAO_0000136>
+PREFIX cdt_code: <http://purl.obolibrary.org/obo/CDT_1000001>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX asserted_type: <http://purl.obolibrary.org/obo/OHD_0000092>
+PREFIX health_care_process: <http://purl.obolibrary.org/obo/OGMS_0000096>
+
+select (count(distinct ?code_instance) as ?code_count) (count(distinct ?proc) as ?proc_count)  ?code
+ where
+{ 
+  ## assign types
+  ?code_instance a cdt_code: .
+  ?proc a health_care_process: .
+  
+  ## code is about procedure
+  ?code_instance is_about: ?proc . 
+
+  ## the asserted type of the cdt code instance
+  ?code_instance asserted_type: ?code_type .
+
+  ## assign label
+  ?code_type rdfs:label ?code
+}
+group by ?code
+order by desc(?code_count)

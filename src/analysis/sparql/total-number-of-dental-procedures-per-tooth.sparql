@@ -1,0 +1,110 @@
+## This query returns the number of dental procedures that have performed
+## on each type of tooth
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+PREFIX dental_procedure: <http://purl.obolibrary.org/obo/OHD_0000002>
+PREFIX crown_restoration: <http://purl.obolibrary.org/obo/OHD_0000033>
+PREFIX tooth_restoration_procedure: <http://purl.obolibrary.org/obo/OHD_0000004>
+PREFIX intracoronal_restoration: <http://purl.obolibrary.org/obo/OHD_0000006>
+PREFIX veneer_restoration: <http://purl.obolibrary.org/obo/OHD_0000027>
+PREFIX inlay_restoration: <http://purl.obolibrary.org/obo/OHD_0000133>
+PREFIX onlay_restoration: <http://purl.obolibrary.org/obo/OHD_0000134>
+PREFIX surgical_procedure: <http://purl.obolibrary.org/obo/OHD_0000044>
+PREFIX endodontic_procedure: <http://purl.obolibrary.org/obo/OHD_0000003>
+
+PREFIX asserted_type:<http://purl.obolibrary.org/obo/OHD_0000092>
+PREFIX tooth: <http://purl.obolibrary.org/obo/FMA_12516>
+PREFIX participates_in: <http://purl.obolibrary.org/obo/BFO_0000056>
+PREFIX tooth_number: <http://purl.obolibrary.org/obo/OHD_0000065>
+
+PREFIX tooth1: <http://purl.obolibrary.org/obo/FMA_55696>
+PREFIX tooth2: <http://purl.obolibrary.org/obo/FMA_55697>
+PREFIX tooth3: <http://purl.obolibrary.org/obo/FMA_55698>
+PREFIX tooth4: <http://purl.obolibrary.org/obo/FMA_55688>
+PREFIX tooth5: <http://purl.obolibrary.org/obo/FMA_55689>
+PREFIX tooth6: <http://purl.obolibrary.org/obo/FMA_55798>
+PREFIX tooth7: <http://purl.obolibrary.org/obo/FMA_55680>
+PREFIX tooth8: <http://purl.obolibrary.org/obo/FMA_55681>
+PREFIX tooth9: <http://purl.obolibrary.org/obo/FMA_55682>
+PREFIX tooth10: <http://purl.obolibrary.org/obo/FMA_55683>
+PREFIX tooth11: <http://purl.obolibrary.org/obo/FMA_55799>
+PREFIX tooth12: <http://purl.obolibrary.org/obo/FMA_55690>
+PREFIX tooth13: <http://purl.obolibrary.org/obo/FMA_55691>
+PREFIX tooth14: <http://purl.obolibrary.org/obo/FMA_55699>
+PREFIX tooth15: <http://purl.obolibrary.org/obo/FMA_55700>
+PREFIX tooth16: <http://purl.obolibrary.org/obo/FMA_55701>
+PREFIX tooth17: <http://purl.obolibrary.org/obo/FMA_55702>
+PREFIX tooth18: <http://purl.obolibrary.org/obo/FMA_55703>
+PREFIX tooth19: <http://purl.obolibrary.org/obo/FMA_55704>
+PREFIX tooth20: <http://purl.obolibrary.org/obo/FMA_55692>
+PREFIX tooth21: <http://purl.obolibrary.org/obo/FMA_55693>
+PREFIX tooth22: <http://purl.obolibrary.org/obo/FMA_55687>
+PREFIX tooth23: <http://purl.obolibrary.org/obo/FMA_57141>
+PREFIX tooth24: <http://purl.obolibrary.org/obo/FMA_57143>
+PREFIX tooth25: <http://purl.obolibrary.org/obo/FMA_57142>
+PREFIX tooth26: <http://purl.obolibrary.org/obo/FMA_57140>
+PREFIX tooth27: <http://purl.obolibrary.org/obo/FMA_55686>
+PREFIX tooth28: <http://purl.obolibrary.org/obo/FMA_55694>
+PREFIX tooth29: <http://purl.obolibrary.org/obo/FMA_55695>
+PREFIX tooth30: <http://purl.obolibrary.org/obo/FMA_55705>
+PREFIX tooth31: <http://purl.obolibrary.org/obo/FMA_55706>
+PREFIX tooth32: <http://purl.obolibrary.org/obo/FMA_55707>
+
+
+
+
+select distinct ?procedure
+
+(count(distinct ?tooth_proci) as ?count)
+where
+{
+  ## find instances of each type of tooth
+  ?tooth1i rdf:type tooth1: .
+  ?tooth2i rdf:type tooth2: .
+  ?tooth3i rdf:type tooth3: .
+  ?tooth4i rdf:type tooth4: .
+  ?tooth5i rdf:type tooth5: .
+  ?tooth6i rdf:type tooth6: .
+  ?tooth7i rdf:type tooth7: .
+  ?tooth8i rdf:type tooth8: .
+  ?tooth9i rdf:type tooth9: .
+  ?tooth10i rdf:type tooth10: .
+  ?tooth11i rdf:type tooth11: .
+  ?tooth12i rdf:type tooth12: .
+  ?tooth13i rdf:type tooth13: .
+  ?tooth14i rdf:type tooth14: .
+  ?tooth15i rdf:type tooth15: .
+  ?tooth16i rdf:type tooth16: .
+  ?tooth17i rdf:type tooth17: .
+  ?tooth18i rdf:type tooth18: .
+  ?tooth19i rdf:type tooth19: .
+  ?tooth20i rdf:type tooth20: .
+  ?tooth21i rdf:type tooth21: .
+  ?tooth21i rdf:type tooth22: .
+  ?tooth22i rdf:type tooth23: .
+  ?tooth23i rdf:type tooth24: .
+  ?tooth24i rdf:type tooth25: .
+  ?tooth25i rdf:type tooth26: .
+  ?tooth26i rdf:type tooth27: .
+  ?tooth27i rdf:type tooth28: .
+  ?tooth28i rdf:type tooth29: .
+  ?tooth29i rdf:type tooth30: .
+  ?tooth30i rdf:type tooth31: .
+  ?tooth31i rdf:type tooth32: .
+  
+  
+  ## find the procedures each tooth participates in
+  ?tooth_proci rdf:type dental_procedure: .
+  ?restoration_proci rdf:type
+  ?
+  ?tooth1i participates_in: ?proci .
+  ?tooth2i participates_in: ?proci .
+  
+  ## assign labels
+  ?proci asserted_type: ?proct .
+  ?proct rdfs:label ?procedure .
+} 
+group by ?procedure
+

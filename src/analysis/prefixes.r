@@ -5,6 +5,7 @@ prefixes <- new.env(hash=TRUE)
 assign("rdf:", "<http://www.w3.org/1999/02/22-rdf-syntax-ns#>",prefixes)
 assign("rdfs:", "<http://www.w3.org/2000/01/rdf-schema#>",envir=prefixes)
 assign("owl:", "<http://www.w3.org/2002/07/owl#>",envir=prefixes)
+assign("xsd:", "<http://www.w3.org/2001/XMLSchema#>",envir=prefixes)
 assign("obo:", "<http://purl.obolibrary.org/obo/>",envir=prefixes)
 assign("dental_patient:", "<http://purl.obolibrary.org/obo/OHD_0000012>",envir=prefixes)
 assign("birth_date:", " <http://purl.obolibrary.org/obo/OHD_0000050>",envir=prefixes)
@@ -56,6 +57,7 @@ assign("sr:", "<http://www.openrdf.org/config/repository/sail#>", envir=prefixes
 assign("rep:", "<http://www.openrdf.org/config/repository#>", envir=prefixes)
 assign("is_about:", "<http://purl.obolibrary.org/obo/IAO_0000136>", envir=prefixes)
 assign("cdt_code:", "<http://purl.obolibrary.org/obo/CDT_1000001>", envir=prefixes)
+assign("homo_sapiens:", "<http://purl.obolibrary.org/obo/NCBITaxon_9606>", envir=prefixes)
 
 
 ## backwards compatibility - join these all into a single string.
