@@ -13,13 +13,8 @@ source("load.r")
 
 restoration.counts.by.tooth <- function (limit=0, print.query=FALSE) 
 {
-  ## build sparql query
-  file <- "sparql/restoration-count-by-tooth.sparql"
-  query.string <- read.sparql.file(file, limit, print.query)
-  
-  ## get results and convert to dataframe; note: stringsAsFactors must be false
-  res <- queryc(query.string)
-  df <- as.data.frame(res, stringsAsFactors = F)
+  ## get dataframe holding results
+  df <- query.from.file("sparql/restoration-count-by-tooth.sparql")
   
   ## when res is coverted to a data frame, the data types of the values are chars
   ## so, convert the count column into numeric data type
@@ -28,16 +23,16 @@ restoration.counts.by.tooth <- function (limit=0, print.query=FALSE)
   ## add a column to the data frame the contains the integer that represents the tooth number
   ## e.g., for tooth type "Tooth 12", this column contains the number 12
   ## this is needed for ordering the data properly (i.e., by tooth number)
-  df$toothnum <- match.tooth.position(df$toothtype)
+  df$toothnum <- match.tooth.position(df$tooth)
   
   ## build summary table
   info <- tapply(df$count, df$toothnum, sum)
   
   ## create barplot of info
   barplot(info, 
-          main="number of restorations per tooth",
-          xlab="tooth number of patient", 
-          ylab="number of restoration procedures",
+          main="Number of restorations per tooth",
+          xlab="Tooth number of patient", 
+          ylab="Number of restoration procedures",
           col="blue")
   
   ## return info
