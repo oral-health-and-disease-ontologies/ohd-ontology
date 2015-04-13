@@ -70,7 +70,7 @@ cacheQuery <- function (query,endpoint,result)
     assign(endpoint,endpointCache,sessionQueryCache) }
   assign(query,result,endpointCache)
   result
-}
+ }
 
 ## return the session cache
 queryCache <- function() { sessionQueryCache }
@@ -136,3 +136,47 @@ setOWLIMQueryTimeout <- function(timeout_seconds)
     "     }",sep="\n");
   sparqlUpdate
   }
+
+read.sparql.file <- function (file, limit=0, print.query=FALSE){
+  ## read contents from file 
+  con <- file(file, "r", blocking = FALSE)
+  sparql <- readLines(con)
+  close(con)
+  
+  ## collapsed lines 
+  sparql <- paste(sparql, sep = "", collapse="  \n ")
+  
+  ## check for limit
+  if (limit > 0)
+    sparql <- paste(sparql," limit ", limit, " \n", sep="")
+  
+  ## check for print to screen
+  if (print.query) { cat(sparql) }
+  
+  ## return sparql query
+  sparql
+}
+
+query.from.file <- function (file, limit=0, print.query=FALSE, as.data.frame=TRUE, remove.prefixes=TRUE) {
+  ## get query string from file
+  query.string <- read.sparql.file(file, limit, print.query)
+  
+  ## check if prefixes need to be removed from query string
+  if (remove.prefixes == TRUE) {
+    query.string <- gsub("PREFIX[ ]*[^\n]*\n","",query.string)
+  }
+  
+  ## get results
+  res <- queryc(query.string)
+  
+  if (as.data.frame == TRUE) {
+    ## convert to dataframe; note: stringsAsFactors must be false
+    return.val <- as.data.frame(res, stringsAsFactors = F)
+  }
+  else {
+    return.val <- res
+  }
+  
+  ## return results
+  return.val
+}

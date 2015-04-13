@@ -1,27 +1,27 @@
-select distinct  ?toothtype (count(?toothtype) as ?count)
+## This query returns the number of dental procedures that have performed
+## on each type of tooth
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dental_procedure: <http://purl.obolibrary.org/obo/OHD_0000002>
+PREFIX asserted_type:<http://purl.obolibrary.org/obo/OHD_0000092>
+PREFIX tooth: <http://purl.obolibrary.org/obo/FMA_12516>
+PREFIX participates_in: <http://purl.obolibrary.org/obo/BFO_0000056>
+PREFIX tooth_number: <http://purl.obolibrary.org/obo/OHD_0000065>
+
+select distinct ?tooth (count(distinct ?proci) as ?count)
 where
 {
-  ## patient's sex and birth date
-  ?patienti rdf:type patient: .
-  ?patienti asserted_type: ?patienttypei .
-  ?patienti birth_date: ?birthdate .
-  
-  ## patient's tooth & tooth type
+  ## find each instance tooth and its type
   ?toothi rdf:type tooth: .
-  ?toothi asserted_type: ?toothtypei .
-  ?toothi is_part_of: ?patienti .
-
-  ## restoration procedure and tooth be restored role
-  ?proci rdf:type tooth_restoration_procedure: .
-  ?rolei rdf:type tooth_to_be_restored_role: .
+  ?toothi asserted_type: ?tootht .
   
-  ## the tooth to be restored role inheres in the tooth
-  ## and is realized by the procedure
-  ?rolei inheres_in: ?toothi .
-  ?proci realizes: ?rolei .
+  ## find the procedures the tooth participates in
+  ?proci rdf:type dental_procedure: .
+  ?toothi participates_in: ?proci .
   
   ## assign labels
-  ?toothi rdfs:label ?tooth .
-  ?toothtypei tooth_number: ?toothtype .
+  ?tootht tooth_number: ?tooth .
 } 
-group by ?toothtype
+group by ?tooth
+order by desc(?count)
