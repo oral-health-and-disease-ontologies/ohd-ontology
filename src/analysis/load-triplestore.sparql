@@ -133,3 +133,22 @@ WHERE
   ?rolei  inheres_in: ?thingi.
   ?processi  realizes: ?rolei.
 }
+
+### propogate occurrence_date:
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX dental_patient: <http://purl.obolibrary.org/obo/OHD_0000012>
+PREFIX inheres_in: <http://purl.obolibrary.org/obo/BFO_0000052>
+PREFIX participates_in: <http://purl.obolibrary.org/obo/BFO_0000056>
+PREFIX dental_procedure: <http://purl.obolibrary.org/obo/OHD_0000002>
+PREFIX realizes: <http://purl.obolibrary.org/obo/BFO_0000055>
+
+INSERT
+{ ?thing occurrence_date: ?date. }
+WHERE
+{ ?visit a dental_visit:. 
+  ?visit occurrence_date: ?date.
+  ?thing is_part_of: ?visit.
+  ?thing a process:
+ }

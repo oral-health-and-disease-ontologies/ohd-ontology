@@ -83,3 +83,23 @@ order by desc(?count)
 
 
 
+****************************************************************
+Plotting.
+
+ggplot vs. plot
+
+When using plot, one uses par(mfrow=c(2,2)) and then sequential plots
+which get arranged in the 2x2 grid.
+
+When using ggplot one collects the plots, plot1 <- ggplot(...),plot2
+<- ggplot(...),plot3 <- ggplot(...) and then they are arranged into a grid using
+grid.arrange from the gridExtras library.
+
+I've been plotting to an svg device, which writes an svg to a file and
+then browsing the file in the web browser. To create PDFs I print to PDF.
+
+Note that when using the svg device, one must call print(ggplot(...))
+to get it to show up.
+
+http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3
+http://stackoverflow.com/questions/19737257/count-frequency-of-observations-by-month

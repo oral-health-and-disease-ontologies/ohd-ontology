@@ -147,6 +147,30 @@ visit_summary <- function ()
   }
 
   
+distribution_of_patient_in_practice_time <- function(atleastvisits=2,atmostvisits=200,breaks=20)
+  {
+    res <- queryc("select ?patient (min(?date) as ?earliest) (max(?date) as ?latest)",
+                  "       (count(?date) as ?nvisits) where",
+                  "{",
+                  " ?visit a outpatient_encounter:.",
+                  " ?visit occurrence_date: ?date.",
+                  " ?patient participates_in: ?visit.",
+                  " ?patient a dental_patient:.",
+                  "} GROUP BY ?patient"
+                                        #"  LIMIT 10"
+                  )
+    res <- data.frame(res,stringsAsFactors = FALSE);
+    res$latest <- as.Date(res$latest)
+    res$earliest <- as.Date(res$earliest)
+    lastDataTime <- max(res$latest)
+    res$nvisits <- as.numeric(res$nvisits)
+    res$timeBetweenVisitsAsDays <- as.numeric(res$latest - res$earliest)
+    res$firstToEndPracticeDays <- as.numeric(lastDataTime - res$earliest)
+    which <-((res$nvisits <= atmostvisits) & (res$nvisits >=atleastvisits));
+    res<- res[which,]
+    res
+  }
+
 ## factor this into smaller chunks,
 distribution_of_patient_in_practice_time <- function(atleastvisits=2,atmostvisits=200,breaks=20)
   {
@@ -168,13 +192,26 @@ distribution_of_patient_in_practice_time <- function(atleastvisits=2,atmostvisit
     res$timeBetweenVisitsAsDays <- as.numeric(res$latest - res$earliest)
     res$firstToEndPracticeDays <- as.numeric(lastDataTime - res$earliest)
     which <-((res$nvisits <= atmostvisits) & (res$nvisits >=atleastvisits));
+
+    res$month <- as.Date(cut(res$earliest,"month") )
+
+    svg(filename="/tmp/rsvg1.svg",width=8,height=8)
+
+    print(ggplot(res, aes(month,1)) + stat_summary(fun.y = sum, geom = "bar") + scale_x_date(minor_breaks="month") +
+      labs(title=paste("Number of first visits per month (",length(res$nvisits)," patients)",sep=""),
+           x="Time", 
+           y="Number of patient first visits"));
+  
+    dev.off();
+    browseURL("file:///tmp/rsvg1.svg")
+
     svg(filename="/tmp/rsvg.svg",width=8,height=8)
     par(mfrow=c(2,2))
     plot(hist(res$firstToEndPracticeDays[which]/365,plot=FALSE,breaks=breaks),
          xlab="Years between first visit and last date of practice data",
          ylab="Number of patients",
-         main=paste("Time between patient first visit and end \nof practice data (",length(res$firstToEndPracticeDays[which])," patients, at least ",atleastvisits," visits)",sep="")
-         )
+         main=paste("Time between patient first visit and end \nof practice data (",length(res$firstToEndPracticeDays[which])," patients, at least ",atleastvisits," visits)",sep=""))
+
     plot(hist(res$timeBetweenVisitsAsDays[which]/365,plot=FALSE,breaks=breaks),
          xlab="Years between first and last visit",
          ylab="Number of patients",
@@ -185,12 +222,8 @@ distribution_of_patient_in_practice_time <- function(atleastvisits=2,atmostvisit
          ylab="Number of patients",
          main=paste("Number of visits per patient (",length(res$nvisits)," patients)",sep="")
          )
-    plot(hist(as.numeric((res$earliest-min(res$earliest))/365),plot=FALSE,breaks=breaks),
-         xlab="Year since start of practice",
-         ylab="Number of patient first visits",
-         main=paste("Number of first visits over time (",length(res$nvisits)," patients)",sep="")
-         )
-    dev.off()
+
+    dev.off();
     browseURL("file:///tmp/rsvg.svg")
   }
 
@@ -207,23 +240,28 @@ distribution_of_procedures_over_time <- function(type,label,breaks=24)
                   );
     if (is.na(label)) label<- queryc("select ?label where {",type," rdfs:label ?label}");
     res <- data.frame(res,stringsAsFactors=FALSE);
-    hist<- hist(as.numeric(as.Date(res$date)-min(as.Date(res$date)))/365,breaks=breaks,plot=F);
-    list(x=hist, 
-         main=paste("Count of ",label," over time"), 
-         xlab="Years since start of practice", 
-         ylab=paste("Number of ",label))
+    res$date <- as.Date(res$date);
+    res$month <- as.Date(cut(res$date,"month") )
+    plot <- ggplot(res, aes(month, 1))+ stat_summary(fun.y = sum, geom = "bar") + scale_x_date(minor_breaks="month") +
+      labs(title=paste("#  ",label," per month",sep=""),
+           x="Date", 
+           y=paste("Number of ",label),sep="")
+     ;
+    plot
   }
+
 
 ## Plot number of restorations vs time (all, crowns, fillings)
 distribution_of_restorations_over_time_report <- function(breaks=144)
-  { svg(filename="/tmp/rsvg.svg",width=8,height=8);
-    par(mfrow=c(3,1));
-    do.call(plot,distribution_of_procedures_over_time("tooth_restoration_procedure:","all restorations",breaks=breaks));
-    do.call(plot,distribution_of_procedures_over_time("intracoronal_restoration:","filled surfaces",breaks=breaks));
-    do.call(plot,distribution_of_procedures_over_time("crown_restoration:","crowns",breaks=breaks));
+  { svg(filename="/tmp/rsvg.svg",width=10,height=7.5);
+    par(mfrow=c(2,1));
+    plot1 <- distribution_of_procedures_over_time("tooth_restoration_procedure:","restoration procedures",breaks=breaks);
+    plot2 <- distribution_of_procedures_over_time("intracoronal_restoration:","filling procedures",breaks=breaks);
+    plot3 <- distribution_of_procedures_over_time("crown_restoration:","crowns",breaks=breaks)
+    grid.arrange(plot1, plot2, plot3, nrow=2, ncol=2)
     dev.off();
     browseURL("file:///tmp/rsvg.svg")
-  }
+}
 
 count_encounters_by_type <- function()
   { queryc("select ?vl (count(distinct ?visit) ?as count)",
@@ -244,7 +282,10 @@ billing_code_counts <- function()
            "    ?code_instance a ?code_type.", # get the type - there is an instance for each billed code
            "    ?code_type rdfs:subClassOf cdt_code:.", # don't show classes above CDT code (such as information content entity)
            "    ?code_type rdfs:label ?code.",
+           "    ?proc a dental_procedure:.",
            "  }",
            "group by ?code",
            "order by desc(?count)")
   }
+
+
