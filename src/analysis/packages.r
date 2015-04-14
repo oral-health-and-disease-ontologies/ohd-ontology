@@ -1,10 +1,11 @@
 
 install_if_necessary <- function (package,from=NULL)
 { if (!require(package,character.only = TRUE)) 
-    { if (is.null(from))
-        { install.packages(package); require(package) }
-    else
-      { install.packages(c((paste(getwd(),"/",from,sep="")),repos=NULL),type="source") }
+    { cat("****************\n****************\n\n Installing R package ",package,"\n\n****************\n****************",sep="")
+      if (is.null(from))
+        { install.packages(package,dependencies=TRUE); require(package) }
+      else
+        { install.packages(c((paste(getwd(),"/",from,sep="")),repos=NULL),type="source") }
     }
 }
 
