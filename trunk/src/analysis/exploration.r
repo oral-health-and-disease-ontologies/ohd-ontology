@@ -1,4 +1,4 @@
-# what are the kinds of health care encounters
+## what are the kinds of health care encounters
 what_kinds_of_encounters <- function()
   { queryc("select distinct ?vl",
            " where ",
@@ -7,7 +7,7 @@ what_kinds_of_encounters <- function()
            " }") }
 
 
-# how to health care enounters relate to other things
+## how to health care enounters relate to other things
 how_do_encounters_relate_to_other_things <- function()
   { queryc("select distinct ?pl ",
            " where",
@@ -16,3 +16,14 @@ how_do_encounters_relate_to_other_things <- function()
            "   ?p rdfs:label ?pl",
            "  }") 
   }
+
+## how is mereology used
+## should modify this to use most specific class
+whats_part_of_what <- function ()
+{ queryc("select distinct ?atype ?btype ",
+       " where",
+       "  { ?a is_part_of: ?b.",
+       "    ?a a ?atype.",
+       "    ?b a ?btype.",
+       "  }");
+}

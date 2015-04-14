@@ -58,7 +58,8 @@ assign("rep:", "<http://www.openrdf.org/config/repository#>", envir=prefixes)
 assign("is_about:", "<http://purl.obolibrary.org/obo/IAO_0000136>", envir=prefixes)
 assign("cdt_code:", "<http://purl.obolibrary.org/obo/CDT_1000001>", envir=prefixes)
 assign("homo_sapiens:", "<http://purl.obolibrary.org/obo/NCBITaxon_9606>", envir=prefixes)
-
+assign("information_content_entity:", "<http://purl.obolibrary.org/obo/IAO_0000030>", envir=prefixes)
+assign("clinical_finding:", "<http://purl.obolibrary.org/obo/OGMS_0000014>", envir=prefixes)
 
 ## backwards compatibility - join these all into a single string.
 all_prefixes_as_string <-  function ()
@@ -75,7 +76,7 @@ some_prefixes_as_string <- function (which,source="")
 {
   paste(do.call(paste,append(cbind(lapply(unique(as.list(which)),
               function(p) {
-                if(!(exists(p,prefixes))) { if (p == "<http:") {return("")} else { cat(paste("Didn't find prefix ",p,"used in:\n ", source)); return("") }};
+                if(!(exists(p,prefixes))) { if (p == "http:") {return("")} else { cat(paste("Didn't find prefix ",p,"used in:\n ", source)); return("") }};
                 paste("PREFIX ",p," ",get(p,prefixes),sep="")})),alist(sep="\n"))),"\n")
 }
 
@@ -83,6 +84,7 @@ some_prefixes_as_string <- function (which,source="")
 ## PREFIX statements based on which prefixes are used in the query.
 
 prefixes_for_sparql <- function(query)
-  { some_prefixes_as_string(as.list(cbind(regmatches(query,gregexpr("(\\S+:)", query,perl=TRUE))[[1]])),source=query) }
+  { some_prefixes_as_string(as.list(cbind(regmatches(query,gregexpr("([a-zA-Z_.0-9]+:)", query,perl=TRUE))[[1]])),source=query) }
 
 ## to remove PREFIX gsub("PREFIX[ ]*[^\n]*\n","",querystring(q))
+

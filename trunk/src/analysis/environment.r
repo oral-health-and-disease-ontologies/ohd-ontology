@@ -12,6 +12,9 @@ library(rrdf) # defunct
 library(MASS)
 library(SPARQL)
 source("SPARQL.r")
+library(ggplot2)
+library(ggthemes) ## needs to be downloaded from CRAN and installed: R CMD install ggthemes.tgz
+library(gridExtra)
 
 # if we use SPARQL library don't translate xsd:Date, so we can be compatible with RRDF
 set_rdf_type_converter("http://www.w3.org/2001/XMLSchema#date",identity)
@@ -75,10 +78,14 @@ cacheQuery <- function (query,endpoint,result)
 ## return the session cache
 queryCache <- function() { sessionQueryCache }
 
+trace_sparql_queries <- FALSE;
+
 ## execute a sparql query. endpoint defaults to current_endpoint, sparql library defaults to "rrdf"
-queryc <- function(...,endpoint=current_endpoint,prefixes=default_ohd_prefixes,cache=TRUE)
+queryc <- function(...,endpoint=current_endpoint,prefixes=default_ohd_prefixes,cache=TRUE,trace=trace_sparql_queries)
 { string <- paste(..., sep="\n");
   if (identical(prefixes,FALSE))  { prefixes <- (function () {}) }
+  querystring <- querystring(string,prefixes=prefixes);
+  if (trace) { cat(querystring) }
   cached <- cachedQuery(querystring(string,prefixes=prefixes),endpoint);
   if ((!is.null(cached)) && cache)
     cached
@@ -100,12 +107,36 @@ queryc <- function(...,endpoint=current_endpoint,prefixes=default_ohd_prefixes,c
 lastSparql <- function() { cat(lastSparqlQuery) }
 
 ## describe a term.
-rdfd <- function(uri)
+rdfd <- function(uri,limit=100)
 {  cat("What things have it as subject\n")
-   queryc(paste("select distinct ?pl ?vl  where { <",uri,"> ?p ?v. ?p rdfs:label ?pl. optional { ?v rdfs:label ?vl}}",sep="")) 
+   print(queryc(paste("select distinct ?pl ?p ?vl ?v  where { <",uri,"> ?p ?v. optional {?p rdfs:label ?pl}. optional { ?v rdfs:label ?vl}} limit ",limit,sep="")),sep="\n" )
    cat("What things have it as object\n")
-   queryc(paste("select distinct ?sl ?pl  where { ?s ?p <",uri,"> . ?p rdfs:label ?pl. optional { ?s rdfs:label ?sl}}",sep=""))
+   print(queryc(paste("select distinct ?sl ?s ?pl ?p  where { ?s ?p <",uri,"> . optional{?p rdfs:label ?pl}. optional { ?s rdfs:label ?sl}} limit ",limit,sep="")))
+
  }
+
+## describe an entity given its label
+rdfdl <- function(label,limit=100)
+{  cat("What things have it as subject\n");
+   print(queryc(paste(" select distinct ?uri ?p ?pl  ?v ?vl  where ",
+              "{  ?uri rdfs:label \"",label,"\".",
+              "   ?uri ?p ?v. ",
+              "   optional {?p rdfs:label ?pl}. ",
+              "   optional {?v rdfs:label ?vl}.",
+              " } limit ",limit,
+                sep=""
+              )));
+   cat("What things have it as object\n")
+   print(queryc(paste(" select distinct  ?s ?sl  ?p ?pl ?uri  where ",
+              "{  ?uri rdfs:label \"",label,"\".",
+              "   ?s ?p ?uri. ",
+              "   optional {?p rdfs:label ?pl}. ",
+              "   optional {?s rdfs:label ?sl}.",
+              " } limit",limit,
+                sep=""
+              )));
+ }
+
 
 # plot using SVG in the browser
 bplot <- function (...)
