@@ -1,7 +1,7 @@
 
 install_if_necessary <- function (package,from=NULL)
 { if (!require(package,character.only = TRUE)) 
-    { if (is.Null(from))
+    { if (is.null(from))
         { install.packages(package); require(package) }
     else
       { install.packages(c((paste(getwd(),"/",from,sep="")),repos=NULL),type="source") }
