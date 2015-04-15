@@ -1,0 +1,25 @@
+## This query returns summary of data of patients' visits. This summary
+## includes a patient's first visit, last vist, and number of visits.
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX participates_in: <http://purl.obolibrary.org/obo/BFO_0000056>
+PREFIX outpatient_encounter: <http://purl.obolibrary.org/obo/OGMS_0000099>
+PREFIX dental_patient: <http://purl.obolibrary.org/obo/OHD_0000012>
+PREFIX occurrence_date: <http://purl.obolibrary.org/obo/OHD_0000015>
+PREFIX birth_date: <http://purl.obolibrary.org/obo/OHD_0000050>
+
+select ?patient ?birth_date (min(?date) as ?earliest) (max(?date) as ?latest)
+(count(?date) as ?nvisits)
+where
+{
+  ?visit a outpatient_encounter:.
+  ?visit occurrence_date: ?date.
+  ?patienti participates_in: ?visit.
+  ?patienti a dental_patient:.
+  ?patienti birth_date: ?birth_date .
+  ?patienti rdfs:label ?patient .
+}
+group by ?patient ?birth_date
+
+                  

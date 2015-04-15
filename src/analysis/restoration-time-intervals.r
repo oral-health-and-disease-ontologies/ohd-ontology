@@ -14,7 +14,7 @@ source("load.r")
 restoration.counts.by.tooth <- function (limit=0, print.query=FALSE) 
 {
   ## get dataframe holding results
-  df <- query.from.file("sparql/restoration-count-by-tooth.sparql")
+  df <- query.from.file("sparql/restoration-count-by-tooth.sparql", limit)
   
   ## when res is coverted to a data frame, the data types of the values are chars
   ## so, convert the count column into numeric data type
