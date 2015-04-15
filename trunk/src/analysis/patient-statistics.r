@@ -90,15 +90,32 @@ last.visit.summary <- function(limit=0) {
   info
 }
 
-patient.age.at.first.vist <- function(limit=0) {
+
+patient.age.at.first.visit <- function(limit=0) {
   ## get results
   df <- query.from.file("sparql/patient-visit-summary.sparql", limit)
   
   ## convert vist_date to date data type
   df$earliest <- as.Date(df$earliest)
   
-  ## calculate age of patient at first visit
-  data.end.date <- as.Date("2011-12-31")
+  ## calculate age of patient at first visit by taking the
+  ## difference of the patient's birthdate and earliest visit
+  df$age <- round(years_difference_from_dates(df$birth_date, df$earliest))
   
+  ## remove records with age less than 0
+  df <- subset(df, age > 0)
   
+  ## we want only the patient and age columns
+  df <- subset(df, select=c("patient", "age"))
+  
+  ## make barplot
+  info <- table(df$age)
+  barplot(info, 
+          main="Summary of age of patient at first visit",
+          xlab="Age of patient",
+          ylab="Number of patients",
+          col="blue")
+  
+  ## return data frame of summary of patient ages at first visit
+  data.frame(patient.age=names(info), count=as.vector(info))
 }
