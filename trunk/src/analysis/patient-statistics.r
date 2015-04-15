@@ -1,8 +1,12 @@
 ## Author: Bill Duncan
 ## Project: OHD
-## Date: April 6, 2015
+## Date: April 10, 2015
 ##
-## Summary: Statics on dental proceedures
+## Summary: Statics on patients
+
+## load plyr library
+##library(dplyr)
+source("load.r")
 
 patient.age.distribution <- function (limit=0) {
   query.string <- "
@@ -50,4 +54,51 @@ order by ?birth_date
   ## note: b/c the length of the counts and breaks lists are different, I only use the length
   ## of the counts list. the breaks list contains a "110" entry for which there are no patients
   df <- as.data.frame(info$counts, row.names=as.character(info$breaks[1:length(info$counts)]))
+}
+
+last.visit.summary <- function(limit=0) {
+  
+  ## get results
+  df <- query.from.file("sparql/patient-visit-summary.sparql", limit)
+  
+  ## convert vist_date to date data type
+  df$latest <- as.Date(df$latest)
+  
+  ## calculate elapsed time since last visit
+  data.end.date <- as.Date("2011-12-31")
+  df$elapsed.months <- round(as.numeric(difftime(data.end.date, df$latest, units="days"))/(365.25/12))
+
+  ## calculate the patients last seen in 12, 24, 36, or greater months
+  visit12 <- nrow(subset(df, elapsed.months <= 12))
+  visit12to24 <- nrow(subset(df, elapsed.months > 12 & elapsed.months <= 24))
+  visit24to36 <- nrow(subset(df, elapsed.months > 24 & elapsed.months <= 36))
+  visit36plus <- nrow(subset(df, elapsed.months > 36))
+
+  ## datafame of elapsed months
+  elapsed <- c(visit12, visit12to24, visit24to36, visit36plus)
+  rownames <- c("<= 12 months", "12 to 24 months", "24 to 36 months", "36+ months")
+  info <- data.frame(elapsed.months=elapsed, row.names=rownames)
+  
+  ## make barplot
+  barplot(info$elapsed.months, 
+          main="Distribution of patient visits",
+          xlab="Time period for last patient visit",
+          ylab="Number of patients seen",
+          col="blue",
+          names.arg = row.names(info))
+  ## return info dataframe
+  info
+}
+
+patient.age.at.first.vist <- function(limit=0) {
+  ## get results
+  df <- query.from.file("sparql/patient-visit-summary.sparql", limit)
+  
+  ## convert vist_date to date data type
+  df$earliest <- as.Date(df$earliest)
+  
+  ## calculate age of patient at first visit
+  data.end.date <- as.Date("2011-12-31")
+  
+  
 }
