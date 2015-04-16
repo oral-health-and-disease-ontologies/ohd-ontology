@@ -9,6 +9,8 @@ install_if_necessary <- function (package,from=NULL)
     }
 }
 
+install_if_necessary("XML")
+install_if_necessary("SPARQL")
 install_if_necessary("rJava")
 install_if_necessary("rrdflibs","rrdflibs_1.3.0.tar.gz")
 install_if_necessary("rrdf","rrdf_2.0.2.tar.gz")
