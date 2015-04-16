@@ -20,10 +20,11 @@
 # of course change the path to adjust to where your repo is
 # Demo: age_to_first_treatment_statistics()
 
+source("packages.r");
+
 source("SPARQL.R") ; # patch to SPARQL.R
 .GlobalEnv[["interpret_type"]]=interpret_rdf_type;
 
-source("packages.r");
 source("prefixes.r"); #list of PREFIXes
 source("environment.r"); # endpoints etc
 source("simple-statistics.r") # simple statistical functions on the repo
