@@ -39,8 +39,50 @@ coded_procedure_extract <- function(limit=1000,file="~/report.csv")
              "order by ?patient",
              "limit ", limit
              );
-    write.table(result,file=file,sep=",")
-}
+    write.table(result,file=file,sep=",",row.names=F)
+  }
+
+## expanded query, captured by copying from R shell after setting
+## trace_sparql_queries<-T which causes it to be printed out when run.
+
+## PREFIX dental_procedure: <http://purl.obolibrary.org/obo/OHD_0000002>
+## PREFIX is_about: <http://purl.obolibrary.org/obo/IAO_0000136>
+## PREFIX cdt_code: <http://purl.obolibrary.org/obo/CDT_1000001>
+## PREFIX sesame: <http://www.openrdf.org/schema/sesame#>
+## PREFIX code_identifier: <http://purl.org/dc/elements/1.1/identifier>
+## PREFIX has_participant: <http://purl.obolibrary.org/obo/BFO_0000057>
+## PREFIX tooth: <http://purl.obolibrary.org/obo/FMA_12516>
+## PREFIX tooth_number: <http://purl.obolibrary.org/obo/OHD_0000065>
+## PREFIX realizes: <http://purl.obolibrary.org/obo/BFO_0000055>
+## PREFIX patient_role: <http://purl.obolibrary.org/obo/OBI_0000093>
+## PREFIX inheres_in: <http://purl.obolibrary.org/obo/BFO_0000052>
+## PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+## PREFIX occurrence_date: <http://purl.obolibrary.org/obo/OHD_0000015> 
+ 
+##  select ?patient ?date ?code ?tooth
+##  where
+##   { ?proc a dental_procedure:.
+##     ?code_instance is_about: ?proc. 
+##     ?code_instance a ?code_type.
+##     ?code_instance a cdt_code:.
+##     ?code_instance sesame:directType ?code_type.
+##     ?code_type code_identifier: ?code.
+##     ?proc has_participant: ?tooth_instance.
+##     ?tooth_instance a ?toothc.
+##     ?tooth_instance a tooth:.
+##     ?toothc tooth_number: ?tooth.
+##     ?proc has_participant: ?patient_instance .
+##     ?proc realizes: ?role.
+##     ?role a patient_role:.
+##     ?role inheres_in: ?patient_instance.
+##     ?patient_instance rdfs:label ?patient.
+##     ?proc occurrence_date: ?date.
+##   }
+## order by ?patient
+## limit 1000
+
+
+## Request:
 
 ## Hi Alan,
 
