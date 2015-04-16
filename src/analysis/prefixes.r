@@ -60,6 +60,10 @@ assign("cdt_code:", "<http://purl.obolibrary.org/obo/CDT_1000001>", envir=prefix
 assign("homo_sapiens:", "<http://purl.obolibrary.org/obo/NCBITaxon_9606>", envir=prefixes)
 assign("information_content_entity:", "<http://purl.obolibrary.org/obo/IAO_0000030>", envir=prefixes)
 assign("clinical_finding:", "<http://purl.obolibrary.org/obo/OGMS_0000014>", envir=prefixes)
+assign("sesame:", "<http://www.openrdf.org/schema/sesame#>", envir=prefixes)
+assign("code_identifier:", "<http://purl.org/dc/elements/1.1/identifier>", envir=prefixes)
+assign("tooth_number:", "<http://purl.obolibrary.org/obo/OHD_0000065>", envir=prefixes)
+
 
 ## backwards compatibility - join these all into a single string.
 all_prefixes_as_string <-  function ()
