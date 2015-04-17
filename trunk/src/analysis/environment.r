@@ -151,10 +151,10 @@ bplot <- function (...)
     browseURL("file:///tmp/rsvg.svg")
   }
 
-sparqlUpdate <- function (...)
+sparqlUpdate <- function (...,endpoint=current_update_endpoint)
   { update <- querystring(paste(...,sep="\n"));
     if (trace_sparql_queries) { print(update) }
-    postForm(current_update_endpoint,update=update,style='POST')
+    postForm(endpoint,update=update,style='POST')
   }
 
 ## need to fix so that it can figure out the repo label itself
