@@ -38,7 +38,7 @@ graphdb_ee_change_parameter <- function(repo,parameter,value)
     "  FILTER( ?param = ",param," ) .",
     "  BIND( ",value," AS ?new_value ) .",
     "}",
-    endpoint=gsub("(.*/)(.*)","\\1SYSTEM",current_endpoint,perl=TRUE)
+    endpoint=gsub("(.*/)(.*)","\\1SYSTEM/statements",current_endpoint,perl=TRUE)
     )
   }
 

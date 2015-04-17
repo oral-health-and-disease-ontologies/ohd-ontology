@@ -153,7 +153,7 @@ bplot <- function (...)
 
 sparqlUpdate <- function (...,endpoint=current_update_endpoint)
   { update <- querystring(paste(...,sep="\n"));
-    if (trace_sparql_queries) { print(update) }
+    if (trace_sparql_queries) { cat(update) }
     postForm(endpoint,update=update,style='POST')
   }
 
