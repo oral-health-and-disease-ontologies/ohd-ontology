@@ -80,12 +80,17 @@ queryCache <- function() { sessionQueryCache }
 
 trace_sparql_queries <- FALSE;
 
+check_sparql_syntax <- file.exists("jena/bin/qparse");
+
 ## execute a sparql query. endpoint defaults to current_endpoint, sparql library defaults to "rrdf"
 queryc <- function(...,endpoint=current_endpoint,prefixes=default_ohd_prefixes,cache=TRUE,trace=trace_sparql_queries)
 { string <- paste(..., sep="\n");
   if (identical(prefixes,FALSE))  { prefixes <- (function () {}) }
   querystring <- querystring(string,prefixes=prefixes);
   if (trace) { cat(querystring) }
+  if (check_sparql_syntax)
+    { if (!checkSPARQLSyntax(querystring))
+        { return( NULL) }}
   cached <- cachedQuery(querystring(string,prefixes=prefixes),endpoint);
   if ((!is.null(cached)) && cache)
     cached
@@ -148,6 +153,7 @@ bplot <- function (...)
 
 sparqlUpdate <- function (...)
   { update <- querystring(paste(...,sep="\n"));
+    if (trace_sparql_queries) { print(update) }
     postForm(current_update_endpoint,update=update,style='POST')
   }
 
@@ -211,3 +217,19 @@ query.from.file <- function (file, limit=0, print.query=FALSE, as.data.frame=TRU
   ## return results
   return.val
 }
+
+## e.g."Lexical error at line 4, column 4.  Encountered: \" \" (32), after : \"s\""
+checkSPARQLSyntax <-function(querystring)
+  { if (file.exists("/tmp/r.sparql")) { file.remove("/tmp/r.sparql") }
+    write(querystring,file="/tmp/r.sparql");
+    result <- suppressWarnings(system("jena/bin/qparse --print=op --file /tmp/r.sparql 2>&1",intern=T));
+    if (!is.null(attr(result,"status")))
+      { cat("Error in query\n---------\n");
+        cat("            111111111122222222223333333333344444444445555555555666666666677777777778\n");
+        cat("   123456789012345678901234567890123456789001234567890123456789012345678901234567890\n");
+        write.table(strsplit(querystring,"\n"),col.names=F,quote=F,sep=": ");
+        cat(paste("--------\n",do.call(paste0,as.list(result)),"\n",sep=""))
+        return(FALSE)}
+    else { return(TRUE) }
+  }
+        
