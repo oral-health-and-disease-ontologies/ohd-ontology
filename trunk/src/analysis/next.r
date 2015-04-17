@@ -34,10 +34,10 @@ visitPattern <- function ()
 }
 
 check_next_visit_query <- function ()
-queryc("select ?first_visit ?next_visit where", visitPattern(), "limit 20");
+queryc("select ?first_visit ?next_visit where", visitPattern(), "limit 20",cache=F);
 
 assert_next_visit_links <- function()
-  { sparqlUpdate("insert { next_visit: a owl:ObjectProperty. next_visit: rdfs:label \"subsequent visit\".}")
+  { sparqlUpdate("insert data { next_visit: a owl:ObjectProperty. next_visit: rdfs:label \"subsequent visit\".}")
     sparqlUpdate("insert { ?first_visit next_visit: ?next_visit } where ",visitPattern())
   }
 
@@ -54,8 +54,7 @@ test_next_link_query <- function()
            "?role inheres_in: ?patient.",
            "?visit next_visit: ?next.",
            "}",
-             "group by ?patient")
-    a <<- result;
+             "group by ?patient",cache=F)
     svgfn <- "/tmp/rsvg2.svg";
     if(file.exists(svgfn)) { file.remove(svgfn) }
     svg(filename=svgfn)

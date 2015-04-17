@@ -147,30 +147,6 @@ visit_summary <- function ()
   }
 
   
-distribution_of_patient_in_practice_time <- function(atleastvisits=2,atmostvisits=200,breaks=20)
-  {
-    res <- queryc("select ?patient (min(?date) as ?earliest) (max(?date) as ?latest)",
-                  "       (count(?date) as ?nvisits) where",
-                  "{",
-                  " ?visit a outpatient_encounter:.",
-                  " ?visit occurrence_date: ?date.",
-                  " ?patient participates_in: ?visit.",
-                  " ?patient a dental_patient:.",
-                  "} GROUP BY ?patient"
-                                        #"  LIMIT 10"
-                  )
-    res <- data.frame(res,stringsAsFactors = FALSE);
-    res$latest <- as.Date(res$latest)
-    res$earliest <- as.Date(res$earliest)
-    lastDataTime <- max(res$latest)
-    res$nvisits <- as.numeric(res$nvisits)
-    res$timeBetweenVisitsAsDays <- as.numeric(res$latest - res$earliest)
-    res$firstToEndPracticeDays <- as.numeric(lastDataTime - res$earliest)
-    which <-((res$nvisits <= atmostvisits) & (res$nvisits >=atleastvisits));
-    res<- res[which,]
-    res
-  }
-
 ## factor this into smaller chunks,
 distribution_of_patient_in_practice_time <- function(atleastvisits=2,atmostvisits=200,breaks=20)
   {
@@ -192,7 +168,7 @@ distribution_of_patient_in_practice_time <- function(atleastvisits=2,atmostvisit
     res$timeBetweenVisitsAsDays <- as.numeric(res$latest - res$earliest)
     res$firstToEndPracticeDays <- as.numeric(lastDataTime - res$earliest)
     which <-((res$nvisits <= atmostvisits) & (res$nvisits >=atleastvisits));
-
+#    which <- TRUE
     res$month <- as.Date(cut(res$earliest,"month") )
 
     svg(filename="/tmp/rsvg1.svg",width=8,height=8)
