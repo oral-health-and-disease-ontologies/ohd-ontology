@@ -1,8 +1,23 @@
 OSX
+
+R
+
 Install R - http://cran.r-project.org/bin/macosx/
 sudo chmod a+w /Library/Frameworks/R.framework/Versions/3.1/Resources/library
 if you don't have a /usr/X11 dir do: sudo ln -s /opt/X11 /usr/X11
 
+Jena
+If you want R to report syntax errors before sending a query to an endpoint,
+download a recent version of jena from https://jena.apache.org/download/index.cgi
+Unpack it and rename the top directory "jena" and put it in the analysis directory.
+
 source("load.r")
 
 It should download and install necessary packages.
+
+GraphDB
+
+Download a recent tomcat.
+Download graphdb
+
+

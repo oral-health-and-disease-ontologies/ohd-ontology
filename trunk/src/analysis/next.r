@@ -1,3 +1,6 @@
+## Author: Alan Ruttenberg
+## Date: 2015-04-17
+
 ## The query to find the next visit is a bit long and not something
 ## you want to repeat all the time. We materialize it here, asserting,
 ## for each patient, subsequent visit links so queries can use those
@@ -41,6 +44,17 @@ assert_next_visit_links <- function()
     sparqlUpdate("insert { ?first_visit next_visit: ?next_visit } where ",visitPattern())
   }
 
+assert_transitive_next <- function()
+  {sparqlUpdate("insert data ",
+                "{",
+                "  later_visit: a owl:ObjectProperty.",
+                "  later_visit: a owl:TransitiveProperty.",
+                "  later_visit: rdfs:label \"subsequent visits\".",
+                "  next_visit: rdfs:subPropertyOf later_visit:",
+                "}")
+ }
+
+
 ## test it by replicating one of the summary queries
 test_next_link_query <- function()
   { result <-
@@ -66,3 +80,5 @@ test_next_link_query <- function()
     dev.off()
     browseURL(svgfn)
   }
+
+
