@@ -64,6 +64,7 @@ assign("sesame:", "<http://www.openrdf.org/schema/sesame#>", envir=prefixes)
 assign("code_identifier:", "<http://purl.org/dc/elements/1.1/identifier>", envir=prefixes)
 assign("tooth_number:", "<http://purl.obolibrary.org/obo/OHD_0000065>", envir=prefixes)
 assign("next_visit:", "<http://purl.obolibrary.org/obo/OHD_0000216>", envir=prefixes)
+assign("later_visit:", "<http://purl.obolibrary.org/obo/OHD_0000217>", envir=prefixes)
 
 ## backwards compatibility - join these all into a single string.
 all_prefixes_as_string <-  function ()
