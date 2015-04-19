@@ -1,85 +1,92 @@
-select distinct ?patienttype ?birthdate ?tooth ?toothtype ?surface ?surfacetype ?procedure1 ?date1 ?procedure2 (min(?date2) as ?date2real)
-  
-  ## look for surface specific for now. Find two procedures and an optional third
-  where
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX patient: <http://purl.obolibrary.org/obo/OHD_0000012>
+PREFIX asserted_type: <http://purl.obolibrary.org/obo/OHD_0000092>
+PREFIX birth_date:  <http://purl.obolibrary.org/obo/OHD_0000050>
+PREFIX tooth: <http://purl.obolibrary.org/obo/FMA_12516>
+PREFIX is_part_of: <http://purl.obolibrary.org/obo/BFO_0000050>
+PREFIX tooth_surface: <http://purl.obolibrary.org/obo/FMA_no_fmaid_Surface_enamel_of_tooth>
+PREFIX tooth_restoration_procedure: <http://purl.obolibrary.org/obo/OHD_0000004>
+PREFIX tooth_to_be_restored_role: <http://purl.obolibrary.org/obo/OHD_0000007>
+PREFIX inheres_in: <http://purl.obolibrary.org/obo/BFO_0000052>
+PREFIX realizes: <http://purl.obolibrary.org/obo/BFO_0000055>
+PREFIX occurrence_date: <http://purl.obolibrary.org/obo/OHD_0000015>
+PREFIX has_participant: <http://purl.obolibrary.org/obo/BFO_0000057>
+PREFIX outpatient_encounter: <http://purl.obolibrary.org/obo/OGMS_0000099>
+PREFIX process: <http://purl.obolibrary.org/obo/BFO_0000007>
+PREFIX later_visit: <http://purl.obolibrary.org/obo/OHD_0000217>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX tooth_number: <http://purl.obolibrary.org/obo/OHD_0000065> 
+
+
+cat(dim(queryc("select distinct ?patient ?patienti ?tooth ?surface ?visit1 ?procedure1 ?date1 ?visit2 ?procedure2 ?date2
+where
 {
-  ## patient's sex and birth date
-  ?patienti rdf:type patient: .
-  ?patienti asserted_type: ?patienttypei .
-  ?patienti birth_date: ?birthdate .
-  
-  ## patient's tooth & tooth type
-  ?toothi rdf:type tooth: .
-  ?toothi asserted_type: ?toothtypei .
-  ?toothi is_part_of: ?patienti .
-  
-  ## surfaces and their types that are part of tooth
-  ?surfacei rdf:type tooth_surface: .
-  ?surfacei asserted_type: ?surfacetypei .
-  ?surfacei is_part_of: ?toothi .
-  
-  ##- get restoration procedure in general
-  ## this is done by finding the procedures that realize
-  ## some tooth to be resotred role that is borne by the tooth
-  ## the procedures occurrence date (?date) is used to determine
-  ## the first restoration date by taking the min of ?date
-  ## see having clause below
-  ?proci rdf:type tooth_restoration_procedure: .
-  ?rolei rdf:type tooth_to_be_restored_role: .
-  
-  ## the tooth to be restored role inheres in the tooth
-  ## and is realized by the procedure
-  ?rolei inheres_in: ?toothi .
-  ?proci realizes: ?rolei .
-  ?proci occurrence_date: ?date . # date of procedure
-  ?proci has_participant: ?surfacei . ## link surface to procedure
-
-  ##- first procedure: the tooth is same as the general procedure above.
-  ## the first procedure is determined in a manner similar to the
-  ## general procedure above
-  ?proci1 rdf:type tooth_restoration_procedure: .
-  ?rolei1 rdf:type tooth_to_be_restored_role: .
-  ?visit1 rdf:type outpatient_encounter:.
-  ?proc1 is_part_of: ?visit1.
-  
-  ## the tooth to be restored role inheres in the tooth
-  ## and is realized by the procedure
-  ?rolei1 inheres_in: ?toothi .
-  ?proci1 realizes: ?rolei1 .
-  ?proci1 occurrence_date: ?date1 . # date of procedure 1
-  ?proci1 has_participant: ?surfacei . ## link surface to procedure
-
-  ##- second process: the tooth and surface remain the same as the first
-  ## but a new process that realizes a new role is searched for
-  ?visit1 later_visit: ?visit2.
+    { select distinct ?patienti ?patient ?toothi ?tooth ?surfacei ?surface ?visit1 ?proci1 ?date1  (min(?date2) as ?soonest_date2)
+      where
+      {
+                                        #Constraints
+          ?patienti rdf:type patient: .
+          ?patienti asserted_type: ?patienttypei .
+          ## patient's tooth & tooth type
+          ?toothi rdf:type tooth: .
+          ?toothi asserted_type: ?toothtypei .
+          ?toothi is_part_of: ?patienti .
+          ## surfaces and their types that are part of tooth
+          ?surfacei rdf:type tooth_surface: .
+          ?surfacei asserted_type: ?surfacetypei .
+          ?surfacei is_part_of: ?toothi .
+                                        # first procedure
+          ?proci1 rdf:type tooth_restoration_procedure: .
+          ?rolei rdf:type tooth_to_be_restored_role: .
+          ## the tooth to be restored role inheres in the tooth
+          ## and is realized by the procedure
+          ?rolei inheres_in: ?toothi .
+          ?proci1 realizes: ?rolei .
+          ?proci1 occurrence_date: ?date1 . # date of procedure
+          ?proci1 has_participant: ?surfacei . ## link surface to procedure
+          ?proci1 is_part_of: ?visit1.
+          ?visit1 rdf:type outpatient_encounter:.
+          ##- second process: the tooth and surface remain the same as the first
+          ## but a new process that realizes a new role is searched for
+          ?visit1 later_visit: ?visit2.
+          ?proci2 is_part_of: ?visit2.	
+          ## Repeat
+          ?proci2 rdf:type tooth_restoration_procedure: .
+          ?rolei2 rdf:type tooth_to_be_restored_role: .
+          ?proci2 is_part_of: ?visit2.
+          ## the tooth to be restored role inheres in the tooth
+          ## and is realized by the procedure
+          ?rolei2 inheres_in: ?toothi .
+          ?proci2 realizes: ?rolei2 .
+          ?proci2 occurrence_date: ?date2 . # date fo procedure 2
+          ?proci2 has_participant: ?surfacei . ## link surface to procedure
+          ## Repeat
+#          filter(?surfacei = <http://purl.obolibrary.org/obo/ohd/individuals/I_a68e153c890465735df45079bdd51fbf>)
+#          filter(?patienti = <http://purl.obolibrary.org/obo/ohd/individuals/I_b986ac2ec3449a1812641001537c5444>)
+      } group by ?patienti ?patient ?toothi ?tooth ?surfacei ?surface ?visit1 ?proci1 ?date1 
+  }
+  ## Repeat
   ?proci2 rdf:type tooth_restoration_procedure: .
   ?rolei2 rdf:type tooth_to_be_restored_role: .
   ?proci2 is_part_of: ?visit2.
-  
   ## the tooth to be restored role inheres in the tooth
   ## and is realized by the procedure
   ?rolei2 inheres_in: ?toothi .
   ?proci2 realizes: ?rolei2 .
-  ?proci2 occurrence_date: ?date2 . # date fo procedure 2
+  ?visit2 occurrence_date: ?date2 . # date fo procedure 2
   ?proci2 has_participant: ?surfacei . ## link surface to procedure
-
-  ## assign labels
-  ?patienttypei rdfs:label ?patienttype .
+  ## Repeat
+   # info
+  ?patienti rdfs:label ?patient.
   ?toothi rdfs:label ?tooth .
-  ?toothtypei tooth_number: ?toothtype .
   ?surfacei rdfs:label ?surface .
-  ?surfacetypei rdfs:label ?surfacetype .
   ?proci1 rdfs:label ?procedure1 .
   ?proci2 rdfs:label ?procedure2 .
-  
-}
-group by ?visit2
-
-## match the min and first procedure dates
-#having (?date1 = min(?date))
-#order by ?tooth ?surface ?date1
-
-
-#find first restoration
-#get its visit
-#next the min(next*) visit that has a restoration with same surface
+  filter(?date2 = ?soonest_date2).
+  ?patienti rdfs:label ?patient.
+  ?toothi rdfs:label ?tooth .
+  ?surfacei rdfs:label ?surface .
+}"
+)))
+## Results for PREFIX rdf:... (100  of 5865 ) mine
+## Results for PREFIX rdf:... (100  of 5373 ) his??
