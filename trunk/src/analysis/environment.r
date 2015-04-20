@@ -114,32 +114,32 @@ lastSparql <- function() { cat(lastSparqlQuery) }
 ## describe a term.
 rdfd <- function(uri,limit=100)
 {  cat("What things have it as subject\n")
-   print(queryc(paste("select distinct ?pl ?p ?vl ?v  where { <",uri,"> ?p ?v. optional {?p rdfs:label ?pl}. optional { ?v rdfs:label ?vl}} limit ",limit,sep="")),sep="\n" )
+   write.table(queryc(paste("select distinct ?pl ?p ?vl ?v  where { <",uri,"> ?p ?v. optional {?p rdfs:label ?pl}. optional { ?v rdfs:label ?vl}} limit ",limit,sep="")),quote=F,row.names=F )
    cat("What things have it as object\n")
-   print(queryc(paste("select distinct ?sl ?s ?pl ?p  where { ?s ?p <",uri,"> . optional{?p rdfs:label ?pl}. optional { ?s rdfs:label ?sl}} limit ",limit,sep="")))
+   write.table(queryc(paste("select distinct ?sl ?s ?pl ?p  where { ?s ?p <",uri,"> . optional{?p rdfs:label ?pl}. optional { ?s rdfs:label ?sl}} limit ",limit,sep="")),quote=F,row.names=F)
 
  }
 
 ## describe an entity given its label
-rdfdl <- function(label,limit=100)
+rdfdl <- function(label,limit=100,show.uris=T)
 {  cat("What things have it as subject\n");
-   print(queryc(paste(" select distinct ?uri ?p ?pl  ?v ?vl  where ",
+   write.table(queryc(paste(" select distinct uri",if(show.uris){"?p"} else {""}, "?pl ", if(show.uris){"?v"} else {""}, " ?vl  where ",
               "{  ?uri rdfs:label \"",label,"\".",
               "   ?uri ?p ?v. ",
               "   optional {?p rdfs:label ?pl}. ",
               "   optional {?v rdfs:label ?vl}.",
               " } limit ",limit,
                 sep=""
-              )));
+              )),quote=F,row.names=F);
    cat("What things have it as object\n")
-   print(queryc(paste(" select distinct  ?s ?sl  ?p ?pl ?uri  where ",
+   write.table(queryc(paste(" select distinct  ?s ?sl  ?p ?pl ?uri  where ",
               "{  ?uri rdfs:label \"",label,"\".",
               "   ?s ?p ?uri. ",
               "   optional {?p rdfs:label ?pl}. ",
               "   optional {?s rdfs:label ?sl}.",
               " } limit",limit,
                 sep=""
-              )));
+              )),sep=",",quote=F,row.names=F);
  }
 
 
