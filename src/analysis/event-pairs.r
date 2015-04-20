@@ -1,28 +1,7 @@
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX patient: <http://purl.obolibrary.org/obo/OHD_0000012>
-PREFIX asserted_type: <http://purl.obolibrary.org/obo/OHD_0000092>
-PREFIX birth_date:  <http://purl.obolibrary.org/obo/OHD_0000050>
-PREFIX tooth: <http://purl.obolibrary.org/obo/FMA_12516>
-PREFIX is_part_of: <http://purl.obolibrary.org/obo/BFO_0000050>
-PREFIX tooth_surface: <http://purl.obolibrary.org/obo/FMA_no_fmaid_Surface_enamel_of_tooth>
-PREFIX tooth_restoration_procedure: <http://purl.obolibrary.org/obo/OHD_0000004>
-PREFIX tooth_to_be_restored_role: <http://purl.obolibrary.org/obo/OHD_0000007>
-PREFIX inheres_in: <http://purl.obolibrary.org/obo/BFO_0000052>
-PREFIX realizes: <http://purl.obolibrary.org/obo/BFO_0000055>
-PREFIX occurrence_date: <http://purl.obolibrary.org/obo/OHD_0000015>
-PREFIX has_participant: <http://purl.obolibrary.org/obo/BFO_0000057>
-PREFIX outpatient_encounter: <http://purl.obolibrary.org/obo/OGMS_0000099>
-PREFIX process: <http://purl.obolibrary.org/obo/BFO_0000007>
-PREFIX later_visit: <http://purl.obolibrary.org/obo/OHD_0000217>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX tooth_number: <http://purl.obolibrary.org/obo/OHD_0000065> 
-
-
 system.time(queryc
-    ("select distinct ?patient ?patienti ?tooth ?surface ?visit1 ?procedure1 ?date1 ?visit2 ?procedure2 ?soonest_date2",
+    ("select distinct ?patient ?patienti ?tooth ?surface ?procedure1 ?date1 ?procedure2 ?soonest_date2",
      "where {",
-     "{",
-     "select distinct ?patienti ?proci1 ?date1 ?toothi ?surfacei (min(?date2) as ?soonest_date2)",
+     "{select distinct ?patienti ?proci1 ?date1 ?toothi ?surfacei (min(?date2) as ?soonest_date2)",
      "where {",
      "?patienti a homo_sapiens: .",
      "?toothi rdf:type tooth: .",
@@ -35,12 +14,12 @@ system.time(queryc
      surface_restoration_pattern("?proci1","?toothi","?surfacei","?date1"),
                                         #
      "?proci1 later_encounter: ?proci2.",
-     surface_restoration_pattern("?proci2","?toothi","?surfacei","?date2"),
-
-     "} group by ?patienti ?toothi ?surfacei ?proci1 ?date1 ",
-     "}",
                                         #
-     surface_restoration_pattern("?proci2","?toothi","?surfacei","?soonest_date2"),
+     surface_restoration_failure_pattern("?proci2","?toothi","?surfacei","?date2"),
+
+     "} group by ?patienti ?toothi ?surfacei ?proci1 ?date1 }",
+                                        #
+     surface_restoration_failure_pattern("?proci2","?toothi","?surfacei","?soonest_date2"),
                                         #
      "?patienti rdfs:label ?patient.",
      "?toothi rdfs:label ?tooth .",
@@ -50,13 +29,10 @@ system.time(queryc
      "}"))
                             
 
-
 ## Results for PREFIX rdf:... (100  of 5865 ) mine
 ## Results for PREFIX rdf:... (100  of 5373 ) his??
 
 
-
-gensymcounter <- 1;
 
 surface_restoration_pattern <- function (procvar="?proci",toothvar="?toothi",surfacevar="?surfacei",datevar="?date")
   { rolevar <- paste("?role",gensymcounter,sep="");
@@ -70,8 +46,34 @@ surface_restoration_pattern <- function (procvar="?proci",toothvar="?toothi",sur
           sep="");
   }
 
+surface_restoration_failure_pattern <- function (procvar="?proci",toothvar="?toothi",surfacevar="?surfacei",datevar="?date")
+  { rolevar <- paste("?role",gensymcounter,sep="");
+    gensymcounter <<- gensymcounter+1;
+    sparql_union_pattern(
+      paste(sparql_union_pattern(paste0(procvar," a tooth_restoration_procedure: .\n"), paste0(procvar," a inlay_restoration: .\n")),
+            rolevar," a tooth_to_be_restored_role: .\n",
+            rolevar," inheres_in: ", toothvar," .\n",
+            procvar," realizes: ",rolevar," .\n",
+            procvar," occurrence_date: ",datevar,".\n", 
+            procvar," has_participant: ",surfacevar," .\n",
+            sep=""),
+      paste(procvar," a crown_restoration: .\n",
+            rolevar," a tooth_to_be_restored_role: .\n",
+            rolevar," inheres_in: ", toothvar," .\n",
+            procvar," realizes: ",rolevar," .\n",
+            procvar," occurrence_date: ",datevar,".\n", 
+            sep=""));
+  }
+
 specific_person_surface_example <- function()
   { paste("filter(?surfacei = <http://purl.obolibrary.org/obo/ohd/individuals/I_a68e153c890465735df45079bdd51fbf>)",
          "filter(?patienti = <http://purl.obolibrary.org/obo/ohd/individuals/I_b986ac2ec3449a1812641001537c5444>)",
          sep="\n")
   }
+
+gensymcounter <- 1;
+
+sparql_union_pattern <- function(...)
+{   paste0("{{",paste(...,sep="} UNION {"),"}}")
+}
+  
