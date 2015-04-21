@@ -51,7 +51,9 @@
 		     (#"getString" results "patient_id")
 		     occurrence-date
 		     (#"getString" results "tooth_data")
-		     (#"getString" results "description")
+		     (#"getString" results "r21_provider_id")
+		     (#"getString" results "r21_provider_type")
+		     (#"getString" results "action_code")
 		     (#"getString" results "row_id")))
 		(incf count))))
 
@@ -59,8 +61,9 @@
       (values ont count))))
 
 
+
 (defun get-eaglesoft-unerupted-tooth-finding-axioms 
-    (patient-id occurrence-date tooth-data description record-count)
+    (patient-id occurrence-date tooth-data provider-id provider-type action-code record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(patient-uri nil)
@@ -79,9 +82,11 @@
     (setf teeth-list (get-eaglesoft-teeth-list tooth-data))
 
     ;; generate instances of the dental exam in which the unerupted was discovered
-    ;; annotations about the dental exam are in the import of the dental exam ontology
     (setf exam-uri (get-eaglesoft-dental-exam-iri patient-id occurrence-date))
-
+    (setf axioms (get-eaglesoft-dental-exam-axioms exam-uri patient-id occurrence-date
+						   provider-id provider-type record-count))
+    
+    
     (loop for tooth in teeth-list do
          ;;;;  declare instances of participating entities ;;;;
 	 
@@ -92,8 +97,8 @@
 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
 	 (setf temp-axioms (get-ohd-instance-axioms tooth-uri tooth-type-uri))
 	 (setf axioms (append temp-axioms axioms))
-	 
-	 ;; add annotation about tooth
+
+         ;; add annotation about tooth
 	 (setf tooth (format nil "~a" tooth)) ; ensure tooth is a string
 	 (push `(annotation-assertion !rdfs:label 
 				      ,tooth-uri
@@ -112,7 +117,7 @@
 		 !rdfs:label 
 		 ,finding-uri
 		 ,(get-eaglesoft-finding-rdfs-label patient-id description :tooth tooth)) axioms)
-	          
+	 
          ;; instance of unerupted tooth finding 'is about' the unerupted tooth
 	 (push `(object-property-assertion !'is about'@ohd ,finding-uri ,tooth-uri) axioms)
 	 
@@ -128,7 +133,7 @@
 	 ;; instance of unerupted tooth finding is the specified output of the dental exam
 	 (push `(object-property-assertion !'has_specified_output'@ohd ,exam-uri ,finding-uri) axioms)
 
-	) ;; end loop
+	 ) ;; end loop
         ;;(pprint axioms)
 
     ;; return axioms

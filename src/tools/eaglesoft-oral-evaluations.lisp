@@ -202,27 +202,16 @@
 	    ;; this is hte second element in key
 	      (setf occurrence-date (second key))
 
-	      (cond
-		( ;; if "none", then this is a "no oral health issues reported" finding
-		  ;; so, uri is determined by occurrence date
-		 (equalp eval-finding-description "none")
-		 (setf finding-uri 
-		       (get-eaglesoft-finding-iri id "none" :occurrence-date occurrence-date)))
-		
-		(t ;; otherwise determine the type of finding based on the description, date, and tooth
-		 (setf tooth (fifth (gethash (car values) eval-uri-ht)))
-		 (setf finding-uri 
-		       (get-eaglesoft-finding-iri id eval-finding-description 
-						  :tooth-num tooth :occurrence-date occurrence-date))))
-	      
-	    ;; add finding to ontology
-	      (as `((declaration (named-individual ,finding-uri))
-		       (object-property-assertion 
-			!rdfs:label
-			,finding-uri
-			,(get-eaglesoft-finding-rdfs-label 
-			  id 
-			  eval-finding-description))))
+	        ;; get axioms
+		(as (get-eaglesoft-oral-evaluation-axioms 
+		     (#"getString" results "patient_id")
+		     occurrence-date
+		     (#"getString" results "ada_code")
+		     (#"getString" results "tooth_data")
+		     (#"getString" results "r21_provider_id")
+		     (#"getString" results "r21_provider_type")
+		     (#"getString" results "row_id")))
+		(incf count))))
 
 	    ;; if the length of the values list is > 1, then we have a situation where there
 	    ;; are multiple evalations (e.g., D0120, D0180) that have a finding associated 
@@ -266,8 +255,8 @@
       ;; return the ontology
       (values ont count))))
 
-(defun get-eaglesoft-oral-evaluation-axioms 
-    (oral-eval-uri patient-id occurrence-date ada-code tooth provider-id provider-type record-id)
+(defun get-eaglesoft-oral-evaluation-axioms
+    (patient-id occurrence-date ada-code tooth-data provider-id provider-type record-id)
   (let ((axioms nil)
 	(patient-role-uri nil)
 	(provider-role-uri nil)
@@ -281,16 +270,22 @@
     (setf patient-uri (get-eaglesoft-dental-patient-iri patient-id))
     (setf patient-role-uri (get-eaglesoft-dental-patient-role-iri patient-id))
     
+
+    ;; generate instance of the dental exam that the oral eval is part of
+    (setf exam-uri (get-eaglesoft-dental-exam-iri patient-id occurrence-date))
+    (setf axioms (get-eaglesoft-dental-exam-axioms exam-uri patient-id occurrence-date
+						   provider-id provider-type record-id))
     ;; determine the type of oral evaluation
     (setf eval-type (get-eaglesoft-oral-evaluation-type ada-code))
     
     ;; declare instance of oral evaluation with annotations and date of evaluation
     ;; note: the oral evaluation is part of the visit
     (setf oral-eval-name (get-eaglesoft-oral-evaluation-name ada-code patient-id))
-    (push-instance axioms oral-eval-uri eval-type)
+    (push `(declaration (named-individual ,oral-eval-uri)) axioms)
+    (setf temp-axioms (get-ohd-instance-axioms oral-eval-uri eval-type))
+    (setf axioms (append temp-axioms axioms))
     
-    ;; label for eval
-    (push `(annotation-assertion 
+    (push `(annotation-assertion ; label for eval
 	    !rdfs:label 
 	    ,oral-eval-uri 
 	    ,oral-eval-name) axioms)
@@ -309,15 +304,10 @@
     (setf temp-axioms (get-ohd-instance-axioms cdt-uri cdt-class-uri))
     (setf axioms (append temp-axioms axioms))
 
-    ;; add annotion about cdt code
-    (push `(annotation-assertion 
+    (push `(annotation-assertion ; label for cdt code
 	    !rdfs:label
 	    ,cdt-uri 
 	    ,(str+ "billing code " ada-code " for " oral-eval-name)) axioms)
-    
-    ;; determine the dental exam that oral eval is part of
-    ;; note: annotations for the dental exam are in the dental exam ontology
-    (setf exam-uri (get-eaglesoft-dental-exam-iri patient-id occurrence-date))
     
     ;; if provider has been identified as a specific person use r21-provider-id; 
     ;; otherwise use record-id
@@ -419,6 +409,64 @@
 This queries the eaglesoft database for all ADA codes that indicate an oral 
 evaluation has been performed for ADA codes D0120, D0140, D0150, D0180.
 |#
+  (let (sql)
+
+    ;; build query string
+    ;; build query string
+    (setf sql "SET rowcount 0 ")
+    
+    ;; SELECT clause
+    (cond 
+      (limit-rows
+       (setf limit-rows (format nil "~a" limit-rows)) ;ensure that limit rows is a string
+       (setf sql (str+ sql " SELECT  TOP " limit-rows "  "))) 
+      (t (setf sql (str+ sql " SELECT "))))
+    (setf sql (str+ sql
+	       "patient_id, table_name, tran_date, date_completed, date_entered, description, ada_code, 
+                ada_code_description, tooth_data, surface_detail, r21_provider_id, r21_provider_type, practice_id, row_id"))
+
+    ;; FROM clause
+    (setf sql (str+ sql " FROM patient_history "))
+
+    
+    (setf sql
+	  (str+ sql
+		"WHERE RIGHT(ada_code, 4) IN (
+                             /* Periodic Oral Evaluation */
+                             '0120',
+                             /* Limited Oral Evaluation */
+                             '0140',
+                             /* Comprehensive Oral Evaluation */
+                             '0150',
+                             /* Comprehensive Periodontal Evaluation */
+                             '0180')
+                 AND LEFT(ada_code, 1) IN ('D', '0') "))
+
+    ;; check for patient id
+    (when patient-id
+      (setf sql
+	    (str+ sql " AND patient_id IN (" (get-single-quoted-list patient-id) ") ")))
+
+		
+    ;; ORDER BY clause
+    (setf sql
+	  (str+ sql "ORDER BY patient_id, tran_date "))
+
+    ;; return query string
+    sql))
+
+#|
+
+Bill D 4/8/2015: Commented out this version, it is too complicated. I *was* trying to match finding with oral evals, but this makes the query complicated. Plus I'm not sure if I'm doing it right.
+
+(defun get-eaglesoft-oral-evaluations-query
+ (&key patient-id limit-rows)
+  "Returns query string for retrieving data. The patient-id key restricts records only that patient or patients.  Multiple are patients are specified using commas; e.g: \"123, 456, 789\". The tooth key is used to limit results to a specific tooth, and can be used in combination with the patient-id. However, the tooth key only takes a single value. The limit-rows key restricts the number of records to the number specified."
+
+#| 
+This queries the eaglesoft database for all ADA codes that indicate an oral 
+evaluation has been performed for ADA codes D0120, D0140, D0150, D0180.
+|#
 
   (let ((sql nil))
     ;; build query string
@@ -462,58 +510,4 @@ evaluation has been performed for ADA codes D0120, D0140, D0150, D0180.
     ;; return query string
     ;;(pprint sql)
     sql))
-
-(defun get-eaglesoft-oral-evaluations-temp-table-query ()
-  "Returns sql for two temp tables named #oral_evals and #conditions.
-#oral_evals that only oral evaluations in it. 
-#conditions has information from the patient_condtions table that is joined with patient_conditions_extra.
-I do this in order to simplfy the readability of the table joins."
-
-  " /*create a temp table with just the oral evaluations in it */
-  SELECT 
-    patient_id, table_name, description, ada_code, ada_code_description, 
-    r21_provider_id, r21_provider_type, practice_id, row_id, 
-    occurrence_date =
-    CASE
-      WHEN tran_date <> 'n/a' THEN tran_date
-      WHEN date_completed <> 'n/a' THEN date_completed
-      ELSE date_entered
-    END
-
-  INTO 
-    #oral_evals 
-  FROM 
-    patient_history
-  WHERE RIGHT(ada_code, 4) IN (
-                             /* Periodic Oral Evaluation */
-                             '0120',
-                             /* Limited Oral Evaluation */
-                             '0140',
-                             /* Comprehensive Oral Evaluation */
-                             '0150',
-                             /* Comprehensive Periodontal Evaluation */
-                             '0180')
-  AND LEFT(ada_code, 1) IN ('D', '0')
-  ORDER BY patient_id, tran_date 
-
-
-   /* create temp table with information from patient_conditions joined with patient_conditions_extra */
-  SELECT
-    c.patient_id, 
-    c.date_entered,
-    c.action_code,  
-    c.description as condition_description, 
-    get_tooth_from_data(ce.tooth_data) as tooth, 
-    get_surface_summary_from_detail(ce.surface_detail, c.tooth) as surface 
-  INTO
-    #conditions 
-  FROM
-    patient_conditions c
-  LEFT JOIN 
-    patient_conditions_extra ce
-  ON
-    c.counter_id = ce.counter_id
-  ORDER BY
-    c.patient_id, c.date_entered 
-
-")
+|#

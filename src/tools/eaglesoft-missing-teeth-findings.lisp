@@ -51,7 +51,9 @@
 		     (#"getString" results "patient_id")
 		     occurrence-date
 		     (#"getString" results "tooth_data")
-		     (#"getString" results "description")
+		     (#"getString" results "r21_provider_id")
+		     (#"getString" results "r21_provider_type")
+		     (#"getString" results "action_code")
 		     (#"getString" results "row_id")))
 		(incf count))))
 
@@ -59,7 +61,7 @@
       (values ont count))))
 
 (defun get-eaglesoft-missing-tooth-finding-axioms 
-    (patient-id occurrence-date tooth-data description record-count)
+    (patient-id occurrence-date tooth-data provider-id provider-type action-code record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(patient-uri nil)
@@ -75,16 +77,16 @@
     
     ;; get uri of patient
     (setf patient-uri  (get-eaglesoft-dental-patient-iri patient-id))
-	 
-
+    
     ;; tooth_data
     ;; get list of teeth in tooth_data array
     (setf teeth-list (get-eaglesoft-teeth-list tooth-data))
     
     ;; generate instances of the dental exam in which the missing tooth/teeth was/were discovered
-    ;; annotations about the dental exam are in the import of the dental exam ontology
     (setf exam-uri (get-eaglesoft-dental-exam-iri patient-id occurrence-date))
-
+    (setf axioms (get-eaglesoft-dental-exam-axioms exam-uri patient-id occurrence-date
+						   provider-id provider-type record-count))
+    
     (loop for tooth in teeth-list do
        	 (setf tooth-num (format nil "~a" tooth)) ; converts tooth number to string
 	 

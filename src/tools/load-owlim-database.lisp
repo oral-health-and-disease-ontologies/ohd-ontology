@@ -22,6 +22,7 @@ load <file:///Users/williamduncan/repos/git/iop/snomed-icd/UMLS-SNOMED/snomed-re
 load <file:///Users/williamduncan/repos/git/iop/snomed-icd/UMLS-SNOMED/ontotex-triples/snomed-2013-09-01-xml.nt>;
 load <file:///Users/williamduncan/Desktop/snomed-icd/split-300k/nsplit300k-1.nt>;
 load <file:///Users/williamduncan/Desktop/snomed-icd/split-11-100k/nsplit-11-20k-1.nt>;
+load <file:///Users/williamduncan/repos/ohd-ontology/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-oral-evaluations.owl>;
 
 
 
@@ -60,10 +61,10 @@ load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-oh
 (register-namespace "openrdf:" "http://www.openrdf.org/config/repository#")
 
 (defun create-repo-from-ttl (&optional (endpoint "http://localhost:8080/openrdf-workbench/repositories/SYSTEM/update") name expressivity )
-  (let 
+  (let
       ;;((files (append (directory "/Volumes/Big/Downloads/2012-08-13/owlim-lite-5.2.5331/getting-started/owlim.ttl"))))
       ((files (append (directory "/Users/williamduncan/owlim/owlim-lite-5.2.5331/getting-started/owlim.ttl"))))
-    (with-ontology foo (:collecting t) 
+    (with-ontology foo (:collecting t)
 	((asq
 	  (class-assertion !openrdf:RepositoryContext (:blank repocontext))
 	  (class-assertion !openrdf:Repository (:blank repo))
@@ -81,7 +82,7 @@ load <file:///Users/williamduncan/repos/svn/ohd-ontology/src/ontology/pitt-ub-oh
 ; http://www.openrdf.org/doc/sesame2/system/ch08.html
 
 #| Needs a context, which is a unique IRI or bnode. It would be eq to the first [] in the template below.
-(defun create-owlim-lite-repository 
+(defun create-owlim-lite-repository
                     POST /openrdf-sesame/repositories/mem-rdf/statements?context=null HTTP/1.1
 |#
 
