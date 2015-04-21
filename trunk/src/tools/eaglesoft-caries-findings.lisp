@@ -5,11 +5,11 @@
 ;; For details see comment at top of r21-utilities.lisp
 
 ;;****************************************************************
-;; Database preparation: 
-;; When get-eaglesoft-caries-findings-ont is ran, the program verifies that the 
-;; action_codes and patient_history tables exist.  This is done by calling 
-;; prepare-eaglesoft-db.  However, this only tests that these tables exist in the 
-;; user's database. If these table need to be recreated, the call 
+;; Database preparation:
+;; When get-eaglesoft-caries-findings-ont is ran, the program verifies that the
+;; action_codes and patient_history tables exist.  This is done by calling
+;; prepare-eaglesoft-db.  However, this only tests that these tables exist in the
+;; user's database. If these table need to be recreated, the call
 ;; get-eaglesoft-caries-findings-ont with :force-create-table key set to t.
 
 (defun get-eaglesoft-caries-findings-ont (&key patient-id tooth limit-rows force-create-table)
@@ -23,10 +23,10 @@
     (prepare-eaglesoft-db :force-create-table force-create-table)
 
     ;; get query string for findings
-    (setf query (get-eaglesoft-caries-findings-query 
+    (setf query (get-eaglesoft-caries-findings-query
 		 :patient-id patient-id :tooth tooth :limit-rows limit-rows))
 
-    (with-ontology ont (:collecting t 
+    (with-ontology ont (:collecting t
 			:base *eaglesoft-individual-caries-findings-iri-base*
 			:ontology-iri *eaglesoft-caries-findings-ontology-iri*)
 	(;; import needed ontologies
@@ -34,25 +34,27 @@
 
 	 ;; get axioms for declaring annotation, object, and data properties used for ohd
 	 (as (get-ohd-declaration-axioms))
-	 
+
 	 ;; get records from eaglesoft db and create axioms
 	 (with-eaglesoft (results query)
 	   (loop while (#"next" results) do
 	        ;; determine the occurrence date
 		(setf occurrence-date
-		      (get-eaglesoft-occurrence-date 
+		      (get-eaglesoft-occurrence-date
 		       (#"getString" results "table_name")
 		       (#"getString" results "date_entered")
 		       (#"getString" results "date_completed")
 		       (#"getString" results "tran_date")))
 
 	        ;; generate axioms
-		(as (get-eaglesoft-caries-finding-axioms 
+		(as (get-eaglesoft-caries-finding-axioms
 		     (#"getString" results "patient_id")
 		     occurrence-date
 		     (#"getString" results "tooth_data")
 		     (#"getString" results "surface")
-		     (#"getString" results "description")
+		     (#"getString" results "r21_provider_id")
+		     (#"getString" results "r21_provider_type")
+		     (#"getString" results "action_code")
 		     (#"getString" results "row_id")))
 		(incf count))))
 
@@ -60,8 +62,8 @@
       (values ont count))))
 
 
-(defun get-eaglesoft-caries-finding-axioms 
-    (patient-id occurrence-date tooth-data surface description record-count)
+(defun get-eaglesoft-caries-finding-axioms
+    (patient-id occurrence-date tooth-data surface provider-id provider-type action-code record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(patient-uri nil)
@@ -83,56 +85,57 @@
     ;; get list of teeth in tooth_data array
     (setf teeth-list (get-eaglesoft-teeth-list tooth-data))
 
-    ;; generate instances of the dental exam in which the caries was discovered
-    ;; annotations about the dental exam are in the import of the dental exam ontology
+    ;; generate instance of the dental exam in which the caries was discovered
     (setf exam-uri (get-eaglesoft-dental-exam-iri patient-id occurrence-date))
+    (setf axioms (get-eaglesoft-dental-exam-axioms
+		  exam-uri patient-id occurrence-date provider-id provider-type record-count))
     
     (loop for tooth in teeth-list do
          ;;;;  declare instances of participating entities ;;;;
-	 
+
 	 ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
 	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-with-number t))
 	 (setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
 	 (setf tooth-uri (get-eaglesoft-tooth-iri patient-id tooth-type-uri))
-	 
+
 	 (push `(declaration (named-individual ,tooth-uri)) axioms)
 	 (setf temp-axioms (get-ohd-instance-axioms tooth-uri tooth-type-uri))
 	 (setf axioms (append temp-axioms axioms))
 
 	 ;; add annotation about tooth
-	 (push `(annotation-assertion 
-		 !rdfs:label 
+	 (push `(annotation-assertion
+		 !rdfs:label
 		 ,tooth-uri
 		 ,(str+ tooth-name " of patient " patient-id)) axioms)
 
 	 ;; the tooth 'is part of' the patient
 	 (push `(object-property-assertion !'is part of'@ohd ,tooth-uri ,patient-uri) axioms)
-         
+
 	 ;; declare instance of the carious lesion
 	 (setf lesion-uri (get-eaglesoft-carious-lesion-iri patient-id tooth-name record-count))
 	 (setf temp-axioms (get-ohd-instance-axioms lesion-uri !'carious lesion of tooth'@ohd))
 	 (setf axioms (append temp-axioms axioms))
-	 
+
 	 ;; add annotation about lesion
-	 (push `(annotation-assertion 
-		 !rdfs:label 
+	 (push `(annotation-assertion
+		 !rdfs:label
 		 ,lesion-uri
 		 ,(str+ "carious lesion on " tooth-name " of patient " patient-id)) axioms)
 
 	 ;; the carious lesion is part of the tooth
 	 ;; this should not be necessary since the lesion is asserted to be part of surface (below)
 	 ;;(push `(object-property-assertion !'is part of'@ohd ,lesion-uri ,tooth-uri) axioms)
-	 
+
          ;; declare instance of !ohd:'caries finding' 
-	 (setf finding-uri 
-	       (get-eaglesoft-finding-iri 
+	 (setf finding-uri
+	       (get-eaglesoft-finding-iri
 		patient-id description :tooth-num tooth :instance-count record-count))
 	 (setf temp-axioms (get-ohd-instance-axioms finding-uri !'caries finding'@ohd))
 	 (setf axioms (append temp-axioms axioms))
-	 
+
          ;; add annotation about caries finding
-	 (push `(annotation-assertion 
-		 !rdfs:label 
+	 (push `(annotation-assertion
+		 !rdfs:label
 		 ,finding-uri
 		 ,(get-eaglesoft-finding-rdfs-label patient-id description :tooth tooth)) axioms)
 
@@ -141,9 +144,9 @@
 
          ;; instance of caries finding is the specified output of the dental exam
 	 ;;(push `(object-property-assertion !'has_specified_output'@ohd ,exam-uri ,finding-uri) axioms)
-                  
+
          ;; add data property !ohd:'occurrence date' of the caries finding
-	 (push `(data-property-assertion 
+	 (push `(data-property-assertion
 		 !'occurrence date'@ohd
 		 ,finding-uri
 		 (:literal ,occurrence-date !xsd:date)) axioms)
@@ -152,31 +155,31 @@
          ;; the surface field often contains multiple surfaces; e.g., mobl
          ;; so create a list of these surfaces and add axioms about each one
 	 (setf surface-list (get-eaglesoft-surface-list surface))
-	 (loop 
+	 (loop
 	    for surface-name in surface-list do
 	      ;; get the type of surface uri for the surface
 	      (setf surface-type-uri (get-fma-surface-uri surface-name))
-	      
+
 	      ;; create and instance of this surface
 	      (setf surface-uri (get-eaglesoft-surface-iri patient-id surface-type-uri tooth-name))
 	      (push `(declaration (named-individual ,surface-uri)) axioms)
 	      (setf temp-axioms (get-ohd-instance-axioms surface-uri surface-type-uri))
 	      (setf axioms (append temp-axioms axioms))
 
-	      
+
 	      ;; relate surface to tooth
 	      (push `(object-property-assertion !'is part of'@ohd ,surface-uri ,tooth-uri) axioms)
 
 	      ;; the carious lesion is part of the surface
 	      (push `(object-property-assertion !'is part of'@ohd ,lesion-uri ,surface-uri) axioms)
-	      
+
 	      ;; add annoation about surface
 	      (push `(annotation-assertion !rdfs:label
 					   ,surface-uri
 					   ,(str+ surface-name " surface of " tooth-name
 						  " in patient " patient-id)) axioms)
-	      
-	      ) ;; end surface loop	 
+
+	      ) ;; end surface loop
 	 ) ;; end tooth loop
 
         ;;(pprint axioms)
@@ -188,8 +191,8 @@
 (defun get-eaglesoft-carious-lesion-iri (patient-id tooth-name instance-count)
   "Returns an iri for a carious lesion that is generated by the patient id, the name of the type of the tooth, and a count variable that differentiates multipe caries findings that are about the same tooth."
   (let ((uri nil))
-    (setf uri 
-	  (get-unique-individual-iri patient-id 
+    (setf uri
+	  (get-unique-individual-iri patient-id
 				     :salt *eaglesoft-salt*
 				     :iri-base *eaglesoft-individual-teeth-iri-base*
 				     :class-type !'carious lesion of tooth'@ohd
@@ -216,23 +219,24 @@ Only records that contain surface data are returned
   (let ((sql nil))
     ;; build query string
     (setf sql "SET rowcount 0 ")
-    
+
     ;; SELECT clause
-    (cond 
+    (cond
       (limit-rows
        (setf limit-rows (format nil "~a" limit-rows)) ;ensure that limit rows is a string
-       (setf sql (str+ sql " SELECT  TOP " limit-rows "  "))) 
+       (setf sql (str+ sql " SELECT  TOP " limit-rows "  ")))
       (t (setf sql (str+ sql " SELECT "))))
 
-    (setf sql  
-	  (str+ sql 
-		"table_name, 
-                 date_entered, 
-                 date_completed, 
-                 tran_date, 
-                 patient_id, 
-                 tooth_data, 
+    (setf sql
+	  (str+ sql
+		"table_name,
+                 date_entered,
+                 date_completed,
+                 tran_date,
+                 patient_id,
+                 tooth_data,
                  r21_provider_id,
+                 r21_provider_type,
                  row_id,
                  description,
                  get_surface_summary_from_detail(surface_detail, tooth) as surface "))
@@ -243,18 +247,19 @@ Only records that contain surface data are returned
     ;; WHERE clause
     (setf sql
 	  (str+ sql
-		" WHERE action_code <> 'n/a' "
-                " AND LENGTH(tooth_data) > 31 "
-                " AND description IN ('Decay', "
-		"                     'Decalcification', "
-		"                     'Dicalsification', "
-		"                     'Deep dentinal/cemental caries') "
-                " AND tooth_data IS NOT NULL "
-                " AND LENGTH(tooth_data) > 31 "
-                " AND tooth_data LIKE '%Y%' "
-                " AND surface_detail IS NOT NULL "
-                " AND surface_detail LIKE '%Y%' "))
-    
+		"WHERE
+                   action_code IN ('2', '3', '4')
+                AND LENGTH(tooth_data) > 31
+                AND description IN ('Decay',
+                                    'Decalcification',
+                                    'Dicalsification',
+                                    'Deep dentinal/cemental caries')
+                AND tooth_data IS NOT NULL
+                AND LENGTH(tooth_data) > 31
+                AND tooth_data LIKE '%Y%'
+                AND surface_detail IS NOT NULL
+                AND surface_detail LIKE '%Y%' "))
+
     ;; check for patient id
     (when patient-id
       (setf sql
@@ -264,7 +269,7 @@ Only records that contain surface data are returned
     (when tooth
       ;; ensure tooth is a string
       (setf tooth (format nil "~a" tooth))
-      (setf sql 
+      (setf sql
 	    (str+ sql " AND substring(tooth_data, " tooth ", 1) = 'Y' ")))
 
      ;; ORDER BY clause

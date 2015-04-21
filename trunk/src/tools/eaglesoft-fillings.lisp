@@ -11,6 +11,8 @@
 ;; only tests that these tables exist in the user's database. If these table need to be 
 ;; recreated, the call get-eaglesoft-fillings-ont with :force-create-table key set to t.
 
+(defparameter *resin-count* 0)
+
 (defun get-eaglesoft-fillings-ont (&key patient-id tooth limit-rows force-create-table)
   "Returns an ontology of the fillings contained in the Eaglesoft database. The patient-id key creates an ontology based on that specific patient. The tooth key is used to limit results to a specific tooth, and can be used in combination with the patient-id. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
 
@@ -155,7 +157,9 @@
 	 (setf ohd-restoration-uri (get-eaglesoft-filling-restoration-uri ada-code))
 	 (setf restoration-uri (get-eaglesoft-filling-restoration-iri 
 				patient-id tooth-name ohd-restoration-uri record-count))
-		     		
+
+	 (if (equalp restoration-uri !'resin filling restoration'@ohd) (incf *resin-count*))
+	     
 	 (push `(declaration (named-individual ,restoration-uri)) axioms)
 	 (setf temp-axioms (get-ohd-instance-axioms restoration-uri ohd-restoration-uri))
 	 (setf axioms (append temp-axioms axioms))
@@ -464,7 +468,7 @@ the surface_detail array.
                    AND LEFT(ada_code, 1) IN ('D','0') "))
 
     ;; FOR NOW ONLY GET RECORDS FROM TRANSACTIONS TABLE
-    (setf sql (str+ sql " AND table_name = 'transactions' "))
+    ;;(setf sql (str+ sql " AND table_name = 'transactions' "))
 
     ;; check for patient id
     (when patient-id
