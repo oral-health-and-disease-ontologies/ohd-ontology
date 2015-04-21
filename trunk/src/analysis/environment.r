@@ -51,7 +51,7 @@ querystring <- function(...,prefixes=default_ohd_prefixes)
     lastSparqlQuery
   }
 
-clearSPARQLSessionCache <- function ()
+clearSPARQLSessionCacheb <- function ()
  { sessionQueryCache <<- new.env(hash=TRUE); }
 
 sessionQueryCache <- new.env(hash=TRUE);
