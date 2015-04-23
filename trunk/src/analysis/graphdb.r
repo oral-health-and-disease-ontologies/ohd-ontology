@@ -1,6 +1,41 @@
-## http://owlim.ontotext.com/display/GraphDB6/GraphDB+FAQ#GraphDBFAQ-CannotconnecttheJMXclient%28jconsole%29totheApacheTomcatinstance.
+## Graphdb-specific functions
 
+## get the current query timeout, in seconds
+get_graphdb_timeout <- function ()
+{ system_endpoint <- gsub("(.*/)\\S+", "\\1SYSTEM", current_endpoint);
+  repo <- gsub(".*/(\\S+)", "\\1", current_endpoint)
+  queryc("select ?timeout ",
+         "WHERE ",
+         " { ?ctx a rep:RepositoryContext.",
+         "   graph ?ctx",
+         paste0("   {  _:a rdfs:label \"",repo,"\"."),
+         "      _:a  a rep:Repository.",
+         "     ?place owlim:query-timeout ?timeout.",
+         "     }",
+         "   }",
+         endpoint=system_endpoint,cache=FALSE)
+}
 
+## set the current query timeout in seconds. Can be useful when debugging.
+set_graphdb_timeout <- function (seconds)
+{ system_update_endpoint <- gsub("(.*/)\\S+", "\\1SYSTEM/statements", current_endpoint);
+  repo <- gsub(".*/(\\S+)", "\\1", current_endpoint)
+  sparqlUpdate("DELETE { graph ?ctx ",
+              "   {?place owlim:query-timeout ?timeout.} } ",
+              "INSERT { graph ?ctx ",
+              paste0("   {?place owlim:query-timeout \"",seconds,"\". }}"),
+              "WHERE ",
+              " { ?ctx a rep:RepositoryContext.",
+              "   graph ?ctx",
+              paste0("   {  _:a rdfs:label \"",repo,"\"."),
+              "      _:a  a rep:Repository.",
+              "     ?place owlim:query-timeout ?timeout.",
+              "     }",
+              "   }",
+              endpoint=system_update_endpoint)
+}
+
+## the following two functions need testing
 graphdb_ee_get_parameters <-function ()
   { write.table(queryc(
     "PREFIX sys:  <http://www.openrdf.org/config/repository#>",
@@ -41,6 +76,39 @@ graphdb_ee_change_parameter <- function(repo,parameter,value)
     endpoint=gsub("(.*/)(.*)","\\1SYSTEM/statements",current_endpoint,perl=TRUE)
     )
   }
+
+get_graphdb_timeout <- function ()
+{ system_endpoint <- gsub("(.*/)\\S+", "\\1SYSTEM", current_endpoint);
+  repo <- gsub(".*/(\\S+)", "\\1", current_endpoint)
+  queryc("select ?timeout ",
+         "WHERE ",
+         " { ?ctx a rep:RepositoryContext.",
+         "   graph ?ctx",
+         paste0("   {  _:a rdfs:label \"",repo,"\"."),
+         "      _:a  a rep:Repository.",
+         "     ?place owlim:query-timeout ?timeout.",
+         "     }",
+         "   }",
+         endpoint=system_endpoint,cache=FALSE)
+}
+
+set_graphdb_timeout <- function (seconds)
+{ system_update_endpoint <- gsub("(.*/)\\S+", "\\1SYSTEM/statements", current_endpoint);
+  repo <- gsub(".*/(\\S+)", "\\1", current_endpoint)
+  sparqlUpdate("DELETE { graph ?ctx ",
+              "   {?place owlim:query-timeout ?timeout.} } ",
+              "INSERT { graph ?ctx ",
+              paste0("   {?place owlim:query-timeout \"",seconds,"\". }}"),
+              "WHERE ",
+              " { ?ctx a rep:RepositoryContext.",
+              "   graph ?ctx",
+              paste0("   {  _:a rdfs:label \"",repo,"\"."),
+              "      _:a  a rep:Repository.",
+              "     ?place owlim:query-timeout ?timeout.",
+              "     }",
+              "   }",
+              endpoint=system_update_endpoint)
+}
 
 
 ## How can I script (automate) the creation of remote repositories?
