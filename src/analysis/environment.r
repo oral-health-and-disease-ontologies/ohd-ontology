@@ -241,3 +241,16 @@ sparql_union_pattern <- function(...)
 {   paste0("{{",paste(...,sep="} UNION {"),"}}")
 }
 
+
+queryw <- function (...,prefixes=default_ohd_prefixes,endpoint)
+  { 
+    reset_var_counter();
+  string <- paste(..., sep="\n");
+  sparql <- querystring(string,prefixes=prefixes);
+  if (check_sparql_syntax)
+    { if (!checkSPARQLSyntax(sparql))
+        { return( NULL) }}
+    if (file.exists("/tmp/sparql.sparql")) { file.remove("/tmp/sparql.sparql") }
+    write(sparql,file="/tmp/sparql.sparql");
+    result <- suppressWarnings(system("osascript putsparql.scpt /tmp/sparql.sparql 2>&1",intern=T))
+  };
