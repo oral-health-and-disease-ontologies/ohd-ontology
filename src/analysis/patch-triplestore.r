@@ -2,6 +2,8 @@
 # needs to be made to prepare the database. Call
 # patch_triplestore. Take a nap.
 
+## TODO: For each of these have a function that checks whether it is needed.
+
 ### propogate occurrence_date: from encounter downward (+29078)
 patch_procedures_have_occurrence_dates <-function ()
 { sparqlUpdate("INSERT",
@@ -32,9 +34,23 @@ patch_oral_evaluations_have_findings <- function ()
                "}")
 }
 
+patch_bearer_of_role_participates_in_realization <- function ()
+{ sparqlUpdate("INSERT",
+               "  { ?thingi participates_in: ?processi }",
+               "WHERE",
+               "",
+               "{",
+               " # chain. thing inv(inheres_in) role inv(realizes) process",
+               "  ?rolei  inheres_in: ?thingi.",
+               "  ?processi  realizes: ?rolei.",
+               "}")
+}
+
+
 patch_triplestore <- function ()
   { patch_procedures_have_occurrence_dates();
     patch_oral_evaluations_have_findings();
+    patch_bearer_of_role_participates_in_realization();
     assert_next_encounter_links();
     assert_transitive_next();
   }
