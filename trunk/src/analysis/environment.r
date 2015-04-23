@@ -51,7 +51,7 @@ querystring <- function(...,prefixes=default_ohd_prefixes)
     lastSparqlQuery
   }
 
-clearSPARQLSessionCacheb <- function ()
+clearSPARQLSessionCache <- function ()
  { sessionQueryCache <<- new.env(hash=TRUE); }
 
 sessionQueryCache <- new.env(hash=TRUE);
@@ -84,10 +84,11 @@ check_sparql_syntax <- file.exists("jena/bin/qparse");
 
 ## execute a sparql query. endpoint defaults to current_endpoint, sparql library defaults to "rrdf"
 queryc <- function(...,endpoint=current_endpoint,prefixes=default_ohd_prefixes,cache=TRUE,trace=trace_sparql_queries)
-{ string <- paste(..., sep="\n");
+{ reset_var_counter();
+  string <- paste(..., sep="\n");
   if (identical(prefixes,FALSE))  { prefixes <- (function () {}) }
   querystring <- querystring(string,prefixes=prefixes);
-  if (trace) { cat(querystring) }
+  if (trace) { print(endpoint);cat(querystring) }
   if (check_sparql_syntax)
     { if (!checkSPARQLSyntax(querystring))
         { return( NULL) }}
@@ -123,8 +124,9 @@ rdfd <- function(uri,limit=100)
 ## describe an entity given its label
 rdfdl <- function(label,limit=100,show.uris=T)
 {  cat("What things have it as subject\n");
-   write.table(queryc(paste(" select distinct uri",if(show.uris){"?p"} else {""}, "?pl ", if(show.uris){"?v"} else {""}, " ?vl  where ",
+   write.table(queryc(paste(" select distinct ?label ",if(show.uris){"?p"} else {""}, "?pl ", if(show.uris){"?v"} else {""}, " ?vl  where ",
               "{  ?uri rdfs:label \"",label,"\".",
+              "   ?uri rdfs:label ?label.",
               "   ?uri ?p ?v. ",
               "   optional {?p rdfs:label ?pl}. ",
               "   optional {?v rdfs:label ?vl}.",
@@ -132,8 +134,9 @@ rdfdl <- function(label,limit=100,show.uris=T)
                 sep=""
               )),quote=F,row.names=F);
    cat("What things have it as object\n")
-   write.table(queryc(paste(" select distinct  ?s ?sl  ?p ?pl ?uri  where ",
+   write.table(queryc(paste(" select distinct ",if(show.uris){"?s"} else {""}, "?sl ", if(show.uris){"?p"} else {""}, " ?pl ?label where ",
               "{  ?uri rdfs:label \"",label,"\".",
+              "   ?uri rdfs:label ?label.",
               "   ?s ?p ?uri. ",
               "   optional {?p rdfs:label ?pl}. ",
               "   optional {?s rdfs:label ?sl}.",
@@ -142,6 +145,11 @@ rdfdl <- function(label,limit=100,show.uris=T)
               )),sep=",",quote=F,row.names=F);
  }
 
+rdfslabel <- function(uri)
+  { queryc("select ?label where{ ",uri," rdfs:label ?label}")}
+
+uriwithlabel <- function(label)
+  { queryc(paste0("select ?uri where{ ?uri rdfs:label ?label filter (str(?label)=\"",label,"\")}"))}
 
 # plot using SVG in the browser
 bplot <- function (...)
@@ -151,27 +159,10 @@ bplot <- function (...)
     browseURL("file:///tmp/rsvg.svg")
   }
 
-sparqlUpdate <- function (...,endpoint=current_update_endpoint,doit=TRUE,trace=trace_sparql_queries)
+sparqlUpdate <- function (...,endpoint=current_sparql_endpoint,doit=TRUE,trace=trace_sparql_queries)
   { update <- querystring(paste(...,sep="\n"));
-    if (trace) { cat(update) }
+    if (trace) { print(endpoint);cat(update) }
     if (doit) { postForm(endpoint,update=update,style='POST') }
-  }
-
-## need to fix so that it can figure out the repo label itself
-setOWLIMQueryTimeout <- function(timeout_seconds)
-{ update=paste(
-    "DELETE { graph ?ctx ",
-    "{?place owlim:query-timeout ?current.} } ",
-    "INSERT { graph ?ctx ",
-    "   {?place owlim:query-timeout ",timeout_seconds,". }}",
-    "WHERE ",
-    " { ?ctx a rep:RepositoryContext.",
-    "   graph ?ctx",
-    "   {  _:a rdfs:label \"OHD R21 2015-04-08 RL\".",
-    "      _:a  a rep:Repository.",
-    "     ?place owlim:query-timeout ?current.",
-    "     }",sep="\n");
-  sparqlUpdate
   }
 
 read.sparql.file <- function (file, limit=0, print.query=FALSE){
@@ -222,7 +213,7 @@ query.from.file <- function (file, limit=0, print.query=FALSE, as.data.frame=TRU
 checkSPARQLSyntax <-function(querystring)
   { if (file.exists("/tmp/r.sparql")) { file.remove("/tmp/r.sparql") }
     write(querystring,file="/tmp/r.sparql");
-    result <- suppressWarnings(system("jena/bin/qparse --print=op --file /tmp/r.sparql 2>&1",intern=T));
+    result <- suppressWarnings(system("jena/bin/qparse --file /tmp/r.sparql 2>&1",intern=T));
     if (!is.null(attr(result,"status")))
       { cat("Error in query\n---------\n");
         cat("            111111111122222222223333333333344444444445555555555666666666677777777778\n");
@@ -230,6 +221,23 @@ checkSPARQLSyntax <-function(querystring)
         write.table(strsplit(querystring,"\n"),col.names=F,quote=F,sep=": ");
         cat(paste("--------\n",do.call(paste0,as.list(result)),"\n",sep=""))
         return(FALSE)}
-    else { return(TRUE) }
+    else { prettysparql <<- result; return(TRUE) }
   }
         
+gensymcounter <- 1;
+reset_var_counter <- function()
+{
+  gensymcounter <<- 1;
+}
+
+genvar <- function(base)
+  { var <- paste("?",base,gensymcounter,sep="");
+    gensymcounter <<- gensymcounter+1;
+    var
+  }
+
+
+sparql_union_pattern <- function(...)
+{   paste0("{{",paste(...,sep="} UNION {"),"}}")
+}
+
