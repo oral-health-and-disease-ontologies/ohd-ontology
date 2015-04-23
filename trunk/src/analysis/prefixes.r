@@ -96,7 +96,7 @@ prefixes_for_sparql <- function(query)
   { some_prefixes_as_string(as.list(cbind(regmatches(query,gregexpr("([a-zA-Z_.0-9]+:)", query,perl=TRUE))[[1]])),source=query) }
 
 ## to remove PREFIX gsub("PREFIX[ ]*[^\n]*\n","",querystring(q))
-
+ 
 setRepositoryPrefixes <- function()
   { DELETE(paste0(current_endpoint,"/namespaces"));
     lapply(ls(prefixes),function(p) {PUT(paste0(current_endpoint,"/namespaces/",gsub(":","",p)),body=gsub("<|>","",get(p,prefixes)))});
