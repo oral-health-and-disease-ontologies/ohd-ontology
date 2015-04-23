@@ -62,12 +62,15 @@ assign("information_content_entity:", "<http://purl.obolibrary.org/obo/IAO_00000
 assign("clinical_finding:", "<http://purl.obolibrary.org/obo/OGMS_0000014>", envir=prefixes)
 assign("sesame:", "<http://www.openrdf.org/schema/sesame#>", envir=prefixes)
 assign("code_identifier:", "<http://purl.org/dc/elements/1.1/identifier>", envir=prefixes)
-assign("tooth_number:", "<http://purl.obolibrary.org/obo/OHD_0000065>", envir=prefixes)
 assign("next_encounter:", "<http://purl.obolibrary.org/obo/OHD_0000216>", envir=prefixes)
 assign("later_encounter:", "<http://purl.obolibrary.org/obo/OHD_0000217>", envir=prefixes)
-assign("oral_evaluation:", "<http://purl.obolibrary.org/obo/OHD_0000217>", envir=prefixes)
+assign("oral_evaluation:", "<http://purl.obolibrary.org/obo/OHD_0000197>", envir=prefixes)
+assign("missing_tooth_finding:", "<http://purl.obolibrary.org/obo/OHD_0000026>", envir=prefixes)
+assign("dental_exam:", "<http://purl.obolibrary.org/obo/OHD_0000019>", envir=prefixes)
+assign("cdt_code:", "<http://purl.obolibrary.org/obo/CDT_1000001>", envir=prefixes)
 
 ## backwards compatibility - join these all into a single string.
+
 all_prefixes_as_string <-  function ()
 {
   paste(lapply(ls(prefixes),
@@ -82,7 +85,7 @@ some_prefixes_as_string <- function (which,source="")
 {
   paste(do.call(paste,append(cbind(lapply(unique(as.list(which)),
               function(p) {
-                if(!(exists(p,prefixes))) { if (p == "http:") {return("")} else { cat(paste("Didn't find prefix ",p,"used in:\n ", source)); return("") }};
+                if(!(exists(p,prefixes))) { if ((p == "http:") | (p == "_:"))  {return("")} else { cat(paste("Didn't find prefix ",p,"used in:\n ", source)); return("") }};
                 paste("PREFIX ",p," ",get(p,prefixes),sep="")})),alist(sep="\n"))),"\n")
 }
 
