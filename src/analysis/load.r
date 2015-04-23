@@ -28,9 +28,9 @@ source("SPARQL.R") ; # patch to SPARQL.R
 source("prefixes.r"); #list of PREFIXes
 source("environment.r"); # endpoints etc
 source("graphdb.r");
-source("patch_triplestore.r");
+source("patch-triplestore.r");
 source("simple-statistics.r") # simple statistical functions on the repo
 source("summary.r") # 
 #source("restoration-time-intervals.r")
 #source("patient-statistics.r")
-source("next_encounter.r");
+source("next-encounter.r");

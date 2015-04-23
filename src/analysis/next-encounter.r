@@ -36,13 +36,8 @@ encounterPattern <- function ()
  }"
 }
 
-
 check_next_encounter_query <- function ()
 queryc("select ?first_encounter ?next_encounter where", encounterPattern(), "limit 20",cache=F);
-
-assert_occurrence_date_in_parts <- function
-  { sparqlUpdate("insert {?p2 occurrence_date: ?date} where {?p occurrence_date ?date. ?p2 is_part_of ?p.}")}
-
 
 assert_next_encounter_links <- function()
   { sparqlUpdate("insert data { next_encounter: a owl:ObjectProperty. next_encounter: rdfs:label \"subsequent encounter\".}")
