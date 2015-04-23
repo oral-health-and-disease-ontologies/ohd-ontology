@@ -35,6 +35,7 @@ set_graphdb_timeout <- function (seconds)
               endpoint=system_update_endpoint)
 }
 
+
 ## the following two functions need testing
 graphdb_ee_get_parameters <-function ()
   { write.table(queryc(
