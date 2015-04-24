@@ -1,20 +1,29 @@
 .CodeMirror {
-  height: 400px;
   width:700px;
   height: auto;
-   font:"Lucida Console";
+  font:"Lucida Console";
 }
 
-body{    line-height: 1em;
-    font-size:1.1em;}
+.fixedCellWidth 
+ {width:-webkit-fit-content!important;
+  table-layout:auto!important}
+
+/* submit button et al too far to right*/
+.col-md-6 {width:20%}
+.pull-right {float:left!important}
+
+body {line-height: 1em;
+      font-size:1.1em;}
 
 #samples .queriesCarouselle ul li{padding:0px;font="Lucida Console"}
 
 h3 {padding:0;display:none}
+
 .row {margin:0}
 .breadcrumb {padding:0px;margin-bottom:0}
 
 .nav-tabs {font-size:10px;font-weight:bold;}
+
 
 #samples div div ul li.selectSample  {top:0px!important;height:30px!important;width:auto!important}
 
@@ -25,3 +34,37 @@ h3 {padding:0;display:none}
 #samples br+div {display:none}
 
 #samples div:first-child  {line-height:.1!important}
+
+/* results page. Smaller rows/font*/
+#results tr td
+  {font-size:9pt!important;
+  font-family:"Arial";
+   padding:3pt;
+   line-height:12pt!important
+   }
+
+/*header larger and black*/
+#results table th 
+{color:black!important;
+  text-align:left;
+  display:table-cell;
+  font-size:14pt;
+}
+
+/* text a little darker*/
+#results table tr a {color:#d2634b!important;}
+
+#sparql-content div
+{ padding-top:.5pt;
+  padding-left:0pt;
+ }
+
+#results table thead tr th 
+{padding:1pt;}
+
+#results .row {height:9pt}
+#selection {display:none}
+
+.btn  {padding:2pt!important}
+
+.allRightsReservedLine {display:none;}

@@ -1,7 +1,7 @@
 ## Under construction, for survival analysis
 
 collect_restoration_failures <-function ()
-  { cat(querystring("select distinct ?patient ?patienti ?tooth ?surface ?proci1 ?procedure1 ?date1 ?procedure2 ?one_before_date ?soonest_date2",
+  { queryc("select distinct ?patient ?patienti ?tooth ?surface ?proci1 ?procedure1 ?date1 ?procedure2 ?one_before_date ?soonest_date2",
            "where {",
            "{select distinct ?patienti ?proci1 ?date1 ?toothi ?surfacei (min(?date2) as ?soonest_date2)",
            "where {",
@@ -27,13 +27,13 @@ collect_restoration_failures <-function ()
                                         #
            "?proc_minus_1 next_encounter: ?proci2.",
            "?proc_minus_1 occurrence_date: ?one_before_date.",
-
+           #
            "?patienti rdfs:label ?patient.",
            "?toothi rdfs:label ?tooth .",
            "?surfacei rdfs:label ?surface .",
            "?proci1 rdfs:label ?procedure1 .",
            "?proci2 rdfs:label ?procedure2 .",
-           "} "))
+           "} ")
   }
 
 

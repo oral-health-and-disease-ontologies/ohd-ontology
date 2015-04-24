@@ -15,6 +15,7 @@ source("SPARQL.r")
 library(ggplot2)
 library(ggthemes) ## needs to be downloaded from CRAN and installed: R CMD install ggthemes.tgz
 library(gridExtra)
+library(httr)
 
 # if we use SPARQL library don't translate xsd:Date, so we can be compatible with RRDF
 set_rdf_type_converter("http://www.w3.org/2001/XMLSchema#date",identity)
@@ -241,8 +242,14 @@ sparql_union_pattern <- function(...)
 {   paste0("{{",paste(...,sep="} UNION {"),"}}")
 }
 
-
-queryw <- function (...,prefixes=default_ohd_prefixes,endpoint)
+sparqlUpdatew <- function (...,endpoint=current_sparql_endpoint,doit=TRUE,trace=trace_sparql_queries)
+  { update <- querystring(paste(...,sep="\n"));
+  if (file.exists("/tmp/sparql.sparql")) { file.remove("/tmp/sparql.sparql") }
+  write(update,file="/tmp/sparql.sparql");
+    result <- suppressWarnings(system("osascript putsparql.scpt http://127.0.0.1:8080/graphdb-workbench-ee/update /tmp/sparql.sparql 2>&1",intern=T))
+}
+    
+queryw <- function (...,prefixes=default_ohd_prefixes,endpoint,trace)
   { 
     reset_var_counter();
   string <- paste(..., sep="\n");
@@ -252,5 +259,5 @@ queryw <- function (...,prefixes=default_ohd_prefixes,endpoint)
         { return( NULL) }}
     if (file.exists("/tmp/sparql.sparql")) { file.remove("/tmp/sparql.sparql") }
     write(sparql,file="/tmp/sparql.sparql");
-    result <- suppressWarnings(system("osascript putsparql.scpt /tmp/sparql.sparql 2>&1",intern=T))
+    result <- suppressWarnings(system("osascript putsparql.scpt http://127.0.0.1:8080/graphdb-workbench-ee/sparql /tmp/sparql.sparql 2>&1",intern=T))
   };

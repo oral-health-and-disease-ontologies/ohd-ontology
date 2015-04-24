@@ -17,4 +17,4 @@ install_if_necessary("rrdf","rrdf_2.0.2.tar.gz")
 install_if_necessary("ggthemes")
 install_if_necessary("Cairo")
 install_if_necessary("gridExtra")
-
+install_if_necessary("httr")
