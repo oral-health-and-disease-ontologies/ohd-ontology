@@ -1,3 +1,8 @@
+## Author: Alan Ruttenberg
+## Project: OHD
+## Date: 2015-04-12
+##
+## Summary reports for Titus, Claudio
 
 ## How many health care encounters are there. That should include both
 ## visits and their parts. It doesn't yet.
@@ -264,4 +269,12 @@ billing_code_counts <- function()
            "order by desc(?count)")
   }
 
+
+health_encounters_for_patient <- function (number)
+  { queryc("select ?encounter ?date where {",
+           "<http://purl.obolibrary.org/obo/ohd/individuals/I_9456fb701a0262a9b262f903acf69f34> participates_in: ?encounteri.",
+           "?encounteri rdfs:label ?encounter.",
+           "?encounteri occurrence_date: ?date}",
+           "order by ?date}")
+  }
 

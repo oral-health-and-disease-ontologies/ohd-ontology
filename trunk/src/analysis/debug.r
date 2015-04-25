@@ -1,6 +1,11 @@
+## Author: Alan Ruttenberg
+## Project: OHD
+## Date: 2015-04-10
+##
+
 ## This was to check whether CDT were is_about other than procedures. As it turned out it was. We will change that.
 
-queryc(" select distinct ?procl",
+queryw(" select distinct ?procl",
        " where",
        "  { ?code_instance is_about: ?proc. ",
        "    ?code_instance a ?code_type.",

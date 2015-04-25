@@ -1,3 +1,9 @@
+## Author: Alan Ruttenberg
+## Project: OHD
+## Date: 2015-04-16
+##
+## Try to install packages we need, if necessary
+
 
 install_if_necessary <- function (package,from=NULL)
 { if (!require(package,character.only = TRUE)) 

@@ -1,7 +1,36 @@
-## Under construction, for survival analysis
+## Author: Alan Ruttenberg
+## Project: OHD
+## Date: 2015-04-24
+##
+## WIP survival analysis
+
+
+## Querying for pairs of events for survival analysis
+## Todo - bring in correlates - age, gender, tooth type
+
+## collect all known resin restoration failures - cases where another restoration or procedure indicates failure
+## ?patient - Label of patient
+## ?proci1  - The initial resin restoration
+## ?date1   - The date of the initial restoration
+## ?proci2  - The restoration that indicates failure
+## ?soonest_date2" - The date of the restoration that indicates failure
+## ?previous_visit_date - The date of the visit just prior to date of the 
+##   restoration that indicates failure. For later use with interval censoring.
+
+## The query strategy is slightly odd. The job of the inner select is
+## to find pairs of restoration and subsequent restoration. However We
+## only want the soonest one, so we aggregate to get date2 which is
+## the least date.
+
+## However if we projected ?date2 or ?proci2 out of the inner select
+## the grouping wouldn't have anything to max over. So we bind proci2
+## and date2 again given the results.
+
+##  surface_restoration_pattern() defines the contraints for the initial restoration
+##  surface_restoration_failure_pattern() defines the constraints for considering it a failure
 
 collect_restoration_failures <-function ()
-  { queryc("select distinct ?patient ?patienti ?tooth ?surface ?proci1 ?procedure1 ?date1 ?procedure2 ?one_before_date ?soonest_date2",
+  { queryc("select distinct ?patient ?proci1 ?date1 ?proci2 (max(?one_before_date) as ?previous_visit_date) ?soonest_date2",
            "where {",
            "{select distinct ?patienti ?proci1 ?date1 ?toothi ?surfacei (min(?date2) as ?soonest_date2)",
            "where {",
@@ -10,53 +39,54 @@ collect_restoration_failures <-function ()
            "?toothi asserted_type: ?toothtypei. ",
            "?toothi is_part_of: ?patienti .",
            "?surfacei rdf:type tooth_surface: .",
+           ##" {{?toothi a pre_molar:}  UNION {?toothi a molar:}}",
+           ##" {{?toothi a incisor:}  UNION {?toothi a canine:}}",
            "?surfacei asserted_type: ?surfacetypei .",
            "?surfacei is_part_of: ?toothi .",
-                                        #
            surface_restoration_pattern("?proci1","?toothi","?surfacei","?date1"),
-                                        #
            "?proci1 later_encounter: ?proci2.",
-                                        #
            surface_restoration_failure_pattern("?proci2","?toothi","?surfacei","?date2","?patienti"),
-                                        #
-                                        #     "           "filter  (?patienti=<http://purl.obolibrary.org/obo/ohd/individuals/I_5ae44155bc98eb5243c9daea454b877b>)",
+           ##  "filter  (?patienti=ohdi:I_5ae44155bc98eb5243c9daea454b877b)",
            "} group by ?patienti ?toothi ?surfacei ?proci1 ?date1",
            "}",
-                                        #
            surface_restoration_failure_pattern("?proci2","?toothi","?surfacei","?soonest_date2","?patienti"),
-                                        #
            "?proc_minus_1 next_encounter: ?proci2.",
            "?proc_minus_1 occurrence_date: ?one_before_date.",
-           #
            "?patienti rdfs:label ?patient.",
            "?toothi rdfs:label ?tooth .",
            "?surfacei rdfs:label ?surface .",
            "?proci1 rdfs:label ?procedure1 .",
            "?proci2 rdfs:label ?procedure2 .",
-           "} ")
+           "} group by ?patient ?proci1 ?date1 ?proci2 ?soonest_date2")
   }
 
 
 
-#we have the known pairs.
-#we want restorations with no later visits
-#and restorations with a later visit of any kind
 
-# all[,"date1"][is.na(all[,"latest_date2"])] works to get the NA - no followup cases.
+## Note: pairs of procedure and surface are not unique (since one procedure can be multi-surface)
 
-# pairs of procedure and surface are unique (since one procedure can include several restorations)
-collect_all_restorations_and_latest_followup <-function ()
-  { queryc("select distinct ?patient ?patienti ?tooth ?surface ?procedure1 ?proci1 ?date1 ?latest_date2",
+## For each of the initial restorations, find the latest date that there was a visit.
+## ?proci1  - The initial resin restoration
+## ?date1   - The date of the initial restoration
+## ?latest_date2" - The date of the last visit of any kind the patient had
+
+## The structure of the query is very similar to the above, except we
+## omit the constraint on the second visit.
+
+collect_all_restorations_and_latest_followup <-function (whichtype="{{?toothi a pre_molar:} UNION {?toothi a molar:}})")
+  { queryc("select distinct ?proci1 ?date1 ?latest_date2",
            "where{",
            "  {select distinct ?patienti ?proci1 ?date1 ?toothi ?surfacei (max(?date2) as ?latest_date2) ",
            "    where {",
            "      ?patienti a homo_sapiens: .",
            "      ?toothi rdf:type tooth: .",
            "      ?toothi asserted_type: ?toothtypei. ",
+           ##" {{?toothi a incisor:}  UNION {?toothi a canine:}}",
+           ##" {{?toothi a pre_molar:}  UNION {?toothi a molar:}}",
            "      ?toothi is_part_of: ?patienti .",
            "      ?surfacei rdf:type tooth_surface: .",
            "      ?surfacei asserted_type: ?surfacetypei .",
-           surface_restoration_pattern("?proci1","?toothi","?surfacei","?date1"),
+                  surface_restoration_pattern("?proci1","?toothi","?surfacei","?date1"),
            "      ?surfacei is_part_of: ?toothi .",
            "      ?proci1 a tooth_restoration_procedure: .",
            "      ?role2 a tooth_to_be_restored_role: .",
@@ -82,18 +112,9 @@ collect_all_restorations_and_latest_followup <-function ()
            "order by ?date1")
   }
 
-
-
-
-
-##           "filter  (?patienti=<http://purl.obolibrary.org/obo/ohd/individuals/I_5ae44155bc98eb5243c9daea454b877b>)",
-                            
-## Results for PREFIX rdf:... (100  of 5865 ) mine
-## Results for PREFIX rdf:... (100  of 5373 ) his??
-
 surface_restoration_pattern <- function (procvar="?proci",toothvar="?toothi",surfacevar="?surfacei",datevar="?date")
   { rolevar <- genvar("role")
-    paste(procvar," a tooth_restoration_procedure: .\n",
+    paste(procvar," a resin_filling_restoration: .\n",
           rolevar," a tooth_to_be_restored_role: .\n",
           rolevar," inheres_in: ", toothvar," .\n",
           procvar," realizes: ",rolevar," .\n",
@@ -112,21 +133,28 @@ surface_restoration_failure_pattern <- function (proc,tooth,surface,date,patient
             proc," occurrence_date: ",date,".\n", 
             proc," has_participant: ",surface," .\n",
             sep=""),
-      paste(proc," a crown_restoration: .\n",
+        paste(proc," a crown_restoration: .\n",
             role," a tooth_to_be_restored_role: .\n",
             role," inheres_in: ", tooth," .\n",
             proc," realizes: ",role," .\n",
             proc," occurrence_date: ",date,".\n", 
-            sep="")
+            sep=""),
+        paste(proc," a tooth_extraction: .\n",
+              role," a tooth_to_be_extracted_role: .\n",
+            role," inheres_in: ", tooth," .\n",
+            proc," realizes: ",role," .\n",
+            proc," occurrence_date: ",date,".\n", 
+            sep=""),
+        paste(proc," a endodontic_procedure: .\n",
+              role," a tooth_to_be_extracted_role: .\n",
+              role," inheres_in: ", tooth," .\n",
+              proc," realizes: ",role," .\n",
+              proc," occurrence_date: ",date,".\n", 
+              sep="")
 #      ,missing_tooth_pattern(proc,tooth,date,patient)
       )
   }
 
-specific_person_surface_example <- function()
-  { paste("filter(?surfacei = <http://purl.obolibrary.org/obo/ohd/individuals/I_a68e153c890465735df45079bdd51fbf>)",
-         "filter(?patienti = <http://purl.obolibrary.org/obo/ohd/individuals/I_b986ac2ec3449a1812641001537c5444>)",
-         sep="\n")
-  }
 
 #constrained: ?patient,?tooth (which used to exist), 
 #constrains: ?proci,?date (when it doesn't exist)
@@ -147,5 +175,14 @@ missing_tooth_pattern <- function(exam="?proci",tooth="?toothi",date="?date",pat
          tooth_number," is_about: ",tooth_class,". \n"
          )
 }
-
          
+
+## debugging
+specific_person_surface_example <- function()
+  { paste("filter(?surfacei = <http://purl.obolibrary.org/obo/ohd/individuals/I_a68e153c890465735df45079bdd51fbf>)",
+         "filter(?patienti = <http://purl.obolibrary.org/obo/ohd/individuals/I_b986ac2ec3449a1812641001537c5444>)",
+         sep="\n")
+  }
+
+
+##           "filter  (?patienti=<http://purl.obolibrary.org/obo/ohd/individuals/I_5ae44155bc98eb5243c9daea454b877b>)",

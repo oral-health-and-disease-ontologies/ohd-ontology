@@ -1,3 +1,7 @@
+## Author: Alan Ruttenberg
+## Project: OHD
+## Date: 2015-04-24
+##
 ## prefixes are represented as an environment with the key the prefix
 ## (terminated with ":") and the value the URI. 
 
@@ -68,9 +72,20 @@ assign("oral_evaluation:", "<http://purl.obolibrary.org/obo/OHD_0000197>", envir
 assign("missing_tooth_finding:", "<http://purl.obolibrary.org/obo/OHD_0000026>", envir=prefixes)
 assign("dental_exam:", "<http://purl.obolibrary.org/obo/OHD_0000019>", envir=prefixes)
 assign("cdt_code:", "<http://purl.obolibrary.org/obo/CDT_1000001>", envir=prefixes)
+assign("molar:","<http://purl.obolibrary.org/obo/FMA_55638>",envir=prefixes)
+assign("pre_molar:","<http://purl.obolibrary.org/obo/FMA_55637>",envir=prefixes)
+assign("incisor:","<http://purl.obolibrary.org/obo/FMA_55636>",envir=prefixes)
+assign("canine:","<http://purl.obolibrary.org/obo/FMA_12823>",envir=prefixes)
+assign("tooth_extraction:", "<http://purl.obolibrary.org/obo/OHD_0000057>", envir=prefixes)
+assign("tooth_to_undergo_endodontic_procedure_role:","<http://purl.obolibrary.org/obo/OHD_0000056>", envir=prefixes)
+assign("tooth_to_be_extracted_role:","<http://purl.obolibrary.org/obo/OHD_0000056>",envir=prefixes)
+assign("root_canal:","<http://purl.obolibrary.org/obo/OHD_0000003>",envir=prefixes)
+assign("inlay_procedure:","<http://purl.obolibrary.org/obo/OHD_0000133>",envir=prefixes)
+assign("resin_filling_restoration:","<http://purl.obolibrary.org/obo/OHD_0000042>",envir=prefixes)
+assign("onto","<http://www.ontotext.com/>",envir=prefixes)
+assign("ohdi:", "<http://purl.obolibrary.org/obo/ohd/individuals/>",envir=prefixes)
 
 ## backwards compatibility - join these all into a single string.
-
 all_prefixes_as_string <-  function ()
 {
   paste(lapply(ls(prefixes),
@@ -97,8 +112,3 @@ prefixes_for_sparql <- function(query)
 
 ## to remove PREFIX gsub("PREFIX[ ]*[^\n]*\n","",querystring(q))
  
-setRepositoryPrefixes <- function()
-  { DELETE(paste0(current_endpoint,"/namespaces"));
-    lapply(ls(prefixes),function(p) {PUT(paste0(current_endpoint,"/namespaces/",gsub(":","",p)),body=gsub("<|>","",get(p,prefixes)))});
-    NULL
-  }
