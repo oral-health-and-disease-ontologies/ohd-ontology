@@ -1,6 +1,10 @@
+## Author: Alan Ruttenberg
+## Project: OHD
+## Date: 2015-04-24
+##
+
 # after the translated files are loaded, the following set of updates
-# needs to be made to prepare the database. Call
-# patch_triplestore. Take a nap.
+# needs to be made to prepare the database. Call patch_triplestore. Take a nap.
 
 ## TODO: For each of these have a function that checks whether it is needed.
 

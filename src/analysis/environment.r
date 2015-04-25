@@ -80,34 +80,40 @@ cacheQuery <- function (query,endpoint,result)
 queryCache <- function() { sessionQueryCache }
 
 trace_sparql_queries <- FALSE;
+send_queries_to_workbench <- FALSE;
 
 check_sparql_syntax <- file.exists("jena/bin/qparse");
 
 ## execute a sparql query. endpoint defaults to current_endpoint, sparql library defaults to "rrdf"
 queryc <- function(...,endpoint=current_endpoint,prefixes=default_ohd_prefixes,cache=TRUE,trace=trace_sparql_queries)
-{ reset_var_counter();
-  string <- paste(..., sep="\n");
-  if (identical(prefixes,FALSE))  { prefixes <- (function () {}) }
-  querystring <- querystring(string,prefixes=prefixes);
-  if (trace) { print(endpoint);cat(querystring) }
-  if (check_sparql_syntax)
-    { if (!checkSPARQLSyntax(querystring))
-        { return( NULL) }}
-  cached <- cachedQuery(querystring(string,prefixes=prefixes),endpoint);
-  if ((!is.null(cached)) && cache)
-    cached
-  else
-    { queryres <- if (current_sparqlr=="rrdf")
-                {sparql.remote(endpoint,querystring(string,prefixes=prefixes)) }
-                else if (current_sparqlr=="SPARQL")
-                {res<-SPARQL(endpoint,querystring(string,prefixes=prefixes))
-                 res$results}
-      if (length(queryres)==2 && Reduce("==",dim(queryres)==cbind(0,0))) # the function returned a 0x0 empty matrix, i.e. error
-        { cat("There was an error in the SPARQL query") }
-      else 
-        { cacheQuery(querystring(string,prefixes=prefixes),endpoint,queryres) }
-      queryres
-    }
+{ 
+    if (send_queries_to_workbench) { queryw(...,prefixes=prefixes); return(NULL)};
+    reset_var_counter();
+    string <- paste(..., sep="\n");
+    if (identical(prefixes,FALSE))  { prefixes <- (function () {}) }
+    querystring <- querystring(string,prefixes=prefixes);
+    if (trace) { print(endpoint);cat(querystring) }
+    if (check_sparql_syntax)
+        { if (!checkSPARQLSyntax(querystring))
+              { return( NULL) }}
+    cached <- cachedQuery(querystring(string,prefixes=prefixes),endpoint);
+    if ((!is.null(cached)) && cache)
+        cached
+    else
+        { queryres <- if (current_sparqlr=="rrdf")
+                          {sparql.remote(endpoint,querystring(string,prefixes=prefixes)) }
+                      else if (current_sparqlr=="SPARQL")
+                          {res<-SPARQL(endpoint,querystring(string,prefixes=prefixes))
+                           res$results}
+          if (length(queryres)==2 && Reduce("==",dim(queryres)==cbind(0,0))) # the function returned a 0x0 empty matrix, i.e. error
+              { cat("There was an error in the SPARQL query") }
+          else 
+              { cacheQuery(querystring(string,prefixes=prefixes),endpoint,queryres) }
+          attr(queryres,"rawQuery") <- string;
+          attr(queryres,"expandedQuery") <- querystring;
+          attr(queryres,"endpoint") <- endpoint;
+          queryres
+      }
 }
 
 ## retrieve the last sparql query result
@@ -161,7 +167,8 @@ bplot <- function (...)
   }
 
 sparqlUpdate <- function (...,endpoint=current_sparql_endpoint,doit=TRUE,trace=trace_sparql_queries)
-  { update <- querystring(paste(...,sep="\n"));
+    { if (send_queries_to_workbench) { sparqlUpdatew(...); return(NULL);}
+    update <- querystring(paste(...,sep="\n"));
     if (trace) { print(endpoint);cat(update) }
     if (doit) { postForm(endpoint,update=update,style='POST') }
   }
@@ -261,3 +268,4 @@ queryw <- function (...,prefixes=default_ohd_prefixes,endpoint,trace)
     write(sparql,file="/tmp/sparql.sparql");
     result <- suppressWarnings(system("osascript putsparql.scpt http://127.0.0.1:8080/graphdb-workbench-ee/sparql /tmp/sparql.sparql 2>&1",intern=T))
   };
+#gsub("http://purl.obolibrary.org/obo/ohd/","ind:",gsub("http://purl.obolibrary.org/obo/ohd/individuals/","ohd:",fail[seq(1,100),]))

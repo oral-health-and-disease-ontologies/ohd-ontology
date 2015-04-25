@@ -51,6 +51,21 @@ h3 {padding:0;display:none}
   font-size:14pt;
 }
 
+#results a{
+    display:block;
+    max-width:150px;
+  white-space:nowrap;
+  overflow-x:hidden;
+
+/* text-overflow:ellipsis; /*should work but doesn't. ellipsis forces left align */
+  direction:rtl; 
+}
+
+#results a:hover {overflow:visible;
+  direction:ltr;
+  width:auto;position:absolute;
+  background:#FFF;
+  } 
 /* text a little darker*/
 #results table tr a {color:#d2634b!important;}
 
@@ -68,3 +83,5 @@ h3 {padding:0;display:none}
 .btn  {padding:2pt!important}
 
 .allRightsReservedLine {display:none;}
+
+.container {float:left;width:auto;}
