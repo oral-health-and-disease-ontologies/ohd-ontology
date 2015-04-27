@@ -66,7 +66,9 @@ create_surv <- function (fail,all,which="all",discard=0,keep_censor=1000)
         surv <- Surv(months,status) ;
         if (file.exists("/tmp/rsvg.svg")) { file.remove("/tmp/rsvg.svg") }
         svg(filename="/tmp/rsvg.svg")
-        print(ggsurv(survfit(surv~location,conf.type="none",data=survdata)))
+        survap <<- survfit(surv~location,conf.type="none",data=survdata);
+        print(ggsurv(survfit(surv~location,conf.type="none",data=survdata))+guides(linetype = F) +
+ scale_colour_discrete(name = 'Location', breaks = c("anterior","posterior"), labels=c('Posterior', 'Anterior')))
         dev.off()
         browseURL("file:///tmp/rsvg.svg")
         surv}
