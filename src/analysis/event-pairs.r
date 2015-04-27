@@ -50,7 +50,7 @@ collect_restoration_failures <-function ()
            #  "filter  (?patienti=ohdi:I_5ae44155bc98eb5243c9daea454b877b)",
            "} group by ?patienti ?toothi ?surfacei ?proci1 ?date1",
            "}",
-           surface_restoration_failure_pattern(proci="?proci2",date="?date2"),
+           surface_restoration_failure_pattern(proci="?proci2",date="?soonest_date2"),
            "optional { BIND(1 as ?is_posterior). {{?toothi a pre_molar:.} UNION {?toothi a molar:}} } ",
            "?proc_minus_1 next_encounter: ?proci2.",
            "?proc_minus_1 occurrence_date: ?one_before_date.",
