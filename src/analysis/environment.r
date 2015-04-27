@@ -232,23 +232,6 @@ checkSPARQLSyntax <-function(querystring)
     else { prettysparql <<- result; return(TRUE) }
   }
         
-gensymcounter <- 1;
-reset_var_counter <- function()
-{
-  gensymcounter <<- 1;
-}
-
-genvar <- function(base)
-  { var <- paste("?",base,gensymcounter,sep="");
-    gensymcounter <<- gensymcounter+1;
-    var
-  }
-
-
-sparql_union_pattern <- function(...)
-{   paste0("{{",paste(...,sep="} UNION {"),"}}")
-}
-
 sparqlUpdatew <- function (...,endpoint=current_sparql_endpoint,doit=TRUE,trace=trace_sparql_queries)
   { update <- querystring(paste(...,sep="\n"));
   if (file.exists("/tmp/sparql.sparql")) { file.remove("/tmp/sparql.sparql") }
