@@ -34,3 +34,7 @@ source("summary.r") #
 #source("restoration-time-intervals.r")
 #source("patient-statistics.r")
 source("next-encounter.r");
+source("event-pairs.r")
+source("survival.r")
+source("sparql-template.r")
+source("ggsurv.r")
