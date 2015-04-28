@@ -30,7 +30,8 @@
 #  surface_restoration_failure_pattern() defines the constraints for considering it a failure
 
 collect_restoration_failures <-function ()
-  { queryc("select distinct ?patient ?proci1 ?date1 ?proci2 ?is_posterior (max(?one_before_date) as ?previous_visit_date) ?soonest_date2",
+  { queryc("select distinct ?patienti ?proci1 ?date1 ?proci2 (max(?one_before_date) as ?previous_visit_date)
+ ?soonest_date2 (coalesce(?is_male,?is_female,\"unrecorded\") as ?gender) (coalesce(?is_anterior,?is_posterior) as ?tooth_type)",
            "where {",
            "{select distinct ?patienti ?proci1 ?date1 ?toothi ?surfacei (min(?date2) as ?soonest_date2)",
            "where {",
@@ -47,15 +48,11 @@ collect_restoration_failures <-function ()
            "} group by ?patienti ?toothi ?surfacei ?proci1 ?date1",
            "}",
            surface_restoration_failure_pattern(proci="?proci2",date="?soonest_date2"),
-           "optional { BIND(1 as ?is_posterior). {{?toothi a pre_molar:.} UNION {?toothi a molar:}} } ",
            "?proc_minus_1 next_encounter: ?proci2.",
            "?proc_minus_1 occurrence_date: ?one_before_date.",
-           "?patienti rdfs:label ?patient.",
-           "?toothi rdfs:label ?tooth .",
-           "?surfacei rdfs:label ?surface .",
-           "?proci1 rdfs:label ?procedure1 .",
-           "?proci2 rdfs:label ?procedure2 .",
-           "} group by ?patient ?proci1 ?date1 ?proci2 ?soonest_date2 ?is_posterior")
+           gender_pattern(personi="?patienti"),
+           tooth_type_pattern(),
+           "} group by ?patienti ?proci1 ?date1 ?proci2 ?soonest_date2 ?is_male ?is_female ?is_anterior ?is_posterior")
   }
 
 # Note: pairs of procedure and surface are not unique (since one procedure can be multi-surface)
@@ -70,7 +67,7 @@ collect_restoration_failures <-function ()
 
 
 collect_all_restorations_and_latest_followup <-function ()
-  { queryc("select distinct ?proci1 ?date1 ?latest_date2 ?is_posterior",
+  { queryc("select distinct ?proci1 ?date1 ?latest_date2 (coalesce(?is_male,?is_female,\"unrecorded\") as ?gender) (coalesce(?is_anterior,?is_posterior) as ?tooth_type)",
            "where{",
            "  {select distinct ?patienti ?proci1 ?date1 ?toothi ?surfacei (max(?date2) as ?latest_date2) ",
            "    where {",
@@ -82,19 +79,18 @@ collect_all_restorations_and_latest_followup <-function ()
            "      ?surfacei asserted_type: ?surfacetypei .",
            "      ?surfacei is_part_of: ?toothi .",
                   surface_restoration_pattern(proci="?proci1",date="?date1",procedure_type="resin_filling_restoration:"),
-           "      ?proci1 occurrence_date: ?date1.",
-           "      ?proci1 has_participant: ?surfacei .",
            "      optional",
            "      { ?proci1 later_encounter: ?proci2.",
            "      ?proci2 occurrence_date: ?date2 }",
            "      }",
-           "    group by ?proci1 ?patienti ?date1 ?toothi ?surfacei order by ?date1",
+           "    group by ?proci1 ?patienti ?date1 ?toothi ?surfacei ",
            "    }",
            "   optional",
            "  { ?proci1 later_encounter: ?proci2.",
            "    ?proci2 occurrence_date: ?latest_date2.",
            "  }",
-           "   optional { BIND(1 as ?is_posterior). {{?toothi a pre_molar:.} UNION {?toothi a molar:}} } ",
+           tooth_type_pattern(),
+           gender_pattern(personi="?patienti"),
            "} ",
            "order by ?date1")
   }
@@ -110,7 +106,7 @@ role_inheres_realizes_pattern <- function (...) #role_type, bearer, procedure)
   }
 
 surface_restoration_pattern <- function (...)
-    {  bgp<- tb(
+    {  sparql_interpolate(
         "?proci a procedure_type:.",
         "_:role a tooth_to_be_restored_role:.",
         "_:role  inheres_in: ?toothi.",
@@ -118,12 +114,11 @@ surface_restoration_pattern <- function (...)
         "?proci occurrence_date: ?date.", 
         "?proci has_participant: ?surfacei."
         );
-       sparql_interpolate(bgp)
   }
 
 
 surface_restoration_failure_pattern <- function (...)
-    { bgp <- 
+    { sparql_interpolate(
         sparql_union(
           tb(
             sparql_union(
@@ -141,8 +136,7 @@ surface_restoration_failure_pattern <- function (...)
              "_:role1 a target_of_tooth_procedure: .",
              "_:role1 inheres_in: ?toothi.",
              "?proci realizes: _:role1 .",
-             "?proci occurrence_date: ?date."))
-      sparql_interpolate(bgp)
+             "?proci occurrence_date: ?date.")))
        #      ,missing_tooth_pattern(exam="?proci",tooth="toothi",date,patient)
     }
     
@@ -152,7 +146,7 @@ surface_restoration_failure_pattern <- function (...)
 #constrains: ?proci,?date (when it doesn't exist)
 
 missing_tooth_pattern <- function(...){
-    interpolate_sparql_vars(
+    sparql_interpolate(
         "?patienti participates_in: ?exam.",
         "?exam a oral_evaluation:.",
         "?exam occurrence_date: ?date.",
@@ -164,4 +158,20 @@ missing_tooth_pattern <- function(...){
         "?tooth_number is_about: _:tooth_class."
         )
 }
+
+tooth_type_pattern <- function(...) 
+    { sparql_interpolate(
+        "optional { BIND(\"posterior\" as ?is_posterior). {{?toothi a pre_molar:.} UNION {?toothi a molar:}} }",
+        "optional { BIND(\"anterior\" as ?is_anterior). {{?toothi a canine:.} UNION {?toothi a incisor:}} }"
+        )
+  }
+        #"BIND(coalesce(?is_anterior,?is_posterior) as ?tooth_type)}"
+
+
+gender_pattern <- function(...)
+    { sparql_interpolate(
+        "optional { BIND(\"male\" as ?is_male). ?personi a male:.}",
+        "optional { BIND(\"female\" as ?is_female). ?personi a female:.}");
+  }
+        #"BIND(coalesce(?is_male,?is_female,\"unrecorded\") as ?gender)}"
 
