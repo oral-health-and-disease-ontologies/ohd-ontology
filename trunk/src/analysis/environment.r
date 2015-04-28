@@ -217,6 +217,8 @@ query.from.file <- function (file, limit=0, print.query=FALSE, as.data.frame=TRU
   return.val
 }
 
+prettysparql<-""
+
 ## e.g."Lexical error at line 4, column 4.  Encountered: \" \" (32), after : \"s\""
 checkSPARQLSyntax <-function(querystring)
   { if (file.exists("/tmp/r.sparql")) { file.remove("/tmp/r.sparql") }
