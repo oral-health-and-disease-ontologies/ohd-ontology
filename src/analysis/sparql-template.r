@@ -19,7 +19,7 @@ sparql_interpolate <- function(...)
        # construct the pattern string - a basic graph pattern
        bgp=paste(...,"",sep="\n")
        # get the call to the pattern invoker
-       call<-sys.call(sys.parent(1)); 
+       call<-sys.call(sys.parent(1));
        # extract the arguments
        argnames <- names(call);
        argnames <- argnames[argnames!=""]
@@ -39,7 +39,7 @@ sparql_interpolate <- function(...)
        #
        substitute_sparql_variable <- 
          function(old,replacement)
-           { if (substr(actual[1],start=1,stop=1)=="?")
+           { if (substr(replacement,start=1,stop=1)=="?")
                { pattern <- paste0("(\\?",old,")\\b") }
              else
                { pattern <- paste0("(\\b",old,"[:])") }
@@ -50,7 +50,7 @@ sparql_interpolate <- function(...)
        if (dim(actual)[2] == 1)
          { substitute_sparql_variable(actual[1],actual[2]) }
        else
-         {  mapply(substitute_sparql_variables,actual[,"argnames"],actual[,"values"]) }
+         {  mapply(substitute_sparql_variable,actual[,"argnames"],actual[,"values"]) }
        make_blanks_unique(bgp);
    }
 

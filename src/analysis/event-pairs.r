@@ -41,7 +41,7 @@ collect_restoration_failures <-function ()
            "?surfacei rdf:type tooth_surface: .",
            "?surfacei asserted_type: ?surfacetypei .",
            "?surfacei is_part_of: ?toothi .",
-           surface_restoration_pattern(proci="?proci1",date="?date1"),
+           surface_restoration_pattern(proci="?proci1",date="?date1",procedure_type="resin_filling_restoration:"),
            "?proci1 later_encounter: ?proci2.",
            surface_restoration_failure_pattern(proci="?proci2",date="?date2"),
            "} group by ?patienti ?toothi ?surfacei ?proci1 ?date1",
@@ -80,12 +80,8 @@ collect_all_restorations_and_latest_followup <-function ()
            "      ?toothi is_part_of: ?patienti .",
            "      ?surfacei rdf:type tooth_surface: .",
            "      ?surfacei asserted_type: ?surfacetypei .",
-                  surface_restoration_pattern(proci="?proci1",date="?date1"),
            "      ?surfacei is_part_of: ?toothi .",
-           "      ?proci1 a tooth_restoration_procedure: .",
-           "      ?role2 a tooth_to_be_restored_role: .",
-           "      ?role2 inheres_in: ?toothi .",
-           "      ?proci1 realizes: ?role2 .",
+                  surface_restoration_pattern(proci="?proci1",date="?date1",procedure_type="resin_filling_restoration:"),
            "      ?proci1 occurrence_date: ?date1.",
            "      ?proci1 has_participant: ?surfacei .",
            "      optional",
@@ -97,28 +93,25 @@ collect_all_restorations_and_latest_followup <-function ()
            "   optional",
            "  { ?proci1 later_encounter: ?proci2.",
            "    ?proci2 occurrence_date: ?latest_date2.",
-           "    ?proci2 rdfs:label ?procedure2 }",
-           "  optional { BIND(1 as ?is_posterior). {{?toothi a pre_molar:.} UNION {?toothi a molar:}} } ",
-           "  ?patienti rdfs:label ?patient.",
-           "  ?toothi rdfs:label ?tooth .",
-           "  ?surfacei rdfs:label ?surface .",
-           "  ?proci1 rdfs:label ?procedure1 .",
+           "  }",
+           "   optional { BIND(1 as ?is_posterior). {{?toothi a pre_molar:.} UNION {?toothi a molar:}} } ",
            "} ",
            "order by ?date1")
-
+  }
 
 role_inheres_realizes_pattern <- function (...) #role_type, bearer, procedure)
-  { bgp = tb(
+  { print("hello")
+    bgp = tb(
       "      ?proci a proc_type: .",
-      "      :_role a role_type: .",
-      "      :_role inheres_in: ?bearer .",
-      "      ?proci realizes: :_role .")
+      "      _:role a role_type: .",
+      "      _:role inheres_in: ?bearer .",
+      "      ?proci realizes: _:role .")
     sparql_interpolate(bgp);
   }
 
 surface_restoration_pattern <- function (...)
     {  bgp<- tb(
-        "?proci a resin_filling_restoration:.",
+        "?proci a procedure_type:.",
         "_:role a tooth_to_be_restored_role:.",
         "_:role  inheres_in: ?toothi.",
         "?proci realizes: _:role.",
