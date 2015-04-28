@@ -84,6 +84,8 @@ assign("inlay_procedure:","<http://purl.obolibrary.org/obo/OHD_0000133>",envir=p
 assign("resin_filling_restoration:","<http://purl.obolibrary.org/obo/OHD_0000042>",envir=prefixes)
 assign("onto","<http://www.ontotext.com/>",envir=prefixes)
 assign("ohdi:", "<http://purl.obolibrary.org/obo/ohd/individuals/>",envir=prefixes)
+assign("target_of_tooth_procedure:", "<http://purl.obolibrary.org/obo/OHD_0000209>", envir=prefixes)
+assign("role:", "http://purl.obolibrary.org/obo/BFO_0000023", envir=prefixes)
 
 ## backwards compatibility - join these all into a single string.
 all_prefixes_as_string <-  function ()

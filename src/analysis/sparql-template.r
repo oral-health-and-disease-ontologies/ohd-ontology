@@ -31,26 +31,26 @@ sparql_interpolate <- function(...)
        # ones that don't have values starting with "?"
        potential <- cbind(argnames,values)
        # which values start with "?"
-       which<- (substr(values,start=1,stop=1)=="?")
+       which<- substr(values,start=1,stop=1)=="?"|| substr(values,start=nchar(values),stop=nchar(values))==":"
        if (length(which)==0) { return(bgp) }
        # remove the others
        actual<- as.matrix(potential[which,])
        # Now substitute the values into the bgp
        #
+       substitute_sparql_variable <- 
+         function(old,replacement)
+           { if (substr(actual[1],start=1,stop=1)=="?")
+               { pattern <- paste0("(\\?",old,")\\b") }
+             else
+               { pattern <- paste0("(\\b",old,"[:])") }
+             bgp<<- gsub(pattern,replacement,bgp,perl=TRUE)
+           }
        # I hate R. If there are two arguments the columns are
        # arguments. If there is one it is a rowname
        if (dim(actual)[2] == 1)
-         { pattern <- paste0("(\\?",actual[1],")\\b")
-           bgp<-gsub(pattern,actual[2],bgp,perl=TRUE)
-           }
+         { substitute_sparql_variable(actual[1],actual[2]) }
        else
-           { substitute_sparql_variables <- 
-               function(old,replacement)
-                   {   pattern <- paste0("(\\?",old,")\\b")
-                       bgp<<- gsub(pattern,replacement,bgp,perl=TRUE)
-                   }
-             mapply(substitute_sparql_variables,actual[,"argnames"],actual[,"values"])
-             bgp}
+         {  mapply(substitute_sparql_variables,actual[,"argnames"],actual[,"values"]) }
        make_blanks_unique(bgp);
    }
 
