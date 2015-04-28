@@ -30,7 +30,7 @@
 #  surface_restoration_failure_pattern() defines the constraints for considering it a failure
 
 collect_restoration_failures <-function ()
-  { queryc("select distinct ?patienti ?proci1 ?date1 ?proci2 (max(?one_before_date) as ?previous_visit_date)
+  { queryc("select distinct ?patienti ?proci1 ?date1 ?birthdate ?proci2 (max(?one_before_date) as ?previous_visit_date)
  ?soonest_date2 (coalesce(?is_male,?is_female,\"unrecorded\") as ?gender) (coalesce(?is_anterior,?is_posterior) as ?tooth_type)",
            "where {",
            "{select distinct ?patienti ?proci1 ?date1 ?toothi ?surfacei (min(?date2) as ?soonest_date2)",
@@ -52,7 +52,8 @@ collect_restoration_failures <-function ()
            "?proc_minus_1 occurrence_date: ?one_before_date.",
            gender_pattern(personi="?patienti"),
            tooth_type_pattern(),
-           "} group by ?patienti ?proci1 ?date1 ?proci2 ?soonest_date2 ?is_male ?is_female ?is_anterior ?is_posterior")
+           "?patienti birth_date: ?birthdate.",
+           "} group by ?patienti ?proci1 ?date1 ?birthdate ?proci2 ?soonest_date2 ?is_male ?is_female ?is_anterior ?is_posterior")
   }
 
 # Note: pairs of procedure and surface are not unique (since one procedure can be multi-surface)
@@ -67,7 +68,7 @@ collect_restoration_failures <-function ()
 
 
 collect_all_restorations_and_latest_followup <-function ()
-  { queryc("select distinct ?proci1 ?date1 ?latest_date2 (coalesce(?is_male,?is_female,\"unrecorded\") as ?gender) (coalesce(?is_anterior,?is_posterior) as ?tooth_type)",
+  { queryc("select distinct ?proci1 ?date1 ?birthdate ?latest_date2 (coalesce(?is_male,?is_female,\"unrecorded\") as ?gender) (coalesce(?is_anterior,?is_posterior) as ?tooth_type)",
            "where{",
            "  {select distinct ?patienti ?proci1 ?date1 ?toothi ?surfacei (max(?date2) as ?latest_date2) ",
            "    where {",
@@ -91,6 +92,7 @@ collect_all_restorations_and_latest_followup <-function ()
            "  }",
            tooth_type_pattern(),
            gender_pattern(personi="?patienti"),
+           "?patienti birth_date: ?birthdate.",
            "} ",
            "order by ?date1")
   }

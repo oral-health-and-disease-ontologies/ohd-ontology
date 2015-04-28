@@ -65,6 +65,7 @@ patch_triplestore <- function ()
   { patch_procedures_have_occurrence_dates();
     patch_oral_evaluations_have_findings();
     patch_bearer_of_role_participates_in_realization();
+    patch_superole();
     assert_next_encounter_links();
     assert_transitive_next();
   }

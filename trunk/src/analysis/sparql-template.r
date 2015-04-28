@@ -16,7 +16,7 @@ tb <- function(...) { paste(...,"\n",sep="\n")}
 
 sparql_interpolate <- function(...) 
     {
-        cat("spi:",...,"\n");
+        #cat("spi:",...,"\n");
         sbgp<-paste(...,"",sep="\n")
         call<-sys.call(sys.parent(1));
         argnames1 <- names(call);
@@ -52,7 +52,7 @@ make_blanks_unique <- function (bgp)
       replace_w_numbered <- 
           function(string)
               {replacement <- paste0(string,count)
-               bgp<- gsub(string,replacement,bgp,perl=TRUE)
+               bgp<<- gsub(string,replacement,bgp,perl=TRUE)
            }
       lapply(to_be_replaced,replace_w_numbered)
       bgp}      
