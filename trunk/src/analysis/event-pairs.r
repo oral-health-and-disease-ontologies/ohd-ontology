@@ -39,15 +39,11 @@ collect_restoration_failures <-function ()
            "?toothi asserted_type: ?toothtypei. ",
            "?toothi is_part_of: ?patienti .",
            "?surfacei rdf:type tooth_surface: .",
-           #" {{?toothi a pre_molar:}  UNION {?toothi a molar:}}",
-           #" {{?toothi a incisor:}  UNION {?toothi a canine:}}",
            "?surfacei asserted_type: ?surfacetypei .",
            "?surfacei is_part_of: ?toothi .",
            surface_restoration_pattern(proci="?proci1",date="?date1"),
            "?proci1 later_encounter: ?proci2.",
            surface_restoration_failure_pattern(proci="?proci2",date="?date2"),
-           #surface_restoration_failure_pattern("?proci2","?toothi","?surfacei","?date2","?patienti"),
-           #  "filter  (?patienti=ohdi:I_5ae44155bc98eb5243c9daea454b877b)",
            "} group by ?patienti ?toothi ?surfacei ?proci1 ?date1",
            "}",
            surface_restoration_failure_pattern(proci="?proci2",date="?soonest_date2"),
@@ -61,9 +57,6 @@ collect_restoration_failures <-function ()
            "?proci2 rdfs:label ?procedure2 .",
            "} group by ?patient ?proci1 ?date1 ?proci2 ?soonest_date2 ?is_posterior")
   }
-
-
-
 
 # Note: pairs of procedure and surface are not unique (since one procedure can be multi-surface)
 
@@ -105,15 +98,23 @@ collect_all_restorations_and_latest_followup <-function ()
            "  { ?proci1 later_encounter: ?proci2.",
            "    ?proci2 occurrence_date: ?latest_date2.",
            "    ?proci2 rdfs:label ?procedure2 }",
-           "optional { BIND(1 as ?is_posterior). {{?toothi a pre_molar:.} UNION {?toothi a molar:}} } ",
+           "  optional { BIND(1 as ?is_posterior). {{?toothi a pre_molar:.} UNION {?toothi a molar:}} } ",
            "  ?patienti rdfs:label ?patient.",
            "  ?toothi rdfs:label ?tooth .",
            "  ?surfacei rdfs:label ?surface .",
            "  ?proci1 rdfs:label ?procedure1 .",
            "} ",
            "order by ?date1")
-}
 
+
+role_inheres_realizes_pattern <- function (...) #role_type, bearer, procedure)
+  { bgp = tb(
+      "      ?proci a proc_type: .",
+      "      :_role a role_type: .",
+      "      :_role inheres_in: ?bearer .",
+      "      ?proci realizes: :_role .")
+    sparql_interpolate(bgp);
+  }
 
 surface_restoration_pattern <- function (...)
     {  bgp<- tb(
@@ -129,32 +130,29 @@ surface_restoration_pattern <- function (...)
 
 
 surface_restoration_failure_pattern <- function (...)
-    { bgp <- sparql_union(
-          tb(sparql_union("?proci a tooth_restoration_procedure: .",
-                          "?proci a inlay_restoration: ."),
-             "_:role a tooth_to_be_restored_role: .",
-             "_:role inheres_in: ?toothi.",
-             "?proci realizes: _:role .",
-             "?proci occurrence_date: ?date .", 
-             "?proci has_participant: ?surfacei ."),
-          tb("?proci a crown_restoration: .",
-             "_:role1 a tooth_to_be_restored_role: .",
+    { bgp <- 
+        sparql_union(
+          tb(
+            sparql_union(
+              "?proci a tooth_restoration_procedure:.",
+              "?proci a inlay_restoration:."),
+            "_:role a tooth_to_be_restored_role: .",
+            "_:role inheres_in: ?toothi.",
+            "?proci realizes: _:role .",
+            "?proci occurrence_date: ?date .", 
+            "?proci has_participant: ?surfacei ."),
+          tb(sparql_union(
+            "?proci a crown_restoration: .",
+            "?proci a tooth_extraction: .",
+            "?proci a endodontic_procedure: ."),
+             "_:role1 a target_of_tooth_procedure: .",
              "_:role1 inheres_in: ?toothi.",
              "?proci realizes: _:role1 .",
-             "?proci occurrence_date: ?date."),
-          tb("?proci a tooth_extraction: .",
-             "_:role2 a tooth_to_be_extracted_role: .",
-             "_:role2 inheres_in: ?toothi.",
-             "?proci realizes: _:role2 .",
-             "?proci occurrence_date: ?date."),
-          tb("?proci a endodontic_procedure: .",
-             "_:role3 a tooth_to_undergo_endodontic_procedure_role:.",
-             "_:role3 inheres_in: ?toothi.",
-             "?proci realizes: _:role3 .",
              "?proci occurrence_date: ?date."))
       sparql_interpolate(bgp)
        #      ,missing_tooth_pattern(exam="?proci",tooth="toothi",date,patient)
-   }
+    }
+    
 
 
 #constrained: ?patient,?tooth (which used to exist), 
@@ -173,27 +171,4 @@ missing_tooth_pattern <- function(...){
         "?tooth_number is_about: _:tooth_class."
         )
 }
-
-
-# debugging
-specific_person_surface_example <- function()
-  { paste("filter(?surfacei = <http://purl.obolibrary.org/obo/ohd/individuals/I_a68e153c890465735df45079bdd51fbf>)",
-         "filter(?patienti = <http://purl.obolibrary.org/obo/ohd/individuals/I_b986ac2ec3449a1812641001537c5444>)",
-         sep="\n")
-  }
-
-
-#           "filter  (?patienti=<http://purl.obolibrary.org/obo/ohd/individuals/I_5ae44155bc98eb5243c9daea454b877b>)",
-
-
-
-# constrained: ?tooth
-# constrains:  ?is_posterior - 1
-# constrains:  ?is_anterior - 1 
-anterior_posterior_pattern <- function(...)
-    { interpolate_sparql_vars(
-        "optional { BIND(1 as ?is_posterior). {{?tooth a pre_molar:.} UNION {?tooth a molar:}} } ",
-        "optional { BIND(1 as ?is_anterior). {{?tooth a canine:.} UNION {?tooth a incisor:}}}",
-        "  } ")
-  }
 

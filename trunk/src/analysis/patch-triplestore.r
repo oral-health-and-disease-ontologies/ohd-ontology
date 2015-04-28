@@ -50,6 +50,16 @@ patch_bearer_of_role_participates_in_realization <- function ()
                "}")
 }
 
+patch_superole <- function ()
+  { sparqlUpdate("insert data ",
+                 "{ target_of_tooth_procedure: a role:.",
+                 "  target_of_tooth_procedure: rdfs:label \"target of single tooth_procedure\".",
+                 "  tooth_to_undergo_endodontic_procedure_role: rdfs:subClassOf target_of_tooth_procedure:.",
+                 "  tooth_to_be_extracted_role: rdfs:subClassOf target_of_tooth_procedure:.",
+                 "  tooth_to_be_restored_role: rdfs:subClassOf target_of_tooth_procedure:.",
+                 "}")
+  }
+               
 
 patch_triplestore <- function ()
   { patch_procedures_have_occurrence_dates();
