@@ -31,7 +31,7 @@
 
 collect_restoration_failures <-function ()
   { queryc("select distinct ?patienti ?proci1 ?date1 ?birthdate ?proci2 (max(?one_before_date) as ?previous_visit_date)
- ?soonest_date2 (coalesce(?is_male,?is_female,\"unrecorded\") as ?gender) (coalesce(?is_anterior,?is_posterior) as ?tooth_type)",
+ ?soonest_date2 (coalesce(?is_male,?is_female,\"unrecorded\") as ?gender) (coalesce(?is_anterior,?is_posterior,\"dunno\") as ?tooth_type)",
            "where {",
            "{select distinct ?patienti ?proci1 ?date1 ?toothi ?surfacei (min(?date2) as ?soonest_date2)",
            "where {",
@@ -52,7 +52,7 @@ collect_restoration_failures <-function ()
            "?proc_minus_1 occurrence_date: ?one_before_date.",
            gender_pattern(personi="?patienti"),
            tooth_type_pattern(),
-           "?patienti birth_date: ?birthdate.",
+           "optional {?patienti birth_date: ?birthdate.}",
            "} group by ?patienti ?proci1 ?date1 ?birthdate ?proci2 ?soonest_date2 ?is_male ?is_female ?is_anterior ?is_posterior")
   }
 
@@ -92,7 +92,7 @@ collect_all_restorations_and_latest_followup <-function ()
            "  }",
            tooth_type_pattern(),
            gender_pattern(personi="?patienti"),
-           "?patienti birth_date: ?birthdate.",
+           "optional{?patienti birth_date: ?birthdate.}",
            "} ",
            "order by ?date1")
   }
@@ -123,18 +123,18 @@ surface_restoration_failure_pattern <- function (...)
     { sparql_interpolate(
         sparql_union(
           tb(
-            sparql_union(
-              "?proci a tooth_restoration_procedure:.",
-              "?proci a inlay_restoration:."),
+            sparql_union("?proci a tooth_restoration_procedure:.",
+                         "?proci a inlay_restoration:."
+                         ),
             "_:role a tooth_to_be_restored_role: .",
             "_:role inheres_in: ?toothi.",
             "?proci realizes: _:role .",
             "?proci occurrence_date: ?date .", 
             "?proci has_participant: ?surfacei ."),
-          tb(sparql_union(
-            "?proci a crown_restoration: .",
-            "?proci a tooth_extraction: .",
-            "?proci a endodontic_procedure: ."),
+          tb(sparql_union("?proci a crown_restoration: .",
+                          "?proci a tooth_extraction: .",
+                          "?proci a endodontic_procedure: ."
+                          ),
              "_:role1 a target_of_tooth_procedure: .",
              "_:role1 inheres_in: ?toothi.",
              "?proci realizes: _:role1 .",
