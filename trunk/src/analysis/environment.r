@@ -167,10 +167,10 @@ bplot <- function (...)
   }
 
 bplotf <- function (f)
-  { svg(filename="/tmp/rsvg.svg",height=8,width=10)
-    f()
-    dev.off()
-    browseURL("file:///tmp/rsvg.svg")
+    { tryCatch({svg(filename="/tmp/rsvg.svg",height=8,width=10)
+        f()
+    },stop={},finally={    dev.off()
+                            browseURL("file:///tmp/rsvg.svg")})
   }
 
 sparqlUpdate <- function (...,endpoint=current_sparql_endpoint,doit=TRUE,trace=trace_sparql_queries)
