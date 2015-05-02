@@ -109,7 +109,7 @@ plot.rsurv <- function (s,fit=s$location_fit,title="All",xlab="Time in years",yl
         ## grid.arrange(plot1, plot2, plot3,plot4, nrow=2, ncol=2)
         #print(plot1);print(plot2);print(plot3);print(plot4)
         #multiplot(plot1,plot2,cols=2)
-    }
+#    }
 
 
 ## sa$cox$coef["locationposterior"]

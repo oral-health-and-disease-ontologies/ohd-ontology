@@ -30,30 +30,26 @@
 #  surface_restoration_failure_pattern() defines the constraints for considering it a failure
 
 collect_restoration_failures <-function ()
-  { queryc("select distinct ?patienti ?proci1 ?date1 ?birthdate ?proci2 (max(?one_before_date) as ?previous_visit_date)
- ?soonest_date2 (coalesce(?is_male,?is_female,\"unrecorded\") as ?gender) (coalesce(?is_anterior,?is_posterior,\"dunno\") as ?tooth_type)",
-           "where {",
-           "{select distinct ?patienti ?proci1 ?date1 ?toothi ?surfacei (min(?date2) as ?soonest_date2)",
-           "where {",
-           "?patienti a homo_sapiens: .",
-           "?toothi rdf:type tooth: .",
-           "?toothi asserted_type: ?toothtypei. ",
-           "?toothi is_part_of: ?patienti .",
-           "?surfacei rdf:type tooth_surface: .",
-           "?surfacei asserted_type: ?surfacetypei .",
-           "?surfacei is_part_of: ?toothi .",
-           surface_restoration_pattern(proci="?proci1",date="?date1",procedure_type="resin_filling_restoration:"),
-           "?proci1 later_encounter: ?proci2.",
-           surface_restoration_failure_pattern(proci="?proci2",date="?date2"),
-           "} group by ?patienti ?toothi ?surfacei ?proci1 ?date1",
-           "}",
-           surface_restoration_failure_pattern(proci="?proci2",date="?soonest_date2"),
-           "?proc_minus_1 next_encounter: ?proci2.",
-           "?proc_minus_1 occurrence_date: ?one_before_date.",
-           gender_pattern(personi="?patienti"),
-           tooth_type_pattern(),
-           "optional {?patienti birth_date: ?birthdate.}",
-           "} group by ?patienti ?proci1 ?date1 ?birthdate ?proci2 ?soonest_date2 ?is_male ?is_female ?is_anterior ?is_posterior")
+    { queryc("select distinct ?patienti ?proci1 ?date1 ?birthdate ?proci2 ?soonest_date2",
+             "  (max(?one_before_date) as ?previous_visit_date)",
+             "  (coalesce(?is_male,?is_female,\"unrecorded\") as ?gender)",
+             "  (coalesce(?is_anterior,?is_posterior,\"dunno\") as ?tooth_type)",
+             "where {",
+             "{select distinct ?patienti ?proci1 ?date1 ?toothi ?surfacei (min(?date2) as ?soonest_date2)",
+             "where {",
+             patient_tooth_surface_pattern(),
+             surface_restoration_pattern(proci="?proci1",date="?date1",procedure_type="resin_filling_restoration:"),
+             "?proci1 later_encounter: ?proci2.",
+             surface_restoration_failure_pattern(proci="?proci2",date="?date2"),
+             "} group by ?patienti ?toothi ?surfacei ?proci1 ?date1",
+             "}",
+             surface_restoration_failure_pattern(proci="?proci2",date="?soonest_date2"),
+             "?proc_minus_1 next_encounter: ?proci2.",
+             "?proc_minus_1 occurrence_date: ?one_before_date.",
+             gender_pattern(personi="?patienti"),
+             posterior_anterior_pattern(),
+             "optional {?patienti birth_date: ?birthdate.}",
+             "} group by ?patienti ?proci1 ?date1 ?birthdate ?proci2 ?soonest_date2 ?is_male ?is_female ?is_anterior ?is_posterior")
   }
 
 # Note: pairs of procedure and surface are not unique (since one procedure can be multi-surface)
@@ -72,14 +68,8 @@ collect_all_restorations_and_latest_followup <-function ()
            "where{",
            "  {select distinct ?patienti ?proci1 ?date1 ?toothi ?surfacei (max(?date2) as ?latest_date2) ",
            "    where {",
-           "      ?patienti a homo_sapiens: .",
-           "      ?toothi rdf:type tooth: .",
-           "      ?toothi asserted_type: ?toothtypei. ",
-           "      ?toothi is_part_of: ?patienti .",
-           "      ?surfacei rdf:type tooth_surface: .",
-           "      ?surfacei asserted_type: ?surfacetypei .",
-           "      ?surfacei is_part_of: ?toothi .",
-                  surface_restoration_pattern(proci="?proci1",date="?date1",procedure_type="resin_filling_restoration:"),
+           patient_tooth_surface_pattern(),
+           surface_restoration_pattern(proci="?proci1",date="?date1",procedure_type="resin_filling_restoration:"),
            "      optional",
            "      { ?proci1 later_encounter: ?proci2.",
            "      ?proci2 occurrence_date: ?date2 }",
@@ -90,12 +80,80 @@ collect_all_restorations_and_latest_followup <-function ()
            "  { ?proci1 later_encounter: ?proci2.",
            "    ?proci2 occurrence_date: ?latest_date2.",
            "  }",
-           tooth_type_pattern(),
+           posterior_anterior_pattern(),
            gender_pattern(personi="?patienti"),
            "optional{?patienti birth_date: ?birthdate.}",
            "} ",
            "order by ?date1")
   }
+
+collect_restorations_followed_by_endodontic_procedure <- function ()
+{ queryc("select distinct ?restoration ?restoration_date ?toothi ?root_canal ?root_canal_date ?restoration_type",
+         "  (max(?one_before_date) as ?previous_visit_date)",
+         "  (coalesce(?is_male,?is_female,\"unrecorded\") as ?gender)",
+         "  (coalesce(?is_anterior,?is_posterior,\"dunno\") as ?tooth_type)",
+         " where{",
+         "{select distinct ?patienti ?restoration ?restoration_type ?toothi (min(?date2) as ?root_canal_date)",
+         "where {",
+         patient_tooth_pattern(),
+         tooth_restoration_pattern(proci="?restoration",date="?restoration_date",procedure_type="tooth_restoration_procedure:"),
+         "?restoration asserted_type: ?restoration_type.",
+         "?restoration later_encounter: ?root_canal.",
+         root_canal_failure_pattern(proci="?root_canal",date="?date2"),
+         "} group by ?patienti ?toothi ?surfacei ?root_canal ?restoration_date ?restoration ?restoration_type",
+         "}",
+         root_canal_failure_pattern(proci="?root_canal",date="?root_canal_date"),
+         "?proc_minus_1 next_encounter: ?root_canal.",
+         "?proc_minus_1 occurrence_date: ?one_before_date.",
+         gender_pattern(personi="?patienti"),
+         "optional {?patienti birth_date: ?birthdate.}",
+         "} group by ?patienti ?restoration m?restoration_date ?toothi ?root_canal ?root_canal_date ?restoration_type ?birthdate ?is_male ?is_female ?is_anterior ?is_posterior")
+}
+
+
+## The issue here is that the restoration that precedes a root canal is
+## not always single-values. A simple case is that there are two single
+## surface restorations, and the next thing that happens to the tooth is
+## is a root canal.
+
+## This makes it tricky to count. Does one give split credit to the two
+## surface restorations? Before I realized this I was trying to get a
+## single row per endo, and then count by restoration type. That
+## doesn't work.
+
+## So what is desirable?
+
+## - In the unique cases the restoration, specified to the surfaces that were restored.?
+## - Perhaps the characterization of the state of the tooth just before - something about every surface.
+## - Perhaps, when there is more than one restoration choose randomly (with sparql sample)
+## -
+
+count_restorations_followed_by_endodontic_procedure <- function()
+{ queryc("select distinct ?restoration_type (count(?restoration_type) as ?count)",
+         " where{",
+         "{select distinct ?patienti  (max(?restoration_date) as ?latest_restoration_date) ?restoration_type ?toothi (min(?date2) as ?root_canal_date)",
+         "where {",
+         patient_tooth_pattern(),
+         tooth_restoration_pattern(proci="?restoration",date="?restoration_date",procedure_type="tooth_restoration_procedure:"),
+         "?restoration asserted_type: ?restoration_typec.",
+         "?restoration_typec rdfs:label ?restoration_type.",
+         "?restoration later_encounter: ?root_canal.",
+         "?restoration a tooth_restoration_procedure:.",
+         root_canal_failure_pattern(proci="?root_canal",date="?date2"),
+         "} group by ?patienti ?toothi ?surfacei ?root_canal ?restoration_date ?restoration_type",
+         "}",
+         "?restoration occurrence_date: ?latest_restoration_date.",
+         "?restoration a tooth_restoration_procedure:.",
+         "?restoration has_participant: ?toothi.",
+         root_canal_failure_pattern(proci="?root_canal",date="?root_canal_date"),
+         "?proc_minus_1 next_encounter: ?root_canal.",
+         "?proc_minus_1 occurrence_date: ?one_before_date.",
+         gender_pattern(personi="?patienti"),
+         "optional {?patienti birth_date: ?birthdate.}",
+         "} group by ?restoration_type order by desc(?count)"
+         )
+}
+         
 
 role_inheres_realizes_pattern <- function (...) #role_type, bearer, procedure)
   { print("hello")
@@ -115,6 +173,17 @@ surface_restoration_pattern <- function (...)
         "?proci realizes: _:role.",
         "?proci occurrence_date: ?date.", 
         "?proci has_participant: ?surfacei."
+        );
+  }
+
+tooth_restoration_pattern <- function (...)
+    {  sparql_interpolate(
+        "?proci a procedure_type:.",
+        "_:role a tooth_to_be_restored_role:.",
+        "_:role  inheres_in: ?toothi.",
+        "?proci realizes: _:role.",
+        "?proci occurrence_date: ?date.", 
+        "?proci has_participant: ?toothi."
         );
   }
 
@@ -140,8 +209,36 @@ surface_restoration_failure_pattern <- function (...)
              "?proci realizes: _:role1 .",
              "?proci occurrence_date: ?date.")))
        #      ,missing_tooth_pattern(exam="?proci",tooth="toothi",date,patient)
+  }
+
+patient_tooth_surface_pattern <- function (...)
+    {
+        sparql_interpolate(
+            "?patienti a homo_sapiens: .",
+            "?toothi rdf:type tooth: .",
+            "?toothi is_part_of: ?patienti .",
+            "?surfacei rdf:type tooth_surface: .",
+            "?surfacei is_part_of: ?toothi .")
     }
-    
+
+patient_tooth_pattern <- function (...)
+    {
+        sparql_interpolate(
+            "?patienti a homo_sapiens: .",
+            "?toothi rdf:type tooth: .",
+            "?toothi is_part_of: ?patienti ."
+            )
+    }
+
+root_canal_failure_pattern <- function(...)
+    { sparql_interpolate(
+        "?proci a endodontic_procedure: .",
+        "_:role1 a tooth_to_undergo_endodontic_procedure_role:.",
+        "_:role1 inheres_in: ?toothi.",
+        "?proci realizes: _:role1 .",
+        "?proci has_participant: ?toothi.",
+        "?proci occurrence_date: ?date.")
+  }
 
 
 #constrained: ?patient,?tooth (which used to exist), 
@@ -161,7 +258,7 @@ missing_tooth_pattern <- function(...){
         )
 }
 
-tooth_type_pattern <- function(...) 
+posterior_anterior_pattern <- function(...) 
     { sparql_interpolate(
         "optional { BIND(\"posterior\" as ?is_posterior). {{?toothi a pre_molar:.} UNION {?toothi a molar:}} }",
         "optional { BIND(\"anterior\" as ?is_anterior). {{?toothi a canine:.} UNION {?toothi a incisor:}} }"
