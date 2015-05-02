@@ -271,10 +271,15 @@ billing_code_counts <- function()
 
 
 health_encounters_for_patient <- function (number)
-  { queryc("select ?encounter ?date where {",
-           "<http://purl.obolibrary.org/obo/ohd/individuals/I_9456fb701a0262a9b262f903acf69f34> participates_in: ?encounteri.",
-           "?encounteri rdfs:label ?encounter.",
-           "?encounteri occurrence_date: ?date}",
-           "order by ?date}")
-  }
+    { queryc("select ?encounter ?surface ?date where {",
+                         "?patient participates_in: ?encounteri.",
+                         "optional {?surfacei asserted_type: ?surfacet. ",
+                         "?surfacet rdfs:label ?surface.",
+                         "?encounteri has_participant: ?surfacei.",
+                         "?surfacei a tooth_surface:}",
+                  paste0("?patient rdfs:label \"patient ",number,"\"."),
+                  "?encounteri rdfs:label ?encounter.",
+                  "?encounteri occurrence_date: ?date}",
+                  "order by ?date")
+}
 
