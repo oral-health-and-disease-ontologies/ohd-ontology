@@ -92,3 +92,54 @@ show_potential_duplicates <- function (type1,type2)
 }
 
 #show_potential_duplicates("endodontic procedure","endodontic procedure")
+
+check_processes_have_occurrence_date <- function()
+{ result <- queryc(
+    "select (count(?thing) as ?should_be_zero) WHERE",
+    "{ ?visit a outpatient_encounter:. ",
+    "  ?visit occurrence_date: ?date.",
+    "  ?thing is_part_of: ?visit.",
+    "  ?thing a ?thingt.",
+    "  ?thingt rdfs:label ?tlabel.",
+    "  ?thing a process:.",
+    "  optional{?thing occurrence_date: ?existing}.",
+    "  filter (!bound(?existing))",
+    "  }");
+  if (length(result)==0) {return(TRUE)}
+  else
+      {warning("you probably need to run patch_procedures_have_occurrence_dates");
+       return(FALSE)}
+}
+
+check_oral_evaluations_have_findings <-function()
+{ result <- queryc(
+    "select (count(?eval) as ?should_be_zero) where",
+    "{ ?exam a dental_exam:.",
+    "  ?eval is_part_of: ?exam.",
+    "  ?eval a oral_evaluation:.",
+    "  ?eval a ?what.",
+    "  ?exam has_specified_output: ?finding.",
+    "  optional {BIND(1 as ?has_it). ?eval has_specified_output: ?finding.  }",
+    "  ?finding a missing_tooth_finding:.",
+    "  filter(?what != cdt_code:)",
+    "filter (!bound(?has_it))",
+    "}");
+  if (length(result)==0) {return(TRUE)}
+  else
+      {warning("you probably need to run patch_oral_evaluations_have_findings");
+       return(FALSE)}
+}
+
+check_bearer_of_role_participates_in_realization <- function ()
+{ result<- queryc(
+    "select (count(?bearer) as ?should_be_zero) where {",
+    "  ?rolei  inheres_in: ?thingi.",
+    "  ?processi  realizes: ?rolei.",
+    "  optional {BIND(1 as ?does). ?bearer participates_in: ?processi}",
+    "  filter(!bound(?does))",
+    "}")
+  if (length(result)==0) {return(TRUE)}
+  else
+      {warning("you probably need to run patch_bearer_of_role_participates_in_realization");
+       return(FALSE)}
+}
