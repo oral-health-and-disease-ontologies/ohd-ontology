@@ -114,3 +114,21 @@ prefixes_for_sparql <- function(query)
 
 ## to remove PREFIX gsub("PREFIX[ ]*[^\n]*\n","",querystring(q))
  
+
+select_variables<-function(query)
+    { clause <- regmatches(query,regexpr("(?i)(?s)(?<=SELECT).*?(?=\\s*(WHERE|\\())", query,perl=TRUE))[[1]]
+      vars <- regmatches(clause,gregexpr("\\?[A-Za-z_0-9]+",clause))
+      unlist(vars)
+  }
+
+var_labels<-function(vars)
+    { lapply(vars,function(e){paste0(e,"Label")}) }
+
+var_optional_labels_pattern <- function (vars)
+    { do.call(paste,lapply(vars,function(e){paste0("optional{",e," rdfs:label ",paste0(e,"Label}"))})) }
+
+query_with_labels <-function(query)
+    { with_selects <- sub("(?i)(select\\s*(distinct){0,1})",paste0("\\1 ", paste(unlist(var_labels(select_variables(query))),collapse=" ")),query,perl=TRUE);
+      print(with_selects);
+      sub("\\{",paste0("{ ", var_optional_labels_pattern(select_variables(query))),with_selects);
+ }

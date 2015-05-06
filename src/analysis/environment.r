@@ -166,11 +166,14 @@ bplot <- function (...)
     browseURL("file:///tmp/rsvg.svg")
   }
 
-bplotf <- function (f)
-    { tryCatch({svg(filename="/tmp/rsvg.svg",height=8,width=10)
+bplotf <- function (f,index=1,filebase="rsvg")
+    { tryCatch({
+        filename<-paste0("/tmp/",filebase,index,".svg");
+        svg(filename=filename,height=8,width=10)
         f()
-    },stop={},finally={    dev.off()
-                            browseURL("file:///tmp/rsvg.svg")})
+        },stop={},finally={
+        dev.off()
+        browseURL(paste0("file://",filename))})
   }
 
 sparqlUpdate <- function (...,endpoint=current_sparql_endpoint,doit=TRUE,trace=trace_sparql_queries)
@@ -225,6 +228,7 @@ query.from.file <- function (file, limit=0, print.query=FALSE, as.data.frame=TRU
 }
 
 prettysparql<-""
+insertLabels<-FALSE;
 
 ## e.g."Lexical error at line 4, column 4.  Encountered: \" \" (32), after : \"s\""
 checkSPARQLSyntax <-function(querystring)
@@ -251,13 +255,14 @@ sparqlUpdatew <- function (...,endpoint=current_sparql_endpoint,doit=TRUE,trace=
 queryw <- function (...,prefixes=default_ohd_prefixes,endpoint,trace)
   { 
     reset_var_counter();
-  string <- paste(..., sep="\n");
+    string <- paste(..., sep="\n");
+        string <- query_with_labels(string);
   sparql <- querystring(string,prefixes=prefixes);
   if (check_sparql_syntax)
     { if (!checkSPARQLSyntax(sparql))
         { return( NULL) }}
     if (file.exists("/tmp/sparql.sparql")) { file.remove("/tmp/sparql.sparql") }
-    write(sparql,file="/tmp/sparql.sparql");
+    write(prettysparql,file="/tmp/sparql.sparql");
     result <- suppressWarnings(system("osascript putsparql.scpt http://127.0.0.1:8080/graphdb-workbench-ee/sparql /tmp/sparql.sparql 2>&1",intern=T))
   };
 #gsub("http://purl.obolibrary.org/obo/ohd/","ind:",gsub("http://purl.obolibrary.org/obo/ohd/individuals/","ohd:",fail[seq(1,100),]))
