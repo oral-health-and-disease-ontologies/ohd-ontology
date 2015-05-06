@@ -18,6 +18,35 @@ queryw(" select distinct ?procl",
        "  }",trace=T);
 
 
+Find duplicate endos.
+
+PREFIX endodontic_procedure: <http://purl.obolibrary.org/obo/OHD_0000003>
+PREFIX has_participant: <http://purl.obolibrary.org/obo/BFO_0000057>
+PREFIX occurrence_date: <http://purl.obolibrary.org/obo/OHD_0000015>
+PREFIX tooth: <http://purl.obolibrary.org/obo/FMA_12516>
+PREFIX pat: <http://purl.org/hpi/patchr#>
+PREFIX patient: <http://purl.obolibrary.org/obo/OHD_0000012>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX is_about: <http://purl.obolibrary.org/obo/IAO_0000136>
+select distinct ?proc1 ?proc1l ?proc2 ?proc2l  ?code2l ?toothi  where 
+{ ?proc1 a endodontic_procedure:.
+  ?proc2 a endodontic_procedure:.
+  ?proc1 has_participant: ?toothi.
+  ?proc2 has_participant: ?toothi.
+    ?toothi a tooth:.
+  ?proc1 has_participant: ?patient.
+  ?proc2 has_participant: ?patient.
+    ?patient a patient:.        
+  ?proc1 occurrence_date: ?date.
+  ?proc2 occurrence_date: ?date.  
+   filter (?proc1 != ?proc2)
+    ?proc1 rdfs:label ?proc1l.
+    ?proc2 rdfs:label ?proc2l.
+    ?toothi rdfs:label ?toothl. 
+    ?code2 rdfs:label ?code2l.
+    ?code2 is_about: ?proc2.
+}
+
 ## 2015-04-10 10:53:34 alanr
 ## results. Note that "continuant" is one of the results, so since
 ## procedures as processes and processes are disjoint from continuant,

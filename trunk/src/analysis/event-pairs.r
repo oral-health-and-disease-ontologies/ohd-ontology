@@ -63,8 +63,10 @@ collect_restoration_failures <-function ()
 # omit the constraint on the second visit.
 
 
-collect_all_restorations_and_latest_followup <-function ()
-  { queryc("select distinct ?proci1 ?date1 ?birthdate ?latest_date2 (coalesce(?is_male,?is_female,\"unrecorded\") as ?gender) (coalesce(?is_anterior,?is_posterior) as ?tooth_type)",
+collect_all_restorations_and_latest_encounter_after <-function ()
+    { queryc("select distinct ?proci1 ?date1 ?birthdate ?latest_date2 ",
+             "  (coalesce(?is_male,?is_female,\"unrecorded\") as ?gender)",
+             "  (coalesce(?is_anterior,?is_posterior) as ?tooth_type)",
            "where{",
            "  {select distinct ?patienti ?proci1 ?date1 ?toothi ?surfacei (max(?date2) as ?latest_date2) ",
            "    where {",
@@ -76,10 +78,6 @@ collect_all_restorations_and_latest_followup <-function ()
            "      }",
            "    group by ?proci1 ?patienti ?date1 ?toothi ?surfacei ",
            "    }",
-           "   optional",
-           "  { ?proci1 later_encounter: ?proci2.",
-           "    ?proci2 occurrence_date: ?latest_date2.",
-           "  }",
            posterior_anterior_pattern(),
            gender_pattern(personi="?patienti"),
            "optional{?patienti birth_date: ?birthdate.}",

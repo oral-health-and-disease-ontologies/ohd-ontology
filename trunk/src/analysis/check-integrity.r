@@ -105,7 +105,7 @@ check_processes_have_occurrence_date <- function()
     "  optional{?thing occurrence_date: ?existing}.",
     "  filter (!bound(?existing))",
     "  }");
-  if (length(result)==0) {return(TRUE)}
+  if (length(result)==0||result==0) {return(TRUE)}
   else
       {warning("you probably need to run patch_procedures_have_occurrence_dates");
        return(FALSE)}
@@ -124,9 +124,9 @@ check_oral_evaluations_have_findings <-function()
     "  filter(?what != cdt_code:)",
     "filter (!bound(?has_it))",
     "}");
-  if (length(result)==0) {return(TRUE)}
+  if (length(result)==0||result==0) {return(TRUE)}
   else
-      {warning("you probably need to run patch_oral_evaluations_have_findings");
+      {warning(paste0("Found ",result,". you probably need to run patch_oral_evaluations_have_findings"));
        return(FALSE)}
 }
 
@@ -138,8 +138,8 @@ check_bearer_of_role_participates_in_realization <- function ()
     "  optional {BIND(1 as ?does). ?bearer participates_in: ?processi}",
     "  filter(!bound(?does))",
     "}")
-  if (length(result)==0) {return(TRUE)}
+  if (length(result)==0||result==0) {return(TRUE)}
   else
-      {warning("you probably need to run patch_bearer_of_role_participates_in_realization");
+      {warning(paste0("Found ",result,". you probably need to run patch_bearer_of_role_participates_in_realization"));
        return(FALSE)}
 }

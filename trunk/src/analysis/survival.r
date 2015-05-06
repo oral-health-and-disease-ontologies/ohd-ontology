@@ -14,7 +14,7 @@ print.rsurv <- function(object) { cat("<restoration survival analysis>\n") }
 
 resin_restoration_survival_analysis <- function ()
     { s <- rsurv()
-      s$all <- collect_all_restorations_and_latest_followup()
+      s$all <- collect_all_restorations_and_latest_encounter_after()
       s$fail <- collect_restoration_failures()
       create_rsurv(s)
   }
@@ -71,35 +71,51 @@ create_rsurv <- function (s)
         s$gender_fit <- survfit(surv~gender,conf.type="none",data=s$correlates);
         s$age_fit <- survfit(surv~age_group,conf.type="none",data=s$correlates);
         s$fit <- survfit(surv~1,conf.type="none",data=s$correlates);
-        s$cox<-coxph(surv~location+gender+age, method="breslow",data=sa$correlates)
+        s$cox<-coxph(surv~location+gender+age, method="breslow",data=s$correlates)
         s
     }
 
-#plot.rsurv(sa,title="Resin restoration longevity",fit=sa$fit,col="dark blue")
+plot_rsurv_fit <- function (s,fit=s$location_fit,title="All",xlab="Time in years",ylab="Fraction surviving",ci=F,col=c("dark green","dark blue"))
+    { print(
+        ggsurv(fit,cens.col='gray',plot.cens=F,back.white=T,
+               main=title,xlab=xlab,ylab=ylab,CI=ci,surv.col=col)
+        + scale_x_continuous(breaks=1:13,expand=c(0,0),limits=c(0,12.5))
+        + scale_y_continuous(expand=c(0,.01))
+        + theme(axis.title.y=element_text(vjust=1.5,face="bold"))
+        + theme(axis.title.x=element_text(vjust=-.7,face="bold"))
+        + theme(title=element_text(vjust=2,face="bold"))
+        + theme(legend.position=c(.9,.5),
+                legend.text=element_text(size=12,face="bold"),
+                legend.title=element_text(size=14))
+        + guides(colour = guide_legend(override.aes = list(size=3)))
+        )
+  }
 
-#plot.rsurv(sa,title="Resin restoration longevity by age at failure",fit=sa$age_fit,col=c("dark gray","dark green","dark blue","dark red"))
 
-#plot.rsurv(sa,title="Resin restoration longevity by gender",fit=sa$gender_fit,col=c("dark blue","dark red"))
+plot.rsurv <- function (sa)
+{ bplotf(function ()
+    {plot_rsurv_fit(sa,title="Resin restoration longevity",
+                fit=sa$fit,
+                col="dark blue")},
+         index="",filebase="overall-longevity")
+  bplotf(function ()
+      {plot_rsurv_fit(sa,title="Resin restoration longevity by age at failure",
+                  fit=sa$age_fit,
+                  col=c("dark gray","dark green","dark blue","dark red"))},
+         index="",filebase="longevity-by-age")
+  bplotf(function () 
+      {plot_rsurv_fit(sa,title="Resin restoration longevity by gender",
+                  fit=sa$gender_fit,
+                  col=c("dark blue","dark red"))},
+         index="",filebase="longevity-by-gender")
+  bplotf(function ()
+      {plot_rsurv_fit(sa,title="Resin restoration longevity by location",
+                  fit=sa$gender_fit,
+                  col=c("dark blue","dark red"))},
+         index="",filebase="longevity-by-location")
+}
 
-#plot.rsurv(sa,title="Resin restoration longevity by location",fit=sa$gender_fit,col=c("dark blue","dark red"))
 
-
-plot.rsurv <- function (s,fit=s$location_fit,title="All",xlab="Time in years",ylab="Fraction surviving",ci=F,col=c("dark green","dark blue"))
-    {
-        bplotf(function()
-            print(ggsurv(fit,cens.col='gray',plot.cens=F,back.white=T,
-                         main=title,xlab=xlab,ylab=ylab,CI=ci,surv.col=col)
-                  + scale_x_continuous(breaks=1:13,expand=c(0,0),limits=c(0,12.5))
-                  + scale_y_continuous(expand=c(0,.01))
-                  + theme(axis.title.y=element_text(vjust=1.5,face="bold"))
-                  + theme(axis.title.x=element_text(vjust=-.7,face="bold"))
-                  + theme(title=element_text(vjust=2,face="bold"))
-                  + theme(legend.position=c(.9,.5),
-                              legend.text=element_text(size=12,face="bold"),
-                          legend.title=element_text(size=14))
-                  + guides(colour = guide_legend(override.aes = list(size=3)))
-                  ))
-    }
 
 #http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)/
 #        par(mfrow=c(2,2));
