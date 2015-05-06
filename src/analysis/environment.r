@@ -82,6 +82,7 @@ queryCache <- function() { sessionQueryCache }
 trace_sparql_queries <- FALSE;
 send_queries_to_workbench <- FALSE;
 
+
 check_sparql_syntax <- file.exists("jena/bin/qparse");
 
 ## execute a sparql query. endpoint defaults to current_endpoint, sparql library defaults to "rrdf"
@@ -256,8 +257,8 @@ queryw <- function (...,prefixes=default_ohd_prefixes,endpoint,trace)
   { 
     reset_var_counter();
     string <- paste(..., sep="\n");
-        string <- query_with_labels(string);
-  sparql <- querystring(string,prefixes=prefixes);
+    if (insertLabels) {string<- query_with_labels(string)};
+    sparql <- querystring(string,prefixes=prefixes);
   if (check_sparql_syntax)
     { if (!checkSPARQLSyntax(sparql))
         { return( NULL) }}
