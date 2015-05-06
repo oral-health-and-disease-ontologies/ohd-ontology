@@ -25,6 +25,7 @@ YASR.plugins.table.defaults.useGoogleCharts=false;
 
 
 //YASQE.defaults.sparql.endpoint="http://127.0.0.1:8080/openrdf-sesame/repositories/OHDRL20150416"
+YASQE.defaults.collapsePrefixesOnLoad = true
 
 var sheet = (function() {
 	// Create the <style> tag
@@ -44,6 +45,7 @@ var sheet = (function() {
 })();
 
 
+sheet.insertRule(".yasgui sup {display:none;}",0);
 sheet.insertRule(".yasgui .CodeMirror { position:left!important;font-size:11px!important;line-height:12px!important;font-family:Source Code Pro!important}", 0);
 sheet.insertRule(".yasr table.dataTable tr {line-height:1px}",0)
 sheet.insertRule(".yasr table.dataTable td { overflow:hidden; text-overflow: ellipsis;white-space: nowrap}",0)
@@ -54,8 +56,8 @@ sheet.insertRule(".yasgui .controlbar .endpointText {font-size:13px;width:500px!
 sheet.insertRule(".yasguiLogo {display:none;}",0)
 //sheet.insertRule(".yasr_header {display:none;}",0)
 sheet.insertRule(".yasgui {font-size:12px;}",0)
-sheet.insertRule(".yasgui .nav>li>a { padding: 2px }")
-sheet.insertRule(".yasgui .nav-tabs li a[role=addTab] {margin-top:0px;border-top:0;line-height:15px}")
+sheet.insertRule(".yasgui .nav>li>a { padding: 2px }",0)
+sheet.insertRule(".yasgui .nav-tabs li a[role=addTab] {margin-top:0px;border-top:0;line-height:15px}",0)
 
 
 //;****************************************************************
