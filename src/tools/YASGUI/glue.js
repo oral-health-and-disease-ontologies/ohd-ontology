@@ -82,6 +82,9 @@ var yasgui = YASGUI(document.getElementById("yasgui"),{sparql: {
     endpoint: "http://127.0.0.1:8080/openrdf-sesame/repositories/OHDRL20150416"
 }})
 
+YASR.defaults.useGoogleCharts = false
+
+
 //http://www.w3schools.com/jsref/dom_obj_style.asp
 //https://codemirror.net/doc/manual.html#styling
 yasqe=yasgui.current().yasqe
