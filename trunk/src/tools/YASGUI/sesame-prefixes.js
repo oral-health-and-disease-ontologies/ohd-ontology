@@ -23,25 +23,34 @@ var getAutocompletionsArrayFromSesameCsv = function(csvString) {
     return minusfirst;
 }
 
+
+// yasqe.getCompleteToken().state.possibleNext.indexOf("PREFIX") - this is how we tell whether we are in prefix or select
+
 var customPrefixCompleter = function(yasqe) {
     //we use several functions from the regular prefix autocompleter (this way, we don't have to re-define code such as determining whether we are in a valid autocompletion position)
     yasqe.on("change", function() {
 	YASGUI.YASQE.Autocompleters.prefixes.appendPrefixIfNeeded(yasqe, 'customPrefixCompleter');
     });
     var returnObj = {
+	// we don't complete unless we've typed at least 3 characters,
+	// are not in the middle of a token, are not immediately after
+	// a token which has invalid characters for a prefix or we're
+	// in whitespace.
 	isValidCompletionPosition: function(){var token = yasqe.getCompleteToken();
-					      return(
-						  token.string.length > 2 && (
-					      YASGUI.YASQE.Autocompleters.prefixes.isValidCompletionPosition(yasqe) ||
-							  //YASGUI.YASQE.Autocompleters.classes.isValidCompletionPosition(yasqe) ||
-							  //YASGUI.YASQE.Autocompleters.properties.isValidCompletionPosition(yasqe) ||
-							  YASGUI.YASQE.Autocompleters.variables(yasqe)))},
-
-	//if (token.string.length < 3 ) 
-					      // 	  return false;
-					      // return true}, //
-
-	
+					      return(token.string.length > 2 &&
+						     !(token.type == "ws")&&
+						     !(yasqe.getCursor().ch < token.end) &&
+						     token.string.match(/^[0-9A-Za-z_]+$/) 
+						    )},
+	// token.state.queryType lets us know whether we are in the
+	// query body or before it. If before we do the usual
+	// otherwise don't show or include the URI in the completion.
+	postProcessToken: function(token,suggestedString)
+	{ if (token.state.queryType)
+	      return(suggestedString.replace(/:.*/,":"))
+	  else
+	      return(suggestedString)
+	},
 	preProcessToken: function(token) {return YASGUI.YASQE.Autocompleters.prefixes.preprocessPrefixTokenForCompletion(yasqe, token)},
 	appendPrefixIfNeeded: function(yasqe, completerName) {return YASGUI.YASQE.Autocompleters.prefixes.appendPrefixIfNeeded(yasqe,completerName)} }
     
