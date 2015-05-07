@@ -110,7 +110,7 @@ plot.rsurv <- function (sa)
          index="",filebase="longevity-by-gender")
   bplotf(function ()
       {plot_rsurv_fit(sa,title="Resin restoration longevity by location",
-                  fit=sa$gender_fit,
+                  fit=sa$location_fit,
                   col=c("dark blue","dark red"))},
          index="",filebase="longevity-by-location")
 }
