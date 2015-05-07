@@ -20,6 +20,49 @@
 ## the same. Otherwise, one can be tooth specific and the other
 ## surface specific.
 
+count_duplicate_procedures <- function ()
+    { res <- queryc(
+        "SELECT DISTINCT  ?proc1t ?proc1tLabel ?proc2t ?proc2tLabel  (SUM(1) AS ?count) ",
+        "    WHERE",
+        "      { ?proc1 a dental_procedure: .",
+        "        ?proc1 asserted_type: ?proc1t .",
+        "		?proc1t rdfs:label ?proc1tLabel.",
+        "  		?proc2 a dental_procedure: .",
+        "        ?proc2 asserted_type: ?proc2t .",
+        "  		?proc2t rdfs:label ?proc2tLabel .",
+        "        FILTER ( (?proc1 != ?proc2) && str(?proc1) <= str(?proc2) )",
+        "        ?toothi a tooth: .",
+        "	    ?proc1 has_participant: ?toothi .",
+        "        ?proc2 has_participant: ?toothi .",
+        "        ?toothi asserted_type: ?tootht .",
+        "		?tootht rdfs:label ?toothtLabel .",
+        "        ?patient a patient: .",
+        "  	    ?proc1 has_participant: ?patient .",
+        "        ?proc2 has_participant: ?patient .",
+        "  	    ?proc1 occurrence_date: ?date .",
+        "        ?proc2 occurrence_date: ?date .",
+        "        OPTIONAL",
+        "          { ?proc1 has_participant: ?surface1 .",
+        "            ?surface1 a tooth_surface:.",
+        "     		?surface1 asserted_type: ?surface1t .",
+        "     		?surface1t rdfs:label ?surface1tLabel .",
+        "          }",
+        "        OPTIONAL",
+        "          { ?proc2 has_participant: ?surface2 .",
+        "            ?surface2 a tooth_surface: .",
+        "            ?surface2 asserted_type: ?surface2t .",
+        "          }",
+        "        FILTER (",
+        "        	(bound(?surface1) && bound(?surface2) && ?surface1 = ?surface2 ) ||",
+        "  			(!bound(?surface1) && !bound(?surface2)))	",
+        "      }",
+        "    GROUP BY ?proc1t ?proc2t ?proc1tLabel ?proc2tLabel ",
+        "    ORDER BY desc(?count)"
+        )
+      write.table(res,quote=F,row.names=F);
+      return (res == 0);
+}
+
 count_potential_duplicates <- function ()
 {
     queryc(
