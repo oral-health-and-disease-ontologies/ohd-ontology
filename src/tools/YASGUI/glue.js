@@ -45,6 +45,7 @@ var sheet = (function() {
 })();
 
 
+sheet.insertRule(".CodeMirror-hint {font-family:Arial!important;font-size:12px}")
 sheet.insertRule(".yasgui sup {display:none;}",0);
 sheet.insertRule(".yasgui .CodeMirror { position:left!important;font-size:11px!important;line-height:12px!important;font-family:Source Code Pro!important}", 0);
 sheet.insertRule(".yasr table.dataTable tr {line-height:1px}",0)
