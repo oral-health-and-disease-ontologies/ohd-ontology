@@ -21,42 +21,43 @@
 ## surface specific.
 
 
-count_potential_duplicate_procedures <- function ()
-    { res <- queryc(
-        "SELECT DISTINCT  ?proc1t ?proc1tLabel ?proc2t ?proc2tLabel  (count(?proc1) AS ?count) ",
-        "WHERE { ",
-        tooth_or_surface_procedure_pattern(proci="?proc1",surfacei="?surface1"),
-        tooth_or_surface_procedure_pattern(proci="?proc2",surfacei="?surface2"),
-        "?proc1 asserted_type: ?proc1t.",
-        "?proc2 asserted_type: ?proc2t.",
-        " filter((bound(?surface1) && bound(?surface2) && ?surface1=?surface2) || !bound(?surface1) || !bound(?surface2))",
-        " filter(?proc1 != ?proc2 && ( str(?proc1) <= str(?proc2) ) && ( str(?proc1t) <= str(?proc2t) ))",
-        labels_pattern("?proc1t","?proc2t"),
-        " }",
-        "GROUP BY ?proc1t ?proc2t ?proc1tLabel ?proc2tLabel ",
-        "    ORDER BY desc(?count)"
-        );
-      write.table(res,quote=F,row.names=F);
-      res <<- res;
-      return(nrow(res) == 0)
-  }
+# works. For each case of duplication/conflict one representative is returned and the count of duplicate/conflicts
+count_which_procedures_have_potential_duplicates <- function ()
+{ res <- queryc(
+    "SELECT  (SAMPLE(?proc1Label) AS ?representative) ?date ?toothi ?toothiLabel ",
+    "(COUNT(distinct ?proc1) AS ?count) ",
+    "(sample(coalesce(?surface2,?surface1)) as ?surface) ",
+    "(sample(coalesce(?surface2Label,?surface1Label)) as ?surfaceLabel)",
+    "WHERE { ",
+    tooth_or_surface_procedure_pattern(proci="?proc1",surfacei="?surface1",surfaceiLabel="?surface1Label"),
+    tooth_or_surface_procedure_pattern(proci="?proc2",surfacei="?surface2",surfaceiLabel="?surface2Label"),
+    "?proc1 asserted_type: ?proc1t.",
+    "?proc2 asserted_type: ?proc2t.",
+    " filter((bound(?surface1) && bound(?surface2) && ?surface1=?surface2) || !bound(?surface1) || !bound(?surface2))",
+    " filter(?proc1 != ?proc2) ",
+    labels_pattern("?toothi","?proc1"),
+    " }",
+    "GROUP BY ?patienti ?toothi ?toothiLabel coalesce(?surface2,?surface1) ?date  ",
+    "ORDER BY desc(?count)"
+    );
+  write.table(res,quote=F,row.names=F);
+  res <<- res;
+  return(res==0||nrow(res) == 0)
+}
+  
 
-get_potential_duplicate_procedures <- function (type1=NULL,type2=NULL)
-    { res <- queryc(
-        "SELECT ?proc1 ?proc1Label ?proc2t ?proc2tLabel ?date where{",
-        if(is.null(type1)) "" else paste0("?proc1 a ",type1,"."),
-        if(is.null(type2)) "" else paste0("?proc2 a ",type2,"."),
+# not quite ready
+mark_potential_duplicates <- function ()
+    { sparqlUpdate(
+        "INSERT { ?proc1 duplicate: \"TRUE\"^^xsd:boolean. ?proc2 duplicate: \"TRUE\"^^xsd:boolean.}",
+        "WHERE {",
         tooth_or_surface_procedure_pattern(proci="?proc1",surfacei="?surface1"),
         tooth_or_surface_procedure_pattern(proci="?proc2",surfacei="?surface2"),
         "?proc1 asserted_type: ?proc1t.",
         "?proc2 asserted_type: ?proc2t.",
         " filter((bound(?surface1) && bound(?surface2) && ?surface1=?surface2) || !bound(?surface1) || !bound(?surface2))",
         " filter(?proc1 != ?proc2 && ( str(?proc1) <= str(?proc2) ) && ( str(?proc1t) <= str(?proc2t) ))",
-        labels_pattern("?proc1","?proc2"),
-        "}  ORDER BY ?patienti"
-        );
-      write.table(res,quote=F,row.names=F);
-      return(nrow(res) == 0)
+        "}")
   }
 
 #get_potential_duplicates("endodontic procedure","endodontic procedure")

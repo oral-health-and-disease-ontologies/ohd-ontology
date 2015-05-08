@@ -37,5 +37,6 @@ source("next-encounter.r");
 source("event-pairs.r")
 source("survival.r")
 source("sparql-template.r")
+source("sparql-patterns.r")
 source("ggsurv.r")
 source("check-integrity.r")
