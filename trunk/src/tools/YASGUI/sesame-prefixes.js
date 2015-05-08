@@ -61,7 +61,7 @@ var customPrefixCompleter = function(yasqe) {
     //and, as everything is in memory, enable autoShowing the completions
     returnObj.autoShow = true;
     
-    returnObj.persistent = "customPrefixes";//this will store the sparql results in the client-cache for a month. 
+//    returnObj.persistent = "customPrefixes";//this will store the sparql results in the client-cache for a month. 
     returnObj.get = function(token, callback) {
 	$.ajax({
 	    data: {},

@@ -70,6 +70,7 @@ tooth_or_surface_procedure_pattern <- function (...)
             "optional { ?surfacei rdf:type tooth_surface:.",         
             "           ?proci has_participant: ?surfacei.",
             "           ?surfacei is_part_of: ?toothi .",
+            "           ?surfacei rdfs:label ?surfaceiLabel.",
             "         }"
             );
     }
