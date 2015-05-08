@@ -151,61 +151,71 @@ visit_summary <- function ()
         sep="");
   }
 
-  
-## factor this into smaller chunks,
-distribution_of_patient_in_practice_time <- function(atleastvisits=2,atmostvisits=200,breaks=20)
-  {
-    res <- queryc("select ?patient (min(?date) as ?earliest) (max(?date) as ?latest)",
-                  "       (count(?date) as ?nvisits) where",
-                  "{",
-                  " ?visit a outpatient_encounter:.",
-                  " ?visit occurrence_date: ?date.",
-                  " ?patient participates_in: ?visit.",
-                  " ?patient a dental_patient:.",
-                  "} GROUP BY ?patient"
-                                        #"  LIMIT 10"
-                  )
-    res <- data.frame(res,stringsAsFactors = FALSE);
-    res$latest <- as.Date(res$latest)
-    res$earliest <- as.Date(res$earliest)
-    lastDataTime <- max(res$latest)
-    res$nvisits <- as.numeric(res$nvisits)
-    res$timeBetweenVisitsAsDays <- as.numeric(res$latest - res$earliest)
-    res$firstToEndPracticeDays <- as.numeric(lastDataTime - res$earliest)
-    which <-((res$nvisits <= atmostvisits) & (res$nvisits >=atleastvisits));
-#    which <- TRUE
-    res$month <- as.Date(cut(res$earliest,"month") )
 
-    svg(filename="/tmp/rsvg1.svg",width=8,height=8)
+memo_first_and_last_visits <- NULL
+get_first_and_last_visits <- function()
+    {  if (!is.null(memo_first_and_last_visits)) {return(memo_first_and_last_visits)}
+       res <- queryc("select ?patient (min(?date) as ?earliest) (max(?date) as ?latest)",
+                     "       (count(?date) as ?nvisits) where",
+                     "{",
+                     " ?visit a outpatient_encounter:.",
+                     " ?visit occurrence_date: ?date.",
+                     " ?patient participates_in: ?visit.",
+                     " ?patient a dental_patient:.",
+                     "} GROUP BY ?patient"
+                     )
+       res <- data.frame(res,stringsAsFactors = FALSE);
+       res$latest <- as.Date(res$latest)
+       res$earliest <- as.Date(res$earliest)
+       lastDataTime <- max(res$latest)
+       res$nvisits <- as.numeric(res$nvisits)
+       res$timeBetweenVisitsAsDays <- as.numeric(res$latest - res$earliest)
+       res$firstToEndPracticeDays <- as.numeric(lastDataTime - res$earliest)
+       which <-((res$nvisits <= atmostvisits) & (res$nvisits >=atleastvisits));
+       res$month <- as.Date(cut(res$earliest,"month") )
+       res
+   }
 
-    print(ggplot(res, aes(month,1)) + stat_summary(fun.y = sum, geom = "bar") + scale_x_date(minor_breaks="month") +
-      labs(title=paste("Number of first visits per month (",length(res$nvisits)," patients)",sep=""),
-           x="Time", 
-           y="Number of patient first visits"));
-  
-    dev.off();
-    browseURL("file:///tmp/rsvg1.svg")
 
-    svg(filename="/tmp/rsvg.svg",width=8,height=8)
-    par(mfrow=c(2,2))
-    plot(hist(res$firstToEndPracticeDays[which]/365,plot=FALSE,breaks=breaks),
-         xlab="Years between first visit and last date of practice data",
-         ylab="Number of patients",
-         main=paste("Time between patient first visit and end \nof practice data (",length(res$firstToEndPracticeDays[which])," patients, at least ",atleastvisits," visits)",sep=""))
+plot_number_of_first_visits_by_month <- function(atleastvisits=2,atmostvisits=200,breaks=20)
+    {   res <- get_first_and_last_visits()
+        print(ggplot(res, aes(month,1))
+              + stat_summary(fun.y = sum, geom = "bar") 
+              + scale_x_date(minor_breaks="month")
+              + labs(title=paste("Number of first visits per month (",length(res$nvisits)," patients)",sep=""),
+                               x="Time", 
+                               y="Number of patient first visits"))
+    }
 
-    plot(hist(res$timeBetweenVisitsAsDays[which]/365,plot=FALSE,breaks=breaks),
+
+
+plot_patient_time_in_practice <- function()
+{  res <- get_first_and_last_visits()
+   plot(hist(res$firstToEndPracticeDays[which]/365,plot=FALSE,breaks=breaks),
+        xlab="Years between first visit and last date of practice data",
+        ylab="Number of patients",
+        main=paste("Time between patient first visit and end \nof practice data (",
+            length(res$firstToEndPracticeDays[which]),
+            " patients, at least ",
+            atleastvisits," visits)",sep=""))
+}
+
+plot_years_between_and_last_visit <- function()
+{  res <- get_first_and_last_visits();
+   plot(hist(res$timeBetweenVisitsAsDays[which]/365,plot=FALSE,breaks=breaks),
          xlab="Years between first and last visit",
          ylab="Number of patients",
          main=paste("Time between patient first and last visit \n(",length(res$timeBetweenVisitsAsDays[which])," patients, at least ",atleastvisits," visits)",sep="")
-         )
-    plot(hist(as.numeric(res$nvisits),plot=FALSE,breaks=breaks),
-         xlab="Total number of visits",
-         ylab="Number of patients",
-         main=paste("Number of visits per patient (",length(res$nvisits)," patients)",sep="")
-         )
+        )
+}
 
-    dev.off();
-    browseURL("file:///tmp/rsvg.svg")
+plot_distribution_of_patient_number_of_visits <- function ()
+{  res <- get_first_and_last_visits();
+   plot(hist(as.numeric(res$nvisits),plot=FALSE,breaks=breaks),
+        xlab="Total number of visits",
+        ylab="Number of patients",
+        main=paste("Number of visits per patient (",length(res$nvisits)," patients)",sep="")
+        )
   }
 
   
@@ -231,7 +241,16 @@ distribution_of_procedures_over_time <- function(type,label,breaks=24)
     plot
   }
 
-
+plot_4x4 <- function ()
+    { bplotf(function()
+        { par(mfrow=c(4,4));
+          print(plot_number_of_first_visits_by_month())
+          pront(plot_patient_time_in_practice())
+          print(plot_years_between_and_last_visit())
+          print(plot_distribution_of_patient_number_of_visits())
+      })
+  }
+      
 ## Plot number of restorations vs time (all, crowns, fillings)
 distribution_of_restorations_over_time_report <- function(breaks=144)
   { svg(filename="/tmp/rsvg.svg",width=10,height=7.5);
