@@ -23,51 +23,35 @@
 
 count_potential_duplicate_procedures <- function ()
     { res <- queryc(
-        "SELECT DISTINCT  ?proc1t ?proc1tLabel ?proc2t ?proc2tLabel  (SUM(1) AS ?count) ",
+        "SELECT DISTINCT  ?proc1t ?proc1tLabel ?proc2t ?proc2tLabel  (count(?proc1) AS ?count) ",
         "WHERE { ",
         tooth_or_surface_procedure_pattern(proci="?proc1",surfacei="?surface1"),
-        tooth_or_surface_procedure_pattern(proci="?proc2",surfacei="?surface1"),
+        tooth_or_surface_procedure_pattern(proci="?proc2",surfacei="?surface2"),
         "?proc1 asserted_type: ?proc1t.",
         "?proc2 asserted_type: ?proc2t.",
         " filter((bound(?surface1) && bound(?surface2) && ?surface1=?surface2) || !bound(?surface1) || !bound(?surface2))",
-        " filter(?proc1 != ?proc2 && ( str(?proc1t) <= str(?proc2t) ))",
+        " filter(?proc1 != ?proc2 && ( str(?proc1) <= str(?proc2) ) && ( str(?proc1t) <= str(?proc2t) ))",
         labels_pattern("?proc1t","?proc2t"),
         " }",
         "GROUP BY ?proc1t ?proc2t ?proc1tLabel ?proc2tLabel ",
         "    ORDER BY desc(?count)"
         );
       write.table(res,quote=F,row.names=F);
-      return(nrow(res) == 0)
-  }
-
-count_potential_duplicate_procedures <- function ()
-    { res <- queryc(
-        "SELECT DISTINCT  ?proc1t ?proc1tLabel ?proc2t ?proc2tLabel  (SUM(1) AS ?count) ",
-        "WHERE { ",
-        tooth_or_surface_procedure_pattern(proci="?proc1",surfacei="?surface1"),
-        tooth_or_surface_procedure_pattern(proci="?proc2",surfacei="?surface1"),
-        "?proc1 asserted_type: ?proc1t.",
-        "?proc2 asserted_type: ?proc2t.",
-        " filter((bound(?surface1) && bound(?surface2) && ?surface1=?surface2) || !bound(?surface1) || !bound(?surface2))",
-        " filter(?proc1 != ?proc2 && ( str(?proc1t) <= str(?proc2t) ))",
-        labels_pattern("?proc1t","?proc2t"),
-        " }",
-        "GROUP BY ?proc1t ?proc2t ?proc1tLabel ?proc2tLabel ",
-        "    ORDER BY desc(?count)"
-        );
-      write.table(res,quote=F,row.names=F);
+      res <<- res;
       return(nrow(res) == 0)
   }
 
 get_potential_duplicate_procedures <- function (type1=NULL,type2=NULL)
     { res <- queryc(
-        "SELECT ?proc1 ?proc1Label ?proc2 ?proc2Label ?date where{",
+        "SELECT ?proc1 ?proc1Label ?proc2t ?proc2tLabel ?date where{",
         if(is.null(type1)) "" else paste0("?proc1 a ",type1,"."),
         if(is.null(type2)) "" else paste0("?proc2 a ",type2,"."),
         tooth_or_surface_procedure_pattern(proci="?proc1",surfacei="?surface1"),
         tooth_or_surface_procedure_pattern(proci="?proc2",surfacei="?surface2"),
+        "?proc1 asserted_type: ?proc1t.",
+        "?proc2 asserted_type: ?proc2t.",
         " filter((bound(?surface1) && bound(?surface2) && ?surface1=?surface2) || !bound(?surface1) || !bound(?surface2))",
-        " filter(?proc1 != ?proc2 && ( str(?proc1) <= str(?proc2) ))",
+        " filter(?proc1 != ?proc2 && ( str(?proc1) <= str(?proc2) ) && ( str(?proc1t) <= str(?proc2t) ))",
         labels_pattern("?proc1","?proc2"),
         "}  ORDER BY ?patienti"
         );
