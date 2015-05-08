@@ -20,121 +20,62 @@
 ## the same. Otherwise, one can be tooth specific and the other
 ## surface specific.
 
-count_duplicate_procedures <- function ()
+
+count_potential_duplicate_procedures <- function ()
     { res <- queryc(
         "SELECT DISTINCT  ?proc1t ?proc1tLabel ?proc2t ?proc2tLabel  (SUM(1) AS ?count) ",
-        "    WHERE",
-        "      { ?proc1 a dental_procedure: .",
-        "        ?proc1 asserted_type: ?proc1t .",
-        "		?proc1t rdfs:label ?proc1tLabel.",
-        "  		?proc2 a dental_procedure: .",
-        "        ?proc2 asserted_type: ?proc2t .",
-        "  		?proc2t rdfs:label ?proc2tLabel .",
-        "        FILTER ( (?proc1 != ?proc2) && str(?proc1) <= str(?proc2) )",
-        "        ?toothi a tooth: .",
-        "	    ?proc1 has_participant: ?toothi .",
-        "        ?proc2 has_participant: ?toothi .",
-        "        ?toothi asserted_type: ?tootht .",
-        "		?tootht rdfs:label ?toothtLabel .",
-        "        ?patient a patient: .",
-        "  	    ?proc1 has_participant: ?patient .",
-        "        ?proc2 has_participant: ?patient .",
-        "  	    ?proc1 occurrence_date: ?date .",
-        "        ?proc2 occurrence_date: ?date .",
-        "        OPTIONAL",
-        "          { ?proc1 has_participant: ?surface1 .",
-        "            ?surface1 a tooth_surface:.",
-        "     		?surface1 asserted_type: ?surface1t .",
-        "     		?surface1t rdfs:label ?surface1tLabel .",
-        "          }",
-        "        OPTIONAL",
-        "          { ?proc2 has_participant: ?surface2 .",
-        "            ?surface2 a tooth_surface: .",
-        "            ?surface2 asserted_type: ?surface2t .",
-        "          }",
-        "        FILTER (",
-        "        	(bound(?surface1) && bound(?surface2) && ?surface1 = ?surface2 ) ||",
-        "  			(!bound(?surface1) && !bound(?surface2)))	",
-        "      }",
-        "    GROUP BY ?proc1t ?proc2t ?proc1tLabel ?proc2tLabel ",
+        "WHERE { ",
+        tooth_or_surface_procedure_pattern(proci="?proc1",surfacei="?surface1"),
+        tooth_or_surface_procedure_pattern(proci="?proc2",surfacei="?surface1"),
+        "?proc1 asserted_type: ?proc1t.",
+        "?proc2 asserted_type: ?proc2t.",
+        " filter((bound(?surface1) && bound(?surface2) && ?surface1=?surface2) || !bound(?surface1) || !bound(?surface2))",
+        " filter(?proc1 != ?proc2 && ( str(?proc1t) <= str(?proc2t) ))",
+        labels_pattern("?proc1t","?proc2t"),
+        " }",
+        "GROUP BY ?proc1t ?proc2t ?proc1tLabel ?proc2tLabel ",
         "    ORDER BY desc(?count)"
-        )
+        );
       write.table(res,quote=F,row.names=F);
-      return (res == 0);
-}
+      return(nrow(res) == 0)
+  }
 
-count_potential_duplicates <- function ()
-{
-    queryc(
-        "select ?proc1tl ?proc2tl (sum(?count) as ?total) where{",
-        "select distinct ?proc1tl ?proc2tl ?date ?tootht (sum(1) as ?count) where ",
-        "{ ?proc1 a dental_procedure:. ?proc1 asserted_type: ?proc1t. ?proc1t rdfs:label ?proc1tl.",
-        "  ?proc2 a dental_procedure:. ?proc2 asserted_type: ?proc2t. ?proc2t rdfs:label ?proc2tl.",
-        "  ?proc1 has_participant: ?toothi.",
-        "  ?proc2 has_participant: ?toothi.",
-        "  ?toothi a tooth:. ?toothi asserted_type: ?tootht.",
-        "    optional { ?proc1 has_participant: ?surface1. ?surface1 a tooth_surface:}",
-        "    optional { ?proc2 has_participant: ?surface2. ?surface2 a tooth_surface:. ",
-        "        ?surface2 asserted_type: ?surface2t. ?surface2t rdfs:label ?surface2l}",
-        "  ?proc1 has_participant: ?patient.",
-        "  ?proc2 has_participant: ?patient.",
-        "    ?patient a patient:.        ",
-        "  ?proc1 occurrence_date: ?date.",
-        "  ?proc2 occurrence_date: ?date.  ",
-        "    filter (?proc1 != ?proc2) ",
-        "    filter ((!(bound(?surface1) && bound(?surface1) ) || (?surface1 = ?surface2)) && (str(?proc1t) <= str(?proc2t)))",
-        "} group by ?proc1tl ?proc2tl ?tootht ?date order by desc(?count)} group by ?proc1tl ?proc2tl order by desc(?total)"
-        )
-}
+count_potential_duplicate_procedures <- function ()
+    { res <- queryc(
+        "SELECT DISTINCT  ?proc1t ?proc1tLabel ?proc2t ?proc2tLabel  (SUM(1) AS ?count) ",
+        "WHERE { ",
+        tooth_or_surface_procedure_pattern(proci="?proc1",surfacei="?surface1"),
+        tooth_or_surface_procedure_pattern(proci="?proc2",surfacei="?surface1"),
+        "?proc1 asserted_type: ?proc1t.",
+        "?proc2 asserted_type: ?proc2t.",
+        " filter((bound(?surface1) && bound(?surface2) && ?surface1=?surface2) || !bound(?surface1) || !bound(?surface2))",
+        " filter(?proc1 != ?proc2 && ( str(?proc1t) <= str(?proc2t) ))",
+        labels_pattern("?proc1t","?proc2t"),
+        " }",
+        "GROUP BY ?proc1t ?proc2t ?proc1tLabel ?proc2tLabel ",
+        "    ORDER BY desc(?count)"
+        );
+      write.table(res,quote=F,row.names=F);
+      return(nrow(res) == 0)
+  }
 
-## This is what the answer looked like for Claudio's set. 
-##      proc1tl                                 proc2tl                                 count
-##  [1,] "endodontic procedure"                  "crown restoration"                     "608"
-##  [2,] "crown restoration"                     "crown restoration"                     "482"
-##  [3,] "endodontic procedure"                  "resin filling restoration"             "170"
-##  [4,] "crown restoration"                     "resin filling restoration"             "89" 
-##  [5,] "endodontic procedure"                  "endodontic procedure"                  "62" 
-##  [6,] "endodontic procedure"                  "amalgam filling restoration"           "50" 
-##  [7,] "crown restoration"                     "amalgam filling restoration"           "47" 
-##  [8,] "crown restoration"                     "tooth extraction procedure"            "34" 
-##  [9,] "porcelain laminate veneer restoration" "porcelain laminate veneer restoration" "32" 
-## [10,] "endodontic procedure"                  "ceramic onlay restoration"             "25" 
-## [11,] "tooth extraction procedure"            "tooth extraction procedure"            "20" 
-## [12,] "crown restoration"                     "ceramic onlay restoration"             "18" 
-## [13,] "endodontic procedure"                  "metallic onlay restoration"            "9"  
-## [14,] "endodontic procedure"                  "porcelain laminate veneer restoration" "4"  
-## [15,] "crown restoration"                     "porcelain laminate veneer restoration" "3"  
-## [16,] "porcelain laminate veneer restoration" "tooth extraction procedure"            "2"  
-## [17,] "endodontic procedure"                  "resin laminate veneer restoration"     "1"  
-## [18,] "endodontic procedure"                  "tooth extraction procedure"            "1"
+get_potential_duplicate_procedures <- function (type1=NULL,type2=NULL)
+    { res <- queryc(
+        "SELECT ?proc1 ?proc1Label ?proc2 ?proc2Label ?date where{",
+        if(is.null(type1)) "" else paste0("?proc1 a ",type1,"."),
+        if(is.null(type2)) "" else paste0("?proc2 a ",type2,"."),
+        tooth_or_surface_procedure_pattern(proci="?proc1",surfacei="?surface1"),
+        tooth_or_surface_procedure_pattern(proci="?proc2",surfacei="?surface2"),
+        " filter((bound(?surface1) && bound(?surface2) && ?surface1=?surface2) || !bound(?surface1) || !bound(?surface2))",
+        " filter(?proc1 != ?proc2 && ( str(?proc1) <= str(?proc2) ))",
+        labels_pattern("?proc1","?proc2"),
+        "}  ORDER BY ?patienti"
+        );
+      write.table(res,quote=F,row.names=F);
+      return(nrow(res) == 0)
+  }
 
-
-show_potential_duplicates <- function (type1,type2)
-{   if (type1 > type2)
-        { temp <- type1; type1<-type2;type2<-temp}
-    queryc(
-        "select ?proci1l ?proci2l ?date ?patientil where {",
-        "select distinct ?proc1 ?proc2 ?proci1l ?proci2l ?date ?patientil where ",
-        "{ ?proc1 a dental_procedure:. ?proc1 asserted_type: ?proc1t. ?proc1t rdfs:label ?proc1tl. ?proc1 rdfs:label ?proci1l.",
-        "  ?proc2 a dental_procedure:. ?proc2 asserted_type: ?proc2t. ?proc2t rdfs:label ?proc2tl. ?proc2 rdfs:label ?proci2l.",
-        "  ?proc1 has_participant: ?toothi. ?proc1 asserted_type: ?proc1t. ?proc1t rdfs:label ?proc1tl.",
-        "  ?proc2 has_participant: ?toothi. ?proc2 asserted_type: ?proc2t. ?proc2t rdfs:label ?proc2tl.",
-        "  ?toothi a tooth:.",
-        "    optional { ?proc1 has_participant: ?surface1. ?surface1 a tooth_surface:}",
-        "    optional { ?proc2 has_participant: ?surface2. ?surface2 a tooth_surface:}",
-        "  ?proc1 has_participant: ?patient.",
-        "  ?proc2 has_participant: ?patient.",
-        "    ?patient a patient:. ?patient rdfs:label ?patientil.",
-        "  ?proc1 occurrence_date: ?date.",
-        "  ?proc2 occurrence_date: ?date.   ",
-        "   filter (?proc1 != ?proc2)",
-        "    filter ((!(bound(?surface1) && bound(?surface2)) || ?surface1=?surface2) && (str(?proc1t) <= str(?proc2t)))",
-        paste0("    filter(str(?proc1tl) = \"",type1,"\" && str(?proc2tl) = \"",type2,"\")"),
-        "} } order by ?patientil"
-        )
-}
-
-#show_potential_duplicates("endodontic procedure","endodontic procedure")
+#get_potential_duplicates("endodontic procedure","endodontic procedure")
 
 check_processes_have_occurrence_date <- function()
 { result <- queryc(
@@ -186,3 +127,23 @@ check_bearer_of_role_participates_in_realization <- function ()
       {warning(paste0("Found ",result,". you probably need to run patch_bearer_of_role_participates_in_realization"));
        return(FALSE)}
 }
+## This is what the answer looked like for Claudio's set. 
+##      proc1tl                                 proc2tl                                 count
+##  [1,] "endodontic procedure"                  "crown restoration"                     "608"
+##  [2,] "crown restoration"                     "crown restoration"                     "482"
+##  [3,] "endodontic procedure"                  "resin filling restoration"             "170"
+##  [4,] "crown restoration"                     "resin filling restoration"             "89" 
+##  [5,] "endodontic procedure"                  "endodontic procedure"                  "62" 
+##  [6,] "endodontic procedure"                  "amalgam filling restoration"           "50" 
+##  [7,] "crown restoration"                     "amalgam filling restoration"           "47" 
+##  [8,] "crown restoration"                     "tooth extraction procedure"            "34" 
+##  [9,] "porcelain laminate veneer restoration" "porcelain laminate veneer restoration" "32" 
+## [10,] "endodontic procedure"                  "ceramic onlay restoration"             "25" 
+## [11,] "tooth extraction procedure"            "tooth extraction procedure"            "20" 
+## [12,] "crown restoration"                     "ceramic onlay restoration"             "18" 
+## [13,] "endodontic procedure"                  "metallic onlay restoration"            "9"  
+## [14,] "endodontic procedure"                  "porcelain laminate veneer restoration" "4"  
+## [15,] "crown restoration"                     "porcelain laminate veneer restoration" "3"  
+## [16,] "porcelain laminate veneer restoration" "tooth extraction procedure"            "2"  
+## [17,] "endodontic procedure"                  "resin laminate veneer restoration"     "1"  
+## [18,] "endodontic procedure"                  "tooth extraction procedure"            "1"
