@@ -3,23 +3,10 @@
 ## first one counts them by type. The second lets you list all the cases
 ## of duplication for a type.
 
-## About this query: We need to do the nested select as we have to make
-## sure we count all unique cases.  An earlier query had
-## "distinct ?proc1t ?proc2t ?date ?tootht (sum(1) as ?count)", i.e
-## without date. Since the procecure types ignore date we need to include
-## it to be unique. But then we get counts by date since projected
-## variables, when there is an aggregate, need to appear in both the
-## select and the group by. Hence we use the outside select (careful not
-## to say distinct this time) to sum up the contributions from the
-## different dates.
-
-## Having two surface restorations on the same tooth is ok, so we
-## restrict cases to when only one of the procedures is a surface one.
-## (str(?proc1t) <= str(?proc2t)) is to ensure that we don't get both
-## ab and ba counts.  If both surfaces are bound, we insist they are
-## the same. Otherwise, one can be tooth specific and the other
-## surface specific.
-
+## About this query: Was tricky. Are we counting procedures that could be
+## deleted leaving one behind? Are we counting groups of procedure?
+## In the end chose to count groups of procedures and how many duplicates
+## (same procedure) vs conflicts
 
 # works. For each case of duplication/conflict one representative is returned and the count of duplicate/conflicts
 count_which_procedures_have_potential_duplicates <- function ()

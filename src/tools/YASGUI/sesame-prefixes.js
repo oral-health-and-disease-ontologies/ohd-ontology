@@ -1,4 +1,5 @@
 YASGUI.YASQE.defaults.sparql.callbacks.success =  function(data){console.log("success", data);};
+$=YASGUI.$
 
 /* Adapted from https://gist.github.com/LaurensRietveld/3549c02f5727346ae89c#file-init-js to get 
    prefixes from a sesame endpoint */
@@ -77,5 +78,5 @@ var customPrefixCompleter = function(yasqe) {
     
 //now register our new autocompleter
 YASGUI.YASQE.registerAutocompleter('customPrefixCompleter', customPrefixCompleter);
-YASGUI.YASQE.defaults.autocompleters=['customPrefixCompleter']
+//YASGUI.YASQE.defaults.autocompleters.push('customPrefixCompleter')
 
