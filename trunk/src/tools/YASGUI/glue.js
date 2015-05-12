@@ -34,7 +34,7 @@ var sheet = (function() {
 YASR=YASGUI.YASR;
 YASQE=YASGUI.YASQE;
 CodeMirror=YASQE;
-window.$=YASGUI.$
+
 YASR.plugins.table.defaults.fetchTitlesFromPreflabel=false;
 YASR.plugins.table.defaults.mergeLabelsWithUris=true;
 YASR.plugins.table.defaults.useGoogleCharts=false;

@@ -290,14 +290,14 @@ billing_code_counts <- function()
 
 
 health_encounters_for_patient <- function (number)
-    { queryc("select ?encounter ?surface ?date where {",
+    { queryc("select ?encounteri ?encounteriLabel ?encounteriLabel ?surfacet ?surfacetLabel ?date where {",
                          "?patient participates_in: ?encounteri.",
                          "optional {?surfacei asserted_type: ?surfacet. ",
-                         "?surfacet rdfs:label ?surface.",
+                         "?surfacet rdfs:label ?surfacetLabel.",
                          "?encounteri has_participant: ?surfacei.",
                          "?surfacei a tooth_surface:}",
                   paste0("?patient rdfs:label \"patient ",number,"\"."),
-                  "?encounteri rdfs:label ?encounter.",
+                  "?encounteri rdfs:label ?encounteriLabel.",
                   "?encounteri occurrence_date: ?date}",
                   "order by ?date")
 }

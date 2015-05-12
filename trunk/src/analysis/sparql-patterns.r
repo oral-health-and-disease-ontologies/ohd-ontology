@@ -57,6 +57,7 @@ patient_tooth_surface_pattern <- function (...)
 tooth_or_surface_procedure_pattern <- function (...)
     {
         sparql_interpolate(
+            "# tooth and surface restoration template",
             "?proci a dental_procedure:.",
             "?patienti a homo_sapiens: .",
             "?patienti participates_in: ?proci.",

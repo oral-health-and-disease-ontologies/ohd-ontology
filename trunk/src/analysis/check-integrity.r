@@ -9,12 +9,24 @@
 ## (same procedure) vs conflicts
 
 # works. For each case of duplication/conflict one representative is returned and the count of duplicate/conflicts
-count_which_procedures_have_potential_duplicates <- function ()
+
+# only.conflict determines whether we will count cases where there is
+# duplication, but it is simple replication e.g. two resin
+# restorations on the same day on the same tooth on the same surface
+
+# count.total=T returns the count of such procedures. When false, one
+# representation of each duplication/conflict group is returned with
+# the stats for that group
+
+#+++
+count_which_procedures_have_potential_duplicates <- function (only.conflict=F,count.total=F)
 { res <- queryc(
+    if (count.total) {"SELECT (sum(?count) as ?total) where {"} else {""},
     "SELECT  (SAMPLE(?proc1Label) AS ?representative) ?date ?toothi ?toothiLabel ",
     "(COUNT(distinct ?proc1) AS ?count) ",
     "(sample(coalesce(?surface2,?surface1)) as ?surface) ",
     "(sample(coalesce(?surface2Label,?surface1Label)) as ?surfaceLabel)",
+    "(SUM(if(?proc1t!=?proc2t,1,0)) as ?conflict)",
     "WHERE { ",
     tooth_or_surface_procedure_pattern(proci="?proc1",surfacei="?surface1",surfaceiLabel="?surface1Label"),
     tooth_or_surface_procedure_pattern(proci="?proc2",surfacei="?surface2",surfaceiLabel="?surface2Label"),
@@ -25,13 +37,15 @@ count_which_procedures_have_potential_duplicates <- function ()
     labels_pattern("?toothi","?proc1"),
     " }",
     "GROUP BY ?patienti ?toothi ?toothiLabel coalesce(?surface2,?surface1) ?date  ",
-    "ORDER BY desc(?count)"
-    );
+    if(only.conflict) {"HAVING (?conflict > 0)"} else {""},
+    "ORDER BY desc(?count)",
+    if(count.total) "}" else "")
   write.table(res,quote=F,row.names=F);
   res <<- res;
   return(res==0||nrow(res) == 0)
 }
-  
+
+
 
 # not quite ready
 mark_potential_duplicates <- function ()
@@ -46,6 +60,26 @@ mark_potential_duplicates <- function ()
         " filter(?proc1 != ?proc2 && ( str(?proc1) <= str(?proc2) ) && ( str(?proc1t) <= str(?proc2t) ))",
         "}")
   }
+
+list_procedures_that_have_potential_duplicates <- function ()
+{ res <- queryc(
+    "SELECT  distinct ?proc1 ?proc1Label ?date ?toothi ?toothiLabel",
+    "        (coalesce(?surface2, ?surface1) AS ?surface)",
+    "        (coalesce(?surface2Label, ?surface1Label) AS ?surfaceLabel)",
+    "WHERE { ",
+    tooth_or_surface_procedure_pattern(proci="?proc1",surfacei="?surface1",surfaceiLabel="?surface1Label"),
+    tooth_or_surface_procedure_pattern(proci="?proc2",surfacei="?surface2",surfaceiLabel="?surface2Label"),
+    "?proc1 asserted_type: ?proc1t.",
+    "?proc2 asserted_type: ?proc2t.",
+    " filter((bound(?surface1) && bound(?surface2) && ?surface1=?surface2) || !bound(?surface1) || !bound(?surface2))",
+    " filter(?proc1 != ?proc2) ",
+    labels_pattern("?toothi","?proc1"),
+    " }"
+    );
+  write.table(res,quote=F,row.names=F);
+  res <<- res;
+  return(res==0||nrow(res) == 0)
+}
 
 #get_potential_duplicates("endodontic procedure","endodontic procedure")
 
