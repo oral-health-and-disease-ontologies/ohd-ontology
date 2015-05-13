@@ -54,6 +54,7 @@ patient_tooth_surface_pattern <- function (...)
             "?surfacei is_part_of: ?toothi .")
     }
 
+# this is the one that gets used
 tooth_or_surface_procedure_pattern <- function (...)
     {
         sparql_interpolate(
@@ -62,7 +63,7 @@ tooth_or_surface_procedure_pattern <- function (...)
             "?patienti a homo_sapiens: .",
             "?patienti participates_in: ?proci.",
             "?proci realizes:  _:role.",
-            "_:role a tooth_to_be_restored_role:.",
+            "_:role a target_of_tooth_procedure: .",
             "_:role  inheres_in: ?toothi.",
             "?proci occurrence_date: ?date.", 
             "?patienti a homo_sapiens: .",

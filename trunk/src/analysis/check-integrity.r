@@ -19,9 +19,10 @@
 # the stats for that group
 
 #+++
-count_which_procedures_have_potential_duplicates <- function (only.conflict=F,count.total=F)
-{ res <- queryc(
-    if (count.total) {"SELECT (sum(?count) as ?total) where {"} else {""},
+
+which_procedures_have_potential_duplicates_query <- function (only.conflict=F,count.total=F)
+{ paste(
+    if (count.total) "SELECT (sum(?count) as ?total) where {" else "{",
     "SELECT  (SAMPLE(?proc1Label) AS ?representative) ?date ?toothi ?toothiLabel ",
     "(COUNT(distinct ?proc1) AS ?count) ",
     "(sample(coalesce(?surface2,?surface1)) as ?surface) ",
@@ -40,48 +41,37 @@ count_which_procedures_have_potential_duplicates <- function (only.conflict=F,co
     if(only.conflict) {"HAVING (?conflict > 0)"} else {""},
     "ORDER BY desc(?count)",
     if(count.total) "}" else "")
+}
+
+count_which_procedures_have_potential_duplicates <- function (only.conflict=F,count.total=F)
+{ res <- queryc(which_procedures_have_potential_duplicates_query(only.conflict=T,count.total=count.total))
   write.table(res,quote=F,row.names=F);
   res <<- res;
   return(res==0||nrow(res) == 0)
 }
 
-
-
-# not quite ready
-mark_potential_duplicates <- function ()
-    { sparqlUpdate(
-        "INSERT { ?proc1 duplicate: \"TRUE\"^^xsd:boolean. ?proc2 duplicate: \"TRUE\"^^xsd:boolean.}",
-        "WHERE {",
-        tooth_or_surface_procedure_pattern(proci="?proc1",surfacei="?surface1"),
-        tooth_or_surface_procedure_pattern(proci="?proc2",surfacei="?surface2"),
-        "?proc1 asserted_type: ?proc1t.",
-        "?proc2 asserted_type: ?proc2t.",
-        " filter((bound(?surface1) && bound(?surface2) && ?surface1=?surface2) || !bound(?surface1) || !bound(?surface2))",
-        " filter(?proc1 != ?proc2 && ( str(?proc1) <= str(?proc2) ) && ( str(?proc1t) <= str(?proc2t) ))",
-        "}")
-  }
-
-list_procedures_that_have_potential_duplicates <- function ()
-{ res <- queryc(
-    "SELECT  distinct ?proc1 ?proc1Label ?date ?toothi ?toothiLabel",
-    "        (coalesce(?surface2, ?surface1) AS ?surface)",
-    "        (coalesce(?surface2Label, ?surface1Label) AS ?surfaceLabel)",
-    "WHERE { ",
-    tooth_or_surface_procedure_pattern(proci="?proc1",surfacei="?surface1",surfaceiLabel="?surface1Label"),
-    tooth_or_surface_procedure_pattern(proci="?proc2",surfacei="?surface2",surfaceiLabel="?surface2Label"),
-    "?proc1 asserted_type: ?proc1t.",
-    "?proc2 asserted_type: ?proc2t.",
-    " filter((bound(?surface1) && bound(?surface2) && ?surface1=?surface2) || !bound(?surface1) || !bound(?surface2))",
-    " filter(?proc1 != ?proc2) ",
-    labels_pattern("?toothi","?proc1"),
-    " }"
-    );
+list_procedures_that_have_potential_duplicates <- function(verbose=F)
+{ basic <- which_procedures_have_potential_duplicates_query(only.conflict=T)
+  res <- queryc(
+      "SELECT distinct ?proc2 ?proc2Label ",
+      if(verbose) {"?proc1 ?proc1Label ?surface1 ?surface1Label ?surface2 ?surface2Label ?date ?toothi ?toothiLabel"},
+      "where",
+      "{",basic,"}",
+      "BIND(?group_proc as ?proc1)",
+      "OPTIONAL",
+      "{  ?proc1 has_participant: ?surface1 .",
+      "   ?surface1 rdf:type tooth_surface: .",
+      "   ?surface1 is_part_of: ?toothi . ",
+      "}",
+      tooth_or_surface_procedure_pattern(proci="?proc2",surfacei="?surface2",surfaceiLabel="?surface2Label"),
+      "FILTER ((((bound(?surface1)&&bound(?surface2))&&(?surface1=?surface2))||(!bound(?surface1)))||(!bound(?surface2)))",
+      if(verbose) "?proc1 rdfs:label ?proc1Label.",
+      if(verbose) "?proc2 rdfs:label ?proc2Label.",
+      "}")
   write.table(res,quote=F,row.names=F);
   res <<- res;
   return(res==0||nrow(res) == 0)
 }
-
-#get_potential_duplicates("endodontic procedure","endodontic procedure")
 
 check_processes_have_occurrence_date <- function()
 { result <- queryc(

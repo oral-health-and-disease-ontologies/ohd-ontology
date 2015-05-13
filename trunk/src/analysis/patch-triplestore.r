@@ -57,7 +57,8 @@ patch_superole <- function ()
                  "  tooth_to_undergo_endodontic_procedure_role: rdfs:subClassOf target_of_tooth_procedure:.",
                  "  tooth_to_be_extracted_role: rdfs:subClassOf target_of_tooth_procedure:.",
                  "  tooth_to_be_restored_role: rdfs:subClassOf target_of_tooth_procedure:.",
-                 "}")
+                 "}",
+                 endpoint=paste0(current_endpoint,"/statements"))
   }
                
 
