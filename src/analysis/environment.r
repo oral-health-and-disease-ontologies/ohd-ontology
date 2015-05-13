@@ -89,7 +89,6 @@ check_sparql_syntax <- file.exists("jena/bin/qparse");
 queryc <- function(...,endpoint=current_endpoint,prefixes=default_ohd_prefixes,cache=TRUE,trace=trace_sparql_queries)
 { 
     if (send_queries_to_workbench) { queryw(...,prefixes=prefixes); return(NULL)};
-    reset_var_counter();
     string <- paste(..., sep="\n");
     if (identical(prefixes,FALSE))  { prefixes <- (function () {}) }
     querystring <- querystring(string,prefixes=prefixes);
@@ -243,7 +242,11 @@ checkSPARQLSyntax <-function(querystring)
         write.table(strsplit(querystring,"\n"),col.names=F,quote=F,sep=": ");
         cat(paste("--------\n",do.call(paste0,as.list(result)),"\n",sep=""))
         return(FALSE)}
-    else { prettysparql <<- result; return(TRUE) }
+    else { #fix some irritations
+           result <- gsub("[(]\\s+","(",result,perl=TRUE);
+           result <- gsub("\\s+[)]",")",result,perl=TRUE);
+           result <- gsub("(?s)! (bound)","!\\1",result,perl=TRUE);
+           prettysparql <<- result; return(TRUE) }
   }
         
 sparqlUpdatew <- function (...,endpoint=current_sparql_endpoint,doit=TRUE,trace=trace_sparql_queries)
@@ -255,7 +258,6 @@ sparqlUpdatew <- function (...,endpoint=current_sparql_endpoint,doit=TRUE,trace=
     
 queryw <- function (...,prefixes=default_ohd_prefixes,endpoint,trace)
   { 
-    reset_var_counter();
     string <- paste(..., sep="\n");
     if (insertLabels) {string<- query_with_labels(string)};
     sparql <- querystring(string,prefixes=prefixes);
