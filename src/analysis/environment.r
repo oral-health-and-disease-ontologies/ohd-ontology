@@ -66,6 +66,7 @@ cachedQuery <- function (query,endpoint)
 }
 
 ## Cache result for query executed at endpoint
+
 cacheQuery <- function (query,endpoint,result)
 { if (exists(endpoint,sessionQueryCache))
   { endpointCache <- get(endpoint,sessionQueryCache)}
@@ -105,8 +106,9 @@ queryc <- function(...,endpoint=current_endpoint,prefixes=default_ohd_prefixes,c
                       else if (current_sparqlr=="SPARQL")
                           {res<-SPARQL(endpoint,querystring(string,prefixes=prefixes))
                            res$results}
-          if (length(queryres)==2 && Reduce("==",dim(queryres)==cbind(0,0))) # the function returned a 0x0 empty matrix, i.e. error
-              { cat("There was an error in the SPARQL query") }
+          qrrr<<-queryres;
+          if (length(queryres)==2 && (dim(queryres)==cbind(0,0)) == c(F,F)) # the function returned a 0x0 empty matrix, i.e. error
+              { cat("There was an error in the SPARQL query"); cat(querystring); cat(queryres); stop() }
           else 
               { cacheQuery(querystring(string,prefixes=prefixes),endpoint,queryres) }
           attr(queryres,"rawQuery") <- string;
@@ -269,3 +271,4 @@ queryw <- function (...,prefixes=default_ohd_prefixes,endpoint,trace)
     result <- suppressWarnings(system("osascript putsparql.scpt http://127.0.0.1:8080/graphdb-workbench-ee/sparql /tmp/sparql.sparql 2>&1",intern=T))
   };
 #gsub("http://purl.obolibrary.org/obo/ohd/","ind:",gsub("http://purl.obolibrary.org/obo/ohd/individuals/","ohd:",fail[seq(1,100),]))
+
