@@ -24,15 +24,19 @@ sparql_interpolate <- function(...)
         env <- sys.frame(sys.parent(2))
         values <- unlist(lapply(argnames,FUN=function(name) { eval(call[[name]],env)}))
         potential <- cbind(argnames,values)
-        whichones<- (substr(values,start=1,stop=1)=="?"|| substr(values,start=nchar(values),stop=nchar(values))==":");
+        firstchar = substr(values,start=1,stop=1);
+        whichones<- (firstchar=="?"|| firstchar=='"' || firstchar=="<" || substr(values,start=nchar(values),stop=nchar(values))==":");
         if (length(argnames)==0) { return(sbgp) };
         actual<- potential[whichones,]
         substitute_sparql_variable <- 
             function(old,replacement)
                 { if (substr(replacement,start=1,stop=1)=="?")
                       { pattern <- paste0("(\\?",old,")\\b") }
-                  else
-                      { pattern <- paste0("(\\b",old,"[:])") };
+                  else if (substring(replacement,1,1)=="<")
+                      { pattern <- paste0("<",old,">") }
+                  else if (substring(replacement,1,1)=='"')
+                      { pattern <- paste0("'",old,"'") }
+                  else { pattern <- paste0("(\\b",old,"[:])") };
                   sbgp <- gsub(pattern,replacement,sbgp,perl=TRUE)
                   sbgp <<- sbgp
               }
@@ -51,7 +55,7 @@ make_blanks_unique <- function (bgp)
       gensymcounter <<- gensymcounter + 1
       replace_w_numbered <- 
           function(string)
-              {replacement <- paste0(string,count)
+              {replacement <- paste0(string,count);
                bgp<<- gsub(string,replacement,bgp,perl=TRUE)
            }
       lapply(to_be_replaced,replace_w_numbered)

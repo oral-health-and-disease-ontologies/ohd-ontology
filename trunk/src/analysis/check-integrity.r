@@ -22,12 +22,13 @@
 
 which_procedures_have_potential_duplicates_query <- function (only.conflict=F,count.total=F)
 { paste(
-    if (count.total) "SELECT (sum(?count) as ?total) where {" else "{",
-    "SELECT  (SAMPLE(?proc1Label) AS ?representative) ?date ?toothi ?toothiLabel ",
+    if (count.total) "SELECT (sum(?count) as ?total) where {" else "",
+    "SELECT  (SAMPLE(?proc1) AS ?representative) ?date ?toothi ?toothiLabel ",
     "(COUNT(distinct ?proc1) AS ?count) ",
     "(sample(coalesce(?surface2,?surface1)) as ?surface) ",
     "(sample(coalesce(?surface2Label,?surface1Label)) as ?surfaceLabel)",
     "(SUM(if(?proc1t!=?proc2t,1,0)) as ?conflict)",
+    "?patienti",
     "WHERE { ",
     tooth_or_surface_procedure_pattern(proci="?proc1",surfacei="?surface1",surfaceiLabel="?surface1Label"),
     tooth_or_surface_procedure_pattern(proci="?proc2",surfacei="?surface2",surfaceiLabel="?surface2Label"),
@@ -71,6 +72,39 @@ list_procedures_that_have_potential_duplicates <- function(verbose=F)
   write.table(res,quote=F,row.names=F);
   res <<- res;
   return(res==0||nrow(res) == 0)
+}
+
+get_single_dupe_group <- function (...)
+    { sparql_interpolate(
+        "BIND('date' AS ?date)",
+        "BIND(<proc>as ?proc1)",
+        "BIND(<tooth> as ?toothi)",
+        "BIND(<patient> AS ?patienti)",
+        "OPTIONAL",
+        "{  ?proc1 has_participant: ?surface1 .",
+        "   ?surface1 rdf:type tooth_surface: .",
+        "   ?surface1 is_part_of: ?toothi . ",
+        "}",
+        tooth_or_surface_procedure_pattern(proci="?proc2",surfacei="?surface2",surfaceiLabel="?surface2Label"),
+        "FILTER ((((bound(?surface1)&&bound(?surface2))&&(?surface1=?surface2))||(!bound(?surface1)))||(!bound(?surface2)))",
+        #        if(verbose) "?proc1 rdfs:label ?proc1Label.",
+        #        if(verbose) "?proc2 rdfs:label ?proc2Label.",
+        "}")}
+
+list_procedures_that_have_potential_duplicates_the_hard_way <- function(verbose=F)
+{ reset_var_counter();
+  basic <- which_procedures_have_potential_duplicates_query(only.conflict=T)
+  anchors <- queryc(basic);
+  colnames(anchors) # [1] "representative" "date"           "toothi"         "toothiLabel"    "count"          "surface"        "surfaceLabel"   "conflict"
+  all <- c();
+  for (i  in 1:nrow(anchors))
+      { all <- c(queryc("SELECT distinct ?proc2 where {",
+                          get_single_dupe_group(patient=paste0("<",anchors[i,"patienti"],">"),
+                                                proc=paste0("<",anchors[i,"representative"],">"),
+                                                tooth=paste0("<",anchors[i,"toothi"],">"),
+                                                date=paste0("\"",anchors[i,"date"],"\"^^xsd:date"))),all)
+    }
+  all
 }
 
 check_processes_have_occurrence_date <- function()
