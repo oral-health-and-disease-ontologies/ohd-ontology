@@ -75,10 +75,14 @@ difference_in_years <- function(start,end)
 prepare_survival_correlates <- function(s)
     { s$correlates <- rbind(data.frame(location=as.factor(s$fail[,"tooth_type"]),
                                        gender=as.factor(s$fail[,"gender"]),
-                                       age=s$age_at_fail),
+                                       age=s$age_at_fail,
+                                       patient=s$fail[,"patienti"],
+                                       fail=TRUE),
                             data.frame(location=as.factor(s$have_last_visit[,"tooth_type"]),
                                        gender=as.factor(s$have_last_visit[,"gender"]),
-                                       age=s$age_at_last_visit))
+                                       age=s$age_at_last_visit,
+                                       patient=s$have_last_visit[,"patienti"],
+                                       fail=FALSE))
       # divide the ages into bins, [0,18) , [18-30), [30,60), over 60
       s$correlates[,"age_group"] <- as.factor(cut(s$correlates[,"age"],breaks=c(0,18,30,60,100)));
   }
@@ -214,15 +218,19 @@ plot.rsurv <- function (sa,plotWrap=bplotf)
 }
 
 
-## # if factors, number of events for each factor
-## summary_text <- function(surv,correlate)
-##     { levels <- levels(as.factor(lastrsurv$correlates[,correlate]))
-##       f <- surv$fail;
-##       c <- surv$have_last_visit;
-##       factor_summary <- function(factor,value)
-##           { patient_count <- length(unique(a[(a[,factor]==value),"patienti"]));
-##             failures_count <- length(f[(f[,factor]==value),])
-##             censored_count <- length(c[(c[,factor]==value),])
+# if factors, number of events for each factor
+summary_text <- function(surv,correlate)
+    { levels <- levels(as.factor(lastrsurv$correlates[,correlate]))
+      c <- surv$correlates;
+      factor_summary <- function(value,factor=correlate)
+          { patient_count <- length(unique(c[(c[,factor]==value),"patient"]));
+            event_count <- nrow(c[(c[,factor]==value),])
+            failures_count <- nrow(c[(c[,factor]==value &  c[,"fail"]),]);
+            paste0(value,": ",patient_count, " patients", ", ",event_count," events of which ",failures_count," were failures")
+        }
+      do.call(paste,args=c(lapply(as.list(levels),factor_summary),sep="\n"))
+  }
+
 
 
 
