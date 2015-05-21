@@ -93,12 +93,7 @@
 	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-with-number t))
 	 (setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
 	 (setf tooth-uri (get-eaglesoft-tooth-iri patient-id tooth-type-uri))
-
-	 (push `(declaration (named-individual ,tooth-uri)) axioms)
-	 ;;(push `(class-assertion ,tooth-type-uri ,tooth-uri) axioms)	     
-         ;; note: append puts lists together and doesn't put items in list (like push)
-	 (setf temp-axioms (get-ohd-instance-axioms tooth-uri tooth-type-uri))
-	 (setf axioms (append temp-axioms axioms))
+	 (push-instance axioms tooth-uri tooth-type-uri)
 	 
          ;; add annotation about tooth
 	 (push `(annotation-assertion !rdfs:label 
@@ -109,10 +104,7 @@
          ;; declare instance of !ohd:'tooth to be filled role'
 	 (setf crown-role-uri
 	       (get-eaglesoft-tooth-to-be-crowned-role-iri patient-id tooth record-count))
-		
-	 (push `(declaration (named-individual ,crown-role-uri)) axioms)
-	 (setf temp-axioms (get-ohd-instance-axioms crown-role-uri !'tooth to be crowned role'@ohd))
-	 (setf axioms (append temp-axioms axioms))
+	 (push-instance axioms crown-role-uri !'tooth to be crowned role'@ohd)
 
 	 ;; add annotation about 'tooth to be crowned role'
 	 (push `(annotation-assertion !rdfs:label 
@@ -125,10 +117,7 @@
 	 (setf crown-material-uri 
 	       (get-eaglesoft-crown-material-iri 
 		patient-id tooth-name material-type-uri record-count))
-
-	 (push `(declaration (named-individual ,crown-material-uri)) axioms)
-	 (setf temp-axioms (get-ohd-instance-axioms crown-material-uri !'dental restoration material'@ohd))
-	 (setf axioms (append temp-axioms axioms))
+	 (push-instance axioms crown-material-uri material-type-uri)
 
 	 ;; add annotation about this instance of material
 	 (setf material-name (get-ohd-material-name ada-code))
@@ -142,10 +131,7 @@
 	 (setf crown-restoration-uri
 	       (get-eaglesoft-crown-restoration-iri
 		patient-id tooth-name restoration-type-uri record-count))
-	 
-	 (push `(declaration (named-individual ,crown-restoration-uri)) axioms)
-	 (setf temp-axioms (get-ohd-instance-axioms crown-restoration-uri !'crown restoration'@ohd))
-	 (setf axioms (append temp-axioms axioms))
+	 (push-instance axioms crown-restoration-uri !'crown restoration'@ohd)
 	 
 	 ;; add annotation about this restoration procedure
 	 (push `(annotation-assertion !rdfs:label 
@@ -165,9 +151,7 @@
          ;; declare instance of cdt code as identified by the ada code that is about the procedure
 	 (setf cdt-class-uri (get-cdt-class-iri ada-code))
 	 (setf cdt-uri (get-eaglesoft-cdt-instance-iri patient-id ada-code cdt-class-uri record-count))
-	 (push `(declaration (named-individual ,cdt-uri)) axioms)
-	 (setf temp-axioms (get-ohd-instance-axioms cdt-uri cdt-class-uri))
-	 (setf axioms (append temp-axioms axioms))
+	 (push-instance axioms cdt-uri cdt-class-uri)
 	 
 	 ;; add annotion about cdt code
 	 (push `(annotation-assertion !rdfs:label

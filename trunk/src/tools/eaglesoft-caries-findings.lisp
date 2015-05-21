@@ -55,6 +55,7 @@
 		     (#"getString" results "r21_provider_id")
 		     (#"getString" results "r21_provider_type")
 		     (#"getString" results "action_code")
+		     (#"getString" results "description")
 		     (#"getString" results "row_id")))
 		(incf count))))
 
@@ -63,7 +64,7 @@
 
 
 (defun get-eaglesoft-caries-finding-axioms
-    (patient-id occurrence-date tooth-data surface provider-id provider-type action-code record-count)
+    (patient-id occurrence-date tooth-data surface provider-id provider-type action-code description record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(patient-uri nil)
@@ -97,10 +98,7 @@
 	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-with-number t))
 	 (setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
 	 (setf tooth-uri (get-eaglesoft-tooth-iri patient-id tooth-type-uri))
-
-	 (push `(declaration (named-individual ,tooth-uri)) axioms)
-	 (setf temp-axioms (get-ohd-instance-axioms tooth-uri tooth-type-uri))
-	 (setf axioms (append temp-axioms axioms))
+	 (push-instance axioms tooth-uri tooth-type-uri)
 
 	 ;; add annotation about tooth
 	 (push `(annotation-assertion
@@ -113,8 +111,7 @@
 
 	 ;; declare instance of the carious lesion
 	 (setf lesion-uri (get-eaglesoft-carious-lesion-iri patient-id tooth-name record-count))
-	 (setf temp-axioms (get-ohd-instance-axioms lesion-uri !'carious lesion of tooth'@ohd))
-	 (setf axioms (append temp-axioms axioms))
+	 (push-instance axioms lesion-uri !'carious lesion of tooth'@ohd)
 
 	 ;; add annotation about lesion
 	 (push `(annotation-assertion
@@ -130,8 +127,7 @@
 	 (setf finding-uri
 	       (get-eaglesoft-finding-iri
 		patient-id description :tooth-num tooth :instance-count record-count))
-	 (setf temp-axioms (get-ohd-instance-axioms finding-uri !'caries finding'@ohd))
-	 (setf axioms (append temp-axioms axioms))
+	 (push-instance axioms finding-uri !'caries finding'@ohd)
 
          ;; add annotation about caries finding
 	 (push `(annotation-assertion
@@ -143,7 +139,7 @@
 	 (push `(object-property-assertion !'is about'@ohd ,finding-uri ,lesion-uri) axioms)
 
          ;; instance of caries finding is the specified output of the dental exam
-	 ;;(push `(object-property-assertion !'has_specified_output'@ohd ,exam-uri ,finding-uri) axioms)
+         (push `(object-property-assertion !'has_specified_output'@ohd ,exam-uri ,finding-uri) axioms)
 
          ;; add data property !ohd:'occurrence date' of the caries finding
 	 (push `(data-property-assertion
@@ -162,10 +158,7 @@
 
 	      ;; create and instance of this surface
 	      (setf surface-uri (get-eaglesoft-surface-iri patient-id surface-type-uri tooth-name))
-	      (push `(declaration (named-individual ,surface-uri)) axioms)
-	      (setf temp-axioms (get-ohd-instance-axioms surface-uri surface-type-uri))
-	      (setf axioms (append temp-axioms axioms))
-
+	      (push-instance axioms surface-uri surface-type-uri)
 
 	      ;; relate surface to tooth
 	      (push `(object-property-assertion !'is part of'@ohd ,surface-uri ,tooth-uri) axioms)
@@ -238,6 +231,7 @@ Only records that contain surface data are returned
                  r21_provider_id,
                  r21_provider_type,
                  row_id,
+                 action_code, 
                  description,
                  get_surface_summary_from_detail(surface_detail, tooth) as surface "))
 

@@ -41,8 +41,8 @@
 	 (setf query (get-eaglesoft-dental-exam-tooth-findings-query
 		      :patient-id patient-id :r21-provider-id r21-provider-id :limit-rows limit-rows))
 
-	 ;; get records from eaglesoft for which there was an exam, but no findinings where reported
-	 (setf query (get-eaglesoft-dental-exams-with-no-findings-query 
+	 ;; get records from eaglesoft for which there was an exam, but no findings where reported
+	 (setf query (get-eaglesoft-dental-exams-query 
 		      :patient-id patient-id :r21-provider-id r21-provider-id :limit-rows limit-rows))
 
 	 (with-eaglesoft (results query)
@@ -67,120 +67,8 @@
       ;; return the ontology
       (values ont count))))
 
-;; the function has been repalaced by the function of the same name in r21-utiliities
-;; (defun get-eaglesoft-dental-exam-axioms (patient-id occurrence-date provider-id provider-type record-id)
-;;   "Returns a list of axioms about patient's dental exams."
-;;   (let ((axioms nil)
-;; 	(temp-axioms nil)	  ; used for appending instance axioms
-;; 	(exam-uri nil)
-;; 	(exam-name nil)
-;; 	(visit-uri nil)
-;; 	(provider-role-uri nil)
-;; 	(patient-role-uri nil))
 
-;;     ;; get axioms for instance of exam
-;;     (setf exam-uri (get-eaglesoft-dental-exam-iri patient-id occurrence-date))
-;;     (setf temp-axioms (get-ohd-instance-axioms exam-uri !'dental exam'@ohd))
-;;     (setf axioms (append temp-axioms axioms))
-
-;;     ;; format exam's label and add annotation
-;;     (setf exam-name (get-eaglesoft-dental-exam-name patient-id occurrence-date))
-;;     (push `(annotation-assertion !rdfs:label ,exam-uri ,exam-name) axioms)
-
-;;     ;; add data property !ohd:'occurrence date' of the exam
-;;     (push `(data-property-assertion
-;; 	    !'occurrence date'@ohd
-;; 	    ,exam-uri
-;; 	    (:literal ,occurrence-date !xsd:date)) axioms)
-
-;;     ;; get the visit that the dental exam is part of
-;;     (setf visit-uri (get-eaglesoft-dental-visit-iri patient-id occurrence-date))
-;;     (push `(object-property-assertion !'is part of'@ohd ,exam-uri ,visit-uri) axioms)
-    
-
-;;     ;; get patient-role and provider-role iri
-;;     (setf patient-role-uri (get-eaglesoft-dental-patient-role-iri patient-id))
-
-;;     ;; if provider has been identified as a specific person use r21-provider-id;
-;;     ;; otherwise use record-id
-;;     (cond
-;;       ((equalp provider-type "person")
-;;        (setf provider-role-uri (get-eaglesoft-dental-provider-role-iri provider-id)))
-;;       (t
-;;        (setf provider-role-uri (get-eaglesoft-dental-provider-role-iri "x" :anonymous-id record-id))))
-
-;;     ;; exam realizes patient-role and provider-role
-;;     (push `(object-property-assertion !'realizes'@ohd ,exam-uri ,patient-role-uri) axioms)
-;;     (push `(object-property-assertion !'realizes'@ohd ,exam-uri ,provider-role-uri) axioms)
-
-;;     ;; return axioms
-;;     axioms))
-
-
-(defun get-eaglesoft-dental-exams-query (&key patient-id r21-provider-id limit-rows)
-  "Returns query string for retrieving exam data. The r21-provider-id key restricts records only that provider or providers as identified in the r21_provider table.  Multiple are providers are specified using commas; e.g: \"123, 456, 789\".  The limit-rows key restricts the number of records to the number specified."
-  (let ((sql nil))
-
-    ;; build query string
-    (setf sql "SET rowcount 0 ")
-
-    ;; determine number of rows for SELECT clause
-    (cond
-      (limit-rows
-       (setf limit-rows (format nil "~a" limit-rows)) ;ensure that limit rows is a string
-       (setf sql (str+ sql " SELECT  TOP " limit-rows " ")))
-      (t (setf sql (str+ sql " SELECT "))))
-
-    ;; SELECT clause
-    (setf sql
-	  (str+ sql
-		"table_name,
-                 date_entered,
-                 date_completed,
-                 tran_date,
-                 patient_id,
-                 r21_provider_id,
-                 r21_provider_type,
-                 row_id,
-                 action_code,
-                 description, 
-                 tooth_data "))
-
-    ;; FROM clause
-    (setf sql (str+ sql " FROM patient_history "))
-
-    ;; WHERE clause
-    ;; pull out records that have action codes and tooth_data
-    ;; note: I am looking at conditions that have tooth data associated with them
-    ;; there are three records for missing teeth action code (i.e., 1) but no tooth data
-    ;; I am ingnoring these records (they don't make sense)
-    (setf sql
-	  (str+ sql
-		"WHERE action_code <> 'n/a' " 
-		"AND action_code IS NOT NULL "
-		"AND tooth_data IS NOT NULL "))
-    
-    
-    ;; criteria for WHERE clause
-    (cond
-      (;; check for patient id
-       patient-id
-       (setf sql
-	     (str+ sql " AND patient_id IN (" (get-single-quoted-list patient-id) ") ")))
-
-      (;; check for r21-provider-id
-       r21-provider-id
-       (setf sql
-	     (str+ sql " AND r21_provider_id IN (" (get-single-quoted-list r21-provider-id) ") "))))
-
-    ;; ORDER BY clause
-    (setf sql (str+ sql " ORDER BY patient_id  "))
-
-    ;; return query string
-    ;;(pprint sql)
-    sql))
-
-(defun get-eaglesoft-dental-exams-with-no-findings-query (&key patient-id r21-provider-id limit-rows)
+(defun get-eaglesoft-dental-exams-query (&key patient-id limit-rows)
   "Returns query string for retrieving exam data. The r21-provider-id key restricts records only that provider or providers as identified in the r21_provider table.  Multiple are providers are specified using commas; e.g: \"123, 456, 789\".  The limit-rows key restricts the number of records to the number specified."
   (let ((sql nil))
 
@@ -210,12 +98,8 @@
                  c.action_code "))
 
     ;; FROM clause
-    (setf sql (str+ sql 
-		    " FROM patient_history h "
-		    " LEFT JOIN patient_conditions c "
-		    " ON h.patient_id = c.patient_id "
-		    " AND h.tran_date = c.date_entered "))
-
+    (setf sql (str+ sql  " FROM patient_history h "))
+    
     ;; WHERE clause
     ;; pull out oral evaluations cdt codes
     (setf sql
@@ -233,23 +117,9 @@
                OR action_code <> 'n/a' "))
 
     ;; further criteria on WHERE clause
-    (cond
-      (;; check for patient id
-       patient-id
-       (setf sql
-	     (str+ sql
-		   " WHERE patient_id IN (" (get-single-quoted-list patient-id) ") "
-		   " AND r21_provider_id IN (" (get-single-quoted-list r21-provider-id) ") ")))
-      (t ;; check for patient-id and r21-provider-id separately
-       ;; check for patient id
-       (when patient-id
-	 (setf sql
-	       (str+ sql " WHERE patient_id IN (" (get-single-quoted-list patient-id) ") ")))
-
-      (;; check for r21-provider-id
-       r21-provider-id
-       (setf sql
-	     (str+ sql " AND h.r21_provider_id IN (" (get-single-quoted-list r21-provider-id) ") "))))
+    (when patient-id
+      (setf sql
+	    (str+ sql " WHERE h.patient_id IN (" (get-single-quoted-list patient-id) ") ")))
 
     ;; ORDER BY clause
     (setf sql (str+ sql " ORDER BY h.patient_id  "))
