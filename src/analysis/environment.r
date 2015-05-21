@@ -1,3 +1,4 @@
+
 ## Author: Alan Ruttenberg
 ## Project: OHD
 ## Date: May, 2013
@@ -178,9 +179,10 @@ bplotf <- function (f,index=1,filebase="rsvg")
         browseURL(paste0("file://",filename))})
   }
 
-sparqlUpdate <- function (...,endpoint=current_sparql_endpoint,doit=TRUE,trace=trace_sparql_queries)
+sparqlUpdate <- function (...,endpoint=paste0(current_endpoint,"/statements"),doit=TRUE,trace=trace_sparql_queries)
     { if (send_queries_to_workbench) { sparqlUpdatew(...); return(NULL);}
-    update <- querystring(paste(...,sep="\n"));
+      clearSPARQLSessionCache();
+      update <- querystring(paste(...,sep="\n"));
     if (trace) { print(endpoint);cat(update) }
     if (doit) { postForm(endpoint,update=update,style='POST') }
   }
@@ -252,11 +254,12 @@ checkSPARQLSyntax <-function(querystring)
   }
         
 sparqlUpdatew <- function (...,endpoint=current_sparql_endpoint,doit=TRUE,trace=trace_sparql_queries)
-  { update <- querystring(paste(...,sep="\n"));
-  if (file.exists("/tmp/sparql.sparql")) { file.remove("/tmp/sparql.sparql") }
-  write(update,file="/tmp/sparql.sparql");
-    result <- suppressWarnings(system("osascript putsparql.scpt http://127.0.0.1:8080/graphdb-workbench-ee/update /tmp/sparql.sparql 2>&1",intern=T))
-}
+    { clearSPARQLSessionCache();
+      update <- querystring(paste(...,sep="\n"));
+      if (file.exists("/tmp/sparql.sparql")) { file.remove("/tmp/sparql.sparql") }
+      write(update,file="/tmp/sparql.sparql");
+      result <- suppressWarnings(system("osascript putsparql.scpt http://127.0.0.1:8080/graphdb-workbench-ee/update /tmp/sparql.sparql 2>&1",intern=T))
+  }
     
 queryw <- function (...,prefixes=default_ohd_prefixes,endpoint,trace)
   { 

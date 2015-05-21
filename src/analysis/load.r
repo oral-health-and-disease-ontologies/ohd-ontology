@@ -40,3 +40,4 @@ source("sparql-template.r")
 source("sparql-patterns.r")
 source("ggsurv.r")
 source("check-integrity.r")
+cat("\n\nDo the analysis with analysis<- resin_restoration_survival_analysis();\nPlot the results with plot(analysis)\n\n");

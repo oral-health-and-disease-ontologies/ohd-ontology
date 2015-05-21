@@ -75,7 +75,7 @@ test_next_link_query <- function()
     plot(hist(as.numeric(as.numeric(result[,2])),plot=FALSE,breaks=20),
          xlab="Total number of visits",
          ylab="Number of patients",
-         main=paste("Number of encounters per patient (",length(res$visits)," patients)",sep=""),
+         main=paste("Number of encounters per patient (",length(result$visits)," patients)",sep=""),
          );
     dev.off()
     browseURL(svgfn)
