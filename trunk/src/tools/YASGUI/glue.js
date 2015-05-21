@@ -37,7 +37,9 @@ CodeMirror=YASQE;
 
 YASR.plugins.table.defaults.fetchTitlesFromPreflabel=false;
 YASR.plugins.table.defaults.mergeLabelsWithUris=true;
-YASR.plugins.table.defaults.useGoogleCharts=false;
+
+YASR.defaults.useGoogleCharts=false;
+YASR.defaults.outputPlugins=["table", "error", "boolean", "rawResponse"]//, "pivot", "gchart"]
 
 YASQE.defaults.sparql.endpoint="http://127.0.0.1:8080/openrdf-sesame/repositories/OHDRL20150416"
 YASQE.defaults.collapsePrefixesOnLoad = true
