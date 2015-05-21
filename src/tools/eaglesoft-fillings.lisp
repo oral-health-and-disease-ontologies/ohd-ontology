@@ -11,8 +11,6 @@
 ;; only tests that these tables exist in the user's database. If these table need to be 
 ;; recreated, the call get-eaglesoft-fillings-ont with :force-create-table key set to t.
 
-(defparameter *resin-count* 0)
-
 (defun get-eaglesoft-fillings-ont (&key patient-id tooth limit-rows force-create-table)
   "Returns an ontology of the fillings contained in the Eaglesoft database. The patient-id key creates an ontology based on that specific patient. The tooth key is used to limit results to a specific tooth, and can be used in combination with the patient-id. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables."
 
@@ -109,12 +107,7 @@
 	 (setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
 	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-with-number t))
 	 (setf tooth-uri (get-eaglesoft-tooth-iri patient-id tooth-type-uri))
-	 	 	 
-	 (push `(declaration (named-individual ,tooth-uri)) axioms)
-	 
-         ;; note: append puts lists together and doesn't put items in list (like push)
-	 (setf temp-axioms (get-ohd-instance-axioms tooth-uri tooth-type-uri))
-	 (setf axioms (append temp-axioms axioms))
+	 (push-instance axioms tooth-uri tooth-type-uri)
 	 
          ;; add annotation about tooth
 	 (push `(annotation-assertion !rdfs:label 
@@ -125,10 +118,7 @@
          ;; declare instance of !ohd:'tooth to be filled role'
 	 (setf tooth-role-uri (get-eaglesoft-tooth-to-be-filled-role-iri 
 			       patient-id tooth-name record-count))
-	 
-	 (push `(declaration (named-individual ,tooth-role-uri)) axioms)
-	 (setf temp-axioms (get-ohd-instance-axioms tooth-role-uri !'tooth to be filled role'@ohd))
-	 (setf axioms (append temp-axioms axioms))
+	 (push-instance axioms tooth-role-uri !'tooth to be filled role'@ohd)
 
 	 ;; add annotation about 'tooth to be filled role'
 	 (push `(annotation-assertion !rdfs:label 
@@ -141,12 +131,9 @@
 	 (setf ohd-material-uri (get-ohd-material-uri ada-code))
 	 (setf material-uri (get-eaglesoft-filling-material-iri 
 			     patient-id tooth-name ohd-material-uri record-count))
-
-	 (push `(declaration (named-individual ,material-uri)) axioms)
-	 (setf temp-axioms (get-ohd-instance-axioms material-uri ohd-material-uri))
-	 (setf axioms (append temp-axioms axioms))
-
-	 ;; add annotation about this instance of material
+	 (push-instance axioms material-uri ohd-material-uri)
+	 
+         ;; add annotation about this instance of material
 	 (setf material-name (get-ohd-material-name ada-code))
 	 (push `(annotation-assertion !rdfs:label 
 				      ,material-uri
@@ -157,14 +144,9 @@
 	 (setf ohd-restoration-uri (get-eaglesoft-filling-restoration-uri ada-code))
 	 (setf restoration-uri (get-eaglesoft-filling-restoration-iri 
 				patient-id tooth-name ohd-restoration-uri record-count))
-
-	 (if (equalp restoration-uri !'resin filling restoration'@ohd) (incf *resin-count*))
-	     
-	 (push `(declaration (named-individual ,restoration-uri)) axioms)
-	 (setf temp-axioms (get-ohd-instance-axioms restoration-uri ohd-restoration-uri))
-	 (setf axioms (append temp-axioms axioms))
-
-	 ;; add annotation about this restoration procedure
+	 (push-instance axioms restoration-uri ohd-restoration-uri)
+	 
+         ;; add annotation about this restoration procedure
 	 (setf restoration-name (get-eaglesoft-filling-restoration-name ada-code))
 	 (push `(annotation-assertion !rdfs:label 
 				      ,restoration-uri
@@ -190,11 +172,8 @@
 	      
 	      ;; create and instance of this surface
 	      (setf surface-uri (get-eaglesoft-surface-iri patient-id surface-type-uri tooth-name))
-	      (push `(declaration (named-individual ,surface-uri)) axioms)
-	      (setf temp-axioms (get-ohd-instance-axioms surface-uri surface-type-uri))
-	      (setf axioms (append temp-axioms axioms))
+	      (push-instance axioms surface-uri surface-type-uri)
 
-	      
 	      ;; relate surface to tooth
 	      (push `(object-property-assertion !'is part of'@ohd ,surface-uri ,tooth-uri) axioms)
 	      
@@ -367,6 +346,8 @@
        (setf restoration-name "resin"))
       ((member ada-code *gold-code-list* :test 'equalp)
        (setf restoration-name "gold"))
+      ((member ada-code *procelain-code-list* :test 'equalp)
+       (setf restoration-name "procelain"))
       (t (setf restoration-name "other")))
 
     ;; return material name
@@ -386,6 +367,8 @@
        (setf restoration-uri !'resin filling restoration'@ohd))
       ((member ada-code *gold-code-list* :test 'equalp)
        (setf restoration-uri !'gold filling restoration'@ohd))
+      ((member ada-code *procelain-code-list* :test 'equalp)
+       (setf restoration-uri !'porcelain filling restoration'@ohd))
       (t (setf restoration-uri !'filling restoration'@ohd)))
 
     ;; return restoration

@@ -331,6 +331,7 @@ Usage:
     ;; return axioms
     axioms))
 
+
 (defun get-ohd-instance-axioms (instance class)
   "Returns a list of axioms that 1) asserts the 'instance' to be a member of 'class'; 2) annotates that 'class' is a 'asserted type' of 'instance'."
   (let ((axioms nil))
@@ -413,15 +414,15 @@ Usage:
       ((member ada-code *titanium-code-list* :test 'equalp)
        (setf material-name "titanium"))
       ((member ada-code *three-fourths-ceramic-code-list* :test #'equalp)
-       (setf material-name "3/4 ceramic"))
+       (setf material-name "ceramic"))
       ((member ada-code *three-fourths-high-noble-metal-code-list* :test #'equalp)
-       (setf material-name "3/4 predominantly high noble metal"))
+       (setf material-name "predominantly high noble metal"))
       ((member ada-code *three-fourths-noble-metal-code-list* :test #'equalp)
-       (setf material-name "3/4 predominantly noble metal"))
+       (setf material-name "predominantly noble metal"))
       ((member ada-code *three-fourths-predominantly-base-metal-code-list* :test #'equalp)
-       (setf material-name "3/4 predominantly base metal"))
+       (setf material-name "predominantly base metal"))
       ((member ada-code *three-fourths-resin-code-list* :test #'equalp)
-       (setf material-name "3/4 resin"))
+       (setf material-name "resin"))
       (t (setf material-name "dental restoration material")))
 
     ;; return material name
@@ -432,7 +433,7 @@ Usage:
   (let ((material-uri nil))
     ;; get the numeric part of code
     (setf ada-code (str-right ada-code 4))
-
+    
     ;; compare ada code to respective global code lists
     (cond
       ((member ada-code *amalgam-code-list* :test 'equalp)
@@ -472,18 +473,19 @@ Usage:
       ((member ada-code *titanium-code-list* :test 'equalp)
        (setf material-uri !'titanium dental restoration material'@ohd))
       ((member ada-code *three-fourths-ceramic-code-list* :test #'equalp)
-       (setf material-uri !'3/4 ceramic dental restoration material))
+       (setf material-uri !'ceramic dental restoration material'@ohd))
       ((member ada-code *three-fourths-high-noble-metal-code-list* :test #'equalp)
-       (setf material-uri !'3/4 high noble metal dental restoration material))
+       (setf material-uri !'high noble metal dental restoration material'@ohd))
       ((member ada-code *three-fourths-noble-metal-code-list* :test #'equalp)
-       (setf material-uri !'3/4 noble metal dental restoration material))
+       (setf material-uri !'noble metal dental restoration material'@ohd))
       ((member ada-code *three-fourths-predominantly-base-metal-code-list* :test #'equalp)
-       (setf material-uri !'3/4 predominantly base metal dental restoration material))
+       (setf material-uri !'predominantly base metal dental restoration material'@ohd))
       ((member ada-code *three-fourths-resin-code-list* :test #'equalp)
-       (setf material-uri !'3/4 resin dental restoration material))
+       (setf material-uri !'resin dental restoration material'@ohd))
       (t
        (setf material-uri !'dental restoration material'@ohd)))
 
+    
     ;; return material uri
     material-uri))
 
@@ -565,12 +567,9 @@ Usage:
 
 (defun get-eaglesoft-finding-iri (patient-id description 
 				  &key tooth-name tooth-num instance-count finding-type occurrence-date)
-  "Determine the iri of an individual/instance of finding based on the finding's description."
+  "Determine the iri of an individual/instance of finding"
   (let ((finding-uri nil))
-    ;; make sure action-code is a string
-    (setf action-code (string-trim " " (format nil "~a" action-code)))
-
-    ;; get uri for instance of fininding
+    ;; get uri for instance of finding
     (setf finding-uri
 	  (get-unique-individual-iri patient-id
 				     :salt *eaglesoft-salt*
@@ -673,7 +672,9 @@ Usage:
 (defun create-eaglesoft-ontologies (&key patient-id r21-provider-id
 				    limit-rows save-to-path force-create-table)
   "Creates the suite of ontologies based on the Eaglesoft database. These ontologies are then returned in an associated list. The patient-id key creates the ontologies based on that specific patient. The r21-provider-id key creates a provider ontology based on the provider identified by the id. The limit-rows key restricts the number of records returned from the database.  It is primarily used for testing. When the save-to-path key (as a string) is provided, the created ontologies will saved to the specified path.  The force-create-table key is used to force the program to recreate the actions_codes and patient_history tables.
-As an example of use, this call would create the ontologies for patient 3000: (create-eaglesoft-ontologies :patient-id 3000 :save-to-path \"/Users/williamduncan/Desktop/patient-3000/patient-3000-\")"
+As an example of use, this call would create the ontologies for patient 3000: (create-eaglesoft-ontologies :patient-id 3000 :save-to-path \"/Users/williamduncan/Desktop/patient-3000/patient-3000-\").
+And this call would create all the ontologies with the prefix \"r21-eaglesoft-\" in the ontologies directory:
+    (create-eaglesoft-ontologies :save-to-path \"/Users/williamduncan/repos/svn/ohd-origninal/src/ontology/pitt-ub-ohsu-r21/r21-eaglesoft-\")"
   (let ((crowns nil)
 	(dental-patients nil)
 	(dental-providers nil)
@@ -1707,6 +1708,8 @@ FROM
   transactions
 WHERE
   type = 'S'
+AND
+  status = 'A'
 AND
   -- There are some wacky dates in the db, so limit dates to 1999-2011
   YEAR(tran_date) BETWEEN 1999 AND 2011

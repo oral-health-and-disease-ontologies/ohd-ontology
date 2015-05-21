@@ -54,6 +54,7 @@
 		     (#"getString" results "r21_provider_id")
 		     (#"getString" results "r21_provider_type")
 		     (#"getString" results "action_code")
+		     (#"getString" results "description")
 		     (#"getString" results "row_id")))
 		(incf count))))
 
@@ -63,13 +64,14 @@
 
 
 (defun get-eaglesoft-unerupted-tooth-finding-axioms 
-    (patient-id occurrence-date tooth-data provider-id provider-type action-code record-count)
+    (patient-id occurrence-date tooth-data provider-id provider-type action-code description record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(patient-uri nil)
 	(finding-uri nil)
 	(exam-uri nil)
 	(tooth-uri nil)
+	(tooth-name nil)
 	(tooth-type-uri nil)
 	(teeth-list nil))
 
@@ -93,25 +95,21 @@
 	 ;; declare tooth instance; for now each tooth will be and instance of !fma:tooth
 	 (setf tooth-type-uri (number-to-fma-tooth tooth :return-tooth-uri t))
 	 (setf tooth-uri (get-eaglesoft-tooth-iri patient-id tooth-type-uri))
-	 
-	 (push `(declaration (named-individual ,tooth-uri)) axioms)
-	 (setf temp-axioms (get-ohd-instance-axioms tooth-uri tooth-type-uri))
-	 (setf axioms (append temp-axioms axioms))
-
+	 (setf tooth-name (number-to-fma-tooth tooth :return-tooth-with-number t))
+	 (push-instance axioms tooth-uri tooth-type-uri)
+	 	 
          ;; add annotation about tooth
 	 (setf tooth (format nil "~a" tooth)) ; ensure tooth is a string
 	 (push `(annotation-assertion !rdfs:label 
 				      ,tooth-uri
-				      ,(str+ "tooth " tooth 
-					     " of patient " patient-id)) axioms)
+				      ,(str+ tooth-name " of patient " patient-id)) axioms)
 	 
          ;; declare instance of !ohd:'unerupted tooth finding'
 	 (setf finding-uri 
 	       (get-eaglesoft-finding-iri 
 		patient-id description :tooth-num tooth  :instance-count record-count))
-	 (setf temp-axioms (get-ohd-instance-axioms finding-uri !'unerupted tooth finding'@ohd))
-	 (setf axioms (append temp-axioms axioms))
-
+	 (push-instance axioms finding-uri !'unerupted tooth finding'@ohd)
+	 
          ;; add annotation about unerupted tooth finding
 	 (push `(annotation-assertion 
 		 !rdfs:label 

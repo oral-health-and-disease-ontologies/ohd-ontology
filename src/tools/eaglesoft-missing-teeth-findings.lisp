@@ -54,6 +54,7 @@
 		     (#"getString" results "r21_provider_id")
 		     (#"getString" results "r21_provider_type")
 		     (#"getString" results "action_code")
+		     (#"getString" results "description")
 		     (#"getString" results "row_id")))
 		(incf count))))
 
@@ -61,7 +62,7 @@
       (values ont count))))
 
 (defun get-eaglesoft-missing-tooth-finding-axioms 
-    (patient-id occurrence-date tooth-data provider-id provider-type action-code record-count)
+    (patient-id occurrence-date tooth-data provider-id provider-type action-code description record-count)
   (let ((axioms nil)
 	(temp-axioms nil) ; used for appending new axioms into the axioms list
 	(patient-uri nil)
@@ -107,12 +108,8 @@
          ;; get iri for secondary dentition
 	 (setf dentition-uri
 	       (get-eaglesoft-secondary-dentition-iri patient-id))
+	 (push-instance axioms dentition-uri !'Secondary dentition'@ohd)
 	 
-         ;; make dentition instance of 'Secondary dentition'
-	 (setf dentition-type-uri !'Secondary dentition'@ohd)
-	 (setf temp-axioms (get-ohd-instance-axioms dentition-uri dentition-type-uri))
-	 (setf axioms (append temp-axioms axioms))
-
 	 (push `(annotation-assertion 
 		 !rdfs:label 
 		 ,dentition-uri
