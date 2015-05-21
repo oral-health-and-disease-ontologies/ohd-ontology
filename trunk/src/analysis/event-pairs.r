@@ -67,6 +67,7 @@ collect_all_restorations_and_latest_encounter_after <-function ()
     { queryc("select distinct ?proci1 ?date1 ?birthdate ?latest_date2 ",
              "  (coalesce(?is_male,?is_female,\"unrecorded\") as ?gender)",
              "  (coalesce(?is_anterior,?is_posterior) as ?tooth_type)",
+             " ?patienti",
            "where{",
            "  {select distinct ?patienti ?proci1 ?date1 ?toothi ?surfacei (max(?date2) as ?latest_date2) ",
            "    where {",

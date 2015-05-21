@@ -138,6 +138,7 @@ check_oral_evaluations_have_findings <-function()
     "  filter(?what != cdt_code:)",
     "filter (!bound(?has_it))",
     "}");
+  print(result);
   if (length(result)==0||result==0) {return(TRUE)}
   else
       {warning(paste0("Found ",result,". you probably need to run patch_oral_evaluations_have_findings"));
