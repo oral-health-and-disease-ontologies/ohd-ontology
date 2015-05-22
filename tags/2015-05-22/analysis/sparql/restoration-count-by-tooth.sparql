@@ -1,0 +1,27 @@
+## This query returns the number of dental procedures that have performed
+## on each type of tooth
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dental_procedure: <http://purl.obolibrary.org/obo/OHD_0000002>
+PREFIX asserted_type:<http://purl.obolibrary.org/obo/OHD_0000092>
+PREFIX tooth: <http://purl.obolibrary.org/obo/FMA_12516>
+PREFIX participates_in: <http://purl.obolibrary.org/obo/BFO_0000056>
+PREFIX tooth_number: <http://purl.obolibrary.org/obo/OHD_0000065>
+
+select distinct ?tooth (count(distinct ?proci) as ?count)
+where
+{
+  ## find each instance tooth and its type
+  ?toothi rdf:type tooth: .
+  ?toothi asserted_type: ?tootht .
+  
+  ## find the procedures the tooth participates in
+  ?proci rdf:type dental_procedure: .
+  ?toothi participates_in: ?proci .
+  
+  ## assign labels
+  ?tootht tooth_number: ?tooth .
+} 
+group by ?tooth
+order by desc(?count)

@@ -1,0 +1,22 @@
+## This query returns a count (i.e., number performed) for each type of restoration procedure
+## The results are restricted to procedures that use restorative material on the tooth's crown.
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX tooth_restoration_procedure: <http://purl.obolibrary.org/obo/OHD_0000004>
+PREFIX asserted_type:<http://purl.obolibrary.org/obo/OHD_0000092>
+
+select ?restoration_procedure (count(distinct ?proci) as ?count) 
+where 
+{
+  ## restoration procedure
+  ## find each instance restoration procedure
+  ?proct rdfs:subClassOf tooth_restoration_procedure: .
+  ?proci rdf:type ?proct .
+
+  ## assign label
+  ?proct rdfs:label ?restoration_procedure .
+  
+}
+group by ?restoration_procedure
+order by desc(?count)

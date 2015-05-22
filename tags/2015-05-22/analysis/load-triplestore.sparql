@@ -1,0 +1,69 @@
+## snippets for now
+
+PREFIX translated: <file:///triplestores/r21-owl/>
+load translated:r21-eaglesoft-crowns.owl;
+load translated:r21-eaglesoft-dental-patients.owl;
+load translated:r21-eaglesoft-dental-providers.owl;
+load translated:r21-eaglesoft-dental-visits.owl;
+load translated:r21-eaglesoft-endodontics.owl;
+load translated:r21-eaglesoft-fillings.owl;
+load translated:r21-eaglesoft-inlays.owl;
+load translated:r21-eaglesoft-onlays.owl;
+load translated:r21-eaglesoft-surgical-extractions.owl;
+load translated:r21-eaglesoft-veneers.owl;
+load translated:r21-eaglesoft-missing-teeth-findings.owl
+load translated:r21-eaglesoft-unerupted-teeth-findings.owl
+load translated:r21-eaglesoft-caries-findings.owl
+load translated:r21-eaglesoft-oral-evaluations.owl
+load translated:caro-imports.owl;
+load translated:cdt-imports.owl;
+load translated:fma-jaws-teeth.owl;
+load translated:iao-imports.owl;
+load translated:ncbi-imports.owl;
+load translated:obi-imports.owl;
+load translated:ontology-metadata.owl;
+load translated:protege-dc.owl;
+load translated:bfo2.owl;
+load translated:bfo2-classes.owl;
+load translated:bfo2-regions.owl;
+load translated:bfo2-relations.owl;
+load translated:ogms.owl;
+load translated:ohd.owl;
+
+From the configurator. Left entity index at 200000
+
+[] a rep:Repository ;
+   rep:repositoryID "ohd-partial-2015-04-08-RL" ;
+   rdfs:label "ohd-partial-2015-04-08-RL" ;
+   rep:repositoryImpl [
+      rep:repositoryType "openrdf:SailRepository" ;
+      sr:sailImpl [
+        sail:sailType "owlim:Sail" ;
+        owlim:ruleset "owl2-rl-optimized" ;
+        owlim:storage-folder "storage" ;
+
+        owlim:repository-type "file-repository" ;
+        owlim:base-URL "http://example.org/owlim#" ;
+        owlim:imports "" ;
+        owlim:defaultNS "" ;
+
+        owlim:entity-index-size "200000" ;
+        owlim:cache-memory "6976m" ;
+        owlim:tuple-index-memory "4186m" ;
+        owlim:enable-context-index "false" ;
+        owlim:enablePredicateList "true" ;
+        owlim:predicate-memory "2790m" ;
+        owlim:fts-memory "0" ;
+        owlim:ftsIndexPolicy "never" ;
+        owlim:ftsLiteralsOnly "true" ;
+        owlim:in-memory-literal-properties "false" ;
+        owlim:transaction-mode "fast" ;
+        owlim:transaction-isolation "false" ;
+        ]
+    ].
+
+
+
+
+
+

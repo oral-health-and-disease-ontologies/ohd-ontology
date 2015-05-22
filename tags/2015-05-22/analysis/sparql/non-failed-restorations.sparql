@@ -1,0 +1,73 @@
+select ?proceduretype (count(*) as ?count)
+  
+## look for surface specific procedures that do not have a follow up
+where
+{
+  ## patient's sex and birth date
+  ?patienti rdf:type patient: .
+  ?patienti asserted_type: ?patientt .
+  ?patienti birth_date: ?birthdate .
+  
+  ## patient's tooth & tooth type
+  ?toothi rdf:type tooth: .
+  ?toothi asserted_type: ?tootht .
+  ?toothi is_part_of: ?patienti .
+  
+  ## surfaces and their types that are part of tooth
+  ?surfacei rdf:type tooth_surface: .
+  ?surfacei asserted_type: ?surfacet .
+  ?surfacei is_part_of: ?toothi .
+  
+  ##- get restoration procedure
+  ## this is done by finding the procedures that realize
+  ## some tooth to be resotred role that is borne by the tooth
+  ?proci rdf:type tooth_restoration_procedure: .
+  ?proci asserted_type: ?proct .
+  ?rolei rdf:type tooth_to_be_restored_role: .
+  ?rolei inheres_in: ?toothi .
+  ?proci realizes: ?rolei .
+  ?proci occurrence_date: ?date . # date of procedure
+  ?proci has_participant: ?surfacei . ## link surface to procedure
+  
+  ## find follow up procedure on same tooth/surface
+  optional
+  {
+    { ## find those restoration procedures that involve the surface
+      ?proci1 rdf:type tooth_restoration_procedure: .
+      ?rolei1 rdf:type tooth_to_be_restored_role: .
+      ?rolei1 inheres_in: ?toothi .
+      ?proci1 realizes: ?rolei1 .
+      ?proci1 occurrence_date: ?date1 . # date of procedure 1
+      ?proci1 has_participant: ?surfacei . ## link surface to procedure
+      }
+    union
+    { ## find the crown procedures for the same tooth
+      ## this necessary b/c crowns don't have surface info
+      ?proci1 rdf:type crown_restoration: .
+      ?rolei1 inheres_in: ?toothi .
+      ?proci1 realizes: ?rolei1 .
+      ?proci1 occurrence_date: ?date1 . # date of procedure 1
+      ?proci1 has_participant: ?surfacei . ## link surface to procedure
+      }
+
+    ## include only those procedures that are after the original procedure
+    filter(?date1 > ?date && ?proci1 != ?proci)
+  }
+  
+  ## assign labels 
+  ?patientt rdfs:label ?patienttype .
+  ?toothi rdfs:label ?tooth .
+  ?tootht rdfs:label ?toothtype .
+  ?surfacei rdfs:label ?surface .
+  ?surfacet rdfs:label ?surfacetype .
+  ?proci rdfs:label ?procedure .
+  ?proct rdfs:label ?proceduretype .
+
+  ## we are only interested in the procedures that do not have a
+  ## follow up procedure.
+  ## so, filter for those records that do not have a second procedure date
+  filter (!bound(?date1))
+}
+
+group by ?proceduretype 
+order by ?proceduretype

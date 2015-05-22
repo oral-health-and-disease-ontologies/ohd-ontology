@@ -1,0 +1,33 @@
+## This query returns a comparison of the number of instances of billed CDT codes against
+## the number of dental procedures.
+## Dental procedures do not include things such as oral evaluations.
+## The purpose of this query is to act as a sanity check. The number of billed CDT codes should
+## match the number of dental procedures.
+## The instances are grouped according to their asserted types, that is, their most direct parent class.
+
+PREFIX dental_procedure: <http://purl.obolibrary.org/obo/OHD_0000002>
+PREFIX is_about: <http://purl.obolibrary.org/obo/IAO_0000136>
+PREFIX cdt_code: <http://purl.obolibrary.org/obo/CDT_1000001>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX asserted_type: <http://purl.obolibrary.org/obo/OHD_0000092>
+
+select (count(distinct ?code_instance) as ?code_count) (count(distinct ?proc) as ?proc_count)  ?code
+ where
+{ 
+  ## assign types
+  ?code_instance a cdt_code: .
+  ?proc a dental_procedure: .
+  
+  ## code is about procedure
+  ?code_instance is_about: ?proc . 
+
+  ## the asserted type of the cdt code instance
+  ?code_instance asserted_type: ?code_type .
+
+  ## assign label
+  ?code_type rdfs:label ?code
+}
+group by ?code
+order by desc(?code_count)
+
+

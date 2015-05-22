@@ -1,0 +1,38 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dental_patient: <http://purl.obolibrary.org/obo/OHD_0000012>
+PREFIX participates_in: <http://purl.obolibrary.org/obo/BFO_0000056>
+PREFIX dental_procedure: <http://purl.obolibrary.org/obo/OHD_0000002>
+PREFIX dental_patient_role: <http://purl.obolibrary.org/obo/OHD_0000190>
+PREFIX patient_role: <http://purl.obolibrary.org/obo/OBI_0000093>
+PREFIX realizes: <http://purl.obolibrary.org/obo/BFO_0000055>
+PREFIX inheres_in: <http://purl.obolibrary.org/obo/BFO_0000052>
+
+# count number of processes of each type by constraining the processes
+# which have dental patients as participants
+# This will include all the direct classes as well as the superclasses
+
+select  ?procedurel (count(?procedurei) as ?count)
+where
+{
+  # patient instances
+  ?patienti a dental_patient: .
+  # procedure instances
+  ?procedurei a dental_procedure: .
+  # link to role that the procedure realize
+  ?procedurei realizes: ?rolei .
+  # make sure it is a patient role  
+  ?rolei a patient_role: .
+  # and that it's one of the patient's
+  ?rolei inheres_in: ?patienti.
+  # technically we don't need the next check for participation
+  ?patienti participates_in: ?procedurei.
+  # get the type of procedure
+  ?procedurei a ?procedurec.
+  # and the label for that class, for reporting since we are summarizing by *type* of procedure
+  ?procedurec rdfs:label ?procedurel.
+}
+# group by controls what is counted. We get a count for every set of
+# results with the same procedure label
+group by ?procedurel
+# and sort with most frequent at the top
+order by desc(?count)

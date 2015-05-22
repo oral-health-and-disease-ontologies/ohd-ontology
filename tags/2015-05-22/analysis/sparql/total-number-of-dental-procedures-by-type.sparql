@@ -1,0 +1,22 @@
+## This query returns a count (i.e., number performed) for each type of dental procedure.
+## It includes non-restorative procedures, such as tooth extractions.
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dental_procedure: <http://purl.obolibrary.org/obo/OHD_0000002>
+PREFIX asserted_type:<http://purl.obolibrary.org/obo/OHD_0000092>
+
+select ?dental_procedure (count(distinct ?proci) as ?count) 
+where 
+{
+  ## find each type (subclass) of dental procedure
+  ## and the instances of each type
+  ?proct rdfs:subClassOf dental_procedure: .
+  ?proci rdf:type ?proct .
+    
+  ## assign label
+  ?proct rdfs:label ?dental_procedure .
+  
+}
+group by ?dental_procedure
+order by desc(?count)

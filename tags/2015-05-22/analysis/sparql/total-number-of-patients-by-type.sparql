@@ -1,0 +1,26 @@
+## This query returns the total for each type of patient
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dental_patient: <http://purl.obolibrary.org/obo/OHD_0000012>
+PREFIX female: <http://purl.obolibrary.org/obo/OHD_0000049>
+PREFIX male: <http://purl.obolibrary.org/obo/OHD_0000054>
+PREFIX asserted_type: <http://purl.obolibrary.org/obo/OHD_0000092>
+PREFIX homo_sapiens: <http://purl.obolibrary.org/obo/NCBITaxon_9606>
+
+select ?patient (count(distinct ?patienti) as ?count) 
+where 
+{
+  ## find each type of patient
+  ?patientt rdfs:subClassOf homo_sapiens: . 
+  ?patienti rdf:type ?patientt .
+  ?patienti rdf:type dental_patient: .
+
+  ## filter out 'Homo sapiens
+  ## this is done for display purposes
+  filter(?patientt != homo_sapiens:) .
+
+  ## assign labels
+  ?patientt rdfs:label ?patient .  
+}
+group by ?patient
