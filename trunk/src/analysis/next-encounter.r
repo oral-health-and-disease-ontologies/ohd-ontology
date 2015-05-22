@@ -40,12 +40,12 @@ check_next_encounter_query <- function ()
 queryc("select ?first_encounter ?next_encounter where", encounterPattern(), "limit 20",cache=F);
 
 assert_next_encounter_links <- function()
-  { #sparqlUpdate("insert data { next_encounter: a owl:ObjectProperty. next_encounter: rdfs:label \"subsequent encounter\".}")
-    sparqlUpdatew("insert { ?first_encounter next_encounter: ?next_encounter } where ",encounterPattern())
+  { sparqlUpdate("insert data { next_encounter: a owl:ObjectProperty. next_encounter: rdfs:label \"subsequent encounter\".}")
+    sparqlUpdate("insert { ?first_encounter next_encounter: ?next_encounter } where ",encounterPattern())
   }
 
 assert_transitive_next <- function()
-  {sparqlUpdatew("insert data ",
+  {sparqlUpdate("insert data ",
                 "{",
                 "  later_encounter: a owl:ObjectProperty.",
                 "  later_encounter: a owl:TransitiveProperty.",
