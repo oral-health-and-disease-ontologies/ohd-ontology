@@ -44,7 +44,7 @@ which_procedures_have_potential_duplicates_query <- function (only.conflict=F,co
     if(count.total) "}" else "")
 }
 
-count_which_procedures_have_potential_duplicates <- function (only.conflict=F,count.total=F)
+count_which_procedures_have_potential_duplicates <- function (only.conflict=F,count.total=T)
 { res <- queryc(which_procedures_have_potential_duplicates_query(only.conflict=T,count.total=count.total))
   write.table(res,quote=F,row.names=F);
   res <<- res;
@@ -52,13 +52,13 @@ count_which_procedures_have_potential_duplicates <- function (only.conflict=F,co
 }
 
 list_procedures_that_have_potential_duplicates <- function(verbose=F)
-{ basic <- which_procedures_have_potential_duplicates_query(only.conflict=T)
+{ basic <- which_procedures_have_potential_duplicates_query(only.conflict=T,count.total=F)
   res <- queryc(
       "SELECT distinct ?proc2 ?proc2Label ",
       if(verbose) {"?proc1 ?proc1Label ?surface1 ?surface1Label ?surface2 ?surface2Label ?date ?toothi ?toothiLabel"},
       "where",
-      "{",basic,"}",
-      "BIND(?group_proc as ?proc1)",
+      "{{",basic,"}",
+      "BIND(?representative as ?proc1)",
       "OPTIONAL",
       "{  ?proc1 has_participant: ?surface1 .",
       "   ?surface1 rdf:type tooth_surface: .",
@@ -74,38 +74,6 @@ list_procedures_that_have_potential_duplicates <- function(verbose=F)
   return(res==0||nrow(res) == 0)
 }
 
-get_single_dupe_group <- function (...)
-    { sparql_interpolate(
-        "BIND('date' AS ?date)",
-        "BIND(<proc>as ?proc1)",
-        "BIND(<tooth> as ?toothi)",
-        "BIND(<patient> AS ?patienti)",
-        "OPTIONAL",
-        "{  ?proc1 has_participant: ?surface1 .",
-        "   ?surface1 rdf:type tooth_surface: .",
-        "   ?surface1 is_part_of: ?toothi . ",
-        "}",
-        tooth_or_surface_procedure_pattern(proci="?proc2",surfacei="?surface2",surfaceiLabel="?surface2Label"),
-        "FILTER ((((bound(?surface1)&&bound(?surface2))&&(?surface1=?surface2))||(!bound(?surface1)))||(!bound(?surface2)))",
-        #        if(verbose) "?proc1 rdfs:label ?proc1Label.",
-        #        if(verbose) "?proc2 rdfs:label ?proc2Label.",
-        "}")}
-
-list_procedures_that_have_potential_duplicates_the_hard_way <- function(verbose=F)
-{ reset_var_counter();
-  basic <- which_procedures_have_potential_duplicates_query(only.conflict=T)
-  anchors <- queryc(basic);
-  colnames(anchors) # [1] "representative" "date"           "toothi"         "toothiLabel"    "count"          "surface"        "surfaceLabel"   "conflict"
-  all <- c();
-  for (i  in 1:nrow(anchors))
-      { all <- c(queryc("SELECT distinct ?proc2 where {",
-                          get_single_dupe_group(patient=paste0("<",anchors[i,"patienti"],">"),
-                                                proc=paste0("<",anchors[i,"representative"],">"),
-                                                tooth=paste0("<",anchors[i,"toothi"],">"),
-                                                date=paste0("\"",anchors[i,"date"],"\"^^xsd:date"))),all)
-    }
-  all
-}
 
 check_processes_have_occurrence_date <- function()
 { result <- queryc(
