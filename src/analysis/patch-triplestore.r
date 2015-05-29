@@ -60,13 +60,26 @@ patch_superole <- function ()
                  "}",
                  endpoint=paste0(current_endpoint,"/statements"))
   }
-               
+
+# these are used in the first translation but missing from the current ontology
+patch_deprecated_roles <- function ()
+    { sparqlUpdate("insert data ",
+                   "{ tooth_to_be_filled_role: rdfs:subClassOf tooth_to_be_restored_role: .",
+                   "  tooth_to_undergo_endodontic_procedure_role: rdfs:subClassOf tooth_to_be_restored_role: .",
+                   "  tooth_to_undergo_onlay_procedure_role: rdfs:subClassOf tooth_to_be_restored_role: .",
+                   "  tooth_to_undergo_inlay_procedure_role: rdfs:subClassOf tooth_to_be_restored_role: .",
+                   "  tooth_to_undergo_veneer_procedure_role: rdfs:subClassOf tooth_to_be_restored_role: .}")
+  }
+
+
+
 
 patch_triplestore <- function ()
-  { patch_procedures_have_occurrence_dates();
-    patch_oral_evaluations_have_findings();
-    patch_bearer_of_role_participates_in_realization();
-    patch_superole();
-    assert_next_encounter_links();
-    assert_transitive_next();
+    { if (!check_processes_have_occurrence_date()) {patch_procedures_have_occurrence_dates()}
+      if (!check_oral_evaluations_have_findings()) {patch_oral_evaluations_have_findings() }
+      if (!check_bearer_of_role_participates_in_realization()) {patch_bearer_of_role_participates_in_realization}
+      #patch_superole();
+      patch_deprecated_roles();
+      assert_next_encounter_links();
+      assert_transitive_next();
   }
