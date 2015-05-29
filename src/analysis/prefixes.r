@@ -30,7 +30,6 @@ assign("tooth_to_be_restored_role:", "<http://purl.obolibrary.org/obo/OHD_000000
 assign("dental_patient_role:", "<http://purl.obolibrary.org/obo/OHD_0000190>",envir=prefixes)
 assign("patient_role:", "<http://purl.obolibrary.org/obo/OBI_0000093>",envir=prefixes)
 assign("dental_healthcare_provider_role:", "<http://purl.obolibrary.org/obo/OHD_0000052>",envir=prefixes)
-assign("tooth_to_be_filled_role:", "<http://purl.obolibrary.org/obo/OHD_0000008>",envir=prefixes)
 assign("realizes:", "<http://purl.obolibrary.org/obo/BFO_0000055>",envir=prefixes)
 assign("tooth:", "<http://purl.obolibrary.org/obo/FMA_12516>",envir=prefixes)
 assign("is_part_of:", "<http://purl.obolibrary.org/obo/BFO_0000050>",envir=prefixes)
@@ -77,7 +76,6 @@ assign("pre_molar:","<http://purl.obolibrary.org/obo/FMA_55637>",envir=prefixes)
 assign("incisor:","<http://purl.obolibrary.org/obo/FMA_55636>",envir=prefixes)
 assign("canine:","<http://purl.obolibrary.org/obo/FMA_12823>",envir=prefixes)
 assign("tooth_extraction:", "<http://purl.obolibrary.org/obo/OHD_0000057>", envir=prefixes)
-assign("tooth_to_undergo_endodontic_procedure_role:","<http://purl.obolibrary.org/obo/OHD_0000058>", envir=prefixes)
 assign("tooth_to_be_extracted_role:","<http://purl.obolibrary.org/obo/OHD_0000056>",envir=prefixes)
 assign("root_canal:","<http://purl.obolibrary.org/obo/OHD_0000003>",envir=prefixes)
 assign("inlay_procedure:","<http://purl.obolibrary.org/obo/OHD_0000133>",envir=prefixes)
@@ -87,6 +85,13 @@ assign("ohdi:", "<http://purl.obolibrary.org/obo/ohd/individuals/>",envir=prefix
 assign("target_of_tooth_procedure:", "<http://purl.obolibrary.org/obo/OHD_0000209>", envir=prefixes)
 assign("role:", "<http://purl.obolibrary.org/obo/BFO_0000023>", envir=prefixes)
 assign("duplicated:", "<http://purl.obolibrary.org/obo/OHD_0000210>", envir=prefixes)
+
+## deprecated in favor of tooth to be restored role
+assign("tooth_to_be_filled_role:", "<http://purl.obolibrary.org/obo/OHD_0000008>",envir=prefixes)
+assign("tooth_to_undergo_endodontic_procedure_role:","<http://purl.obolibrary.org/obo/OHD_0000058>", envir=prefixes)
+assign("tooth_to_undergo_onlay_procedure_role:","<http://purl.obolibrary.org/obo/OHD_0000099>",envir=prefixes)
+assign("tooth_to_undergo_inlay_procedure_role:","<http://purl.obolibrary.org/obo/OHD_0000098>",envir=prefixes)
+assign("tooth_to_undergo_veneer_procedure_role:","<http://purl.obolibrary.org/obo/OHD_0000047>",envir=prefixes)
 
 ## backwards compatibility - join these all into a single string.
 all_prefixes_as_string <-  function ()
