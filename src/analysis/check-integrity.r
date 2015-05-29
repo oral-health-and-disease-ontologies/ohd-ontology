@@ -106,7 +106,6 @@ check_oral_evaluations_have_findings <-function()
     "  filter(?what != cdt_code:)",
     "filter (!bound(?has_it))",
     "}");
-  print(result);
   if (length(result)==0||result==0) {return(TRUE)}
   else
       {warning(paste0("Found ",result,". you probably need to run patch_oral_evaluations_have_findings"));
@@ -116,7 +115,7 @@ check_oral_evaluations_have_findings <-function()
 check_bearer_of_role_participates_in_realization <- function ()
 { result<- queryc(
     "select (count(?bearer) as ?should_be_zero) where {",
-    "  ?rolei  inheres_in: ?thingi.",
+    "  ?rolei  inheres_in: ?bearer.",
     "  ?processi  realizes: ?rolei.",
     "  optional {BIND(1 as ?does). ?bearer participates_in: ?processi}",
     "  filter(!bound(?does))",
@@ -126,6 +125,17 @@ check_bearer_of_role_participates_in_realization <- function ()
       {warning(paste0("Found ",result,". you probably need to run patch_bearer_of_role_participates_in_realization"));
        return(FALSE)}
 }
+
+instance_per_class_report <- function ()
+{ queryc("select ?class ?classLabel (count(?instance) as ?instances)",
+         "where",
+         "{?instance a ?class. ?class rdfs:label ?classLabel.",
+         "filter (!(isblank(?class)) && !(isblank(?instance)))",
+         "group by ?class ?classLabel order by desc(?instances)"
+         )
+}
+
+
 ## This is what the answer looked like for Claudio's set. 
 ##      proc1tl                                 proc2tl                                 count
 ##  [1,] "endodontic procedure"                  "crown restoration"                     "608"
