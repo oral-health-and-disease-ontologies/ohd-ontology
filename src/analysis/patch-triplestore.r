@@ -73,40 +73,63 @@ patch_deprecated_roles <- function ()
 
 
 
+logme <- function(say,do)
+    { 
+        cat(paste0(date(),": ",say,"..."))
+        res<-do()
+        cat("done - ");
+        cat(date());
+        cat("\n");
+        return(res);
+    }
+
+count_triples <- function()
+    { cat(date(),": counting triples... ");
+      cat(queryc("select (count(*) as ?count) where {?s ?p ?o}"),"\n") 
+  }
 
 patch_triplestore <- function ()
-    { if (!check_processes_have_occurrence_date())
-          {cat("patching occurrence dates...");patch_procedures_have_occurrence_dates();cat("done\n");
+    { count_triples();
+      if (!check_processes_have_occurrence_date())
+          {logme("patching occurrence dates",patch_procedures_have_occurrence_dates);
            if (!check_processes_have_occurrence_date())
                { stop("patch_processes_have_occurrence_date failed") }};
-      
+      count_triples();      
       if (!check_oral_evaluations_have_findings()) 
-          {cat("patching oral evaluations..."); patch_oral_evaluations_have_findings(); cat("done\n");
+          {logme("patching oral evaluations",patch_oral_evaluations_have_findings); 
            if (!check_oral_evaluations_have_findings())
                { stop("patch_oral_evaluations_have_findings failed") }};
       
-      if (!rdfslabel("tooth_to_be_filled_role:"))
-          { cat("fixing deprecated roles...");patch_deprecated_roles();cat("done\n") };
+      count_triples();
+      if(length(rdfslabel("tooth_to_be_filled_role:"))==0)
+          { logme("fixing deprecated roles",patch_deprecated_roles);
+            count_triples()}
 
       if (!check_bearer_of_role_participates_in_realization())
-          {cat("patching participation in realization");patch_bearer_of_role_participates_in_realization();cat("done\n");
+          {logme("patching participation in realization",patch_bearer_of_role_participates_in_realization);
            if (!check_bearer_of_role_participates_in_realization())
                { stop("patch_bearer_of_role_participates_in_realization failed") }};
       
-      if (!rdfslabel("target_of_tooth_procedure:"))
-          { cat("adding target_of_tooth_procedure:...");patch_superole();cat("done") }
+      count_triples();
+
+      if (length(rdfslabel("target_of_tooth_procedure:")) ==0)
+          { logme("adding target_of_tooth_procedure:",patch_superole)}
 
       nextcount <- queryc("select (count(*) as ?count) {?s next_encounter: ?l} ") 
       latercount <- queryc("select (count(*) as ?count) {?s later_encounter: ?l} ") 
       
       if (nextcount == 0)
-          { cat("making later_encounter not transitive, while updating...");
-            sparqlUpdate("delete data { later_encounter: a owl:TransitiveProperty.}");
-            cat("done\n");
+          { logme("making later_encounter not transitive, while updating",
+                  function()
+                      {sparqlUpdate("delete data { later_encounter: a owl:TransitiveProperty.}")})
+            count_triples();
         }
 
       if (nextcount < 1000)
-          { assert_next_encounter_links() }
+          { logme("computing next_encounter relation",
+                  function(){assert_next_encounter_links()});
+            count_triples();
+        }
 
       nextcount <- queryc("select (count(*) as ?count) {?s next_encounter: ?l} ") 
       latercount <- queryc("select (count(*) as ?count) {?s later_encounter: ?l} ") 
@@ -116,11 +139,11 @@ patch_triplestore <- function ()
       
 
       if (latercount==nextcount)
-          { cat("making later_encounter transitive again...");
-            sparqlUpdate("insert data { later_encounter: a owl:TransitiveProperty.}")
-            cat("done\n");
+          { logme("making later_encounter transitive",
+                  function()
+                      {sparqlUpdate("insert data { later_encounter: a owl:TransitiveProperty.}")})
+            count_triples();
             if (latercount==nextcount) { stop("transitive later_encounter: didn't work") }
         }
   }
-
 
