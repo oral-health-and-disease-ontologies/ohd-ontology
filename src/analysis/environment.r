@@ -84,7 +84,6 @@ queryCache <- function() { sessionQueryCache }
 trace_sparql_queries <- FALSE;
 send_queries_to_workbench <- FALSE;
 
-
 check_sparql_syntax <- file.exists("jena/bin/qparse");
 
 ## execute a sparql query. endpoint defaults to current_endpoint, sparql library defaults to "rrdf"
@@ -94,7 +93,7 @@ queryc <- function(...,endpoint=current_endpoint,prefixes=default_ohd_prefixes,c
     string <- paste(..., sep="\n");
     if (identical(prefixes,FALSE))  { prefixes <- (function () {}) }
     querystring <- querystring(string,prefixes=prefixes);
-    if (trace) { print(endpoint);cat(querystring) }
+    if (trace) { print(date());print(endpoint);cat(querystring) }
     if (check_sparql_syntax)
         { if (!checkSPARQLSyntax(querystring))
               { return( NULL) }}
@@ -112,9 +111,10 @@ queryc <- function(...,endpoint=current_endpoint,prefixes=default_ohd_prefixes,c
               { cat("There was an error in the SPARQL query"); cat(querystring); cat(queryres); stop() }
           else 
               { cacheQuery(querystring(string,prefixes=prefixes),endpoint,queryres) }
-          attr(queryres,"rawQuery") <- string;
-          attr(queryres,"expandedQuery") <- querystring;
-          attr(queryres,"endpoint") <- endpoint;
+# interferes with some tools          
+#          attr(queryres,"rawQuery") <- string;
+#          attr(queryres,"expandedQuery") <- querystring;
+#          attr(queryres,"endpoint") <- endpoint;
           queryres
       }
 }
@@ -183,7 +183,7 @@ sparqlUpdate <- function (...,endpoint=paste0(current_endpoint,"/statements"),do
     { if (send_queries_to_workbench) { sparqlUpdatew(...); return(NULL);}
       clearSPARQLSessionCache();
       update <- querystring(paste(...,sep="\n"));
-    if (trace) { print(endpoint);cat(update) }
+    if (trace) { print(date());print(endpoint);cat(update) }
     if (doit) { postForm(endpoint,update=update,style='POST') }
   }
 
@@ -236,21 +236,22 @@ insertLabels<-FALSE;
 
 ## e.g."Lexical error at line 4, column 4.  Encountered: \" \" (32), after : \"s\""
 checkSPARQLSyntax <-function(querystring)
-  { if (file.exists("/tmp/r.sparql")) { file.remove("/tmp/r.sparql") }
-    write(querystring,file="/tmp/r.sparql");
-    result <- suppressWarnings(system("jena/bin/qparse --file /tmp/r.sparql 2>&1",intern=T));
-    if (!is.null(attr(result,"status")))
-      { cat("Error in query\n---------\n");
-        cat("            111111111122222222223333333333344444444445555555555666666666677777777778\n");
-        cat("   123456789012345678901234567890123456789001234567890123456789012345678901234567890\n");
-        write.table(strsplit(querystring,"\n"),col.names=F,quote=F,sep=": ");
-        cat(paste("--------\n",do.call(paste0,as.list(result)),"\n",sep=""))
-        return(FALSE)}
-    else { #fix some irritations
-           result <- gsub("[(]\\s+","(",result,perl=TRUE);
-           result <- gsub("\\s+[)]",")",result,perl=TRUE);
-           result <- gsub("(?s)! (bound)","!\\1",result,perl=TRUE);
-           prettysparql <<- result; return(TRUE) }
+    { prettysparql <<- NULL;
+      if (file.exists("/tmp/r.sparql")) { file.remove("/tmp/r.sparql") }
+      write(querystring,file="/tmp/r.sparql");
+      result <- suppressWarnings(system("jena/bin/qparse --file /tmp/r.sparql 2>&1",intern=T));
+      if (!is.null(attr(result,"status")))
+          { cat("Error in query\n---------\n");
+            cat("            111111111122222222223333333333344444444445555555555666666666677777777778\n");
+            cat("   123456789012345678901234567890123456789001234567890123456789012345678901234567890\n");
+            write.table(strsplit(querystring,"\n"),col.names=F,quote=F,sep=": ");
+            cat(paste("--------\n",do.call(paste0,as.list(result)),"\n",sep=""))
+            return(FALSE)}
+      else { #fix some irritations
+          result <- gsub("[(]\\s+","(",result,perl=TRUE);
+          result <- gsub("\\s+[)]",")",result,perl=TRUE);
+          result <- gsub("(?s)! (bound)","!\\1",result,perl=TRUE);
+          prettysparql <<- result; return(TRUE) }
   }
         
 sparqlUpdatew <- function (...,endpoint=current_sparql_endpoint,doit=TRUE,trace=trace_sparql_queries)
@@ -268,10 +269,11 @@ queryw <- function (...,prefixes=default_ohd_prefixes,endpoint,trace)
     sparql <- querystring(string,prefixes=prefixes);
   if (check_sparql_syntax)
     { if (!checkSPARQLSyntax(sparql))
-        { return( NULL) }}
+        { prettysparql <<- lastSparqlQuery }}
     if (file.exists("/tmp/sparql.sparql")) { file.remove("/tmp/sparql.sparql") }
     write(prettysparql,file="/tmp/sparql.sparql");
     result <- suppressWarnings(system("osascript putsparql.scpt http://127.0.0.1:8080/graphdb-workbench-ee/sparql /tmp/sparql.sparql 2>&1",intern=T))
-  };
+}
+
 #gsub("http://purl.obolibrary.org/obo/ohd/","ind:",gsub("http://purl.obolibrary.org/obo/ohd/individuals/","ohd:",fail[seq(1,100),]))
 
