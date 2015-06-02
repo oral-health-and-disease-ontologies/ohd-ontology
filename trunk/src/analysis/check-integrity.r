@@ -135,6 +135,22 @@ instance_per_class_report <- function ()
          )
 }
 
+# if there are any instantiated classes without labels fail
+check_potential_ontology_mismatch <- function ()
+{ basicquery <- paste("select ?class (count(?instance) as ?instances)",
+                      "where",
+                      "{?instance a ?class. optional{?class rdfs:label ?classLabel.}",
+                      "filter (!(isblank(?class)) && !(isblank(?instance)) &&!bound(?classLabel)",
+                      "&& regex(str(?class),\"obolibrary\"))",
+                      "}",
+                      "group by ?class ?classLabel order by desc(?instances)",sep="\n");
+  result<- queryc("select (count(?class) as ?should_be_zero) where {{", basicquery,"}}")
+  if (length(result)==0||result==0) {return(TRUE)}
+  else
+      {warning(paste0("Found ",result," instantiated classes without labels. There is a mismatch between the ontology being loaded and translated records."));
+       write.table(queryc(basicquery),quote=F,row.names=F)
+       return(FALSE)}
+} 
 
 ## This is what the answer looked like for Claudio's set. 
 ##      proc1tl                                 proc2tl                                 count
@@ -154,5 +170,6 @@ instance_per_class_report <- function ()
 ## [14,] "endodontic procedure"                  "porcelain laminate veneer restoration" "4"  
 ## [15,] "crown restoration"                     "porcelain laminate veneer restoration" "3"  
 ## [16,] "porcelain laminate veneer restoration" "tooth extraction procedure"            "2"  
-## [17,] "endodontic procedure"                  "resin laminate veneer restoration"     "1"  
+## [17,] "endodontic procedure"                  "resin laminate veneer restoration"     "1"
+
 ## [18,] "endodontic procedure"                  "tooth extraction procedure"            "1"
