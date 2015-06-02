@@ -143,7 +143,8 @@ created by: Bill Duncan 1/8/2014"
       ((equalp surface-name "labial") (setf uri !obo:FMA_no_fmaid_Labial_surface_enamel_of_tooth))
       ((equalp surface-name "lingual") (setf uri !obo:FMA_no_fmaid_Lingual_surface_enamel_of_tooth))
       ((equalp surface-name "mesial") (setf uri !obo:FMA_no_fmaid_Mesial_surface_enamel_of_tooth))
-      ((equalp surface-name "occlusial") (setf uri !obo:FMA_no_fmaid_Occlusial_surface_enamel_of_tooth)))
+      ((equalp surface-name "occlusial") (setf uri !obo:FMA_no_fmaid_Occlusial_surface_enamel_of_tooth)) ; occlusal was mispelled in previous OHD versions
+      ((equalp surface-name "occlusal") (setf uri !obo:FMA_no_fmaid_Occlusial_surface_enamel_of_tooth)))
 
     ;; return suface uri
     uri))
@@ -161,7 +162,8 @@ created by: Bill Duncan 1/8/2014"
       ((equalp surface-letter "f") (setf surface-name "labial"))
       ((equalp surface-letter "l") (setf surface-name "lingual"))
       ((equalp surface-letter "m") (setf surface-name "mesial"))
-      ((equalp surface-letter "o") (setf surface-name "occlusial")))
+      ((equalp surface-letter "o") (setf surface-name "occlusial")) ; occlusal was mispelled in previous OHD versions
+      ((equalp surface-letter "o") (setf surface-name "occlusal")))
 
     ;; return surface name
     surface-name))
