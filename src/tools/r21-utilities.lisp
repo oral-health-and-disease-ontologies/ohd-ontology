@@ -143,7 +143,8 @@ created by: Bill Duncan 1/8/2014"
       ((equalp surface-name "labial") (setf uri !obo:FMA_no_fmaid_Labial_surface_enamel_of_tooth))
       ((equalp surface-name "lingual") (setf uri !obo:FMA_no_fmaid_Lingual_surface_enamel_of_tooth))
       ((equalp surface-name "mesial") (setf uri !obo:FMA_no_fmaid_Mesial_surface_enamel_of_tooth))
-      ((equalp surface-name "occlusial") (setf uri !obo:FMA_no_fmaid_Occlusial_surface_enamel_of_tooth)))
+      ((equalp surface-name "occlusial") (setf uri !obo:FMA_no_fmaid_Occlusial_surface_enamel_of_tooth)) ; occlusal was mispelled in previous OHD versions
+      ((equalp surface-name "occlusal") (setf uri !obo:FMA_no_fmaid_Occlusial_surface_enamel_of_tooth)))
 
     ;; return suface uri
     uri))
@@ -161,7 +162,8 @@ created by: Bill Duncan 1/8/2014"
       ((equalp surface-letter "f") (setf surface-name "labial"))
       ((equalp surface-letter "l") (setf surface-name "lingual"))
       ((equalp surface-letter "m") (setf surface-name "mesial"))
-      ((equalp surface-letter "o") (setf surface-name "occlusial")))
+      ((equalp surface-letter "o") (setf surface-name "occlusial")) ; occlusal was mispelled in previous OHD versions
+      ((equalp surface-letter "o") (setf surface-name "occlusal")))
 
     ;; return surface name
     surface-name))
@@ -1218,16 +1220,20 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
     ;; get connection info
     (setf url (get-eaglesoft-database-url))
 
-    ;; test to see if action_codes table exists
-    ;; if not then create it
+    ;; test to see if r21_provider, action_codes, and patient_history tables exists
+    ;; if not then create them
+
+    (when (or (not (table-exists "r21_provider" url)) force-create-table)
+      (create-eaglesoft-r21-table "r21_provider" url))
+    
     (when (or (not (table-exists "action_codes" url)) force-create-table)
-      (create-eaglesoft-action-codes-or-patient-history-table "action_codes" url))
+      (create-eaglesoft-r21-table "action_codes" url))
 
-    ;; test to see if patient history table exists
     (when (or (not (table-exists "patient_history" url)) force-create-table)
-      (create-eaglesoft-action-codes-or-patient-history-table "patient_history" url))))
+      (create-eaglesoft-r21-table "patient_history" url))))
 
-(defun create-eaglesoft-action-codes-or-patient-history-table (table-name url)
+
+(defun create-eaglesoft-r21-table (table-name url)
   "Creates either the action_codes or patient_history table, as determined by the table-name parameter.  The url parameter specifies the connection string to the database."
   (let ((connection nil)
 	(statement nil)
@@ -1240,10 +1246,12 @@ Note: The ~/.pattersondbpw file is required to run this procedure."
 
     ;; create query string for creating table
     (cond
-      ((equal table-name "action_codes")
+      ((equalp table-name "action_codes")
        (setf query (get-create-eaglesoft-action-codes-table-query)))
-      ((equal table-name "patient_history")
-       (setf query (get-create-eaglesoft-patient-history-table-query))))
+      ((equalp table-name "patient_history")
+       (setf query (get-create-eaglesoft-patient-history-table-query)))
+      ((equalp table-name "r21_provider")
+       (setf query (get-create-eaglesoft-r21-provider-table-query))))
 
     (unwind-protect
 	 (progn
@@ -1732,6 +1740,43 @@ ORDER BY
   7 -- tooth
 "
 )
+
+(defun get-create-eaglesoft-r21-provider-table-query ()
+  "
+DROP TABLE IF EXISTS PattersonPM.PPM.r21_provider;
+CREATE TABLE r21_provider ( provider_id char(3) NOT NULL, practice_id smallint, r21_provider_id smallint, r21_provider_type varchar(20) );
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('`51', 1, 60, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('12', 1, 24, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('15', 1, 21, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('16', 1, 14, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('2', 1, 43, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('21', 1, 58, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('22', 1, 32, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('25', 1, 63, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('26', 2, 22, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('27', 2, 3, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('28', 2, 43, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('29', 2, 44, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('3', 1, 44, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('32', 2, 18, 'practice');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('6', 2, 27, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('7', 2, 16, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('99', 1, 2, 'unknown');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('CD', 1, 46, 'practice');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('CP', 1, 54, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('CP2', 2, 54, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('CV', 1, 69, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('DS', 1, 62, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('ED', 1, 66, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('GAA', 1, 3, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('HYG', 2, 33, 'person temporary');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('KC', 1, 10, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('KS', 1, 64, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('MR', 1, 55, 'person');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('S', 1, 1, 'unknown');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('TEM', 1, 67, 'person temporary');
+insert into r21_provider (provider_id, practice_id, r21_provider_id, r21_provider_type) values ('EM', 1, 48, 'person');")
+
 
 (defun how-to-create-the-r21-provider-table ()
   "Describes the process for creating the r21_provider table."
