@@ -1,0 +1,22 @@
+Here is an example of how to delete a context in open-rdf sesame.
+Several things were necessary
+
+1) The endpoint is the query endpoint with "/statements" appended.
+
+2) The result is "". So the current sparql code will give an error
+until that is repaired.
+
+3) We are entering the area of differences between sparql 1.0 and
+sparql 1.1. In 1.0 the delete syntax was different. The bona branch
+has the new code. A question: Do we need to support both?
+
+Here is the query that I used. The first triple is used to bind the
+graph ?g. The second to get all the triples in the graph. Where the
+bindings go there is instead a triple, which is the triple to delete
+(after substitution of variables).
+
+(sparql '(:delete (?s ?p ?o) () (:graph ?g 
+				     (?sg ?pg "reactome-take-2")
+				     (?s ?p ?o)))
+		 :endpoint "http://127.0.0.1:8080/openrdf-sesame/repositories/SYSTEM/statements"
+		 :trace t :value nil)
