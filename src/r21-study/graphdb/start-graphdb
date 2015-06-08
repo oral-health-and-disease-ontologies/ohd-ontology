@@ -1,0 +1,72 @@
+#!/bin/bash
+
+# not yet ready
+# if ($ENV{GRAPHDB_BASE})
+#   { $base = $ENV{GRAPHDB_BASE} }
+# else
+#   { $base = "/triplestores"; }
+
+# if ($ENV{GRAPHDB_STORE})
+#   { $store = $ENV{GRAPHDB_STORE} }
+# else
+#   { $store = "$base/aduna"; }
+# if ($ENV{GRAPHDB_TOMCAT})
+#   { $tomcat = $ENV{GRAPHDB_TOMCAT} }
+# else
+#   { $tomcat = "$base/tomcat8"; }
+
+export base="/triplestores"
+export store="$base/aduna"
+
+export tomcat="$base/tomcat8"
+
+export GRAPHDB_LICENSE="$base/UBUFFALO_GRAPHDB_ENTERPRISE_latest-29-01-2016_4cores.license"
+
+export JAVA_OPTS="-Xmx8G -Dinfo.aduna.platform.appdata.basedir=$store"
+
+export CATALINA_OPTS="$CATALINA_OPTS -Dcom.sun.management.jmxremote  -Dcom.sun.management.jmxremote.port=1717 -Dcom.sun.management.jmxremote.ssl=false  -Dcom.sun.management.jmxremote.authenticate=false"
+
+sh $tomcat/bin/startup.sh&
+sleep 3
+open -a "/Applications/Google Chrome.app" http://127.0.0.1:8080/graphdb-workbench-ee/
+
+################################################################
+## Setup
+
+# Set the jmx string (edit sesame location in view repositories) to
+#    service:jmx:rmi:///jndi/rmi://127.0.0.1:1717/jmxrmi
+
+# The following needs to be in tomcat/conf/web.xml
+
+# <filter>
+#   <filter-name>CorsFilter</filter-name>
+#   <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+#   <init-param>
+#     <param-name>cors.allowed.origins</param-name>
+#     <param-value>*</param-value>
+#   </init-param>
+#   <init-param>
+#     <param-name>cors.allowed.methods</param-name>
+#     <param-value>GET,POST,HEAD,OPTIONS,PUT,DELETE</param-value>
+#   </init-param>
+#   <init-param>
+#     <param-name>cors.allowed.headers</param-name>
+#     <param-value>Content-Type,X-Requested-With,accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers</param-value>
+#   </init-param>
+#   <init-param>
+#     <param-name>cors.exposed.headers</param-name>
+#     <param-value>Access-Control-Allow-Origin,Access-Control-Allow-Credentials</param-value>
+#   </init-param>
+#   <init-param>
+#     <param-name>cors.support.credentials</param-name>
+#     <param-value>true</param-value>
+#   </init-param>
+#   <init-param>
+#     <param-name>cors.preflight.maxage</param-name>
+#     <param-value>10</param-value>
+#   </init-param>
+# </filter>
+# <filter-mapping>
+#   <filter-name>CorsFilter</filter-name>
+#   <url-pattern>/*</url-pattern>
+# </filter-mapping>
