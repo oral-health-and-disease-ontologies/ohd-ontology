@@ -68,11 +68,8 @@
 	(cdt-uri nil)
 	(patient-uri nil)
 	(crown-role-uri nil)
-	(crown-material-uri nil)
 	(crown-restoration-uri nil)
 	(restoration-type-uri nil)
-	(material-type-uri nil)
-	(material-name nil)
 	(tooth-name nil)
 	(tooth-uri nil)
 	(tooth-type-uri nil)
@@ -105,33 +102,19 @@
 	 (setf crown-role-uri
 	       (get-eaglesoft-tooth-to-be-crowned-role-iri patient-id tooth record-count))
 	 (push-instance axioms crown-role-uri !'tooth to be crowned role'@ohd)
-
+	 
 	 ;; add annotation about 'tooth to be crowned role'
 	 (push `(annotation-assertion !rdfs:label 
 				      ,crown-role-uri
 				      ,(str+ "tooth to be crowned role for " 
 					     tooth-name " of patient "patient-id)) axioms)
-
-         ;; declare instance of material used in tooth
-	 (setf material-type-uri (get-ohd-material-uri ada-code))
-	 (setf crown-material-uri 
-	       (get-eaglesoft-crown-material-iri 
-		patient-id tooth-name material-type-uri record-count))
-	 (push-instance axioms crown-material-uri material-type-uri)
-
-	 ;; add annotation about this instance of material
-	 (setf material-name (get-ohd-material-name ada-code))
-	 (push `(annotation-assertion !rdfs:label 
-				      ,crown-material-uri
-				      ,(str+ material-name " used for crown on  " 
-					     tooth-name " of patient " patient-id)) axioms)
-
+	 
          ;; declare instance of restoration procedure
-	 (setf restoration-type-uri !'crown restoration'@ohd)
+	 (setf restoration-type-uri (get-crown-type-uri ada-code))
 	 (setf crown-restoration-uri
 	       (get-eaglesoft-crown-restoration-iri
 		patient-id tooth-name restoration-type-uri record-count))
-	 (push-instance axioms crown-restoration-uri !'crown restoration'@ohd)
+	 (push-instance axioms crown-restoration-uri !'crown restoration procedure'@ohd)
 	 
 	 ;; add annotation about this restoration procedure
 	 (push `(annotation-assertion !rdfs:label 
@@ -177,14 +160,6 @@
 	 (push `(object-property-assertion !'has participant'@ohd
 					   ,crown-restoration-uri ,tooth-uri) axioms)
 	 
-         ;; 'crown restoration' has particpant restoration material
-	 (push `(object-property-assertion !'has participant'@ohd
-					   ,crown-restoration-uri ,crown-material-uri) axioms)
-
-	 ;; restoration material is located in the tooth
-	 (push `(object-property-assertion !'is located in'@ohd
-					   ,crown-material-uri ,tooth-uri) axioms)
-
          ;; cdt code instance is about the 'crown restoration' process
 	 (push `(object-property-assertion !'is about'@ohd
 					   ,cdt-uri ,crown-restoration-uri) axioms)
@@ -199,6 +174,59 @@
     ;; return axioms
     axioms))
 
+(defun get-crown-type-uri (ada-code)
+  "Returns the uri of the type of crown."
+  (let ((uri nil))
+    ;; get the numeric part of code
+    (setf ada-code (str-right ada-code 4))
+    
+    ;; compare ada code to respective global code lists
+    (cond
+      ((member ada-code *resin-code-list* :test 'equalp)
+       (setf uri !'resin crown restoration procedure'@ohd))
+      ((member ada-code *resin-with-noble-metal-code-list* :test 'equalp)
+       (setf uri !'resin with noble metal crown restoration procedure'@ohd))
+      ((member ada-code *resin-with-high-noble-metal-code-list* :test 'equalp)
+       (setf uri !'resin with high noble metal crown restoration procedure'@ohd))
+      ((member ada-code *resin-with-predominantly-base-metal-code-list* :test 'equalp)
+       (setf uri !'resin with predominantly base metal crown restoration procedure'@ohd))
+      ((member ada-code *ceramic-code-list* :test 'equalp)
+       (setf uri !'ceramic crown restoration procedure'@ohd))
+      ((member ada-code *porcelain-fused-to-noble-metal-code-list* :test 'equalp)
+       (setf uri !'porcelain fused to noble metal crown restoration procedure'@ohd))
+      ((member ada-code *porcelain-fused-to-high-noble-metal-code-list* :test 'equalp)
+       (setf uri !'porcelain fused to high noble metal crown restoration procedure'@ohd))
+      ((member ada-code *porcelain-fused-to-predominantly-base-metal-code-list* :test 'equalp)
+       (setf uri !'porcelain fused to predominantly base metal crown restoration procedure'@ohd))
+      ((member ada-code *noble-metal-code-list* :test 'equalp)
+       (setf uri !'noble metal crown restoration procedure'@ohd))
+      ((member ada-code *high-noble-metal-code-list* :test 'equalp)
+       (setf uri !'high noble metal crown restoration procedure'@ohd))
+      ((member ada-code *predominantly-base-metal-code-list* :test 'equalp)
+       (setf uri !'predominantly base metal crown restoration procedure'@ohd))
+      ((member ada-code *stainless-steel-code-list* :test 'equalp)
+       (setf uri !'stainless steel crown restoration procedure'@ohd))
+      ((member ada-code *stainless-steel-with-resin-window-code-list* :test 'equalp)
+       (setf uri !'stainless steel with resin window crown restoration procedure'@ohd))
+      ((member ada-code *titanium-code-list* :test 'equalp)
+       (setf uri !'titanium crown restoration procedure'@ohd))
+      ((member ada-code *three-fourths-ceramic-code-list* :test #'equalp)
+       (setf uri !'3/4 ceramic crown restoration procedure'@ohd))
+      ((member ada-code *three-fourths-high-noble-metal-code-list* :test #'equalp)
+       (setf uri !'3/4 high noble metal crown restoration procedure'@ohd))
+      ((member ada-code *three-fourths-noble-metal-code-list* :test #'equalp)
+       (setf uri !'3/4 noble metal crown restoration procedure'@ohd)) 
+      ((member ada-code *three-fourths-predominantly-base-metal-code-list* :test #'equalp)
+       (setf uri !'3/4 predominantly base metal crown restoration procedure'@ohd))
+      ((member ada-code *three-fourths-resin-code-list* :test #'equalp)
+       (setf uri !'3/4 resin crown restoration procedure'@ohd))
+      (t
+       (setf uri !'crown restoration procedure'@ohd)))
+
+    
+    ;; return uri
+    uri))
+
 (defun get-eaglesoft-tooth-to-be-crowned-role-iri (patient-id tooth-name instance-count)
   "Returns an iri for a 'tooth to be crowned role' that is generated by the patient id, the name of the type of the tooth, and a count variable that used differientiate tooth role intances that have the same patient-id/tooth-name but are numerically distinct."
   (let ((uri nil))
@@ -211,18 +239,6 @@
     ;; return uri
     uri))
 
-(defun get-eaglesoft-crown-material-iri (patient-id tooth-name
-					 material-type-iri instance-count)
-  "Returns an iri for the material used in crown restoration that is generated by the patient id, the name of the type of tooth, the type of restoration's material, and a count variable that used differientiate crown procedure intances that have the same patient-id/material-type-iri but are numerically distinct."
-  (let ((uri nil))
-    (setf uri 
-	  (get-unique-individual-iri patient-id 
-				     :salt *eaglesoft-salt*
-				     :iri-base *eaglesoft-individual-crowns-iri-base*
-				     :class-type material-type-iri
-				     :args `(,tooth-name ,instance-count "eaglesoft")))
-    ;; return uri
-    uri))
 
 (defun get-eaglesoft-crown-restoration-iri (patient-id tooth-name
 					    restoration-type-iri instance-count)

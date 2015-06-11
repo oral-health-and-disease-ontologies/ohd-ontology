@@ -156,7 +156,7 @@
 					     " of patient " patient-id)) axioms)
 
          ;; declare instance of restoration 
-	 (setf ohd-restoration-uri (get-eaglesoft-inlay-restoration-uri ada-code))
+	 (setf ohd-restoration-uri (get-eaglesoft-inlay-restoration-type-uri ada-code))
 	 (setf restoration-uri (get-eaglesoft-inlay-restoration-iri 
 				patient-id tooth-name ohd-restoration-uri record-count))
 		     		
@@ -169,7 +169,7 @@
 	 (push `(annotation-assertion !rdfs:label 
 				      ,restoration-uri
 				      ,(str+ restoration-name 
-					     " inlay restoration on " 
+					     " restoration on " 
 					     tooth-name " in patient " 
 					     patient-id)) axioms)
 
@@ -359,25 +359,18 @@
     ;; compare ada code to respective global code lists
     (cond
       ((member ada-code *metal-code-list* :test 'equalp)
-       (setf restoration-name "metal"))
+       (setf restoration-name "metallic inlay"))
       ((member ada-code *resin-code-list* :test 'equalp)
-       (setf restoration-name "resin"))
+       (setf restoration-name "resin inlay"))
       ((member ada-code *ceramic-code-list* :test 'equalp)
-       (setf restoration-name "ceramic"))
-      ((member ada-code *noble-metal-code-list* :test 'equalp) 
-       (setf restoration-name "noble metal"))
-      ((member ada-code *high-noble-metal-code-list* :test 'equalp) 
-       (setf restoration-name "high noble metal"))
-      ((member ada-code *predominantly-base-metal-code-list* :test 'equalp) 
-       (setf restoration-name "predominantly base metal"))
-      ((member ada-code *titanium-code-list* :test 'equalp) 
-       (setf restoration-name "titanium"))
-      (t (setf restoration-name "other")))
+       (setf restoration-name "ceramic inlay"))
+      (t
+       (setf restoration-name "inlay")))
 
     ;; return material name
     restoration-name))
 
-(defun get-eaglesoft-inlay-restoration-uri (ada-code)
+(defun get-eaglesoft-inlay-restoration-type-uri (ada-code)
   "Returns the uri of the restoration type based on ada code."
   (let ((restoration-uri nil))
     ;; get the numeric part of code
@@ -386,20 +379,13 @@
     ;; compare ada code to respective global code lists
     (cond
       ((member ada-code *metal-code-list* :test 'equalp) 
-       (setf restoration-uri !'metallic inlay restoration'@ohd))
+       (setf restoration-uri !'metallic inlay restoration procedure'@ohd))
       ((member ada-code *resin-code-list* :test 'equalp)  
-       (setf restoration-uri !'resin inlay restoration'@ohd))
+       (setf restoration-uri !'resin inlay restoration procedure'@ohd))
       ((member ada-code *ceramic-code-list* :test 'equalp)
-       (setf restoration-uri !'ceramic inlay restoration'@ohd))
-      ((member ada-code *noble-metal-code-list* :test 'equalp) 
-       (setf restoration-uri !'noble metal inlay restoration'@ohd))
-      ((member ada-code *high-noble-metal-code-list* :test 'equalp) 
-       (setf restoration-uri !'high noble metal inlay restoration'@ohd))
-      ((member ada-code *predominantly-base-metal-code-list* :test 'equalp) 
-       (setf restoration-uri !'predominantly base metal inlay restoration'@ohd))
-      ((member ada-code *titanium-code-list* :test 'equalp) 
-       (setf restoration-uri !'titanium inlay restoration'@ohd))
-      (t (setf restoration-uri !'inlay restoration'@ohd)))
+       (setf restoration-uri !'ceramic inlay restoration procedure'@ohd))
+      (t
+       (setf restoration-uri !'inlay restoration procedure'@ohd)))
 
     ;; return restoration
     restoration-uri))
