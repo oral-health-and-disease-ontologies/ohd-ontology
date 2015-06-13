@@ -243,10 +243,10 @@
     ;; append field names to SELECT clause
     (setf  sql 
 	   (str+ sql 
-		 "r.r21_provider_id, r.provider_id, p.description, r21_provider_type, r.practice_id "))
-
+		 "provider_id, practice_id, r21_provider_id, 21_provider_type "))
+    
     ;; FROM clause
-    (setf sql (str+ sql " FROM r21_provider r LEFT JOIN positions p ON r.position_id = p.position_id "))
+    (setf sql (str+ sql " FROM r21_provider "))
 
     ;; WHERE clause
     (setf sql (str+ sql " WHERE r21_provider_type = 'person' "))
