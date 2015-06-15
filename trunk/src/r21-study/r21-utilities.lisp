@@ -302,11 +302,11 @@ Usage:
 (defun get-ohd-import-axioms ()
   "Returns a list of axioms for importing ontologies that are needed to link procedures and finding to patients, providers, and visits.  For example, if a crown procedure was performed, we need to know the patient it was performed on, provider who did the procedure, and when the procedure occurred.  This requires the we import patient, provider, and visit ontologies."
   (let ((axioms nil))
-    ;; import the ohd, patient, provider, dental visits, and dental exam ontologies
-    (push `(imports ,(make-uri *ohd-ontology-iri*)) axioms)
+    ;; import the restoration research ontology, patient, provider, dental visits, and dental exam ontologies
+    (push `(imports ,(make-uri *tooth-restoration-research-ontology-iri*)) axioms)
     (push `(imports ,(make-uri *eaglesoft-dental-patients-ontology-iri*)) axioms)
-    ;;(push `(imports ,(make-uri *eaglesoft-dental-providers-ontology-iri*)) axioms)
-    ;;(push `(imports ,(make-uri *eaglesoft-dental-visits-ontology-iri*)) axioms)
+    (push `(imports ,(make-uri *eaglesoft-dental-providers-ontology-iri*)) axioms)
+    (push `(imports ,(make-uri *eaglesoft-dental-visits-ontology-iri*)) axioms)
     ;;(push `(imports ,(make-uri *eaglesoft-dental-exams-ontology-iri*)) axioms)
 
     ;; return axioms
@@ -486,7 +486,8 @@ Usage:
        ;;       (str+ "missing tooth " tooth-num " finding") nil)
        (setf tooth-num (string-trim " " (format nil "~a" tooth-num)))
        (setf finding-type-uri
-	     (gethash (str+ "missing tooth " tooth-num " finding") *ohd-label-source*)))
+	     (gethash (str+ "missing tooth " tooth-num " finding")
+		      (label2uri *ohd-label-source*))))
       ((equalp action-code "18") ;; unerupted tooth finding
        (setf finding-type-uri !'unerupted tooth finding'@ohd))
       ((all-matches description "(?i)(caries+|Decay|Decalcification+|Dicalsification+)" 1)  ;; caries finding
@@ -1845,8 +1846,12 @@ The steps for creating the r21_provider table are as follows:
 ;; global iri variables
 
 ;; ohd ontology
-(defparameter *ohd-iri-base* "http://purl.obolibrary.org/obo/ohd/")
+(defparameter *ohd-iri-base* "http://purl.obolibrary.org/obo/")
 (defparameter *ohd-ontology-iri* "http://purl.obolibrary.org/obo/ohd/dev/ohd.owl")
+
+;; restoration research ontology
+(defparameter *tooth-restoration-research-iri-base* "http://purl.obolibrary.org/obo/")
+(defparameter *tooth-restoration-research-ontology-iri* "http://purl.obolibrary.org/obo/ohd/dev/tooth-restoration-research.owl")
 
 ;; CDT code ontology
 (defparameter *cdt-iri-base* "http://purl.obolibrary.org/obo/")
