@@ -12,6 +12,7 @@
 			  (let ((label (car label)))
 			    (if (gethash label table) 
 				(unless (eq (gethash label table)  uri)
+				  (warn "Uri label ~a in ~a are both for ~a" (gethash label table)  uri label)
 				  (setf (gethash label table) :ambiguous))
 				(setf (gethash label table) uri))))
 			labels))))
