@@ -25,6 +25,8 @@ patch_procedures_have_occurrence_dates <-function ()
 }
   
 # oral evaluations should have specified outputs too. (+12939)
+# Not strictly correct - there may be more than one evaluation with findings split between them.
+## TODO Review query that uses this assumption.
 patch_oral_evaluations_have_findings <- function ()
 { sparqlUpdate("insert { ?eval has_specified_output: ?finding }",
                "where",
@@ -39,6 +41,7 @@ patch_oral_evaluations_have_findings <- function ()
 }
 
 patch_bearer_of_role_participates_in_realization <- function ()
+## TODO Do we have this asserted both ways in the ontology?
 { sparqlUpdate("INSERT",
                "  { ?thingi participates_in: ?processi }",
                "WHERE",
