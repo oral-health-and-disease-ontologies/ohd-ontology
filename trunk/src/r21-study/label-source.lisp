@@ -2,7 +2,11 @@
 (defparameter *ohd-label-source*
   (make-instance 'label-source
 		 :key :ohd
-		 :sources '("ohd:imports;fma-jaws-teeth.owl" "ohd:ontology;ohd.owl" "ohd:ontology;restoration-research.owl" "ohd:imports;BFO2;bfo2-classes.owl" "ohd:imports;BFO2;bfo2-relations.owl")))
+		 :sources '("ohd:imports;fma-jaws-teeth.owl"
+			    "ohd:ontology;ohd.owl"
+			    "ohd:ontology;tooth-restoration-research.owl"
+			    "ohd:imports;BFO2;bfo2-classes.owl"
+			    "ohd:imports;BFO2;bfo2-relations.owl")))
 
 (defun get-copy-ohd-label-source ()
   "Makes and returns a copy of the *ohd-label-source* hash table created in make-uri-from-label-source."
