@@ -114,7 +114,7 @@
 	 (setf crown-restoration-uri
 	       (get-eaglesoft-crown-restoration-iri
 		patient-id tooth-name restoration-type-uri record-count))
-	 (push-instance axioms crown-restoration-uri !'crown restoration procedure'@ohd)
+	 (push-instance axioms crown-restoration-uri restoration-type-uri)
 	 
 	 ;; add annotation about this restoration procedure
 	 (push `(annotation-assertion !rdfs:label 
