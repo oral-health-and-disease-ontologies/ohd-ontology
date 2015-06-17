@@ -330,7 +330,7 @@
       ((member ada-code *resin-code-list* :test 'equal)
        (setf material-name "resin"))
       ((member ada-code *gold-code-list* :test 'equal)
-       (setf material-name "gold"))
+       (setf material-name "gold foil"))
       (t
        (setf material-name "dental restoration material")))
 
