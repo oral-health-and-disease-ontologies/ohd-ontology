@@ -114,6 +114,17 @@ Attribution is satisfied by using the URIs defined in this file when using terms
     
 
 
+    <!-- http://purl.obolibrary.org/obo/BFO_0000056 -->
+
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000056">
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000053"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000054"/>
+        </owl:propertyChainAxiom>
+    </rdf:Description>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/OHD_0000091 -->
 
     <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OHD_0000091">
@@ -236,13 +247,13 @@ There is a problem with occurrence date.  The date on which an event occurred an
         <owl:disjointWith rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
         <owl:disjointWith>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
             </owl:Restriction>
         </owl:disjointWith>
         <owl:disjointWith>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+                <owl:onProperty rdf:resource="http://www.obofoundry.org/ro/ro.owl#has_part"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
             </owl:Restriction>
         </owl:disjointWith>
@@ -439,11 +450,14 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000036"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000006"/>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OHD_0000091"/>
-                                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/FMA_no_fmaid_Surface_enamel_of_tooth"/>
-                                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000036"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000307"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -456,14 +470,11 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000006"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000036"/>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000036"/>
-                            </owl:Restriction>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000307"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OHD_0000091"/>
+                                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/FMA_no_fmaid_Surface_enamel_of_tooth"/>
+                                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -484,11 +495,14 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000036"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000006"/>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OHD_0000091"/>
-                                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/FMA_no_fmaid_Surface_enamel_of_tooth"/>
-                                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:qualifiedCardinality>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000036"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000307"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -501,14 +515,11 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000006"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000036"/>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000036"/>
-                            </owl:Restriction>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000307"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OHD_0000091"/>
+                                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/FMA_no_fmaid_Surface_enamel_of_tooth"/>
+                                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:qualifiedCardinality>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -643,11 +654,14 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000036"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000006"/>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OHD_0000091"/>
-                                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/FMA_no_fmaid_Surface_enamel_of_tooth"/>
-                                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000036"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000308"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -660,14 +674,11 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000006"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000036"/>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000036"/>
-                            </owl:Restriction>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000308"/>
+                                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OHD_0000091"/>
+                                <owl:onClass rdf:resource="http://purl.obolibrary.org/obo/FMA_no_fmaid_Surface_enamel_of_tooth"/>
+                                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -879,6 +890,12 @@ There is a problem with occurrence date.  The date on which an event occurred an
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000133"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -893,12 +910,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000133"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </rdf:Description>
     
 
@@ -906,12 +917,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
     <!-- http://purl.obolibrary.org/obo/CDT_0002520 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002520">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000133"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -927,6 +932,12 @@ There is a problem with occurrence date.  The date on which an event occurred an
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000133"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </rdf:Description>
@@ -1089,12 +1100,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000133"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -1109,6 +1114,12 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000133"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </rdf:Description>
     
 
@@ -1116,12 +1127,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
     <!-- http://purl.obolibrary.org/obo/CDT_0002630 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002630">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000133"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -1137,6 +1142,12 @@ There is a problem with occurrence date.  The date on which an event occurred an
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000133"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </rdf:Description>
@@ -1299,12 +1310,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000133"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -1319,6 +1324,12 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000133"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </rdf:Description>
     
 
@@ -1326,6 +1337,12 @@ There is a problem with occurrence date.  The date on which an event occurred an
     <!-- http://purl.obolibrary.org/obo/CDT_0002662 -->
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002662">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000134"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -1341,12 +1358,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000134"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </rdf:Description>
@@ -1638,12 +1649,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000305"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -1657,6 +1662,12 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000305"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </rdf:Description>
     
 
@@ -1665,6 +1676,12 @@ There is a problem with occurrence date.  The date on which an event occurred an
 
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/CDT_0002781">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CDT_1000023"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000305"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -1679,12 +1696,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000305"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </rdf:Description>
@@ -3025,13 +3036,13 @@ Changed &quot;A specific healthcare activity&quot; to &quot;A health care encoun
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A procedure that is performed on the pulp chamber and/or root canal of a tooth, or a part thereof</obo:IAO_0000115>
@@ -3046,18 +3057,6 @@ Changed &quot;A specific healthcare activity&quot; to &quot;A health care encoun
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000004">
         <rdfs:label xml:lang="en">tooth restoration procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000434"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000007"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -3100,6 +3099,18 @@ Changed &quot;A specific healthcare activity&quot; to &quot;A health care encoun
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000007"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000434"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A dental procedure in which either a whole tooth or a part of a tooth is replaced by dental restoration material in order to reestablish the tooth&apos;s anatomical and functional form and function.</obo:IAO_0000115>
@@ -3147,12 +3158,6 @@ A tooth restoration procedure achieves some tooth restoration objective specific
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000190"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
             </owl:Restriction>
@@ -3161,6 +3166,12 @@ A tooth restoration procedure achieves some tooth restoration objective specific
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000190"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000118>filling restoration</obo:IAO_0000118>
@@ -3228,12 +3239,6 @@ A tooth restoration procedure achieves some tooth restoration objective specific
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000010">
         <rdfs:label xml:lang="en">dental finding</rdfs:label>
         <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OGMS_0000014"/>
@@ -3243,6 +3248,12 @@ A tooth restoration procedure achieves some tooth restoration objective specific
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+            </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000116>Titus Schleyer1/14/2014: made a minor modification to the definition. This particular definition brings up the issue of language. This one is written in a very &quot;ontology-compliant&quot; way (&quot;... specified output of ...&quot;). The question is to what degree this would be understandable to the layman.</obo:IAO_0000116>
         <obo:IAO_0000115 xml:lang="en">A clinical finding is a specified output of a dental exam and is about the oral cavity, maxillofacial area, and/or the adjacent and associated structures, or their parts, or pathological anatomical entities derived from them. The finding has a part that is about when the exam that led to the finding occured well as other data items specifying the nature of the finding.
@@ -3361,14 +3372,14 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000057"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000052"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000010"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000010"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000052"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">A conversational, visual and tactile examination in which the clinician evaluates the status of the patient&apos;s medical, dental and oral health. </obo:IAO_0000115>
@@ -3669,13 +3680,13 @@ updated defintion</obo:IAO_0000116>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A material combination in which a moldable restorative material is placed directly into or on the tooth. The material then hardens and becomes (essentially) part of the tooth. </obo:IAO_0000115>
@@ -3695,13 +3706,13 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000116>Bill Duncan 12/16/2014:
@@ -3800,12 +3811,6 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
         <rdfs:label>tooth to be extracted role</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
         <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000057"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
@@ -3818,6 +3823,12 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000057"/>
+            </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A role that inheres in a tooth and is realized by a tooth extraction procedure during which the tooth bearing the role is extracted.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
@@ -3833,13 +3844,13 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000116>Titus Schleyer 1/14/2014: 
@@ -3860,14 +3871,14 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000206"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000003"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000003"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000206"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
@@ -3988,12 +3999,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000104"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -4012,6 +4017,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000104"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -4021,6 +4032,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000063">
         <rdfs:label>missing tooth 5 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000105"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -4041,12 +4058,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000105"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -4056,6 +4067,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000064">
         <rdfs:label>missing tooth 6 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000106"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -4076,12 +4093,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000106"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -4091,6 +4102,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000066">
         <rdfs:label>missing tooth 7 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000107"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -4109,12 +4126,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000107"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4163,6 +4174,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000109"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -4179,12 +4196,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000109"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4303,6 +4314,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000113"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -4319,12 +4336,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000113"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4373,12 +4384,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000116"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -4395,6 +4400,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000116"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4478,12 +4489,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000119"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -4502,6 +4507,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000119"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -4511,12 +4522,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000078">
         <rdfs:label>missing tooth 20 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000120"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -4535,6 +4540,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000120"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4583,12 +4594,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000122"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -4607,6 +4612,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000122"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -4616,6 +4627,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000081">
         <rdfs:label>missing tooth 23 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000123"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -4636,12 +4653,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000123"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -4651,12 +4662,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000082">
         <rdfs:label>missing tooth 24 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000124"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -4677,6 +4682,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000124"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -4686,12 +4697,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000083">
         <rdfs:label>missing tooth 25 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000125"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -4712,6 +4717,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000125"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -4721,12 +4732,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000084">
         <rdfs:label>missing tooth 26 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000126"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -4745,6 +4750,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000126"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4828,6 +4839,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000129"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -4844,12 +4861,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000129"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4898,6 +4909,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000131"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -4914,12 +4931,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:hasValue rdf:resource="http://purl.obolibrary.org/obo/OHD_0000131"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -5125,14 +5136,14 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000093"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000054"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
@@ -5273,12 +5284,6 @@ The label of the class may need to be changed.</obo:IAO_0000116>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000204"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000025"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -5286,6 +5291,12 @@ The label of the class may need to be changed.</obo:IAO_0000116>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000205"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000204"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000119>ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
@@ -5324,20 +5335,6 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000032"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_54640"/>
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_59660"/>
-                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_59762"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -5356,6 +5353,20 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
                                 </owl:someValuesFrom>
                             </owl:Restriction>
                         </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_54640"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_59660"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_59762"/>
+                        </owl:unionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
             </owl:Restriction>
