@@ -376,9 +376,11 @@
     ;; compare ada code to respective global code lists
     (cond
       ((member ada-code *porcelain-code-list* :test 'equalp) 
-       (setf restoration-uri !'porcelain laminate veneer restoration procedure'@ohd))
+       ;;(setf restoration-uri !'porcelain laminate veneer restoration procedure'@ohd))
+      (setf restoration-uri !'porcelain laminate veneer restoration'@ohd)) ;; used for r21
       ((member ada-code *resin-code-list* :test 'equalp)
-       (setf restoration-uri !'resin laminate veneer restoration procedure'@ohd))
+       ;;(setf restoration-uri !'resin laminate veneer restoration procedure'@ohd))
+       (setf restoration-uri !'resin laminate veneer restoration'@ohd)) ;; used for r21
       (t (setf restoration-uri !'veneer restoration'@ohd)))
 
     ;; return restoration
