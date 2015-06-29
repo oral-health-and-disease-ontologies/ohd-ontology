@@ -98,7 +98,7 @@
 				      ,tooth-uri
 				      ,(str+ tooth-name " of patient " patient-id)) axioms)
 	 
-         ;; declare instance of !ohd:'tooth to be filled role'
+         ;; declare instance of !ohd:'tooth to be crowned role'
 	 (setf crown-role-uri
 	       (get-eaglesoft-tooth-to-be-crowned-role-iri patient-id tooth record-count))
 	 (push-instance axioms crown-role-uri !'tooth to be crowned role'@ohd)

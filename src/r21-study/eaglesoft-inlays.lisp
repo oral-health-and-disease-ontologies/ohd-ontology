@@ -379,11 +379,14 @@
     ;; compare ada code to respective global code lists
     (cond
       ((member ada-code *metal-code-list* :test 'equalp) 
-       (setf restoration-uri !'metallic inlay restoration procedure'@ohd))
+       ;;(setf restoration-uri !'metallic inlay restoration procedure'@ohd))
+       (setf restoration-uri !'metallic inlay restoration'@ohd)) ;; used for r21
       ((member ada-code *resin-code-list* :test 'equalp)  
-       (setf restoration-uri !'resin inlay restoration procedure'@ohd))
+       ;;(setf restoration-uri !'resin inlay restoration procedure'@ohd))
+       (setf restoration-uri !'resin inlay restoration'@ohd)) ;; used for r21
       ((member ada-code *ceramic-code-list* :test 'equalp)
-       (setf restoration-uri !'ceramic inlay restoration procedure'@ohd))
+       ;;(setf restoration-uri !'ceramic inlay restoration procedure'@ohd))
+       (setf restoration-uri !'ceramic inlay restoration'@ohd)) ;; used for r21
       (t
        (setf restoration-uri !'inlay restoration procedure'@ohd)))
 

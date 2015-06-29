@@ -381,9 +381,11 @@
       ((member ada-code *metal-code-list* :test 'equalp) 
        (setf restoration-uri !'metallic onlay restoration procedure'@ohd))
       ((member ada-code *resin-code-list* :test 'equalp)  
-       (setf restoration-uri !'resin onlay restoration procedure'@ohd))
+       ;;(setf restoration-uri !'resin onlay restoration procedure'@ohd))
+       (setf restoration-uri !'resin onlay restoration'@ohd)) ;; used for r21
       ((member ada-code *ceramic-code-list* :test 'equalp)
-       (setf restoration-uri !'ceramic onlay restoration procedure'@ohd))
+       ;;(setf restoration-uri !'ceramic onlay restoration procedure'@ohd))
+       (setf restoration-uri !'ceramic onlay restoration'@ohd)) ;; used for r21
       (t
        (setf restoration-uri !'onlay restoration procedure'@ohd)))
 

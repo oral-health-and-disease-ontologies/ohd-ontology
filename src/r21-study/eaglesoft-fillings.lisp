@@ -402,11 +402,14 @@
     ;; compare ada code to respective global code lists
     (cond
       ((member ada-code *amalgam-code-list* :test 'equalp) 
-       (setf restoration-uri !'amalgam intracoronal restoration procedure'@ohd))
+       ;;(setf restoration-uri !'amalgam intracoronal restoration procedure'@ohd))
+       (setf restoration-uri !'amalgam filling restoration'@ohd) );; used for r21
       ((member ada-code *resin-code-list* :test 'equalp)  
-       (setf restoration-uri !'resin intracoronal restoration procedure'@ohd))
+       ;;(setf restoration-uri !'resin intracoronal restoration procedure'@ohd))
+       (setf restoration-uri !'resin filling restoration'@ohd)) ; used for r21
       ((member ada-code *gold-code-list* :test 'equalp)
-       (setf restoration-uri !'gold foil intracoronal restoration procedure'@ohd))
+       ;;(setf restoration-uri !'gold foil intracoronal restoration procedure'@ohd))
+       (setf restoration-uri !'gold filling restoration'@ohd)) ;; used for r21
       (t
        (setf restoration-uri !'intracoronal restoration procedure'@ohd)))
 
