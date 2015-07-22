@@ -5,6 +5,7 @@
 ;;    installed on your machine.
 ;; 2. A file named .pattersondbpw (containing the password of Eaglesoft database) located in
 ;;    your home directory.
+;; 3. The driver jar file sajdbc4.jar *must* be in the abcl lib directory. Add-to-classpath is not sufficient.
 
 ;; Instructions for being able to connect to Eaglesoft database
 ;;
@@ -20,7 +21,8 @@
 ;;****************************************************************
 
 ;;;; ensure that sql libary is loaded ;;;;
-(add-to-classpath "/Applications/SQLAnywhere12/System/java/sajdbc4.jar")
+;; (note: see #3 above)
+;;(add-to-classpath "/Applications/SQLAnywhere12/System/java/sajdbc4.jar")
 
 ;;****************************************************************
 ;;; general shared functions ;;;;
@@ -799,8 +801,7 @@ LEFT JOIN
 ON
   dbo.sysobjects.id = dbo.syscolumns.id
 WHERE
-  dbo.sysobjects.type = 'U'
-OR dbo.sysobjects.type = 'V' ")
+  (dbo.sysobjects.type = 'U' OR dbo.sysobjects.type = 'V') ")
 
     ;; append additional search criteria to query string
     (when table-name
@@ -811,7 +812,7 @@ OR dbo.sysobjects.type = 'V' ")
 
     ;; append order info
     (setf query (str+ query " ORDER BY table_name, field_name "))
-    ;;(pprint query)
+;;    (pprint query)
 
     (unwind-protect
 	 (progn
