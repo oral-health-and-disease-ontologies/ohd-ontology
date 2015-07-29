@@ -4,11 +4,6 @@
 ##
 ## Graphdb-specific functions
 
-setRepositoryPrefixes <- function()
-  { DELETE(paste0(current_endpoint,"/namespaces"));
-    lapply(ls(prefixes),function(p) {PUT(paste0(current_endpoint,"/namespaces/",gsub(":","",p)),body=gsub("<|>","",get(p,prefixes)))});
-    NULL
-  }
 
 ## get the current query timeout, in seconds
 get_graphdb_timeout <- function ()
@@ -120,6 +115,7 @@ set_graphdb_timeout <- function (seconds)
               "   }",
               endpoint=system_update_endpoint)
 }
+
 
 
 ## How can I script (automate) the creation of remote repositories?

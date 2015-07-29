@@ -27,6 +27,7 @@ source("SPARQL.R") ; # patch to SPARQL.R
 
 source("prefixes.r"); #list of PREFIXes
 source("environment.r"); # endpoints etc
+source("sesame.r");
 source("graphdb.r");
 source("patch-triplestore.r");
 source("simple-statistics.r") # simple statistical functions on the repo
@@ -40,4 +41,11 @@ source("sparql-template.r")
 source("sparql-patterns.r")
 source("ggsurv.r")
 source("check-integrity.r")
-cat("\n\nDo the analysis with analysis<- resin_restoration_survival_analysis();\nPlot the results with plot(analysis)\n\n");
+cat("Local repositories: \n");
+# ugly way to print pretty
+count<-0;
+apply(as.matrix(get_sesame_repositories()[,"uri"]),
+      FUN=function(el){cat(paste0(count<<-count+1,": ",el,"\n"))},
+      MARGIN=1);
+set_sesame_repository(2);
+cat("\nset_sesame_repository(#) if you want to use a local repository listed above.\nDo the analysis with analysis<- resin_restoration_survival_analysis();\nPlot the results with plot(analysis)\n\n");
