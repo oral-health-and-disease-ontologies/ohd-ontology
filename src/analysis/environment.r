@@ -87,9 +87,9 @@ send_queries_to_workbench <- FALSE;
 check_sparql_syntax <- file.exists("jena/bin/qparse");
 
 ## execute a sparql query. endpoint defaults to current_endpoint, sparql library defaults to "rrdf"
-queryc <- function(...,endpoint=current_endpoint,prefixes=default_ohd_prefixes,cache=TRUE,trace=trace_sparql_queries)
+queryc <- function(...,endpoint=current_endpoint,prefixes=default_ohd_prefixes,cache=TRUE,trace=trace_sparql_queries,nosend=F)
 { 
-    if (send_queries_to_workbench) { queryw(...,prefixes=prefixes); return(NULL)};
+    if (send_queries_to_workbench && !nosend) { queryw(...,prefixes=prefixes); return(NULL)};
     string <- paste(..., sep="\n");
     if (identical(prefixes,FALSE))  { prefixes <- (function () {}) }
     querystring <- querystring(string,prefixes=prefixes);
@@ -123,13 +123,27 @@ queryc <- function(...,endpoint=current_endpoint,prefixes=default_ohd_prefixes,c
 lastSparql <- function() { cat(lastSparqlQuery) }
 
 ## describe a term.
-rdfd <- function(uri,limit=100)
+rdfd <- function(uri,limit=100,show.uris=F)
 {  cat("What things have it as subject\n")
-   write.table(queryc(paste("select distinct ?pl ?p ?vl ?v  where { <",uri,"> ?p ?v. optional {?p rdfs:label ?pl}. optional { ?v rdfs:label ?vl}} limit ",limit,sep="")),quote=F,row.names=F )
+   write.table(queryc(paste("select distinct ?sl ",if(show.uris){"?p"} else {""}, "?pl ", if(show.uris){"?v"} else {""}, " ?vl where",
+                            "{ <",uri,"> ?p ?v.",
+                            "  <",uri,"> rdfs:label ?sl. ",
+                            "optional",
+                            "  {?p rdfs:label ?pl} ",
+                            "optional",
+                            "  { ?v rdfs:label ?vl}} ",
+                            "limit ",limit,sep=""
+                            ),nosend=T),quote=F,row.names=F )
    cat("What things have it as object\n")
-   write.table(queryc(paste("select distinct ?sl ?s ?pl ?p  where { ?s ?p <",uri,"> . optional{?p rdfs:label ?pl}. optional { ?s rdfs:label ?sl}} limit ",limit,sep="")),quote=F,row.names=F)
+   write.table(queryc(paste("select distinct ",if(show.uris){"?s"} else {""}, "?sl ", if(show.uris){"?p"} else {""}, " ?pl  ?ol where",
+                            "{ ?s ?p <",uri,"> .",
+                            "  <",uri,"> rdfs:label ?ol. ",
+                            "optional {?p rdfs:label ?pl}",
+                            "optional { ?s rdfs:label ?sl}}",
+                            "limit ",limit,sep=""
+                            ),nosend=T),quote=F,row.names=F)
+}
 
- }
 
 ## describe an entity given its label
 rdfdl <- function(label,limit=100,show.uris=T)
@@ -142,7 +156,7 @@ rdfdl <- function(label,limit=100,show.uris=T)
               "   optional {?v rdfs:label ?vl}.",
               " } limit ",limit,
                 sep=""
-              )),quote=F,row.names=F);
+              ),nosend=T),quote=F,row.names=F);
    cat("What things have it as object\n")
    write.table(queryc(paste(" select distinct ",if(show.uris){"?s"} else {""}, "?sl ", if(show.uris){"?p"} else {""}, " ?pl ?label where ",
               "{  ?uri rdfs:label \"",label,"\".",
@@ -152,7 +166,7 @@ rdfdl <- function(label,limit=100,show.uris=T)
               "   optional {?s rdfs:label ?sl}.",
               " } limit",limit,
                 sep=""
-              )),sep=",",quote=F,row.names=F);
+              ),nosend=T),sep=",",quote=F,row.names=F);
  }
 
 rdfslabel <- function(uri)
