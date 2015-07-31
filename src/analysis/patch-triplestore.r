@@ -88,7 +88,7 @@ logme <- function(say,do)
 
 count_triples <- function()
     { cat(date(),": counting triples... ");
-      cat(queryc("select (count(*) as ?count) where {?s ?p ?o}"),"\n") 
+      cat(queryc("select (count(*) as ?count) where {?s ?p ?o}",cache=FALSE),"\n") 
   }
 
 patch_triplestore <- function ()
