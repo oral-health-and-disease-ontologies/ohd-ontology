@@ -130,7 +130,7 @@ instance_per_class_report <- function ()
 { queryc("select ?class ?classLabel (count(?instance) as ?instances)",
          "where",
          "{?instance a ?class. ?class rdfs:label ?classLabel.",
-         "filter (!(isblank(?class)) && !(isblank(?instance)))",
+         "filter (!(isblank(?class)) && !(isblank(?instance)))}",
          "group by ?class ?classLabel order by desc(?instances)"
          )
 }
