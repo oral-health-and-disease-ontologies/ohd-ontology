@@ -4,12 +4,36 @@
 (in-package :asdf)
 
 ;; setup a logical pathname to reference files in the project
+(setf (logical-pathname-translations "ohd")
+      `(("imports;**;*.*" 
+	 ,(make-pathname :directory 
+			 (append 
+			  (butlast (pathname-directory *load-pathname*))
+			  '("ontology" "imports" :wild-inferiors))
+			 :name :wild
+			 :type :wild))
+	("ontology;**;*.*" 
+	 ,(make-pathname :directory 
+			 (append 
+			  (butlast (pathname-directory *load-pathname*))
+			  '("ontology" :wild-inferiors))
+			 :name :wild
+			 :type :wild))
+	("**;*.*" 
+	 ,(make-pathname :directory 
+			 (append 
+			  (pathname-directory *load-pathname*)
+			  '(:wild-inferiors))
+			 :name :wild
+			 :type :wild))))
+
 (setf (logical-pathname-translations "vdw")
-      `(("**;*.*" ,(make-pathname :directory (append (pathname-directory *load-pathname*)
-						     '(:wild-inferiors))
-				  :name :wild
-				  :type :wild
-				  :defaults *load-pathname*))))
+      `(("**;*.*"
+	 ,(make-pathname
+	   :directory (append (pathname-directory *load-pathname*) '(:wild-inferiors))
+	   :name :wild
+	   :type :wild
+	   :defaults *load-pathname*))))
 
 ;; register the  development-library system and load the asd file
 ;; the asdf system calls for compiling and loading are found in development-library/load-development-library.lisp
@@ -30,7 +54,7 @@
 	    :pathname "macros"
 	    :components
 	    (
-	     
+	     (:file "project-macros")
 	     )
 	    ) ;; end macros
 
@@ -51,6 +75,7 @@
 	     (:file "data-utils")
 	     (:file "cdt-code-utils")
 	     (:file "fma-utils")
+	     (:file "vdw-hash-tables")
 	     (:file "restoration-material-utils")
 	     )
 	    );; end utils
@@ -60,7 +85,8 @@
 	    :pathname "translate"
 	    :components
 	    (
-	     
+	     (:file "vdw-demographics-to-owl")
+	     (:file "vdw-providers-to-owl")
 	     )
 	    ) ;; end translate
    ) ;; end modules

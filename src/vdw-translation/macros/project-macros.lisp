@@ -18,3 +18,66 @@ created by Alan Ruttenberg 11/26/2013"
   "A shortcut for str+:
  (setf x (str+ y z)) is the same as (setf+ x y z)"
   `(setf ,string1 (str+ ,string1 ,@string2)))
+
+(defmacro with-axioms (axiom-list &body body)
+  `(progn
+     (labels
+	 ((instance-of (instance class)
+	    (push `(declaration (named-individual ,instance)) ,axiom-list)
+	    (push `(class-assertion ,class ,instance) ,axiom-list)
+	    (push `(annotation-assertion !'asserted type'@ohd ,instance ,class) ,axiom-list))
+
+	  (has-label (uri label)
+	    (push `(annotation-assertion !rdfs:label ,uri ,label) ,axiom-list))
+
+	  (participates-in (continuant process)
+	    (push `(object-property-assertion
+		    !'participates in'@ohd ,continuant ,process) ,axiom-list))
+	  
+	  (has-participant (process continuant)
+	    (participates-in continuant process))
+	  
+	  (realizes (process realizable)
+	    (push `(object-property-assertion
+		    !'realizes'@ohd ,process ,realizable) ,axiom-list))
+	  
+	  (located-in (entity location)
+	    (push `(object-property-assertion
+		    !'is located in'@ohd ,entity ,location) ,axiom-list))
+	  
+	  (part-of (entity1 entity2)
+	    (push `(object-property-assertion
+		    !'is part of'@ohd ,entity1 ,entity2) ,axiom-list))
+	  
+	  (has-part (entity1 entity2)
+	    (part-of entity2 entity1))
+
+	  (inheres-in (dependent-entity independent-entity)
+	    (push `(object-property-assertion
+		    !'inheres in'@ohd ,dependent-entity ,independent-entity) ,axiom-list))
+
+	  (is-about (ice entity)
+	    (push `(object-property-assertion
+		    !'is about'@ohd ,ice ,entity) ,axiom-list))
+		   
+	  (is-dental-restoration-of (material surface)
+	    (push `(object-property-assertion
+		    !'is dental restoration of'@ohd ,material ,surface) ,axiom-list))
+
+	  (has-occurrence-date (entity date)
+	    (push `(data-property-assertion
+		    !'occurrence date'@ohd ,entity (:literal ,date !xsd:date)) ,axiom-list))
+
+	  (has-birth-date (patient date)
+	    (push `(data-property-assertion
+		    !'birth_date'@ohd ,patient (:literal ,date !xsd:date)) ,axiom-list))
+
+	  (has-specified-output (process entity)
+	    (push `(object-property-assertion
+		    !'has_specified_output'@ohd ,process ,entity) ,axiom-list))
+
+	  (has-specified-input (process entity)
+	    (push `(object-property-assertion
+		    !'has_specified_input'@ohd ,process ,entity) ,axiom-list)))
+       
+       ,@body)))
