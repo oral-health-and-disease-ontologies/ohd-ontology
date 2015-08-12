@@ -11,15 +11,30 @@
 ;; (defun vdw-ontlogy-iri ()
 ;;   (make-uri (vdw-ontlogy-iri-string)))
 
-(defun make-vdw-uri (id &key base)
-  ;; zero pad the id
-  (setf id (str-right (str+ "000000" id) 7))
-
-  ;; if a base string is provide use it;
-  ;; otherwise use vdw-uri-base-string
-  (if base
-      (make-uri (str+ base id))
-      (make-uri (str+ (vdw-uri-base-string) id))))
+(defun make-vdw-uri (id &key
+			  (instance-uri t)
+			  (class-uri nil)
+			  (uri-base (vdw-uri-base-string))
+			  (salt *vdw-salt*)
+			  (uri-base (vdw-uri-base-string))
+			  class-type
+			  args)
+  (let (uri)
+    ;; determine what method to use for generating uri
+    (cond
+      (instance-uri
+       (setf id (format nil "~a" id))
+       (setf uri
+	     (make-vdw-instance-uri id
+				    :salt salt
+				    :uri-base uri-base
+				    :class-type class-type
+				    :args args)))
+      (t
+       (setf uri (make-vdw-class-uri id :uri-base uri-base))))
+	       
+    ;; return uri
+    uri))
 
 (defun make-obo-uri (id)
   (make-uri (str+ "http://purl.obolibrary.org/obo/" id)))
@@ -27,39 +42,6 @@
 ;;(defun vdw-import-axioms ()
 ;;  `((imports ,(vdw-ontlogy-iri-string))))
 
-(defun vdw-declaration-axioms ()
-  
-  )
-
-(defun instance-of (instance class)
-  (when (and instance class)
-  `((declaration (named-individual ,instance))
-    (class-assertion ,class ,instance)
-    (annotation-assertion !'asserted type'@ohd ,instance ,class))))
-
-(defun has-label (uri label)
-  (when (and uri label)
-    `(annotation-assertion !rdfs:label ,uri ,label)))
-
-(defun participates-in (continuant process)
-  (when (and continuant process)
-    `(object-property-assertion !'participates in'@ohd ,continuant ,process)))
-
-(defun realizes (process realizable)
-  (when (and process realizable)
-    `(object-property-assertion !'realizes'@ohd ,process ,realizable)))
-
-(defun located-in (entity location)
-  (when (and entity location)
-    `(object-property-assertion !'is located in'@ohd ,entity ,location)))
-
-(defun part-of (entity1 entity2)
-  (when (and entity1 entity2)
-    `(object-property-assertion !'is part of'@ohd ,entity1 ,entity2)))
-
-(defun is-dental-restoration-of (entity1 entity2)
-
-  )
 
 (defun uri-id (uri)
   "Return numeric (or id part) of an uri.
@@ -100,7 +82,11 @@ If no leading '!' is present, the uri is simply returned as string."
     (#"processString" it)
     (#"getStringDigest" it)))
 
-(defun make-uri-id (string &key (salt *vdw-salt*) class-type uri-base args)
+(defun make-vdw-instance-uri (string &key
+				       (salt *vdw-salt*)
+				       (uri-base (vdw-uri-base-string))
+				       class-type
+				       args)
   "Returns a unique uri identifier for instances in the ontology by doing a md5 checksum on the string parameter. 
 An optional md5 salt value is specified by the salt key value (i.e., :salt salt). 
 The class-type argument (i.e., :class-type class-type) concatentates the class type to the string.  This parameter is highly suggested, since it helps guarntee that uri will be unique.  
@@ -129,3 +115,13 @@ The args parmameter is used to specify an other information you wish to concaten
   (when uri-base
     (setf string (format nil "~aI_~a" uri-base string)))
   (make-uri string))
+
+(defun make-vdw-class-uri (id &key (uri-base (vdw-uri-base-string)))
+  ;; zero pad the id
+  (setf id (str-right (str+ "000000" id) 7))
+
+  ;; if a uri-base string is provide use it;
+  ;; otherwise use vdw-uri-base-string
+  (if uri-base
+      (make-uri (str+ uri-base id))
+      (make-uri (str+ (vdw-uri-base-string) id))))
