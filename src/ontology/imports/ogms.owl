@@ -1,6 +1,19 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="http://purl.obolibrary.org/obo/ogms.owl#"
-     xml:base="http://purl.obolibrary.org/obo/ogms.owl"
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY obo "http://purl.obolibrary.org/obo/" >
+    <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY oboInOwl "http://www.geneontology.org/formats/oboInOwl#" >
+]>
+
+
+<rdf:RDF xmlns="&obo;ogms.owl#"
+     xml:base="&obo;ogms.owl"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:obo="http://purl.obolibrary.org/obo/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
@@ -8,7 +21,7 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
-    <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ogms.owl">
+    <owl:Ontology rdf:about="&obo;ogms.owl">
         <dc:creator>Daniel Merico</dc:creator>
         <dc:date>2009-08-07</dc:date>
         <dc:creator>Sivaram Arabandi</dc:creator>
@@ -27,15 +40,14 @@ The OGMS developer site is http://code.google.com/p/ogms/
 The discussion group is http://groups.google.com/group/ogms-discuss
 
 If you are interested in participating in the development of OGMS, please send email to albertgoldfain@gmail.com. Be sure to include a google-account username with your request (this will be the username associated with a gmail address).</rdfs:comment>
-        <dc:creator>Cornelius Rosse</dc:creator>
         <dc:creator>Richard Scheuermann</dc:creator>
+        <dc:creator>Cornelius Rosse</dc:creator>
         <dc:creator>Bill Hogan</dc:creator>
         <dc:creator>Albert Goldfain</dc:creator>
         <dc:creator>Barry Smith</dc:creator>
         <dc:creator>Anand Kumar</dc:creator>
         <owl:imports rdf:resource="http://protege.stanford.edu/plugins/owl/dc/protege-dc.owl"/>
-        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/bfo/2010-05-25/ruttenberg-bfo.owl"/>
-        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/iao/dev/ontology-metadata.owl"/>
+        <owl:imports rdf:resource="&obo;iao/dev/ontology-metadata.owl"/>
     </owl:Ontology>
     
 
@@ -53,7 +65,7 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000115 -->
 
-    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000115">
+    <owl:AnnotationProperty rdf:about="&obo;IAO_0000115">
         <rdfs:label>definition</rdfs:label>
     </owl:AnnotationProperty>
     
@@ -61,7 +73,7 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000116 -->
 
-    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000116">
+    <owl:AnnotationProperty rdf:about="&obo;IAO_0000116">
         <rdfs:label>editor note</rdfs:label>
     </owl:AnnotationProperty>
     
@@ -69,7 +81,7 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000117 -->
 
-    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000117">
+    <owl:AnnotationProperty rdf:about="&obo;IAO_0000117">
         <rdfs:label>definition editor</rdfs:label>
     </owl:AnnotationProperty>
     
@@ -77,7 +89,7 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000119 -->
 
-    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000119">
+    <owl:AnnotationProperty rdf:about="&obo;IAO_0000119">
         <rdfs:label>definition source</rdfs:label>
     </owl:AnnotationProperty>
     
@@ -85,7 +97,7 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000232 -->
 
-    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000232">
+    <owl:AnnotationProperty rdf:about="&obo;IAO_0000232">
         <rdfs:label>curator note</rdfs:label>
     </owl:AnnotationProperty>
     
@@ -93,7 +105,7 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.org/dc/elements/1.1/date -->
 
-    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+    <owl:AnnotationProperty rdf:about="&dc;date"/>
     
 
 
@@ -108,10 +120,40 @@ If you are interested in participating in the development of OGMS, please send e
     
 
 
+    <!-- http://purl.obolibrary.org/obo/BFO_0000001 -->
+
+    <owl:Class rdf:about="&obo;BFO_0000001"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/BFO_0000007 -->
+
+    <owl:Class rdf:about="&obo;BFO_0000007"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/BFO_0000016 -->
+
+    <owl:Class rdf:about="&obo;BFO_0000016"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/BFO_0000019 -->
+
+    <owl:Class rdf:about="&obo;BFO_0000019"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/BFO_0000040 -->
+
+    <owl:Class rdf:about="&obo;BFO_0000040"/>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/IAO_0000027 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000027">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+    <owl:Class rdf:about="&obo;IAO_0000027">
+        <rdfs:subClassOf rdf:resource="&obo;IAO_0000030"/>
         <obo:IAO_0000119>OBO:imported &quot;http://purl.obolibrary.org/obo/iao.owl&quot;</obo:IAO_0000119>
         <obo:IAO_0000115 xml:lang="en">a data item is an information content entity that is intended to be a truthful statement about something (modulo, e.g., measurement precision or other systematic errors) and is constructed/acquired by a method which reliably tends to produce (approximately) truthful statements.</obo:IAO_0000115>
     </owl:Class>
@@ -120,8 +162,8 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000030 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000030">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+    <owl:Class rdf:about="&obo;IAO_0000030">
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000031"/>
         <obo:IAO_0000119>OBO:sourced &quot;OBI:0000142&quot;</obo:IAO_0000119>
         <obo:IAO_0000115 xml:lang="en">an information content entity is an entity that is generically dependent on some artifact and stands in relation of aboutness to some entity</obo:IAO_0000115>
     </owl:Class>
@@ -130,9 +172,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000014 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000014">
+    <owl:Class rdf:about="&obo;OGMS_0000014">
         <rdfs:label>clinical finding</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <rdfs:subClassOf rdf:resource="&obo;IAO_0000027"/>
         <obo:IAO_0000232>creation date: 2010-07-19T10:18:02Z</obo:IAO_0000232>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
@@ -143,9 +185,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000015 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000015">
+    <owl:Class rdf:about="&obo;OGMS_0000015">
         <rdfs:label>clinical history</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000014"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000014"/>
         <obo:IAO_0000232>creation date: 2010-07-19T10:18:59Z</obo:IAO_0000232>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
@@ -156,9 +198,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000016 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000016">
+    <owl:Class rdf:about="&obo;OGMS_0000016">
         <rdfs:label>clinical picture</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <rdfs:subClassOf rdf:resource="&obo;IAO_0000027"/>
         <obo:IAO_0000115 xml:lang="en">A representation of the clinically significant bodily components and/or bodily processes of a human being that is inferred from the totality of relevant clinical findings.</obo:IAO_0000115>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
@@ -169,9 +211,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000017 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000017">
+    <owl:Class rdf:about="&obo;OGMS_0000017">
         <rdfs:label>image finding</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000014"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000014"/>
         <obo:IAO_0000115 xml:lang="en">A representation of an image that supports an inference to an assertion about some quality of a patient.</obo:IAO_0000115>
         <obo:IAO_0000232>creation date: 2009-06-23T10:21:10Z</obo:IAO_0000232>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
@@ -182,9 +224,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000018 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000018">
+    <owl:Class rdf:about="&obo;OGMS_0000018">
         <rdfs:label>laboratory finding</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000014"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000014"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
         <obo:IAO_0000115 xml:lang="en">A representation of a quality of a specimen that is the output of a laboratory test and that can support an inference to an assertion about some quality of the patient.</obo:IAO_0000115>
@@ -195,9 +237,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000019 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000019">
+    <owl:Class rdf:about="&obo;OGMS_0000019">
         <rdfs:label>preclinical finding</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <rdfs:subClassOf rdf:resource="&obo;IAO_0000027"/>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
         <obo:IAO_0000232>creation date: 2009-06-23T10:22:44Z</obo:IAO_0000232>
         <obo:IAO_0000115 xml:lang="en">A representation of a quality of a patient that is (1) recorded by a clinician because the quality is hypothesized to be of clinical significance and (2) refers to qualities obtaining in the patient prior to their becoming detectable in a clinical history taking or physical examination.</obo:IAO_0000115>
@@ -208,9 +250,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000020 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000020">
+    <owl:Class rdf:about="&obo;OGMS_0000020">
         <rdfs:label>symptom</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000001"/>
         <obo:IAO_0000116>note: defined class</obo:IAO_0000116>
         <obo:IAO_0000115 xml:lang="en">A quality of a patient that is observed by the patient or a processual entity experienced by the patient, either of which is hypothesized by the patient to be a realization of a disease.</obo:IAO_0000115>
         <obo:IAO_0000232>creation date: 2010-11-18T11:02:10Z</obo:IAO_0000232>
@@ -221,9 +263,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000022 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000022">
+    <owl:Class rdf:about="&obo;OGMS_0000022">
         <rdfs:label>manifestation of a disease</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000019"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000019"/>
         <obo:IAO_0000115 xml:lang="en">A quality of a patient that is (a) a deviation from clinical normality that exists in virtue of the realization of a disease and (b) is observable.</obo:IAO_0000115>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000232>creation date: 2009-06-23T11:12:33Z</obo:IAO_0000232>
@@ -234,9 +276,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000023 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000023">
+    <owl:Class rdf:about="&obo;OGMS_0000023">
         <rdfs:label>phenotype</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000019"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000019"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
         <obo:IAO_0000115 xml:lang="en">A (combination of) quality(ies) of an organism determined by the interaction of its genetic make-up and environment that differentiates specific instances of a species from other instances of the same species.</obo:IAO_0000115>
@@ -247,9 +289,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000024 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000024">
+    <owl:Class rdf:about="&obo;OGMS_0000024">
         <rdfs:label>sign</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000001"/>
         <obo:IAO_0000232>creation date: 2010-11-18T11:14:36Z</obo:IAO_0000232>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
         <obo:IAO_0000115 xml:lang="en">A quality of a patient, a material entity that is part of a patient, or a processual entity that a patient participates in, any one of which is observed in a physical examination and is deemed by the clinician to be of clinical significance.</obo:IAO_0000115>
@@ -261,9 +303,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000025 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000025">
+    <owl:Class rdf:about="&obo;OGMS_0000025">
         <rdfs:label>clinical manifestation of a disease</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000022"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000022"/>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">A manifestation of a disease that is detectable in a clinical history taking or physical examination.</obo:IAO_0000115>
@@ -274,9 +316,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000026 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000026">
+    <owl:Class rdf:about="&obo;OGMS_0000026">
         <rdfs:label>preclinical manifestation of a disease</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000022"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000022"/>
         <obo:IAO_0000232>creation date: 2009-06-23T11:16:50Z</obo:IAO_0000232>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">A manifestation of a disease that exists prior to the time at which it would be detected in a clinical history taking or physical examination, if the patient were to present to a clinician. A realization of a disease that exists prior to its becoming detectable in a clinical history taking or physical examination.</obo:IAO_0000115>
@@ -287,9 +329,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000027 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000027">
+    <owl:Class rdf:about="&obo;OGMS_0000027">
         <rdfs:label>clinical phenotype</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000023"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000023"/>
         <obo:IAO_0000232>creation date: 2009-06-23T11:18:05Z</obo:IAO_0000232>
         <obo:IAO_0000115 xml:lang="en">A clinically abnormal phenotype.</obo:IAO_0000115>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
@@ -300,9 +342,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000028 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000028">
+    <owl:Class rdf:about="&obo;OGMS_0000028">
         <rdfs:label>disease phenotype</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000023"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000023"/>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000232>creation date: 2009-06-23T11:18:39Z</obo:IAO_0000232>
@@ -313,9 +355,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000029 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000029">
+    <owl:Class rdf:about="&obo;OGMS_0000029">
         <rdfs:label>vital sign</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000024"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000024"/>
         <obo:IAO_0000232>creation date: 2009-06-23T11:19:17Z</obo:IAO_0000232>
         <obo:IAO_0000115 xml:lang="en">A physical sign in which a non-zero value is standardly considered to be an indication that the organism is alive.</obo:IAO_0000115>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
@@ -326,9 +368,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000030 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000030">
+    <owl:Class rdf:about="&obo;OGMS_0000030">
         <rdfs:label>predisposition to disease of type X</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000016"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000016"/>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000232>creation date: 2009-06-23T11:20:25Z</obo:IAO_0000232>
@@ -339,9 +381,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000031 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000031">
+    <owl:Class rdf:about="&obo;OGMS_0000031">
         <rdfs:label>disease</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000016"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000016"/>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
         <obo:IAO_0000115 xml:lang="en">A disposition (i) to undergo pathological processes that (ii) exists in an organism because of one or more disorders in that organism.</obo:IAO_0000115>
         <obo:IAO_0000232>creation date: 2009-06-23T11:21:20Z</obo:IAO_0000232>
@@ -352,9 +394,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000032 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000032">
+    <owl:Class rdf:about="&obo;OGMS_0000032">
         <rdfs:label>homeostasis</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000016"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000016"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000232>creation date: 2009-06-23T11:22:01Z</obo:IAO_0000232>
     </owl:Class>
@@ -363,9 +405,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000033 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000033">
+    <owl:Class rdf:about="&obo;OGMS_0000033">
         <rdfs:label>genetic predisposition to disease of type X</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000030"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000030"/>
         <obo:IAO_0000232>creation date: 2009-06-23T11:23:07Z</obo:IAO_0000232>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
@@ -376,9 +418,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000034 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000034">
+    <owl:Class rdf:about="&obo;OGMS_0000034">
         <rdfs:label>acquired genetic disease</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000031"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000031"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
         <obo:IAO_0000232>creation date: 2009-06-23T11:24:05Z</obo:IAO_0000232>
@@ -389,9 +431,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000035 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000035">
+    <owl:Class rdf:about="&obo;OGMS_0000035">
         <rdfs:label>constitutional genetic disease</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000031"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000031"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">A disease whose physical basis is a constitutional genetic disorder.</obo:IAO_0000115>
         <obo:IAO_0000232>creation date: 2009-06-23T11:24:59Z</obo:IAO_0000232>
@@ -402,9 +444,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000037 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000037">
+    <owl:Class rdf:about="&obo;OGMS_0000037">
         <rdfs:label>abnormal homeostasis</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000032"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000032"/>
         <obo:IAO_0000232>creation date: 2009-06-23T11:26:44Z</obo:IAO_0000232>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
@@ -415,9 +457,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000038 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000038">
+    <owl:Class rdf:about="&obo;OGMS_0000038">
         <rdfs:label>normal homeostasis</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000032"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000032"/>
         <obo:IAO_0000232>creation date: 2009-06-23T11:27:28Z</obo:IAO_0000232>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
@@ -428,9 +470,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000039 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000039">
+    <owl:Class rdf:about="&obo;OGMS_0000039">
         <rdfs:label>configuration</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000019"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000019"/>
         <obo:IAO_0000115 xml:lang="en">A quality which is an spatial arrangement or distribution of a(n) independent continuant(s) across a Three Dimensional Region.</obo:IAO_0000115>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000232>creation date: 2009-06-23T11:36:24Z</obo:IAO_0000232>
@@ -441,9 +483,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000040 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000040">
+    <owl:Class rdf:about="&obo;OGMS_0000040">
         <rdfs:label>pathological physical configuration</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000039"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000039"/>
         <obo:IAO_0000232>creation date: 2009-06-23T11:36:58Z</obo:IAO_0000232>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
@@ -454,9 +496,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000045 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000045">
+    <owl:Class rdf:about="&obo;OGMS_0000045">
         <rdfs:label>disorder</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000040"/>
         <obo:IAO_0000232>creation date: 2009-06-23T11:39:44Z</obo:IAO_0000232>
         <obo:IAO_0000115 xml:lang="en">A material entity which is clinically abnormal and part of an extended organism. Disorders are the physical basis of disease.</obo:IAO_0000115>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
@@ -467,9 +509,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000046 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000046">
+    <owl:Class rdf:about="&obo;OGMS_0000046">
         <rdfs:label>epigenetic disorder</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000045"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000045"/>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
         <obo:IAO_0000115 xml:lang="en">A disorder whose etiology involves (1) a modification to the patient&apos;s genomic DNA which leads to alterations in the normal expression pattern of the genome, but is (2) not a change in the nucleotide sequence.</obo:IAO_0000115>
         <obo:IAO_0000232>creation date: 2009-06-23T11:40:27Z</obo:IAO_0000232>
@@ -480,9 +522,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000047 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000047">
+    <owl:Class rdf:about="&obo;OGMS_0000047">
         <rdfs:label>genetic disorder</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000045"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000045"/>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
         <obo:IAO_0000115 xml:lang="en">A disorder whose etiology involves an abnormality in the nucleotide sequence of an organism&apos;s genome.</obo:IAO_0000115>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
@@ -493,9 +535,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000050 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000050">
+    <owl:Class rdf:about="&obo;OGMS_0000050">
         <rdfs:label>acquired genetic disorder</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000047"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000047"/>
         <obo:IAO_0000232>creation date: 2009-06-23T11:43:09Z</obo:IAO_0000232>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">A genetic disorder acquired by a single cell in an organism that leads to a population of cells within the organism bearing the disorder.</obo:IAO_0000115>
@@ -506,9 +548,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000051 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000051">
+    <owl:Class rdf:about="&obo;OGMS_0000051">
         <rdfs:label>constitutional genetic disorder</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000047"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000047"/>
         <obo:IAO_0000232>creation date: 2009-06-23T11:43:44Z</obo:IAO_0000232>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">A genetic disorder inherited during conception that is part of all cells in the organism.</obo:IAO_0000115>
@@ -519,7 +561,7 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000055 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000055">
+    <owl:Class rdf:about="&obo;OGMS_0000055">
         <rdfs:label>clinical history taking</rdfs:label>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
@@ -531,7 +573,7 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000056 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000056">
+    <owl:Class rdf:about="&obo;OGMS_0000056">
         <rdfs:label>laboratory test</rdfs:label>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
@@ -543,7 +585,7 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000057 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000057">
+    <owl:Class rdf:about="&obo;OGMS_0000057">
         <rdfs:label>physical examination</rdfs:label>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">A sequence of acts of observing and measuring qualities of a patient performed by a clinician; measurements may occur with and without elicitation.</obo:IAO_0000115>
@@ -555,9 +597,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000059 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000059">
+    <owl:Class rdf:about="&obo;OGMS_0000059">
         <rdfs:label>etiological process</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000007"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000007"/>
         <obo:IAO_0000115 xml:lang="en">A process in an organism that leads to a subsequent disorder.</obo:IAO_0000115>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000232>creation date: 2009-06-23T11:53:07Z</obo:IAO_0000232>
@@ -568,9 +610,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000060 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000060">
+    <owl:Class rdf:about="&obo;OGMS_0000060">
         <rdfs:label>bodily process</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000007"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000007"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000232>creation date: 2009-06-23T11:53:49Z</obo:IAO_0000232>
     </owl:Class>
@@ -579,9 +621,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000061 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000061">
+    <owl:Class rdf:about="&obo;OGMS_0000061">
         <rdfs:label>pathological bodily process</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000060"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000060"/>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">A bodily process that is clinically abnormal.</obo:IAO_0000115>
@@ -592,9 +634,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000063 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000063">
+    <owl:Class rdf:about="&obo;OGMS_0000063">
         <rdfs:label>disease course</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000007"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000007"/>
         <obo:IAO_0000115 xml:lang="en">The totality of all processes through which a given disease instance is realized.</obo:IAO_0000115>
         <obo:IAO_0000232>creation date: 2009-06-23T11:55:44Z</obo:IAO_0000232>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
@@ -605,9 +647,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000064 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000064">
+    <owl:Class rdf:about="&obo;OGMS_0000064">
         <rdfs:label>chronic disease course</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000063"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000063"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000232>creation date: 2009-06-23T11:56:26Z</obo:IAO_0000232>
         <obo:IAO_0000115 xml:lang="en">A disease course that (a) does not terminate in a return to normal homeostasis and (b) would, absent intervention, fall within abnormal homeostatic range.</obo:IAO_0000115>
@@ -618,9 +660,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000065 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000065">
+    <owl:Class rdf:about="&obo;OGMS_0000065">
         <rdfs:label>progressive disease course</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000063"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000063"/>
         <obo:IAO_0000115 xml:lang="en">A disease course that (a) does not terminate in a return to normal homeostasis and (b) would, absent intervention, involve an increasing deviation from homeostasis.</obo:IAO_0000115>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
@@ -631,9 +673,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000066 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000066">
+    <owl:Class rdf:about="&obo;OGMS_0000066">
         <rdfs:label>transient disease course</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000063"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000063"/>
         <obo:IAO_0000232>creation date: 2009-06-23T11:57:44Z</obo:IAO_0000232>
         <obo:IAO_0000115 xml:lang="en">A disease course that terminates in a return to normal homeostasis.</obo:IAO_0000115>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
@@ -644,9 +686,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000067 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000067">
+    <owl:Class rdf:about="&obo;OGMS_0000067">
         <rdfs:label>_undefined primitive term</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000001"/>
         <obo:IAO_0000232>creation date: 2009-06-23T11:58:22Z</obo:IAO_0000232>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
     </owl:Class>
@@ -655,9 +697,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000069 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000069">
+    <owl:Class rdf:about="&obo;OGMS_0000069">
         <rdfs:label>clinically abnormal</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000067"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000067"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000232>creation date: 2009-06-23T11:59:24Z</obo:IAO_0000232>
     </owl:Class>
@@ -666,9 +708,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000070 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000070">
+    <owl:Class rdf:about="&obo;OGMS_0000070">
         <rdfs:label>physical basis</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000067"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000067"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000232>creation date: 2009-06-23T12:00:09Z</obo:IAO_0000232>
     </owl:Class>
@@ -677,9 +719,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000071 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000071">
+    <owl:Class rdf:about="&obo;OGMS_0000071">
         <rdfs:label>realization</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000067"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000067"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000232>creation date: 2009-06-23T12:00:39Z</obo:IAO_0000232>
     </owl:Class>
@@ -688,9 +730,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000073 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000073">
+    <owl:Class rdf:about="&obo;OGMS_0000073">
         <rdfs:label>diagnosis</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <rdfs:subClassOf rdf:resource="&obo;IAO_0000027"/>
         <obo:IAO_0000232>creation date: 2009-06-23T12:42:23Z</obo:IAO_0000232>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
@@ -701,9 +743,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000074 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000074">
+    <owl:Class rdf:about="&obo;OGMS_0000074">
         <rdfs:label>normal value</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000031"/>
         <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000232>creation date: 2009-06-26T10:31:34Z</obo:IAO_0000232>
@@ -714,9 +756,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000077 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000077">
+    <owl:Class rdf:about="&obo;OGMS_0000077">
         <rdfs:label>pathological formation</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000040"/>
         <obo:IAO_0000232>creation date: 2009-07-13T02:14:59Z</obo:IAO_0000232>
         <obo:IAO_0000119>http://ontology.buffalo.edu/bio/ISMB/ISMB_Bio-ontologies.pdf</obo:IAO_0000119>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
@@ -727,9 +769,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000078 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000078">
+    <owl:Class rdf:about="&obo;OGMS_0000078">
         <rdfs:label>pathological anatomical structure</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000040"/>
         <obo:IAO_0000119>http://ontology.buffalo.edu/bio/ISMB/ISMB_Bio-ontologies.pdf</obo:IAO_0000119>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">An anatomical structure (FMA) is pathological whenever (1) it has come into being as a result of changes in some pre-existing canonical anatomical structure, (2) through processes other than the expression of the normal complement of genes of an organism of the given type, and (3) is predisposed to have health-related consequences for the organism in question manifested by symptoms and signs.</obo:IAO_0000115>
@@ -740,9 +782,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000079 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000079">
+    <owl:Class rdf:about="&obo;OGMS_0000079">
         <rdfs:label>portion of pathological body substance</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000040"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">TODO: Define, relate to disorder, and place in the OGMS hierarchy.</obo:IAO_0000115>
         <obo:IAO_0000232>creation date: 2009-07-13T02:15:17Z</obo:IAO_0000232>
@@ -753,9 +795,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000080 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000080">
+    <owl:Class rdf:about="&obo;OGMS_0000080">
         <rdfs:label>pathological transformation</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000061"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000061"/>
         <obo:IAO_0000115 xml:lang="en">A pathological bodily process in which a canonical anatomical structure becomes a pathological anatomical structure.</obo:IAO_0000115>
         <obo:IAO_0000119>http://ontology.buffalo.edu/bio/ISMB/ISMB_Bio-ontologies.pdf</obo:IAO_0000119>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
@@ -766,9 +808,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000081 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000081">
+    <owl:Class rdf:about="&obo;OGMS_0000081">
         <rdfs:label>pathological derivation</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000061"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000061"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">A pathological bodily process in which matter is reorganized in such a way as to give rise to new pathological formations which take the place of entities existing earlier.</obo:IAO_0000115>
         <obo:IAO_0000119>http://ontology.buffalo.edu/bio/ISMB/ISMB_Bio-ontologies.pdf</obo:IAO_0000119>
@@ -779,9 +821,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000082 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000082">
+    <owl:Class rdf:about="&obo;OGMS_0000082">
         <rdfs:label>pathological invasion</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000061"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000061"/>
         <obo:IAO_0000115 xml:lang="en">TODO: Define.</obo:IAO_0000115>
         <obo:IAO_0000119>http://ontology.buffalo.edu/bio/ISMB/ISMB_Bio-ontologies.pdf</obo:IAO_0000119>
         <obo:IAO_0000232>creation date: 2009-07-13T02:17:47Z</obo:IAO_0000232>
@@ -792,9 +834,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000083 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000083">
+    <owl:Class rdf:about="&obo;OGMS_0000083">
         <rdfs:label>physical examination finding</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000014"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000014"/>
         <obo:IAO_0000232>creation date: 2009-11-24T04:51:11Z</obo:IAO_0000232>
         <obo:IAO_0000115 xml:lang="en">TODO: Define.</obo:IAO_0000115>
         <obo:IAO_0000119>http://code.google.com/p/ogms/issues/detail?id=26</obo:IAO_0000119>
@@ -805,9 +847,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000084 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000084">
+    <owl:Class rdf:about="&obo;OGMS_0000084">
         <rdfs:label>organism population</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000040"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000232>creation date: 2009-11-24T04:51:11Z</obo:IAO_0000232>
         <obo:IAO_0000119>http://code.google.com/p/ogms/issues/detail?id=33</obo:IAO_0000119>
@@ -818,9 +860,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000085 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000085">
+    <owl:Class rdf:about="&obo;OGMS_0000085">
         <rdfs:label>pain</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000020"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000020"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000232>creation date: 2009-11-24T04:51:11Z</obo:IAO_0000232>
         <obo:IAO_0000119>http://code.google.com/p/ogms/issues/detail?id=13</obo:IAO_0000119>
@@ -831,9 +873,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000086 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000086">
+    <owl:Class rdf:about="&obo;OGMS_0000086">
         <rdfs:label>syndrome</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000019"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000019"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000232>creation date: 2009-11-24T04:51:11Z</obo:IAO_0000232>
         <obo:IAO_0000115 xml:lang="en">A pattern of signs and symptoms that typically co-occur.</obo:IAO_0000115>
@@ -844,9 +886,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000087 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000087">
+    <owl:Class rdf:about="&obo;OGMS_0000087">
         <rdfs:label>extended organism</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000040"/>
         <obo:IAO_0000232>creation date: 2010-01-25T04:51:11Z</obo:IAO_0000232>
         <obo:IAO_0000119>http://code.google.com/p/ogms/issues/detail?id=3</obo:IAO_0000119>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
@@ -857,9 +899,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000088 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000088">
+    <owl:Class rdf:about="&obo;OGMS_0000088">
         <rdfs:label>patient symptom report</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <rdfs:subClassOf rdf:resource="&obo;IAO_0000030"/>
         <obo:IAO_0000115 xml:lang="en">A communication from a patient about something they perceive as being abnormal about their body or life.</obo:IAO_0000115>
         <obo:IAO_0000119>http://code.google.com/p/ogms/issues/detail?id=12</obo:IAO_0000119>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
@@ -870,9 +912,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000089 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000089">
+    <owl:Class rdf:about="&obo;OGMS_0000089">
         <rdfs:label>congenital malformation</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000040"/>
         <obo:IAO_0000232>creation date: 2010-03-31T04:51:11Z</obo:IAO_0000232>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">A structurally anomalous part of an organism acquired during fetal development and present at birth (but not necessarily hereditary) which is hypothesized to be harmful for the organism.</obo:IAO_0000115>
@@ -883,7 +925,7 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000090 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000090">
+    <owl:Class rdf:about="&obo;OGMS_0000090">
         <rdfs:label>treatment</rdfs:label>
         <obo:IAO_0000115 xml:lang="en">A processual entity whose completion is hypothesized (by a healthcare provider) to alleviate the signs and symptoms associated with a disorder</obo:IAO_0000115>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
@@ -895,9 +937,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000091 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000091">
+    <owl:Class rdf:about="&obo;OGMS_0000091">
         <rdfs:label>convalescence</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000007"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000007"/>
         <obo:IAO_0000119>http://code.google.com/p/ogms/issues/detail?id=35</obo:IAO_0000119>
         <obo:IAO_0000232>creation date: 2010-03-31T04:51:11Z</obo:IAO_0000232>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
@@ -908,9 +950,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000092 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000092">
+    <owl:Class rdf:about="&obo;OGMS_0000092">
         <rdfs:label>life course</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000007"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000007"/>
         <obo:IAO_0000119>http://code.google.com/p/ogms/issues/detail?id=38</obo:IAO_0000119>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">A processual entity which has as parts all the processes in which a given organism is participant.</obo:IAO_0000115>
@@ -921,9 +963,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000093 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000093">
+    <owl:Class rdf:about="&obo;OGMS_0000093">
         <rdfs:label>prognosis</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <rdfs:subClassOf rdf:resource="&obo;IAO_0000027"/>
         <obo:IAO_0000119>http://code.google.com/p/ogms/issues/detail?id=35</obo:IAO_0000119>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">A hypothesis about the course of a disease.</obo:IAO_0000115>
@@ -934,9 +976,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000094 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000094">
+    <owl:Class rdf:about="&obo;OGMS_0000094">
         <rdfs:label>acute disease course</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000063"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000063"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">a disease course with a rapid onset but typical unfolding of signs and symptoms after this rapid onset.</obo:IAO_0000115>
         <obo:IAO_0000119>http://code.google.com/p/ogms/wiki/Meeting_notes_20100513</obo:IAO_0000119>
@@ -947,9 +989,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000095 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000095">
+    <owl:Class rdf:about="&obo;OGMS_0000095">
         <rdfs:label>inflammation process</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000007"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000007"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000232>creation date: 2010-07-19T11:57:44Z</obo:IAO_0000232>
         <obo:IAO_0000115 xml:lang="en">A process which is a response by an organism&apos;s tissues that is generally identified by swelling or localized pain</obo:IAO_0000115>
@@ -960,7 +1002,7 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000096 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000096">
+    <owl:Class rdf:about="&obo;OGMS_0000096">
         <rdfs:label>health care process</rdfs:label>
         <obo:IAO_0000119>http://groups.google.com/group/ogms-discuss/browse_thread/thread/a2dbc2ed1dff99d6</obo:IAO_0000119>
         <obo:IAO_0000232>creation date: 2011-02-21T09:57:44Z</obo:IAO_0000232>
@@ -972,9 +1014,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000097 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000097">
+    <owl:Class rdf:about="&obo;OGMS_0000097">
         <rdfs:label>health care encounter</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000096"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000096"/>
         <obo:IAO_0000115 xml:lang="en">A temporally-connected health care process that has as participants an organization or person realizing the health care provider role and a person realizing the patient role.  The health care provider role and patient are realized during the health care encounter</obo:IAO_0000115>
         <obo:IAO_0000232>creation date: 2011-02-21T09:57:44Z</obo:IAO_0000232>
         <obo:IAO_0000119>http://groups.google.com/group/ogms-discuss/browse_thread/thread/a2dbc2ed1dff99d6</obo:IAO_0000119>
@@ -985,9 +1027,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000098 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000098">
+    <owl:Class rdf:about="&obo;OGMS_0000098">
         <rdfs:label>hospitalization</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000097"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000097"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">TODO</obo:IAO_0000115>
         <obo:IAO_0000232>creation date: 2011-02-21T09:57:44Z</obo:IAO_0000232>
@@ -998,9 +1040,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000099 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000099">
+    <owl:Class rdf:about="&obo;OGMS_0000099">
         <rdfs:label>outpatient encounter</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000097"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000097"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000119>http://groups.google.com/group/ogms-discuss/browse_thread/thread/a2dbc2ed1dff99d6</obo:IAO_0000119>
         <obo:IAO_0000115 xml:lang="en">TODO</obo:IAO_0000115>
@@ -1011,9 +1053,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000100 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000100">
+    <owl:Class rdf:about="&obo;OGMS_0000100">
         <rdfs:label>inpatient encounter</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000097"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000097"/>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">TODO</obo:IAO_0000115>
         <obo:IAO_0000232>creation date: 2011-02-21T09:57:44Z</obo:IAO_0000232>
@@ -1024,9 +1066,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000101 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000101">
+    <owl:Class rdf:about="&obo;OGMS_0000101">
         <rdfs:label>ED encounter</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000097"/>
+        <rdfs:subClassOf rdf:resource="&obo;OGMS_0000097"/>
         <obo:IAO_0000232>creation date: 2011-02-21T09:57:44Z</obo:IAO_0000232>
         <obo:IAO_0000115 xml:lang="en">TODO</obo:IAO_0000115>
         <obo:IAO_0000119>http://groups.google.com/group/ogms-discuss/browse_thread/thread/a2dbc2ed1dff99d6</obo:IAO_0000119>
@@ -1037,9 +1079,9 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000102 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000102">
+    <owl:Class rdf:about="&obo;OGMS_0000102">
         <rdfs:label>injury</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000040"/>
         <obo:IAO_0000119>http://groups.google.com/group/ogms-discuss/browse_thread/thread/ca0ad373f27774c5</obo:IAO_0000119>
         <obo:IAO_0000116>At the scale of organism (as opposed to the cellular scale or the population scale), an injury is typically the result of a catastrophic event. Consider the implications of making &apos;injury&apos; a subtype of &apos;disorder&apos;.</obo:IAO_0000116>
         <obo:IAO_0000232>creation date: 2011-09-20T09:57:44Z</obo:IAO_0000232>
@@ -1051,7 +1093,7 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000103 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000103">
+    <owl:Class rdf:about="&obo;OGMS_0000103">
         <rdfs:label>prophylaxis</rdfs:label>
         <obo:IAO_0000116>Whether or not &apos;prophylaxis&apos; and &apos;treatment&apos; classes are disjoint is an open question.</obo:IAO_0000116>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
@@ -1064,7 +1106,7 @@ If you are interested in participating in the development of OGMS, please send e
 
     <!-- http://purl.obolibrary.org/obo/OGMS_0000104 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000104">
+    <owl:Class rdf:about="&obo;OGMS_0000104">
         <rdfs:label>diagnostic process</rdfs:label>
         <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
         <obo:IAO_0000119>http://groups.google.com/group/ogms-discuss/browse_thread/thread/2a7008f311fac766/e7de486c94dfd82e</obo:IAO_0000119>

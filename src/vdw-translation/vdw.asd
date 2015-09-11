@@ -75,8 +75,9 @@
 	     (:file "data-utils")
 	     (:file "cdt-code-utils")
 	     (:file "fma-utils")
-	     (:file "vdw-hash-tables")
 	     (:file "restoration-material-utils")
+	     (:file "vdw-hash-tables")
+	     (:file "medical-codes-utils")
 	     )
 	    );; end utils
    

@@ -17,15 +17,11 @@
 	   (loop
 	      while (next it) do
 		(setf study-id (fv "STUDY_ID"))
-		(setf patient-uri (gethash study-id *study-id2uri*))
+		(setf patient-uri (patient-uri study-id))
 		(setf birth-year (fv "BIRTH_YEAR"))
 		(setf gender-code  (fv "GENDER"))
-		(setf race1-code (fv "RACE1"))
-		(setf race2-code (fv "RACE2"))
-		(setf race3-code (fv "RACE3"))
-		(setf race4-code (fv "RACE4"))
-		(setf race5-code (fv "RACE5"))
-		(setf hispanic-code (fv "Hispanic"))
+		(setf race-code (fv "RACE"))
+		(setf ethnicity-code (fv "ETHNICITY"))
 
 	        ;; create instance of patient based on gender code
 		(as (patient-axioms study-id patient-uri gender-code))
@@ -84,22 +80,16 @@
       axioms)))
 
 
-(defun patient-race-axioms (study-id race1-code race2-code race3-code race4-code race5-code)
+(defun patient-race-axioms (study-id race-code)
   (let
       (axioms
-       race-uri
-       (race-codes `(,race1-code ,race2-code ,race3-code ,race4-code ,race5-code)))
-    
-    (loop
-       for race-code in race-codes
-       do
-	 (cond
-	   ((equalp race-code "BA") )
-	   ((equalp race-code "WH") )
-	   ((equalp race-code "OT") )
-	   (t ))
-	   )
-	
+       race-code)
+    (cond
+      ((equalp race-code "BA") )
+      ((equalp race-code "WH") )
+      ((equalp race-code "OT") )
+      (t ))
+    	
     ;; return axioms
     axioms))
 

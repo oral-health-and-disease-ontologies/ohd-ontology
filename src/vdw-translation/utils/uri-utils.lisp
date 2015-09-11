@@ -39,9 +39,45 @@
 (defun make-obo-uri (id)
   (make-uri (str+ "http://purl.obolibrary.org/obo/" id)))
 
+(defun make-icd9-uri (code)
+  "Takes an ICD9 code and returns a uri.
+e.g. (make-icd9-uri \"123.4\") -> <http://purl.org/NET/regenstrief/ICD9_123.4>"
+
+  ;; ensure the code is string
+  (setf code (format nil "~a" code))
+
+  ;; make uri by appending code to icd9 base
+  (make-uri (format nil "http://purl.org/NET/regenstrief/ICD9_~a" code)))
+
+(defun make-vdw-medical-code-uri (code)
+  ;; zero pad code
+  (setf code (str-right (str+ "000000" code) 7))
+
+  ;; determine url part of uri
+  (cond
+    ((equalp code "99203") ; CPT code
+     (setf code (str+ "http://purl.obolibrary.org/obo/ohd/VDW_CPT_" code)))
+    ((equalp code "T1013") ;HCPCS code
+     (setf code (str+ "http://purl.obolibrary.org/obo/ohd/VDW_HCPCS_" code)))
+    (t ; CDT code
+     (setf code (str+ "http://purl.obolibrary.org/obo/ohd/VDW_CDT_" code))))
+
+  ;; return uri
+  (make-uri code))
+
 ;;(defun vdw-import-axioms ()
 ;;  `((imports ,(vdw-ontlogy-iri-string))))
 
+
+(defun patient-uri(study-id)
+  (when (not *study-id2uri*)
+    (load-study-id2uri-table))
+  (gethash study-id *study-id2uri*))
+
+(defun provider-uri(provider-id)
+  (when (not *provider-id2uri*)
+    (load-provider-id2uri-table))
+  (gethash provider-id *provider-id2uri*))
 
 (defun uri-id (uri)
   "Return numeric (or id part) of an uri.
