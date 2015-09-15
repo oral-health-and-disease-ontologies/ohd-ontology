@@ -3,7 +3,10 @@
 (defparameter *encounter-id2uri* nil)
 (defparameter *provider-id2uri* nil)
 (defparameter *icd9-code2uri* nil)
+(defparameter *vdw-extra-dx-codes* nil)
 (defparameter *ada-code2uri* nil)
+(defparameter *vdw-extra-ada-codes* nil)
+
  
 (defun load-study-id2uri-table ()
   (let (uri)
@@ -82,6 +85,26 @@
     ;; return hash table
     *icd9-code2uri*))
 
+(defun load-vdw-extra-dx-codes ()
+  ;; declare extra ada code table
+  (setf *vdw-extra-dx-codes* (make-hash-table :test #'equalp))
+  
+  ;; check for ada code hash table
+  (when (not *icd9-code2uri*) (load-ada-code2uri-table))
+
+  ;; iterate over dental-procedure-diagnosis.txt
+  ;; and look for dx codes that do exist
+  (with-iterator (it :iterator-fn #'dental-procedure-diagnosis-iterator)
+    (loop
+       while (next it)
+       for code = (trim-field (fv "DX"))
+       do
+         ;; check if code is in the icd9 table and code exists
+	 (when (and code (not (gethash code *icd9-code2uri*)))
+	   (setf (gethash code *vdw-extra-dx-codes*) t))))
+  ;; return hash table
+  *vdw-extra-dx-codes*)
+
 (defun load-ada-code2uri-table ()
   (let (uri2label ada-code-ont)
     ;; declare hash table
@@ -113,11 +136,31 @@
     ;; return hash table
     *ada-code2uri*))
 
+(defun load-vdw-extra-ada-codes ()
+  ;; declare extra ada code table
+  (setf *vdw-extra-ada-codes* (make-hash-table :test #'equalp))
+  
+  ;; check for ada code hash table
+  (when (not *ada-code2uri*)
+    (load-ada-code2uri-table))
+
+  ;; iterate over dental-procedure-diagnosis.txt
+  ;; and look for ada codes that do exist
+  (with-iterator (it :iterator-fn #'dental-procedure-diagnosis-iterator)
+    (loop
+       while (next it)
+       for code = (trim-field (fv "ADA_CODE"))
+       do
+         ;; check if code is in the ada table and code exists
+	 (when (and code (not (gethash code *ada-code2uri*)))
+	   (setf (gethash code *vdw-extra-ada-codes*) t))))
+  ;; return hash table
+  *vdw-extra-ada-codes*)
+
+
 ;; load hash tables
-(load-study-id2uri-table)
-(load-encounter-id2uri-table)
-(load-provider-id2uri-table)
-(load-icd9-code2uri-table)
-(load-ada-code2uri-table)
-
-
+;;(load-study-id2uri-table)
+;;(load-encounter-id2uri-table)
+;;(load-provider-id2uri-table)
+;;(load-icd9-code2uri-table)
+;;(load-ada-code2uri-table)

@@ -13,21 +13,21 @@
 
 <rdf:RDF xmlns="&obo;restoration-research.owl#"
      xml:base="&obo;restoration-research.owl"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:obo="http://purl.obolibrary.org/obo/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:obo="http://purl.obolibrary.org/obo/"
-     xmlns:dc="http://purl.org/dc/elements/1.1/">
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <owl:Ontology rdf:about="&obo;tooth-restoration-research.owl">
         <dc:creator>Alan Ruttenberg</dc:creator>
-        <rdfs:comment>The Restoration Restoration Ontology is an extension of the Oral Health and Disease Ontology that contains specialized classes for representing the entities involved in tooth resotrations.</rdfs:comment>
         <dc:creator>Titus Schleyer</dc:creator>
         <dc:creator>Bill Duncan</dc:creator>
+        <rdfs:comment>The Restoration Restoration Ontology is an extension of the Oral Health and Disease Ontology that contains specialized classes for representing the entities involved in tooth resotrations.</rdfs:comment>
         <owl:imports rdf:resource="&obo;ohd.owl"/>
-        <owl:imports rdf:resource="&obo;ohd/vdw-medical-codes.owl"/>
         <owl:versionIRI rdf:resource="&obo;ohd/dev/tooth-restoration-research.owl"/>
         <owl:imports rdf:resource="http://purl.org/NET/regenstrief/icd9.owl"/>
+        <owl:imports rdf:resource="http://purl.org/NET/regenstrief/vdw-medical-codes.owl"/>
     </owl:Ontology>
     
 
@@ -59,8 +59,8 @@
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000159"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A tooth to be restored role that is realized by an intracoronal restoration procedure</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -85,9 +85,9 @@
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000159"/>
-        <obo:IAO_0000118>metallic inlay restoration procedure</obo:IAO_0000118>
         <obo:IAO_0000115>An inlay restoration procedure that uses metal to restore the tooth.</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000118>metallic inlay restoration procedure</obo:IAO_0000118>
     </owl:Class>
     
 
@@ -124,8 +124,8 @@ The uri was changed for backward compatabilty in the r21 study.</obo:IAO_0000116
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000159"/>
         <obo:IAO_0000115>An intracoronal restoration procedure that uses gold foil to restore the tooth.</obo:IAO_0000115>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000118>gold foil intracoronal restoration procedure</obo:IAO_0000118>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -176,8 +176,8 @@ The uri was changed for backward compatabilty in the r21 study.</obo:IAO_0000116
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000159"/>
         <obo:IAO_0000115>An intracoronal restoration procedure that uses amalgam to restore the tooth.</obo:IAO_0000115>
-        <obo:IAO_0000118>amalgam intracoronal restoration procedure</obo:IAO_0000118>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000118>amalgam intracoronal restoration procedure</obo:IAO_0000118>
     </owl:Class>
     
 
@@ -202,8 +202,8 @@ The uri was changed for backward compatabilty in the r21 study.</obo:IAO_0000116
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000159"/>
-        <obo:IAO_0000115>An intracoronal restoration procedure that uses resin to restore the tooth.</obo:IAO_0000115>
         <obo:IAO_0000118>resin intracoronal restoration procedure</obo:IAO_0000118>
+        <obo:IAO_0000115>An intracoronal restoration procedure that uses resin to restore the tooth.</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -225,9 +225,9 @@ The uri was changed for backward compatabilty in the r21 study.</obo:IAO_0000116
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000159"/>
-        <obo:IAO_0000115>A veneer restoration procedure that uses resin laminate to restore the tooth.</obo:IAO_0000115>
         <obo:IAO_0000118>resin laminate veneer restoration procedure</obo:IAO_0000118>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A veneer restoration procedure that uses resin laminate to restore the tooth.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -248,8 +248,8 @@ The uri was changed for backward compatabilty in the r21 study.</obo:IAO_0000116
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000159"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A veneer restoration procedure that uses porcelain laminate to restore the tooth.</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000118>porcelain laminate veneer restoration procedure</obo:IAO_0000118>
     </owl:Class>
     
@@ -271,8 +271,8 @@ The uri was changed for backward compatabilty in the r21 study.</obo:IAO_0000116
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000159"/>
-        <obo:IAO_0000115>A tooth to be restored role that is realized by a veneer restoration procedure</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A tooth to be restored role that is realized by a veneer restoration procedure</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -337,8 +337,8 @@ The uri was changed for backward compatabilty in the r21 study.</obo:IAO_0000116
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000159"/>
-        <obo:IAO_0000115>A tooth to be restored role that is realized by a crown restoration procedure</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A tooth to be restored role that is realized by a crown restoration procedure</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -363,9 +363,9 @@ The uri was changed for backward compatabilty in the r21 study.</obo:IAO_0000116
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000159"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000118>ceramic inlay restoration procedure</obo:IAO_0000118>
         <obo:IAO_0000115>An inlay restoration procedure that uses ceramic to restore the tooth.</obo:IAO_0000115>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -392,8 +392,8 @@ The uri was changed for backward compatabilty in the r21 study.</obo:IAO_0000116
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000134"/>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000159"/>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000118>ceramic onlay restoration procedure</obo:IAO_0000118>
         <obo:IAO_0000115>An onlay restoration procedure that uses ceramic to restore the tooth.</obo:IAO_0000115>
+        <obo:IAO_0000118>ceramic onlay restoration procedure</obo:IAO_0000118>
     </owl:Class>
     
 
@@ -414,8 +414,8 @@ The uri was changed for backward compatabilty in the r21 study.</obo:IAO_0000116
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000159"/>
-        <obo:IAO_0000118>resin inlay restoration procedure</obo:IAO_0000118>
         <obo:IAO_0000115>An inlay restoration procedure that uses resin to restore the tooth.</obo:IAO_0000115>
+        <obo:IAO_0000118>resin inlay restoration procedure</obo:IAO_0000118>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -438,8 +438,8 @@ The uri was changed for backward compatabilty in the r21 study.</obo:IAO_0000116
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000134"/>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000159"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>An onlay restoration procedure that uses resin to restore the tooth.</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000118>resin onlay restoration procedure</obo:IAO_0000118>
     </owl:Class>
     
@@ -483,8 +483,8 @@ The uri was changed for backward compatabilty in the r21 study.</obo:IAO_0000116
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000159"/>
-        <obo:IAO_0000115>A tooth to be restored role that is realized by an onlay restoration procedure</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A tooth to be restored role that is realized by an onlay restoration procedure</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -517,8 +517,8 @@ The uri was changed for backward compatabilty in the r21 study.</obo:IAO_0000116
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000134"/>
-        <obo:IAO_0000115>An onlay restoration procedure that uses metal to restore the tooth.</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>An onlay restoration procedure that uses metal to restore the tooth.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -622,8 +622,8 @@ There is not a dental restoration material of this kind. The class needs to be m
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A crown restoration procedure that uses noble metal to restore the tooth.</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -633,9 +633,9 @@ There is not a dental restoration material of this kind. The class needs to be m
     <owl:Class rdf:about="&obo;OHD_0000143">
         <rdfs:label>porcelain fused to noble metal dental restoration material</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000159"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000116>Bill Duncan 6/26/2015:
 There is not a dental restoration material of this kind. The class needs to be made obsolete.</obo:IAO_0000116>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -645,9 +645,9 @@ There is not a dental restoration material of this kind. The class needs to be m
     <owl:Class rdf:about="&obo;OHD_0000144">
         <rdfs:label>porcelain fused to high noble metal dental restoration material</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000159"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000116>Bill Duncan 6/26/2015:
 There is not a dental restoration material of this kind. The class needs to be made obsolete.</obo:IAO_0000116>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -697,9 +697,9 @@ There is not a dental restoration material of this kind. The class needs to be m
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000119>https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Resin_With_High_Noble_Metal__Dental_Procedure_Code_Description</obo:IAO_0000119>
         <obo:IAO_0000115>A resin with noble metal crown restoraton procedure that uses high noble metal as a substrate.</obo:IAO_0000115>
+        <obo:IAO_0000119>https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Resin_With_High_Noble_Metal__Dental_Procedure_Code_Description</obo:IAO_0000119>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -719,8 +719,8 @@ There is not a dental restoration material of this kind. The class needs to be m
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A 3/4 crown restoration procedure that uses resin to restore the tooth.</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -744,8 +744,8 @@ There is not a dental restoration material of this kind. The class needs to be m
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A 3/4 crown restoration procedure that uses high noble metal to restore the tooth.</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -820,10 +820,10 @@ There is not a dental restoration material of this kind. The class needs to be m
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000159"/>
-        <obo:IAO_0000115>A metallic onlay restoration procedure that uses noble metal to restore the tooth.</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000116>Bill Duncan 6/26/2015:
 In our current set of CDT codes, there is not a code that identifies this kind of procedure. We can probably make this class obsolete.</obo:IAO_0000116>
+        <obo:IAO_0000115>A metallic onlay restoration procedure that uses noble metal to restore the tooth.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -843,8 +843,8 @@ In our current set of CDT codes, there is not a code that identifies this kind o
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A crown restoration procedure that uses noble metal to restore the tooth.</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -898,8 +898,8 @@ In our current set of CDT codes, there is not a code that identifies this kind o
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000142"/>
-        <obo:IAO_0000115>A noble metal crown restoration procedure that uses high noble metal to restore the tooth.</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A noble metal crown restoration procedure that uses high noble metal to restore the tooth.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -938,9 +938,9 @@ In our current set of CDT codes, there is not a code that identifies this kind o
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000119>https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Porcelain_Fused_To_High_Noble_Metal__Dental_Procedure_Code_Description</obo:IAO_0000119>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A procelain fused to nobal metal crown restoration procedure that uses high noble metal as a substrate.
 </obo:IAO_0000115>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -993,9 +993,9 @@ In our current set of CDT codes, there is not a code that identifies this kind o
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <obo:IAO_0000115>A crown restoration procedure in which the artifical crown used to restore the tooth is formed by fusing porcelain to a substrate composed of noble metal.</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000119>https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Porcelain_Fused_To_Noble_Metal__Dental_Procedure_Code_Description</obo:IAO_0000119>
+        <obo:IAO_0000115>A crown restoration procedure in which the artifical crown used to restore the tooth is formed by fusing porcelain to a substrate composed of noble metal.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -1181,8 +1181,8 @@ In our current set of CDT codes, there is not a code that identifies this kind o
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000119>https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Resin_With_Noble_Metal__Dental_Procedure_Code_Description</obo:IAO_0000119>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A crown restoration procedure in which the artifical crown used to restore the tooth is formed by covering all or some of a noble metal substrate with resin.</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -1192,13 +1192,13 @@ In our current set of CDT codes, there is not a code that identifies this kind o
     <owl:Class rdf:about="&obo;OHD_0000188">
         <rdfs:label>stainless steel with resin window dental restoration material</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000159"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000116>Bill Duncan 6/26/2015:
 There is not a dental restoration material of this kind. The class needs to be made obsolete.</obo:IAO_0000116>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
 

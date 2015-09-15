@@ -77,7 +77,6 @@
 	     (:file "fma-utils")
 	     (:file "restoration-material-utils")
 	     (:file "vdw-hash-tables")
-	     (:file "medical-codes-utils")
 	     )
 	    );; end utils
    
@@ -88,6 +87,7 @@
 	    (
 	     (:file "vdw-demographics-to-owl")
 	     (:file "vdw-providers-to-owl")
+	     (:file "medical-codes-to-owl")
 	     )
 	    ) ;; end translate
    ) ;; end modules

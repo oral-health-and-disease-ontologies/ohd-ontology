@@ -4,7 +4,7 @@
 		 :key :ohd
 		 :sources '("ohd:imports;fma-jaws-teeth.owl"
 			    "ohd:imports;icd9-import.owl"
-			    "ohd:imports;vdw-extra-cdt-codes-import.owl"
+			    "ohd:imports;vdw-medical-codes-import.owl"
 			    "ohd:ontology;ohd.owl"
 			    "ohd:ontology;tooth-restoration-research.owl"
 			    "ohd:imports;BFO2;bfo2-classes.owl"
