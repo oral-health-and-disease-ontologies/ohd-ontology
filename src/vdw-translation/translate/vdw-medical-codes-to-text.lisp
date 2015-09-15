@@ -32,7 +32,9 @@
 
     ;; iterater over dental-procedure-diagnosis.txt
     ;; and increment count
-    
+    (with-iterator
+	
+	)
     ;; save the keys from the hash table
     (save-hash-table counts-table file-name)
 
