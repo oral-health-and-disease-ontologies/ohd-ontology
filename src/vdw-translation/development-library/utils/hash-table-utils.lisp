@@ -30,7 +30,6 @@ The save-value parameter causes only the values the to be saved."
 			    :direction :output
 			    :if-does-not-exist :create
 			    :if-exists :supersede)
-      (print-db file-name)
       (loop 
 	 for k being the hash-keys in hash-table using (hash-value v) do
 	   (when limit 
@@ -44,3 +43,21 @@ The save-value parameter causes only the values the to be saved."
 	      ;; note: there is a tab character between the key and value
 	      (format stream "~a	~a ~%" k v)))
 	   (incf count)))))
+
+(defun copy-hash-table (hash-table)
+  "Returns a copy of hash-table. Code adapted from:
+http://stackoverflow.com/questions/26045442/copy-hash-table-in-lisp"
+  (let ((ht (make-hash-table 
+             :test (hash-table-test hash-table)
+             :rehash-size (hash-table-rehash-size hash-table)
+             :rehash-threshold (hash-table-rehash-threshold hash-table)
+             :size (hash-table-size hash-table))))
+    
+    (loop
+       for key being the hash-keys in hash-table
+           using (hash-value value)
+       do
+	 (setf (gethash key ht) value))
+
+    ;; return copy of hash-table
+    ht))
