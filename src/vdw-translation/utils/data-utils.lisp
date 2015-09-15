@@ -21,8 +21,7 @@
   ;; build comment string, note the line break after the colon
   (str+
    name " " (current-date-string) ":
-"
-   comment))
+" comment))
 
 (defun current-date-string ()
   "Returns current date as a string."

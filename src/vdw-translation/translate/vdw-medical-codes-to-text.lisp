@@ -16,7 +16,7 @@
     ;; save the keys from the hash table
     (save-hash-table *icd9-code2uri* file-name :save-key)))
 
-(defun vdw-extra-ada-codes-counts ()
+(defun vdw-extra-ada-codes-counts-to-text ()
   (let ((counts-table (make-hash-table :test #'equalp))
 	(file-name (str+ (truename "ohd:data") "vdw-extra-ada-codes-with-counts.txt")))
 
@@ -31,10 +31,16 @@
 	 
 
     ;; iterater over dental-procedure-diagnosis.txt
-    ;; and increment count
-    (with-iterator
-	
-	)
+    ;; and increment count for each code
+    (with-iterator (it :iterator-fn #'dental-procedure-diagnosis-iterator)
+      (loop
+	 while (next it)
+	 for code = (trim-field (fv "ADA_CODE"))
+	 do
+	   (when (gethash code *vdw-extra-ada-codes*)
+	     (incf (gethash code counts-table)))
+	   ))
+    
     ;; save the keys from the hash table
     (save-hash-table counts-table file-name)
 
