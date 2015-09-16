@@ -39,7 +39,7 @@
 	 do
 	   (when (gethash code *vdw-extra-ada-codes*)
 	     (incf (gethash code counts-table)))
-	   ))
+	    ))
     
     ;; save the keys from the hash table
     (save-hash-table counts-table file-name)
