@@ -1,5 +1,8 @@
 ;; declare global hash table variables
 (defparameter *study-id2uri* nil)
+(defparameter *study-id-with-race2uri* nil)
+(defparameter *study-id-with-ethnicity2uri* nil)
+
 (defparameter *encounter-id2uri* nil)
 (defparameter *provider-id2uri* nil)
 (defparameter *icd9-code2uri* nil)

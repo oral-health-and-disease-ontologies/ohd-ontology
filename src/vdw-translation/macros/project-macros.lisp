@@ -30,6 +30,14 @@ created by Alan Ruttenberg 11/26/2013"
 	  (has-label (uri label)
 	    (push `(annotation-assertion !rdfs:label ,uri ,label) ,axiom-list))
 
+	  (has-patient-id (patient-uri patient-id)
+	    (push `(data-property-assertion
+		    !'patient ID'@ohd ,patient-uri ,patient-id) ,axiom-list))
+
+	  (has-code-value (uri code)
+	    (push `(data-property-assertion
+		    !'has code value'@ohd ,uri ,code) ,axiom-list))
+	  
 	  (participates-in (continuant process)
 	    (push `(object-property-assertion
 		    !'participates in'@ohd ,continuant ,process) ,axiom-list))
@@ -68,9 +76,17 @@ created by Alan Ruttenberg 11/26/2013"
 	    (push `(data-property-assertion
 		    !'occurrence date'@ohd ,entity (:literal ,date !xsd:date)) ,axiom-list))
 
-	  (has-birth-date (patient date)
+	  (has-birth-date (uri date)
 	    (push `(data-property-assertion
-		    !'birth_date'@ohd ,patient (:literal ,date !xsd:date)) ,axiom-list))
+		    !'birth_date'@ohd ,uri (:literal ,date !xsd:date)) ,axiom-list))
+
+	  (has-birth-year (uri year)
+	    (push `(data-property-assertion
+		    !'birth year'@ohd ,uri (:literal ,year !xsd:gYear)) ,axiom-list))
+
+	  (has-graduation-year (uri year)
+	    (push `(data-property-assertion
+		    !'graduation year'@ohd ,uri (:literal ,year !xsd:gYear)) ,axiom-list))
 
 	  (has-specified-output (process entity)
 	    (push `(object-property-assertion

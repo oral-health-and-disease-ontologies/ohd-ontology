@@ -3,7 +3,7 @@
 (defparameter *vdw-salt* (with-open-file (f "~/vdw-data/vdw-salt") (read-line f)))
 
 (defun vdw-uri-base-string ()
-  "http://purl.obolibrary.org/obo/vdw/OHD_")
+  "http://purl.obolibrary.org/obo/vdw/OHD_VDW_")
 
 (defun vdw-ontlogy-iri-string ()
    "http://purl.obolibrary.org/obo/vdw/ohd-vdw.owl")
