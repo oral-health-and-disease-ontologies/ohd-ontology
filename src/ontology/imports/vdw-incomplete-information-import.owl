@@ -177,17 +177,7 @@
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000030 -->
 
-    <owl:Class rdf:about="&obo;IAO_0000030">
-        <rdfs:label xml:lang="en">information content entity</rdfs:label>
-        <obo:IAO_0000116 xml:lang="en">2014-03-10: The use of &quot;thing&quot; is intended to be general enough to include universals and configurations (see https://groups.google.com/d/msg/information-ontology/GBxvYZCk1oc/-L6B5fSBBTQJ).</obo:IAO_0000116>
-        <obo:IAO_0000115 xml:lang="en">A generically dependent continuant that is about some thing.</obo:IAO_0000115>
-        <obo:IAO_0000112 xml:lang="en">Examples of information content entites include journal articles, data, graphical layouts, and graphs.</obo:IAO_0000112>
-        <obo:IAO_0000119 xml:lang="en">OBI_0000142</obo:IAO_0000119>
-        <obo:IAO_0000117 xml:lang="en">PERSON: Chris Stoeckert</obo:IAO_0000117>
-        <obo:IAO_0000111 xml:lang="en">information content entity</obo:IAO_0000111>
-        <obo:IAO_0000114 rdf:resource="&obo;IAO_0000122"/>
-        <obo:IAO_0000412 rdf:resource="&obo;obi.owl"/>
-    </owl:Class>
+    <owl:Class rdf:about="&obo;IAO_0000030"/>
     
 
 
@@ -224,24 +214,78 @@
     
 
 
-    <!-- http://purl.obolibrary.org/obo/ohd/vdw-incomplete-information/OHD_VDW_0000000 -->
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/incomplete-information/OHD_VDW_0000000 -->
 
-    <owl:Class rdf:about="&obo;ohd/vdw-incomplete-information/OHD_VDW_0000000">
+    <owl:Class rdf:about="&obo;ohd/vdw/incomplete-information/OHD_VDW_0000000">
         <rdfs:label xml:lang="en">record of incomplete information</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;IAO_0000030"/>
+        <obo:IAO_0000112>A medical record in which the patient&apos;s gender has been marked with a &quot;U&quot; to indicate that the patient&apos;s gender is not known. The information is not complete in the complete in the sense that every patient has a gender, but either the health care provider or the patient does not know the gender.</obo:IAO_0000112>
+        <obo:IAO_0000116>Bill Duncan 09/17/2015:
+This class is similar to OBI&apos;s class &apos;record of missing knowledge&apos;, which is defined as:
+
+a information content entity created to indicate that information about something is not available to the person recording it.
+
+OBI&apos;s &apos;record of missing knowlege&apos; is concerned with something not be available to a person recording the information. But, this class is not concerned with the person recording the information, only the information content entity itself.
+
+For example, a patient&apos;s social security number maybe removed from a database in order to protect the patient&apos;s privacy. The social security information is now missing, but this not because it unvailable to some person recording the information.</obo:IAO_0000116>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000112>A patient&apos;s medical chart in which the birthdate has not been filled in.</obo:IAO_0000112>
+        <obo:IAO_0000115>an information content entity that indicates information about an entity is not complete in some sense</obo:IAO_0000115>
     </owl:Class>
     
 
 
-    <!-- http://purl.obolibrary.org/obo/ohd/vdw-incomplete-information/OHD_VDW_0000001 -->
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/incomplete-information/OHD_VDW_0000001 -->
 
-    <owl:Class rdf:about="&obo;ohd/vdw-incomplete-information/OHD_VDW_0000001">
-        <rdfs:label xml:lang="en">record of missing information</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw-incomplete-information/OHD_VDW_0000000"/>
-        <obo:IAO_0000112>A record in database in which no information is recorded about a patient&apos;s gender.</obo:IAO_0000112>
+    <owl:Class rdf:about="&obo;ohd/vdw/incomplete-information/OHD_VDW_0000001">
+        <rdfs:label xml:lang="en">record of incomplete birth date information</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/incomplete-information/OHD_VDW_0000000"/>
+        <obo:IAO_0000115>a record of incomplete information that indicates information about an entity&apos;s birthdate is not complete</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>an information content entity that indicates information is missing about the enitity which stands in the &apos;is about&apos; relation to the record of missing information</obo:IAO_0000115>
-        <obo:IAO_0000112>A medical record that does not contain a patient&apos;s address.</obo:IAO_0000112>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/incomplete-information/OHD_VDW_0000002 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/incomplete-information/OHD_VDW_0000002">
+        <rdfs:label xml:lang="en">record of incomplete race information</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/incomplete-information/OHD_VDW_0000000"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a record of incomplete information that indicates information about an entity&apos;s race is not complete</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/incomplete-information/OHD_VDW_0000003 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/incomplete-information/OHD_VDW_0000003">
+        <rdfs:label xml:lang="en">record of incomplete ethnicity information</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/incomplete-information/OHD_VDW_0000000"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a record of incomplete information that indicates information about an entity&apos;s ethnicity</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/incomplete-information/OHD_VDW_0000004 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/incomplete-information/OHD_VDW_0000004">
+        <rdfs:label xml:lang="en">record of incomplete gender information</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/incomplete-information/OHD_VDW_0000000"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a record of incomplete information that indicates information about an entity&apos;s gender is not complete</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/incomplete-information/OHD_VDW_0000005 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/incomplete-information/OHD_VDW_0000005">
+        <rdfs:label xml:lang="en">record of incomplete graduation year information</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/incomplete-information/OHD_VDW_0000000"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a record of incomplete information that indicates information about an entity&apos;s graduation year is not complete</obo:IAO_0000115>
     </owl:Class>
     
 
