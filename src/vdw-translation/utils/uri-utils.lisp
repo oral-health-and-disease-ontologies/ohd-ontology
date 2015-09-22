@@ -49,18 +49,15 @@ e.g. (make-icd9-uri \"123.4\") -> <http://purl.org/NET/regenstrief/ICD9_123.4>"
   ;; make uri by appending code to icd9 base
   (make-uri (format nil "http://purl.org/NET/regenstrief/ICD9_~a" code)))
 
-(defun make-vdw-medical-code-uri (code)
+(defun make-vdw-cdt-code-uri (code)
   ;; zero pad code
   (setf code (str-right (str+ "000000" code) 7))
 
   ;; determine url part of uri
-  (cond
-    ((equalp code "99203") ; CPT code
-     (setf code (str+ "http://purl.obolibrary.org/obo/ohd/VDW_CPT_" code)))
-    ((equalp code "T1013") ;HCPCS code
-     (setf code (str+ "http://purl.obolibrary.org/obo/ohd/VDW_HCPCS_" code)))
-    (t ; CDT code
-     (setf code (str+ "http://purl.obolibrary.org/obo/ohd/VDW_CDT_" code))))
+  ;; skip codes "99203" and "T1013"; they are not CDT codes and not being used
+  (when (and (not (equalp code "99203"))
+	     (not (equalp code "T1013")))
+    (setf code (str+ "http://purl.obolibrary.org/obo/ohd/VDW_CDT_" code)))
 
   ;; return uri
   (make-uri code))
