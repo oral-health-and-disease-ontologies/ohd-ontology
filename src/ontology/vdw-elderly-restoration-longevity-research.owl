@@ -153,10 +153,27 @@
 
     <owl:AnnotationProperty rdf:about="&obo;ohd/vdw/OHD_VDW_0000038">
         <rdfs:label xml:lang="en">VDW code value</rdfs:label>
-        <obo:IAO_0000115>an annotation that provides that value of a code in the Virtual Data Warehouse (VDW) that is associated with an entity</obo:IAO_0000115>
+        <obo:IAO_0000115>an annotation that provides the value of a code in the Virtual Data Warehouse (VDW) that is associated with an entity</obo:IAO_0000115>
         <obo:IAO_0000112>The African American race code in the VDW is annotated using the VDW code value &quot;BA&quot;.</obo:IAO_0000112>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#gYear -->
+
+    <rdfs:Datatype rdf:about="&xsd;gYear"/>
     
 
 
@@ -176,6 +193,44 @@
     <owl:ObjectProperty rdf:about="&obo;IAO_0000136">
         <rdfs:label xml:lang="en">is about</rdfs:label>
     </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000003 -->
+
+    <owl:DatatypeProperty rdf:about="&obo;ohd/vdw/OHD_VDW_0000003">
+        <rdfs:label xml:lang="en">provider ID</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000006 -->
+
+    <owl:DatatypeProperty rdf:about="&obo;ohd/vdw/OHD_VDW_0000006">
+        <rdfs:label xml:lang="en">birth year</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;gYear"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000007 -->
+
+    <owl:DatatypeProperty rdf:about="&obo;ohd/vdw/OHD_VDW_0000007">
+        <rdfs:label xml:lang="en">graduation year</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;gYear"/>
+    </owl:DatatypeProperty>
     
 
 
@@ -305,9 +360,11 @@ For example, a patient&apos;s social security number maybe removed from a databa
     <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000024">
         <rdfs:label xml:lang="en">VDW database code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;IAO_0000578"/>
-        <obo:IAO_0000115>a CRID existing as part of the Virtual Dabase Warehouse (VDW) that specifies information about an entity</obo:IAO_0000115>
         <obo:IAO_0000112>The code &quot;AS&quot; in the race field of table specifies that a patient is Asian.</obo:IAO_0000112>
+        <obo:IAO_0000115>a CRID existing as part of the Virtual Dabase Warehouse (VDW) that specifies information about an entity and is specific to the adminstration of the VDW</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000116>Bill Duncan 9/29/2015:
+The VDW contains other codes that are also commonly used, such as ICD and CDT codes. However, since these codes are not specific to the VDW, I have not included them in this class. The codes included in this class are  under the specific control of the VDW system. For example, the code &quot;AS&quot; is used to identify Asian Americans in the VDW, and this is because of how the VDW is administered. The CDT code &quot;D2140&quot;, on the other hand, is used to identify amalgam fillings, but the VDW does not control this. Rather, the ADA controls the use of this code.</obo:IAO_0000116>
     </owl:Class>
     
 
