@@ -307,6 +307,14 @@ For example, a patient&apos;s social security number maybe removed from a databa
         <obo:IAO_0000112>A medical record in which the patient&apos;s gender has been marked with a &quot;U&quot; to indicate that the patient&apos;s gender is not known. The information is not complete in the complete in the sense that every patient has a gender, but either the health care provider or the patient does not know the gender.</obo:IAO_0000112>
         <obo:IAO_0000115>an information content entity that indicates information about an entity is not complete in some sense</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000116>Bill Duncan 09/29/2015:
+
+In the VDW, a field may be marked as unknown for a number of reasons. This could be because:
+1. The information was never collected (i.e., missing)
+2. The patient doesn&apos;t know.
+3. The provider doesn&apos;t know.
+
+The meaning of the unknown code depends on the practice within the VDW network that supplied the information. Since we do have access to each practice in the network, I am using this class a general way to represent that the record is not complete.</obo:IAO_0000116>
     </owl:Class>
     
 
@@ -360,11 +368,11 @@ For example, a patient&apos;s social security number maybe removed from a databa
     <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000024">
         <rdfs:label xml:lang="en">VDW database code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;IAO_0000578"/>
+        <obo:IAO_0000116>Bill Duncan 09/29/2015:
+The VDW contains other codes that are also commonly used, such as ICD and CDT codes. However, since these codes are not specific to the VDW, I have not included them in this class. The codes included in this class are  under the specific control of the VDW system. For example, the code &quot;AS&quot; is used to identify Asian Americans in the VDW, and this is because of how the VDW is administered. The CDT code &quot;D2140&quot;, on the other hand, is used to identify amalgam fillings, but the VDW does not control this. Rather, the ADA controls the use of this code.</obo:IAO_0000116>
         <obo:IAO_0000112>The code &quot;AS&quot; in the race field of table specifies that a patient is Asian.</obo:IAO_0000112>
         <obo:IAO_0000115>a CRID existing as part of the Virtual Dabase Warehouse (VDW) that specifies information about an entity and is specific to the adminstration of the VDW</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000116>Bill Duncan 9/29/2015:
-The VDW contains other codes that are also commonly used, such as ICD and CDT codes. However, since these codes are not specific to the VDW, I have not included them in this class. The codes included in this class are  under the specific control of the VDW system. For example, the code &quot;AS&quot; is used to identify Asian Americans in the VDW, and this is because of how the VDW is administered. The CDT code &quot;D2140&quot;, on the other hand, is used to identify amalgam fillings, but the VDW does not control this. Rather, the ADA controls the use of this code.</obo:IAO_0000116>
     </owl:Class>
     
 

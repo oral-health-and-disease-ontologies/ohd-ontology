@@ -14,29 +14,29 @@
 
 <rdf:RDF xmlns="&obo;ohd/dev/ohd.owl#"
      xml:base="&obo;ohd/dev/ohd.owl"
-     xmlns:dc="http://purl.org/dc/elements/1.1/"
-     xmlns:obo="http://purl.obolibrary.org/obo/"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:ro="http://www.obofoundry.org/ro/ro.owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:obo="http://purl.obolibrary.org/obo/"
+     xmlns:ro="http://www.obofoundry.org/ro/ro.owl#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="&obo;ohd.owl">
-        <dc:contributor>Carlo Torniai</dc:contributor>
-        <dc:contributor>Dan Caplan</dc:contributor>
         <dc:contributor>Melissa Haendel</dc:contributor>
+        <dc:contributor>Dan Caplan</dc:contributor>
+        <dc:contributor>Carlo Torniai</dc:contributor>
         <dc:contributor>Pedro Hernandez Cott</dc:contributor>
+        <dc:contributor>Titus Schleyer</dc:contributor>
         <dc:creator>Bill Duncan</dc:creator>
-        <dc:contributor>Mei Song</dc:contributor>
         <rdfs:comment>The Oral Health and Disease Ontology is an ontology built to be compatible with the OBO Foundry ontologies, and is a collaboration between researchers at the University at Buffalo School of Dental Medicine, the University of Pittsburg School of Dental Medicine, and the Oregon Health and Science University.
 
 This ontology is licensed under the CC-BY License. Please see http://creativecommons.org/licenses/by/3.0/
 
 Attribution is satisfied by using the URIs defined in this file when using terms from this ontology.</rdfs:comment>
-        <dc:creator>Alan Ruttenberg</dc:creator>
-        <dc:contributor>Titus Schleyer</dc:contributor>
-        <dc:contributor>Amit Acharya</dc:contributor>
+        <dc:contributor>Mei Song</dc:contributor>
         <rdfs:comment>Status of this document: This is a work in progress and we do not yet make any promises about the stability of URIs. A known issue is that the upper level of this ontology is an exploratory version of BFO developed in the interim between when BFO 1 was current and before BFO 2 development started. The representation of the CDT codes is tentative - we are discussing this with the ADA. The integration between OBI and OGMS is not complete - we add some axioms here in order to use both in a consistent way. The version of the subject of the FMA used here is an automatic translation of a portion of the entities and relations present in the original FMA. Work is ongoing on improving this subset and using an up-to-date version of the FMA as its basis.</rdfs:comment>
+        <dc:contributor>Amit Acharya</dc:contributor>
+        <dc:creator>Alan Ruttenberg</dc:creator>
         <owl:imports rdf:resource="&obo;ogms.owl"/>
         <owl:imports rdf:resource="&obo;bfo/2010-05-25/ruttenberg-regions.owl"/>
         <owl:imports rdf:resource="&obo;bfo/2010-05-25/ruttenberg-relations.owl"/>
@@ -162,15 +162,15 @@ Attribution is satisfied by using the URIs defined in this file when using terms
     <owl:ObjectProperty rdf:about="&obo;OHD_0000091">
         <rdfs:label>is dental restoration of</rdfs:label>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000116>Titus Schleyer 1/1/2014: nice definition!</obo:IAO_0000116>
         <obo:IAO_0000115>This relation holds between some restorative material and some part of a tooth in which the restorative material restores or replaces lost tooth structure, oral tissues, tooth (structural) integrity, or tooth functioning.</obo:IAO_0000115>
-        <obo:IAO_0000119>Adapted from:
-Mosby&apos;s Dental Dictionary, 2nd Edition. page 580. 
-Wikipedia: http://en.wikipedia.org/wiki/Dental_restoration</obo:IAO_0000119>
         <obo:IAO_0000116>Bill Duncan 6/27/2012:
 This relation is intended to capture the relationship between restorative materials, such as amalagam, and the tooth (or teeth) that is being repaired.  Some examples in which this relation obtains include fillings, crowns, bridges, and inlays. 
 
 It is going to be a shortcut relation between the material, the tooth in which the material is located, and the site formed for the restoration (e.g., a hole formed by drilling).  The details of this still need to be worked out.</obo:IAO_0000116>
+        <obo:IAO_0000116>Titus Schleyer 1/1/2014: nice definition!</obo:IAO_0000116>
+        <obo:IAO_0000119>Adapted from:
+Mosby&apos;s Dental Dictionary, 2nd Edition. page 580. 
+Wikipedia: http://en.wikipedia.org/wiki/Dental_restoration</obo:IAO_0000119>
         <rdfs:domain rdf:resource="&obo;OHD_0000000"/>
         <rdfs:range>
             <owl:Restriction>
@@ -186,10 +186,10 @@ It is going to be a shortcut relation between the material, the tooth in which t
 
     <owl:ObjectProperty rdf:about="&obo;OHD_0000216">
         <rdfs:label xml:lang="en">next visit</rdfs:label>
-        <obo:IAO_0000117>Alan Ruttenberg</obo:IAO_0000117>
-        <obo:IAO_0000115>relates a health care encounter such as a inpatient, outpatient, or hospital stay to the next such encounter for the same patient.</obo:IAO_0000115>
         <obo:IAO_0000116>precedes is too general as it doesn&apos;t have any constraint on continuity of participants. However it is the case a visit precedes the next one.</obo:IAO_0000116>
+        <obo:IAO_0000117>Alan Ruttenberg</obo:IAO_0000117>
         <obo:IAO_0000116>relation added as a convenience for survival analysis queries.</obo:IAO_0000116>
+        <obo:IAO_0000115>relates a health care encounter such as a inpatient, outpatient, or hospital stay to the next such encounter for the same patient.</obo:IAO_0000115>
         <rdfs:subPropertyOf rdf:resource="&obo;OHD_0000217"/>
     </owl:ObjectProperty>
     
@@ -279,13 +279,13 @@ There is a problem with occurrence date.  The date on which an event occurred an
         <owl:disjointWith rdf:resource="&obo;BFO_0000003"/>
         <owl:disjointWith>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000050"/>
+                <owl:onProperty rdf:resource="&ro;has_part"/>
                 <owl:someValuesFrom rdf:resource="&obo;BFO_0000003"/>
             </owl:Restriction>
         </owl:disjointWith>
         <owl:disjointWith>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&ro;has_part"/>
+                <owl:onProperty rdf:resource="&obo;BFO_0000050"/>
                 <owl:someValuesFrom rdf:resource="&obo;BFO_0000003"/>
             </owl:Restriction>
         </owl:disjointWith>
@@ -572,14 +572,11 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&obo;OHD_0000006"/>
+                            <rdf:Description rdf:about="&obo;OHD_0000036"/>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-                                <owl:someValuesFrom rdf:resource="&obo;OHD_0000036"/>
-                            </owl:Restriction>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-                                <owl:someValuesFrom rdf:resource="&obo;OHD_0000307"/>
+                                <owl:onProperty rdf:resource="&obo;OHD_0000091"/>
+                                <owl:onClass rdf:resource="&obo;FMA_no_fmaid_Surface_enamel_of_tooth"/>
+                                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">3</owl:qualifiedCardinality>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -592,11 +589,14 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&obo;OHD_0000036"/>
+                            <rdf:Description rdf:about="&obo;OHD_0000006"/>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="&obo;OHD_0000091"/>
-                                <owl:onClass rdf:resource="&obo;FMA_no_fmaid_Surface_enamel_of_tooth"/>
-                                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">3</owl:qualifiedCardinality>
+                                <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+                                <owl:someValuesFrom rdf:resource="&obo;OHD_0000036"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+                                <owl:someValuesFrom rdf:resource="&obo;OHD_0000307"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -731,14 +731,11 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&obo;OHD_0000006"/>
+                            <rdf:Description rdf:about="&obo;OHD_0000036"/>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-                                <owl:someValuesFrom rdf:resource="&obo;OHD_0000036"/>
-                            </owl:Restriction>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-                                <owl:someValuesFrom rdf:resource="&obo;OHD_0000308"/>
+                                <owl:onProperty rdf:resource="&obo;OHD_0000091"/>
+                                <owl:onClass rdf:resource="&obo;FMA_no_fmaid_Surface_enamel_of_tooth"/>
+                                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">2</owl:qualifiedCardinality>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -751,11 +748,14 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&obo;OHD_0000036"/>
+                            <rdf:Description rdf:about="&obo;OHD_0000006"/>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="&obo;OHD_0000091"/>
-                                <owl:onClass rdf:resource="&obo;FMA_no_fmaid_Surface_enamel_of_tooth"/>
-                                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">2</owl:qualifiedCardinality>
+                                <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+                                <owl:someValuesFrom rdf:resource="&obo;OHD_0000036"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+                                <owl:someValuesFrom rdf:resource="&obo;OHD_0000308"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -821,14 +821,11 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&obo;OHD_0000006"/>
+                            <rdf:Description rdf:about="&obo;OHD_0000036"/>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-                                <owl:someValuesFrom rdf:resource="&obo;OHD_0000036"/>
-                            </owl:Restriction>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-                                <owl:someValuesFrom rdf:resource="&obo;OHD_0000308"/>
+                                <owl:onProperty rdf:resource="&obo;OHD_0000091"/>
+                                <owl:onClass rdf:resource="&obo;FMA_no_fmaid_Surface_enamel_of_tooth"/>
+                                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">4</owl:minQualifiedCardinality>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -841,11 +838,14 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&obo;OHD_0000036"/>
+                            <rdf:Description rdf:about="&obo;OHD_0000006"/>
                             <owl:Restriction>
-                                <owl:onProperty rdf:resource="&obo;OHD_0000091"/>
-                                <owl:onClass rdf:resource="&obo;FMA_no_fmaid_Surface_enamel_of_tooth"/>
-                                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">4</owl:minQualifiedCardinality>
+                                <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+                                <owl:someValuesFrom rdf:resource="&obo;OHD_0000036"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+                                <owl:someValuesFrom rdf:resource="&obo;OHD_0000308"/>
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
@@ -1042,6 +1042,12 @@ There is a problem with occurrence date.  The date on which an event occurred an
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000134"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -1054,12 +1060,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000134"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </rdf:Description>
@@ -1102,12 +1102,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000133"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -1122,6 +1116,12 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000133"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </rdf:Description>
     
 
@@ -1129,6 +1129,12 @@ There is a problem with occurrence date.  The date on which an event occurred an
     <!-- http://purl.obolibrary.org/obo/CDT_0002620 -->
 
     <rdf:Description rdf:about="&obo;CDT_0002620">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000133"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
@@ -1144,12 +1150,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000133"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </rdf:Description>
@@ -1192,12 +1192,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000134"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -1210,6 +1204,12 @@ There is a problem with occurrence date.  The date on which an event occurred an
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000134"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </rdf:Description>
@@ -1252,6 +1252,12 @@ There is a problem with occurrence date.  The date on which an event occurred an
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000134"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -1266,12 +1272,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000134"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </rdf:Description>
     
 
@@ -1279,12 +1279,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
     <!-- http://purl.obolibrary.org/obo/CDT_0002650 -->
 
     <rdf:Description rdf:about="&obo;CDT_0002650">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000133"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
@@ -1300,6 +1294,12 @@ There is a problem with occurrence date.  The date on which an event occurred an
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000133"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </rdf:Description>
@@ -1402,12 +1402,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000134"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -1420,6 +1414,12 @@ There is a problem with occurrence date.  The date on which an event occurred an
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000134"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </rdf:Description>
@@ -1741,12 +1741,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000305"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -1758,6 +1752,12 @@ There is a problem with occurrence date.  The date on which an event occurred an
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000305"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </rdf:Description>
@@ -2144,8 +2144,8 @@ There is a problem with occurrence date.  The date on which an event occurred an
     <owl:Class rdf:about="&obo;FMA_54393">
         <rdfs:label>Subdivision of face</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;FMA_24218"/>
-        <dc:source>Foundational Model of Anatomy (FMA)</dc:source>
         <obo:IAO_0000118>Facial region</obo:IAO_0000118>
+        <dc:source>Foundational Model of Anatomy (FMA)</dc:source>
     </owl:Class>
     
 
@@ -2159,7 +2159,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_maxillary_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 7</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2173,7 +2172,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_maxillary_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 8</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2187,7 +2185,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_maxillary_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 9</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2201,7 +2198,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_maxillary_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 10</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2215,7 +2211,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_mandibular_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 27</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2229,7 +2224,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_mandibular_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 22</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2243,7 +2237,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_maxillary_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 4</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2257,7 +2250,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_maxillary_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 5</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2271,7 +2263,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_maxillary_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 12</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2285,7 +2276,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_maxillary_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 13</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2299,7 +2289,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_mandibular_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 20</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2313,7 +2302,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_mandibular_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 21</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2327,7 +2315,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_mandibular_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 28</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2341,7 +2328,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_mandibular_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 29</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2355,7 +2341,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_maxillary_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 1</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2369,7 +2354,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_maxillary_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 2</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2383,7 +2367,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_maxillary_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 3</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2397,7 +2380,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_maxillary_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 14</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2411,7 +2393,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_maxillary_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 15</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2425,7 +2406,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_maxillary_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 16</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2439,7 +2419,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_mandibular_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 17</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2453,7 +2432,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_mandibular_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 18</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2467,7 +2445,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_mandibular_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 19</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2481,7 +2458,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_mandibular_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 30</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2495,7 +2471,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_mandibular_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 31</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2509,7 +2484,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_mandibular_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 32</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2523,7 +2497,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_maxillary_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 6</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2537,7 +2510,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_maxillary_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 11</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2551,7 +2523,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_mandibular_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 26</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2565,7 +2536,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_mandibular_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 23</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2579,7 +2549,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_mandibular_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 25</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2593,7 +2562,6 @@ There is a problem with occurrence date.  The date on which an event occurred an
                 <owl:someValuesFrom rdf:resource="&obo;FMA_no_fmaid_Secondary_mandibular_dentition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:OHD_0000065>Tooth 24</obo:OHD_0000065>
     </rdf:Description>
     
 
@@ -2603,8 +2571,8 @@ There is a problem with occurrence date.  The date on which an event occurred an
     <owl:Class rdf:about="&obo;FMA_67504">
         <rdfs:label>Subdivision of cardinal body part</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;FMA_67135"/>
-        <dc:source>Foundational Model of Anatomy (FMA)</dc:source>
         <obo:IAO_0000118>Principal body part subdivision</obo:IAO_0000118>
+        <dc:source>Foundational Model of Anatomy (FMA)</dc:source>
     </owl:Class>
     
 
@@ -2942,14 +2910,14 @@ for now.</obo:IAO_0000116>
         <rdfs:subClassOf rdf:resource="&obo;OGMS_0000097"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="&obo;OBI_0000093"/>
+                <owl:onProperty rdf:resource="&obo;OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="&obo;OBI_0000441"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="&obo;OBI_0000441"/>
+                <owl:onProperty rdf:resource="&obo;BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="&obo;OBI_0000093"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </rdf:Description>
@@ -3060,13 +3028,13 @@ Changed &quot;A specific healthcare activity&quot; to &quot;A health care encoun
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="&obo;NCBITaxon_9606"/>
+                <owl:someValuesFrom rdf:resource="&obo;FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="&obo;FMA_12516"/>
+                <owl:someValuesFrom rdf:resource="&obo;NCBITaxon_9606"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 rdf:datatype="&xsd;string">A dental procedure that is performed on the pulp chamber and/or root canal of a tooth, or a part thereof</obo:IAO_0000115>
@@ -3083,33 +3051,9 @@ Changed &quot;A specific healthcare activity&quot; to &quot;A health care encoun
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000002"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000007"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;OBI_0000417"/>
                 <owl:someValuesFrom rdf:resource="&obo;OBI_0000434"/>
             </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-                        <owl:someValuesFrom rdf:resource="&obo;FMA_12516"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000000"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
-                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000189"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -3137,9 +3081,35 @@ Changed &quot;A specific healthcare activity&quot; to &quot;A health care encoun
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+                        <owl:someValuesFrom rdf:resource="&obo;FMA_12516"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000000"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;OBI_0000299"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000189"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000007"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000115 rdf:datatype="&xsd;string">A dental procedure in which either a whole tooth or a part of a tooth is replaced by dental restoration material in order to reestablish the tooth&apos;s anatomical and functional form and function.</obo:IAO_0000115>
         <obo:IAO_0000116 rdf:datatype="&xsd;string">Mosby&apos;s Dental Dictionary 2nd ed</obo:IAO_0000116>
         <obo:IAO_0000117 rdf:datatype="&xsd;string">PERSON:Pedro Cott</obo:IAO_0000117>
+        <obo:IAO_0000117>PERSON:Alan Ruttenberg</obo:IAO_0000117>
+        <obo:IAO_0000116>Titus Schleyer 3/14/2014: slightly edited definition</obo:IAO_0000116>
         <obo:IAO_0000116>Bill Duncan 12/16/2014:
 Updated definition. 
 
@@ -3150,8 +3120,6 @@ A tooth restoration procedure achieves some tooth restoration objective specific
 1. Added &quot;either a whole tooth or part of a tooth&quot;, since implants and pontics are also restoration procedures.
 
 2. Removed &quot;that has been lost due to disease, trauma or other causes&quot;. This is information about why a restoration procedure may be performed, not necessarily what such a procedure is.</obo:IAO_0000116>
-        <obo:IAO_0000117>PERSON:Alan Ruttenberg</obo:IAO_0000117>
-        <obo:IAO_0000116>Titus Schleyer 3/14/2014: slightly edited definition</obo:IAO_0000116>
     </owl:Class>
     
 
@@ -3176,14 +3144,14 @@ A tooth restoration procedure achieves some tooth restoration objective specific
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000004"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000190"/>
+                <owl:onProperty rdf:resource="&obo;BFO_0000057"/>
+                <owl:someValuesFrom rdf:resource="&obo;FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="&obo;NCBITaxon_9606"/>
+                <owl:onProperty rdf:resource="&obo;BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000190"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3195,15 +3163,15 @@ A tooth restoration procedure achieves some tooth restoration objective specific
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="&obo;FMA_12516"/>
+                <owl:someValuesFrom rdf:resource="&obo;NCBITaxon_9606"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000118>filling restoration</obo:IAO_0000118>
-        <obo:IAO_0000117>PERSON: Alan Ruttenberg</obo:IAO_0000117>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000116>Titus Schleyer 1/14/2014: updated definition</obo:IAO_0000116>
         <obo:IAO_0000115>A tooth restoration procedure in which a dental restoration material is placed into a site that is located in the crown of the tooth.
 </obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000118>filling restoration</obo:IAO_0000118>
+        <obo:IAO_0000117>PERSON: Alan Ruttenberg</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3213,12 +3181,6 @@ A tooth restoration procedure achieves some tooth restoration objective specific
     <owl:Class rdf:about="&obo;OHD_0000007">
         <rdfs:label rdf:datatype="&xsd;string">tooth to be restored role</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OBI_0000444"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000054"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000004"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -3233,8 +3195,25 @@ A tooth restoration procedure achieves some tooth restoration objective specific
                 </owl:intersectionOf>
             </owl:Class>
         </rdfs:subClassOf>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000054"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000004"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000115>A target of material addition role that inheres in a tooth and is realized by a tooth restoration procedure during which the tooth bearing the role is restored to health.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000008 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000008">
+        <rdfs:label xml:lang="en">oral surgeon role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000017"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a dentist role that inheres in a person who specializes in performing oral surgery</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3251,9 +3230,9 @@ A tooth restoration procedure achieves some tooth restoration objective specific
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000117>PERSON:Alan Ruttenberg</obo:IAO_0000117>
-        <obo:IAO_0000115>An outpatient encounter during which a dental health care professional and a patient meet for the purpose of evaluating, treating disorders of, or preventing deterioration of the patient&apos;s oral health.</obo:IAO_0000115>
-        <obo:IAO_0000116>Titus Schleyer 1/14/14: adapted definition</obo:IAO_0000116>
         <obo:IAO_0000119>Adapted from Mosby&apos;s Dental Dictionary</obo:IAO_0000119>
+        <obo:IAO_0000116>Titus Schleyer 1/14/14: adapted definition</obo:IAO_0000116>
+        <obo:IAO_0000115>An outpatient encounter during which a dental health care professional and a patient meet for the purpose of evaluating, treating disorders of, or preventing deterioration of the patient&apos;s oral health.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3280,6 +3259,8 @@ A tooth restoration procedure achieves some tooth restoration objective specific
             </owl:Class>
         </rdfs:subClassOf>
         <obo:IAO_0000116>Titus Schleyer1/14/2014: made a minor modification to the definition. This particular definition brings up the issue of language. This one is written in a very &quot;ontology-compliant&quot; way (&quot;... specified output of ...&quot;). The question is to what degree this would be understandable to the layman.</obo:IAO_0000116>
+        <obo:IAO_0000117>Person:Bill Duncan</obo:IAO_0000117>
+        <rdfs:comment>replace tooth in logical def with dentition or mouth when it&apos;s been imported.</rdfs:comment>
         <obo:IAO_0000115 xml:lang="en">A clinical finding is a specified output of a dental exam and is about the oral cavity, maxillofacial area, and/or the adjacent and associated structures, or their parts, or pathological anatomical entities derived from them. The finding has a part that is about when the exam that led to the finding occured well as other data items specifying the nature of the finding.
 </obo:IAO_0000115>
         <dc:source>Adapted from Mosby&apos;s definition of dentistry:
@@ -3291,9 +3272,7 @@ First version of adapted definition by Bill:
 A dental observation regarding (or about) the evaluation, diagnosis, and/or treatment (nonsurgical, surgical, or related procedures) of diseases, disorders, and/or conditions of the oral cavity, maxillofacial area, and/or the adjacent and associated structures and their impact on the body; provided by dental professionals, within the scope of his/her education, training , and experience, in accordance with the ethics of the profession and applicable law</obo:IAO_0000116>
         <obo:IAO_0000116 xml:lang="en">Alan Ruttenberg 4/12/2012: The part of the finding that is specification of the time when it was created, is currently represented using the data property
 &apos;occurence date&apos;.</obo:IAO_0000116>
-        <obo:IAO_0000117>Person:Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000117 xml:lang="en">Person:Alan Ruttenberg</obo:IAO_0000117>
-        <rdfs:comment>replace tooth in logical def with dentition or mouth when it&apos;s been imported.</rdfs:comment>
     </owl:Class>
     
 
@@ -3329,8 +3308,8 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                 <owl:someValuesFrom rdf:resource="&obo;OHD_0000190"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115>A Homo sapiens that bears some dental patient role.</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A Homo sapiens that bears some dental patient role.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3342,8 +3321,8 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="&obo;OBI_0000245"/>
         <obo:IAO_0000117 rdf:datatype="&xsd;string">PERSON: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">An organization that is focused on maintaining and improving the oral health of a  population.</obo:IAO_0000115>
-        <obo:IAO_0000119 xml:lang="en">PERSON: Bill Duncan</obo:IAO_0000119>
         <obo:IAO_0000116>Titus Schleyer 1/14/14: adapted definition</obo:IAO_0000116>
+        <obo:IAO_0000119 xml:lang="en">PERSON: Bill Duncan</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -3353,9 +3332,9 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
     <owl:Class rdf:about="&obo;OHD_0000016">
         <rdfs:label>dental hygienist role</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000052"/>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000119>Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 325.</obo:IAO_0000119>
         <obo:IAO_0000115>A dental health care provider role that inheres in a person who is a licensed dental professional that specializes in preventative care. Professional prophylaxis, radiographs, sealants, and nonsurgical periodontal therapy are among the procedures performed by a hygienist. Most are licensed to administer local anesthesia, depending on applicable regulations in their area. They usually work for a dentist in a dental office or clinic under a form of supervision. In some locations hygienists are allowed to practice without a dentist&apos;s supervision. </obo:IAO_0000115>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3366,10 +3345,10 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:label>dentist role</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000052"/>
         <obo:IAO_0000119>Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 173.</obo:IAO_0000119>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A dental health care provider role that inheres in a person who is qualified by training and licensed by a state or region to diagnose and treat abnormalities of the teeth, gums, and underlying bone, including conditions caused by disease, trauma, and heredity.
 
 </obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3385,6 +3364,8 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                 <owl:someValuesFrom rdf:resource="&obo;OHD_0000017"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000115>a dental health care provider that bears a dentist role</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3406,11 +3387,11 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                 <owl:someValuesFrom rdf:resource="&obo;OHD_0000010"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">A conversational, visual and tactile examination in which the clinician evaluates the status of the patient&apos;s medical, dental and oral health. </obo:IAO_0000115>
-        <obo:IAO_0000117 xml:lang="en">Mellisa Haendel</obo:IAO_0000117>
-        <obo:IAO_0000116>Titus Schleyer 1/1/2014: original definition was too narrow, now expanded</obo:IAO_0000116>
         <obo:IAO_0000116 xml:lang="en">Melissa Haendel 4/12/2012: There can be more than one dental exam that occurs during a dental visit.</obo:IAO_0000116>
         <obo:IAO_0000117 xml:lang="en">Person:Alan Ruttenberg</obo:IAO_0000117>
+        <obo:IAO_0000116>Titus Schleyer 1/1/2014: original definition was too narrow, now expanded</obo:IAO_0000116>
+        <obo:IAO_0000115 xml:lang="en">A conversational, visual and tactile examination in which the clinician evaluates the status of the patient&apos;s medical, dental and oral health. </obo:IAO_0000115>
+        <obo:IAO_0000117 xml:lang="en">Mellisa Haendel</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3426,6 +3407,8 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                 <owl:someValuesFrom rdf:resource="&obo;OHD_0000016"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000115>a dental health care provider that bears a dental hygienist role</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3435,11 +3418,35 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
     <owl:Class rdf:about="&obo;OHD_0000021">
         <rdfs:label xml:lang="en">carious lesion of tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OGMS_0000045"/>
-        <obo:IAO_0000117>Titus Schleyer</obo:IAO_0000117>
         <rdfs:comment>is caries a material entity or a quality?
 </rdfs:comment>
-        <obo:IAO_0000115 xml:lang="en">A disorder that affects a tooth that includes both the infectious organisms, the material they generate from the tooth, any immune effectors that are a response to the presence of the disorder and the physical changes to the tooth (i.e., demineralization or a cavity) resulting from the disorder. It is the physical basis for the disease &quot;dental caries.&quot;</obo:IAO_0000115>
+        <obo:IAO_0000117>Titus Schleyer</obo:IAO_0000117>
         <obo:IAO_0000116>Titus Schleyer 1/14/2014: updated definition</obo:IAO_0000116>
+        <obo:IAO_0000115 xml:lang="en">A disorder that affects a tooth that includes both the infectious organisms, the material they generate from the tooth, any immune effectors that are a response to the presence of the disorder and the physical changes to the tooth (i.e., demineralization or a cavity) resulting from the disorder. It is the physical basis for the disease &quot;dental caries.&quot;</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000022 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000022">
+        <rdfs:label xml:lang="en">orthodontist role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000017"/>
+        <obo:IAO_0000119>http://dictionary.reference.com/browse/orthodontist</obo:IAO_0000119>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a dentist role that inheres in a person who specializes in the prevention and correction of irregular teeth, as by means of braces</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000023 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000023">
+        <rdfs:label xml:lang="en">pediatric dentist role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000017"/>
+        <obo:IAO_0000115>a dentist role that inheres in a person who specializes in children&apos;s oral health</obo:IAO_0000115>
+        <obo:IAO_0000119>http://www.aapd.org</obo:IAO_0000119>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3456,8 +3463,8 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A dental finding that indicates a carious lesion of a tooth</obo:IAO_0000115>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000116>Titus Schleyer 1/14/2014: How about this as an alternative definition: &quot;A dental finding that indicates a carious lesion of a tooth&quot;?</obo:IAO_0000116>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3503,9 +3510,9 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000116>Titus Schleyer 1/14/14: essentially rewrote definition and removed outdated citation to source</obo:IAO_0000116>
         <obo:IAO_0000115 xml:lang="en">A dental exam which includes a complete examination of hard tissues, specifically the teeth. It is performed tooth by tooth and documents aspects such as whether the tooth is missing or not, and its condition. A tooth is typically considered healthy if it is in a virgin state, or has one or more restorations that restore it to full morphology and function. Pathological conditions may include carious lesions, fractures, defective restorations, excessive wear and malpositions.</obo:IAO_0000115>
         <obo:IAO_0000117 xml:lang="en">Person:Alan Ruttenberg</obo:IAO_0000117>
+        <obo:IAO_0000116>Titus Schleyer 1/14/14: essentially rewrote definition and removed outdated citation to source</obo:IAO_0000116>
     </owl:Class>
     
 
@@ -3517,22 +3524,22 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000010"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000100"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
                 <owl:onClass rdf:resource="&obo;FMA_75152"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000116>Bill Duncan 5/14/2012: We have added the necessary condtion that a missing tooth finding is about &apos;exactly 1 Secondary Dentition&apos;.  </obo:IAO_0000116>
-        <obo:IAO_0000116>Titus Schleyer 1/14/2014: This might be a minor point, but clinically the two cases of &quot;tooth missing on visual clinical inspection&quot; and &quot;tooth missing on visual clinical inspection AND on radiograph&quot; might often be conflated in clinical documentation.  For instance, if a practitioner does not obtain radiographs,  she cannot really find the &quot;ground truth.&quot;</obo:IAO_0000116>
-        <obo:IAO_0000115 xml:lang="en">A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number.  The criteria for determing that a tooth is missing includes its absence in a visual exam, a radiographic exam or both. Thus, an unerrupted tooth seen in a radiograph is not considered missing.</obo:IAO_0000115>
-        <obo:IAO_0000116 xml:lang="en">Bill Duncan 4/12/2012: To think about: There are two cases at least - one where the tooth was never formed in the mouth and the other where the tooth was lost through some process.  Presently we do not distinquish between these cases.</obo:IAO_0000116>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000100"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000116>Bill Duncan 5/14/2012: Our criteria for determing that a tooth is missing is stronger than the clinical criterion.  Clinically, a tooth is missing if it is not visible in the oral cavity, in which case an unerrupted tooth is considered missing.  However, we include the added criterion that the tooth must also not be present in a radiograph.  Thus, if such an exam reveals the presence of such a tooth, the tooth is not considered to be missing.</obo:IAO_0000116>
+        <obo:IAO_0000116>Bill Duncan 5/14/2012: We have added the necessary condtion that a missing tooth finding is about &apos;exactly 1 Secondary Dentition&apos;.  </obo:IAO_0000116>
+        <obo:IAO_0000115 xml:lang="en">A dental finding that notes the absence of a tooth that is canonically found, as identified by the universal tooth number.  The criteria for determing that a tooth is missing includes its absence in a visual exam, a radiographic exam or both. Thus, an unerrupted tooth seen in a radiograph is not considered missing.</obo:IAO_0000115>
+        <obo:IAO_0000116>Titus Schleyer 1/14/2014: This might be a minor point, but clinically the two cases of &quot;tooth missing on visual clinical inspection&quot; and &quot;tooth missing on visual clinical inspection AND on radiograph&quot; might often be conflated in clinical documentation.  For instance, if a practitioner does not obtain radiographs,  she cannot really find the &quot;ground truth.&quot;</obo:IAO_0000116>
+        <obo:IAO_0000116 xml:lang="en">Bill Duncan 4/12/2012: To think about: There are two cases at least - one where the tooth was never formed in the mouth and the other where the tooth was lost through some process.  Presently we do not distinquish between these cases.</obo:IAO_0000116>
         <rdfs:comment xml:lang="en">to think about the proper logical definition: probably there is lacks_part to be fixed</rdfs:comment>
     </owl:Class>
     
@@ -3545,8 +3552,8 @@ A dental observation regarding (or about) the evaluation, diagnosis, and/or trea
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000004"/>
         <obo:IAO_0000119>Adapted from Wikipedia:
 http://en.wikipedia.org/wiki/Veneer_%28dentistry%29</obo:IAO_0000119>
-        <obo:IAO_0000115>A tooth restoration procedure in which a thin layer of material (i.e., a veneer) is placed over one or more surfaces of the tooth either to improve the aesthetics of the tooth or to protect the tooth&apos;s surface from damage</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A tooth restoration procedure in which a thin layer of material (i.e., a veneer) is placed over one or more surfaces of the tooth either to improve the aesthetics of the tooth or to protect the tooth&apos;s surface from damage</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3643,8 +3650,8 @@ http://en.wikipedia.org/wiki/Veneer_%28dentistry%29</obo:IAO_0000119>
     <owl:Class rdf:about="&obo;OHD_0000032">
         <rdfs:label xml:lang="en">soft tissue exam</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000019"/>
-        <obo:IAO_0000115>a dental exam which focuses on soft tissue in and near the mouth.</obo:IAO_0000115>
         <obo:IAO_0000117>Alan Ruttenberg</obo:IAO_0000117>
+        <obo:IAO_0000115>a dental exam which focuses on soft tissue in and near the mouth.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3666,8 +3673,8 @@ http://en.wikipedia.org/wiki/Veneer_%28dentistry%29</obo:IAO_0000119>
                 <owl:someValuesFrom rdf:resource="&obo;FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115>A tooth restoration procedure whereby an artificial crown replaces all or part of the natural dental crown.</obo:IAO_0000115>
         <obo:IAO_0000116>Titus Schleyer 1/14/2014: adapted definition</obo:IAO_0000116>
+        <obo:IAO_0000115>A tooth restoration procedure whereby an artificial crown replaces all or part of the natural dental crown.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3678,10 +3685,10 @@ http://en.wikipedia.org/wiki/Veneer_%28dentistry%29</obo:IAO_0000119>
         <rdfs:label xml:lang="en">gold foil dental restoration material</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000048"/>
         <obo:IAO_0000115>A metal dental restoration material which the principal ingredient is gold.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Pedro L. Hernández-Cott</obo:IAO_0000117>
+        <obo:IAO_0000116>Titus Schleyer 3/13/2014: slightly updated definition</obo:IAO_0000116>
         <obo:IAO_0000116>Bill Duncan 12/11/2014:
 updated defintion</obo:IAO_0000116>
-        <obo:IAO_0000116>Titus Schleyer 3/13/2014: slightly updated definition</obo:IAO_0000116>
-        <obo:IAO_0000117>PERSON: Pedro L. Hernández-Cott</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3691,9 +3698,9 @@ updated defintion</obo:IAO_0000116>
     <owl:Class rdf:about="&obo;OHD_0000035">
         <rdfs:label xml:lang="en">porcelain dental restoration material</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000135"/>
-        <obo:IAO_0000116>Titus Schleyer1/14/2014: checked definition, sounds okay</obo:IAO_0000116>
-        <obo:IAO_0000115 xml:lang="en">A ceramic material used for tooth-colored restorations.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Pedro L. Hernández-Cott</obo:IAO_0000117>
+        <obo:IAO_0000115 xml:lang="en">A ceramic material used for tooth-colored restorations.</obo:IAO_0000115>
+        <obo:IAO_0000116>Titus Schleyer1/14/2014: checked definition, sounds okay</obo:IAO_0000116>
     </owl:Class>
     
 
@@ -3728,9 +3735,9 @@ updated defintion</obo:IAO_0000116>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A material combination in which a moldable restorative material is placed directly into or on the tooth. The material then hardens and becomes (essentially) part of the tooth. </obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000116>Bill Duncan 12/11/2014:
 Moved from this class from being a subtype of tooth restoration procedure to being a subclass of material combination.</obo:IAO_0000116>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000116>Titus Schleyer 1/1/2014: made definition clearer</obo:IAO_0000116>
     </owl:Class>
     
@@ -3744,15 +3751,17 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000000"/>
+                <owl:someValuesFrom rdf:resource="&obo;FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-                <owl:someValuesFrom rdf:resource="&obo;FMA_12516"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000000"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000116>Bill Duncan 12/11/2014:
+Moved from this class from being a subtype of tooth restoration procedure to being a subclass of material combination.</obo:IAO_0000116>
         <obo:IAO_0000116>Bill Duncan 12/16/2014:
 Updated definition.
 
@@ -3762,10 +3771,54 @@ A material combination in which a rigid restoration, such as a gold inlay, is at
 1. Removed &quot;such as a gold inlay&quot;.
 
 2. Added that the material may be held in place by mechanical forces</obo:IAO_0000116>
-        <obo:IAO_0000116>Bill Duncan 12/11/2014:
-Moved from this class from being a subtype of tooth restoration procedure to being a subclass of material combination.</obo:IAO_0000116>
-        <obo:IAO_0000116>Titus Schleyer 1/14/2014: made the definition consistent with that of direct restoration</obo:IAO_0000116>
         <obo:IAO_0000115>A material combination in which a rigid piece of restoration material is attached to a tooth. The restoration is attached to the tooth by mechanical forces or some form of cement or glue. </obo:IAO_0000115>
+        <obo:IAO_0000116>Titus Schleyer 1/14/2014: made the definition consistent with that of direct restoration</obo:IAO_0000116>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000039 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000039">
+        <rdfs:label xml:lang="en">periodontist role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000017"/>
+        <obo:IAO_0000119>https://www.perio.org/consumer/periodontist2.htm</obo:IAO_0000119>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a dentist role that inheres in a person who specializes in the prevention, diagnosis, and treatment of periodontal disease, oral inflammation, and in the placement of dental implants</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000040 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000040">
+        <rdfs:label xml:lang="en">prosthodontist role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000017"/>
+        <obo:IAO_0000119>https://en.wikipedia.org/wiki/Prosthodontics</obo:IAO_0000119>
+        <obo:IAO_0000115>a dentist role that inheres in a person who specializes in the aesthetic (cosmetic) restoration and replacement of teeth</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000041 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000041">
+        <rdfs:label xml:lang="en">endodontist role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000017"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a dentist role that inheres in a person who specializes in performing endodontic procedures</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000042 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000042">
+        <rdfs:label xml:lang="en">orofacial pain dentist role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000017"/>
+        <obo:IAO_0000115>a dentist role that inheres in a person who has received specialized training in treating disorders that cause orofacial pain, such as TMJ disorder (TMD)</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -3786,9 +3839,60 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
     <owl:Class rdf:about="&obo;OHD_0000044">
         <rdfs:label xml:lang="en">surgical dental procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000002"/>
-        <obo:IAO_0000116>Titus Schleyer 1/14/14:checked definition, adapted it slightly</obo:IAO_0000116>
         <obo:IAO_0000119>Mosby&apos;s Dental Dictionary 2nd ed</obo:IAO_0000119>
         <obo:IAO_0000115>A dental procedure that consists of series of steps followed in a regular, orderly, definite way, performed by a dentist or dental surgeon by manual operation on some part of the mouth.</obo:IAO_0000115>
+        <obo:IAO_0000116>Titus Schleyer 1/14/14:checked definition, adapted it slightly</obo:IAO_0000116>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000045 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000045">
+        <rdfs:label xml:lang="en">oral surgeon</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000018"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000008"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>a dentist that bears an oral surgeon role</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000046 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000046">
+        <rdfs:label xml:lang="en">orthodontist</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000018"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000022"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a dentist that bears an orthodontist role</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000047 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000047">
+        <rdfs:label xml:lang="en">pediatric dentist</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000018"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000023"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a dentist that bears a pediatric dentist role</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3798,9 +3902,26 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
     <owl:Class rdf:about="&obo;OHD_0000048">
         <rdfs:label xml:lang="en">metal dental restoration material</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000000"/>
-        <obo:IAO_0000117>PERSON: Alan Ruttenberg</obo:IAO_0000117>
         <obo:IAO_0000115 xml:lang="en">A material entity consisting mostly of metal atoms which is used as a dental restoration material</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Alan Ruttenberg</obo:IAO_0000117>
         <obo:IAO_0000116 xml:lang="en">Use CHEBI:33521 &apos;metal ion&apos; in a complete definition. Fixure out how to say &quot;mostly&quot; first, however</obo:IAO_0000116>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000049 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000049">
+        <rdfs:label xml:lang="en">periodontist</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000018"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000039"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a dentist that bears a periodontist role</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3809,13 +3930,15 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
 
     <owl:Class rdf:about="&obo;OHD_0000051">
         <rdfs:label xml:lang="en">dental health care provider</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&obo;NCBITaxon_9606"/>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000098"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
                 <owl:someValuesFrom rdf:resource="&obo;OHD_0000052"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000115>a health care provider that bears a dental health care provider role</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3824,7 +3947,7 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
 
     <owl:Class rdf:about="&obo;OHD_0000052">
         <rdfs:label xml:lang="en">dental health care provider role</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&obo;BFO_0000023"/>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000097"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;BFO_0000052"/>
@@ -3839,6 +3962,40 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
         </rdfs:subClassOf>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A role that inheres in a person who is licensed to provide dental health care.</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000054 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000054">
+        <rdfs:label xml:lang="en">prosthodontist</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000018"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000040"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a dentist that bears a prosthodontist role</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000055 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000055">
+        <rdfs:label xml:lang="en">endodontist</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000018"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000041"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>a dentists that bears a endodontist role</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3868,8 +4025,8 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
                 <owl:someValuesFrom rdf:resource="&obo;OHD_0000057"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115>A role that inheres in a tooth and is realized by a tooth extraction procedure during which the tooth bearing the role is extracted.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A role that inheres in a tooth and is realized by a tooth extraction procedure during which the tooth bearing the role is extracted.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -3882,22 +4039,22 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="&obo;NCBITaxon_9606"/>
+                <owl:someValuesFrom rdf:resource="&obo;FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="&obo;FMA_12516"/>
+                <owl:someValuesFrom rdf:resource="&obo;NCBITaxon_9606"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000116>Titus Schleyer 1/14/2014: 
 I think the instrumentation (&quot; ...  by means of elevators and/or forceps&quot;)  is not relevant to this definition.  I have extracted certain teeth with two fingers.</obo:IAO_0000116>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000119>Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 102007. p. 238
 </obo:IAO_0000119>
         <obo:IAO_0000115>A surgical dental procedure that removes a tooth from the oral cavity.
 </obo:IAO_0000115>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -3909,14 +4066,14 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="&obo;BFO_0000023"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000054"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000003"/>
+                <owl:onProperty rdf:resource="&obo;BFO_0000052"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000206"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000052"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000206"/>
+                <owl:onProperty rdf:resource="&obo;BFO_0000054"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000003"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
@@ -3967,6 +4124,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
+                <owl:hasValue rdf:resource="&obo;OHD_0000102"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -3983,12 +4146,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
-                <owl:hasValue rdf:resource="&obo;OHD_0000102"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4177,6 +4334,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
+                <owl:hasValue rdf:resource="&obo;OHD_0000108"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -4195,12 +4358,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
-                <owl:hasValue rdf:resource="&obo;OHD_0000108"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -4210,6 +4367,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
     <owl:Class rdf:about="&obo;OHD_0000068">
         <rdfs:label>missing tooth 9 finding</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000026"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
+                <owl:hasValue rdf:resource="&obo;OHD_0000109"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
@@ -4228,12 +4391,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
-                <owl:hasValue rdf:resource="&obo;OHD_0000109"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4282,6 +4439,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
+                <owl:hasValue rdf:resource="&obo;OHD_0000111"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -4298,12 +4461,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
-                <owl:hasValue rdf:resource="&obo;OHD_0000111"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4527,12 +4684,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
-                <owl:hasValue rdf:resource="&obo;OHD_0000119"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -4549,6 +4700,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
+                <owl:hasValue rdf:resource="&obo;OHD_0000119"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4597,6 +4754,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
+                <owl:hasValue rdf:resource="&obo;OHD_0000121"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -4613,12 +4776,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
-                <owl:hasValue rdf:resource="&obo;OHD_0000121"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4702,12 +4859,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
-                <owl:hasValue rdf:resource="&obo;OHD_0000124"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -4724,6 +4875,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
+                <owl:hasValue rdf:resource="&obo;OHD_0000124"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4912,12 +5069,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000026"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
-                <owl:hasValue rdf:resource="&obo;OHD_0000130"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;IAO_0000136"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -4934,6 +5085,12 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
+                <owl:hasValue rdf:resource="&obo;OHD_0000130"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -5025,15 +5182,94 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
     
 
 
+    <!-- http://purl.obolibrary.org/obo/OHD_0000095 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000095">
+        <rdfs:label xml:lang="en">orofacial pain dentist</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000018"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000042"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>a dentist that bears an orofacial pain dentist role</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000096 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000096">
+        <rdfs:label xml:lang="en">dental therapist</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000051"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000139"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>a dental health care provider that bears a dental therapist role</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000097 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000097">
+        <rdfs:label xml:lang="en">health care provider role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000023"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000117>a role that inheres in a person who licensed to provide health care</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000098 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000098">
+        <rdfs:label xml:lang="en">health care provider</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;NCBITaxon_9606"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000097"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>a Homo sapiens that bears a health care provider role</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000099 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000099">
+        <rdfs:label xml:lang="en">nurse</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000098"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000138"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a health care provider that bears a nurse role</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/OHD_0000100 -->
 
     <owl:Class rdf:about="&obo;OHD_0000100">
         <rdfs:label>Universal tooth number</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;IAO_0000009"/>
         <obo:IAO_0000115 xml:lang="en">A label naming a type of secondary tooth canonically found in humans, adopted by the American Dental Association, and commonly used as labels on odontograms (toothcharts) and clinical notes. The Universal Numbering System uses No. 1 through 32 for the 32 teeth in the permanent dentition, starting with 1 for the maxillary right third molar, going around the arch to the maxillary left third molar as 16; dropping down on the same side, the left mandibular third molar becomes 17, and then the numbers increase around the lower arch to 32, which is the lower right third molar. </obo:IAO_0000115>
-        <obo:IAO_0000116>Titus Schleyer 1/1/2014: slightly updated definition</obo:IAO_0000116>
         <obo:IAO_0000116 xml:lang="en">Bill Duncan 4/12/2012: From the book: &quot;The Universal Numbering System was first suggested by Parreidt in 1882, and officially adopted by the American Dental Association in 1975. It is accepted by third-party providers and is endorsed by the American Society of Forensic Odontology.&quot;</obo:IAO_0000116>
         <obo:IAO_0000119 xml:lang="en">Book:Scheid, Rickne. Woelfel&apos;s Dental Anatomy, 8th Edition. Lippincott Williams &amp; Wilkins, 01/2011. pp. i - ii). </obo:IAO_0000119>
+        <obo:IAO_0000116>Titus Schleyer 1/1/2014: slightly updated definition</obo:IAO_0000116>
     </owl:Class>
     
 
@@ -5054,8 +5290,8 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
     <owl:Class rdf:about="&obo;OHD_0000134">
         <rdfs:label>onlay restoration procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000033"/>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A crown restoration procedure in which the dental restoration material either replaces the cusp or overlays the cusp.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -5065,9 +5301,9 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
     <owl:Class rdf:about="&obo;OHD_0000135">
         <rdfs:label>ceramic dental restoration material</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000000"/>
-        <obo:IAO_0000119> ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
         <obo:IAO_0000115>A dental restoration material that consists of non-metal, non-resin inorganic refractory compounds processed at high temperatures (600 degress Celsius / 1112 degrees Farenheit) and pressed, pollished or milled -- including porcelains, glasses, and glass-ceramics.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000119> ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -5077,8 +5313,8 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
     <owl:Class rdf:about="&obo;OHD_0000136">
         <rdfs:label>titanium dental restoration material</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000048"/>
-        <obo:IAO_0000119> ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000119> ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
         <obo:IAO_0000115>A metal dental restoration material which contains 85% or more titanium.</obo:IAO_0000115>
     </owl:Class>
     
@@ -5095,13 +5331,37 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
     
 
 
+    <!-- http://purl.obolibrary.org/obo/OHD_0000138 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000138">
+        <rdfs:label xml:lang="en">nurse role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000097"/>
+        <obo:IAO_0000119>http://www.nursingworld.org/EspeciallyForYou/What-is-Nursing</obo:IAO_0000119>
+        <obo:IAO_0000115>a health care provider role that inheres in a person who specializes in the protection, promotion, and optimization of health and abilities, prevention of illness and injury, alleviation of suffering through the diagnosis and treatment of human response, and advocacy in the care of individuals, families, communities, and populations</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000139 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000139">
+        <rdfs:label xml:lang="en">dental therapist role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000052"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a dentist role that inheres in a person a dentist who practices as part of the dental team to provide educational, clinical and therapeutic patient services; and can provide basic preventive and restorative treatment to children and adults, and extractions of primary (baby) teeth under the supervision of a dentist</obo:IAO_0000115>
+        <obo:IAO_0000119>http://dentistry.umn.edu/programs-admissions/dental-therapy/index.htm</obo:IAO_0000119>
+    </owl:Class>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/OHD_0000146 -->
 
     <owl:Class rdf:about="&obo;OHD_0000146">
         <rdfs:label>noble metal dental restoration material</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000048"/>
-        <obo:IAO_0000115>A metal dental restoration material that is composed of a matalic alloy that contains 25% or more of gold, palladium, and/or or platinum.</obo:IAO_0000115>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A metal dental restoration material that is composed of a matalic alloy that contains 25% or more of gold, palladium, and/or or platinum.</obo:IAO_0000115>
         <obo:IAO_0000119> ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
     </owl:Class>
     
@@ -5112,9 +5372,9 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
     <owl:Class rdf:about="&obo;OHD_0000147">
         <rdfs:label>high noble metal dental restoration material</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000146"/>
-        <obo:IAO_0000119>A metal dental restoration material that is composed of a matalic alloy that contains 60% or more of gold, palladium, and/or or platinum (with at least 40% gold).</obo:IAO_0000119>
         <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000119> ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
+        <obo:IAO_0000119>A metal dental restoration material that is composed of a matalic alloy that contains 60% or more of gold, palladium, and/or or platinum (with at least 40% gold).</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -5124,8 +5384,8 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
     <owl:Class rdf:about="&obo;OHD_0000156">
         <rdfs:label>predominantly base metal dental restoration material</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000048"/>
-        <obo:IAO_0000119> ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
         <obo:IAO_0000115>A metal dental restoration material that is composed of a matalic alloy that contains less than 25% of gold, palladium, and/or or platinum.</obo:IAO_0000115>
+        <obo:IAO_0000119> ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -5136,10 +5396,10 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
     <owl:Class rdf:about="&obo;OHD_0000165">
         <rdfs:label>dental assistant role</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000052"/>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000119>Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 55.</obo:IAO_0000119>
         <obo:IAO_0000115>A dental health care provider role that inheres in a person who is a an auxiliary to the dental operator. 
 </obo:IAO_0000115>
-        <obo:IAO_0000119>Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 55.</obo:IAO_0000119>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -5172,9 +5432,9 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                 </owl:intersectionOf>
             </owl:Class>
         </rdfs:subClassOf>
+        <obo:IAO_0000116>Titus Schleyer 1/1/2014: updated definition</obo:IAO_0000116>
         <obo:IAO_0000115>An entity that is the combination of a tooth and a dental restoration material. Typically results when a tooth with some type of pathological defect is restored. Always the output of a dental restoration</obo:IAO_0000115>
         <obo:IAO_0000117>Alan Ruttenberg</obo:IAO_0000117>
-        <obo:IAO_0000116>Titus Schleyer 1/1/2014: updated definition</obo:IAO_0000116>
     </owl:Class>
     
 
@@ -5196,9 +5456,9 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                 <owl:someValuesFrom rdf:resource="&obo;NCBITaxon_9606"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000117>Alan Ruttenberg</obo:IAO_0000117>
         <obo:IAO_0000115>A patient role that is realized by the process of being under the care of a dental health care provider.</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -5210,22 +5470,22 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000315"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000052"/>
-                <owl:someValuesFrom rdf:resource="&obo;BFO_0000040"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;BFO_0000054"/>
                 <owl:allValuesFrom rdf:resource="&obo;OHD_0000004"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000117>Person:Alan Ruttenberg
-</obo:IAO_0000117>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000052"/>
+                <owl:someValuesFrom rdf:resource="&obo;BFO_0000040"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115 xml:lang="en">A functional prothetic role that is borne by a portion of dental restoration material and is realized in a tooth restoration procecure in which the restoration material becomes part of a restored tooth.</obo:IAO_0000115>
         <obo:IAO_0000115>Bill Duncan 12/11/2014:
 Changed definition to read that a &quot;portion of dental restoration material&quot; is realized by a &quot;tooth restoration procedure&quot;.</obo:IAO_0000115>
+        <obo:IAO_0000117>Person:Alan Ruttenberg
+</obo:IAO_0000117>
         <obo:IAO_0000119>Person:Alan Ruttenberg</obo:IAO_0000119>
-        <obo:IAO_0000115 xml:lang="en">A functional prothetic role that is borne by a portion of dental restoration material and is realized in a tooth restoration procecure in which the restoration material becomes part of a restored tooth.</obo:IAO_0000115>
         <obo:IAO_0000116>Titus Schleyer 1/1/2014: updated definition</obo:IAO_0000116>
     </owl:Class>
     
@@ -5238,24 +5498,24 @@ Changed definition to read that a &quot;portion of dental restoration material&q
         <rdfs:subClassOf rdf:resource="&obo;OGMS_0000057"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000050"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000019"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;BFO_0000055"/>
                 <owl:someValuesFrom rdf:resource="&obo;OHD_0000052"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000117>Person: Bill Duncan</obo:IAO_0000117>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000050"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000019"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A visual and tactile examination in which the clinician evaluates the status of the patient&apos;s oral cavity and related areas. An oral evaluation is performed as part of a dental exam. The examination may also include the results of tests, such as radiographs, pulp vitality, etc.</obo:IAO_0000115>
         <obo:IAO_0000116>This class was created in order to associate oral evaluations with dental findings that came about as the result of a dental exam. The data source I am working with has records that show multiple oral evalutions were performed on the same day. For example, the data source may have records that show a periodic oral evaluation, comprehensive oral evaluation, and comprehensive periodontal evaluation are performed on the same day. However, the finding(s) for these evaluations is/are stored in a separate table with only the patient id and date to associate the finding with the exam. There is no information to link the finding to a particular evaluation. 
 
 As a work around (i.e., hack!), I&apos;ve made oral evaluations be part of the dental examination. There is a case to be made that oral evaluations should be a subclass of dental exam, but, such a representation, would make representing the finding information (associated with a particular oral evaluation) difficult.</obo:IAO_0000116>
+        <obo:IAO_0000117>Person: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000116>Titus Schleyer 1/14/2014: updated definition
 
 Also, regarding Bill&apos;s comment on the fact that multiple examinations can occur on the same day (e.g.  periodic oral evaluation, comprehensive oral evaluation and comprehensive periodontal evaluation): From a billing and clinical perspective,  these are separate. For instance, a comprehensive oral evaluation has a larger scope than a periodic oral evaluation, while a  comprehensive periodontal evaluation is focused primarily on gums and supporting tissues.</obo:IAO_0000116>
-        <obo:IAO_0000115>A visual and tactile examination in which the clinician evaluates the status of the patient&apos;s oral cavity and related areas. An oral evaluation is performed as part of a dental exam. The examination may also include the results of tests, such as radiographs, pulp vitality, etc.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -5279,9 +5539,9 @@ Also, regarding Bill&apos;s comment on the fact that multiple examinations can o
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000116>Titus Schleyer 1/1/2014: updated definition</obo:IAO_0000116>
-        <obo:IAO_0000119>ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
         <obo:IAO_0000117>Person: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>An oral evaluation performed on a patient of record (at an interval specified by the dentist) to determine any changes in the patient’s dental and medical health status since a previous evaluation. It includes an oral cancer evaluation and periodontal screening where indicated, and may require interpretation of information acquired through additional diagnostic procedures.</obo:IAO_0000115>
+        <obo:IAO_0000119>ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -5292,11 +5552,11 @@ Also, regarding Bill&apos;s comment on the fact that multiple examinations can o
         <rdfs:label>no oral health issues reported</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000010"/>
         <obo:IAO_0000116>Titus Schleyer 1/14/2014: added &quot;issue&quot; to definition</obo:IAO_0000116>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>A dental finding in which there were no oral health issues were reported.</obo:IAO_0000115>
         <obo:IAO_0000116>The intent of the class is to represent those case in which a dental exam is performed on patient, no finding is reported for the exam.  This could mean that the patients mouth is healthy; the patient had an issue but the examiner failed to report it; or (perhaps) that the patient has some oral health issue, but there are no new issues to report.
 
 The label of the class may need to be changed.</obo:IAO_0000116>
+        <obo:IAO_0000115>A dental finding in which there were no oral health issues were reported.</obo:IAO_0000115>
+        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -5319,9 +5579,9 @@ The label of the class may need to be changed.</obo:IAO_0000116>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000117>Person: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>An oral evaluation limited to a specific oral health problem or complaint. This may require interpretation of information acquired through additional diagnostic procedures. Typically, patients receiving this type of evaluation present with a specific problem and/or dental emergencies, trauma, acute infections, etc.</obo:IAO_0000115>
         <obo:IAO_0000119>ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
-        <obo:IAO_0000117>Person: Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -5334,6 +5594,12 @@ The label of the class may need to be changed.</obo:IAO_0000116>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000204"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
                 <owl:someValuesFrom rdf:resource="&obo;OHD_0000205"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -5343,16 +5609,10 @@ The label of the class may need to be changed.</obo:IAO_0000116>
                 <owl:someValuesFrom rdf:resource="&obo;OHD_0000025"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000204"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <obo:IAO_0000119>ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
         <obo:IAO_0000115>An oral evaluation that is performed on new patients; established patients who have had a significant change in health conditions or other unusual circumstances; or established patients who have been absent from active treatment for three or more years. It is a thorough evaluation and recording of the extraoral and intraoral hard and soft tissues. It may require interpretation of information acquired through additional diagnostic procedures. 
 
 This includes an evaluation for oral cancer where indicated, the evaluation and recording of the patients dental and medical history and a general health assessment.  It may include the evaluation and recording of dental caries, missing or unerupted teeth, restorations, existing prostheses, occlusal relationships, periodontal conditions (including periodontal screening and/or charting), hard and soft tissue anomalies, etc. </obo:IAO_0000115>
+        <obo:IAO_0000119>ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
         <obo:IAO_0000117>Person: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000116>Titus Schleyer 1/1/2014: checked definition, looks okay</obo:IAO_0000116>
     </owl:Class>
@@ -5370,10 +5630,10 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
                 <owl:someValuesFrom rdf:resource="&obo;OHD_0000204"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000119>ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
-        <obo:IAO_0000117>Person: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000116>Titus Schleyer 1/1/2014: slightly updated definition</obo:IAO_0000116>
         <obo:IAO_0000115>An oral evaluation performed on patients showing signs or symptoms of periodontal disease and for patients with risk factors for such disease, such as smoking or diabetes.  It includes evaluation of periodontal conditions, probing and charting, evaluation and recording of the patients dental and medical history and general health assessment.  It may include the evaluation and recording of dental caries, missing or unerupted teeth, restorations and occlusal relationships. </obo:IAO_0000115>
+        <obo:IAO_0000117>Person: Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000119>ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
     </owl:Class>
     
 
@@ -5383,6 +5643,20 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
     <owl:Class rdf:about="&obo;OHD_0000204">
         <rdfs:label xml:lang="en">intraoral soft tissue exam</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000032"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&obo;FMA_54640"/>
+                            <rdf:Description rdf:about="&obo;FMA_59660"/>
+                            <rdf:Description rdf:about="&obo;FMA_59762"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;BFO_0000055"/>
@@ -5407,24 +5681,10 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&obo;FMA_54640"/>
-                            <rdf:Description rdf:about="&obo;FMA_59660"/>
-                            <rdf:Description rdf:about="&obo;FMA_59762"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <obo:IAO_0000115>a physical examination of the soft tissue of the mouth, including the lips, mucosa, hard and soft palate, tongue, and floor of mouth</obo:IAO_0000115>
-        <obo:IAO_0000119>http://www.dentistry.utoronto.ca/dpes/diagnostic/patients/extraoral-and-intraoral-soft-tissue-examination-patient</obo:IAO_0000119>
         <obo:IAO_0000119>Alan Ruttenberg</obo:IAO_0000119>
         <obo:IAO_0000116>technically I don&apos;t need to include giniva since it is mucosa, but felt like it in the interest of avoiding questions</obo:IAO_0000116>
+        <obo:IAO_0000119>http://www.dentistry.utoronto.ca/dpes/diagnostic/patients/extraoral-and-intraoral-soft-tissue-examination-patient</obo:IAO_0000119>
+        <obo:IAO_0000115>a physical examination of the soft tissue of the mouth, including the lips, mucosa, hard and soft palate, tongue, and floor of mouth</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -5434,6 +5694,20 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
     <owl:Class rdf:about="&obo;OHD_0000205">
         <rdfs:label xml:lang="en">extraoral soft tissue exam</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000032"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&obo;FMA_54832"/>
+                            <rdf:Description rdf:about="&obo;FMA_61212"/>
+                            <rdf:Description rdf:about="&obo;FMA_61213"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;BFO_0000055"/>
@@ -5456,23 +5730,9 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&obo;FMA_54832"/>
-                            <rdf:Description rdf:about="&obo;FMA_61212"/>
-                            <rdf:Description rdf:about="&obo;FMA_61213"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <obo:IAO_0000115>a physical examination of the soft tissue of the head and neck with attention to the temporomandibular joint area</obo:IAO_0000115>
         <obo:IAO_0000117>Alan Ruttenberg</obo:IAO_0000117>
         <obo:IAO_0000119>http://www.dentistry.utoronto.ca/dpes/diagnostic/patients/extraoral-and-intraoral-soft-tissue-examination-patient</obo:IAO_0000119>
+        <obo:IAO_0000115>a physical examination of the soft tissue of the head and neck with attention to the temporomandibular joint area</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -5504,6 +5764,17 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
         <rdfs:subClassOf rdf:resource="&obo;OBI_0000444"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000052"/>
+                <owl:someValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;BFO_0000050"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000206"/>
+                    </owl:Restriction>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;BFO_0000054"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -5515,17 +5786,6 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
                             </owl:Restriction>
                         </owl:intersectionOf>
                     </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&obo;BFO_0000052"/>
-                <owl:someValuesFrom>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&obo;BFO_0000050"/>
-                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000206"/>
-                    </owl:Restriction>
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -5579,10 +5839,10 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
                 <owl:someValuesFrom rdf:resource="&obo;OHD_0000315"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000115>a prosthesis that has been fabricated for use as a substitute for a natural tooth</obo:IAO_0000115>
+        <obo:IAO_0000119>Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 689</obo:IAO_0000119>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000116>usually made of porcelain or plastic </obo:IAO_0000116>
-        <obo:IAO_0000119>Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 689</obo:IAO_0000119>
-        <obo:IAO_0000115>a prosthesis that has been fabricated for use as a substitute for a natural tooth</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -5602,8 +5862,8 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <obo:IAO_0000115>A tooth restoration procedure in which the dental restoration material is placed in the tooth via some direct dental restoration material combination process.</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A tooth restoration procedure in which the dental restoration material is placed in the tooth via some direct dental restoration material combination process.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -5670,8 +5930,8 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&obo;FMA_12516"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A tooth that is either an incisor or a canine.</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -5689,8 +5949,8 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&obo;FMA_12516"/>
-        <obo:IAO_0000115>A tooth that is either a molar or premolar.</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A tooth that is either a molar or premolar.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -5706,10 +5966,10 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
                 <owl:someValuesFrom rdf:resource="&obo;OHD_0000302"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000118>partial dental prothesis</obo:IAO_0000118>
         <obo:IAO_0000111>partial denture</obo:IAO_0000111>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>a prosthesis that replaces one or more, but less than all, of the natural teeth and associated structures </obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000118>partial dental prothesis</obo:IAO_0000118>
         <obo:IAO_0000119>Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 175</obo:IAO_0000119>
     </owl:Class>
     
@@ -5720,15 +5980,15 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
     <owl:Class rdf:about="&obo;OHD_0000311">
         <rdfs:label>tooth-supported partial denture</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000310"/>
-        <obo:IAO_0000115>a partial denture that is supported entirely by existing teeth</obo:IAO_0000115>
-        <obo:IAO_0000116>Alan Ruttenberg 12/16/2014:
-Need more clarity on what is meant by &quot;supported by the teeth&quot;.</obo:IAO_0000116>
-        <obo:IAO_0000119>Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 175-176</obo:IAO_0000119>
+        <obo:IAO_0000116>Bill Duncan 12/13/2014:
+Definition updated to reflect Dan&apos;s comments.</obo:IAO_0000116>
         <obo:IAO_0000116>Dan Caplan 12/13/2014:
 Mosby&apos;s definition is not quite corrrect. The support could also include other teeth that are not adjacent to the endentulous area. The important point is that the prosthesis is supported by existing teeth (wherever they are in the arch), and not by the gingiva.
 </obo:IAO_0000116>
-        <obo:IAO_0000116>Bill Duncan 12/13/2014:
-Definition updated to reflect Dan&apos;s comments.</obo:IAO_0000116>
+        <obo:IAO_0000119>Mosby. Mosby&apos;s Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 175-176</obo:IAO_0000119>
+        <obo:IAO_0000116>Alan Ruttenberg 12/16/2014:
+Need more clarity on what is meant by &quot;supported by the teeth&quot;.</obo:IAO_0000116>
+        <obo:IAO_0000115>a partial denture that is supported entirely by existing teeth</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -5751,9 +6011,9 @@ Definition updated to reflect Dan&apos;s comments.</obo:IAO_0000116>
     <owl:Class rdf:about="&obo;OHD_0000313">
         <rdfs:label>fixed partial denture restoration procedure</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000004"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000118>bridge restoration procedure</obo:IAO_0000118>
         <obo:IAO_0000118>A tooth restoration procedure in which a fixed partial denture (i.e., bridge) is attached to the supporting teeth.</obo:IAO_0000118>
+        <obo:IAO_0000118>bridge restoration procedure</obo:IAO_0000118>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -5769,14 +6029,14 @@ Definition updated to reflect Dan&apos;s comments.</obo:IAO_0000116>
                 <owl:someValuesFrom rdf:resource="&obo;BFO_0000040"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000112>A glass eye (see  http://en.wikipedia.org/wiki/Ocular_prosthesis)</obo:IAO_0000112>
-        <obo:IAO_0000117>Bill Dunan</obo:IAO_0000117>
-        <obo:IAO_0000117>Alan Ruttenberg</obo:IAO_0000117>
         <obo:IAO_0000116>Bill Duncan / Alan Ruttenber 12/16/2014:
 
 Prosthics may be either functional for non-functional. For example, a glass eye bears a prosthetic role, but it does not see. </obo:IAO_0000116>
-        <obo:IAO_0000112>A prothetic hand (see http://bebionic.com)</obo:IAO_0000112>
+        <obo:IAO_0000117>Bill Dunan</obo:IAO_0000117>
         <obo:IAO_0000115>A material to be added role that inheres in a material entity that replaces some missing body part.</obo:IAO_0000115>
+        <obo:IAO_0000112>A glass eye (see  http://en.wikipedia.org/wiki/Ocular_prosthesis)</obo:IAO_0000112>
+        <obo:IAO_0000112>A prothetic hand (see http://bebionic.com)</obo:IAO_0000112>
+        <obo:IAO_0000117>Alan Ruttenberg</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -5787,9 +6047,9 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
         <rdfs:label>functional prosthetic role</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000314"/>
         <obo:IAO_0000117>Alan Ruttenberg</obo:IAO_0000117>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A prosthetic role that is realized by activities in which the material entity (bearing the role) is used a manner that is similar to how the body part that the prosthesis replaces would be used.</obo:IAO_0000115>
         <obo:IAO_0000112>A prosthic hand</obo:IAO_0000112>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -5820,8 +6080,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000317">
         <rdfs:label>prosthetic right upper third secondary molar tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right upper third secondary molar tooth (tooth 1).</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000118>prosthetic tooth 1</obo:IAO_0000118>
     </owl:Class>
     
@@ -5857,8 +6117,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
         <rdfs:label>prosthetic right upper second secondary premolar tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
         <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right upper second secondary premolar tooth (tooth 4).</obo:IAO_0000115>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000118>prosthetic tooth 4</obo:IAO_0000118>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -5869,8 +6129,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
         <rdfs:label>prosthetic right upper first secondary premolar tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
         <obo:IAO_0000118>prosthetic tooth 5</obo:IAO_0000118>
-        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right upper first secondary premolar tooth (tooth 5).</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right upper first secondary premolar tooth (tooth 5).</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -5880,9 +6140,9 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000322">
         <rdfs:label>prosthetic right upper secondary canine tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
-        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right upper secondary canine tooth (tooth 6).</obo:IAO_0000115>
-        <obo:IAO_0000118>prosthetic tooth 6</obo:IAO_0000118>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000118>prosthetic tooth 6</obo:IAO_0000118>
+        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right upper secondary canine tooth (tooth 6).</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -5892,8 +6152,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000323">
         <rdfs:label>prosthetic right upper lateral secondary incisor tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000118>prosthetic tooth 7</obo:IAO_0000118>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right upper lateral secondary incisor tooth (tooth 7).</obo:IAO_0000115>
     </owl:Class>
     
@@ -5904,8 +6164,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000324">
         <rdfs:label>prosthetic right upper central secondary incisor tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000118>prosthetic tooth 8</obo:IAO_0000118>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right upper central secondary incisor tooth (tooth 8).</obo:IAO_0000115>
     </owl:Class>
     
@@ -5916,9 +6176,9 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000325">
         <rdfs:label>prosthetic left upper central secondary incisor tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000118>prosthetic tooth 9</obo:IAO_0000118>
         <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a left upper central secondary incisor tooth (tooth 9).</obo:IAO_0000115>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -5940,9 +6200,9 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000327">
         <rdfs:label>prosthetic left upper secondary canine tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000118>prosthetic tooth 11</obo:IAO_0000118>
         <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a left upper secondary canine tooth (tooth 11).</obo:IAO_0000115>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -5952,9 +6212,9 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000328">
         <rdfs:label>prosthetic left upper first secondary premolar tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
-        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a left upper first secondary premolar tooth (tooth 12).</obo:IAO_0000115>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000118>prosthetic tooth 12</obo:IAO_0000118>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a left upper first secondary premolar tooth (tooth 12).</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -5964,8 +6224,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000329">
         <rdfs:label>prosthetic left upper second secondary premolar tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
-        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a left upper second secondary premolar tooth (tooth 13).</obo:IAO_0000115>
         <obo:IAO_0000118>prosthetic tooth 13</obo:IAO_0000118>
+        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a left upper second secondary premolar tooth (tooth 13).</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -5976,9 +6236,9 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000330">
         <rdfs:label>prosthetic left upper first secondary molar tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
-        <obo:IAO_0000118>prosthetic tooth 14</obo:IAO_0000118>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a left upper first secondary molar tooth (tooth 14).</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000118>prosthetic tooth 14</obo:IAO_0000118>
     </owl:Class>
     
 
@@ -6012,9 +6272,9 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000333">
         <rdfs:label>prosthetic left lower third secondary molar tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a left lower third secondary molar tooth (tooth 17).</obo:IAO_0000115>
         <obo:IAO_0000118>prosthetic tooth 17</obo:IAO_0000118>
+        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a left lower third secondary molar tooth (tooth 17).</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -6024,9 +6284,9 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000334">
         <rdfs:label>prosthetic left lower second secondary molar tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a left lower second secondary molar tooth (tooth 18).</obo:IAO_0000115>
         <obo:IAO_0000118>prosthetic tooth 18</obo:IAO_0000118>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -6048,9 +6308,9 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000336">
         <rdfs:label>prosthetic left lower second secondary premolar tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
-        <obo:IAO_0000118>prosthetic tooth 20</obo:IAO_0000118>
-        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a left lower second secondary premolar tooth (tooth 20).</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a left lower second secondary premolar tooth (tooth 20).</obo:IAO_0000115>
+        <obo:IAO_0000118>prosthetic tooth 20</obo:IAO_0000118>
     </owl:Class>
     
 
@@ -6060,9 +6320,9 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000337">
         <rdfs:label>prosthetic left lower first secondary premolar tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a left lower first secondary premolar tooth (tooth 21).</obo:IAO_0000115>
         <obo:IAO_0000118>prosthetic tooth 21</obo:IAO_0000118>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -6084,9 +6344,9 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000339">
         <rdfs:label>prosthetic left lower lateral secondary incisor tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000118>prosthetic tooth 23</obo:IAO_0000118>
         <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a left lower lateral secondary incisor tooth (tooth 23).</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -6096,8 +6356,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000340">
         <rdfs:label>prosthetic left lower central secondary incisor tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
-        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a left lower central secondary incisor tooth (tooth 24).</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a left lower central secondary incisor tooth (tooth 24).</obo:IAO_0000115>
         <obo:IAO_0000118>prosthetic tooth 24</obo:IAO_0000118>
     </owl:Class>
     
@@ -6108,8 +6368,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000341">
         <rdfs:label>prosthetic right lower central secondary incisor tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right lower central secondary incisor tooth (tooth 25).</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000118>prosthetic tooth 25</obo:IAO_0000118>
     </owl:Class>
     
@@ -6132,9 +6392,9 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000343">
         <rdfs:label>prosthetic right lower secondary canine tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
-        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right lower secondary canine tooth (tooth 27).</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000118>prosthetic tooth 27</obo:IAO_0000118>
+        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right lower secondary canine tooth (tooth 27).</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -6144,9 +6404,9 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000344">
         <rdfs:label>prosthetic right lower first secondary premolar tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
+        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right lower first secondary premolar tooth (tooth 28).</obo:IAO_0000115>
         <obo:IAO_0000118>prosthetic tooth 28</obo:IAO_0000118>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right lower first secondary premolar tooth (tooth 28).</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -6156,8 +6416,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000345">
         <rdfs:label>prosthetic right lower second secondary premolar tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
-        <obo:IAO_0000118>prosthetic tooth 29</obo:IAO_0000118>
         <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right lower second secondary premolar tooth (tooth 29).</obo:IAO_0000115>
+        <obo:IAO_0000118>prosthetic tooth 29</obo:IAO_0000118>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -6168,8 +6428,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000346">
         <rdfs:label>prosthetic right lower first secondary molar tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right lower first secondary molar tooth (tooth 30).</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000118>prosthetic tooth 30</obo:IAO_0000118>
     </owl:Class>
     
@@ -6180,8 +6440,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000347">
         <rdfs:label>prosthetic right lower second secondary molar tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
-        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right lower second secondary molar tooth (tooth 31).</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right lower second secondary molar tooth (tooth 31).</obo:IAO_0000115>
         <obo:IAO_0000118>prosthetic tooth 31</obo:IAO_0000118>
     </owl:Class>
     
@@ -6193,8 +6453,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
         <rdfs:label>prosthetic right lower third secondary molar tooth</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000302"/>
         <obo:IAO_0000118>prosthetic tooth 32</obo:IAO_0000118>
-        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right lower third secondary molar tooth (tooth 32).</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>A prosthetic tooth that is used a substitute for a right lower third secondary molar tooth (tooth 32).</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -6207,13 +6467,13 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-                <owl:allValuesFrom rdf:resource="&obo;OHD_0000000"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000000"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000000"/>
+                <owl:allValuesFrom rdf:resource="&obo;OHD_0000000"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
@@ -6227,9 +6487,9 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="&obo;OHD_0000350">
         <rdfs:label>temporary prosthetic role</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000314"/>
+        <obo:IAO_0000112>provisional crown</obo:IAO_0000112>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>A prosthetic role that is borne by a material entity which is serves as a temporary replacement for some body part in order to allow adequate time for healing or completion of other procedures.</obo:IAO_0000115>
-        <obo:IAO_0000112>provisional crown</obo:IAO_0000112>
     </owl:Class>
     
 
@@ -6768,9 +7028,116 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
         <rdfs:label xml:lang="en">32</rdfs:label>
         <obo:IAO_0000136 rdf:resource="&obo;FMA_55707"/>
     </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="&obo;FMA_55707">
+        <obo:OHD_0000065>Tooth 32</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55706">
+        <obo:OHD_0000065>Tooth 31</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55688">
+        <obo:OHD_0000065>Tooth 4</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55687">
+        <obo:OHD_0000065>Tooth 22</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55701">
+        <obo:OHD_0000065>Tooth 16</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55700">
+        <obo:OHD_0000065>Tooth 15</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55689">
+        <obo:OHD_0000065>Tooth 5</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55703">
+        <obo:OHD_0000065>Tooth 18</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55702">
+        <obo:OHD_0000065>Tooth 17</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55705">
+        <obo:OHD_0000065>Tooth 30</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55704">
+        <obo:OHD_0000065>Tooth 19</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55691">
+        <obo:OHD_0000065>Tooth 13</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55690">
+        <obo:OHD_0000065>Tooth 12</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55693">
+        <obo:OHD_0000065>Tooth 21</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55692">
+        <obo:OHD_0000065>Tooth 20</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55695">
+        <obo:OHD_0000065>Tooth 29</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55694">
+        <obo:OHD_0000065>Tooth 28</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55697">
+        <obo:OHD_0000065>Tooth 2</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55696">
+        <obo:OHD_0000065>Tooth 1</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55699">
+        <obo:OHD_0000065>Tooth 14</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55798">
+        <obo:OHD_0000065>Tooth 6</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55698">
+        <obo:OHD_0000065>Tooth 3</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55799">
+        <obo:OHD_0000065>Tooth 11</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55680">
+        <obo:OHD_0000065>Tooth 7</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_57142">
+        <obo:OHD_0000065>Tooth 25</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55682">
+        <obo:OHD_0000065>Tooth 9</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55681">
+        <obo:OHD_0000065>Tooth 8</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_57143">
+        <obo:OHD_0000065>Tooth 24</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55683">
+        <obo:OHD_0000065>Tooth 10</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55686">
+        <obo:OHD_0000065>Tooth 27</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_57140">
+        <obo:OHD_0000065>Tooth 26</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_57141">
+        <obo:OHD_0000065>Tooth 23</obo:OHD_0000065>
+    </rdf:Description>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
 
