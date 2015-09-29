@@ -4,9 +4,7 @@
 		 :key :ohd
 		 :sources '("ohd:imports;fma-jaws-teeth.owl"
 			    "ohd:imports;icd9-import.owl"
-			    "ohd:imports;vdw-medical-codes-import.owl"
-			    "ohd:imports;vdw-incomplete-information-import.owl"
-			    "ohd:imports;vdw-database-codes-import.owl"
+			    "ohd:ontology;vdw-elderly-restoration-longevity-research.owl"
 			    "ohd:ontology;ohd.owl"
 			    "ohd:ontology;tooth-restoration-research.owl"
 			    "ohd:imports;BFO2;bfo2-classes.owl"
