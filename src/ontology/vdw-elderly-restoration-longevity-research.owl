@@ -11,14 +11,14 @@
 ]>
 
 
-<rdf:RDF xmlns="&obo;ohd/vdw/restoration-longevity-research.ow#"
-     xml:base="&obo;ohd/vdw/restoration-longevity-research.ow"
-     xmlns:obo="http://purl.obolibrary.org/obo/"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:vdw="&obo;ohd/vdw/"
+<rdf:RDF xmlns="&obo;ohd/vdw/elderly-restoration-longevity-research.owl#"
+     xml:base="&obo;ohd/vdw/elderly-restoration-longevity-research.owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:vdw="&obo;ohd/vdw/"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:obo="http://purl.obolibrary.org/obo/">
     <owl:Ontology rdf:about="&obo;ohd/vdw/elderly-restoration-longevity-research.owl">
         <owl:imports rdf:resource="&obo;tooth-restoration-research.owl"/>
     </owl:Ontology>
@@ -86,9 +86,9 @@
         <rdfs:label rdf:datatype="&xsd;string">textual definition</rdfs:label>
         <rdfs:label>definition</rdfs:label>
         <rdfs:label xml:lang="en">definition</rdfs:label>
+        <obo:IAO_0000111>definition</obo:IAO_0000111>
         <obo:IAO_0000119 xml:lang="en">GROUP:OBI:&lt;http://purl.obolibrary.org/obo/obi&gt;</obo:IAO_0000119>
         <obo:IAO_0000117 xml:lang="en">PERSON:Daniel Schober</obo:IAO_0000117>
-        <obo:IAO_0000111>definition</obo:IAO_0000111>
         <obo:IAO_0000115 xml:lang="en">The official OBI definition, explaining the meaning of a class or property. Shall be Aristotelian, formalized and normalized. Can be augmented with colloquial definitions.</obo:IAO_0000115>
         <obo:IAO_0000115 xml:lang="en">The official definition, explaining the meaning of a class or property. Shall be Aristotelian, formalized and normalized. Can be augmented with colloquial definitions.</obo:IAO_0000115>
         <obo:IAO_0000114 rdf:resource="&obo;IAO_0000122"/>
@@ -153,9 +153,9 @@
 
     <owl:AnnotationProperty rdf:about="&obo;OHD_0000509">
         <rdfs:label xml:lang="en">VDW code value</rdfs:label>
-        <obo:IAO_0000112>The African American race code in the VDW is annotated using the VDW code value &quot;BA&quot;.</obo:IAO_0000112>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>an annotation that provides the value of a code in the Virtual Data Warehouse (VDW) that is associated with an entity</obo:IAO_0000115>
+        <obo:IAO_0000112>The African American race code in the VDW is annotated using the VDW code value &quot;BA&quot;.</obo:IAO_0000112>
     </owl:AnnotationProperty>
     
 
@@ -292,6 +292,64 @@
     
 
 
+    <!-- http://purl.obolibrary.org/obo/OHD_0000549 -->
+
+    <owl:DatatypeProperty rdf:about="&obo;OHD_0000549">
+        <rdfs:label xml:lang="en">start date</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;date"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000550 -->
+
+    <owl:DatatypeProperty rdf:about="&obo;OHD_0000550">
+        <rdfs:label xml:lang="en">end date</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;date"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000551 -->
+
+    <owl:DatatypeProperty rdf:about="&obo;OHD_0000551">
+        <rdfs:label xml:lang="en">denoted by code</rdfs:label>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a data property that relates a particular procedure or finding to a literal code value, such as an ADA or ICD code</obo:IAO_0000115>
+        <obo:IAO_0000116>Bill Duncan 10/09/2015:
+This data property is used in lieu of creating a hierarchy of information content entities that are about some procedure or finding. While I recognized that creating such a hierarchy is ideal, it is not practical given the time constraints of the project.</obo:IAO_0000116>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000554 -->
+
+    <owl:DatatypeProperty rdf:about="&obo;OHD_0000554">
+        <rdfs:label xml:lang="en">dentoted by DX code</rdfs:label>
+        <obo:IAO_0000116>Bill Duncan 10/09/2015:
+The expression &apos;DX code&apos; is a bit misleading since dignosis codes, such as ICD 9, an also include procedures.</obo:IAO_0000116>
+        <obo:IAO_0000115>a denoted by code data property that relates a particular medical finding or procedure to a diagnosis (DX) code, such ICD 9</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <rdfs:domain rdf:resource="&obo;OHD_0000002"/>
+        <rdfs:subPropertyOf rdf:resource="&obo;OHD_0000551"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000555 -->
+
+    <owl:DatatypeProperty rdf:about="&obo;OHD_0000555">
+        <rdfs:label xml:lang="en">denoted by ADA code</rdfs:label>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a denoted by code data property that relates a particular dental procedure to an ADA code</obo:IAO_0000115>
+        <rdfs:subPropertyOf rdf:resource="&obo;OHD_0000551"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -353,6 +411,7 @@
     <owl:Class rdf:about="&obo;OHD_0000500">
         <rdfs:label xml:lang="en">record of incomplete information</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;IAO_0000030"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000116>Bill Duncan 09/29/2015:
 
 In the VDW, a field may be marked as unknown for a number of reasons. This could be because:
@@ -362,9 +421,6 @@ In the VDW, a field may be marked as unknown for a number of reasons. This could
 
 The meaning of the unknown code depends on the practice within the VDW network that supplied the information. Since we do have access to each practice in the network, I am using this class a general way to represent that the record is not complete.</obo:IAO_0000116>
         <obo:IAO_0000112>A patient&apos;s medical chart in which the birthdate has not been filled in.</obo:IAO_0000112>
-        <obo:IAO_0000112>A medical record in which the patient&apos;s gender has been marked with a &quot;U&quot; to indicate that the patient&apos;s gender is not known. The information is not complete in the complete in the sense that every patient has a gender, but either the health care provider or the patient does not know the gender.</obo:IAO_0000112>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>an information content entity that indicates information about an entity is not complete in some sense</obo:IAO_0000115>
         <obo:IAO_0000116>Bill Duncan 09/17/2015:
 This class is similar to OBI&apos;s class &apos;record of missing knowledge&apos;, which is defined as:
 
@@ -373,6 +429,8 @@ a information content entity created to indicate that information about somethin
 OBI&apos;s &apos;record of missing knowlege&apos; is concerned with something not be available to a person recording the information. But, this class is not concerned with the person recording the information, only the information content entity itself.
 
 For example, a patient&apos;s social security number maybe removed from a database in order to protect the patient&apos;s privacy. The social security information is now missing, but this not because it unvailable to some person recording the information.</obo:IAO_0000116>
+        <obo:IAO_0000112>A medical record in which the patient&apos;s gender has been marked with a &quot;U&quot; to indicate that the patient&apos;s gender is not known. The information is not complete in the complete in the sense that every patient has a gender, but either the health care provider or the patient does not know the gender.</obo:IAO_0000112>
+        <obo:IAO_0000115>an information content entity that indicates information about an entity is not complete in some sense</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -382,8 +440,8 @@ For example, a patient&apos;s social security number maybe removed from a databa
     <owl:Class rdf:about="&obo;OHD_0000501">
         <rdfs:label xml:lang="en">record of incomplete birth date information</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000500"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>a record of incomplete information that indicates information about an entity&apos;s birthdate is not complete</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -393,8 +451,8 @@ For example, a patient&apos;s social security number maybe removed from a databa
     <owl:Class rdf:about="&obo;OHD_0000502">
         <rdfs:label xml:lang="en">record of incomplete ethnicity information</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000500"/>
-        <obo:IAO_0000115>a record of incomplete information that indicates information about an entity&apos;s ethnicity</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a record of incomplete information that indicates information about an entity&apos;s ethnicity</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -415,8 +473,8 @@ For example, a patient&apos;s social security number maybe removed from a databa
     <owl:Class rdf:about="&obo;OHD_0000504">
         <rdfs:label xml:lang="en">record of incomplete graduation year information</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000500"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>a record of incomplete information that indicates information about an entity&apos;s graduation year is not complete</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -437,11 +495,11 @@ For example, a patient&apos;s social security number maybe removed from a databa
     <owl:Class rdf:about="&obo;OHD_0000510">
         <rdfs:label xml:lang="en">VDW database code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;IAO_0000578"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a CRID existing as part of the Virtual Dabase Warehouse (VDW) that specifies information about an entity and is specific to the adminstration of the VDW</obo:IAO_0000115>
         <obo:IAO_0000112>The code &quot;AS&quot; in the race field of table specifies that a patient is Asian.</obo:IAO_0000112>
         <obo:IAO_0000116>Bill Duncan 09/29/2015:
 The VDW contains other codes that are also commonly used, such as ICD and CDT codes. However, since these codes are not specific to the VDW, I have not included them in this class. The codes included in this class are  under the specific control of the VDW system. For example, the code &quot;AS&quot; is used to identify Asian Americans in the VDW, and this is because of how the VDW is administered. The CDT code &quot;D2140&quot;, on the other hand, is used to identify amalgam fillings, but the VDW does not control this. Rather, the ADA controls the use of this code.</obo:IAO_0000116>
-        <obo:IAO_0000115>a CRID existing as part of the Virtual Dabase Warehouse (VDW) that specifies information about an entity and is specific to the adminstration of the VDW</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -477,6 +535,8 @@ U = unknown</obo:IAO_0000116>
     <owl:Class rdf:about="&obo;OHD_0000513">
         <rdfs:label xml:lang="en">VDW provider specialty code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000510"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a VDW database code that repesents the provider&apos;s specialty</obo:IAO_0000115>
         <obo:IAO_0000116>Bill Duncan 9/22/2015:
 In the VDW, the codes for indentifying the provider&apos;s speciality are:
 DEN = General Dentistry
@@ -488,8 +548,6 @@ PDE = Pediatric Dentistry
 PRO = Prosthetics
 TMD = TMD/Orofacial Pain
 </obo:IAO_0000116>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>a VDW database code that repesents the provider&apos;s specialty</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -499,8 +557,8 @@ TMD = TMD/Orofacial Pain
     <owl:Class rdf:about="&obo;OHD_0000514">
         <rdfs:label xml:lang="en">VDW provider study id code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000510"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>a VDW database code that identifies the provider</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -510,7 +568,7 @@ TMD = TMD/Orofacial Pain
     <owl:Class rdf:about="&obo;OHD_0000515">
         <rdfs:label xml:lang="en">VDW provider type code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000510"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a VDW database code that identifies the type of job the provider has</obo:IAO_0000115>
         <obo:IAO_0000116>Bill Duncan 9/22/2015:
 In the VDW, the provider type is identified by the following codes:
 017 DENTAL ASSISTANT             
@@ -519,7 +577,7 @@ In the VDW, the provider type is identified by the following codes:
 042 MIDLEVEL (dental therapist)
 073 REGISTERED NURSE
 </obo:IAO_0000116>
-        <obo:IAO_0000115>a VDW database code that identifies the type of job the provider has</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -540,8 +598,8 @@ In the VDW, the provider type is identified by the following codes:
     <owl:Class rdf:about="&obo;OHD_0000517">
         <rdfs:label xml:lang="en">VDW study id code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000510"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>a VDW database code that identifies the patient</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -551,8 +609,8 @@ In the VDW, the provider type is identified by the following codes:
     <owl:Class rdf:about="&obo;OHD_0000518">
         <rdfs:label xml:lang="en">VDW race code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000510"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>a VDW database code that is used to represent the race of the patient</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -562,9 +620,9 @@ In the VDW, the provider type is identified by the following codes:
     <owl:Class rdf:about="&obo;OHD_0000520">
         <rdfs:label xml:lang="en">VDW Asian race code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000518"/>
-        <obo:IAO_0000115>a race code that is about an Asian patient </obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:OHD_0000509>AS</obo:OHD_0000509>
+        <obo:IAO_0000115>a race code that is about an Asian patient </obo:IAO_0000115>
     </owl:Class>
     
 
@@ -574,9 +632,9 @@ In the VDW, the provider type is identified by the following codes:
     <owl:Class rdf:about="&obo;OHD_0000521">
         <rdfs:label xml:lang="en">VDW African American race code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000518"/>
+        <obo:IAO_0000115>a race code that is about an African American patient</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:OHD_0000509>BA</obo:OHD_0000509>
-        <obo:IAO_0000115>a race code that is about an African American patient</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -586,9 +644,9 @@ In the VDW, the provider type is identified by the following codes:
     <owl:Class rdf:about="&obo;OHD_0000522">
         <rdfs:label xml:lang="en">VDW more than one race race code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000518"/>
-        <obo:OHD_0000509>MU</obo:OHD_0000509>
-        <obo:IAO_0000115>a race code that is about a patient who is of more than one race</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a race code that is about a patient who is of more than one race</obo:IAO_0000115>
+        <obo:OHD_0000509>MU</obo:OHD_0000509>
     </owl:Class>
     
 
@@ -598,11 +656,11 @@ In the VDW, the provider type is identified by the following codes:
     <owl:Class rdf:about="&obo;OHD_0000523">
         <rdfs:label xml:lang="en">VDW Native American race code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000518"/>
-        <obo:IAO_0000115>a race code that is about an African American patient </obo:IAO_0000115>
         <obo:IAO_0000116>Bill Duncan 09/17/2015:
 In the VDW documentation, this code about patients who are either &quot;American Indian or Alaska Native&quot;.</obo:IAO_0000116>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:OHD_0000509>IN</obo:OHD_0000509>
+        <obo:IAO_0000115>a race code that is about an African American patient </obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -613,8 +671,8 @@ In the VDW documentation, this code about patients who are either &quot;American
         <rdfs:label xml:lang="en">VDW other race code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000518"/>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:OHD_0000509>OT</obo:OHD_0000509>
         <obo:IAO_0000115>a race code that is about a patient whose race cannot be represented using the VDW&apos;s current set of race codes</obo:IAO_0000115>
+        <obo:OHD_0000509>OT</obo:OHD_0000509>
     </owl:Class>
     
 
@@ -625,10 +683,10 @@ In the VDW documentation, this code about patients who are either &quot;American
         <rdfs:label xml:lang="en">VDW Pacific Islander race code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000518"/>
         <obo:IAO_0000115>a race code that is about a Pacific Islander patient</obo:IAO_0000115>
-        <obo:OHD_0000509>HP</obo:OHD_0000509>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000116>Bill Duncan 09/17/2015:
 In the VDW documentation, this code about patients who are either &quot;Native Hawaiian or Other Pacific Islander&quot;.</obo:IAO_0000116>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:OHD_0000509>HP</obo:OHD_0000509>
     </owl:Class>
     
 
@@ -651,8 +709,8 @@ In the VDW documentation, this code about patients who are either &quot;Native H
         <rdfs:label xml:lang="en">VDW white race code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000518"/>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>a race code that is about a white patient</obo:IAO_0000115>
         <obo:OHD_0000509>WH</obo:OHD_0000509>
+        <obo:IAO_0000115>a race code that is about a white patient</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -662,8 +720,8 @@ In the VDW documentation, this code about patients who are either &quot;Native H
     <owl:Class rdf:about="&obo;OHD_0000529">
         <rdfs:label xml:lang="en">record of incomplete provider specialty information</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000500"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>a record of incomplete information that indicates information about a provider&apos;s speciality is not complete</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -673,9 +731,9 @@ In the VDW documentation, this code about patients who are either &quot;Native H
     <owl:Class rdf:about="&obo;OHD_0000530">
         <rdfs:label xml:lang="en">VDW dental assistant type code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000515"/>
-        <obo:OHD_0000509>017</obo:OHD_0000509>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000117>a VDW provider type code that identifies a provider as being a dental assistant</obo:IAO_0000117>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:OHD_0000509>017</obo:OHD_0000509>
     </owl:Class>
     
 
@@ -685,9 +743,9 @@ In the VDW documentation, this code about patients who are either &quot;Native H
     <owl:Class rdf:about="&obo;OHD_0000531">
         <rdfs:label xml:lang="en">VDW dentist type code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000515"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000117>a VDW provider type code that identifies a provider as being a dentist</obo:IAO_0000117>
         <obo:OHD_0000509>018</obo:OHD_0000509>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -698,8 +756,8 @@ In the VDW documentation, this code about patients who are either &quot;Native H
         <rdfs:label xml:lang="en">VDW dental hygienist type code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000515"/>
         <obo:OHD_0000509>030</obo:OHD_0000509>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000117>a VDW provider type code that identifies a provider as being a dental hygienist</obo:IAO_0000117>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -709,9 +767,9 @@ In the VDW documentation, this code about patients who are either &quot;Native H
     <owl:Class rdf:about="&obo;OHD_0000533">
         <rdfs:label xml:lang="en">VDW dental therapist type code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000515"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000117>a VDW provider type code that identifies a provider as being a dental therapist</obo:IAO_0000117>
         <obo:OHD_0000509>042</obo:OHD_0000509>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -721,9 +779,9 @@ In the VDW documentation, this code about patients who are either &quot;Native H
     <owl:Class rdf:about="&obo;OHD_0000534">
         <rdfs:label xml:lang="en">VDW registered nurse type code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000515"/>
+        <obo:OHD_0000509>073</obo:OHD_0000509>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000117>a VDW provider type code that identifies a provider as being a registered nurse</obo:IAO_0000117>
-        <obo:OHD_0000509>073</obo:OHD_0000509>
     </owl:Class>
     
 
@@ -733,9 +791,9 @@ In the VDW documentation, this code about patients who are either &quot;Native H
     <owl:Class rdf:about="&obo;OHD_0000540">
         <rdfs:label xml:lang="en">VDW general dentistry specialty code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000513"/>
-        <obo:OHD_0000509>DEN</obo:OHD_0000509>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>a VDW provider specialty code that represents provider as having a specialty in general dentistry</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:OHD_0000509>DEN</obo:OHD_0000509>
     </owl:Class>
     
 
@@ -745,8 +803,8 @@ In the VDW documentation, this code about patients who are either &quot;Native H
     <owl:Class rdf:about="&obo;OHD_0000541">
         <rdfs:label xml:lang="en">VDW endodontics specialty code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000513"/>
-        <obo:IAO_0000115>a VDW provider specialty code that represents provider as having a specialty in endodontics</obo:IAO_0000115>
         <obo:OHD_0000509>EDO</obo:OHD_0000509>
+        <obo:IAO_0000115>a VDW provider specialty code that represents provider as having a specialty in endodontics</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -758,8 +816,8 @@ In the VDW documentation, this code about patients who are either &quot;Native H
         <rdfs:label xml:lang="en">VDW periodontics specialty code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000513"/>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:OHD_0000509>PER</obo:OHD_0000509>
         <obo:IAO_0000115>a VDW provider specialty code that represents provider as having a specialty in periodontics</obo:IAO_0000115>
+        <obo:OHD_0000509>PER</obo:OHD_0000509>
     </owl:Class>
     
 
@@ -769,9 +827,9 @@ In the VDW documentation, this code about patients who are either &quot;Native H
     <owl:Class rdf:about="&obo;OHD_0000543">
         <rdfs:label xml:lang="en">VDW oral surgery specialty code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000513"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>a VDW provider specialty code that represents provider as having a specialty in oral surgery</obo:IAO_0000115>
         <obo:OHD_0000509>ORA</obo:OHD_0000509>
+        <obo:IAO_0000115>a VDW provider specialty code that represents provider as having a specialty in oral surgery</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -793,8 +851,8 @@ In the VDW documentation, this code about patients who are either &quot;Native H
     <owl:Class rdf:about="&obo;OHD_0000545">
         <rdfs:label xml:lang="en">VDW pediatic dentistry specialty code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000513"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>a VDW provider specialty code that represents provider as having a specialty in pediatric dentistry</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:OHD_0000509>PDE</obo:OHD_0000509>
     </owl:Class>
     
@@ -806,8 +864,8 @@ In the VDW documentation, this code about patients who are either &quot;Native H
         <rdfs:label xml:lang="en">VDW prosthetics specialty code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000513"/>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>a VDW provider specialty code that represents provider as having a specialty in prosthetics</obo:IAO_0000115>
         <obo:OHD_0000509>PRO</obo:OHD_0000509>
+        <obo:IAO_0000115>a VDW provider specialty code that represents provider as having a specialty in prosthetics</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -819,9 +877,9 @@ In the VDW documentation, this code about patients who are either &quot;Native H
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000513"/>
         <obo:OHD_0000509>TMD</obo:OHD_0000509>
         <obo:IAO_0000115>a VDW provider specialty code that represents provider as having a speciality in treating TMD/orofacial pain</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000115>Bill Duncan 09/30/2015:
 I chose the label &quot;orofacial pain&quot; as opposed to &quot;TMD&quot; because orofacial pain is more general.</obo:IAO_0000115>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -831,8 +889,26 @@ I chose the label &quot;orofacial pain&quot; as opposed to &quot;TMD&quot; becau
     <owl:Class rdf:about="&obo;OHD_0000548">
         <rdfs:label xml:lang="en">record of incomplete insurance enrollment information</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000500"/>
-        <obo:IAO_0000115>a record of incomplete information that indicates information about a person&apos;s insurance enrollment status is not complete</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a record of incomplete information that indicates information about a person&apos;s insurance enrollment status is not complete</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000552 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000552">
+        <rdfs:label xml:lang="en">dental insurer role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000023"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000553 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000553">
+        <rdfs:label xml:lang="en">insured dental role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;BFO_0000023"/>
     </owl:Class>
     
 
@@ -873,5 +949,5 @@ I chose the label &quot;orofacial pain&quot; as opposed to &quot;TMD&quot; becau
 
 
 
-<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
 
