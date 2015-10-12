@@ -20,7 +20,7 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:obo="http://purl.obolibrary.org/obo/">
     <owl:Ontology rdf:about="&obo;ohd/vdw/elderly-restoration-longevity-research.owl">
-        <owl:imports rdf:resource="&obo;tooth-restoration-research.owl"/>
+        <owl:imports rdf:resource="&obo;ohd/dev/ohd.owl"/>
     </owl:Ontology>
     
 
@@ -211,6 +211,8 @@
 
     <owl:DatatypeProperty rdf:about="&obo;OHD_0000506">
         <rdfs:label xml:lang="en">birth year</rdfs:label>
+        <obo:IAO_0000115>a data property that relates an individual to the year in which the individual was born</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <rdfs:range rdf:resource="&xsd;gYear"/>
     </owl:DatatypeProperty>
     
@@ -220,6 +222,8 @@
 
     <owl:DatatypeProperty rdf:about="&obo;OHD_0000507">
         <rdfs:label xml:lang="en">graduation year</rdfs:label>
+        <obo:IAO_0000115>a data property that relates an individual to the year in which the individual graduated</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <rdfs:range rdf:resource="&xsd;gYear"/>
     </owl:DatatypeProperty>
     
@@ -229,6 +233,8 @@
 
     <owl:DatatypeProperty rdf:about="&obo;OHD_0000508">
         <rdfs:label xml:lang="en">provider study id</rdfs:label>
+        <obo:IAO_0000115>a data property that relates a provider to the literal string that represents the provider&apos;s study id</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -238,6 +244,8 @@
 
     <owl:DatatypeProperty rdf:about="&obo;OHD_0000519">
         <rdfs:label xml:lang="en">study id</rdfs:label>
+        <obo:IAO_0000115>a data property that relates an individual to the literal string that represents the individual&apos;s study id</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:DatatypeProperty>
     
 
@@ -246,6 +254,8 @@
 
     <owl:DatatypeProperty rdf:about="&obo;OHD_0000528">
         <rdfs:label xml:lang="en">study encounter id</rdfs:label>
+        <obo:IAO_0000115>a data property that relates an encounter to the literal string that represents the encounter&apos;s study id</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:DatatypeProperty>
     
 
@@ -253,7 +263,10 @@
     <!-- http://purl.obolibrary.org/obo/OHD_0000535 -->
 
     <owl:DatatypeProperty rdf:about="&obo;OHD_0000535">
-        <rdfs:label xml:lang="en">insurance enrollment start date</rdfs:label>
+        <rdfs:label xml:lang="en">start date</rdfs:label>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a data property that relates a process to the date on which a began</obo:IAO_0000115>
+        <rdfs:domain rdf:resource="&obo;BFO_0000007"/>
         <rdfs:range rdf:resource="&xsd;date"/>
     </owl:DatatypeProperty>
     
@@ -262,7 +275,10 @@
     <!-- http://purl.obolibrary.org/obo/OHD_0000536 -->
 
     <owl:DatatypeProperty rdf:about="&obo;OHD_0000536">
-        <rdfs:label xml:lang="en">insurance enrollment end date</rdfs:label>
+        <rdfs:label xml:lang="en">end date</rdfs:label>
+        <obo:IAO_0000115>a data property that relates a process to the date on which a process terminated</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <rdfs:domain rdf:resource="&obo;BFO_0000007"/>
         <rdfs:range rdf:resource="&xsd;date"/>
     </owl:DatatypeProperty>
     
@@ -272,6 +288,8 @@
 
     <owl:DatatypeProperty rdf:about="&obo;OHD_0000537">
         <rdfs:label xml:lang="en">race code</rdfs:label>
+        <obo:IAO_0000115>a data property that relates an individual to the code in the database that represents the individual&apos;s race</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:DatatypeProperty>
     
 
@@ -280,6 +298,8 @@
 
     <owl:DatatypeProperty rdf:about="&obo;OHD_0000538">
         <rdfs:label xml:lang="en">dental facility code</rdfs:label>
+        <obo:IAO_0000115>a data property that relates a particular dental facility to the code in the database that represents the facility</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:DatatypeProperty>
     
 
@@ -288,24 +308,8 @@
 
     <owl:DatatypeProperty rdf:about="&obo;OHD_0000539">
         <rdfs:label xml:lang="en">provider specialty code</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000549 -->
-
-    <owl:DatatypeProperty rdf:about="&obo;OHD_0000549">
-        <rdfs:label xml:lang="en">start date</rdfs:label>
-        <rdfs:range rdf:resource="&xsd;date"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000550 -->
-
-    <owl:DatatypeProperty rdf:about="&obo;OHD_0000550">
-        <rdfs:label xml:lang="en">end date</rdfs:label>
-        <rdfs:range rdf:resource="&xsd;date"/>
+        <obo:IAO_0000115>a data property that relates a provider to the code in the database that represents the provider&apos;s speciality</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:DatatypeProperty>
     
 
@@ -898,8 +902,10 @@ I chose the label &quot;orofacial pain&quot; as opposed to &quot;TMD&quot; becau
     <!-- http://purl.obolibrary.org/obo/OHD_0000552 -->
 
     <owl:Class rdf:about="&obo;OHD_0000552">
-        <rdfs:label xml:lang="en">dental insurer role</rdfs:label>
+        <rdfs:label xml:lang="en">dental insurance provider role</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;BFO_0000023"/>
+        <obo:IAO_0000115>a role that inheres in an organization that provides financial services which cover in part or in full the cost of receiving dental care</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -907,8 +913,291 @@ I chose the label &quot;orofacial pain&quot; as opposed to &quot;TMD&quot; becau
     <!-- http://purl.obolibrary.org/obo/OHD_0000553 -->
 
     <owl:Class rdf:about="&obo;OHD_0000553">
-        <rdfs:label xml:lang="en">insured dental role</rdfs:label>
+        <rdfs:label xml:lang="en">dental insurance client role</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;BFO_0000023"/>
+        <obo:IAO_0000115>a role that inheres in a person who has a contract with a dental insurance company such that the company pays for some or all of the cost of the person&apos;s dental care</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000556 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000556">
+        <rdfs:label xml:lang="en">insured patient</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&obo;OHD_0000012"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000553"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a human dental patient that bears a dental insurance client role</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000557 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000557">
+        <rdfs:label xml:lang="en">commercial dental insurance client role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000553"/>
+        <obo:IAO_0000116>Bill Duncan 10/12/2015:
+In this coverage, the insurer covers all or most of the cost of the premium.</obo:IAO_0000116>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a dental insurance client role in which the person has commercial coverage</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000558 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000558">
+        <rdfs:label xml:lang="en">private pay dental insurance client role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000553"/>
+        <obo:IAO_0000115>a dental insurance client role in which the person has private pay coverage</obo:IAO_0000115>
+        <obo:IAO_0000116>Bill Duncan 10/12/2015:
+In this coverage, the person covers all or most of the premium.</obo:IAO_0000116>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000559 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000559">
+        <rdfs:label xml:lang="en">Medicaid dental insurance client role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000553"/>
+        <obo:IAO_0000115>a dental insurance client role in which the person has Medicaid coverage</obo:IAO_0000115>
+        <obo:IAO_0000116>Bill Duncan 10/12/2015:
+This is for low income patients.</obo:IAO_0000116>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000560 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000560">
+        <rdfs:label xml:lang="en">state subsidized dental insurance client role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000553"/>
+        <obo:IAO_0000116>Bill Duncan 10/12/2015:
+This is for persons too wealthy to qualify for Medicaid, but cannot afford insurance on their own.</obo:IAO_0000116>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a dental insurance client role in which the person has state subsidized coverage</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000561 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000561">
+        <rdfs:label xml:lang="en">Medicare dental insurance client role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000553"/>
+        <obo:IAO_0000116>Bill Duncan 10/12/2015:
+This coverage is for eligible seniors.</obo:IAO_0000116>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a dental insurance client role in which the person has Medicare coverage</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000562 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000562">
+        <rdfs:label xml:lang="en">self-funded dental insurance client role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000553"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a dental insurance client role in which the person has self-funded coverage</obo:IAO_0000115>
+        <obo:IAO_0000116>Bill Duncan 10/12/2015:
+This coverage is through an employer group that insures itself.</obo:IAO_0000116>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000563 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000563">
+        <rdfs:label xml:lang="en">comprehensive dental insurance client role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000553"/>
+        <obo:IAO_0000115>a dental insurance client role in which the person has comprehensive coverage</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000564 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000564">
+        <rdfs:label xml:lang="en">preventative dental insurance client role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000553"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a dental insurance client role in which the person has preventative coverage</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000565 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000565">
+        <rdfs:label xml:lang="en">preventative insured patient</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&obo;OHD_0000556"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000564"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000566 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000566">
+        <rdfs:label xml:lang="en">comprehensive insured patient</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&obo;OHD_0000556"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000563"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000567 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000567">
+        <rdfs:label xml:lang="en">self-funded insured patient</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&obo;OHD_0000556"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000562"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000568 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000568">
+        <rdfs:label xml:lang="en">Medicare insured patient</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&obo;OHD_0000556"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000561"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000569 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000569">
+        <rdfs:label xml:lang="en">state subsidized insured patient</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&obo;OHD_0000556"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000560"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000570 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000570">
+        <rdfs:label xml:lang="en">Medicaid insured patient</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&obo;OHD_0000556"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000559"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000571 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000571">
+        <rdfs:label xml:lang="en">private pay insured patient</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&obo;OHD_0000556"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000558"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000572 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000572">
+        <rdfs:label xml:lang="en">commercial insured patient</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&obo;OHD_0000556"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;BFO_0000087"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000557"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
 
