@@ -196,6 +196,15 @@
     
 
 
+    <!-- http://purl.obolibrary.org/obo/OHD_0000574 -->
+
+    <owl:ObjectProperty rdf:about="&obo;OHD_0000574">
+        <rdfs:label xml:lang="en">is referent of</rdfs:label>
+        <owl:inverseOf rdf:resource="&obo;IAO_0000136"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -899,11 +908,51 @@ I chose the label &quot;orofacial pain&quot; as opposed to &quot;TMD&quot; becau
     
 
 
+    <!-- http://purl.obolibrary.org/obo/OHD_0000549 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000549">
+        <rdfs:label xml:lang="en">dental insurance coverage process</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OBI_0000011"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000553"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000552"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>a planned process during which an insurance company provides dental insurance coverage for one of its clients</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000550 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000550">
+        <rdfs:label xml:lang="en">VDW other insurance coverage code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000510"/>
+        <obo:IAO_0000115>a VDW database code that signifies a patient has insurance coverage, but the type of insurance coverage is categorized by one of the other insurance codes</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/OHD_0000552 -->
 
     <owl:Class rdf:about="&obo;OHD_0000552">
         <rdfs:label xml:lang="en">dental insurance provider role</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;BFO_0000023"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000054"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000549"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000115>a role that inheres in an organization that provides financial services which cover in part or in full the cost of receiving dental care</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
@@ -915,6 +964,12 @@ I chose the label &quot;orofacial pain&quot; as opposed to &quot;TMD&quot; becau
     <owl:Class rdf:about="&obo;OHD_0000553">
         <rdfs:label xml:lang="en">dental insurance client role</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;BFO_0000023"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&obo;BFO_0000054"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000549"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000115>a role that inheres in a person who has a contract with a dental insurance company such that the company pays for some or all of the cost of the person&apos;s dental care</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
@@ -1198,6 +1253,25 @@ This coverage is through an employer group that insures itself.</obo:IAO_0000116
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000573 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000573">
+        <rdfs:label xml:lang="en">patient insured by other coverage</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&obo;OHD_0000556"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;OHD_0000574"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000550"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
     </owl:Class>
     
 
