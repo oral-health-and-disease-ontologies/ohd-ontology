@@ -6,7 +6,6 @@
 			    "ohd:imports;icd9-import.owl"
 			    "ohd:ontology;vdw-elderly-restoration-longevity-research.owl"
 			    "ohd:ontology;ohd.owl"
-			    "ohd:ontology;tooth-restoration-research.owl"
 			    "ohd:imports;BFO2;bfo2-classes.owl"
 			    "ohd:imports;BFO2;bfo2-relations.owl")))
 
