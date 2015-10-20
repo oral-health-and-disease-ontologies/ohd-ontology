@@ -64,9 +64,17 @@ created by Alan Ruttenberg 11/26/2013"
 	    (push `(object-property-assertion
 		    !'inheres in'@ohd ,dependent-entity ,independent-entity) ,axiom-list))
 
+	  (has-role (entity role)
+	    (push `(object-property-assertion
+		    !'has role'@ohd ,entity ,role) ,axiom-list))
+
 	  (is-about (ice entity)
 	    (push `(object-property-assertion
 		    !'is about'@ohd ,ice ,entity) ,axiom-list))
+
+	  (is-referent-of (entity icd)
+	    (push `(object-property-assertion
+		    !'is referent of'@ohd ,entity ,ice) ,axiom-list))
 		   
 	  (is-dental-restoration-of (material surface)
 	    (push `(object-property-assertion
