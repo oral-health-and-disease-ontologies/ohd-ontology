@@ -59,7 +59,7 @@
   (let (axioms role-uri label)
     (with-axioms axioms
       ;; create uri for provider role
-      (setf role-uri (make-vdw-uri provider-id :class-type !'provider role'@ohd))
+      (setf role-uri (provider-role-uri provider-id))
 
       ;; create instance axioms for role
       (instance-of role-uri !'provider role'@ohd)

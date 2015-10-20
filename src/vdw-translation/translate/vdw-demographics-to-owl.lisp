@@ -2,11 +2,9 @@
   (let (study-id
 	birth-year
 	gender-code
-	race1-code
-	race2-code
-	race3-code
-	race4-code
-	race5-code
+	race-code
+	ethnicity-code
+	patient-uri
 	(count 0))
     
     (with-ontology ont
@@ -37,23 +35,38 @@
       ont)))
 
 (defun patient-axioms (study-id patient-uri gender-code)
-  (let (axioms gender label)
+  (let (axioms gender label ice-uri gender-type gender-uri)
     (with-axioms axioms
+      ;; determine type and gender of patient
+      ;; in cases of other or unknown gender create an ice that indicates
+      ;; the gender information is not complete
+      (setf gender-type (gender-role-type gender-code))
+      (gender-uri (gender-role-uri study-id gender-code))
       (cond
-	((equalp "F" gender-code)
-	 (setf gender "female gender")
-	 (instance-of patient-uri !'female dental patient'@ohd))
-	((equalp "M" gender-code)
+	((equalp gender-type !'male gender role'@ohd)
 	 (setf gender "male gender")
 	 (instance-of patient-uri !'male dental patient'@ohd))
-	((equalp "O" gender-code)
-	 (setf gender "other gender")
-	 (instance-of patient-uri !'human dental patient'@ohd))
-	(t
-	 (setf gender "unknown gender")
-	 (instance-of patient-uri !'human dental patient'@ohd)))
+	((equalp gender-type !'female gender role'@ohd)
+	 (setf gender "female gender")
+	 (instance-of patient-uri !'female dental patient'@ohd))
+	(t ;; gender is other or unknown
+	 (setf gender "other/unknown gender")
+	 (instance-of patient-uri !'human dental patient'@ohd) ; patient is human
 
-      ;; add labels to patients
+	 ;; create ice about patient
+	 (setf ice-uri (make-vdw-uri id :class-type !'record of incomplete gender information'@ohd))
+	 (instance-of ice-uri !'record of incomplete gender information'@ohd)
+	 (is-about ice-uri patient-uri)
+	 (has-label ice-uri (str+ "record of incomplete gender information about patient " study-id))))
+
+      ;; add info about patient gender
+      (when (or (equalp gender-type !'male gender role'@ohd)
+		(equalp gender-type !'female gender role'@ohd))
+	(instance-of gender-uri gender-type)
+	(has-role patient-uri gender-uri)
+	(has-label gender-uri (str+ gender " role for patient " study-id)))
+
+      ;; add label for patient
       (setf label (str+ "dental patient " study-id " (" gender ")"))
       (has-label patient-uri label)
       
@@ -64,13 +77,13 @@
   (let (axioms role-uri label)
     (with-axioms axioms
       ;; create uri for patient role
-      (setf role-uri (make-vdw-uri study-id :class-type !'patient role'@ohd))
-
+      (setf role-uri (patient-role-uri study-id))
+      
       ;; create instance axioms for role
-      (instance-of role-uri !'patient role'@ohd)
+      (instance-of role-uri !'dental patient role'@ohd)
 
       ;; create label for role
-      (setf label (str+ "role for patient " study-id))
+      (setf label (str+ "dental role for patient " study-id))
       (has-label role-uri label)
     
       ;; role inheres in patient
@@ -80,15 +93,9 @@
       axioms)))
 
 
-(defun patient-race-axioms (study-id race-code)
-  (let
-      (axioms
-       race-code)
-    (cond
-      ((equalp race-code "BA") )
-      ((equalp race-code "WH") )
-      ((equalp race-code "OT") )
-      (t ))
+(defun patient-race-axioms (study-id race-code patient-uri)
+  (let (axioms)
+    
     	
     ;; return axioms
     axioms))
