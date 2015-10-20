@@ -71,10 +71,191 @@ e.g. (make-icd9-uri \"123.4\") -> <http://purl.org/NET/regenstrief/ICD9_123.4>"
     (load-study-id2uri-table))
   (gethash study-id *study-id2uri*))
 
+(defun patient-role-uri (study-id)
+  (make-vdw-uri study-id :class-type !'dental patient role'@ohd))
+
+(defun provider-role-uri (provider-id)
+  (make-vdw-uri provider-id :class-type !'dental health care provider role'@ohd))
+
+(defun race-code-uri (id race-code)
+  (make-vdw-uri id :class-type (race-code-type race-code)))
+
+(defun race-code-type (race-code)
+  (let (type)
+    (cond
+      ((equalp race-code "BA")
+       (setf type !'VDW African American race code'@ohd))
+      ((equalp race-code "AS")
+       (setf type !'VDW Asian race code'@ohd))
+      ((equalp race-code "MU")
+       (setf type !'VDW more than one race race code'@ohd))
+      ((equalp race-code "IN")
+       (setf type !'VDW Native American race code'@ohd))
+      ((equalp race-code "HP")
+       (setf type !'VDW Pacific Islander race code'@ohd))
+      ((equalp race-code "WH")
+       (setf type !'VDW white race code'@ohd))
+      ((equalp race-code "OT")
+       (setf type !'VDW other race code'@ohd))
+      ((equalp race-code "UN")
+       (setf type !'VDW unknown race code'@ohd))
+      (t
+       (setf type !'record of incomplete race information'@ohd)))
+    
+    type))
+  
+(defun ethnicity-code-uri (id ethnicity-code)
+  (make-vdw-uri id :class-type (ethnicity-code-type ethnicity-code)))
+
+(defun ethnicity-code-type (ethnicity-code)
+  (let (type)
+    (cond
+      ((equalp ethnicity-code "Y")
+       (setf type !'VDW Hispanic ethnicity code'@ohd))
+      (t
+       (setf type !'record of incomplete ethnicity information'@ohd)))
+    
+    type))
+
+(defun gender-role-uri (id gender-code)
+  (make-vdw-uri id :class-type (gender-role-type gender-code)))
+
+(defun gender-role-type (gender-code)
+  (let (type)
+    (cond
+      ((equalp gender-code "M")
+       (setf type !'male gender role'@ohd))
+      ((equalp gender-code "F")
+       (setf type !'female gender role'@ohd))
+      (t
+       (setf type !'record of incomplete gender information'@ohd)))
+    
+    type))
+
 (defun provider-uri(provider-id)
   (when (not *provider-id2uri*)
     (load-provider-id2uri-table))
   (gethash provider-id *provider-id2uri*))
+
+(defun specialty-code-uri (id specialty-code)
+  (make-vdw-uri id :class-type (specialty-code-type specialty-code)))
+
+(defun specialty-code-type (specialty-code)
+  (let (type)
+    (cond
+      ((equalp specialty-code "EDO")
+       (setf type !'VDW endodontics specialty code'@ohd))
+      ((equalp specialty-code "DEN")
+       (setf type !'VDW general dentistry specialty code'@ohd))
+      ((equalp specialty-code "ORA")
+       (setf type !'VDW oral surgery specialty code'@ohd))
+      ((equalp specialty-code "TMD")
+       (setf type !'VDW orofacial pain specialty code'@ohd))
+      ((equalp specialty-code "ORD")
+       (setf type !'VDW orthodontics specialty code'@ohd))
+      ((equalp specialty-code "PDE")
+       (setf type !'VDW pediatic dentistry specialty code'@ohd))
+      ((equalp specialty-code "PER")
+       (setf type !'VDW periodontics specialty code'@ohd))
+      ((equalp specialty-code "PRO")
+       (setf type !'VDW prosthetics specialty code'@ohd))
+      (t
+       (setf type !'record of incomplete provider specialty information'@ohd)))
+
+    type))
+
+(defun provider-occupation-code-uri (id type-code)
+  (make-vdw-uri id :class-type (provider-occupation-code-type type-code)))
+
+(defun provider-occupation-code-type (type-code)
+  (let (type)
+    (cond
+      ((equalp type-code "17")
+       (setf type !'VDW dental assistant type code'@ohd))
+      ((equalp type-code "18")
+       (setf type !'VDW dentist type code'@ohd))
+      ((equalp type-code "30")
+       (setf type !'VDW dental hygienist type code'@ohd))
+      ((equalp type-code "42")
+       (setf type !'VDW dental therapist type code'@ohd))
+      ((equalp type-code "73")
+       (setf type !'VDW registered nurse type code'@ohd))
+      (t
+       (setf type !'record of incomplete provider type information'@ohd)))
+
+    type))
+
+(defun provider-role-uri (id provider-occupation-code-type specialty-code-type)
+  (make-vdw-uri id :class-type (provider-role-type provider-occupation-code-type speciality-code-type)))
+
+(defun provider-role-type (provider-occupation-code-type specialty-code-type)
+  (let (type)
+    ;; determine the occupational role of provider
+    ;; in case of the dentist, look for specialty role
+    (cond
+      ((equalp provider-occupation-code-type !'VDW dental assistant type code'@ohd)
+       (setf type !'dental assistant role'@ohd))
+      ((equalp provider-occupation-code-type !'VDW dental hygienist type code'@ohd)
+       (setf type !'dental hygienist role'@ohd))
+      ((equalp provider-occupation-code-type !'VDW dental therapist type code'@ohd)
+       (setf type !'dental therapist role'@ohd))
+      ((equalp provider-occupation-code-type !'VDW dentist type code'@ohd)
+       ;; determine specialty of dentist
+       (cond
+	 ((equalp specialty-code-type !'VDW endodontics specialty code'@ohd)
+	  (setf type !'endodontist role'@ohd))
+	 ((equalp specialty-code-type !'VDW oral surgery specialty code'@ohd)
+	  (setf type !'oral surgeon role'@ohd))
+	 ((equalp specialty-code-type !'VDW orofacial pain specialty code'@ohd)
+	  (setf type !'orofacial pain dentist role'@ohd))
+	 ((equalp specialty-code-type !'VDW orthodontics specialty code'@ohd)
+	  (setf type !'orthodontist role'@ohd))
+	 ((equalp specialty-code-type !'VDW pediatric dentistry specialty code'@ohd)
+	  (setf type !'pediatric dentist role'@ohd))
+	 ((equalp specialty-code-type !'VDW periodontics specialty code'@ohd)
+	  (setf type !'periodontist role'@ohd))
+	 ((equalp specialty-code-type !'VDW prosthetics specialty code'@ohd)
+	  (setf type !'prosthodontist role'@ohd))
+	 (t ;; default for specialties type
+	  (setf type !'dentist role'@ohd))))
+       
+      (t ;; default provider role type
+       (setf type !'dental health care provider role'@ohd)))
+    
+    type))
+
+(defun provider-uri (id provider-role-type)
+  (make-vdw-uri id :class-type (provider-type provider-role-type)))
+
+(defun provider-type (provider-role-type)
+  (let (type)
+    (cond
+      ((equalp provider-role-type !'dental assistant role'@ohd)
+       (setf type !'dental assistant'@ohd))
+      ((equalp provider-role-type !'dental hygienist role'@ohd)
+       (setf type !'dental hygienist'@ohd))
+      ((equalp provider-role-type !'dental therapist role'@ohd)
+       (setf type !'dental therapist'@ohd))
+      ((equalp provider-role-type !'dentist role'@ohd)
+       (setf type !'dentist'@ohd))
+      ((equalp provider-role-type !'endodontist role'@ohd)
+       (setf type !'endodontist'@ohd))
+      ((equalp provider-role-type !'oral surgeon role'@ohd)
+       (setf type !'oral surgeon'@ohd))
+      ((equalp provider-role-type !'orofacial pain dentist role'@ohd)
+       (setf type !'orofacial pain dentist'@ohd))
+      ((equalp provider-role-type !'orthodontist role'@ohd)
+       (setf type !'orthodontist'@ohd))
+      ((equalp provider-role-type !'pediatric dentist role'@ohd)
+       (setf type !'pediatric dentist'@ohd))
+      ((equalp provider-role-type !'periodontist role'@ohd)
+       (setf type !'periodontist'@ohd))
+      ((equalp provider-role-type !'prosthodontist role'@ohd)
+       (setf type !'prosthodontist'@ohd))
+      (t ;; default provider type
+       (setf type !'dental health care provider'@ohd)))
+
+    type))
 
 (defun uri-id (uri)
   "Return numeric (or id part) of an uri.
