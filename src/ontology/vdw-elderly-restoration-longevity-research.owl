@@ -581,15 +581,14 @@ TMD = TMD/Orofacial Pain
     <owl:Class rdf:about="&obo;OHD_0000515">
         <rdfs:label xml:lang="en">VDW provider type code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000510"/>
-        <obo:IAO_0000115>a VDW database code that identifies the type of job the provider has</obo:IAO_0000115>
         <obo:IAO_0000116>Bill Duncan 9/22/2015:
 In the VDW, the provider type is identified by the following codes:
-017 DENTAL ASSISTANT             
-018 DENTIST (general dentist, oral surgeon, orthodontist, pediatric dentist, periodontist prosthodontist)
-030 HYGIENIST
-042 MIDLEVEL (dental therapist)
-073 REGISTERED NURSE
-</obo:IAO_0000116>
+17 DENTAL ASSISTANT             
+18 DENTIST (general dentist, oral surgeon, orthodontist, pediatric dentist, periodontist prosthodontist)
+30 HYGIENIST
+42 MIDLEVEL (dental therapist)
+73 REGISTERED NURSE</obo:IAO_0000116>
+        <obo:IAO_0000115>a VDW database code that identifies the type of job the provider has</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -744,9 +743,9 @@ In the VDW documentation, this code about patients who are either &quot;Native H
     <owl:Class rdf:about="&obo;OHD_0000530">
         <rdfs:label xml:lang="en">VDW dental assistant type code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000515"/>
+        <obo:OHD_0000509 rdf:datatype="&xsd;integer">17</obo:OHD_0000509>
         <obo:IAO_0000117>a VDW provider type code that identifies a provider as being a dental assistant</obo:IAO_0000117>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:OHD_0000509>017</obo:OHD_0000509>
     </owl:Class>
     
 
@@ -756,8 +755,8 @@ In the VDW documentation, this code about patients who are either &quot;Native H
     <owl:Class rdf:about="&obo;OHD_0000531">
         <rdfs:label xml:lang="en">VDW dentist type code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000515"/>
+        <obo:OHD_0000509 rdf:datatype="&xsd;integer">18</obo:OHD_0000509>
         <obo:IAO_0000117>a VDW provider type code that identifies a provider as being a dentist</obo:IAO_0000117>
-        <obo:OHD_0000509>018</obo:OHD_0000509>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
     
@@ -768,7 +767,7 @@ In the VDW documentation, this code about patients who are either &quot;Native H
     <owl:Class rdf:about="&obo;OHD_0000532">
         <rdfs:label xml:lang="en">VDW dental hygienist type code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000515"/>
-        <obo:OHD_0000509>030</obo:OHD_0000509>
+        <obo:OHD_0000509 rdf:datatype="&xsd;integer">30</obo:OHD_0000509>
         <obo:IAO_0000117>a VDW provider type code that identifies a provider as being a dental hygienist</obo:IAO_0000117>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
     </owl:Class>
@@ -780,9 +779,9 @@ In the VDW documentation, this code about patients who are either &quot;Native H
     <owl:Class rdf:about="&obo;OHD_0000533">
         <rdfs:label xml:lang="en">VDW dental therapist type code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000515"/>
+        <obo:OHD_0000509 rdf:datatype="&xsd;integer">42</obo:OHD_0000509>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000117>a VDW provider type code that identifies a provider as being a dental therapist</obo:IAO_0000117>
-        <obo:OHD_0000509>042</obo:OHD_0000509>
     </owl:Class>
     
 
@@ -792,7 +791,7 @@ In the VDW documentation, this code about patients who are either &quot;Native H
     <owl:Class rdf:about="&obo;OHD_0000534">
         <rdfs:label xml:lang="en">VDW registered nurse type code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000515"/>
-        <obo:OHD_0000509>073</obo:OHD_0000509>
+        <obo:OHD_0000509 rdf:datatype="&xsd;integer">73</obo:OHD_0000509>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000117>a VDW provider type code that identifies a provider as being a registered nurse</obo:IAO_0000117>
     </owl:Class>
@@ -862,7 +861,7 @@ In the VDW documentation, this code about patients who are either &quot;Native H
     <!-- http://purl.obolibrary.org/obo/OHD_0000545 -->
 
     <owl:Class rdf:about="&obo;OHD_0000545">
-        <rdfs:label xml:lang="en">VDW pediatic dentistry specialty code</rdfs:label>
+        <rdfs:label xml:lang="en">VDW pediatric dentistry specialty code</rdfs:label>
         <rdfs:subClassOf rdf:resource="&obo;OHD_0000513"/>
         <obo:IAO_0000115>a VDW provider specialty code that represents provider as having a specialty in pediatric dentistry</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
@@ -1272,6 +1271,15 @@ This coverage is through an employer group that insures itself.</obo:IAO_0000116
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000575 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000575">
+        <rdfs:label xml:lang="en">record of incomplete provider type information</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;OHD_0000500"/>
     </owl:Class>
     
 
