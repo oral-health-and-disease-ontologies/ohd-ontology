@@ -78,7 +78,8 @@ e.g. (make-icd9-uri \"123.4\") -> <http://purl.org/NET/regenstrief/ICD9_123.4>"
   (make-vdw-uri provider-id :class-type !'dental health care provider role'@ohd))
 
 (defun race-code-uri (id race-code)
-  (make-vdw-uri id :class-type (race-code-type race-code)))
+  (make-vdw-uri
+   id :class-type (race-code-type race-code)))
 
 (defun race-code-type (race-code)
   (let (type)

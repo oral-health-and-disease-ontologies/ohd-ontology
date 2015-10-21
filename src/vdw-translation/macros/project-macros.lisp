@@ -21,6 +21,9 @@ created by Alan Ruttenberg 11/26/2013"
 
 (defmacro with-axioms (axiom-list &body body)
   `(progn
+     ;; the following set of labels provide bfo like language for building
+     ;; the axiom list, the purpose of these so to make building instance
+     ;; data more straightforward
      (labels
 	 ((instance-of (instance class)
 	    (push `(declaration (named-individual ,instance)) ,axiom-list)
@@ -77,7 +80,7 @@ created by Alan Ruttenberg 11/26/2013"
 		    !'is referent of'@ohd ,entity ,ice) ,axiom-list))
 		   
 	  (is-dental-restoration-of (material surface)
-	    (push `(object-property-assertion
+	    (push `(object-property-assertion 
 		    !'is dental restoration of'@ohd ,material ,surface) ,axiom-list))
 
 	  (has-occurrence-date (entity date)
@@ -103,5 +106,30 @@ created by Alan Ruttenberg 11/26/2013"
 	  (has-specified-input (process entity)
 	    (push `(object-property-assertion
 		    !'has_specified_input'@ohd ,process ,entity) ,axiom-list)))
+
+       ;; in order for the above relations to work, each of the data/object properties have to be declared
+       ;; putting this inside the macro means it will get inserted where ever the macro is used
+       ;; however, having it here means I only have to maintain the declarations in one place
+       (push `(declaration (annotation-property !'asserted type'@ohd)) ,axiom-list)
+       (push `(declaration (annotation-property !rdfs:label)) ,axiom-list)
+       (push `(declaration (data-property !'patient ID'@ohd)) ,axiom-list)
+       (push `(declaration (data-property !'has code value'@ohd)) ,axiom-list)
+       (push `(declaration (object-property !'participates in'@ohd)) ,axiom-list)
+       (push `(declaration (object-property !'has participant'@ohd)) ,axiom-list)
+       (push `(declaration (object-property !'realizes'@ohd)) ,axiom-list)
+       (push `(declaration (object-property !'is located in'@ohd)) ,axiom-list)
+       (push `(declaration (object-property !'is part of'@ohd)) ,axiom-list)
+       (push `(declaration (object-property !'has part'@ohd)) ,axiom-list)
+       (push `(declaration (object-property !'inheres in'@ohd)) ,axiom-list)
+       (push `(declaration (object-property !'has role'@ohd)) ,axiom-list)
+       (push `(declaration (object-property !'is about'@ohd)) ,axiom-list)
+       (push `(declaration (object-property !'is referent of'@ohd)) ,axiom-list)
+       (push `(declaration (object-property !'is dental restoration of'@ohd)) ,axiom-list)
+       (push `(declaration (data-property !'occurrence date'@ohd)) ,axiom-list)
+       (push `(declaration (data-property !'birth_date'@ohd)) ,axiom-list)
+       (push `(declaration (data-property !'birth year'@ohd)) ,axiom-list)
+       (push `(declaration (data-property !'graduation year'@ohd)) ,axiom-list)
+       (push `(declaration (object-property !'has_specified_output'@ohd)) ,axiom-list)
+       (push `(declaration (object-property !'has_specified_input'@ohd)) ,axiom-list)
        
        ,@body)))

@@ -29,7 +29,7 @@
 		(as (provider-role-axioms study-id provider-uri))
 		
 	        ;; check for limit on number of axioms
-		(and limit (incf count) (>= count limit) (return)))))
+		(and (incf count) limit (>= count limit) (return)))))
 
       ;; return ontology and count
       (when print-count (print-db count))
