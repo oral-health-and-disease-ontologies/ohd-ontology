@@ -363,6 +363,21 @@ The expression &apos;DX code&apos; is a bit misleading since dignosis codes, suc
     
 
 
+    <!-- http://purl.obolibrary.org/obo/OHD_0000576 -->
+
+    <owl:DatatypeProperty rdf:about="&obo;OHD_0000576">
+        <rdfs:label xml:lang="en">has code value</rdfs:label>
+        <obo:IAO_0000115>a data property that relates a information content entity to a litteral code value (string)</obo:IAO_0000115>
+        <obo:IAO_0000112>Let r be an instance of an Asian race code. In the In the VDW, the string &quot;AS&quot; is used to denote a patient is of Asian decent. So, in this case:
+
+r has code value &quot;AS&quot;</obo:IAO_0000112>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <rdfs:domain rdf:resource="&obo;IAO_0000030"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -915,13 +930,13 @@ I chose the label &quot;orofacial pain&quot; as opposed to &quot;TMD&quot; becau
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000553"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000552"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&obo;BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="&obo;OHD_0000552"/>
+                <owl:someValuesFrom rdf:resource="&obo;OHD_0000553"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>a planned process during which an insurance company provides dental insurance coverage for one of its clients</obo:IAO_0000115>
