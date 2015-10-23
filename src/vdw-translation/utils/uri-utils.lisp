@@ -155,7 +155,7 @@ e.g. (make-icd9-uri \"123.4\") -> <http://purl.org/NET/regenstrief/ICD9_123.4>"
       ((equalp specialty-code "ORD")
        (setf type !'VDW orthodontics specialty code'@ohd))
       ((equalp specialty-code "PDE")
-       (setf type !'VDW pediatic dentistry specialty code'@ohd))
+       (setf type !'VDW pediatric dentistry specialty code'@ohd))
       ((equalp specialty-code "PER")
        (setf type !'VDW periodontics specialty code'@ohd))
       ((equalp specialty-code "PRO")
@@ -187,7 +187,7 @@ e.g. (make-icd9-uri \"123.4\") -> <http://purl.org/NET/regenstrief/ICD9_123.4>"
     type))
 
 (defun provider-role-uri (id provider-occupation-code-type specialty-code-type)
-  (make-vdw-uri id :class-type (provider-role-type provider-occupation-code-type speciality-code-type)))
+  (make-vdw-uri id :class-type (provider-role-type provider-occupation-code-type specialty-code-type)))
 
 (defun provider-role-type (provider-occupation-code-type specialty-code-type)
   (let (type)
