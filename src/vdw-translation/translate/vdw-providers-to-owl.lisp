@@ -1,10 +1,10 @@
 (defun providers-to-owl (&key limit (print-count t))
   (let (provider-id
 	grad-year
+	birth-year
 	gender-code
-	speciality1-code
-	speciality2-code
-	speciality3-code
+	speciality-code
+	occupation-code
 	(count 0))
     
     (with-ontology ont
@@ -17,17 +17,24 @@
 		(setf provider-id (fv "PROVIDER_STUDY_ID"))
 		(setf provider-uri (provider-uri provider-id))
 		(setf grad-year (fv "YEAR_GRADUATED"))
+		(setf birth-year (fv "PROVIDER_BIRTH_YEAR"))
 		(setf gender-code  (fv "PROVIDER_GENDER"))
-		(setf speciality1-code (fv "SPECIALITY1"))
-		(setf speciality2-code (fv "SPECIALITY2"))
-		(setf speciality3-code (fv "SPECIALITY3"))
+		(setf speciality-code (fv "SPECIALITY1"))
+		(setf occupation--code (fv "PROVIDER_TYPE"))
+		
 	
 	        ;; create instance of provider
-		(as (provider-axioms study-id provider-uri gender-code))
-
-	         ;; assign provider role
+		(as (provider-axioms study-id provider-uri occupation-code speciality-code))
+		
+	      ;; assign provider role
 		(as (provider-role-axioms study-id provider-uri))
 		
+	      ;; assign gender to provider
+
+	      ;; assign assign birth year to provider
+		
+	      ;; graduation year to vendor
+
 	        ;; check for limit on number of axioms
 		(and (incf count) limit (>= count limit) (return)))))
 
@@ -35,21 +42,17 @@
       (when print-count (print-db count))
       ont)))
 
-(defun provider-axioms (provider-id provider-uri gender-code)
-  (let (axioms gender label)
+(defun provider-axioms (provider-id provider-uri occupation-code speciality-code)
+  (let (axioms provider-type occupation-code-type speciality-code-type label)
     (with-axioms axioms
-      (cond
-	((equalp "F" gender-code)
-	 (setf gender "female gender"))
-	((equalp "M" gender-code)
-	 (setf gender "male gender"))
-	((equalp "O" gender-code)
-	 (setf gender "other gender"))
-	(t
-	 (setf gender "unknown gender")))
-	
+      
+      ;; create instance
+      (setf provider-type
+	    (provider-type
+	     (provider-role-type occupation-code-type speciality-code-type)))
+      
       ;; add labels to providers
-      (setf label (str+ "dental provider " provider-id " (" gender ")"))
+      (setf label (str+ "dental provider " provider-id))
       (has-label provider-uri label)
       
       ;; return axioms
@@ -74,6 +77,26 @@
       ;; return axioms
       axioms)))
 
+
+(defun provider-gender-role-axioms (provider-id provider-uri gender-code)
+  (let (axioms gender label)
+    (with-axioms axioms
+      (cond
+	((equalp "F" gender-code)
+	 (setf gender "female gender"))
+	((equalp "M" gender-code)
+	 (setf gender "male gender"))
+	((equalp "O" gender-code)
+	 (setf gender "other gender"))
+	(t
+	 (setf gender "unknown gender")))
+	
+      ;; add labels to providers
+      (setf label (str+ "dental provider " provider-id " (" gender ")"))
+      (has-label provider-uri label)
+      
+      ;; return axioms
+      axioms)))
 
 (defun provider-speciality-axioms (provider-id speciality1-code speciality2-code speciality3-code)
   (let
