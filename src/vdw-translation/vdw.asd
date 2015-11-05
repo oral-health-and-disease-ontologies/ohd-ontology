@@ -87,6 +87,7 @@
 	    (
 	     (:file "vdw-demographics-to-owl")
 	     (:file "vdw-providers-to-owl")
+	     (:file "vdw-dental-encounters-to-owl")
 	     (:file "medical-codes-to-owl")
 	     )
 	    ) ;; end translate

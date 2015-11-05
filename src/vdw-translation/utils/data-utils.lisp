@@ -30,3 +30,9 @@
         (get-decoded-time)
     (format nil "~2,'0d/~2,'0d/~4,'0d" mon day yr)))
 
+(defun adate-to-date (adate)
+  "The ADATE field in the VDW is in month/year format (e.g., 01/2014). 
+This function inserts the first day of month into the ADATE and reformats as YYYY-MM-DD (e.g., 2014-01-01)"
+  (let ((month-year (split-at-regex adate "/")))
+    ;; return new string with first day inserted
+    (format nil "~a-~a-01" (second month-year) (first month-year))))

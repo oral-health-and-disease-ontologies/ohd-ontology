@@ -15,7 +15,7 @@
     (with-ontology ont
 	(:collecting t :ontology-iri "http://purl.obolibrary.org/obo/ohd/dev/r03-vdw-providers.owl")
 	
-	(;; build axioms of vdw pateints based on the demographics file
+	(;; build axioms of vdw pateints based on the providers file
 	 (with-iterator (it :iterator-fn #'provider-iterator)
 	   (loop
 	      while (next it) do
@@ -30,8 +30,8 @@
 		(setf occupation-code-type (provider-occupation-code-type occupation-code))
 		(setf specialty-code-type (specialty-code-type specialty-code))
 		(setf role-type (provider-role-type occupation-code-type specialty-code-type))
-		(setf role-uri (provider-role-uri provider-id occupation-code-type specialty-code-type))
-		(setf provider-uri (provider-uri provider-id role-type))
+		(setf role-uri (provider-role-uri provider-id))
+		(setf provider-uri (provider-uri provider-id))
 		
 	        ;; create instance of provider
 		(as (provider-axioms provider-id provider-uri role-type))

@@ -1,4 +1,5 @@
 (defun check-missing-dx-codes ()
+
   (let ((dx-missing-table (make-hash-table :test #'equalp)))
 
     ;; check that icd9 table is loaded
