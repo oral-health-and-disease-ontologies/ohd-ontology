@@ -186,8 +186,8 @@ e.g. (make-icd9-uri \"123.4\") -> <http://purl.org/NET/regenstrief/ICD9_123.4>"
 
     type))
 
-(defun provider-role-uri (id provider-occupation-code-type specialty-code-type)
-  (make-vdw-uri id :class-type (provider-role-type provider-occupation-code-type specialty-code-type)))
+(defun provider-role-uri (id)
+  (make-vdw-uri id :class-type !'dental health care provider role'@ohd))
 
 (defun provider-role-type (provider-occupation-code-type specialty-code-type)
   (let (type)
@@ -225,8 +225,14 @@ e.g. (make-icd9-uri \"123.4\") -> <http://purl.org/NET/regenstrief/ICD9_123.4>"
     
     type))
 
-(defun provider-uri (id provider-role-type)
-  (make-vdw-uri id :class-type (provider-type provider-role-type)))
+(defun provider-uri (id)
+  (make-vdw-uri id :class-type !'dental health care provider'@ohd))
+
+(defun encounter-uri (id)
+  (make-vdw-uri id :class-type !'dental visit'@ohd))
+
+(defun facility-uri (facility-code)
+  (make-vdw-uri facility-code :class-type !'dental health care organization'@ohd))
 
 (defun provider-type (provider-role-type)
   (let (type)

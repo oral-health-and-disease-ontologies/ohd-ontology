@@ -87,6 +87,10 @@ created by Alan Ruttenberg 11/26/2013"
 	    (push `(data-property-assertion
 		    !'occurrence date'@ohd ,entity (:literal ,date !xsd:date)) ,axiom-list))
 
+	  (occurs-in (process entity)
+	    (push `(object-property-assertion
+		    !'occurs in'@ohd ,process ,entity) ,axiom-list))
+
 	  (has-birth-date (uri date)
 	    (push `(data-property-assertion
 		    !'birth_date'@ohd ,uri (:literal ,date !xsd:date)) ,axiom-list))
@@ -124,6 +128,7 @@ created by Alan Ruttenberg 11/26/2013"
        (push `(declaration (object-property !'has role'@ohd)) ,axiom-list)
        (push `(declaration (object-property !'is about'@ohd)) ,axiom-list)
        (push `(declaration (object-property !'is referent of'@ohd)) ,axiom-list)
+       (push `(declaration (object-property !'occurs in'@ohd)) ,axiom-list)
        (push `(declaration (object-property !'is dental restoration of'@ohd)) ,axiom-list)
        (push `(declaration (data-property !'occurrence date'@ohd)) ,axiom-list)
        (push `(declaration (data-property !'birth_date'@ohd)) ,axiom-list)
