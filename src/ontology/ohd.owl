@@ -5408,7 +5408,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&obo;OHD_0000134"/>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000118>ceramic onlay restoration</obo:IAO_0000118>
         <obo:IAO_0000115>An onlay restoration procedure that uses ceramic to restore the tooth.</obo:IAO_0000115>
@@ -5570,7 +5569,6 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&obo;OHD_0000134"/>
         <obo:IAO_0000115>An onlay restoration procedure that uses metal to restore the tooth.</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000118>metallic onlay restoration</obo:IAO_0000118>
@@ -5819,8 +5817,8 @@ There is not a dental restoration material of this kind. The class needs to be m
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
+        <obo:IAO_0000115>A 3/4 noble metal crown restoration procedure that uses high noble metal to restore the tooth.</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>A 3/4 crown restoration procedure that uses high noble metal to restore the tooth.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -5912,7 +5910,7 @@ There is not a dental restoration material of this kind. The class needs to be m
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000115>A crown restoration procedure that uses noble metal to restore the tooth.</obo:IAO_0000115>
+        <obo:IAO_0000115>A crown restoration procedure that uses resin to restore the tooth.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -6032,6 +6030,8 @@ There is not a dental restoration material of this kind. The class needs to be m
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000117>A noble metal onlay restoration procedure that uses high noble metal to restore the tooth.</obo:IAO_0000117>
     </owl:Class>
     
 
@@ -6325,7 +6325,6 @@ There is not a dental restoration material of this kind. The class needs to be m
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="&obo;OHD_0000134"/>
         <obo:IAO_0000115>An onlay restoration procedure that uses resin to restore the tooth.</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000118>resin onlay restoration procedure</obo:IAO_0000118>
@@ -6734,6 +6733,56 @@ Changed definition to read that a &quot;portion of dental restoration material&q
         </owl:equivalentClass>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000117>An inlay restoration procedure that uses high noble metal to restore the tooth.</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000193 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000193">
+        <rdfs:label xml:lang="en">predominantly base metal onlay restoration procedure</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&obo;OHD_0000134"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000038"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000156"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>An onlay restoration procedure that uses predominantly base metal to restore the tooth.</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000194 -->
+
+    <owl:Class rdf:about="&obo;OHD_0000194">
+        <rdfs:label xml:lang="en">predominantly base metal inlay restoration procedure</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&obo;OHD_0000133"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;BFO_0000051"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000038"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&obo;OBI_0000293"/>
+                        <owl:someValuesFrom rdf:resource="&obo;OHD_0000156"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>An inlay restoration procedure that uses predominantly base metal to restore the tooth.</obo:IAO_0000115>
     </owl:Class>
     
 
@@ -8367,11 +8416,11 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <rdf:Description rdf:about="&obo;FMA_55701">
         <obo:OHD_0000065>Tooth 16</obo:OHD_0000065>
     </rdf:Description>
-    <rdf:Description rdf:about="&obo;FMA_55700">
-        <obo:OHD_0000065>Tooth 15</obo:OHD_0000065>
-    </rdf:Description>
     <rdf:Description rdf:about="&obo;FMA_55689">
         <obo:OHD_0000065>Tooth 5</obo:OHD_0000065>
+    </rdf:Description>
+    <rdf:Description rdf:about="&obo;FMA_55700">
+        <obo:OHD_0000065>Tooth 15</obo:OHD_0000065>
     </rdf:Description>
     <rdf:Description rdf:about="&obo;FMA_55703">
         <obo:OHD_0000065>Tooth 18</obo:OHD_0000065>
