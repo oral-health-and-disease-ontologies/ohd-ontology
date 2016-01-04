@@ -8,6 +8,9 @@
 (defparameter *vdw-extra-dx-codes* nil)
 (defparameter *ada-code2uri* nil)
 (defparameter *vdw-extra-ada-codes* nil)
+(defparameter *code2proc-uri* nil)
+(defparameter *code2proc-name* nil)
+(defparameter *proc-uri2proc-name* nil)
 
  
 (defun load-study-id2uri-table ()
@@ -57,6 +60,49 @@
 	   (setf (gethash provider-id *provider-id2uri*) uri)))
     ;; return hash table
     *provider-id2uri*))
+
+(defun load-code2proc-uri-table ()
+  (let (uri)
+    (setf *code2proc-uri* (make-hash-table :test #'equalp))
+    (with-iterator (it :iterator-fn #'code-to-procedure-iterator)
+      (loop
+	 while (next it)
+	 for code = (fv "code")
+	 for uri = (make-uri (fv "procedure uri"))
+	 do
+	   ;;(pprint uri)
+	   (setf (gethash code *code2proc-uri*) uri)))
+    ;; return hash table
+    *code2proc-uri*))
+
+(defun load-code2proc-name-table ()
+  (let (uri)
+    (setf *code2proc-name* (make-hash-table :test #'equalp))
+    (with-iterator (it :iterator-fn #'code-to-procedure-iterator)
+      (loop
+	 while (next it)
+	 for code = (fv "code")
+	 for name =  (fv "procedure name")
+	 do
+	   ;;(pprint uri)
+	   (setf (gethash code *code2proc-name*) name)))
+    ;; return hash table
+    *code2proc-name*))
+
+(defun load-proc-uri2proc-name-table ()
+  (let (uri)
+    (setf *proc-uri2proc-name* (make-hash-table :test #'equalp))
+    (with-iterator (it :iterator-fn #'code-to-procedure-iterator)
+      (loop
+	 while (next it)
+	 for uri = (make-uri (fv "procedure uri"))
+	 for name = (fv "procedure name")
+	 do
+	   ;;(pprint uri)
+	   (setf (gethash uri *proc-uri2proc-name*) name)))
+    ;; return hash table
+    *proc-uri2proc-name*))
+
 
 (defun load-icd9-code2uri-table ()
   (let (uri2label icd9-ont)

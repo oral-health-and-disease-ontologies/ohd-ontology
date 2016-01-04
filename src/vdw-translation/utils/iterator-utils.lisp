@@ -36,6 +36,10 @@
   ;; return iterator to provider file
   (vdw-file-iterator "~/vdw-data/provider.txt"))
 
+(defun code-to-procedure-iterator ()
+  ;; return iterator to code-to-procedure.txt (the code to procedure mapping file)
+  (vdw-file-iterator (format nil "~a" (truename "vdw:data;code-to-procedure.txt"))))
+
 
 
 
