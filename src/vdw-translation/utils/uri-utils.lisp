@@ -81,6 +81,15 @@ e.g. (make-icd9-uri \"123.4\") -> <http://purl.org/NET/regenstrief/ICD9_123.4>"
   (make-vdw-uri
    id :class-type (race-code-type race-code)))
 
+(defun tooth-uri (study-id tooth-num)
+
+  )
+
+(defun tooth-type (tooth-num)
+  ;; use the tooth number to look up tooth type
+  
+  )
+
 (defun race-code-type (race-code)
   (let (type)
     (cond

@@ -11,7 +11,7 @@
 (defparameter *code2proc-uri* nil)
 (defparameter *code2proc-name* nil)
 (defparameter *proc-uri2proc-name* nil)
-
+(defparameter *filling-codes* nil)
  
 (defun load-study-id2uri-table ()
   (let (uri)
@@ -205,6 +205,23 @@
   ;; return hash table
   *vdw-extra-ada-codes*)
 
+(defun load-filling-codes-table()
+  (let (iterator-function filespec)
+    ;; declare hash table
+    (setf *filling-codes* (make-hash-table :test #'equalp))
+
+    ;; set filespec to file
+    (setf filespec (str+ (truename "vdw:data;filling-codes.txt")))
+    
+    ;; load hash table from file
+    (with-iterator (it :iterator-fn (lambda () (vdw-file-iterator filespec)))
+      (loop
+	 while (next it)
+	 for code = (fv "code")
+	 do
+	   (setf (gethash code *filling-codes*) t)))
+    ;;return hash table
+    *filling-codes*))
 
 ;; load hash tables
 ;;(load-study-id2uri-table)
