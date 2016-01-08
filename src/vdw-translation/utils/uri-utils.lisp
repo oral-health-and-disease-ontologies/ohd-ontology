@@ -81,14 +81,97 @@ e.g. (make-icd9-uri \"123.4\") -> <http://purl.org/NET/regenstrief/ICD9_123.4>"
   (make-vdw-uri
    id :class-type (race-code-type race-code)))
 
-(defun tooth-uri (study-id tooth-num)
+(defun restoration-type (code)
+  ;; make sure code to procedure mapping table is loaded
+  (when (not *code2proc-uri*)
+    (load-code2proc-uri-table))
 
-  )
+  ;; find procedure type
+  (gethash code *code2proc-uri*))
+
+(defun restoration-uri (study-id code date tooth-num)
+  ;; make sure tooth-num and date are strings
+  (setf date (str+ date))
+  (setf tooth-num (str+ tooth-num))
+  (make-vdw-uri
+   study-id :class-type (restoration-type code) :args `(,code date tooth-num)))
+  
+(defun tooth-to-be-restored-role-uri (study-id tooth-num)
+  ;; make sure tooth-num is a string
+  (setf tooth-num (str+ tooth-num))
+  (make-vdw-uri
+   study-id :class-type !'tooth to be restored role'@ohd :args (tooth-type tooth-num)))
+
+(defun tooth-uri (study-id tooth-num)
+  ;; make sure tooth-num is a string
+  (setf tooth-num (str+ tooth-num))
+  (make-vdw-uri
+   study-id :class-type (tooth-type tooth-num)))
 
 (defun tooth-type (tooth-num)
-  ;; use the tooth number to look up tooth type
-  
-  )
+  (let (tooth-type tooth-string)
+    ;; form tooth string (e.g., "Tooth 1")
+    (setf tooth-string (str+ "Tooth " tooth-num))
+    
+    ;; use the tooth string to look up tooth type
+    (setf tooth-type (gethash tooth-string (label2uri *ohd-label-source*)))
+
+    ;; return tooth type
+    tooth-type))
+
+(defun surface-uri (study-id tooth-num surface)
+  ;; make sure tooth-num is a string
+  (setf tooth-num (str+ tooth-num))
+
+  ;; make sure surface is a string
+  (setf surface (str+ surface))
+
+  (make-vdw-uri
+   study-id :class-type (surface-type surface) :args (tooth-uri study-id tooth-num)))
+
+(defun surface-type (surface)
+  (let ((uri nil))
+    (cond
+      ;; check for surface letters
+      ((equalp surface-name "b") (setf uri !obo:FMA_no_fmaid_Buccal_surface_enamel_of_tooth))
+      ((equalp surface-name "d") (setf uri !obo:FMA_no_fmaid_Distal_surface_enamel_of_tooth))
+      ((equalp surface-name "i") (setf uri !obo:FMA_no_fmaid_Incisal_surface_enamel_of_tooth))
+      ((equalp surface-name "f") (setf uri !obo:FMA_no_fmaid_Labial_surface_enamel_of_tooth))
+      ((equalp surface-name "l") (setf uri !obo:FMA_no_fmaid_Lingual_surface_enamel_of_tooth))
+      ((equalp surface-name "m") (setf uri !obo:FMA_no_fmaid_Mesial_surface_enamel_of_tooth))
+      ((equalp surface-name "o") (setf uri !obo:FMA_no_fmaid_Occlusial_surface_enamel_of_tooth))
+
+      ;; check for surface names
+      ((equalp surface-name "buccal") (setf uri !obo:FMA_no_fmaid_Buccal_surface_enamel_of_tooth))
+      ((equalp surface-name "distal") (setf uri !obo:FMA_no_fmaid_Distal_surface_enamel_of_tooth))
+      ((equalp surface-name "incisal") (setf uri !obo:FMA_no_fmaid_Incisal_surface_enamel_of_tooth))
+      ((equalp surface-name "labial") (setf uri !obo:FMA_no_fmaid_Labial_surface_enamel_of_tooth))
+      ((equalp surface-name "facial") (setf uri !obo:FMA_no_fmaid_Labial_surface_enamel_of_tooth))
+      ((equalp surface-name "lingual") (setf uri !obo:FMA_no_fmaid_Lingual_surface_enamel_of_tooth))
+      ((equalp surface-name "mesial") (setf uri !obo:FMA_no_fmaid_Mesial_surface_enamel_of_tooth))
+      ((equalp surface-name "occlusial") (setf uri !obo:FMA_no_fmaid_Occlusial_surface_enamel_of_tooth)) ; occlusal was mispelled in previous OHD versions
+      ((equalp surface-name "occlusal") (setf uri !obo:FMA_no_fmaid_Occlusial_surface_enamel_of_tooth)))
+
+    ;; return suface uri
+    uri))
+
+(defun surface-name (surface-letter)
+  (let ((surface-name nil))
+    ;; remove any leading and trailing spaces from letter
+    (setf surface-letter (string-trim " " surface-letter))
+
+    (cond
+      ((equalp surface-letter "b") (setf surface-name "buccal"))
+      ((equalp surface-letter "d") (setf surface-name "distal"))
+      ((equalp surface-letter "i") (setf surface-name "incisal"))
+      ((equalp surface-letter "f") (setf surface-name "labial"))
+      ((equalp surface-letter "l") (setf surface-name "lingual"))
+      ((equalp surface-letter "m") (setf surface-name "mesial"))
+      ((equalp surface-letter "o") (setf surface-name "occlusal")))
+
+    ;; return surface name
+    surface-name))
+
 
 (defun race-code-type (race-code)
   (let (type)
@@ -321,7 +404,7 @@ If no leading '!' is present, the uri is simply returned as string."
 An optional md5 salt value is specified by the salt key value (i.e., :salt salt). 
 The class-type argument (i.e., :class-type class-type) concatentates the class type to the string.  This parameter is highly suggested, since it helps guarntee that uri will be unique.  
 The uri-base (i.e., :uri-base uri-base) is prepended to the uri.  For example, (get-unique-uri \"test\" :uri-base \"http://test.com/\" will prepend \"http://test.com/\" to the md5 checksum of \"test\".  
-The args parmameter is used to specify an other information you wish to concatenate to the string paramenter.  Args can be either a single value or list; e.g., (get-unique-uri \"test\" :args \"foo\") (get-unique-uri \"test\" :args '(\"foo\" \"bar\")."
+The args parmameter is used to specify an other information you wish to concatenate to the string paramenter.  Args can be either a single value or list; e.g., (make-vdw-instance-uri \"test\" :args \"foo\") (make-vdw-instance-uri \"test\" :args '(\"foo\" \"bar\")."
   
   ;; ensure that string param is a string
   (setf string (format nil "~a" string))

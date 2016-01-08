@@ -11,9 +11,10 @@
 		for study-id = fv "STUDY_ID")
 		for patient-uri = (patient-uri study-id)
 		for code = (fv "ADA_CODE")
-		for tooth = = (fv "TOOTH")
+		for tooth-num = = (fv "TOOTH")
 		do
 		
+		(as (vdw-filling-axioms))
 		
 	        ;; check for limit on number of axioms
 		(and (incf count) limit (>= count limit) (return)))))
