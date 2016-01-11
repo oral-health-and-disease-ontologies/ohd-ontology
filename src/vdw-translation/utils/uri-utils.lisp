@@ -94,14 +94,50 @@ e.g. (make-icd9-uri \"123.4\") -> <http://purl.org/NET/regenstrief/ICD9_123.4>"
   (setf date (str+ date))
   (setf tooth-num (str+ tooth-num))
   (make-vdw-uri
-   study-id :class-type (restoration-type code) :args `(,code date tooth-num)))
+   study-id :class-type (restoration-type code) :args `(,code ,date ,tooth-num)))
 
-  
+(defun material-uri (study-id code date tooth-num)
+  ;; make sure tooth-num and date are strings
+  (setf date (str+ date))
+  (setf tooth-num (str+ tooth-num))
+  (make-vdw-uri
+   study-id :class-type (car (material-type-list code)) :args `(,code ,date ,tooth-num)))
+
+
+(defun material-type-list (code)
+  ;; make sure code to material mapping table is loaded
+  (when (not *code2material-uri*)
+    (load-code2material-uri-table))
+
+  ;; return list of uris for material
+  (gethash code *code2material-uri*))
+
+(defun material-name-list (code)
+  ;; make sure code to material mapping table is loaded
+  (when (not *code2material-name*)
+    (load-code2material-name-table))
+
+  ;; return list of names for material
+  (gethash code *code2material-name*))
+
 (defun tooth-to-be-restored-role-uri (study-id tooth-num)
   ;; make sure tooth-num is a string
   (setf tooth-num (str+ tooth-num))
   (make-vdw-uri
    study-id :class-type !'tooth to be restored role'@ohd :args (tooth-type tooth-num)))
+
+(defun tooth-to-be-filled-role-uri (study-id tooth-num)
+  ;; make sure tooth-num is a string
+  (setf tooth-num (str+ tooth-num))
+  (make-vdw-uri
+   study-id :class-type !'tooth to be filled role'@ohd :args (tooth-type tooth-num)))
+
+(defun tooth-surface-to-be-restored-role-uri (study-id tooth-num surface)
+  ;; make sure tooth-num and surface are a strings
+  (setf tooth-num (str+ tooth-num))
+  (setf surface (str+ surface))
+  (make-vdw-uri
+   study-id :class-type !'tooth surface to be restored role'@ohd :args (tooth-type tooth-num surface)))
 
 (defun tooth-uri (study-id tooth-num)
   ;; make sure tooth-num is a string

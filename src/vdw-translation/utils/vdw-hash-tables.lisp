@@ -12,7 +12,9 @@
 (defparameter *code2proc-name* nil)
 (defparameter *proc-uri2proc-name* nil)
 (defparameter *filling-codes* nil)
- 
+(defparameter *code2material-uri* nil)
+(defparameter *code2material-name* nil)
+
 (defun load-study-id2uri-table ()
   (let (uri)
     (setf *study-id2uri* (make-hash-table :test #'equalp))
@@ -222,6 +224,51 @@
 	   (setf (gethash code *filling-codes*) t)))
     ;;return hash table
     *filling-codes*))
+
+
+(defun load-code2material-uri-table()
+  (let (iterator-function filespec)
+    ;; declare hash table
+    (setf *code2material-uri* (make-hash-table :test #'equalp))
+
+    ;; set filespec to file
+    (setf filespec (str+ (truename "vdw:data;restoration-material-codes.txt")))
+    
+    ;; load hash table from file
+    (with-iterator (it :iterator-fn (lambda () (vdw-file-iterator filespec)))
+      (loop
+	 while (next it)
+	 for code = (fv "code")
+	 for uri = (fv "material uri")
+	 for uri-list = (split-at-regex uri "\\|")  ; split uri field on pipe character
+	 do
+	   ;; replace strings in uri-list with uris
+	   (loop for n from 0 to (- (length uri-list) 1) do
+		(setf (nth n uri-list) (make-uri (nth n uri-list))))
+	   
+	   (setf (gethash code *code2material-uri*) uri-list)))
+    ;;return hash table
+    *code2material-uri*))
+
+(defun load-code2material-name-table()
+  (let (iterator-function filespec)
+    ;; declare hash table
+    (setf *code2material-name* (make-hash-table :test #'equalp))
+
+    ;; set filespec to file
+    (setf filespec (str+ (truename "vdw:data;restoration-material-codes.txt")))
+    
+    ;; load hash table from file
+    (with-iterator (it :iterator-fn (lambda () (vdw-file-iterator filespec)))
+      (loop
+	 while (next it)
+	 for code = (fv "code")
+	 for name = (fv "material name")
+	 for name-list = (split-at-regex name "\\|")  ; split name field on pipe character
+	 do
+	   (setf (gethash code *code2material-name*) name-list)))
+    ;;return hash table
+    *code2material-name*))
 
 ;; load hash tables
 ;;(load-study-id2uri-table)
