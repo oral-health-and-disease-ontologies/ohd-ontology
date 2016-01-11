@@ -95,6 +95,7 @@ e.g. (make-icd9-uri \"123.4\") -> <http://purl.org/NET/regenstrief/ICD9_123.4>"
   (setf tooth-num (str+ tooth-num))
   (make-vdw-uri
    study-id :class-type (restoration-type code) :args `(,code date tooth-num)))
+
   
 (defun tooth-to-be-restored-role-uri (study-id tooth-num)
   ;; make sure tooth-num is a string
