@@ -1,4 +1,4 @@
-(defmethod set-jdbci-iterator-closure-functions ((it iterator))
+(defmethod set-jdbc-iterator-closure-functions ((it iterator))
   ;; set up closure method for has-next
   (setf (has-next-fn it)
 	(set-jdbc-iterator-has-next-function-1 it))

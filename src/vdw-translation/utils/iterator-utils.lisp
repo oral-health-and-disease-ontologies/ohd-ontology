@@ -40,6 +40,10 @@
   ;; return iterator to code-to-procedure.txt (the code to procedure mapping file)
   (vdw-file-iterator (format nil "~a" (truename "vdw:data;code-to-procedure.txt"))))
 
+(defun max-encounter-ids-iterator ()
+  ;; return iterator to max-encounter-ids.txt
+  (vdw-file-iterator (format nil "~a" (truename "vdw:data;max-encounter-ids.txt"))))
+
 
 
 
