@@ -11,62 +11,35 @@
      xmlns:obo="http://purl.obolibrary.org/obo/"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:example="http://example.com/">
-    <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/2016-06-27/ohd-inferred.owl">
+    <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ohd.owl">
         <dc:contributor>Titus Schleyer</dc:contributor>
         <dc:contributor>Dan Caplan</dc:contributor>
         <dc:contributor>Amit Acharya</dc:contributor>
-        <dc:creator>Sivaram Arabandi</dc:creator>
         <rdfs:comment>Status of this document: This is a work in progress and we do not yet make any promises about the stability of URIs. A known issue is that the upper level of this ontology is an exploratory version of BFO developed in the interim between when BFO 1 was current and before BFO 2 development started. The representation of the CDT codes is tentative - we are discussing this with the ADA. The integration between OBI and OGMS is not complete - we add some axioms here in order to use both in a consistent way. The version of the subject of the FMA used here is an automatic translation of a portion of the entities and relations present in the original FMA. Work is ongoing on improving this subset and using an up-to-date version of the FMA as its basis.</rdfs:comment>
-        <dc:source>Pierre Grenon and Barry Smith: &quot;SNAP and SPAN: Towards Geospatial Dynamics&quot;</dc:source>
-        <dc:date>2009-08-07</dc:date>
+        <dc:date>2016-06-27</dc:date>
         <obo:IAO_0000116>Scripted extraction from FMA Protege frames version (partonomy-experiment :additional-assertions-fn #&apos;additional-assertions-for-mouth :roots (cons fma::|Mucosa of mouth| (follow-parts fma::|Mucosa of mouth|)) :name &quot;mucosa-mouth&quot;)</obo:IAO_0000116>
-        <dc:contributor>Andrew Spear</dc:contributor>
         <dc:creator>American Dental Association; see www.ada.org/dentalcode</dc:creator>
-        <dc:creator>Bill Hogan</dc:creator>
         <dc:contributor>Carlo Torniai</dc:contributor>
         <obo:IAO_0000116>FMA version of 2015-01-24</obo:IAO_0000116>
-        <dc:creator>Richard Scheuermann</dc:creator>
-        <dc:creator>Cornelius Rosse</dc:creator>
         <dc:contributor>Pedro Hernandez Cott</dc:contributor>
         <dc:creator>Anand Kumar</dc:creator>
-        <dc:contributor>Alan Ruttenberg</dc:contributor>
-        <dc:contributor>Bill Duncan</dc:contributor>
-        <dc:creator>Daniel Merico</dc:creator>
-        <obo:IAO_0000116>Scripted extraction from FMA Protege frames version (partonomy-experiment :additional-assertions-fn #&apos;additional-assertions-for-mouth :roots (append &apos;(fma::|Temporomandibular joint|) (follow-parts FMA::|Temporomandibular joint|)) :name &quot;tmj&quot;)</obo:IAO_0000116>
-        <obo:IAO_0000116>Scripted extraction from FMA Protege frames version (partonomy-experiment :additional-assertions-fn #&apos;additional-assertions-for-mouth :roots (cons fma::|Tongue| (follow-parts fma::|Tongue|)) :name &quot;tongue&quot;)</obo:IAO_0000116>
-        <dc:contributor>Chris Mungall</dc:contributor>
-        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></owl:versionInfo>
         <dc:contributor>Melissa Haendel</dc:contributor>
-        <dc:creator>Albert Goldfain</dc:creator>
-        <rdfs:comment>The Ontology for General Medical Science (OGMS) is based on the papers Toward an Ontological Treatment of Disease and Diagnosis and On Carcinomas and Other Pathological Entities. The ontology attempts to address some of the issues raised at the Workshop on Ontology of Diseases (Dallas, TX). OGMS was formerly called the clinical phenotype ontology. Terms from OGMS hang from the Basic Formal Ontology.
-
-The latest version of OGMS is always available at http://purl.obolibrary.org/obo/ogms.owl
-This is version 2011-09-20 aka &apos;0.9&apos;
-http://purl.obolibrary.org/obo/ogms/2011-09-20/ogms.owl
-
-The OGMS developer site is http://code.google.com/p/ogms/
-The discussion group is http://groups.google.com/group/ogms-discuss
-
-If you are interested in participating in the development of OGMS, please send email to albertgoldfain@gmail.com. Be sure to include a google-account username with your request (this will be the username associated with a gmail address).</rdfs:comment>
         <dc:creator>Alan Ruttenberg</dc:creator>
         <dc:creator>Bill Duncan</dc:creator>
-        <obo:IAO_0000116>Scripted extraction from FMA Protege frames version (partonomy-experiment :additional-assertions-fn #&apos;additional-assertions-for-mouth :roots (append &apos;(fma::|Lymph node of head| fma::|Lymph node group of neck|) (follow-parts FMA::|Lymph node of head|) (follow-parts FMA::|Lymph node group of neck|)) :name &quot;head-and-neck-lymph&quot;)</obo:IAO_0000116>
-        <dc:creator>Werner Ceusters</dc:creator>
         <rdfs:comment>The Oral Health and Disease Ontology is an ontology built to be compatible with the OBO Foundry ontologies, and is a collaboration between researchers at the University at Buffalo School of Dental Medicine, the University of Pittsburg School of Dental Medicine, and the Oregon Health and Science University.
 
-This ontology is licensed under the CC-BY License. Please see http://creativecommons.org/licenses/by/3.0/
+This ontology is licensed under the CC-BY License. Please see http://creativecommons.org/licenses/by/4.0/
 
-Attribution is satisfied by using the URIs defined in this file when using terms from this ontology.</rdfs:comment>
-        <owl:versionInfo>2011-09-20</owl:versionInfo>
+	Attribution is satisfied by using the URIs defined in this file when using terms from this ontology.</rdfs:comment>
+      <rdfs:comment>This version of the ontology has the imports merged and inferred-axioms added. The development version is at http://purl.obolibrary.org/obo/ohd/dev/ohd.owl</rdfs:comment>
+
+        <owl:versionInfo>2016-06-27</owl:versionInfo>
         <dc:contributor>Mei Song</dc:contributor>
         <protege:defaultLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">en</protege:defaultLanguage>
-        <dc:creator>Lindsay Cowell</dc:creator>
         <rdfs:comment>This ontology is in early development. Expect it to change.</rdfs:comment>
         <rdfs:comment>This document was an early experimental prototype of bfo2, not blessed by the working group. It is archived because it was used by some projects. There was very little change other than ids relative to earlier versions of BFO, and ids used here will be used in the ultimate release</rdfs:comment>
-        <owl:versionInfo xml:lang="en">$Revision$</owl:versionInfo>
-        <dc:creator>Barry Smith</dc:creator>
+        <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/2016-06-27/ohd-inferred.owl"/>
     </owl:Ontology>
-    
 
 
     <!-- 
