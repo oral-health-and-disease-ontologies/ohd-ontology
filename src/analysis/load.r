@@ -30,17 +30,17 @@ source("environment.r"); # endpoints etc
 source("sesame.r");
 source("graphdb.r");
 source("patch-triplestore.r");
-source("simple-statistics.r") # simple statistical functions on the repo
-source("summary.r") # 
+source("simple-statistics.r"); # simple statistical functions on the repo
+source("summary.r"); # 
 #source("restoration-time-intervals.r")
 #source("patient-statistics.r")
 source("next-encounter.r");
-source("event-pairs.r")
-source("survival.r")
-source("sparql-template.r")
-source("sparql-patterns.r")
-source("ggsurv.r")
-source("check-integrity.r")
+source("event-pairs.r");
+source("survival.r");
+source("sparql-template.r");
+source("sparql-patterns.r");
+source("ggsurv.r");
+source("check-integrity.r");
 cat("Local repositories: \n");
 # ugly way to print pretty
 count<-0;

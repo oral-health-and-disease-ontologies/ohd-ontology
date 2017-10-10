@@ -80,7 +80,7 @@ assign("tooth_to_be_extracted_role:","<http://purl.obolibrary.org/obo/OHD_000005
 assign("root_canal:","<http://purl.obolibrary.org/obo/OHD_0000003>",envir=prefixes)
 assign("inlay_procedure:","<http://purl.obolibrary.org/obo/OHD_0000133>",envir=prefixes)
 assign("resin_filling_restoration:","<http://purl.obolibrary.org/obo/OHD_0000042>",envir=prefixes)
-assign("onto","<http://www.ontotext.com/>",envir=prefixes)
+assign("onto:","<http://www.ontotext.com/>",envir=prefixes)
 assign("ohdi:", "<http://purl.obolibrary.org/obo/ohd/individuals/>",envir=prefixes)
 assign("target_of_tooth_procedure:", "<http://purl.obolibrary.org/obo/OHD_0000209>", envir=prefixes)
 assign("role:", "<http://purl.obolibrary.org/obo/BFO_0000023>", envir=prefixes)

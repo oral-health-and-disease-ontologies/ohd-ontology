@@ -33,7 +33,13 @@ local_r21_nightly_update <- "http://localhost:8080/openrdf-workbench/repositorie
 # triple store nightly build on the imac in the dungeon
 dungeon_r21_nightly <- "http://dungeon.ctde.net:8080/openrdf-sesame/repositories/ohd-r21-nightly"
 
-duncan_r21 <- "http://192.168.1.137:8080/openrdf-sesame/repositories/ohd-partial"
+
+## Bill D: 2017-10-09
+## I updated to graphdb-se 8.3 and R version to 3.4.2. This broke rrdf and SPARQL packages
+## To fix, I had to change the endpoint. I could not get rrdf to work, but got SPARQL working.
+current_endpoint <<- "http://192.168.1.11:7200/repositories/R21-study_2017-10-09"
+current_sparqlr <<- "SPARQL"
+# current_sparqlr <<- "rrdf" # I couldn't get this to work :(
 
 if(!exists("current_endpoint"))
  { print("You have to set current_endpoint first"); } # <<- duncan_r21 }
