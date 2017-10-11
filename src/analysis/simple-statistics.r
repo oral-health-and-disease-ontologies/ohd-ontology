@@ -53,69 +53,45 @@ histogram_fit_to_distribution_of_dates_in_years <- function (first_date,second_d
   distscale <- count/breaks;
   # compute the beta distribution
   years_distribution <- fitdistr(years_scaled,"beta",beta_parameter_estimates);
-  
   # histogram it
-  # png(file=paste(getwd(), "/", "distribution_of_age_at_first_dental_procedure.png", sep=""),
-  #     width=400,
-  #     height=350,
-  #     res=72)
-  hist(as.numeric(years),
-       breaks=breaks,
-       labels = FALSE,
-       main = "",
-       xlab="",
-       ylab="",
-       ylim=c(0,150)
-       );
-  
-  title(
-    main=paste("Distribution of ",topic,"\n (",expression("beta"),"distribution)"),
-    xlab=paste("Age of patient", "\n"),
-    ylab="Number of first dental procedures",
-    sub=subtitle,
-    #plot = FALSE,
-    cex.lab=1.2, 
-    cex.axis=1, 
-    #cex.main=1.5, 
-    cex.sub=1.2
-  )
-  #par(oma=c(3,3,3,3))
-  #par(omi=c(1,1,1,1))
+  hist(as.numeric(years),breaks=breaks,
+       main=paste("Distribution of ",topic,", fit to",expression("beta"),"distribution"),
+       xlab="Years",
+       ylab="Count",
+       sub=subtitle
+  );
   # draw the function on top of it
   curve(distscale*dbeta(x/years_max,years_distribution$estimate[1],years_distribution$estimate[2]),add=TRUE)
-  years_distribution;
-  #dev.off();
+  years_distribution
 }
 
 age_to_first_treatment_statistics <- function ()
-{ # retrieve a row for each patient with the birth date first procedure date for each
-  queryRes <- queryc("
-     SELECT ?patient ?bdate (str(min(?procdatei)) as ?procdate) # note that ?procdate is a string
-	   WHERE
-	   { 
-        ?patient rdf:type dental_patient: .
-	      ?patient participates_in: ?procedure.
-        ?procedure rdf:type dental_procedure: .
-	      ?procedure occurrence_date: ?procdatei .
-   	    ?patient birth_date: ?birth_date .
+{
+  # retrieve a row for each patient with the birth date first treatment date for each
+  queryRes <- queryc("SELECT ?patient (str(sample(?birth_date)) as ?bdate) (str(min(?treatdatei)) as ?treatdate)
+                     WHERE
+                     { 
+                      ?patient rdf:type dental_patient: .
+                      ?patient participates_in: ?procedure.
+                      ?procedure rdf:type dental_procedure: .
+                      ?procedure occurrence_date: ?treatdatei .
+                      ?patient birth_date: ?birth_date
+                     } group by ?patient");
 
-        # due to problems converting dates, return the date as
-        # as string, use as.Date to convert to date data type
-        bind(str(?birth_date) as ?bdate) .
-      } 
-      group by ?patient ?bdate");
-
+  # currently the date fields are strings
+  # converty them to dates
+  queryRes[,"bdate"] <- as.Date(queryRes[,"bdate"]);
+  queryRes[,"treatdate"] <- as.Date(queryRes[,"treatdate"]);
+  
   # count how many procedures had a patient participate
-  query <- "
-       SELECT distinct ?procedure
-  	   WHERE
-	     { 
-         ?patient rdf:type dental_patient: .
-	       ?patient participates_in: ?procedure.
-         ?procedure rdf:type dental_procedure: .
-	       ?procedure occurrence_date: ?procdatei .
-   	     ?patient birth_date: ?birth_date .
-        } "
+  query <-  "SELECT distinct ?procedure
+             WHERE
+             {  ?patient rdf:type dental_patient: .
+                ?patient participates_in: ?procedure.
+                ?procedure rdf:type dental_procedure: .
+                ?procedure occurrence_date: ?treatdatei .
+                ?patient birth_date: ?birth_date .
+              } "
   if(current_sparqlr == "rrdf")
     { withpatient <- nrow(queryc(query)) }
   else
@@ -128,21 +104,56 @@ age_to_first_treatment_statistics <- function ()
     { total <- ncol(queryc("SELECT distinct ?procedure WHERE { ?procedure rdf:type dental_procedure:  . } "));}
   
   # compute mean, median, sd
-  meansd<-mean_median_and_sd_from_dates_in_years(as.Date(queryRes[,"bdate"]),
-                                                 as.Date(queryRes[,"procdate"]))
-
+  meansd<-mean_median_and_sd_from_dates_in_years(queryRes[,"bdate"],queryRes[,"treatdate"]);
+  
   # visualize
   histogram_fit_to_distribution_of_dates_in_years(
-    as.Date(queryRes[,"bdate"]),
-    as.Date(queryRes[,"procdate"]),
-    topic="age at first dental procedure",
-    subtitle=paste("median=",signif(meansd[2],3)," sd=",signif(meansd[3],3)," (",
-      # summarize how many patients and total procedures
-      format(dim(queryRes)[1], big.mark=",", scientific=FALSE),
-      " patients with ",
-      format(total,big.mark=",", scientific=FALSE),
-      " total procedures)", sep = "")
-    );
+    queryRes[,"bdate"],queryRes[,"treatdate"],
+    topic="age at first treatment",
+    subtitle=paste("median=",signif(meansd[2],3),"sd=",signif(meansd[3],3),"  ",
+                   # summarize how many first treatments, summarized from how many treatments, from how many total treatments
+                   dim(queryRes)[1],"first from",withpatient,"procedures of ",total)
+  );
+}
+
+age_at_first_dental_procedure_statistics <- function ()
+{ # retrieve a row for each patient with the birth date first procedure date for each
+  queryRes <- queryc("
+     SELECT 
+        ?patient 
+        (str(?birth_date) as ?bdate) 
+        (min(?age) as ?first_procedure_age)
+        (str(min(?procdatei)) as ?procdate) 
+	   WHERE { 
+        ?patient rdf:type dental_patient: .
+        ?patient participates_in: ?procedure.
+        ?procedure rdf:type dental_procedure: .
+        ?procedure occurrence_date: ?procdatei .
+        ?patient birth_date: ?birth_date .
+        bind(year(?procdatei)-year(?birth_date) as ?age) .
+      } 
+      group by ?patient ?birth_date");
+
+  values <- c(queryRes[,"first_procedure_age"]);
+  hist(
+    values
+    #, breaks = seq(0,100, by = 10)
+    #, labels = TRUE
+    , main = "Density of patient's age for first dental procedure \n (fit to normal distribution)"
+    , sub = paste("N:", format(length(values), big.mark = ","),"patients", 
+                  " mean age:", round(mean(values), digits = 2), 
+                  " SD age:", round(sd(values), digits = 2))
+    , xlab = "Patient age"
+    #, ylim = c(0, 200)
+    , ylim = c(0, 0.03)
+    , xlim = c(0, 100)
+    , freq = FALSE
+    , col= "lightgreen"
+    , font.lab = 2
+  )
+  
+  # lines(density(values), col="darkblue", lwd = 3) 
+  curve(dnorm(x, mean=mean(values), sd=sd(values)), add=TRUE, col="darkblue", lwd = 3)
 }
 
 which_distribution_for_ages <- function ()
@@ -159,8 +170,9 @@ which_distribution_for_ages <- function ()
       } 
       group by ?patient ?bdate");
 
-    compare_normal_to_beta_distribution(years_difference_from_dates(as.Date(queryRes[,"bdate"]),
-                                                                    as.Date(queryRes[,"procdate"]))/115);
+    compare_normal_to_beta_distribution(
+      years_difference_from_dates(as.Date(queryRes[,"bdate"]),
+      as.Date(queryRes[,"procdate"]))/115);
 }
 
 
