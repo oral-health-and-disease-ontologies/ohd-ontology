@@ -139,7 +139,7 @@ age_at_first_dental_procedure_statistics <- function ()
     values
     #, breaks = seq(0,100, by = 10)
     #, labels = TRUE
-    , main = "Density of patient's age for first dental procedure \n (fit to normal distribution)"
+    , main = "Distribution of patient's age during first dental procedure \n (fit to normal distribution)"
     , sub = paste("N:", format(length(values), big.mark = ","),"patients", 
                   " mean age:", round(mean(values), digits = 2), 
                   " SD age:", round(sd(values), digits = 2))
