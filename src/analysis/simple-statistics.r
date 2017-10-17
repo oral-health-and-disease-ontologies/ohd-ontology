@@ -156,6 +156,46 @@ age_at_first_dental_procedure_statistics <- function ()
   curve(dnorm(x, mean=mean(values), sd=sd(values)), add=TRUE, col="darkblue", lwd = 3)
 }
 
+age_at_first_dental_encounter_statistics <- function ()
+{ # retrieve a row for each patient with the birth date first procedure date for each
+  queryRes <- queryc("
+                     SELECT DISTINCT
+                       ?patient 
+	                     (min(?age) as ?min_age)
+                       (str(min(?encounter_date)) as ?min_encounter_date) 
+                     WHERE { 
+                       ?patient rdf:type dental_patient: .
+                       ?patient participates_in: ?encounter.
+                       ?encounter rdf:type health_care_encounter: .
+                       ?encounter occurrence_date: ?encounter_date .
+                       ?patient birth_date: ?birth_date .
+                       bind(year(?encounter_date)-year(?birth_date) as ?age) .
+                     } 
+                     group by ?patient");
+  
+  values <- c(queryRes[,"min_age"]);
+  hist(
+    values
+    #, breaks = seq(0,100, by = 10)
+    , breaks = 20
+    #, labels = TRUE
+    , main = "Distribution of patient's age during first dental encounter \n (fit to normal distribution)"
+    , sub = paste("N:", format(length(values), big.mark = ","),"patients", 
+                  " mean age:", round(mean(values), digits = 2), 
+                  " SD age:", round(sd(values), digits = 2))
+    , xlab = "Patient age"
+    #, ylim = c(0, 200)
+    , ylim = c(0, 0.02)
+    , xlim = c(0, 100)
+    , freq = FALSE
+    , col= "lightgreen"
+    , font.lab = 2
+  )
+  
+  # lines(density(values), col="darkblue", lwd = 3) 
+  curve(dnorm(x, mean=mean(values), sd=sd(values)), add=TRUE, col="darkblue", lwd = 3)
+}
+
 which_distribution_for_ages <- function ()
 {   queryRes <- queryc("
      SELECT ?patient ?bdate (str(min(?procdatei)) as ?procdate)
