@@ -12,7 +12,9 @@ ROBOT=                      robot --catalog $(CATALOG)
 RELEASEDIR=                 ../..
 TODAY ?=                    $(shell date +%Y-%m-%d)
 VERSION=                    $(TODAY)
-RELEASE_ARTEFACTS=          $(ONT).owl
+ANNOTATE_ONTOLOGY_VERSION= 	annotate -V $(ONTBASE)/releases/$(VERSION)/$@ --annotation owl:versionInfo $(VERSION)
+OTHER_SRC =
+RELEASE_ARTEFACTS=          $(ONT).owl $(ONT)-base.owl
 
 all: $(RELEASE_ARTEFACTS)
 
@@ -34,3 +36,10 @@ $(ONT).owl: $(SRC)
             --annotation owl:versionInfo $(VERSION) \
         reduce \
         convert -o $@.tmp.owl && mv $@.tmp.owl $@
+        
+$(ONT)-base.owl: $(SRC)
+	$(ROBOT) \
+    	remove --input $< --select imports --trim false \
+        annotate --link-annotation http://purl.org/dc/elements/1.1/type http://purl.obolibrary.org/obo/IAO_8000001 \
+        --ontology-iri $(ONTBASE)/$@ $(ANNOTATE_ONTOLOGY_VERSION) \
+        --output $@.tmp.owl && mv $@.tmp.owl $@
