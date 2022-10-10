@@ -27,7 +27,7 @@ $(ONT).owl: $(SRC)
 	@echo "\n** building $@ **"
 	$(ROBOT) \
     	merge -i $< \
-        reason --reasoner hermit --annotate-inferred-axioms true \
+        reason --reasoner hermit --annotate-inferred-axioms true --exclude-duplicate-axioms true \
         annotate \
             --ontology-iri $(URIBASE)/$@ \
             --version-iri $(ONTBASE)/releases/$(VERSION)/$@ \
