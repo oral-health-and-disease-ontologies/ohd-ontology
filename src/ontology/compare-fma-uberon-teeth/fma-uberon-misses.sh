@@ -9,7 +9,8 @@ do
      ((match_count++))
   else
      ((miss_count++))
-     echo "$fma_id"
+	 label=$(grep $fma_id fma-tooth-classes.tsv | cut -f2 -d$'\t')
+	 echo "$fma_id\t$label"
   fi
 done
 
