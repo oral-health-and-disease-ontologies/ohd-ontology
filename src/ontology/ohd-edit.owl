@@ -1041,8 +1041,10 @@ Declaration(Class(obo:OHD_0000214))
 Declaration(Class(obo:OHD_0000215))
 Declaration(Class(obo:OHD_0000220))
 Declaration(Class(obo:OHD_0000221))
+Declaration(Class(obo:OHD_0000229))
 Declaration(Class(obo:OHD_0000230))
 Declaration(Class(obo:OHD_0000231))
+Declaration(Class(obo:OHD_0000232))
 Declaration(Class(obo:OHD_0000233))
 Declaration(Class(obo:OHD_0000236))
 Declaration(Class(obo:OHD_0000237))
@@ -1052,8 +1054,10 @@ Declaration(Class(obo:OHD_0000240))
 Declaration(Class(obo:OHD_0000241))
 Declaration(Class(obo:OHD_0000242))
 Declaration(Class(obo:OHD_0000243))
+Declaration(Class(obo:OHD_0000244))
 Declaration(Class(obo:OHD_0000245))
 Declaration(Class(obo:OHD_0000286))
+Declaration(Class(obo:OHD_0000289))
 Declaration(Class(obo:OHD_0000301))
 Declaration(Class(obo:OHD_0000302))
 Declaration(Class(obo:OHD_0000303))
@@ -3526,6 +3530,17 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date>
 AnnotationAssertion(rdfs:label obo:OHD_0000221 "dental procedure finding"@en)
 SubClassOf(obo:OHD_0000221 obo:OHD_0000010)
 
+# Class: obo:OHD_0000229 (hemisection procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000229 "A surgical endodontic procedure involving a multi-root tooth in which the decayed root and its related coronal portion are removed to the furcation (area of bone loss).")
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000229 "Bill Duncan 12/29/2016:
+Typically the removal of root/crown/bone is followed by the placement of an indirect restoration.")
+AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000229 "http://medical-dictionary.thefreedictionary.com/hemisection")
+AnnotationAssertion(dc:contributor obo:OHD_0000229 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000229 "2022-12-06T02:30:43Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000229 "hemisection procedure"@en)
+SubClassOf(obo:OHD_0000229 obo:OHD_0000243)
+
 # Class: obo:OHD_0000230 (endodontic treatment procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000230 "A restored tooth in which the tooth's pulp is removed and replaced by dental restoration material.")
@@ -3545,6 +3560,17 @@ AnnotationAssertion(dc:contributor obo:OHD_0000231 "https://orcid.org/0000-0001-
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000231 "2022-12-06T02:12:10Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000231 "surgically modified tooth"@en)
 EquivalentClasses(obo:OHD_0000231 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:OBI_0000312 obo:OHD_0000044)))
+
+# Class: obo:OHD_0000232 (pulpal debridement procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000232 "A surgical endodontic procedure in which infected pulp is removed from a tooth in order to give the remaining pulp room to swell.")
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000232 "Bill Duncan 12/29/2016:
+This procedure relieves some of the pain, allowing a root canal patient to wait longer before having the full procedure performed.")
+AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000232 "http://www.ehow.com/facts_7478434_pulpal-debridement.html")
+AnnotationAssertion(dc:contributor obo:OHD_0000232 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000232 "2022-12-06T02:32:55Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000232 "pulpal debridement procedure"@en)
+SubClassOf(obo:OHD_0000232 obo:OHD_0000243)
 
 # Class: obo:OHD_0000233 (extracted tooth)
 
@@ -3625,6 +3651,14 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date>
 AnnotationAssertion(rdfs:label obo:OHD_0000243 "surgical endodontic procedure"@en)
 SubClassOf(obo:OHD_0000243 obo:OHD_0000044)
 
+# Class: obo:OHD_0000244 (root amputation procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000244 "A surgical endodontic procure during which a root is removed from a multi-root tooth.")
+AnnotationAssertion(dc:contributor obo:OHD_0000244 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000244 "2022-12-06T02:35:48Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000244 "root amputation procedure"@en)
+SubClassOf(obo:OHD_0000244 obo:OHD_0000243)
+
 # Class: obo:OHD_0000245 (prosthodontics procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000245 "A dental procedure during which some part of the mouth is replaced by or fitted for a prothesis.")
@@ -3642,6 +3676,15 @@ AnnotationAssertion(dc:contributor obo:OHD_0000286 "https://orcid.org/0000-0001-
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000286 "2022-12-06T02:23:54Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000286 "pulp capping procedure"@en)
 SubClassOf(obo:OHD_0000286 obo:OHD_0000242)
+
+# Class: obo:OHD_0000289 (pulpal regeneration procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000289 "A surgical endodontic procedure during which medications are placed inside the pulp chamber in order to induce the formation of living replacement tissue.")
+AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000289 "http://www.neendosol.com/procedures/pulpal-regeneration/")
+AnnotationAssertion(dc:contributor obo:OHD_0000289 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000289 "2022-12-06T02:34:17Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000289 "pulpal regeneration procedure"@en)
+SubClassOf(obo:OHD_0000289 obo:OHD_0000243)
 
 # Class: obo:OHD_0000301 (prosthesis)
 
