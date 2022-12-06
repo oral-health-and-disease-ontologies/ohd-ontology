@@ -885,6 +885,7 @@ Declaration(Class(obo:OHD_0000019))
 Declaration(Class(obo:OHD_0000020))
 Declaration(Class(obo:OHD_0000021))
 Declaration(Class(obo:OHD_0000022))
+Declaration(Class(obo:OHD_0000023))
 Declaration(Class(obo:OHD_0000024))
 Declaration(Class(obo:OHD_0000025))
 Declaration(Class(obo:OHD_0000026))
@@ -1038,6 +1039,21 @@ Declaration(Class(obo:OHD_0000212))
 Declaration(Class(obo:OHD_0000213))
 Declaration(Class(obo:OHD_0000214))
 Declaration(Class(obo:OHD_0000215))
+Declaration(Class(obo:OHD_0000220))
+Declaration(Class(obo:OHD_0000221))
+Declaration(Class(obo:OHD_0000230))
+Declaration(Class(obo:OHD_0000231))
+Declaration(Class(obo:OHD_0000233))
+Declaration(Class(obo:OHD_0000236))
+Declaration(Class(obo:OHD_0000237))
+Declaration(Class(obo:OHD_0000238))
+Declaration(Class(obo:OHD_0000239))
+Declaration(Class(obo:OHD_0000240))
+Declaration(Class(obo:OHD_0000241))
+Declaration(Class(obo:OHD_0000242))
+Declaration(Class(obo:OHD_0000243))
+Declaration(Class(obo:OHD_0000245))
+Declaration(Class(obo:OHD_0000286))
 Declaration(Class(obo:OHD_0000301))
 Declaration(Class(obo:OHD_0000302))
 Declaration(Class(obo:OHD_0000303))
@@ -1087,6 +1103,8 @@ Declaration(Class(obo:OHD_0000347))
 Declaration(Class(obo:OHD_0000348))
 Declaration(Class(obo:OHD_0000349))
 Declaration(Class(obo:OHD_0000350))
+Declaration(Class(obo:OHD_0000396))
+Declaration(Class(obo:OHD_0000397))
 Declaration(Class(<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>))
 Declaration(ObjectProperty(obo:BFO_0000053))
 Declaration(ObjectProperty(obo:BFO_0000063))
@@ -1627,6 +1645,11 @@ SubClassOf(obo:CDT_1000022 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000004)
 
 SubClassOf(obo:CDT_1000023 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000033))
 
+# Class: obo:FMA_12516 (Tooth)
+
+AnnotationAssertion(rdfs:label obo:FMA_12516 "Tooth")
+SubClassOf(obo:FMA_12516 obo:FMA_305751)
+
 # Class: obo:FMA_24218 (Subdivision of head)
 
 AnnotationAssertion(obo:IAO_0000118 obo:FMA_24218 "Head region")
@@ -2001,11 +2024,11 @@ SubClassOf(obo:OHD_0000002 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000052)
 
 # Class: obo:OHD_0000003 (endodontic procedure)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000003 "A dental procedure that is performed on the pulp chamber and/or root canal of a tooth, or a part thereof"^^xsd:string)
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000003 "A dental procedure that is performed on the pulp chamber and/or root canal of a tooth, or a part thereof."^^xsd:string)
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000003 "Titus Schleyer 1/14/2014: adapted definition")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000003 "PERSON:Pedro Cott"^^xsd:string)
 AnnotationAssertion(rdfs:label obo:OHD_0000003 "endodontic procedure"@en)
-SubClassOf(obo:OHD_0000003 obo:OHD_0000002)
+EquivalentClasses(obo:OHD_0000003 ObjectIntersectionOf(obo:OHD_0000002 ObjectUnionOf(obo:OHD_0000242 obo:OHD_0000243)))
 SubClassOf(obo:OHD_0000003 ObjectSomeValuesFrom(obo:BFO_0000057 obo:FMA_12516))
 SubClassOf(obo:OHD_0000003 ObjectSomeValuesFrom(obo:BFO_0000057 obo:NCBITaxon_9606))
 
@@ -2189,6 +2212,14 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000022 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000022 "metallic inlay restoration")
 AnnotationAssertion(rdfs:label obo:OHD_0000022 "metallic inlay restoration procedure")
 EquivalentClasses(obo:OHD_0000022 ObjectIntersectionOf(obo:OHD_0000133 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000048)))
+
+# Class: obo:OHD_0000023 (restored tooth finding)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000023 "A dental finding that a tooth has been restored.")
+AnnotationAssertion(dc:contributor obo:OHD_0000023 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000023 "2022-12-06T01:37:27Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000023 "restored tooth finding"@en)
+EquivalentClasses(obo:OHD_0000023 ObjectIntersectionOf(obo:OHD_0000010 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000189)))
 
 # Class: obo:OHD_0000024 (caries finding)
 
@@ -2767,6 +2798,9 @@ SubClassOf(obo:OHD_0000090 ObjectHasValue(obo:BFO_0000051 obo:OHD_0000132))
 
 # Class: obo:OHD_0000093 (tooth clinically present finding)
 
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000093 "A dental finding that a tooth was present during a clinical exam.")
+AnnotationAssertion(dc:contributor obo:OHD_0000093 "Alan Ruttenberg")
+AnnotationAssertion(dc:contributor obo:OHD_0000093 "https://orcid.org/0000-0001-9625-1899")
 AnnotationAssertion(rdfs:label obo:OHD_0000093 "tooth clinically present finding")
 SubClassOf(obo:OHD_0000093 obo:OHD_0000010)
 SubClassOf(obo:OHD_0000093 ObjectSomeValuesFrom(obo:IAO_0000136 obo:FMA_12516))
@@ -3087,6 +3121,9 @@ EquivalentClasses(obo:OHD_0000167 ObjectIntersectionOf(obo:OHD_0000022 ObjectSom
 
 # Class: obo:OHD_0000168 (unerupted tooth finding)
 
+AnnotationAssertion(dc:contributor obo:OHD_0000168 "A dental finding that a tooth has not errupted.")
+AnnotationAssertion(dc:contributor obo:OHD_0000168 "Alan Ruttenberg")
+AnnotationAssertion(dc:contributor obo:OHD_0000168 "https://orcid.org/0000-0001-9625-1899")
 AnnotationAssertion(rdfs:label obo:OHD_0000168 "unerupted tooth finding")
 SubClassOf(obo:OHD_0000168 obo:OHD_0000010)
 
@@ -3244,8 +3281,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000189 "An entity that is the combi
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000189 "Titus Schleyer 1/1/2014: updated definition")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000189 "Alan Ruttenberg")
 AnnotationAssertion(rdfs:label obo:OHD_0000189 "restored tooth"@en)
-SubClassOf(obo:OHD_0000189 obo:OBI_0000047)
-SubClassOf(obo:OHD_0000189 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:BFO_0000051 obo:FMA_12516) ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000000)))
+EquivalentClasses(obo:OHD_0000189 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000000)))
 
 # Class: obo:OHD_0000190 (dental patient role)
 
@@ -3474,6 +3510,138 @@ AnnotationAssertion(dc:contributor obo:OHD_0000215 "https://orcid.org/0000-0001-
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000215 "2022-12-06T01:32:39Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000215 "health care office staff role"@en)
 SubClassOf(obo:OHD_0000215 obo:OHD_0000214)
+
+# Class: obo:OHD_0000220 (restored tooth surface finding)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000220 "A dental finding that one or more surfaces of a tooth have been restored.")
+AnnotationAssertion(dc:contributor obo:OHD_0000220 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000220 "2022-12-06T01:39:35Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000220 "restored tooth surface finding"@en)
+EquivalentClasses(obo:OHD_0000220 ObjectIntersectionOf(obo:OHD_0000010 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000208)))
+
+# Class: obo:OHD_0000221 (dental procedure finding)
+
+AnnotationAssertion(dc:contributor obo:OHD_0000221 "https://orcid.org/0000-0001-9625-1899")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000221 "2022-12-06T01:45:45Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000221 "dental procedure finding"@en)
+SubClassOf(obo:OHD_0000221 obo:OHD_0000010)
+
+# Class: obo:OHD_0000230 (endodontic treatment procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000230 "A restored tooth in which the tooth's pulp is removed and replaced by dental restoration material.")
+AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000230 "root canal treatment procedure")
+AnnotationAssertion(dc:contributor obo:OHD_0000230 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000230 "2022-12-06T02:21:35Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000230 "endodontic treatment procedure"@en)
+SubClassOf(obo:OHD_0000230 obo:OHD_0000242)
+
+# Class: obo:OHD_0000231 (surgically modified tooth)
+
+AnnotationAssertion(obo:IAO_0000112 obo:OHD_0000231 "A tooth in which inflamed pulp has been removed by a pulp debridement procedure.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000231 "A tooth that has been modified in some way as the result of some surgical dental procedure.")
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000231 "Bill Duncan 12/29/2016:
+The intent of this class is to represent teeth that have undergone some kind of surgical procedure, but which are not restored in the sense of having dental restoration material placed in them; e.g, a pulp debridement procedure.")
+AnnotationAssertion(dc:contributor obo:OHD_0000231 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000231 "2022-12-06T02:12:10Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000231 "surgically modified tooth"@en)
+EquivalentClasses(obo:OHD_0000231 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:OBI_0000312 obo:OHD_0000044)))
+
+# Class: obo:OHD_0000233 (extracted tooth)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000233 "A tooth that has been surgically extracted from a patient's mouth.")
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000233 "Bill Duncan 12/29/2016:
+This class represents those teeth which are extracted from a patient. After all, an extracted tooth is still a tooth. It just isn't part of the patient anymore.
+
+This class provides us with a convient way to represent those teeth that have been extracted.")
+AnnotationAssertion(dc:contributor obo:OHD_0000233 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000233 "2022-12-06T02:15:20Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000233 "extracted tooth"@en)
+EquivalentClasses(obo:OHD_0000233 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:OBI_0000295 obo:OHD_0000057)))
+SubClassOf(obo:OHD_0000233 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000056))
+
+# Class: obo:OHD_0000236 (endodontically restored tooth)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000236 "A restored tooth in which some portion of the tooth's root or pulp has been replaced by dental restoration material as a result of the tooth undergoing an endodontic restorative procedure.")
+AnnotationAssertion(dc:contributor obo:OHD_0000236 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000236 "2022-12-06T02:00:27Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000236 "endodontically restored tooth"@en)
+EquivalentClasses(obo:OHD_0000236 ObjectIntersectionOf(obo:OHD_0000189 ObjectSomeValuesFrom(obo:OBI_0000295 obo:OHD_0000242)))
+
+# Class: obo:OHD_0000237 (coronally restored tooth)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000237 "A restored tooth in which some portion of enamel in the tooth's crown has been restored by dental restoration material as the result of the tooth undergoing either a crown procedure or intracoronal restoration procedure.")
+AnnotationAssertion(dc:contributor obo:OHD_0000237 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000237 "2022-12-06T01:55:01Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000237 "coronally restored tooth"@en)
+EquivalentClasses(obo:OHD_0000237 ObjectIntersectionOf(obo:OHD_0000189 ObjectSomeValuesFrom(obo:OBI_0000295 ObjectUnionOf(obo:OHD_0000006 obo:OHD_0000033))))
+
+# Class: obo:OHD_0000238 (extracoronally restored tooth)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000238 "A coronally restored tooth in which all or part of the natural dental crown is repalced by an artificial crown as a result of the tooth undergoing an crown procedure.")
+AnnotationAssertion(dc:contributor obo:OHD_0000238 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000238 "2022-12-06T01:56:50Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000238 "extracoronally restored tooth"@en)
+EquivalentClasses(obo:OHD_0000238 ObjectIntersectionOf(obo:OHD_0000237 ObjectSomeValuesFrom(obo:OBI_0000295 obo:OHD_0000033)))
+
+# Class: obo:OHD_0000239 (intracoronally restored tooth)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000239 "A coronally restored tooth in which dental restoration material is placed into a site that is located in the crown of the tooth as the result of the tooth undergoing an intracoronal restoration procedure.")
+AnnotationAssertion(dc:contributor obo:OHD_0000239 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000239 "2022-12-06T01:57:51Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000239 "intracoronally restored tooth"@en)
+EquivalentClasses(obo:OHD_0000239 ObjectIntersectionOf(obo:OHD_0000237 ObjectSomeValuesFrom(obo:OBI_0000295 obo:OHD_0000006)))
+
+# Class: obo:OHD_0000240 (veneer surface restored tooth)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000240 "A coronally restored tooth in which a thin layer of material (i.e., a veneer) has been placed over one or more surfaces of the tooth as a result of the tooth undergoing a veneer restoration procedure.")
+AnnotationAssertion(dc:contributor obo:OHD_0000240 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000240 "2022-12-06T01:59:02Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000240 "veneer surface restored tooth"@en)
+EquivalentClasses(obo:OHD_0000240 ObjectIntersectionOf(obo:OHD_0000237 ObjectSomeValuesFrom(obo:OBI_0000295 obo:OHD_0000027)))
+
+# Class: obo:OHD_0000241 (apicoectomy procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000241 "An endodontic restorative procedure during which a tooth's root tip is removed and a root end cavity is prepared and filled with dental restoration material.")
+AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000241 "https://en.wikipedia.org/wiki/Apicoectomy")
+AnnotationAssertion(dc:contributor obo:OHD_0000241 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000241 "2022-12-06T02:20:26Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000241 "apicoectomy procedure"@en)
+SubClassOf(obo:OHD_0000241 obo:OHD_0000242)
+
+# Class: obo:OHD_0000242 (endodontic restorative procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000242 "A tooth restoration procedure during which some portion of the tooth's root or pulp is replaced by dental restoration material.")
+AnnotationAssertion(dc:contributor obo:OHD_0000242 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000242 "2022-12-06T01:52:43Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000242 "endodontic restorative procedure"@en)
+SubClassOf(obo:OHD_0000242 obo:OHD_0000002)
+SubClassOf(obo:OHD_0000242 ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000236))
+
+# Class: obo:OHD_0000243 (surgical endodontic procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000243 "A surgical dental procedure that is performed on the pulp chamber and/or root canal of a tooth, or a part thereof.")
+AnnotationAssertion(dc:contributor obo:OHD_0000243 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000243 "2022-12-06T02:26:59Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000243 "surgical endodontic procedure"@en)
+SubClassOf(obo:OHD_0000243 obo:OHD_0000044)
+
+# Class: obo:OHD_0000245 (prosthodontics procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000245 "A dental procedure during which some part of the mouth is replaced by or fitted for a prothesis.")
+AnnotationAssertion(dc:contributor obo:OHD_0000245 "https://orcid.org/0000-0001-9625-1899")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000245 "2022-12-06T01:49:03Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000245 "prosthodontics procedure"@en)
+SubClassOf(obo:OHD_0000245 obo:OHD_0000002)
+SubClassOf(obo:OHD_0000245 ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000301))
+
+# Class: obo:OHD_0000286 (pulp capping procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000286 "An endodontic restorative procedure during which material is placed over exposed or nearly dental pulp in order to protect and promote healing of the dental pulp.")
+AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000286 "https://en.wikipedia.org/wiki/Pulp_capping")
+AnnotationAssertion(dc:contributor obo:OHD_0000286 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000286 "2022-12-06T02:23:54Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000286 "pulp capping procedure"@en)
+SubClassOf(obo:OHD_0000286 obo:OHD_0000242)
 
 # Class: obo:OHD_0000301 (prosthesis)
 
@@ -3881,6 +4049,21 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000350 "A prosthetic role that is b
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000350 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000350 "temporary prosthetic role")
 SubClassOf(obo:OHD_0000350 obo:OHD_0000314)
+
+# Class: obo:OHD_0000396 (endodontic procedure finding)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000396 "A dental finding procedure that an endodontic procedure was performed on the patient.")
+AnnotationAssertion(dc:contributor obo:OHD_0000396 "https://orcid.org/0000-0001-9625-1899")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000396 "2022-12-06T01:46:17Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000396 "endodontic procedure finding"@en)
+EquivalentClasses(obo:OHD_0000396 ObjectIntersectionOf(obo:OHD_0000221 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000003)))
+
+# Class: obo:OHD_0000397 (prosthodontics procedure finding)
+
+AnnotationAssertion(dc:contributor obo:OHD_0000397 "https://orcid.org/0000-0001-9625-1899")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000397 "2022-12-06T01:47:38Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000397 "prosthodontics procedure finding"@en)
+SubClassOf(obo:OHD_0000397 obo:OHD_0000221)
 
 # Class: <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> (obsolete class)
 
