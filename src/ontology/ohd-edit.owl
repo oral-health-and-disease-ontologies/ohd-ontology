@@ -1064,6 +1064,8 @@ Declaration(Class(obo:OHD_0000242))
 Declaration(Class(obo:OHD_0000243))
 Declaration(Class(obo:OHD_0000244))
 Declaration(Class(obo:OHD_0000245))
+Declaration(Class(obo:OHD_0000251))
+Declaration(Class(obo:OHD_0000252))
 Declaration(Class(obo:OHD_0000253))
 Declaration(Class(obo:OHD_0000254))
 Declaration(Class(obo:OHD_0000255))
@@ -1120,6 +1122,12 @@ Declaration(Class(obo:OHD_0000347))
 Declaration(Class(obo:OHD_0000348))
 Declaration(Class(obo:OHD_0000349))
 Declaration(Class(obo:OHD_0000350))
+Declaration(Class(obo:OHD_0000352))
+Declaration(Class(obo:OHD_0000353))
+Declaration(Class(obo:OHD_0000354))
+Declaration(Class(obo:OHD_0000355))
+Declaration(Class(obo:OHD_0000356))
+Declaration(Class(obo:OHD_0000357))
 Declaration(Class(obo:OHD_0000396))
 Declaration(Class(obo:OHD_0000397))
 Declaration(Class(<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>))
@@ -3775,6 +3783,22 @@ AnnotationAssertion(rdfs:label obo:OHD_0000245 "prosthodontics procedure"@en)
 SubClassOf(obo:OHD_0000245 obo:OHD_0000002)
 SubClassOf(obo:OHD_0000245 ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000301))
 
+# Class: obo:OHD_0000251 (implant supported partial denture)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000251 "A fixed partial denture that is suppored and retained by underlying tissue and one or more dental implants.")
+AnnotationAssertion(dc:contributor obo:OHD_0000251 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000251 "2022-12-06T03:41:04Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000251 "implant supported partial denture"@en)
+SubClassOf(obo:OHD_0000251 obo:OHD_0000312)
+
+# Class: obo:OHD_0000252 (removable partial denture)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000252 "A partial denture that is designed and constructed to be removed readily from the mouth.")
+AnnotationAssertion(dc:contributor obo:OHD_0000252 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000252 "2022-12-06T03:54:24Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000252 "removable partial denture"@en)
+SubClassOf(obo:OHD_0000252 obo:OHD_0000310)
+
 # Class: obo:OHD_0000253 (complete denture)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000253 "A prosthesis that replaces all the natural teeth and associated structures in either the maxilla or mandible (or both).")
@@ -3907,26 +3931,22 @@ SubClassOf(obo:OHD_0000310 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000302)
 
 # Class: obo:OHD_0000311 (tooth-supported partial denture)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000311 "a partial denture that is supported entirely by existing teeth")
-AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000311 "Alan Ruttenberg 12/16/2014:
-Need more clarity on what is meant by \"supported by the teeth\".")
-AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000311 "Bill Duncan 12/13/2014:
-Definition updated to reflect Dan's comments.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000311 "A fixed partial denture that is suppored and retained by underlying tissue and some or all of the remaining teeth.")
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000311 "Dan Caplan 12/13/2014:
 Mosby's definition is not quite corrrect. The support could also include other teeth that are not adjacent to the endentulous area. The important point is that the prosthesis is supported by existing teeth (wherever they are in the arch), and not by the gingiva.
 ")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000311 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000311 "Mosby. Mosby's Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 175-176")
 AnnotationAssertion(rdfs:label obo:OHD_0000311 "tooth-supported partial denture")
-SubClassOf(obo:OHD_0000311 obo:OHD_0000310)
+SubClassOf(obo:OHD_0000311 obo:OHD_0000312)
 
 # Class: obo:OHD_0000312 (fixed partial denture)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000312 "a tooth-supported partial denture that is intended to be permanently attached to the teeth that furnish support to the restoration")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000312 "A partial denture that is permanently attached to prepared natural teeth, roots, or implants.")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000312 "bridge")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000312 "Mosby. Mosby's Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 175")
 AnnotationAssertion(rdfs:label obo:OHD_0000312 "fixed partial denture")
-SubClassOf(obo:OHD_0000312 obo:OHD_0000311)
+SubClassOf(obo:OHD_0000312 obo:OHD_0000310)
 
 # Class: obo:OHD_0000313 (fixed partial denture restoration procedure)
 
@@ -4238,6 +4258,54 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000350 "A prosthetic role that is b
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000350 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000350 "temporary prosthetic role")
 SubClassOf(obo:OHD_0000350 obo:OHD_0000314)
+
+# Class: obo:OHD_0000352 (ceramic fixed partial denture)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000352 "A fixed partial denture constructed out of ceramic.")
+AnnotationAssertion(dc:contributor obo:OHD_0000352 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000352 "2022-12-06T03:39:55Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000352 "ceramic fixed partial denture"@en)
+SubClassOf(obo:OHD_0000352 obo:OHD_0000312)
+
+# Class: obo:OHD_0000353 (porcelain fused to metal fixed partial denture)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000353 "A fixed partial denture constructed out of porcelain fused to metal.")
+AnnotationAssertion(dc:contributor obo:OHD_0000353 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000353 "2022-12-06T03:43:52Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000353 "porcelain fused to metal fixed partial denture"@en)
+SubClassOf(obo:OHD_0000353 obo:OHD_0000312)
+
+# Class: obo:OHD_0000354 (ceramic implant supported partial denture)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000354 "An implant supported fixed partial denture constructed out of ceramic.")
+AnnotationAssertion(dc:contributor obo:OHD_0000354 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000354 "2022-12-06T03:42:00Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000354 "ceramic implant supported partial denture"@en)
+SubClassOf(obo:OHD_0000354 obo:OHD_0000251)
+
+# Class: obo:OHD_0000355 (porcelain fused to metal implant supported partial denture)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000355 "An implant supported fixed partial denture constructed out of porcelain fused to metal.")
+AnnotationAssertion(dc:contributor obo:OHD_0000355 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000355 "2022-12-06T03:42:38Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000355 "porcelain fused to metal implant supported partial denture"@en)
+SubClassOf(obo:OHD_0000355 obo:OHD_0000251)
+
+# Class: obo:OHD_0000356 (porcelain fused to metal tooth supported partial denture)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000356 "A tooth supported fixed partial denture constructed out of porcelain fused to metal.")
+AnnotationAssertion(dc:contributor obo:OHD_0000356 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000356 "2022-12-06T03:51:56Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000356 "porcelain fused to metal tooth supported partial denture"@en)
+SubClassOf(obo:OHD_0000356 obo:OHD_0000311)
+
+# Class: obo:OHD_0000357 (ceramic tooth supported partial denture)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000357 "A tooth supported fixed partial denture constructed out of ceramic.")
+AnnotationAssertion(dc:contributor obo:OHD_0000357 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000357 "2022-12-06T03:51:23Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000357 "ceramic tooth supported partial denture"@en)
+SubClassOf(obo:OHD_0000357 obo:OHD_0000311)
 
 # Class: obo:OHD_0000396 (endodontic procedure finding)
 
