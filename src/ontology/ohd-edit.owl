@@ -1064,6 +1064,10 @@ Declaration(Class(obo:OHD_0000242))
 Declaration(Class(obo:OHD_0000243))
 Declaration(Class(obo:OHD_0000244))
 Declaration(Class(obo:OHD_0000245))
+Declaration(Class(obo:OHD_0000246))
+Declaration(Class(obo:OHD_0000247))
+Declaration(Class(obo:OHD_0000249))
+Declaration(Class(obo:OHD_0000250))
 Declaration(Class(obo:OHD_0000251))
 Declaration(Class(obo:OHD_0000252))
 Declaration(Class(obo:OHD_0000253))
@@ -1071,8 +1075,12 @@ Declaration(Class(obo:OHD_0000254))
 Declaration(Class(obo:OHD_0000255))
 Declaration(Class(obo:OHD_0000256))
 Declaration(Class(obo:OHD_0000257))
+Declaration(Class(obo:OHD_0000259))
+Declaration(Class(obo:OHD_0000281))
 Declaration(Class(obo:OHD_0000286))
 Declaration(Class(obo:OHD_0000289))
+Declaration(Class(obo:OHD_0000291))
+Declaration(Class(obo:OHD_0000292))
 Declaration(Class(obo:OHD_0000301))
 Declaration(Class(obo:OHD_0000302))
 Declaration(Class(obo:OHD_0000303))
@@ -3783,6 +3791,40 @@ AnnotationAssertion(rdfs:label obo:OHD_0000245 "prosthodontics procedure"@en)
 SubClassOf(obo:OHD_0000245 obo:OHD_0000002)
 SubClassOf(obo:OHD_0000245 ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000301))
 
+# Class: obo:OHD_0000246 (fixed prosthodontics procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000246 "A prosthodontics procedure during which a prosthesis is permanently attached to some part of the mouth.")
+AnnotationAssertion(dc:contributor obo:OHD_0000246 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000246 "2022-12-06T04:06:45Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000246 "fixed prosthodontics procedure"@en)
+EquivalentClasses(obo:OHD_0000246 ObjectIntersectionOf(obo:OHD_0000245 ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000281)))
+
+# Class: obo:OHD_0000247 (removable prosthodontics procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000247 "A prosthodontics procedure during which a removable prosthesis is either constructed or fitted to the patient's mouth.")
+AnnotationAssertion(dc:contributor obo:OHD_0000247 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000247 "2022-12-06T04:08:52Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000247 "removable prosthodontics procedure"@en)
+SubClassOf(obo:OHD_0000247 obo:OHD_0000245)
+
+# Class: obo:OHD_0000249 (complete denture procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000249 "A removable prosthodontics procedure in which the prosthesis being constructed or fitted replaces all of the patient's teeth.")
+AnnotationAssertion(dc:contributor obo:OHD_0000249 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000249 "2022-12-06T04:10:46Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000249 "complete denture procedure"@en)
+SubClassOf(obo:OHD_0000249 obo:OHD_0000247)
+SubClassOf(obo:OHD_0000249 ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000254))
+
+# Class: obo:OHD_0000250 (removable partial denture procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000250 "A removable prosthodontics procedure in which the prosthesis being constructed or fitted replaces some but not all of the patient's teeth.")
+AnnotationAssertion(dc:contributor obo:OHD_0000250 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000250 "2022-12-06T04:12:21Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000250 "removable partial denture procedure"@en)
+SubClassOf(obo:OHD_0000250 obo:OHD_0000247)
+SubClassOf(obo:OHD_0000250 ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000252))
+
 # Class: obo:OHD_0000251 (implant supported partial denture)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000251 "A fixed partial denture that is suppored and retained by underlying tissue and one or more dental implants.")
@@ -3838,6 +3880,25 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date>
 AnnotationAssertion(rdfs:label obo:OHD_0000257 "complete lower denture"@en)
 SubClassOf(obo:OHD_0000257 obo:OHD_0000253)
 
+# Class: obo:OHD_0000259 (dental implant)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000259 "A prosthetic tooth with an anchoring structure surgically implanted beneath the mucosal or periosteal layer or in the bone.")
+AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000259 "http://medical-dictionary.thefreedictionary.com/tooth+implant")
+AnnotationAssertion(dc:contributor obo:OHD_0000259 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000259 "2022-12-06T04:03:18Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000259 "dental implant"@en)
+SubClassOf(obo:OHD_0000259 obo:OHD_0000302)
+
+# Class: obo:OHD_0000281 (fixed prothesis)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000281 "A prosthesis that is permanently attached attached to some part of the mouth.")
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000281 "Bill Duncan 07/26/2017:
+This class is used to group dental implants and fixed dentures under one term.")
+AnnotationAssertion(dc:contributor obo:OHD_0000281 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000281 "2022-12-06T04:00:32Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000281 "fixed prothesis"@en)
+SubClassOf(obo:OHD_0000281 obo:OHD_0000301)
+
 # Class: obo:OHD_0000286 (pulp capping procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000286 "An endodontic restorative procedure during which material is placed over exposed or nearly dental pulp in order to protect and promote healing of the dental pulp.")
@@ -3855,6 +3916,22 @@ AnnotationAssertion(dc:contributor obo:OHD_0000289 "https://orcid.org/0000-0001-
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000289 "2022-12-06T02:34:17Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000289 "pulpal regeneration procedure"@en)
 SubClassOf(obo:OHD_0000289 obo:OHD_0000243)
+
+# Class: obo:OHD_0000291 (removable maxillary partial denture procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000291 "A removable partial denture procedure in which the prosthesis being constructed or fitted replaces some but not all of the patient's maxillary teeth.")
+AnnotationAssertion(dc:contributor obo:OHD_0000291 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000291 "2022-12-06T04:15:55Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000291 "removable maxillary partial denture procedure"@en)
+SubClassOf(obo:OHD_0000291 obo:OHD_0000250)
+
+# Class: obo:OHD_0000292 (removable mandibular partial denture procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000292 "A removable partial denture procedure in which the prosthesis being constructed or fitted replaces some but not all of the patient's mandibular teeth.")
+AnnotationAssertion(dc:contributor obo:OHD_0000292 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000292 "2022-12-06T04:15:07Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000292 "removable mandibular partial denture procedure"@en)
+SubClassOf(obo:OHD_0000292 obo:OHD_0000250)
 
 # Class: obo:OHD_0000301 (prosthesis)
 
