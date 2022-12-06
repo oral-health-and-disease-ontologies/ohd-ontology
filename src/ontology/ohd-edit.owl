@@ -2306,6 +2306,7 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000028 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000028 "missing tooth 14 finding"@en)
 SubClassOf(obo:OHD_0000028 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000028 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:FMA_75152 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:FMA_55699)))))
+SubClassOf(obo:OHD_0000028 ObjectHasValue(obo:BFO_0000051 obo:OHD_0000114))
 
 # Class: obo:OHD_0000029 (fractured tooth)
 
@@ -3503,6 +3504,7 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000208 "Alan Ruttenberg")
 AnnotationAssertion(dc:contributor obo:OHD_0000208 "https://orcid.org/0000-0001-9625-1899")
 AnnotationAssertion(rdfs:label obo:OHD_0000208 "restored tooth surface"@en)
 SubClassOf(obo:OHD_0000208 obo:OBI_0000047)
+SubClassOf(obo:OHD_0000208 ObjectSomeValuesFrom(obo:BFO_0000050 obo:OHD_0000189))
 
 # Class: obo:OHD_0000210 (dental assistant)
 
@@ -3812,7 +3814,7 @@ EquivalentClasses(obo:OHD_0000303 ObjectIntersectionOf(obo:OHD_0000004 ObjectSom
 
 # Class: obo:OHD_0000304 (indirect restoration procedure)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000304 "A tooth restoration procedure in which the dental restoration material is placed in the tooth via some indirect dental restoration material combination process.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000304 "A tooth restoration procedure in which the dental restoration material is placed in the tooth via some dental material tooth attachment process.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000304 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000304 "indirect restoration procedure")
 EquivalentClasses(obo:OHD_0000304 ObjectIntersectionOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038)))
@@ -4417,4 +4419,5 @@ AnnotationAssertion(rdfs:label <https://orcid.org/0000-0001-9625-1899> "Bill Dun
 
 
 SubObjectPropertyOf(ObjectPropertyChain(obo:BFO_0000053 obo:BFO_0000054) obo:BFO_0000056)
+SubObjectPropertyOf(ObjectPropertyChain(obo:OBI_0000293 obo:BFO_0000050) obo:BFO_0000057)
 )
