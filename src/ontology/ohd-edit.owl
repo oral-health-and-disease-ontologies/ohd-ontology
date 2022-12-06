@@ -809,6 +809,7 @@ Declaration(Class(obo:FMA_74616))
 Declaration(Class(obo:FMA_74865))
 Declaration(Class(obo:FMA_7490))
 Declaration(Class(obo:FMA_7501))
+Declaration(Class(obo:FMA_75150))
 Declaration(Class(obo:FMA_75152))
 Declaration(Class(obo:FMA_75445))
 Declaration(Class(obo:FMA_77983))
@@ -1154,12 +1155,54 @@ Declaration(Class(obo:OHD_0000356))
 Declaration(Class(obo:OHD_0000357))
 Declaration(Class(obo:OHD_0000358))
 Declaration(Class(obo:OHD_0000359))
+Declaration(Class(obo:OHD_0000364))
+Declaration(Class(obo:OHD_0000365))
+Declaration(Class(obo:OHD_0000366))
+Declaration(Class(obo:OHD_0000367))
+Declaration(Class(obo:OHD_0000368))
+Declaration(Class(obo:OHD_0000369))
+Declaration(Class(obo:OHD_0000370))
+Declaration(Class(obo:OHD_0000371))
+Declaration(Class(obo:OHD_0000372))
+Declaration(Class(obo:OHD_0000373))
+Declaration(Class(obo:OHD_0000374))
+Declaration(Class(obo:OHD_0000375))
+Declaration(Class(obo:OHD_0000376))
+Declaration(Class(obo:OHD_0000377))
+Declaration(Class(obo:OHD_0000378))
+Declaration(Class(obo:OHD_0000379))
+Declaration(Class(obo:OHD_0000380))
+Declaration(Class(obo:OHD_0000381))
+Declaration(Class(obo:OHD_0000382))
+Declaration(Class(obo:OHD_0000383))
+Declaration(Class(obo:OHD_0000384))
+Declaration(Class(obo:OHD_0000385))
+Declaration(Class(obo:OHD_0000386))
+Declaration(Class(obo:OHD_0000387))
+Declaration(Class(obo:OHD_0000388))
+Declaration(Class(obo:OHD_0000389))
+Declaration(Class(obo:OHD_0000390))
+Declaration(Class(obo:OHD_0000391))
+Declaration(Class(obo:OHD_0000392))
+Declaration(Class(obo:OHD_0000393))
+Declaration(Class(obo:OHD_0000394))
+Declaration(Class(obo:OHD_0000395))
 Declaration(Class(obo:OHD_0000396))
 Declaration(Class(obo:OHD_0000397))
 Declaration(Class(<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>))
+Declaration(ObjectProperty(obo:BFO_0000050))
+Declaration(ObjectProperty(obo:BFO_0000051))
+Declaration(ObjectProperty(obo:BFO_0000052))
 Declaration(ObjectProperty(obo:BFO_0000053))
+Declaration(ObjectProperty(obo:BFO_0000054))
+Declaration(ObjectProperty(obo:BFO_0000055))
 Declaration(ObjectProperty(obo:BFO_0000063))
 Declaration(ObjectProperty(obo:BFO_0000086))
+Declaration(ObjectProperty(obo:BFO_0000087))
+Declaration(ObjectProperty(obo:IAO_0000136))
+Declaration(ObjectProperty(obo:OBI_0000293))
+Declaration(ObjectProperty(obo:OBI_0000299))
+Declaration(ObjectProperty(obo:OBI_0000312))
 Declaration(ObjectProperty(obo:OHD_0000091))
 Declaration(ObjectProperty(obo:OHD_0000216))
 Declaration(ObjectProperty(obo:OHD_0000217))
@@ -1238,11 +1281,23 @@ Declaration(NamedIndividual(obo:OHD_0000129))
 Declaration(NamedIndividual(obo:OHD_0000130))
 Declaration(NamedIndividual(obo:OHD_0000131))
 Declaration(NamedIndividual(obo:OHD_0000132))
+Declaration(NamedIndividual(obo:OHD_0000363))
 Declaration(NamedIndividual(<https://orcid.org/0000-0001-9625-1899>))
+Declaration(AnnotationProperty(obo:IAO_0000111))
+Declaration(AnnotationProperty(obo:IAO_0000112))
+Declaration(AnnotationProperty(obo:IAO_0000115))
+Declaration(AnnotationProperty(obo:IAO_0000116))
+Declaration(AnnotationProperty(obo:IAO_0000118))
+Declaration(AnnotationProperty(obo:IAO_0000119))
 Declaration(AnnotationProperty(obo:OBI_0001847))
 Declaration(AnnotationProperty(obo:OHD_0000065))
 Declaration(AnnotationProperty(obo:OHD_0000092))
 Declaration(AnnotationProperty(obo:OHD_0000209))
+Declaration(AnnotationProperty(obo:OHD_0000273))
+Declaration(AnnotationProperty(dc:contributor))
+Declaration(AnnotationProperty(dc:creator))
+Declaration(AnnotationProperty(dc:date))
+Declaration(AnnotationProperty(dc:source))
 Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#creation_date>))
 Declaration(Datatype(xsd:date))
 ############################
@@ -1286,6 +1341,7 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000091 "PERSON: Bill Duncan")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000091 "Adapted from:
 Mosby's Dental Dictionary, 2nd Edition. page 580. 
 Wikipedia: http://en.wikipedia.org/wiki/Dental_restoration")
+AnnotationAssertion(dc:contributor obo:OHD_0000091 "PERSON: Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000091 "is dental restoration of")
 ObjectPropertyDomain(obo:OHD_0000091 obo:OHD_0000000)
 ObjectPropertyRange(obo:OHD_0000091 ObjectSomeValuesFrom(obo:BFO_0000050 obo:FMA_12516))
@@ -1317,6 +1373,7 @@ TransitiveObjectProperty(obo:OHD_0000217)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000014 "a data property that relates an individual patient to the literal string that represents the patient's id")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000014 "Bill Duncan")
+AnnotationAssertion(dc:contributor obo:OHD_0000014 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000014 "patient ID"@en)
 DataPropertyDomain(obo:OHD_0000014 obo:OHD_0000012)
 DataPropertyRange(obo:OHD_0000014 xsd:string)
@@ -1331,15 +1388,19 @@ There is a problem with occurrence date.  The date on which an event occurred an
 AnnotationAssertion(rdfs:label obo:OHD_0000015 "occurrence date"@en)
 SubDataPropertyOf(obo:OHD_0000015 owl:topDataProperty)
 DataPropertyRange(obo:OHD_0000015 xsd:date)
+DataPropertyRange(obo:OHD_0000015 xsd:dateTime)
 
 # Data Property: obo:OHD_0000050 (birth_date)
 
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000050 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000050 "a data property that relates an individual to the date on which the individual was born")
+AnnotationAssertion(dc:contributor obo:OHD_0000050 "Bill Duncan")
+AnnotationAssertion(dc:contributor obo:OHD_0000050 "a data property that relates an individual to the date on which the individual was born")
 AnnotationAssertion(rdfs:label obo:OHD_0000050 "birth_date"@en)
 SubDataPropertyOf(obo:OHD_0000050 owl:topDataProperty)
 DataPropertyDomain(obo:OHD_0000050 obo:OHD_0000012)
 DataPropertyRange(obo:OHD_0000050 xsd:date)
+DataPropertyRange(obo:OHD_0000050 xsd:dateTime)
 
 # Data Property: obo:OHD_0000053 (data source)
 
@@ -1350,41 +1411,63 @@ AnnotationAssertion(rdfs:label obo:OHD_0000053 "data source")
 # Data Property: obo:OHD_0000097 (has patient activity status)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000097 "A data property in which the values provide information as to whether a patient is actively being cared for by the practicet; takes values \"active\" and \"inactive\".")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000097 "a data property in which the values provide information as to whether a patient is actively being cared for by the practicet; takes values \"active\" and \"inactive\"")
+AnnotationAssertion(dc:contributor obo:OHD_0000097 "Bill Duncan")
 AnnotationAssertion(dc:contributor obo:OHD_0000097 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000097 "2022-12-06T01:11:57Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000097 "has patient activity status")
+AnnotationAssertion(rdfs:label obo:OHD_0000097 "has patient activity status"@en)
+DataPropertyRange(obo:OHD_0000097 xsd:string)
 
 # Data Property: obo:OHD_0000218 (first dental visit date)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000218 "A data property used to record the date of a patient's first dental visit.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000218 "a data property used to record the date of a patient's first dental visit")
+AnnotationAssertion(dc:contributor obo:OHD_0000218 "Bill Duncan")
 AnnotationAssertion(dc:contributor obo:OHD_0000218 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000218 "2022-12-06T01:22:17Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000218 "first dental visit date")
+AnnotationAssertion(rdfs:label obo:OHD_0000218 "first dental visit date"@en)
+DataPropertyRange(obo:OHD_0000218 xsd:dateTime)
 
 # Data Property: obo:OHD_0000219 (last dental visit date)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000219 "A data property used to record the date of a patient's first dental visit.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000219 "a data property used to record the last date on which a patient had a dental visit")
+AnnotationAssertion(dc:contributor obo:OHD_0000219 "Bill Duncan")
 AnnotationAssertion(dc:contributor obo:OHD_0000219 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000219 "2022-12-06T01:23:31Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000219 "last dental visit date")
+AnnotationAssertion(rdfs:label obo:OHD_0000219 "last dental visit date"@en)
+DataPropertyRange(obo:OHD_0000219 xsd:dateTime)
 
 # Data Property: obo:OHD_0000234 (missing ADA tooth number)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000234 "A data property whose value is an ADA universal tooth number that represents a tooth which is missing from a dentition.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000234 "a data property whose value is an ADA universal tooth number that represents a tooth which is missing from a dentition")
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000234 "Bill Duncan 01/03/2017:
 This data property provides a means to query for missing teeth. Since a missing tooth is not a tooth, it is wrong represent a missing tooth as an instance of a tooth. Rather, we represent a missing tooth by respresenting the instance of the dentition and then specify with this data property that the dentition is missing a tooth designated by the universtal tooth number.")
+AnnotationAssertion(dc:contributor obo:OHD_0000234 "Bill Duncan")
 AnnotationAssertion(dc:contributor obo:OHD_0000234 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000234 "2017-01-03T18:37:35Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000234 "2022-12-06T03:13:50Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000234 "missing ADA tooth number"@en)
+AnnotationAssertion(rdfs:label obo:OHD_0000234 "missing tooth number"@en)
+DataPropertyRange(obo:OHD_0000234 xsd:string)
 
-# Data Property: obo:OHD_0000360 (missing ADA tooth root number)
+# Data Property: obo:OHD_0000360 (missing tooth root number)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000360 "A data property whose value is an ADA universal tooth number that represents the tooth associated with a tooth root that is missing from a dentition.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000360 "a data property whose value is an ADA universal tooth number that represents the tooth associated with a tooth root that is missing from a dentition")
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000360 "Bill Duncan 10/18/2017:
 This data property provides a means to query for missing tooth roots. Since a missing tooth root is not a tooth root, it is wrong represent a missing tooth root as an instance of a tooth root. Rather, we represent a missing tooth root by respresenting the instance of the dentition and then specify with this data property that the dentition is missing a tooth root that is associated with the tooth designated by the universtal tooth number.")
+AnnotationAssertion(dc:contributor obo:OHD_0000360 "Bill Duncan")
 AnnotationAssertion(dc:contributor obo:OHD_0000360 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000360 "2017-10-18T20:39:14Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000360 "2022-12-06T03:15:41Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000360 "missing ADA tooth root number"@en)
+AnnotationAssertion(rdfs:label obo:OHD_0000360 "missing tooth root number"@en)
+DataPropertyRange(obo:OHD_0000360 xsd:string)
 
 # Data Property: <http://purl.obolibrary.org/obo/ohd.owl/last_dental_visit_date> (last dental visit date)
 
@@ -1907,6 +1990,17 @@ AnnotationAssertion(obo:IAO_0000118 obo:FMA_67504 "Principal body part subdivisi
 AnnotationAssertion(dc:source obo:FMA_67504 "Foundational Model of Anatomy (FMA)")
 AnnotationAssertion(rdfs:label obo:FMA_67504 "Subdivision of cardinal body part")
 SubClassOf(obo:FMA_67504 obo:FMA_67135)
+
+# Class: obo:FMA_75150 (Dentition)
+
+AnnotationAssertion(dc:contributor obo:FMA_75150 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:FMA_75150 "2022-12-06T21:59:52Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:FMA_75150 "Dentition"@en)
+
+# Class: obo:FMA_75152 (Secondary dentition)
+
+AnnotationAssertion(rdfs:label obo:FMA_75152 "Secondary dentition")
+SubClassOf(obo:FMA_75152 obo:FMA_75150)
 
 # Class: obo:FMA_84220 (Right upper central primary incisor tooth)
 
@@ -4567,6 +4661,261 @@ AnnotationAssertion(rdfs:label obo:OHD_0000359 "high noble metal implant crown"@
 SubClassOf(obo:OHD_0000359 obo:OHD_0000280)
 SubClassOf(obo:OHD_0000359 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000147))
 
+# Class: obo:OHD_0000364 (secondary dentition missing tooth 1)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000364 "A secondary dentition that is missing tooth 1.")
+AnnotationAssertion(dc:contributor obo:OHD_0000364 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000364 "2017-11-10T03:42:18Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000364 "secondary dentition missing tooth 1")
+EquivalentClasses(obo:OHD_0000364 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "1")))
+
+# Class: obo:OHD_0000365 (secondary dentition missing tooth 2)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000365 "A secondary dentition that is missing tooth 2.")
+AnnotationAssertion(dc:contributor obo:OHD_0000365 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000365 "2017-11-10T03:49:27Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000365 "secondary dentition missing tooth 2")
+EquivalentClasses(obo:OHD_0000365 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "2")))
+
+# Class: obo:OHD_0000366 (secondary dentition missing tooth 3)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000366 "A secondary dentition that is missing tooth 3.")
+AnnotationAssertion(dc:contributor obo:OHD_0000366 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000366 "2017-11-10T03:49:34Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000366 "secondary dentition missing tooth 3")
+EquivalentClasses(obo:OHD_0000366 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "3")))
+
+# Class: obo:OHD_0000367 (secondary dentition missing tooth 4)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000367 "A secondary dentition that is missing tooth 4.")
+AnnotationAssertion(dc:contributor obo:OHD_0000367 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000367 "2017-11-10T03:49:39Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000367 "secondary dentition missing tooth 4")
+EquivalentClasses(obo:OHD_0000367 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "4")))
+
+# Class: obo:OHD_0000368 (secondary dentition missing tooth 5)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000368 "A secondary dentition that is missing tooth 5.")
+AnnotationAssertion(dc:date obo:OHD_0000368 "2017-11-10T03:49:48Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000368 "secondary dentition missing tooth 5")
+EquivalentClasses(obo:OHD_0000368 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "5")))
+
+# Class: obo:OHD_0000369 (secondary dentition missing tooth 6)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000369 "A secondary dentition that is missing tooth 6.")
+AnnotationAssertion(dc:contributor obo:OHD_0000369 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000369 "2017-11-10T03:49:54Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000369 "secondary dentition missing tooth 6")
+EquivalentClasses(obo:OHD_0000369 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "6")))
+
+# Class: obo:OHD_0000370 (secondary dentition missing tooth 7)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000370 "A secondary dentition that is missing tooth 7.")
+AnnotationAssertion(dc:contributor obo:OHD_0000370 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000370 "2017-11-10T03:50:01Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000370 "secondary dentition missing tooth 7")
+EquivalentClasses(obo:OHD_0000370 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "7")))
+
+# Class: obo:OHD_0000371 (secondary dentition missing tooth 8)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000371 "A secondary dentition that is missing tooth 8.")
+AnnotationAssertion(dc:contributor obo:OHD_0000371 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000371 "2017-11-10T03:50:08Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000371 "secondary dentition missing tooth 8")
+EquivalentClasses(obo:OHD_0000371 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "8")))
+
+# Class: obo:OHD_0000372 (secondary dentition missing tooth 9)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000372 "A secondary dentition that is missing tooth 9.")
+AnnotationAssertion(dc:contributor obo:OHD_0000372 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000372 "2017-11-10T03:50:29Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000372 "secondary dentition missing tooth 9")
+EquivalentClasses(obo:OHD_0000372 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "9")))
+
+# Class: obo:OHD_0000373 (secondary dentition missing tooth 10)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000373 "A secondary dentition that is missing tooth 10.")
+AnnotationAssertion(dc:contributor obo:OHD_0000373 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000373 "2017-11-10T03:50:36Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000373 "secondary dentition missing tooth 10")
+EquivalentClasses(obo:OHD_0000373 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "10")))
+
+# Class: obo:OHD_0000374 (secondary dentition missing tooth 11)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000374 "A secondary dentition that is missing tooth 11.")
+AnnotationAssertion(dc:contributor obo:OHD_0000374 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000374 "2017-11-10T03:50:44Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000374 "secondary dentition missing tooth 11")
+EquivalentClasses(obo:OHD_0000374 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "11")))
+
+# Class: obo:OHD_0000375 (secondary dentition missing tooth 12)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000375 "A secondary dentition that is missing tooth 12.")
+AnnotationAssertion(dc:contributor obo:OHD_0000375 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000375 "2017-11-10T03:50:49Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000375 "secondary dentition missing tooth 12")
+EquivalentClasses(obo:OHD_0000375 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "12")))
+
+# Class: obo:OHD_0000376 (secondary dentition missing tooth 13)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000376 "A secondary dentition that is missing tooth 13.")
+AnnotationAssertion(dc:contributor obo:OHD_0000376 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000376 "2017-11-10T03:50:55Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000376 "secondary dentition missing tooth 13")
+EquivalentClasses(obo:OHD_0000376 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "13")))
+
+# Class: obo:OHD_0000377 (secondary dentition missing tooth 14)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000377 "A secondary dentition that is missing tooth 14.")
+AnnotationAssertion(dc:contributor obo:OHD_0000377 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000377 "2017-11-10T03:51:02Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000377 "secondary dentition missing tooth 14")
+EquivalentClasses(obo:OHD_0000377 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "14")))
+
+# Class: obo:OHD_0000378 (secondary dentition missing tooth 15)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000378 "A secondary dentition that is missing tooth 15.")
+AnnotationAssertion(dc:contributor obo:OHD_0000378 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000378 "2017-11-10T03:51:11Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000378 "secondary dentition missing tooth 15")
+EquivalentClasses(obo:OHD_0000378 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "15")))
+
+# Class: obo:OHD_0000379 (secondary dentition missing tooth 16)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000379 "A secondary dentition that is missing tooth 16,")
+AnnotationAssertion(dc:contributor obo:OHD_0000379 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000379 "2017-11-10T03:51:17Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000379 "secondary dentition missing tooth 16")
+EquivalentClasses(obo:OHD_0000379 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "16")))
+
+# Class: obo:OHD_0000380 (secondary dentition missing tooth 17)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000380 "A secondary dentition that is missing tooth 17.")
+AnnotationAssertion(dc:contributor obo:OHD_0000380 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000380 "2017-11-10T03:51:23Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000380 "secondary dentition missing tooth 17")
+EquivalentClasses(obo:OHD_0000380 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "17")))
+
+# Class: obo:OHD_0000381 (secondary dentition missing tooth 18)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000381 "A secondary dentition that is missing tooth 18.")
+AnnotationAssertion(dc:contributor obo:OHD_0000381 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000381 "2017-11-10T03:51:28Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000381 "secondary dentition missing tooth 18")
+EquivalentClasses(obo:OHD_0000381 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "18")))
+
+# Class: obo:OHD_0000382 (secondary dentition missing tooth 19)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000382 "A secondary dentition that is missing tooth 19.")
+AnnotationAssertion(dc:contributor obo:OHD_0000382 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000382 "2017-11-10T03:51:33Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000382 "secondary dentition missing tooth 19")
+EquivalentClasses(obo:OHD_0000382 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "19")))
+
+# Class: obo:OHD_0000383 (secondary dentition missing tooth 20)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000383 "A secondary dentition that is missing tooth 20.")
+AnnotationAssertion(dc:contributor obo:OHD_0000383 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000383 "2017-11-10T03:51:38Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000383 "secondary dentition missing tooth 20")
+EquivalentClasses(obo:OHD_0000383 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "20")))
+
+# Class: obo:OHD_0000384 (secondary dentition missing tooth 21)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000384 "A secondary dentition that is missing tooth 21.")
+AnnotationAssertion(dc:contributor obo:OHD_0000384 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000384 "2017-11-10T03:51:45Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000384 "secondary dentition missing tooth 21")
+EquivalentClasses(obo:OHD_0000384 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "21")))
+
+# Class: obo:OHD_0000385 (secondary dentition missing tooth 22)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000385 "A secondary dentition that is missing tooth 22.")
+AnnotationAssertion(dc:contributor obo:OHD_0000385 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000385 "2017-11-10T03:52:02Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000385 "secondary dentition missing tooth 22")
+EquivalentClasses(obo:OHD_0000385 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "22")))
+
+# Class: obo:OHD_0000386 (secondary dentition missing tooth 23)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000386 "A secondary dentition that is missing tooth 23.")
+AnnotationAssertion(dc:contributor obo:OHD_0000386 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000386 "2017-11-10T03:52:06Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000386 "secondary dentition missing tooth 23")
+EquivalentClasses(obo:OHD_0000386 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "23")))
+
+# Class: obo:OHD_0000387 (secondary dentition missing tooth 24)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000387 "A secondary dentition that is missing tooth 24.")
+AnnotationAssertion(dc:contributor obo:OHD_0000387 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000387 "2017-11-10T03:52:13Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000387 "secondary dentition missing tooth 24")
+EquivalentClasses(obo:OHD_0000387 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "24")))
+
+# Class: obo:OHD_0000388 (secondary dentition missing tooth 25)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000388 "A secondary dentition that is missing tooth 25.")
+AnnotationAssertion(dc:contributor obo:OHD_0000388 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000388 "2017-11-10T03:52:16Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000388 "secondary dentition missing tooth 25")
+EquivalentClasses(obo:OHD_0000388 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "25")))
+
+# Class: obo:OHD_0000389 (secondary dentition missing tooth 26)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000389 "A secondary dentition that is missing tooth 26.")
+AnnotationAssertion(dc:contributor obo:OHD_0000389 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000389 "2017-11-10T03:52:20Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000389 "secondary dentition missing tooth 26")
+EquivalentClasses(obo:OHD_0000389 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "26")))
+
+# Class: obo:OHD_0000390 (secondary dentition missing tooth 27)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000390 "A secondary dentition that is missing tooth 27.")
+AnnotationAssertion(dc:contributor obo:OHD_0000390 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000390 "2017-11-10T03:52:25Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000390 "secondary dentition missing tooth 27")
+EquivalentClasses(obo:OHD_0000390 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "27")))
+
+# Class: obo:OHD_0000391 (secondary dentition missing tooth 28)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000391 "A secondary dentition that is missing tooth 28.")
+AnnotationAssertion(dc:contributor obo:OHD_0000391 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000391 "2017-11-10T03:52:36Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000391 "secondary dentition missing tooth 28")
+EquivalentClasses(obo:OHD_0000391 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "28")))
+
+# Class: obo:OHD_0000392 (secondary dentition missing tooth 29)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000392 "A secondary dentition that is missing tooth 29.")
+AnnotationAssertion(dc:contributor obo:OHD_0000392 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000392 "2017-11-10T03:52:40Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000392 "secondary dentition missing tooth 29")
+EquivalentClasses(obo:OHD_0000392 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "29")))
+
+# Class: obo:OHD_0000393 (secondary dentition missing tooth 30)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000393 "A secondary dentition that is missing tooth 30.")
+AnnotationAssertion(dc:contributor obo:OHD_0000393 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000393 "2017-11-10T03:52:48Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000393 "secondary dentition missing tooth 30")
+EquivalentClasses(obo:OHD_0000393 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "30")))
+
+# Class: obo:OHD_0000394 (secondary dentition missing tooth 31)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000394 "A secondary dentition that is missing tooth 31.")
+AnnotationAssertion(dc:contributor obo:OHD_0000394 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000394 "2017-11-10T03:52:54Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000394 "secondary dentition missing tooth 31")
+EquivalentClasses(obo:OHD_0000394 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "31")))
+
+# Class: obo:OHD_0000395 (secondary dentition missing tooth 32)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000395 "A secondary dentition that is missing tooth 32.")
+AnnotationAssertion(dc:contributor obo:OHD_0000395 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000395 "2017-11-10T03:52:59Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000395 "secondary dentition missing tooth 32")
+EquivalentClasses(obo:OHD_0000395 ObjectIntersectionOf(obo:FMA_75152 DataHasValue(obo:OHD_0000234 "32")))
+
 # Class: obo:OHD_0000396 (endodontic procedure finding)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000396 "A dental finding procedure that an endodontic procedure was performed on the patient.")
@@ -4782,6 +5131,19 @@ ObjectPropertyAssertion(obo:IAO_0000136 obo:OHD_0000131 obo:FMA_55706)
 AnnotationAssertion(rdfs:label obo:OHD_0000132 "32"@en)
 ClassAssertion(obo:OHD_0000100 obo:OHD_0000132)
 ObjectPropertyAssertion(obo:IAO_0000136 obo:OHD_0000132 obo:FMA_55707)
+
+# Individual: obo:OHD_0000363 (missing tooth example)
+
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000363 "Bill Duncan:
+This individual is needed so that the organization identifier, missing tooth number, and missing tooth root number annotations/data properties are not removed when the inferred axioms are export using the HermiT reasoner. 
+
+I have no idea why this happening...")
+AnnotationAssertion(obo:OHD_0000273 obo:OHD_0000363 "test organization")
+AnnotationAssertion(dc:contributor obo:OHD_0000363 "http://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(dc:date obo:OHD_0000363 "2017-11-09T22:32:52Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000363 "missing tooth example"@en)
+DataPropertyAssertion(obo:OHD_0000234 obo:OHD_0000363 "1"^^xsd:string)
+DataPropertyAssertion(obo:OHD_0000360 obo:OHD_0000363 "1"^^xsd:string)
 
 # Individual: <https://orcid.org/0000-0001-9625-1899> (Bill Duncan)
 
