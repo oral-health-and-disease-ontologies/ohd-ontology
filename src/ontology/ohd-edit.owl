@@ -1131,6 +1131,8 @@ Declaration(DataProperty(obo:OHD_0000053))
 Declaration(DataProperty(obo:OHD_0000097))
 Declaration(DataProperty(obo:OHD_0000218))
 Declaration(DataProperty(obo:OHD_0000219))
+Declaration(DataProperty(obo:OHD_0000234))
+Declaration(DataProperty(obo:OHD_0000360))
 Declaration(DataProperty(<http://purl.obolibrary.org/obo/ohd.owl/last_dental_visit_date>))
 Declaration(NamedIndividual(obo:FMA_55680))
 Declaration(NamedIndividual(obo:FMA_55681))
@@ -1326,6 +1328,24 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000219 "A data property used to rec
 AnnotationAssertion(dc:contributor obo:OHD_0000219 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000219 "2022-12-06T01:23:31Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000219 "last dental visit date")
+
+# Data Property: obo:OHD_0000234 (missing ADA tooth number)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000234 "A data property whose value is an ADA universal tooth number that represents a tooth which is missing from a dentition.")
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000234 "Bill Duncan 01/03/2017:
+This data property provides a means to query for missing teeth. Since a missing tooth is not a tooth, it is wrong represent a missing tooth as an instance of a tooth. Rather, we represent a missing tooth by respresenting the instance of the dentition and then specify with this data property that the dentition is missing a tooth designated by the universtal tooth number.")
+AnnotationAssertion(dc:contributor obo:OHD_0000234 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000234 "2022-12-06T03:13:50Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000234 "missing ADA tooth number"@en)
+
+# Data Property: obo:OHD_0000360 (missing ADA tooth root number)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000360 "A data property whose value is an ADA universal tooth number that represents the tooth associated with a tooth root that is missing from a dentition.")
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000360 "Bill Duncan 10/18/2017:
+This data property provides a means to query for missing tooth roots. Since a missing tooth root is not a tooth root, it is wrong represent a missing tooth root as an instance of a tooth root. Rather, we represent a missing tooth root by respresenting the instance of the dentition and then specify with this data property that the dentition is missing a tooth root that is associated with the tooth designated by the universtal tooth number.")
+AnnotationAssertion(dc:contributor obo:OHD_0000360 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000360 "2022-12-06T03:15:41Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000360 "missing ADA tooth root number"@en)
 
 # Data Property: <http://purl.obolibrary.org/obo/ohd.owl/last_dental_visit_date> (last dental visit date)
 
