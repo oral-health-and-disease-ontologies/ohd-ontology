@@ -1191,6 +1191,11 @@ Declaration(Class(obo:OHD_0000394))
 Declaration(Class(obo:OHD_0000395))
 Declaration(Class(obo:OHD_0000396))
 Declaration(Class(obo:OHD_0000397))
+Declaration(Class(obo:OHD_0000398))
+Declaration(Class(obo:OHD_0000399))
+Declaration(Class(obo:OHD_0000400))
+Declaration(Class(obo:OHD_0000401))
+Declaration(Class(obo:OHD_0000402))
 Declaration(Class(<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>))
 Declaration(ObjectProperty(obo:BFO_0000050))
 Declaration(ObjectProperty(obo:BFO_0000051))
@@ -3696,8 +3701,12 @@ EquivalentClasses(obo:OHD_0000220 ObjectIntersectionOf(obo:OHD_0000010 ObjectSom
 
 # Class: obo:OHD_0000221 (dental procedure finding)
 
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000221 "A dental finding that a dental procedure has been performed on a patient's mouth.")
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000221 "Bill Duncan 12/27/2016:
+
+This finding can indicate that a procedure was performed even when the output is not observable. For example, by looking a dental record, a provider may find that the last time a patient's teeth were cleaned was two years ago.")
 AnnotationAssertion(dc:contributor obo:OHD_0000221 "https://orcid.org/0000-0001-9625-1899")
-AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000221 "2022-12-06T01:45:45Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000221 "2016-12-27T01:45:45Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000221 "dental procedure finding"@en)
 SubClassOf(obo:OHD_0000221 obo:OHD_0000010)
 
@@ -4938,16 +4947,57 @@ EquivalentClasses(obo:OHD_0000395 ObjectIntersectionOf(obo:FMA_75152 DataHasValu
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000396 "A dental finding procedure that an endodontic procedure was performed on the patient.")
 AnnotationAssertion(dc:contributor obo:OHD_0000396 "https://orcid.org/0000-0001-9625-1899")
-AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000396 "2022-12-06T01:46:17Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000396 "2017-11-21T03:27:27Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000396 "endodontic procedure finding"@en)
 EquivalentClasses(obo:OHD_0000396 ObjectIntersectionOf(obo:OHD_0000221 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000003)))
 
 # Class: obo:OHD_0000397 (prosthodontics procedure finding)
 
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000397 "A dental finding procedure that procedure a prosthodontics procedure was performed on the patient.")
 AnnotationAssertion(dc:contributor obo:OHD_0000397 "https://orcid.org/0000-0001-9625-1899")
-AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000397 "2022-12-06T01:47:38Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000397 "2017-11-21T03:27:44Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000397 "prosthodontics procedure finding"@en)
-SubClassOf(obo:OHD_0000397 obo:OHD_0000221)
+EquivalentClasses(obo:OHD_0000397 ObjectIntersectionOf(obo:OHD_0000221 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000245)))
+
+# Class: obo:OHD_0000398 (surgical dental procedure finding)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000398 "A dental finding procedure that a surgical dental procedure was performed on the patient.")
+AnnotationAssertion(dc:contributor obo:OHD_0000398 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000398 "2017-11-21T03:28:02Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000398 "surgical dental procedure finding"@en)
+EquivalentClasses(obo:OHD_0000398 ObjectIntersectionOf(obo:OHD_0000221 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000044)))
+
+# Class: obo:OHD_0000399 (tooth restoration procedure finding)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000399 "A dental finding procedure that tooth restoration procedure was performed on the patient.")
+AnnotationAssertion(dc:contributor obo:OHD_0000399 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000399 "2017-11-21T03:28:33Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000399 "tooth restoration procedure finding"@en)
+EquivalentClasses(obo:OHD_0000399 ObjectIntersectionOf(obo:OHD_0000221 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000004)))
+
+# Class: obo:OHD_0000400 (crown restoration procedure finding)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000400 "A dental finding procedure that a crown restoration procedure was performed on the patient.")
+AnnotationAssertion(dc:contributor obo:OHD_0000400 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000400 "2017-11-21T03:28:47Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000400 "crown restoration procedure finding"@en)
+EquivalentClasses(obo:OHD_0000400 ObjectIntersectionOf(obo:OHD_0000399 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000033)))
+
+# Class: obo:OHD_0000401 (intracoronal restoration procedure finding)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000401 "A dental finding procedure that an intracoronal restoration procedure was performed on the patient.")
+AnnotationAssertion(dc:contributor obo:OHD_0000401 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000401 "2017-11-21T03:29:24Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000401 "intracoronal restoration procedure finding"@en)
+EquivalentClasses(obo:OHD_0000401 ObjectIntersectionOf(obo:OHD_0000399 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000006)))
+
+# Class: obo:OHD_0000402 (veneer restoration procedure finding)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000402 "A dental finding procedure that a veneer restoration procedure was performed on the patient.")
+AnnotationAssertion(dc:contributor obo:OHD_0000402 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000402 "2017-11-21T03:29:54Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000402 "veneer restoration procedure finding"@en)
+EquivalentClasses(obo:OHD_0000402 ObjectIntersectionOf(obo:OHD_0000399 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000027)))
 
 # Class: <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> (obsolete class)
 
