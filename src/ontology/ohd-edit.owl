@@ -1066,6 +1066,7 @@ Declaration(Class(obo:OHD_0000244))
 Declaration(Class(obo:OHD_0000245))
 Declaration(Class(obo:OHD_0000246))
 Declaration(Class(obo:OHD_0000247))
+Declaration(Class(obo:OHD_0000248))
 Declaration(Class(obo:OHD_0000249))
 Declaration(Class(obo:OHD_0000250))
 Declaration(Class(obo:OHD_0000251))
@@ -1076,11 +1077,24 @@ Declaration(Class(obo:OHD_0000255))
 Declaration(Class(obo:OHD_0000256))
 Declaration(Class(obo:OHD_0000257))
 Declaration(Class(obo:OHD_0000259))
+Declaration(Class(obo:OHD_0000278))
+Declaration(Class(obo:OHD_0000279))
+Declaration(Class(obo:OHD_0000280))
 Declaration(Class(obo:OHD_0000281))
+Declaration(Class(obo:OHD_0000283))
+Declaration(Class(obo:OHD_0000285))
 Declaration(Class(obo:OHD_0000286))
 Declaration(Class(obo:OHD_0000289))
 Declaration(Class(obo:OHD_0000291))
 Declaration(Class(obo:OHD_0000292))
+Declaration(Class(obo:OHD_0000293))
+Declaration(Class(obo:OHD_0000294))
+Declaration(Class(obo:OHD_0000295))
+Declaration(Class(obo:OHD_0000296))
+Declaration(Class(obo:OHD_0000297))
+Declaration(Class(obo:OHD_0000298))
+Declaration(Class(obo:OHD_0000299))
+Declaration(Class(obo:OHD_0000300))
 Declaration(Class(obo:OHD_0000301))
 Declaration(Class(obo:OHD_0000302))
 Declaration(Class(obo:OHD_0000303))
@@ -1089,6 +1103,7 @@ Declaration(Class(obo:OHD_0000305))
 Declaration(Class(obo:OHD_0000306))
 Declaration(Class(obo:OHD_0000307))
 Declaration(Class(obo:OHD_0000308))
+Declaration(Class(obo:OHD_0000309))
 Declaration(Class(obo:OHD_0000310))
 Declaration(Class(obo:OHD_0000311))
 Declaration(Class(obo:OHD_0000312))
@@ -1130,12 +1145,15 @@ Declaration(Class(obo:OHD_0000347))
 Declaration(Class(obo:OHD_0000348))
 Declaration(Class(obo:OHD_0000349))
 Declaration(Class(obo:OHD_0000350))
+Declaration(Class(obo:OHD_0000351))
 Declaration(Class(obo:OHD_0000352))
 Declaration(Class(obo:OHD_0000353))
 Declaration(Class(obo:OHD_0000354))
 Declaration(Class(obo:OHD_0000355))
 Declaration(Class(obo:OHD_0000356))
 Declaration(Class(obo:OHD_0000357))
+Declaration(Class(obo:OHD_0000358))
+Declaration(Class(obo:OHD_0000359))
 Declaration(Class(obo:OHD_0000396))
 Declaration(Class(obo:OHD_0000397))
 Declaration(Class(<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>))
@@ -3807,6 +3825,14 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date>
 AnnotationAssertion(rdfs:label obo:OHD_0000247 "removable prosthodontics procedure"@en)
 SubClassOf(obo:OHD_0000247 obo:OHD_0000245)
 
+# Class: obo:OHD_0000248 (dental implant procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000248 "A fixed prosthodontics procedure in which a dental implant is permanently attached to the jaw.")
+AnnotationAssertion(dc:contributor obo:OHD_0000248 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000248 "2022-12-06T04:37:27Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000248 "dental implant procedure"@en)
+EquivalentClasses(obo:OHD_0000248 ObjectIntersectionOf(obo:OHD_0000246 ObjectUnionOf(ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000259) ObjectSomeValuesFrom(obo:OBI_0000299 ObjectSomeValuesFrom(obo:BFO_0000050 obo:OHD_0000259)))))
+
 # Class: obo:OHD_0000249 (complete denture procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000249 "A removable prosthodontics procedure in which the prosthesis being constructed or fitted replaces all of the patient's teeth.")
@@ -3889,6 +3915,41 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date>
 AnnotationAssertion(rdfs:label obo:OHD_0000259 "dental implant"@en)
 SubClassOf(obo:OHD_0000259 obo:OHD_0000302)
 
+# Class: obo:OHD_0000278 (dental implant body)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000278 "A prosthesis that forms the part of a prosthetic tooth  that is in direct contact with the bone and actually provides the fixation to the bone.")
+AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000278 "http://www.ptcdental.com/dentaldictionary/i/implant-body/")
+AnnotationAssertion(dc:contributor obo:OHD_0000278 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000278 "2022-12-06T04:22:55Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000278 "dental implant body"@en)
+SubClassOf(obo:OHD_0000278 obo:OHD_0000301)
+SubClassOf(obo:OHD_0000278 ObjectSomeValuesFrom(obo:BFO_0000050 obo:OHD_0000259))
+
+# Class: obo:OHD_0000279 (dental implant abutment)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000279 "A prosthesis that forms the part of a prosthetic tooth to which the restoration is attached and supports the restoration.")
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000279 "Bill Duncan 07/26/2017:
+Implant abutments are conical-shaped, and are screwed into a dental implant integrated into the jawbone. Today, the most common form of implant abutments are made of tooth colored material to add a more natural look to the crown that covers the abutment. This type of abutment allows the crown to blend more appropriately with adjacent teeth as is the case with the high noble metal resin crowns and porcelain-fused to noble metal crowns.
+
+(https://www.patientconnect365.com/DentalHealthTopics/Article/Abutment__Dental_Procedure_Code_Description)")
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000279 "Bill Duncan 7/26/2017:
+Most often the dental implant abutment is an intermediate component between the implant body and the restoration.")
+AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000279 "http://www.ptcdental.com/dentaldictionary/a/abutment/")
+AnnotationAssertion(dc:contributor obo:OHD_0000279 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000279 "2022-12-06T04:19:43Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000279 "dental implant abutment"@en)
+SubClassOf(obo:OHD_0000279 obo:OHD_0000301)
+SubClassOf(obo:OHD_0000279 ObjectSomeValuesFrom(obo:BFO_0000050 obo:OHD_0000259))
+
+# Class: obo:OHD_0000280 (dental implant crown)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000280 "A prosthesis that forms the part of a prosthetic tooth which provides the prosthetic tooth with the functionallity and appearance of a natural tooth.")
+AnnotationAssertion(dc:contributor obo:OHD_0000280 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000280 "2022-12-06T04:27:20Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000280 "dental implant crown"@en)
+SubClassOf(obo:OHD_0000280 obo:OHD_0000301)
+SubClassOf(obo:OHD_0000280 ObjectSomeValuesFrom(obo:BFO_0000050 obo:OHD_0000259))
+
 # Class: obo:OHD_0000281 (fixed prothesis)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000281 "A prosthesis that is permanently attached attached to some part of the mouth.")
@@ -3898,6 +3959,24 @@ AnnotationAssertion(dc:contributor obo:OHD_0000281 "https://orcid.org/0000-0001-
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000281 "2022-12-06T04:00:32Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000281 "fixed prothesis"@en)
 SubClassOf(obo:OHD_0000281 obo:OHD_0000301)
+
+# Class: obo:OHD_0000283 (subperiosteal implant framework)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000283 "A dental implant body fabricated to fit the supporting areas of mandible or maxilla with permucosal extensions for support and attachment of abutments.")
+AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000283 "http://dentalimplants.uchc.edu/about/types.html")
+AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000283 "http://implantdirect.co/ai/implantcatalogpdf/glossary.pdf")
+AnnotationAssertion(dc:contributor obo:OHD_0000283 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000283 "2022-12-06T04:25:20Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000283 "subperiosteal implant framework"@en)
+SubClassOf(obo:OHD_0000283 obo:OHD_0000278)
+
+# Class: obo:OHD_0000285 (mini dental implant body)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000285 "A dental implant body that is less that 3mm in diameter.")
+AnnotationAssertion(dc:contributor obo:OHD_0000285 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000285 "2022-12-06T04:24:40Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000285 "mini dental implant body"@en)
+SubClassOf(obo:OHD_0000285 obo:OHD_0000278)
 
 # Class: obo:OHD_0000286 (pulp capping procedure)
 
@@ -3932,6 +4011,77 @@ AnnotationAssertion(dc:contributor obo:OHD_0000292 "https://orcid.org/0000-0001-
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000292 "2022-12-06T04:15:07Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000292 "removable mandibular partial denture procedure"@en)
 SubClassOf(obo:OHD_0000292 obo:OHD_0000250)
+
+# Class: obo:OHD_0000293 (interim dental implant body)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000293 "A dental implant body that is placed in the mouth for short duration of time in order to allow adequate time for healing or completion of definitive treatment planning.")
+AnnotationAssertion(dc:contributor obo:OHD_0000293 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000293 "2022-12-06T04:24:01Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000293 "interim dental implant body"@en)
+SubClassOf(obo:OHD_0000293 obo:OHD_0000278)
+
+# Class: obo:OHD_0000294 (ceramic implant crown)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000294 "A dental implant crown constructed out of ceramic.")
+AnnotationAssertion(dc:contributor obo:OHD_0000294 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000294 "2022-12-06T04:28:56Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000294 "ceramic implant crown"@en)
+SubClassOf(obo:OHD_0000294 obo:OHD_0000280)
+SubClassOf(obo:OHD_0000294 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000135))
+
+# Class: obo:OHD_0000295 (porcelain fused to metal impant crown)
+
+AnnotationAssertion(dc:contributor obo:OHD_0000295 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000295 "2022-12-06T04:32:56Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000295 "porcelain fused to metal impant crown"@en)
+SubClassOf(obo:OHD_0000295 obo:OHD_0000280)
+SubClassOf(obo:OHD_0000295 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000035))
+SubClassOf(obo:OHD_0000295 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000048))
+
+# Class: obo:OHD_0000296 (dental implant crown attachment procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000296 "A fixed prosthodontics procedure during which an artificial crown is attached to an dental implant abutment.")
+AnnotationAssertion(dc:contributor obo:OHD_0000296 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000296 "2022-12-06T04:43:23Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000296 "dental implant crown attachment procedure"@en)
+SubClassOf(obo:OHD_0000296 obo:OHD_0000246)
+SubClassOf(obo:OHD_0000296 ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000280))
+
+# Class: obo:OHD_0000297 (ceramic dental implant crown attachement procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000297 "A dental implant crown attachment procedure in which the implant crown is composed of ceramic.")
+AnnotationAssertion(dc:contributor obo:OHD_0000297 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000297 "2022-12-06T04:44:43Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000297 "ceramic dental implant crown attachement procedure"@en)
+SubClassOf(obo:OHD_0000297 obo:OHD_0000296)
+SubClassOf(obo:OHD_0000297 ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000294))
+
+# Class: obo:OHD_0000298 (porcelain fused to metal dental implant crown attachement procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000298 "A dental implant crown attachment procedure in which the implant crown is composed of porcelain fused to metal.")
+AnnotationAssertion(dc:contributor obo:OHD_0000298 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000298 "2022-12-06T04:46:37Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000298 "porcelain fused to metal dental implant crown attachement procedure"@en)
+SubClassOf(obo:OHD_0000298 obo:OHD_0000296)
+SubClassOf(obo:OHD_0000298 ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000295))
+
+# Class: obo:OHD_0000299 (dental implant abutment attachement procedure)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000299 "A fixed prosthodontics procedure during which an abutment is attached to an implant body.")
+AnnotationAssertion(dc:contributor obo:OHD_0000299 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000299 "2022-12-06T04:39:09Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000299 "dental implant abutment attachement procedure"@en)
+SubClassOf(obo:OHD_0000299 obo:OHD_0000246)
+SubClassOf(obo:OHD_0000299 ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000279))
+
+# Class: obo:OHD_0000300 (dental implant retainer attachement procedure for fixed partial denture)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000300 "A dental implant abutment attachment procedure during which a retainer for a fixed partial denture is attached to an implant body.")
+AnnotationAssertion(dc:contributor obo:OHD_0000300 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000300 "2022-12-06T04:40:12Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000300 "dental implant retainer attachement procedure for fixed partial denture"@en)
+SubClassOf(obo:OHD_0000300 obo:OHD_0000299)
+SubClassOf(obo:OHD_0000300 ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000358))
 
 # Class: obo:OHD_0000301 (prosthesis)
 
@@ -3994,6 +4144,14 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000308 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000308 "Posterior Tooth")
 EquivalentClasses(obo:OHD_0000308 ObjectUnionOf(obo:FMA_55637 obo:FMA_55638))
 SubClassOf(obo:OHD_0000308 obo:FMA_12516)
+
+# Class: obo:OHD_0000309 (dental implant retainer attachement procedure for ceramic fixed partial denture)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000309 "A dental implant retainer attachement procedure for fixed partial denture in which the retainer being attached to the implant body is to be used as a retainer for a ceramic fixed partial denture.")
+AnnotationAssertion(dc:contributor obo:OHD_0000309 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000309 "2022-12-06T04:41:10Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000309 "dental implant retainer attachement procedure for ceramic fixed partial denture"@en)
+SubClassOf(obo:OHD_0000309 obo:OHD_0000300)
 
 # Class: obo:OHD_0000310 (partial denture)
 
@@ -4336,6 +4494,14 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000350 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000350 "temporary prosthetic role")
 SubClassOf(obo:OHD_0000350 obo:OHD_0000314)
 
+# Class: obo:OHD_0000351 (dental implant retainer attachement procedure for porcelain fused to metal fixed partial denture)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000351 "A dental implant retainer attachement procedure for fixed partial denture in which the retainer being attached to the implant body is to be used as a retainer for a porcelain fused to metal fixed partial denture.")
+AnnotationAssertion(dc:contributor obo:OHD_0000351 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000351 "2022-12-06T04:42:02Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000351 "dental implant retainer attachement procedure for porcelain fused to metal fixed partial denture"@en)
+SubClassOf(obo:OHD_0000351 obo:OHD_0000300)
+
 # Class: obo:OHD_0000352 (ceramic fixed partial denture)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000352 "A fixed partial denture constructed out of ceramic.")
@@ -4383,6 +4549,23 @@ AnnotationAssertion(dc:contributor obo:OHD_0000357 "https://orcid.org/0000-0001-
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000357 "2022-12-06T03:51:23Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000357 "ceramic tooth supported partial denture"@en)
 SubClassOf(obo:OHD_0000357 obo:OHD_0000311)
+
+# Class: obo:OHD_0000358 (dental implant fixed partial denture retainer)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000358 "A dental implant abutment that serves as a retainer for a fixed partial denture.")
+AnnotationAssertion(dc:contributor obo:OHD_0000358 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000358 "2022-12-06T04:22:08Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000358 "dental implant fixed partial denture retainer"@en)
+SubClassOf(obo:OHD_0000358 obo:OHD_0000279)
+
+# Class: obo:OHD_0000359 (high noble metal implant crown)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000359 "A dental implant crown constructed out of high noble metal.")
+AnnotationAssertion(dc:contributor obo:OHD_0000359 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000359 "2022-12-06T04:30:02Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000359 "high noble metal implant crown"@en)
+SubClassOf(obo:OHD_0000359 obo:OHD_0000280)
+SubClassOf(obo:OHD_0000359 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000147))
 
 # Class: obo:OHD_0000396 (endodontic procedure finding)
 
