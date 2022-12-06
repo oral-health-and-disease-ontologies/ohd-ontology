@@ -2031,6 +2031,7 @@ Changed \"A specific healthcare activity\" to \"A health care encounter in which
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000002 "Titus Schleyer 1/14/14: adapted definition slightly")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000002 "PERSON:Pedro Cott"^^xsd:string)
 AnnotationAssertion(rdfs:label obo:OHD_0000002 "dental procedure"@en)
+EquivalentClasses(obo:OHD_0000002 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000190))
 SubClassOf(obo:OHD_0000002 obo:OGMS_0000097)
 SubClassOf(obo:OHD_0000002 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000052))
 
@@ -2057,15 +2058,24 @@ A tooth restoration procedure achieves some tooth restoration objective specific
 1. Added \"either a whole tooth or part of a tooth\", since implants and pontics are also restoration procedures.
 
 2. Removed \"that has been lost due to disease, trauma or other causes\". This is information about why a restoration procedure may be performed, not necessarily what such a procedure is.")
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000004 "Bill Duncan:
+Removed axiom for tooth restoration procedure that has specified output some \"has_part some  (Tooth and ('has role' some 'tooth to be restored role'))\". 
+
+My reasons for doing this are:
+1) the 'has role' axiom looks wrong. The restoration process realizes the role, but it sounds odd for the process to output the role.
+
+2) Since the tooth restoration process outputs a restored tooth, a restored tooth by definition/axiom has part some (tooth and dental restoration material).")
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000004 "Mosby's Dental Dictionary 2nd ed"^^xsd:string)
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000004 "Titus Schleyer 3/14/2014: slightly edited definition")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000004 "PERSON:Alan Ruttenberg")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000004 "PERSON:Pedro Cott"^^xsd:string)
+AnnotationAssertion(dc:contributor obo:OHD_0000004 "https://orcid.org/0000-0001-9625-1899")
 AnnotationAssertion(rdfs:label obo:OHD_0000004 "tooth restoration procedure"@en)
 SubClassOf(obo:OHD_0000004 obo:OHD_0000002)
 SubClassOf(obo:OHD_0000004 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:FMA_12516) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000000) ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000189)))
 SubClassOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000007))
-SubClassOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:OBI_0000299 ObjectIntersectionOf(obo:OHD_0000189 ObjectSomeValuesFrom(<http://www.obofoundry.org/ro/ro.owl#has_part> ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000007))))))
+SubClassOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:BFO_0000057 obo:FMA_12516))
+SubClassOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:BFO_0000057 obo:OHD_0000000))
 SubClassOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:OBI_0000417 obo:OBI_0000434))
 
 # Class: obo:OHD_0000005 (surgical procedure)
@@ -2087,10 +2097,6 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000006 "PERSON: Alan Ruttenberg")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000006 "filling restoration")
 AnnotationAssertion(rdfs:label obo:OHD_0000006 "intracoronal restoration procedure"@en)
 SubClassOf(obo:OHD_0000006 obo:OHD_0000004)
-SubClassOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000190))
-SubClassOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:BFO_0000057 obo:FMA_12516))
-SubClassOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:BFO_0000057 obo:NCBITaxon_9606))
-SubClassOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:BFO_0000057 obo:OHD_0000000))
 
 # Class: obo:OHD_0000007 (tooth to be restored role)
 
@@ -2319,8 +2325,6 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000033 "A tooth restoration procedu
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000033 "Titus Schleyer 1/14/2014: adapted definition")
 AnnotationAssertion(rdfs:label obo:OHD_0000033 "crown restoration procedure"@en)
 SubClassOf(obo:OHD_0000033 obo:OHD_0000004)
-SubClassOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000057 obo:FMA_12516))
-SubClassOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000057 obo:NCBITaxon_9606))
 
 # Class: obo:OHD_0000034 (gold foil dental restoration material)
 
