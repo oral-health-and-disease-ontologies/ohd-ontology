@@ -1033,8 +1033,11 @@ Declaration(Class(obo:OHD_0000206))
 Declaration(Class(obo:OHD_0000207))
 Declaration(Class(obo:OHD_0000208))
 Declaration(Class(obo:OHD_0000210))
+Declaration(Class(obo:OHD_0000211))
 Declaration(Class(obo:OHD_0000212))
 Declaration(Class(obo:OHD_0000213))
+Declaration(Class(obo:OHD_0000214))
+Declaration(Class(obo:OHD_0000215))
 Declaration(Class(obo:OHD_0000301))
 Declaration(Class(obo:OHD_0000302))
 Declaration(Class(obo:OHD_0000303))
@@ -1095,6 +1098,10 @@ Declaration(DataProperty(obo:OHD_0000014))
 Declaration(DataProperty(obo:OHD_0000015))
 Declaration(DataProperty(obo:OHD_0000050))
 Declaration(DataProperty(obo:OHD_0000053))
+Declaration(DataProperty(obo:OHD_0000097))
+Declaration(DataProperty(obo:OHD_0000218))
+Declaration(DataProperty(obo:OHD_0000219))
+Declaration(DataProperty(<http://purl.obolibrary.org/obo/ohd.owl/last_dental_visit_date>))
 Declaration(NamedIndividual(obo:FMA_55680))
 Declaration(NamedIndividual(obo:FMA_55681))
 Declaration(NamedIndividual(obo:FMA_55682))
@@ -1160,10 +1167,12 @@ Declaration(NamedIndividual(obo:OHD_0000129))
 Declaration(NamedIndividual(obo:OHD_0000130))
 Declaration(NamedIndividual(obo:OHD_0000131))
 Declaration(NamedIndividual(obo:OHD_0000132))
+Declaration(NamedIndividual(<https://orcid.org/0000-0001-9625-1899>))
 Declaration(AnnotationProperty(obo:OBI_0001847))
 Declaration(AnnotationProperty(obo:OHD_0000065))
 Declaration(AnnotationProperty(obo:OHD_0000092))
 Declaration(AnnotationProperty(obo:OHD_0000209))
+Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#creation_date>))
 Declaration(Datatype(xsd:date))
 ############################
 #   Annotation Properties
@@ -1193,10 +1202,6 @@ AnnotationAssertion(rdfs:label obo:OHD_0000209 "duplicated"@en)
 ############################
 #   Object Properties
 ############################
-
-# Object Property: obo:FMA_85868 (member of)
-
-TransitiveObjectProperty(obo:FMA_85868)
 
 # Object Property: obo:OHD_0000091 (is dental restoration of)
 
@@ -1270,6 +1275,34 @@ DataPropertyRange(obo:OHD_0000050 xsd:date)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000053 "a data property that relates an individual to the data source that was used to extract information about the individual")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000053 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000053 "data source")
+
+# Data Property: obo:OHD_0000097 (has patient activity status)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000097 "A data property in which the values provide information as to whether a patient is actively being cared for by the practicet; takes values \"active\" and \"inactive\".")
+AnnotationAssertion(dc:contributor obo:OHD_0000097 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000097 "2022-12-06T01:11:57Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000097 "has patient activity status")
+
+# Data Property: obo:OHD_0000218 (first dental visit date)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000218 "A data property used to record the date of a patient's first dental visit.")
+AnnotationAssertion(dc:contributor obo:OHD_0000218 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000218 "2022-12-06T01:22:17Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000218 "first dental visit date")
+
+# Data Property: obo:OHD_0000219 (last dental visit date)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000219 "A data property used to record the date of a patient's first dental visit.")
+AnnotationAssertion(dc:contributor obo:OHD_0000219 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000219 "2022-12-06T01:23:31Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000219 "last dental visit date")
+
+# Data Property: <http://purl.obolibrary.org/obo/ohd.owl/last_dental_visit_date> (last dental visit date)
+
+AnnotationAssertion(obo:IAO_0000115 <http://purl.obolibrary.org/obo/ohd.owl/last_dental_visit_date> "A data property used to record the last date on which a patient had a dental visit.")
+AnnotationAssertion(dc:contributor <http://purl.obolibrary.org/obo/ohd.owl/last_dental_visit_date> "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> <http://purl.obolibrary.org/obo/ohd.owl/last_dental_visit_date> "2022-12-06T01:25:28Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/ohd.owl/last_dental_visit_date> "last dental visit date")
 
 
 
@@ -3404,6 +3437,14 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000210 "a dental health care provid
 AnnotationAssertion(rdfs:label obo:OHD_0000210 "dental assistant"@en)
 EquivalentClasses(obo:OHD_0000210 ObjectIntersectionOf(obo:OHD_0000051 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000165)))
 
+# Class: obo:OHD_0000211 (dental practice facility)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000211 "A physical structure, such as a building, in which dental care is provided by licensed providers.")
+AnnotationAssertion(dc:contributor obo:OHD_0000211 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000211 "2022-12-06T01:28:31Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000211 "dental practice facility"@en)
+SubClassOf(obo:OHD_0000211 obo:BFO_0000004)
+
 # Class: obo:OHD_0000212 (health care provider role)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000212 "a role that inheres in a person who is licensed to provide health care")
@@ -3418,6 +3459,21 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000213 "a dentist that bears a pros
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000213 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000213 "prosthodontist"@en)
 EquivalentClasses(obo:OHD_0000213 ObjectIntersectionOf(obo:OHD_0000018 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000177)))
+
+# Class: obo:OHD_0000214 (health care organization employee role)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000214 "A role borne by a person who is employed by health care organization.")
+AnnotationAssertion(dc:contributor obo:OHD_0000214 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000214 "2022-12-06T01:30:55Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000214 "health care organization employee role"@en)
+SubClassOf(obo:OHD_0000214 obo:BFO_0000023)
+
+# Class: obo:OHD_0000215 (health care office staff role)
+
+AnnotationAssertion(dc:contributor obo:OHD_0000215 "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000215 "2022-12-06T01:32:39Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000215 "health care office staff role"@en)
+SubClassOf(obo:OHD_0000215 obo:OHD_0000214)
 
 # Class: obo:OHD_0000301 (prosthesis)
 
@@ -4026,6 +4082,12 @@ ObjectPropertyAssertion(obo:IAO_0000136 obo:OHD_0000131 obo:FMA_55706)
 AnnotationAssertion(rdfs:label obo:OHD_0000132 "32"@en)
 ClassAssertion(obo:OHD_0000100 obo:OHD_0000132)
 ObjectPropertyAssertion(obo:IAO_0000136 obo:OHD_0000132 obo:FMA_55707)
+
+# Individual: <https://orcid.org/0000-0001-9625-1899> (Bill Duncan)
+
+AnnotationAssertion(dc:contributor <https://orcid.org/0000-0001-9625-1899> "https://orcid.org/0000-0001-9625-1899"^^xsd:string)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> <https://orcid.org/0000-0001-9625-1899> "2022-12-06T01:13:09Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label <https://orcid.org/0000-0001-9625-1899> "Bill Duncan")
 
 
 SubObjectPropertyOf(ObjectPropertyChain(obo:BFO_0000053 obo:BFO_0000054) obo:BFO_0000056)
