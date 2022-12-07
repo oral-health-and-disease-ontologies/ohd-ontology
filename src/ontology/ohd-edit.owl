@@ -1655,33 +1655,27 @@ SubClassOf(obo:CDT_0002644 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000095)
 
 # Class: obo:CDT_0002650 (billing code D2650: inlay - resin-based composite - one surface)
 
-SubClassOf(obo:CDT_0002650 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000133))
-SubClassOf(obo:CDT_0002650 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000036 ObjectExactCardinality(1 obo:OHD_0000091 obo:FMA_no_fmaid_Surface_enamel_of_tooth))))
+SubClassOf(obo:CDT_0002650 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000096))
 
 # Class: obo:CDT_0002651 (billing code D2651: inlay - resin-based composite - two surfaces)
 
-SubClassOf(obo:CDT_0002651 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000133))
-SubClassOf(obo:CDT_0002651 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000036 ObjectExactCardinality(2 obo:OHD_0000091 obo:FMA_no_fmaid_Surface_enamel_of_tooth))))
+SubClassOf(obo:CDT_0002651 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000096))
 
 # Class: obo:CDT_0002652 (billing code D2652: inlay - resin-based composite - three or more surfaces)
 
-SubClassOf(obo:CDT_0002652 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000133))
-SubClassOf(obo:CDT_0002652 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000036 ObjectMinCardinality(3 obo:OHD_0000091 obo:FMA_no_fmaid_Surface_enamel_of_tooth))))
+SubClassOf(obo:CDT_0002652 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000096))
 
 # Class: obo:CDT_0002662 (billing code D2662: onlay - resin-based composite - two surfaces)
 
-SubClassOf(obo:CDT_0002662 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000134))
-SubClassOf(obo:CDT_0002662 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000036 ObjectExactCardinality(2 obo:OHD_0000091 obo:FMA_no_fmaid_Surface_enamel_of_tooth))))
+SubClassOf(obo:CDT_0002662 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000169))
 
 # Class: obo:CDT_0002663 (billing code D2663: onlay - resin-based composite - three surfaces)
 
-SubClassOf(obo:CDT_0002663 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000134))
-SubClassOf(obo:CDT_0002663 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000036 ObjectExactCardinality(3 obo:OHD_0000091 obo:FMA_no_fmaid_Surface_enamel_of_tooth))))
+SubClassOf(obo:CDT_0002663 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000169))
 
 # Class: obo:CDT_0002664 (billing code D2664: onlay - resin-based composite - four or more surfaces)
 
-SubClassOf(obo:CDT_0002664 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000134))
-SubClassOf(obo:CDT_0002664 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000036 ObjectMinCardinality(4 obo:OHD_0000091 obo:FMA_no_fmaid_Surface_enamel_of_tooth))))
+SubClassOf(obo:CDT_0002664 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000169))
 
 # Class: obo:CDT_0002710 (billing code D2710: crown - resin-based composite (indirect))
 
@@ -1765,7 +1759,7 @@ SubClassOf(obo:CDT_1000008 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectUnionOf(ob
 
 # Class: obo:CDT_1000010 (billing code for inlay/onlay restorations - resin-based composite)
 
-SubClassOf(obo:CDT_1000010 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(ObjectUnionOf(obo:OHD_0000133 obo:OHD_0000134) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036))))
+SubClassOf(obo:CDT_1000010 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectUnionOf(obo:OHD_0000096 obo:OHD_0000169)))
 
 # Class: obo:CDT_1000013 (billing code for resin-based composite restorations - direct)
 
@@ -3285,12 +3279,12 @@ AnnotationAssertion(dc:contributor obo:OHD_0000168 "https://orcid.org/0000-0001-
 AnnotationAssertion(rdfs:label obo:OHD_0000168 "unerupted tooth finding")
 SubClassOf(obo:OHD_0000168 obo:OHD_0000010)
 
-# Class: obo:OHD_0000169 (resin onlay restoration)
+# Class: obo:OHD_0000169 (resin onlay restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000169 "An onlay restoration procedure that uses resin to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000169 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000169 "resin onlay restoration procedure")
-AnnotationAssertion(rdfs:label obo:OHD_0000169 "resin onlay restoration")
+AnnotationAssertion(rdfs:label obo:OHD_0000169 "resin onlay restoration procedure")
 EquivalentClasses(obo:OHD_0000169 ObjectIntersectionOf(obo:OHD_0000134 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036)))
 
 # Class: obo:OHD_0000170 (dental therapist role)
