@@ -59,6 +59,10 @@ Declaration(Class(obo:CDT_0002330))
 Declaration(Class(obo:CDT_0002331))
 Declaration(Class(obo:CDT_0002332))
 Declaration(Class(obo:CDT_0002335))
+Declaration(Class(obo:CDT_0002385))
+Declaration(Class(obo:CDT_0002386))
+Declaration(Class(obo:CDT_0002387))
+Declaration(Class(obo:CDT_0002388))
 Declaration(Class(obo:CDT_0002390))
 Declaration(Class(obo:CDT_0002391))
 Declaration(Class(obo:CDT_0002392))
@@ -1543,55 +1547,76 @@ SubClassOf(obo:CDT_0002161 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectMinCardina
 # Class: obo:CDT_0002330 (billing code D2330: resin-based composite - one surface, anterior)
 
 SubClassOf(obo:CDT_0002330 obo:CDT_1000013)
-SubClassOf(obo:CDT_0002330 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307))))
-SubClassOf(obo:CDT_0002330 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000036 ObjectExactCardinality(1 obo:OHD_0000091 obo:FMA_no_fmaid_Surface_enamel_of_tooth))))
+SubClassOf(obo:CDT_0002330 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307)))
 
 # Class: obo:CDT_0002331 (billing code D2331: resin-based composite - two surfaces, anterior)
 
 SubClassOf(obo:CDT_0002331 obo:CDT_1000013)
-SubClassOf(obo:CDT_0002331 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307))))
-SubClassOf(obo:CDT_0002331 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000036 ObjectExactCardinality(2 obo:OHD_0000091 obo:FMA_no_fmaid_Surface_enamel_of_tooth))))
+SubClassOf(obo:CDT_0002331 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:IAO_0000136 owl:Thing) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307)))
 
 # Class: obo:CDT_0002332 (billing code D2332: resin-based composite - three surfaces, anterior)
 
 SubClassOf(obo:CDT_0002332 obo:CDT_1000013)
-SubClassOf(obo:CDT_0002332 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307))))
-SubClassOf(obo:CDT_0002332 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000036 ObjectExactCardinality(3 obo:OHD_0000091 obo:FMA_no_fmaid_Surface_enamel_of_tooth))))
+SubClassOf(obo:CDT_0002332 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:IAO_0000136 owl:Thing) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307)))
 
 # Class: obo:CDT_0002335 (billing code D2335: resin-based composite - four or more surfaces  or involving incisal angle (anterior))
 
 SubClassOf(obo:CDT_0002335 obo:CDT_1000013)
-SubClassOf(obo:CDT_0002335 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307))))
-SubClassOf(obo:CDT_0002335 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000036 ObjectMinCardinality(4 obo:OHD_0000091 obo:FMA_no_fmaid_Surface_enamel_of_tooth))))
+SubClassOf(obo:CDT_0002335 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:IAO_0000136 owl:Thing) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307)))
+
+# Class: obo:CDT_0002385 (obo:CDT_0002385)
+
+SubClassOf(obo:CDT_0002385 obo:CDT_1000013)
+SubClassOf(obo:CDT_0002385 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000042))
+SubClassOf(obo:CDT_0002385 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000308)))
+
+# Class: obo:CDT_0002386 (obo:CDT_0002386)
+
+SubClassOf(obo:CDT_0002386 obo:CDT_1000013)
+SubClassOf(obo:CDT_0002386 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000042))
+SubClassOf(obo:CDT_0002386 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000308)))
+
+# Class: obo:CDT_0002387 (obo:CDT_0002387)
+
+SubClassOf(obo:CDT_0002387 obo:CDT_1000013)
+SubClassOf(obo:CDT_0002387 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000042))
+SubClassOf(obo:CDT_0002387 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000308)))
+
+# Class: obo:CDT_0002388 (obo:CDT_0002388)
+
+SubClassOf(obo:CDT_0002388 obo:CDT_1000013)
+SubClassOf(obo:CDT_0002388 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000042))
+SubClassOf(obo:CDT_0002388 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000308)))
 
 # Class: obo:CDT_0002390 (billing code D2390: resin-based composite crown, anterior)
 
 SubClassOf(obo:CDT_0002390 obo:CDT_1000013)
-SubClassOf(obo:CDT_0002390 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307))))
+SubClassOf(obo:CDT_0002390 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:IAO_0000136 owl:Thing) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307)))
+SubClassOf(obo:CDT_0002390 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000154))
 
 # Class: obo:CDT_0002391 (billing code D2391: resin-based composite - one surface,  posterior)
 
 SubClassOf(obo:CDT_0002391 obo:CDT_1000013)
-SubClassOf(obo:CDT_0002391 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000308))))
-SubClassOf(obo:CDT_0002391 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000036 ObjectExactCardinality(1 obo:OHD_0000091 obo:FMA_no_fmaid_Surface_enamel_of_tooth))))
+SubClassOf(obo:CDT_0002391 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000042))
+SubClassOf(obo:CDT_0002391 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000308)))
 
 # Class: obo:CDT_0002392 (billing code D2392: resin-based composite - two surfaces, posterior)
 
 SubClassOf(obo:CDT_0002392 obo:CDT_1000013)
-SubClassOf(obo:CDT_0002392 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000308))))
-SubClassOf(obo:CDT_0002392 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000036 ObjectExactCardinality(2 obo:OHD_0000091 obo:FMA_no_fmaid_Surface_enamel_of_tooth))))
+SubClassOf(obo:CDT_0002392 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000042))
+SubClassOf(obo:CDT_0002392 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000308)))
 
 # Class: obo:CDT_0002393 (billing code D2393: resin-based composite - three surfaces, posterior)
 
 SubClassOf(obo:CDT_0002393 obo:CDT_1000013)
-SubClassOf(obo:CDT_0002393 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000308))))
-SubClassOf(obo:CDT_0002393 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000036 ObjectExactCardinality(3 obo:OHD_0000091 obo:FMA_no_fmaid_Surface_enamel_of_tooth))))
+SubClassOf(obo:CDT_0002393 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000042))
+SubClassOf(obo:CDT_0002393 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000308)))
 
 # Class: obo:CDT_0002394 (billing code D2394: resin-based composite - four or more surfaces, posterior)
 
 SubClassOf(obo:CDT_0002394 obo:CDT_1000013)
-SubClassOf(obo:CDT_0002394 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000308))))
-SubClassOf(obo:CDT_0002394 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:OHD_0000036 ObjectMinCardinality(4 obo:OHD_0000091 obo:FMA_no_fmaid_Surface_enamel_of_tooth))))
+SubClassOf(obo:CDT_0002394 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000042))
+SubClassOf(obo:CDT_0002394 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000308)))
 
 # Class: obo:CDT_0002410 (billing code D2410: gold foil - one surface)
 
@@ -1764,7 +1789,6 @@ SubClassOf(obo:CDT_1000010 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectUnionOf(ob
 # Class: obo:CDT_1000013 (billing code for resin-based composite restorations - direct)
 
 SubClassOf(obo:CDT_1000013 obo:CDT_1000022)
-SubClassOf(obo:CDT_1000013 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000042))
 
 # Class: obo:CDT_1000014 (billing code for inlay/onlay restorations - porcelain/ceramic)
 
