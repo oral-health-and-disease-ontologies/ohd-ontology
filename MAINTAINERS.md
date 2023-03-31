@@ -22,7 +22,7 @@ In order to track changes made to Oral Health and Disease Ontology, it is best m
 ### Updating Ontology Products and Subsets
 
 From time to time, the [imports](src/ontology/imports/) used by the Oral Health and Disease Ontology will need be updated and new products (i.e., ontology products and subsets) released. The general process for updating the products is as follows:
-1. Create an issue, branch, and pull request using the steps outlined in **Tracking changes to theOral Health and Disease Ontology** section.
+1. Create an issue, branch, and pull request using the steps outlined in **Tracking changes to the Oral Health and Disease Ontology** section.
 2. Navigate to the [src/ontology directory](src/ontology/).
 3. Excute `make clean`. This removes all imports, ontologies, and subsets from the [src/ontology directory](src/ontology/). Note, the top-level ontology products and subsets still exist; only the files in the [src/ontology directory](src/ontology/) were removed.
 4. Execute `make all`. This will create new onotlogy products and subsets in the [src/ontology directory](src/ontology/).
