@@ -12,21 +12,21 @@ Prefix(protege:=<http://protege.stanford.edu/plugins/owl/protege#>)
 
 
 Ontology(<http://purl.obolibrary.org/obo/ohd.owl>
-Import(<http://purl.obolibrary.org/obo/ogms.owl>)
 Import(<http://purl.obolibrary.org/obo/bfo/2010-05-25/ruttenberg-regions.owl>)
 Import(<http://purl.obolibrary.org/obo/bfo/2010-05-25/ruttenberg-relations.owl>)
-Import(<http://purl.obolibrary.org/obo/iao/dev/ontology-metadata.owl>)
-Import(<http://purl.obolibrary.org/obo/ohd/dev/CARO_imports.owl>)
-Import(<http://purl.obolibrary.org/obo/ohd/dev/cdt-imports.owl>)
-Import(<http://purl.obolibrary.org/obo/ohd/dev/fma-jaws-teeth.owl>)
-Import(<http://purl.obolibrary.org/obo/ohd/dev/fma-lymph.owl>)
-Import(<http://purl.obolibrary.org/obo/ohd/dev/fma-mouth-mucosa.owl>)
-Import(<http://purl.obolibrary.org/obo/ohd/dev/fma-tmj.owl>)
-Import(<http://purl.obolibrary.org/obo/ohd/dev/fma-tongue.owl>)
-Import(<http://purl.obolibrary.org/obo/ohd/dev/iao-imports.owl>)
-Import(<http://purl.obolibrary.org/obo/ohd/dev/ncbi-imports.owl>)
-Import(<http://purl.obolibrary.org/obo/ohd/dev/obi-imports.owl>)
-Import(<http://purl.obolibrary.org/obo/ohd/dev/omrse-imports.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/caro_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/cdt_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/fma-jaws-teeth_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/fma-lymph_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/fma-mouth-mucosa_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/fma-tmj_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/fma-tongue_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/ncbi_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/obi_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/ogms_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/omrse_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/ontology-metadata_import.owl>)
 Annotation(dc:contributor "Amit Acharya")
 Annotation(dc:contributor "Carlo Torniai")
 Annotation(dc:contributor "Dan Caplan")
@@ -1559,17 +1559,17 @@ SubClassOf(obo:CDT_0002330 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectSomeValues
 # Class: obo:CDT_0002331 (billing code D2331: resin-based composite - two surfaces, anterior)
 
 SubClassOf(obo:CDT_0002331 obo:CDT_1000013)
-SubClassOf(obo:CDT_0002331 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:IAO_0000136 owl:Thing) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307)))
+SubClassOf(obo:CDT_0002331 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307)))
 
 # Class: obo:CDT_0002332 (billing code D2332: resin-based composite - three surfaces, anterior)
 
 SubClassOf(obo:CDT_0002332 obo:CDT_1000013)
-SubClassOf(obo:CDT_0002332 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:IAO_0000136 owl:Thing) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307)))
+SubClassOf(obo:CDT_0002332 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307)))
 
 # Class: obo:CDT_0002335 (billing code D2335: resin-based composite - four or more surfaces  or involving incisal angle (anterior))
 
 SubClassOf(obo:CDT_0002335 obo:CDT_1000013)
-SubClassOf(obo:CDT_0002335 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:IAO_0000136 owl:Thing) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307)))
+SubClassOf(obo:CDT_0002335 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307)))
 
 # Class: obo:CDT_0002385 (obo:CDT_0002385)
 
@@ -1598,8 +1598,8 @@ SubClassOf(obo:CDT_0002388 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectSomeValues
 # Class: obo:CDT_0002390 (billing code D2390: resin-based composite crown, anterior)
 
 SubClassOf(obo:CDT_0002390 obo:CDT_1000013)
-SubClassOf(obo:CDT_0002390 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:IAO_0000136 owl:Thing) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307)))
 SubClassOf(obo:CDT_0002390 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000154))
+SubClassOf(obo:CDT_0002390 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307)))
 
 # Class: obo:CDT_0002391 (billing code D2391: resin-based composite - one surface,  posterior)
 
@@ -2535,12 +2535,12 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000035 "PERSON: Pedro L. Hernández
 AnnotationAssertion(rdfs:label obo:OHD_0000035 "porcelain dental restoration material"@en)
 SubClassOf(obo:OHD_0000035 obo:OHD_0000135)
 
-# Class: obo:OHD_0000036 (resin dental restoration material)
+# Class: obo:OHD_0000036 (resin-based composite dental restoration material)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000036 "A tooth-colored dental restoration material made from a mixture of resin, silica and other materials used in direct restorations.")
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000036 "Titus Schleyer 3/13/2014: updated definition")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000036 "PERSON: Pedro L. Hernández-Cott")
-AnnotationAssertion(rdfs:label obo:OHD_0000036 "resin dental restoration material"@en)
+AnnotationAssertion(rdfs:label obo:OHD_0000036 "resin-based composite dental restoration material"@en)
 SubClassOf(obo:OHD_0000036 obo:OHD_0000000)
 
 # Class: obo:OHD_0000037 (direct dental material insertion process)
@@ -3851,7 +3851,6 @@ AnnotationAssertion(dc:contributor obo:OHD_0000233 "https://orcid.org/0000-0001-
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000233 "2022-12-06T02:15:20Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000233 "extracted tooth"@en)
 EquivalentClasses(obo:OHD_0000233 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:OBI_0000295 obo:OHD_0000057)))
-SubClassOf(obo:OHD_0000233 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000056))
 
 # Class: obo:OHD_0000235 (restored facial surface)
 
