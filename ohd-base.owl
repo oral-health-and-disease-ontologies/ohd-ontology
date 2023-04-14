@@ -10,7 +10,7 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
     <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ohd/ohd-base.owl">
-        <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/ohd/releases/2023-04-13/ohd-base.owl"/>
+        <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/ohd/releases/2023-04-14/ohd-base.owl"/>
         <dc:contributor>Amit Acharya</dc:contributor>
         <dc:contributor>Carlo Torniai</dc:contributor>
         <dc:contributor>Dan Caplan</dc:contributor>
@@ -27,7 +27,7 @@
 This ontology is licensed under the CC-BY License. Please see http://creativecommons.org/licenses/by/3.0/
 
 Attribution is satisfied by using the URIs defined in this file when using terms from this ontology.</rdfs:comment>
-        <owl:versionInfo>2023-04-13</owl:versionInfo>
+        <owl:versionInfo>2023-04-14</owl:versionInfo>
     </owl:Ontology>
     
 
@@ -82,6 +82,12 @@ Attribution is satisfied by using the URIs defined in this file when using terms
     <!-- http://purl.obolibrary.org/obo/IAO_0000119 -->
 
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000119"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000589 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000589"/>
     
 
 
@@ -6925,9 +6931,9 @@ for now.</obo:IAO_0000116>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000191"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <obo:IAO_0000115 xml:lang="en">A processed material that bears a dental restoration material role.</obo:IAO_0000115>
         <obo:IAO_0000117>Person: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000117 xml:lang="en">Person:Alan Ruttenberg</obo:IAO_0000117>
-        <obo:IAO_0000118 xml:lang="en">A processed material that bears a dental restoration material role.</obo:IAO_0000118>
         <obo:IAO_0000118 xml:lang="en">restoration material</obo:IAO_0000118>
         <rdfs:label>dental restoration material</rdfs:label>
     </owl:Class>
@@ -6962,7 +6968,7 @@ for now.</obo:IAO_0000116>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000052"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115>A heath care encounter in which a dental patient undergoes a diagnostic or therapeutic process.</obo:IAO_0000115>
+        <obo:IAO_0000115>A heath care encounter that realizes a dental patient role in which the patient undergoes a diagnostic or therapeutic process.</obo:IAO_0000115>
         <obo:IAO_0000116>Bill Duncan 5/12/2015:
 
 Changed &quot;A specific healthcare activity&quot; to &quot;A health care encounter in which&quot;</obo:IAO_0000116>
@@ -11829,6 +11835,25 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T03:34:47Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">complete lower denture</rdfs:label>
     </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000258 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000258">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000031"/>
+        <obo:IAO_0000115>A disease that inheres in the periodontia.</obo:IAO_0000115>
+        <obo:IAO_0000589>periodontal disease (OHD)</obo:IAO_0000589>
+        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-02-17T15:33:23Z</oboInOwl:creation_date>
+        <rdfs:label xml:lang="en">periodontal disease</rdfs:label>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0000258"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>A disease that inheres in the periodontia.</owl:annotatedTarget>
+        <obo:IAO_0000119>https://www.cdc.gov/oralhealth/conditions/periodontal-disease.html</obo:IAO_0000119>
+    </owl:Axiom>
     
 
 
