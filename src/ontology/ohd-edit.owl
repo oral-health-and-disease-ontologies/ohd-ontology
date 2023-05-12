@@ -14,6 +14,7 @@ Prefix(protege:=<http://protege.stanford.edu/plugins/owl/protege#>)
 Ontology(<http://purl.obolibrary.org/obo/ohd.owl>
 Import(<http://purl.obolibrary.org/obo/bfo/2010-05-25/ruttenberg-regions.owl>)
 Import(<http://purl.obolibrary.org/obo/bfo/2010-05-25/ruttenberg-relations.owl>)
+Import(<http://purl.obolibrary.org/obo/imports/dental_restoration_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/caro_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/cdt_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/fma-jaws-teeth_import.owl>)
@@ -875,8 +876,6 @@ Declaration(Class(obo:FMA_no_fmaid_Secondary_mandibular_dentition))
 Declaration(Class(obo:FMA_no_fmaid_Secondary_maxillary_dentition))
 Declaration(Class(obo:FMA_no_fmaid_Surface_enamel_of_tooth))
 Declaration(Class(obo:OBI_0000245))
-Declaration(Class(obo:OHD_0000000))
-Declaration(Class(obo:OHD_0000001))
 Declaration(Class(obo:OHD_0000002))
 Declaration(Class(obo:OHD_0000003))
 Declaration(Class(obo:OHD_0000004))
@@ -907,9 +906,6 @@ Declaration(Class(obo:OHD_0000030))
 Declaration(Class(obo:OHD_0000031))
 Declaration(Class(obo:OHD_0000032))
 Declaration(Class(obo:OHD_0000033))
-Declaration(Class(obo:OHD_0000034))
-Declaration(Class(obo:OHD_0000035))
-Declaration(Class(obo:OHD_0000036))
 Declaration(Class(obo:OHD_0000037))
 Declaration(Class(obo:OHD_0000038))
 Declaration(Class(obo:OHD_0000039))
@@ -921,7 +917,6 @@ Declaration(Class(obo:OHD_0000044))
 Declaration(Class(obo:OHD_0000045))
 Declaration(Class(obo:OHD_0000046))
 Declaration(Class(obo:OHD_0000047))
-Declaration(Class(obo:OHD_0000048))
 Declaration(Class(obo:OHD_0000049))
 Declaration(Class(obo:OHD_0000051))
 Declaration(Class(obo:OHD_0000052))
@@ -970,9 +965,6 @@ Declaration(Class(obo:OHD_0000099))
 Declaration(Class(obo:OHD_0000100))
 Declaration(Class(obo:OHD_0000133))
 Declaration(Class(obo:OHD_0000134))
-Declaration(Class(obo:OHD_0000135))
-Declaration(Class(obo:OHD_0000136))
-Declaration(Class(obo:OHD_0000137))
 Declaration(Class(obo:OHD_0000138))
 Declaration(Class(obo:OHD_0000139))
 Declaration(Class(obo:OHD_0000140))
@@ -981,8 +973,6 @@ Declaration(Class(obo:OHD_0000142))
 Declaration(Class(obo:OHD_0000143))
 Declaration(Class(obo:OHD_0000144))
 Declaration(Class(obo:OHD_0000145))
-Declaration(Class(obo:OHD_0000146))
-Declaration(Class(obo:OHD_0000147))
 Declaration(Class(obo:OHD_0000148))
 Declaration(Class(obo:OHD_0000149))
 Declaration(Class(obo:OHD_0000150))
@@ -991,7 +981,6 @@ Declaration(Class(obo:OHD_0000152))
 Declaration(Class(obo:OHD_0000153))
 Declaration(Class(obo:OHD_0000154))
 Declaration(Class(obo:OHD_0000155))
-Declaration(Class(obo:OHD_0000156))
 Declaration(Class(obo:OHD_0000157))
 Declaration(Class(obo:OHD_0000158))
 Declaration(Class(obo:OHD_0000159))
@@ -1361,7 +1350,6 @@ Mosby's Dental Dictionary, 2nd Edition. page 580.
 Wikipedia: http://en.wikipedia.org/wiki/Dental_restoration")
 AnnotationAssertion(dc:contributor obo:OHD_0000091 "PERSON: Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000091 "is dental restoration of")
-ObjectPropertyDomain(obo:OHD_0000091 obo:OHD_0000000)
 ObjectPropertyRange(obo:OHD_0000091 ObjectSomeValuesFrom(obo:BFO_0000050 obo:FMA_12516))
 
 # Object Property: obo:OHD_0000216 (next visit)
@@ -2195,22 +2183,7 @@ SubClassOf(obo:OGMS_0000104 ObjectSomeValuesFrom(obo:BFO_0000050 obo:OGMS_000009
 
 # Class: obo:OHD_0000000 (dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000000 "A processed material that bears a dental restoration material role."@en)
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000000 "Person: Bill Duncan")
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000000 "Person:Alan Ruttenberg"@en)
-AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000000 "restoration material"@en)
-AnnotationAssertion(rdfs:label obo:OHD_0000000 "dental restoration material"^^xsd:string)
-EquivalentClasses(obo:OHD_0000000 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000191))
 SubClassOf(obo:OHD_0000000 obo:OBI_0000047)
-SubClassOf(obo:OHD_0000000 ObjectSomeValuesFrom(obo:BFO_0000053 obo:OHD_0000191))
-
-# Class: obo:OHD_0000001 (amalgam dental restoration material)
-
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000001 "a metal dental restoration material that consists of silver-colored, metallic alloy which is composed of a mixture of mercury and other metals"@en)
-AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000001 "Titus Schleyer 1/14/2014: updated definition")
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000001 "Person:Alan Ruttenberg"@en)
-AnnotationAssertion(rdfs:label obo:OHD_0000001 "amalgam dental restoration material"@en)
-SubClassOf(obo:OHD_0000001 obo:OHD_0000048)
 
 # Class: obo:OHD_0000002 (dental procedure)
 
@@ -2262,10 +2235,8 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000004 "PERSON:Pedro Cott"^^xsd:str
 AnnotationAssertion(dc:contributor obo:OHD_0000004 "https://orcid.org/0000-0001-9625-1899")
 AnnotationAssertion(rdfs:label obo:OHD_0000004 "tooth restoration procedure"@en)
 SubClassOf(obo:OHD_0000004 obo:OHD_0000002)
-SubClassOf(obo:OHD_0000004 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:FMA_12516) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000000) ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000189)))
 SubClassOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000007))
 SubClassOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:BFO_0000057 obo:FMA_12516))
-SubClassOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:BFO_0000057 obo:OHD_0000000))
 SubClassOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:OBI_0000417 obo:OBI_0000434))
 
 # Class: obo:OHD_0000005 (surgical procedure)
@@ -2419,7 +2390,6 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000022 "An inlay restoration proced
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000022 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000022 "metallic inlay restoration")
 AnnotationAssertion(rdfs:label obo:OHD_0000022 "metallic inlay restoration procedure")
-EquivalentClasses(obo:OHD_0000022 ObjectIntersectionOf(obo:OHD_0000133 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000048)))
 
 # Class: obo:OHD_0000023 (restored tooth finding)
 
@@ -2516,32 +2486,6 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000033 "Titus Schleyer 1/14/2014: a
 AnnotationAssertion(rdfs:label obo:OHD_0000033 "crown restoration procedure"@en)
 SubClassOf(obo:OHD_0000033 obo:OHD_0000004)
 
-# Class: obo:OHD_0000034 (gold foil dental restoration material)
-
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000034 "A metal dental restoration material which the principal ingredient is gold.")
-AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000034 "Bill Duncan 12/11/2014:
-updated defintion")
-AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000034 "Titus Schleyer 3/13/2014: slightly updated definition")
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000034 "PERSON: Pedro L. Hernández-Cott")
-AnnotationAssertion(rdfs:label obo:OHD_0000034 "gold foil dental restoration material"@en)
-SubClassOf(obo:OHD_0000034 obo:OHD_0000048)
-
-# Class: obo:OHD_0000035 (porcelain dental restoration material)
-
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000035 "A ceramic material used for tooth-colored restorations."@en)
-AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000035 "Titus Schleyer1/14/2014: checked definition, sounds okay")
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000035 "PERSON: Pedro L. Hernández-Cott")
-AnnotationAssertion(rdfs:label obo:OHD_0000035 "porcelain dental restoration material"@en)
-SubClassOf(obo:OHD_0000035 obo:OHD_0000135)
-
-# Class: obo:OHD_0000036 (resin-based composite dental restoration material)
-
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000036 "A tooth-colored dental restoration material made from a mixture of resin, silica and other materials used in direct restorations.")
-AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000036 "Titus Schleyer 3/13/2014: updated definition")
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000036 "PERSON: Pedro L. Hernández-Cott")
-AnnotationAssertion(rdfs:label obo:OHD_0000036 "resin-based composite dental restoration material"@en)
-SubClassOf(obo:OHD_0000036 obo:OHD_0000000)
-
 # Class: obo:OHD_0000037 (direct dental material insertion process)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000037 "A material combination in which a moldable restorative material is placed directly into or on the tooth. The material then hardens and becomes (essentially) part of the tooth. ")
@@ -2552,7 +2496,6 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000037 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000037 "direct dental material insertion process"@en)
 SubClassOf(obo:OHD_0000037 obo:OBI_0000652)
 SubClassOf(obo:OHD_0000037 ObjectSomeValuesFrom(obo:OBI_0000293 obo:FMA_12516))
-SubClassOf(obo:OHD_0000037 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000000))
 
 # Class: obo:OHD_0000038 (dental material tooth attachment process)
 
@@ -2573,7 +2516,6 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000038 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000038 "dental material tooth attachment process"@en)
 SubClassOf(obo:OHD_0000038 obo:OBI_0000652)
 SubClassOf(obo:OHD_0000038 ObjectSomeValuesFrom(obo:OBI_0000293 obo:FMA_12516))
-SubClassOf(obo:OHD_0000038 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000000))
 
 # Class: obo:OHD_0000039 (gold filling restoration procedure)
 
@@ -2582,14 +2524,12 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000039 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000039 "gold filling restoration")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000039 "gold foil intracoronal restoration procedure")
 AnnotationAssertion(rdfs:label obo:OHD_0000039 "gold filling restoration procedure")
-EquivalentClasses(obo:OHD_0000039 ObjectIntersectionOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000034)))
 
 # Class: obo:OHD_0000040 (3/4 noble metal crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000040 "A 3/4 crown restoration procedure that uses noble metal to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000040 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000040 "3/4 noble metal crown restoration procedure")
-EquivalentClasses(obo:OHD_0000040 ObjectIntersectionOf(obo:OHD_0000305 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000146)))
 
 # Class: obo:OHD_0000041 (amalgam filling restoration procedure)
 
@@ -2598,7 +2538,6 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000041 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000041 "amalgam filling restoration")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000041 "amalgam intracoronal restoration procedure")
 AnnotationAssertion(rdfs:label obo:OHD_0000041 "amalgam filling restoration procedure")
-EquivalentClasses(obo:OHD_0000041 ObjectIntersectionOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000037) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000001)))
 
 # Class: obo:OHD_0000042 (resin filling restoration procedure)
 
@@ -2607,7 +2546,6 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000042 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000042 "resin filling restoration")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000042 "resin intracoronal restoration procedure")
 AnnotationAssertion(rdfs:label obo:OHD_0000042 "resin filling restoration procedure")
-EquivalentClasses(obo:OHD_0000042 ObjectIntersectionOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000037) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036)))
 
 # Class: obo:OHD_0000043 (fractured)
 
@@ -2629,7 +2567,6 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000045 "A veneer restoration proced
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000045 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000045 "resin laminate veneer restoration")
 AnnotationAssertion(rdfs:label obo:OHD_0000045 "resin laminate veneer restoration procedure")
-EquivalentClasses(obo:OHD_0000045 ObjectIntersectionOf(obo:OHD_0000027 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036)))
 
 # Class: obo:OHD_0000046 (porcelain laminate veneer restoration procedure)
 
@@ -2637,7 +2574,6 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000046 "A veneer restoration proced
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000046 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000046 "porcelain laminate veneer restoration")
 AnnotationAssertion(rdfs:label obo:OHD_0000046 "porcelain laminate veneer restoration procedure")
-EquivalentClasses(obo:OHD_0000046 ObjectIntersectionOf(obo:OHD_0000027 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000035)))
 
 # Class: obo:OHD_0000047 (tooth to undergo veneer procedure role)
 
@@ -2645,14 +2581,6 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000047 "A tooth to be restored role
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000047 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000047 "tooth to undergo veneer procedure role")
 EquivalentClasses(obo:OHD_0000047 ObjectIntersectionOf(obo:OHD_0000007 ObjectSomeValuesFrom(obo:BFO_0000054 obo:OHD_0000027)))
-
-# Class: obo:OHD_0000048 (metal dental restoration material)
-
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000048 "A dental restoration material that consists mostly of metal atoms"@en)
-AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000048 "Use CHEBI:33521 'metal ion' in a complete definition. Fixure out how to say \"mostly\" first, however"@en)
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000048 "PERSON: Alan Ruttenberg")
-AnnotationAssertion(rdfs:label obo:OHD_0000048 "metal dental restoration material"@en)
-SubClassOf(obo:OHD_0000048 obo:OHD_0000000)
 
 # Class: obo:OHD_0000049 (female dental patient)
 
@@ -3017,7 +2945,6 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000094 "An inlay restoration proced
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000094 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000094 "ceramic inlay restoration")
 AnnotationAssertion(rdfs:label obo:OHD_0000094 "ceramic inlay restoration procedure")
-EquivalentClasses(obo:OHD_0000094 ObjectIntersectionOf(obo:OHD_0000133 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000135)))
 
 # Class: obo:OHD_0000095 (ceramic onlay restoration procedure)
 
@@ -3025,7 +2952,6 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000095 "An onlay restoration proced
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000095 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000095 "ceramic onlay restoration")
 AnnotationAssertion(rdfs:label obo:OHD_0000095 "ceramic onlay restoration procedure")
-EquivalentClasses(obo:OHD_0000095 ObjectIntersectionOf(obo:OHD_0000134 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000135)))
 
 # Class: obo:OHD_0000096 (resin inlay restoration procedure)
 
@@ -3033,7 +2959,6 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000096 "An inlay restoration proced
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000096 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000096 "resin inlay restoration")
 AnnotationAssertion(rdfs:label obo:OHD_0000096 "resin inlay restoration procedure")
-EquivalentClasses(obo:OHD_0000096 ObjectIntersectionOf(obo:OHD_0000133 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036)))
 
 # Class: obo:OHD_0000098 (tooth to undergo inlay procedure role)
 
@@ -3073,36 +2998,12 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000134 "PERSON: Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000134 "onlay restoration procedure")
 SubClassOf(obo:OHD_0000134 obo:OHD_0000033)
 
-# Class: obo:OHD_0000135 (ceramic dental restoration material)
-
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000135 "A dental restoration material that consists of non-metal, non-resin inorganic refractory compounds processed at high temperatures (600 degress Celsius / 1112 degrees Farenheit) and pressed, pollished or milled -- including porcelains, glasses, and glass-ceramics.")
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000135 "PERSON: Bill Duncan")
-AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000135 " ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1")
-AnnotationAssertion(rdfs:label obo:OHD_0000135 "ceramic dental restoration material")
-SubClassOf(obo:OHD_0000135 obo:OHD_0000000)
-
-# Class: obo:OHD_0000136 (titanium dental restoration material)
-
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000136 "A metal dental restoration material which contains 85% or more titanium.")
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000136 "PERSON: Bill Duncan")
-AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000136 " ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1")
-AnnotationAssertion(rdfs:label obo:OHD_0000136 "titanium dental restoration material")
-SubClassOf(obo:OHD_0000136 obo:OHD_0000048)
-
-# Class: obo:OHD_0000137 (stainless steel dental restoration material)
-
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000137 "A metal dental restoration material which the principal ingredient is stainless steel.")
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000137 "PERSON: Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000137 "stainless steel dental restoration material")
-SubClassOf(obo:OHD_0000137 obo:OHD_0000048)
-
 # Class: obo:OHD_0000138 (metallic onlay restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000138 "An onlay restoration procedure that uses metal to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000138 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000138 "metallic onlay restoration")
 AnnotationAssertion(rdfs:label obo:OHD_0000138 "metallic onlay restoration procedure")
-EquivalentClasses(obo:OHD_0000138 ObjectIntersectionOf(obo:OHD_0000134 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000048)))
 
 # Class: obo:OHD_0000139 (resin with predominantly base metal crown restoration procedure)
 
@@ -3110,13 +3011,11 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000139 "A crown restoration procedu
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000139 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000139 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Resin_With_Predominately_Base_Metal__Dental_Procedure_Code_Description")
 AnnotationAssertion(rdfs:label obo:OHD_0000139 "resin with predominantly base metal crown restoration procedure")
-EquivalentClasses(obo:OHD_0000139 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000349 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000156))))))
 
 # Class: obo:OHD_0000140 (titanium crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000140 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000140 "titanium crown restoration procedure")
-EquivalentClasses(obo:OHD_0000140 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000136)))
 
 # Class: obo:OHD_0000141 (resin with predominantly base metal dental restoration)
 
@@ -3131,7 +3030,6 @@ SubClassOf(obo:OHD_0000141 <http://www.geneontology.org/formats/oboInOwl#Obsolet
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000142 "A crown restoration procedure that uses noble metal to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000142 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000142 "noble metal crown restoration procedure")
-EquivalentClasses(obo:OHD_0000142 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000146)))
 
 # Class: obo:OHD_0000143 (porcelain fused to noble metal dental restoration material)
 
@@ -3157,93 +3055,60 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000145 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000145 "porcelain fused to predominantly base metal dental restoration material")
 SubClassOf(obo:OHD_0000145 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
 
-# Class: obo:OHD_0000146 (noble metal dental restoration material)
-
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000146 "A metal dental restoration material that is composed of a matalic alloy that contains 25% or more of gold, palladium, and/or or platinum.")
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000146 "PERSON: Bill Duncan")
-AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000146 " ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1")
-AnnotationAssertion(rdfs:label obo:OHD_0000146 "noble metal dental restoration material")
-SubClassOf(obo:OHD_0000146 obo:OHD_0000048)
-
-# Class: obo:OHD_0000147 (high noble metal dental restoration material)
-
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000147 "PERSON: Bill Duncan")
-AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000147 " ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1")
-AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000147 "A metal dental restoration material that is composed of a matalic alloy that contains 60% or more of gold, palladium, and/or or platinum (with at least 40% gold).")
-AnnotationAssertion(rdfs:label obo:OHD_0000147 "high noble metal dental restoration material")
-SubClassOf(obo:OHD_0000147 obo:OHD_0000146)
-
 # Class: obo:OHD_0000148 (resin with high noble metal crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000148 "A resin with noble metal crown restoraton procedure that uses high noble metal as a substrate.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000148 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000148 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Resin_With_High_Noble_Metal__Dental_Procedure_Code_Description")
 AnnotationAssertion(rdfs:label obo:OHD_0000148 "resin with high noble metal crown restoration procedure")
-EquivalentClasses(obo:OHD_0000148 ObjectIntersectionOf(obo:OHD_0000166 ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000349 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000147))))))
 
 # Class: obo:OHD_0000149 (3/4 resin crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000149 "A 3/4 crown restoration procedure that uses resin to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000149 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000149 "3/4 resin crown restoration procedure")
-EquivalentClasses(obo:OHD_0000149 ObjectIntersectionOf(obo:OHD_0000305 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036)))
 
 # Class: obo:OHD_0000150 (3/4 high noble metal crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000150 "A 3/4 noble metal crown restoration procedure that uses high noble metal to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000150 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000150 "3/4 high noble metal crown restoration procedure")
-EquivalentClasses(obo:OHD_0000150 ObjectIntersectionOf(obo:OHD_0000040 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000147)))
 
 # Class: obo:OHD_0000151 (3/4 predominantly base metal crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000151 "A 3/4 crown restoration procedure that uses predominantly base metal to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000151 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000151 "3/4 predominantly base metal crown restoration procedure")
-EquivalentClasses(obo:OHD_0000151 ObjectIntersectionOf(obo:OHD_0000305 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000156)))
 
 # Class: obo:OHD_0000152 (3/4 ceramic crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000152 "A 3/4 crown restoration procedure that uses ceramic to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000152 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000152 "3/4 ceramic crown restoration procedure")
-EquivalentClasses(obo:OHD_0000152 ObjectIntersectionOf(obo:OHD_0000305 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000135)))
 
 # Class: obo:OHD_0000153 (noble metal onlay restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000153 "A metallic onlay restoration procedure that uses noble metal to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000153 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000153 "noble metal onlay restoration procedure")
-EquivalentClasses(obo:OHD_0000153 ObjectIntersectionOf(obo:OHD_0000138 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000146)))
 
 # Class: obo:OHD_0000154 (resin crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000154 "A crown restoration procedure that uses resin to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000154 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000154 "resin crown restoration procedure")
-EquivalentClasses(obo:OHD_0000154 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036)))
 
 # Class: obo:OHD_0000155 (ceramic crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000155 "A crown restoration procedure that uses ceramic to restor the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000155 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000155 "ceramic crown restoration procedure")
-EquivalentClasses(obo:OHD_0000155 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000135)))
-
-# Class: obo:OHD_0000156 (predominantly base metal dental restoration material)
-
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000156 "A metal dental restoration material that is composed of a matalic alloy that contains less than 25% of gold, palladium, and/or or platinum.")
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000156 "Bill Duncan")
-AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000156 " ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1")
-AnnotationAssertion(rdfs:label obo:OHD_0000156 "predominantly base metal dental restoration material")
-SubClassOf(obo:OHD_0000156 obo:OHD_0000048)
 
 # Class: obo:OHD_0000157 (high noble metal crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000157 "A noble metal crown restoration procedure that uses high noble metal to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000157 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000157 "high noble metal crown restoration procedure")
-EquivalentClasses(obo:OHD_0000157 ObjectIntersectionOf(obo:OHD_0000142 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000147)))
 SubClassOf(obo:OHD_0000157 obo:OHD_0000142)
 
 # Class: obo:OHD_0000158 (porcelain fused to high noble metal crown restoration procedure)
@@ -3253,14 +3118,12 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000158 "A procelain fused to nobal 
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000158 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000158 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Porcelain_Fused_To_High_Noble_Metal__Dental_Procedure_Code_Description")
 AnnotationAssertion(rdfs:label obo:OHD_0000158 "porcelain fused to high noble metal crown restoration procedure")
-EquivalentClasses(obo:OHD_0000158 ObjectIntersectionOf(obo:OHD_0000160 ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000306 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000035) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000147))))))
 
 # Class: obo:OHD_0000159 (high noble metal onlay restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000159 "A noble metal onlay restoration procedure that uses high noble metal to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000159 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000159 "high noble metal onlay restoration procedure"@en)
-EquivalentClasses(obo:OHD_0000159 ObjectIntersectionOf(obo:OHD_0000153 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000147)))
 
 # Class: obo:OHD_0000160 (porcelain fused to noble metal crown restoration procedure)
 
@@ -3268,7 +3131,6 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000160 "A crown restoration procedu
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000160 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000160 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Porcelain_Fused_To_Noble_Metal__Dental_Procedure_Code_Description")
 AnnotationAssertion(rdfs:label obo:OHD_0000160 "porcelain fused to noble metal crown restoration procedure")
-EquivalentClasses(obo:OHD_0000160 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000306 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000035) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000146))))))
 
 # Class: obo:OHD_0000161 (porcelain fused to predominantly base metal crown restoration procedure)
 
@@ -3276,20 +3138,17 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000161 "A crown restoration procedu
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000161 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000161 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Porcelain_Fused_To_Predominately_Base_Metal__Dental_Procedure_Code_Description")
 AnnotationAssertion(rdfs:label obo:OHD_0000161 "porcelain fused to predominantly base metal crown restoration procedure")
-EquivalentClasses(obo:OHD_0000161 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000306 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000035) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000156))))))
 
 # Class: obo:OHD_0000162 (predominantly base metal crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000162 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000162 "predominantly base metal crown restoration procedure")
-EquivalentClasses(obo:OHD_0000162 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000156)))
 
 # Class: obo:OHD_0000163 (stainless steel crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000163 "A crown restoration procedure that uses stainless steel to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000163 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000163 "stainless steel crown restoration procedure")
-EquivalentClasses(obo:OHD_0000163 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000137)))
 
 # Class: obo:OHD_0000164 (stainless steel with resin window crown restoration procedure)
 
@@ -3299,7 +3158,6 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000164 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000164 "http://www.dentalcare.com/en-US/dental-education/continuing-education/ce379/ce379.aspx?ModuleName=coursecontent&PartID=3&SectionID=-1")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000164 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Prefabricated_Stainless_Steel_with_Resin__Dental_Procedure_Code_Description")
 AnnotationAssertion(rdfs:label obo:OHD_0000164 "stainless steel with resin window crown restoration procedure")
-EquivalentClasses(obo:OHD_0000164 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000349 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000137))))))
 
 # Class: obo:OHD_0000165 (dental assistant role)
 
@@ -3316,14 +3174,12 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000166 "A crown restoration procedu
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000166 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000166 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Resin_With_Noble_Metal__Dental_Procedure_Code_Description")
 AnnotationAssertion(rdfs:label obo:OHD_0000166 "resin with noble metal crown restoration procedure")
-EquivalentClasses(obo:OHD_0000166 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000349) ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000349 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000146))))))
 
 # Class: obo:OHD_0000167 (noble metal inlay restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000167 "A metallic inlay restoration procedure that uses noble metal to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000167 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000167 "noble metal inlay restoration procedure"@en)
-EquivalentClasses(obo:OHD_0000167 ObjectIntersectionOf(obo:OHD_0000022 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000146)))
 
 # Class: obo:OHD_0000168 (unerupted tooth finding)
 
@@ -3339,7 +3195,6 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000169 "An onlay restoration proced
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000169 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000169 "resin onlay restoration procedure")
 AnnotationAssertion(rdfs:label obo:OHD_0000169 "resin onlay restoration procedure")
-EquivalentClasses(obo:OHD_0000169 ObjectIntersectionOf(obo:OHD_0000134 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036)))
 
 # Class: obo:OHD_0000170 (dental therapist role)
 
@@ -3490,7 +3345,6 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000189 "Titus Schleyer 1/1/2014: up
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000189 "Alan Ruttenberg")
 AnnotationAssertion(dc:contributor obo:OHD_0000189 "https://orcid.org/0000-0001-9625-1899")
 AnnotationAssertion(rdfs:label obo:OHD_0000189 "restored tooth"@en)
-EquivalentClasses(obo:OHD_0000189 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000000)))
 
 # Class: obo:OHD_0000190 (dental patient role)
 
@@ -3521,35 +3375,30 @@ SubClassOf(obo:OHD_0000191 ObjectAllValuesFrom(obo:BFO_0000054 obo:OHD_0000004))
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000192 "An inlay restoration procedure that uses high noble metal to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000192 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000192 "high noble metal inlay restoration procedure"@en)
-EquivalentClasses(obo:OHD_0000192 ObjectIntersectionOf(obo:OHD_0000167 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000147)))
 
 # Class: obo:OHD_0000193 (predominantly base metal onlay restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000193 "An onlay restoration procedure that uses predominantly base metal to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000193 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000193 "predominantly base metal onlay restoration procedure"@en)
-EquivalentClasses(obo:OHD_0000193 ObjectIntersectionOf(obo:OHD_0000134 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000156)))
 
 # Class: obo:OHD_0000194 (predominantly base metal inlay restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000194 "An inlay restoration procedure that uses predominantly base metal to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000194 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000194 "predominantly base metal inlay restoration procedure"@en)
-EquivalentClasses(obo:OHD_0000194 ObjectIntersectionOf(obo:OHD_0000133 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000156)))
 
 # Class: obo:OHD_0000195 (titanium onlay restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000195 "A metallic onlay restoration procedure that uses titanium to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000195 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000195 "titanium onlay restoration procedure"@en)
-EquivalentClasses(obo:OHD_0000195 ObjectIntersectionOf(obo:OHD_0000138 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000136)))
 
 # Class: obo:OHD_0000196 (titanium inlay restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000196 "A metallic inlay restoration procedure that uses titanium to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000196 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000196 "titanium inlay restoration procedure"@en)
-EquivalentClasses(obo:OHD_0000196 ObjectIntersectionOf(obo:OHD_0000022 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000136)))
 
 # Class: obo:OHD_0000197 (oral evaluation)
 
@@ -4162,7 +4011,6 @@ AnnotationAssertion(dc:contributor obo:OHD_0000294 "https://orcid.org/0000-0001-
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000294 "2022-12-06T04:28:56Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000294 "ceramic implant crown"@en)
 SubClassOf(obo:OHD_0000294 obo:OHD_0000280)
-SubClassOf(obo:OHD_0000294 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000135))
 
 # Class: obo:OHD_0000295 (porcelain fused to metal impant crown)
 
@@ -4170,8 +4018,6 @@ AnnotationAssertion(dc:contributor obo:OHD_0000295 "https://orcid.org/0000-0001-
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000295 "2022-12-06T04:32:56Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000295 "porcelain fused to metal impant crown"@en)
 SubClassOf(obo:OHD_0000295 obo:OHD_0000280)
-SubClassOf(obo:OHD_0000295 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000035))
-SubClassOf(obo:OHD_0000295 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000048))
 
 # Class: obo:OHD_0000296 (dental implant crown attachment procedure)
 
@@ -4618,8 +4464,6 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000349 "A material combination in w
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000349 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000349 "dental material combination process")
 SubClassOf(obo:OHD_0000349 obo:OBI_0000652)
-SubClassOf(obo:OHD_0000349 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000000))
-SubClassOf(obo:OHD_0000349 ObjectAllValuesFrom(obo:OBI_0000293 obo:OHD_0000000))
 
 # Class: obo:OHD_0000350 (temporary prosthetic role)
 
@@ -4700,7 +4544,6 @@ AnnotationAssertion(dc:contributor obo:OHD_0000359 "https://orcid.org/0000-0001-
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000359 "2022-12-06T04:30:02Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000359 "high noble metal implant crown"@en)
 SubClassOf(obo:OHD_0000359 obo:OHD_0000280)
-SubClassOf(obo:OHD_0000359 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000147))
 
 # Class: obo:OHD_0000361 (coronal caries finding)
 
