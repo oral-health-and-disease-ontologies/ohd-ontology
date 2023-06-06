@@ -1311,6 +1311,10 @@ Declaration(AnnotationProperty(<http://purl.org/dc/terms/contributor>))
 Declaration(AnnotationProperty(<http://purl.org/dc/terms/created>))
 Declaration(AnnotationProperty(<http://purl.org/dc/terms/creator>))
 Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#creation_date>))
+Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym>))
+Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym>))
+Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym>))
+Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym>))
 Declaration(Datatype(xsd:date))
 ############################
 #   Annotation Properties
@@ -1343,6 +1347,22 @@ AnnotationAssertion(rdfs:label <http://purl.org/dc/terms/contributor> "contribut
 # Annotation Property: <http://purl.org/dc/terms/created> (date created)
 
 AnnotationAssertion(rdfs:label <http://purl.org/dc/terms/created> "date created")
+
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> (<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym>)
+
+SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> obo:IAO_0000118)
+
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> (<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym>)
+
+SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:IAO_0000118)
+
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> (<http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym>)
+
+SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> obo:IAO_0000118)
+
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> (<http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym>)
+
+SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> obo:IAO_0000118)
 
 
 ############################
