@@ -1307,6 +1307,9 @@ Declaration(AnnotationProperty(dc:contributor))
 Declaration(AnnotationProperty(dc:creator))
 Declaration(AnnotationProperty(dc:date))
 Declaration(AnnotationProperty(dc:source))
+Declaration(AnnotationProperty(<http://purl.org/dc/terms/contributor>))
+Declaration(AnnotationProperty(<http://purl.org/dc/terms/created>))
+Declaration(AnnotationProperty(<http://purl.org/dc/terms/creator>))
 Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#creation_date>))
 Declaration(Datatype(xsd:date))
 ############################
@@ -1332,6 +1335,14 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000209 "This property is an applica
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000209 "Alan Ruttenberg")
 AnnotationAssertion(rdfs:comment obo:OHD_0000209 "mark true for representational units that are duplicate/conflict others")
 AnnotationAssertion(rdfs:label obo:OHD_0000209 "duplicated"@en)
+
+# Annotation Property: <http://purl.org/dc/terms/contributor> (contributor)
+
+AnnotationAssertion(rdfs:label <http://purl.org/dc/terms/contributor> "contributor")
+
+# Annotation Property: <http://purl.org/dc/terms/created> (date created)
+
+AnnotationAssertion(rdfs:label <http://purl.org/dc/terms/created> "date created")
 
 
 ############################
