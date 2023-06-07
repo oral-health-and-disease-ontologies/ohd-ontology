@@ -123,6 +123,7 @@ Declaration(Class(obo:CDT_1000014))
 Declaration(Class(obo:CDT_1000019))
 Declaration(Class(obo:CDT_1000022))
 Declaration(Class(obo:CDT_1000023))
+Declaration(Class(obo:ECTO_9002146))
 Declaration(Class(obo:FMA_10474))
 Declaration(Class(obo:FMA_11356))
 Declaration(Class(obo:FMA_12277))
@@ -1421,7 +1422,7 @@ TransitiveObjectProperty(obo:OHD_0000217)
 
 # Object Property: obo:RO_0002354 (temp: formed as result of)
 
-AnnotationAssertion(obo:IAO_0000116 obo:RO_0002354 "NB: Replace this by importing the RO term!")
+AnnotationAssertion(obo:IAO_0000116 obo:RO_0002354 "Import from RO!")
 AnnotationAssertion(rdfs:label obo:RO_0002354 "temp: formed as result of")
 SubObjectPropertyOf(obo:RO_0002354 obo:BFO_0000056)
 
@@ -1878,6 +1879,12 @@ SubClassOf(obo:CDT_1000022 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000004)
 # Class: obo:CDT_1000023 (billing code for crowns - single restorations only)
 
 SubClassOf(obo:CDT_1000023 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000033))
+
+# Class: obo:ECTO_9002146 (temp: exposure to acids)
+
+AnnotationAssertion(obo:IAO_0000116 obo:ECTO_9002146 "Import from ECTO!")
+AnnotationAssertion(rdfs:label obo:ECTO_9002146 "temp: exposure to acids")
+SubClassOf(obo:ECTO_9002146 obo:BFO_0000007)
 
 # Class: obo:FMA_12516 (Tooth)
 
@@ -4009,37 +4016,38 @@ AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000260 "2023-06-
 AnnotationAssertion(rdfs:label obo:OHD_0000260 "tooth disorder"@en)
 SubClassOf(obo:OHD_0000260 obo:OGMS_0000045)
 
-# Class: obo:OHD_0000261 (tooth abfraction)
+# Class: obo:OHD_0000261 (tooth abfraction lesion)
 
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000261 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000261 <https://orcid.org/0009-0006-7251-3026>)
 AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000261 "2023-06-06T21:30:59Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0000261 "tooth abfraction"@en)
+AnnotationAssertion(rdfs:label obo:OHD_0000261 "tooth abfraction lesion"@en)
 SubClassOf(obo:OHD_0000261 obo:OHD_0000270)
 
-# Class: obo:OHD_0000262 (tooth attrition)
+# Class: obo:OHD_0000262 (tooth attrition lesion)
 
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000262 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000262 <https://orcid.org/0009-0006-7251-3026>)
 AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000262 "2023-06-06T21:31:20Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0000262 "tooth attrition"@en)
+AnnotationAssertion(rdfs:label obo:OHD_0000262 "tooth attrition lesion"@en)
 SubClassOf(obo:OHD_0000262 obo:OHD_0000270)
 
-# Class: obo:OHD_0000263 (tooth erosion)
+# Class: obo:OHD_0000263 (tooth erosive lesion)
 
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000263 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000263 <https://orcid.org/0009-0006-7251-3026>)
 AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000263 "2023-06-06T21:31:50Z"^^xsd:dateTime)
-AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:OHD_0000263 "dental erosion")
-AnnotationAssertion(rdfs:label obo:OHD_0000263 "tooth erosion"@en)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> obo:OHD_0000263 "dental erosion")
+AnnotationAssertion(rdfs:label obo:OHD_0000263 "tooth erosive lesion"@en)
 SubClassOf(obo:OHD_0000263 obo:OHD_0000270)
+SubClassOf(obo:OHD_0000263 ObjectSomeValuesFrom(obo:RO_0002354 obo:ECTO_9002146))
 
-# Class: obo:OHD_0000264 (tooth abrasion)
+# Class: obo:OHD_0000264 (tooth abrasive lesion)
 
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000264 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000264 <https://orcid.org/0009-0006-7251-3026>)
 AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000264 "2023-06-06T21:33:29Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0000264 "tooth abrasion"@en)
+AnnotationAssertion(rdfs:label obo:OHD_0000264 "tooth abrasive lesion"@en)
 SubClassOf(obo:OHD_0000264 obo:OHD_0000270)
 
 # Class: obo:OHD_0000265 (arrested carious lesion)
@@ -4058,12 +4066,12 @@ AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000266 "2023-06-
 AnnotationAssertion(rdfs:label obo:OHD_0000266 "active carious lesion"@en)
 SubClassOf(obo:OHD_0000266 obo:OHD_0000021)
 
-# Class: obo:OHD_0000267 (enamel carous lesion)
+# Class: obo:OHD_0000267 (enamel carious lesion)
 
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000267 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000267 <https://orcid.org/0009-0006-7251-3026>)
 AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000267 "2023-06-06T21:38:37Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0000267 "enamel carous lesion"@en)
+AnnotationAssertion(rdfs:label obo:OHD_0000267 "enamel carious lesion"@en)
 SubClassOf(obo:OHD_0000267 obo:OHD_0000021)
 
 # Class: obo:OHD_0000268 (dentine carious lesion)
@@ -4074,12 +4082,13 @@ AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000268 "2023-06-
 AnnotationAssertion(rdfs:label obo:OHD_0000268 "dentine carious lesion"@en)
 SubClassOf(obo:OHD_0000268 obo:OHD_0000021)
 
-# Class: obo:OHD_0000269 (carous lesion of tooth root)
+# Class: obo:OHD_0000269 (tooth root carious lesion)
 
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000269 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000269 <https://orcid.org/0009-0006-7251-3026>)
 AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000269 "2023-06-06T21:39:44Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0000269 "carous lesion of tooth root"@en)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:OHD_0000269 "root caries")
+AnnotationAssertion(rdfs:label obo:OHD_0000269 "tooth root carious lesion"@en)
 SubClassOf(obo:OHD_0000269 obo:OHD_0000021)
 
 # Class: obo:OHD_0000270 (non-carious tooth lesion)
