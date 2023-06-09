@@ -1290,7 +1290,6 @@ Declaration(NamedIndividual(obo:OHD_0000131))
 Declaration(NamedIndividual(obo:OHD_0000132))
 Declaration(NamedIndividual(obo:OHD_0000363))
 Declaration(NamedIndividual(<https://orcid.org/0000-0001-9625-1899>))
-Declaration(AnnotationProperty(obo:OHD_0000053))
 Declaration(AnnotationProperty(obo:IAO_0000111))
 Declaration(AnnotationProperty(obo:IAO_0000112))
 Declaration(AnnotationProperty(obo:IAO_0000115))
@@ -1298,6 +1297,7 @@ Declaration(AnnotationProperty(obo:IAO_0000116))
 Declaration(AnnotationProperty(obo:IAO_0000118))
 Declaration(AnnotationProperty(obo:IAO_0000119))
 Declaration(AnnotationProperty(obo:OBI_0001847))
+Declaration(AnnotationProperty(obo:OHD_0000053))
 Declaration(AnnotationProperty(obo:OHD_0000065))
 Declaration(AnnotationProperty(obo:OHD_0000092))
 Declaration(AnnotationProperty(obo:OHD_0000209))
@@ -1311,6 +1311,12 @@ Declaration(Datatype(xsd:date))
 ############################
 #   Annotation Properties
 ############################
+
+# Annotation Property: obo:OHD_0000053 (data source)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000053 "an annotation property that relates an individual to the data source that was used to extract information about the individual")
+AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000053 "Bill Duncan")
+AnnotationAssertion(rdfs:label obo:OHD_0000053 "data source")
 
 # Annotation Property: obo:OHD_0000065 (ADA universal tooth number)
 
@@ -1379,7 +1385,6 @@ TransitiveObjectProperty(obo:OHD_0000217)
 # Data Property: obo:OHD_0000014 (patient ID)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000014 "a data property that relates an individual patient to the literal string that represents the patient's id")
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000014 "Bill Duncan")
 AnnotationAssertion(dc:contributor obo:OHD_0000014 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000014 "patient ID"@en)
 DataPropertyDomain(obo:OHD_0000014 obo:OHD_0000012)
@@ -1397,82 +1402,56 @@ SubDataPropertyOf(obo:OHD_0000015 owl:topDataProperty)
 DataPropertyRange(obo:OHD_0000015 xsd:date)
 DataPropertyRange(obo:OHD_0000015 xsd:dateTime)
 
-# Data Property: obo:OHD_0000050 (birth_date)
+# Data Property: obo:OHD_0000050 (birth date)
 
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000050 "Bill Duncan")
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000050 "a data property that relates an individual to the date on which the individual was born")
-AnnotationAssertion(dc:contributor obo:OHD_0000050 "Bill Duncan")
-AnnotationAssertion(dc:contributor obo:OHD_0000050 "a data property that relates an individual to the date on which the individual was born")
-AnnotationAssertion(rdfs:label obo:OHD_0000050 "birth_date"@en)
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000050 "a data property that relates an individual to the date on which the individual was born")
+AnnotationAssertion(dc:contributor obo:OHD_0000050 <http://purl.obolibrary.org/obo/ohd.owl#>)
+AnnotationAssertion(rdfs:label obo:OHD_0000050 "birth date"@en)
 SubDataPropertyOf(obo:OHD_0000050 owl:topDataProperty)
 DataPropertyDomain(obo:OHD_0000050 obo:OHD_0000012)
 DataPropertyRange(obo:OHD_0000050 xsd:date)
 DataPropertyRange(obo:OHD_0000050 xsd:dateTime)
 
-# Data Property: obo:OHD_0000053 (data source)
-
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000053 "an annotation property that relates an individual to the data source that was used to extract information about the individual")
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000053 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000053 "data source")
-
 # Data Property: obo:OHD_0000097 (has patient activity status)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000097 "A data property in which the values provide information as to whether a patient is actively being cared for by the practicet; takes values \"active\" and \"inactive\".")
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000097 "a data property in which the values provide information as to whether a patient is actively being cared for by the practicet; takes values \"active\" and \"inactive\"")
-AnnotationAssertion(dc:contributor obo:OHD_0000097 "Bill Duncan")
 AnnotationAssertion(dc:contributor obo:OHD_0000097 "https://orcid.org/0000-0001-9625-1899")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000097 "2022-12-06T01:11:57Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000097 "has patient activity status")
-AnnotationAssertion(rdfs:label obo:OHD_0000097 "has patient activity status"@en)
 DataPropertyRange(obo:OHD_0000097 xsd:string)
 
 # Data Property: obo:OHD_0000218 (first dental visit date)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000218 "A data property used to record the date of a patient's first dental visit.")
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000218 "a data property used to record the date of a patient's first dental visit")
-AnnotationAssertion(dc:contributor obo:OHD_0000218 "Bill Duncan")
 AnnotationAssertion(dc:contributor obo:OHD_0000218 "https://orcid.org/0000-0001-9625-1899")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000218 "2022-12-06T01:22:17Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000218 "first dental visit date")
-AnnotationAssertion(rdfs:label obo:OHD_0000218 "first dental visit date"@en)
 DataPropertyRange(obo:OHD_0000218 xsd:dateTime)
 
 # Data Property: obo:OHD_0000219 (last dental visit date)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000219 "A data property used to record the date of a patient's first dental visit.")
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000219 "a data property used to record the last date on which a patient had a dental visit")
-AnnotationAssertion(dc:contributor obo:OHD_0000219 "Bill Duncan")
 AnnotationAssertion(dc:contributor obo:OHD_0000219 "https://orcid.org/0000-0001-9625-1899")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000219 "2022-12-06T01:23:31Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000219 "last dental visit date")
-AnnotationAssertion(rdfs:label obo:OHD_0000219 "last dental visit date"@en)
 DataPropertyRange(obo:OHD_0000219 xsd:dateTime)
 
-# Data Property: obo:OHD_0000234 (missing ADA tooth number)
+# Data Property: obo:OHD_0000234 (missing tooth number)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000234 "A data property whose value is an ADA universal tooth number that represents a tooth which is missing from a dentition.")
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000234 "a data property whose value is an ADA universal tooth number that represents a tooth which is missing from a dentition")
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000234 "Bill Duncan 01/03/2017:
 This data property provides a means to query for missing teeth. Since a missing tooth is not a tooth, it is wrong represent a missing tooth as an instance of a tooth. Rather, we represent a missing tooth by respresenting the instance of the dentition and then specify with this data property that the dentition is missing a tooth designated by the universtal tooth number.")
-AnnotationAssertion(dc:contributor obo:OHD_0000234 "Bill Duncan")
 AnnotationAssertion(dc:contributor obo:OHD_0000234 "https://orcid.org/0000-0001-9625-1899")
 AnnotationAssertion(dc:date obo:OHD_0000234 "2017-01-03T18:37:35Z"^^xsd:dateTime)
-AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000234 "2022-12-06T03:13:50Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0000234 "missing ADA tooth number"@en)
-AnnotationAssertion(rdfs:label obo:OHD_0000234 "missing tooth number"@en)
 DataPropertyRange(obo:OHD_0000234 xsd:string)
 
 # Data Property: obo:OHD_0000360 (missing tooth root number)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000360 "A data property whose value is an ADA universal tooth number that represents the tooth associated with a tooth root that is missing from a dentition.")
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000360 "a data property whose value is an ADA universal tooth number that represents the tooth associated with a tooth root that is missing from a dentition")
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000360 "Bill Duncan 10/18/2017:
 This data property provides a means to query for missing tooth roots. Since a missing tooth root is not a tooth root, it is wrong represent a missing tooth root as an instance of a tooth root. Rather, we represent a missing tooth root by respresenting the instance of the dentition and then specify with this data property that the dentition is missing a tooth root that is associated with the tooth designated by the universtal tooth number.")
-AnnotationAssertion(dc:contributor obo:OHD_0000360 "Bill Duncan")
 AnnotationAssertion(dc:contributor obo:OHD_0000360 "https://orcid.org/0000-0001-9625-1899")
 AnnotationAssertion(dc:date obo:OHD_0000360 "2017-10-18T20:39:14Z"^^xsd:dateTime)
-AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000360 "2022-12-06T03:15:41Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0000360 "missing ADA tooth root number"@en)
 AnnotationAssertion(rdfs:label obo:OHD_0000360 "missing tooth root number"@en)
 DataPropertyRange(obo:OHD_0000360 xsd:string)
 
