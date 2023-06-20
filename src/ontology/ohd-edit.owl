@@ -1093,10 +1093,8 @@ Declaration(Class(obo:OHD_0000268))
 Declaration(Class(obo:OHD_0000269))
 Declaration(Class(obo:OHD_0000270))
 Declaration(Class(obo:OHD_0000271))
-Declaration(Class(obo:OHD_0000272))
 Declaration(Class(obo:OHD_0000274))
 Declaration(Class(obo:OHD_0000275))
-Declaration(Class(obo:OHD_0000276))
 Declaration(Class(obo:OHD_0000277))
 Declaration(Class(obo:OHD_0000278))
 Declaration(Class(obo:OHD_0000279))
@@ -1107,7 +1105,9 @@ Declaration(Class(obo:OHD_0000283))
 Declaration(Class(obo:OHD_0000284))
 Declaration(Class(obo:OHD_0000285))
 Declaration(Class(obo:OHD_0000286))
+Declaration(Class(obo:OHD_0000287))
 Declaration(Class(obo:OHD_0000289))
+Declaration(Class(obo:OHD_0000290))
 Declaration(Class(obo:OHD_0000291))
 Declaration(Class(obo:OHD_0000292))
 Declaration(Class(obo:OHD_0000293))
@@ -1219,6 +1219,10 @@ Declaration(Class(obo:OHD_0000400))
 Declaration(Class(obo:OHD_0000401))
 Declaration(Class(obo:OHD_0000402))
 Declaration(Class(obo:OHD_0000403))
+Declaration(Class(obo:OHD_0000404))
+Declaration(Class(obo:OHD_0000405))
+Declaration(Class(obo:OHD_0000406))
+Declaration(Class(obo:OHD_0000407))
 Declaration(Class(<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>))
 Declaration(ObjectProperty(obo:BFO_0000050))
 Declaration(ObjectProperty(obo:BFO_0000051))
@@ -2173,7 +2177,7 @@ SubClassOf(obo:FMA_84245 ObjectSomeValuesFrom(obo:FMA_85868 obo:FMA_no_fmaid_Pri
 
 AnnotationAssertion(obo:IAO_0000116 obo:GO_0071626 "Import GO hierarchy!")
 AnnotationAssertion(rdfs:label obo:GO_0071626 "temp: mastication")
-SubClassOf(obo:GO_0071626 obo:OGMS_0000060)
+SubClassOf(obo:GO_0071626 obo:OHD_0000405)
 
 # Class: obo:OBI_0000245 (organization)
 
@@ -4035,12 +4039,14 @@ SubClassOf(obo:OHD_0000261 obo:OHD_0000271)
 
 # Class: obo:OHD_0000262 (tooth attrition lesion)
 
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000262 "A mechanical tooth lesion that is caused by either the functional movement of the jaws or bruxism and is located on the proximal, occlusal or incisal surfaces of the teeth."@en)
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000262 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000262 <https://orcid.org/0009-0006-7251-3026>)
 AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000262 "2023-06-06T21:31:20Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000262 "tooth attrition lesion"@en)
 SubClassOf(obo:OHD_0000262 obo:OHD_0000271)
-SubClassOf(obo:OHD_0000262 ObjectSomeValuesFrom(obo:RO_0002354 ObjectUnionOf(obo:GO_0071626 obo:OHD_0000272)))
+SubClassOf(obo:OHD_0000262 ObjectSomeValuesFrom(obo:BFO_0000082 ObjectUnionOf(obo:FMA_no_fmaid_Incisal_surface_enamel_of_tooth obo:FMA_no_fmaid_Occlusal_surface_enamel_of_tooth)))
+SubClassOf(obo:OHD_0000262 ObjectSomeValuesFrom(obo:RO_0002354 ObjectUnionOf(obo:GO_0071626 obo:OHD_0000407)))
 
 # Class: obo:OHD_0000263 (tooth erosive lesion)
 
@@ -4055,8 +4061,8 @@ SubClassOf(obo:OHD_0000263 ObjectSomeValuesFrom(obo:RO_0002354 obo:ECTO_9002146)
 
 # Class: obo:OHD_0000264 (tooth abrasive lesion)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000264 "A mechanical tooth lesion that is formed as result of some abrasive process.")
-AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000264 "Tooth abrasive lesion may have multiple causes, such as improper tooth brushing and ill-fitting dentures.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000264 "A mechanical tooth lesion that is formed as result of some abrasive process")
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000264 "A tooth abrasive lesion can be caused some abrasive process. The abrasive process must involve an abrasive substance. For example, improper brushing with a dentrifice such as a tooth paste can result in an abrasive lesion.")
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000264 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000264 <https://orcid.org/0009-0006-7251-3026>)
 AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000264 "2023-06-06T21:33:29Z"^^xsd:dateTime)
@@ -4125,7 +4131,7 @@ SubClassOf(obo:OHD_0000270 obo:OHD_0000260)
 
 AnnotationAssertion(obo:IAO_0000112 obo:OHD_0000271 "A tooth lesion caused by brushing too hard.")
 AnnotationAssertion(obo:IAO_0000112 obo:OHD_0000271 "A tooth lesion caused by bruxism.")
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000271 "A non-carious tooth lesion that is result of either the movement of the jaws or an external process that wears on the tooth.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000271 "A non-carious tooth lesion that is the result of functional or parafunctional activity of the jaws or a process of friction or an abrasive process")
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000271 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000271 <https://orcid.org/0009-0006-7251-3026>)
 AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000271 "2023-06-08T16:19:59Z"^^xsd:dateTime)
@@ -4133,14 +4139,6 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasRelatedSyno
 AnnotationAssertion(rdfs:label obo:OHD_0000271 "mechanical tooth lesion"@en)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#broadMatch> obo:OHD_0000271 obo:GSSO_007548)
 SubClassOf(obo:OHD_0000271 obo:OHD_0000270)
-
-# Class: obo:OHD_0000272 (tooth grinding)
-
-AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000272 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000272 <https://orcid.org/0009-0006-7251-3026>)
-AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000272 "2023-06-08T16:53:20Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0000272 "tooth grinding"@en)
-SubClassOf(obo:OHD_0000272 obo:OGMS_0000061)
 
 # Class: obo:OHD_0000274 (tooth cleaning process)
 
@@ -4161,15 +4159,6 @@ AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000275 "2023-06-
 AnnotationAssertion(rdfs:label obo:OHD_0000275 "toothbrushing"@en)
 SubClassOf(obo:OHD_0000275 obo:OHD_0000274)
 SubClassOf(obo:OHD_0000275 ObjectSomeValuesFrom(obo:BFO_0000057 obo:OHD_0000284))
-
-# Class: obo:OHD_0000276 (tooth abrasive lesion induced by toothbrushing)
-
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000276 "A tooth abrasive lesion that is formed as of toothbrushing.")
-AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000276 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000276 <https://orcid.org/0009-0006-7251-3026>)
-AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000276 "2023-06-08T17:00:37Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0000276 "tooth abrasive lesion induced by toothbrushing"@en)
-EquivalentClasses(obo:OHD_0000276 ObjectIntersectionOf(obo:OHD_0000264 ObjectSomeValuesFrom(obo:RO_0002354 obo:OHD_0000275)))
 
 # Class: obo:OHD_0000277 (tooth fracture)
 
@@ -4245,7 +4234,7 @@ SubClassOf(obo:OHD_0000283 obo:OHD_0000278)
 
 # Class: obo:OHD_0000284 (abrasive material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000284 "A material entity of a certain hardness and density that removes material from another entity.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000284 "A material entity of a certain hardness and density that helps remove material from the surface of an entity when used a medium between entities.")
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000284 <https://orcid.org/0009-0006-7251-3026>)
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000284 "https://orcid.org/0000-0001-9625-1899")
 AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000284 "2023-06-09T16:29:17Z"^^xsd:dateTime)
@@ -4269,6 +4258,11 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date>
 AnnotationAssertion(rdfs:label obo:OHD_0000286 "pulp capping procedure"@en)
 SubClassOf(obo:OHD_0000286 obo:OHD_0000242)
 
+# Class: obo:OHD_0000287 (tooth friction process)
+
+AnnotationAssertion(rdfs:label obo:OHD_0000287 "tooth friction process"@en)
+EquivalentClasses(obo:OHD_0000287 ObjectIntersectionOf(obo:BFO_0000007 ObjectSomeValuesFrom(obo:BFO_0000057 obo:FMA_12516) ObjectSomeValuesFrom(obo:BFO_0000057 obo:OHD_0000404)))
+
 # Class: obo:OHD_0000289 (pulpal regeneration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000289 "A surgical endodontic procedure during which medications are placed inside the pulp chamber in order to induce the formation of living replacement tissue.")
@@ -4277,6 +4271,14 @@ AnnotationAssertion(dc:contributor obo:OHD_0000289 "https://orcid.org/0000-0001-
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000289 "2022-12-06T02:34:17Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000289 "pulpal regeneration procedure"@en)
 SubClassOf(obo:OHD_0000289 obo:OHD_0000243)
+
+# Class: obo:OHD_0000290 (tooth friction lesion)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000290 "A mechnical tooth lesion that formed as a result of some friction process.")
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000290 "A tooth friction lesion is caused by a friction process involving an external object. For example, the clasp of an ill-fitting denture, pipe stem of a tobacco pipe, friction lesion of the interproximal areas caused by vigorous use of a tooth pick etc. An abrasive material is not involved in creating the friction lesion.")
+AnnotationAssertion(rdfs:label obo:OHD_0000290 "tooth friction lesion"@en)
+SubClassOf(obo:OHD_0000290 obo:OHD_0000271)
+SubClassOf(obo:OHD_0000290 ObjectSomeValuesFrom(obo:RO_0002354 obo:OHD_0000287))
 
 # Class: obo:OHD_0000291 (removable maxillary partial denture procedure)
 
@@ -5177,6 +5179,27 @@ AnnotationAssertion(dc:contributor obo:OHD_0000403 "https://orcid.org/0000-0001-
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000403 "2017-11-21T03:30:30Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000403 "oral evaluation finding"@en)
 EquivalentClasses(obo:OHD_0000403 ObjectIntersectionOf(obo:OHD_0000010 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000197)))
+
+# Class: obo:OHD_0000404 (external object)
+
+AnnotationAssertion(rdfs:label obo:OHD_0000404 "external object"@en)
+SubClassOf(obo:OHD_0000404 obo:BFO_0000040)
+
+# Class: obo:OHD_0000405 (functional movement of the jaws)
+
+AnnotationAssertion(rdfs:label obo:OHD_0000405 "functional movement of the jaws"@en)
+SubClassOf(obo:OHD_0000405 obo:OGMS_0000060)
+
+# Class: obo:OHD_0000406 (oral parafunction)
+
+AnnotationAssertion(rdfs:label obo:OHD_0000406 "oral parafunction"@en)
+SubClassOf(obo:OHD_0000406 obo:OGMS_0000061)
+
+# Class: obo:OHD_0000407 (bruxism)
+
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000407 "Involuntary holding of the teeth together and tightening of the jaw muscles or grinding of the teeth."@en)
+AnnotationAssertion(rdfs:label obo:OHD_0000407 "bruxism"@en)
+SubClassOf(obo:OHD_0000407 obo:OHD_0000406)
 
 # Class: <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> (obsolete class)
 
