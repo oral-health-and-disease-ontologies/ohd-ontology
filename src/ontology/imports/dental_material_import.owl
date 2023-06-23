@@ -8,6 +8,7 @@
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:terms="http://purl.org/dc/terms/"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
     <Ontology rdf:about="http://purl.obolibrary.org/obo/imports/dental_material_import.owl"/>
     
@@ -119,6 +120,18 @@
     <!-- http://purl.org/dc/elements/1.1/date -->
 
     <AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/contributor -->
+
+    <AnnotationProperty rdf:about="http://purl.org/dc/terms/contributor"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/created -->
+
+    <AnnotationProperty rdf:about="http://purl.org/dc/terms/created"/>
     
 
 
@@ -515,6 +528,28 @@ Changed definition to read that a &quot;portion of dental restoration material&q
 </obo:IAO_0000117>
         <obo:IAO_0000119>Person:Alan Ruttenberg</obo:IAO_0000119>
         <rdfs:label xml:lang="en">dental restoration material role</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/RO_0017001 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/RO_0017001">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
+        <terms:contributor>https://orcid.org/0000-0001-9625-1899</terms:contributor>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-23T14:22:10Z</terms:created>
+        <rdfs:label xml:lang="en">test material</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/RO_0017002 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/RO_0017002">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
+        <terms:contributor>https://orcid.org/0000-0001-9625-1899</terms:contributor>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-23T14:22:29Z</terms:created>
+        <rdfs:label xml:lang="en">another test material</rdfs:label>
     </Class>
     
 
