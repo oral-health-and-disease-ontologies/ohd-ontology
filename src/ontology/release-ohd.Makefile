@@ -63,7 +63,7 @@ $(ONT)-non-classified.owl: $(SRC)
 	    --output $@.tmp.owl && mv $@.tmp.owl $@
 
 # ----------------------------------------
-# ontology imports
+# Ontology imports
 # ----------------------------------------
 .PHONY: refresh-imports no-mirror-refresh-imports
 
@@ -77,9 +77,49 @@ IMPORT_ROOTS = $(patsubst %, $(IMPORTDIR)/%_import, $(IMPORTS))
 IMPORT_OWL_FILES = $(foreach n,$(IMPORT_ROOTS), $(n).owl)
 IMPORT_FILES = $(IMPORT_OWL_FILES)
 
+$(IMPORTDIR)/omo_import.owl: $(MIRRORDIR)/omo.owl.gz
+	$(ROBOT) \
+        remove \
+            --input $< \
+            --select "owl:deprecated='true'^^xsd:boolean" \
+        remove \
+            --select classes \
+        annotate \
+            --annotate-defined-by true \
+            --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        --output $@.tmp.owl && mv $@.tmp.owl $@
+
+$(IMPORTDIR)/ro_import.owl: $(MIRRORDIR)/ro.owl.gz
+	$(ROBOT) \
+        remove \
+            --input $< \
+            --select "owl:deprecated='true'^^xsd:boolean" \
+        remove \
+            --select classes \
+        extract \
+            --method MIREOT \
+            --lower-terms $(IMPORTDIR)/ro_terms.txt \
+        annotate \
+            --annotate-defined-by true \
+            --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        --output $@.tmp.owl && mv $@.tmp.owl $@
+
+$(IMPORTDIR)/iao_import.owl: $(MIRRORDIR)/iao.owl.gz
+	$(ROBOT) \
+        remove \
+            --input $< \
+            --select "owl:deprecated='true'^^xsd:boolean" \
+        extract \
+            --method MIREOT \
+            --upper-term BFO:0000031 \
+            --lower-terms $(IMPORTDIR)/iao_terms.txt \
+        annotate \
+            --annotate-defined-by true \
+            --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        --output $@.tmp.owl && mv $@.tmp.owl $@
 
 # ----------------------------------------
-# Mirroring upstream ontologies
+# Ontology mirrors
 # ----------------------------------------
 .PHONY: all-mirrors zip-mirrors download-mirrors
 
