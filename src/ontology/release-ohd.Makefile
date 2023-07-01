@@ -126,10 +126,26 @@ $(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl.gz
         extract \
             --method MIREOT \
             --branch-from-term BFO:0000040 \
-            --intermediates minimal \
         extract \
             --method MIREOT \
             --lower-terms $(IMPORTDIR)/caro_terms.txt \
+            --intermediates minimal \
+        annotate \
+            --annotate-defined-by true \
+            --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        --output $@.tmp.owl && mv $@.tmp.owl $@
+
+$(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl.gz
+	$(ROBOT) \
+        remove \
+            --input $< \
+            --select "owl:deprecated='true'^^xsd:boolean" \
+        extract \
+            --method MIREOT \
+            --branch-from-term http://purl.obolibrary.org/obo/ExO_0000002 \
+        extract \
+            --method MIREOT \
+            --lower-terms $(IMPORTDIR)/ecto_terms.txt \
         annotate \
             --annotate-defined-by true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \

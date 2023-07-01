@@ -149,6 +149,15 @@
     
 
 
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasExactSynonym -->
+
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym">
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/caro_import.owl"/>
+        <rdfs:label>has_exact_synonym</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
     <!-- http://www.geneontology.org/formats/oboInOwl#hasOBONamespace -->
 
     <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasOBONamespace">
@@ -317,7 +326,7 @@
     <!-- http://purl.obolibrary.org/obo/CARO_0000012 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/CARO_0000012">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CARO_0010004"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
         <obo:IAO_0000115>Anatomical structure that is an individual member of a clade and, at some point in its life-cycle, consists of more than one cell.</obo:IAO_0000115>
         <oboInOwl:id>CARO:0000012</oboInOwl:id>
         <rdfs:comment>MH: Can&apos;t define this class based on 2 or more cells because most multi cellular organisms (if not all) have only a single cell at some point in life history. 
@@ -369,21 +378,6 @@ MH: sexual subtypes should probably be logically defined based on sexual process
         <owl:annotatedTarget>monoecious organism</owl:annotatedTarget>
         <obo:IAO_scope>RELATED</obo:IAO_scope>
     </owl:Axiom>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/CARO_0010004 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/CARO_0010004">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
-        <obo:IAO_0000115>An individual member of a clade of cellular organisms.</obo:IAO_0000115>
-        <obo:IAO_0000117 rdf:resource="https://orcid.org/0000-0001-9114-8737"/>
-        <obo:IAO_creation_date>7.16.2011</obo:IAO_creation_date>
-        <oboInOwl:id>CARO:0010004</oboInOwl:id>
-        <rdfs:comment>A general term for organism that is agnostic about single cell vs multi-cellular.  Note that this is a subclass of &apos;anatomical structure&apos;, meaning that an organism must be a connected structure. For example, if I take one plant and make a rooted cutting from a it, I now have two (clonally related) organisms. </rdfs:comment>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/caro_import.owl"/>
-        <rdfs:label>cellular organism</rdfs:label>
-    </owl:Class>
     
 
 
