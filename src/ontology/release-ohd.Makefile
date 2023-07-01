@@ -118,6 +118,23 @@ $(IMPORTDIR)/iao_import.owl: $(MIRRORDIR)/iao.owl.gz
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
         --output $@.tmp.owl && mv $@.tmp.owl $@
 
+$(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl.gz
+	$(ROBOT) \
+        remove \
+            --input $< \
+            --select "owl:deprecated='true'^^xsd:boolean" \
+        extract \
+            --method MIREOT \
+            --branch-from-term BFO:0000040 \
+            --intermediates minimal \
+        extract \
+            --method MIREOT \
+            --lower-terms $(IMPORTDIR)/caro_terms.txt \
+        annotate \
+            --annotate-defined-by true \
+            --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        --output $@.tmp.owl && mv $@.tmp.owl $@
+
 # ----------------------------------------
 # Ontology mirrors
 # ----------------------------------------
