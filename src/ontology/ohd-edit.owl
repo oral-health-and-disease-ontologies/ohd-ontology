@@ -1496,8 +1496,7 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000015 "Bill Duncan 5/23/2012:
 There is a problem with occurrence date.  The date on which an event occurred and the date on which it the event was recorded do not always match up.  This will eventually need to be fixed.")
 AnnotationAssertion(rdfs:label obo:OHD_0000015 "occurrence date"@en)
 SubDataPropertyOf(obo:OHD_0000015 owl:topDataProperty)
-DataPropertyRange(obo:OHD_0000015 xsd:date)
-DataPropertyRange(obo:OHD_0000015 xsd:dateTime)
+DataPropertyRange(obo:OHD_0000015 DataUnionOf(xsd:date xsd:dateTime))
 
 # Data Property: obo:OHD_0000050 (birth date)
 
@@ -1506,8 +1505,7 @@ AnnotationAssertion(dc:contributor obo:OHD_0000050 <https://orcid.org/0000-0001-
 AnnotationAssertion(rdfs:label obo:OHD_0000050 "birth date"@en)
 SubDataPropertyOf(obo:OHD_0000050 owl:topDataProperty)
 DataPropertyDomain(obo:OHD_0000050 obo:OHD_0000012)
-DataPropertyRange(obo:OHD_0000050 xsd:date)
-DataPropertyRange(obo:OHD_0000050 xsd:dateTime)
+DataPropertyRange(obo:OHD_0000050 DataUnionOf(xsd:date xsd:dateTime))
 
 # Data Property: obo:OHD_0000097 (has patient activity status)
 
@@ -1523,8 +1521,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000218 "a data property used to rec
 AnnotationAssertion(dc:contributor obo:OHD_0000218 "https://orcid.org/0000-0001-9625-1899")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000218 "2022-12-06T01:22:17Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000218 "first dental visit date")
-DataPropertyRange(obo:OHD_0000218 xsd:date)
-DataPropertyRange(obo:OHD_0000218 xsd:dateTime)
+DataPropertyRange(obo:OHD_0000218 DataUnionOf(xsd:date xsd:dateTime))
 
 # Data Property: obo:OHD_0000219 (last dental visit date)
 
@@ -1532,10 +1529,9 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000219 "a data property used to rec
 AnnotationAssertion(dc:contributor obo:OHD_0000219 "https://orcid.org/0000-0001-9625-1899")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000219 "2022-12-06T01:23:31Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000219 "last dental visit date")
-DataPropertyRange(obo:OHD_0000219 xsd:date)
-DataPropertyRange(obo:OHD_0000219 xsd:dateTime)
+DataPropertyRange(obo:OHD_0000219 DataUnionOf(xsd:date xsd:dateTime))
 
-# Data Property: obo:OHD_0000234 (missing tooth number)
+# Data Property: obo:OHD_0000234 (missing ADA tooth number)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000234 "a data property whose value is an ADA universal tooth number that represents a tooth which is missing from a dentition")
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000234 "Bill Duncan 01/03/2017:
