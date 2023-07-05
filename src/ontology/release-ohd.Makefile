@@ -53,13 +53,19 @@ $(ONT).owl: $(SRC)
 $(ONT)-base.owl: $(SRC)
 	$(ROBOT) \
 		remove --input $< --select imports --trim false \
-	    annotate --link-annotation http://purl.org/dc/elements/1.1/type http://purl.obolibrary.org/obo/IAO_8000001 \
-	    --ontology-iri $(ONTBASE)/$@ $(ANNOTATE_ONTOLOGY_VERSION) \
+	    annotate \
+            --link-annotation http://purl.org/dc/elements/1.1/type http://purl.obolibrary.org/obo/IAO_8000001 \
+	        --ontology-iri $(ONTBASE)/$@ \
+	        --version-iri $(ONTBASE)/releases/$(VERSION)/$@ \
+	        --annotation owl:versionInfo $(VERSION) \
 	    --output $@.tmp.owl && mv $@.tmp.owl $@
 
 $(ONT)-non-classified.owl: $(SRC)
 	$(ROBOT) merge --input $< \
-	    annotate --ontology-iri $(ONTBASE)/$@ $(ANNOTATE_ONTOLOGY_VERSION) --annotation oboInOwl:date "$(OBODATE)" \
+	    annotate \
+            --ontology-iri $(ONTBASE)/$@ \
+            --version-iri $(ONTBASE)/releases/$(VERSION)/$@ \
+	        --annotation owl:versionInfo $(VERSION) \
 	    --output $@.tmp.owl && mv $@.tmp.owl $@
 
 # ----------------------------------------
@@ -86,6 +92,7 @@ $(IMPORTDIR)/omo_import.owl: $(MIRRORDIR)/omo.owl.gz
             --select classes \
         annotate \
             --annotate-defined-by true \
+            --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
         --output $@.tmp.owl && mv $@.tmp.owl $@
 
@@ -94,13 +101,13 @@ $(IMPORTDIR)/ro_import.owl: $(MIRRORDIR)/ro.owl.gz
         remove \
             --input $< \
             --select "owl:deprecated='true'^^xsd:boolean" \
-        remove \
             --select classes \
         extract \
             --method MIREOT \
             --lower-terms $(IMPORTDIR)/ro_terms.txt \
         annotate \
             --annotate-defined-by true \
+            --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
         --output $@.tmp.owl && mv $@.tmp.owl $@
 
@@ -115,6 +122,7 @@ $(IMPORTDIR)/iao_import.owl: $(MIRRORDIR)/iao.owl.gz
             --lower-terms $(IMPORTDIR)/iao_terms.txt \
         annotate \
             --annotate-defined-by true \
+            --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
         --output $@.tmp.owl && mv $@.tmp.owl $@
 
@@ -122,6 +130,7 @@ $(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl.gz
 	$(ROBOT) \
         remove \
             --input $< \
+
             --select "owl:deprecated='true'^^xsd:boolean" \
         extract \
             --method MIREOT \
@@ -132,6 +141,7 @@ $(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl.gz
             --intermediates minimal \
         annotate \
             --annotate-defined-by true \
+            --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
         --output $@.tmp.owl && mv $@.tmp.owl $@
 
@@ -148,6 +158,54 @@ $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl.gz
             --lower-terms $(IMPORTDIR)/ecto_terms.txt \
         annotate \
             --annotate-defined-by true \
+            --annotate-derived-from true \
+            --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        --output $@.tmp.owl && mv $@.tmp.owl $@
+
+# $(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl.gz
+# 	$(ROBOT) \
+#         extract \
+#             --input $< \
+#             --method STAR \
+#             --term-file $(IMPORTDIR)/obi_terms_test.txt \
+#         filter \
+#             --term OBI:0000274 \
+#             --term OBI:0000070 \
+#             --term OBI:0200000 \
+#             --term OBI:0000067 \
+#             --term OBI:0000319 \
+#             --term OBI:0000093 \
+#             --term OBI:0000444\
+#             --term OBI:0000047 \
+#             --term OBI:0000441 \
+#             --term OBI:0000806 \
+#             --term OBI:0000434 \
+#             --select "annotations self parents" \
+#             --signature false \
+#             --trim false \
+#         remove \
+#             --select "owl:deprecated='true'^^xsd:boolean" \
+#         annotate \
+#             --annotate-defined-by true \
+#             --annotate-derived-from true \
+#             --ontology-iri $(URIBASE)/$(ONT)/$@ \
+#         --output $@.tmp.owl && mv $@.tmp.owl $@
+
+$(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl.gz
+	$(ROBOT) \
+        remove \
+            --input $< \
+            --select "owl:deprecated='true'^^xsd:boolean" \
+        extract \
+            --method STAR \
+            --term-file $(IMPORTDIR)/obi_terms.txt \
+        remove \
+            --term-file $(IMPORTDIR)/obi_terms.txt \
+            --exclude-terms  $(IMPORTDIR)/annotation_terms.txt \
+            --select complement \
+        annotate \
+            --annotate-defined-by true \
+            --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
         --output $@.tmp.owl && mv $@.tmp.owl $@
 
