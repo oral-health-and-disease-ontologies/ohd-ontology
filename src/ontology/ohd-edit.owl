@@ -49,7 +49,6 @@ This ontology is licensed under the CC-BY License. Please see http://creativecom
 
 Attribution is satisfied by using the URIs defined in this file when using terms from this ontology.")
 
-Declaration(Class(<http://purl.obolibrary.org/obo#OHD_a455895c_f87e_41c0_ae4a_57c7960fbb0f>))
 Declaration(Class(obo:BFO_0000002))
 Declaration(Class(obo:BFO_0000003))
 Declaration(Class(obo:BFO_0000005))
@@ -882,6 +881,7 @@ Declaration(Class(obo:FMA_no_fmaid_Primary_maxillary_dentition))
 Declaration(Class(obo:FMA_no_fmaid_Secondary_mandibular_dentition))
 Declaration(Class(obo:FMA_no_fmaid_Secondary_maxillary_dentition))
 Declaration(Class(obo:FMA_no_fmaid_Surface_enamel_of_tooth))
+Declaration(Class(obo:NBO_0000007))
 Declaration(Class(obo:OBI_0000245))
 Declaration(Class(obo:OHD_0000002))
 Declaration(Class(obo:OHD_0000003))
@@ -1546,11 +1546,6 @@ DataPropertyRange(obo:OHD_0000360 xsd:string)
 #   Classes
 ############################
 
-# Class: <http://purl.obolibrary.org/obo#OHD_a455895c_f87e_41c0_ae4a_57c7960fbb0f> (temp:movement of the mouth)
-
-AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo#OHD_a455895c_f87e_41c0_ae4a_57c7960fbb0f> "temp:movement of the mouth"@en)
-EquivalentClasses(<http://purl.obolibrary.org/obo#OHD_a455895c_f87e_41c0_ae4a_57c7960fbb0f> ObjectIntersectionOf(obo:OGMS_0000060 ObjectSomeValuesFrom(obo:BFO_0000057 obo:FMA_49184)))
-
 # Class: obo:BFO_0000002 (continuant)
 
 DisjointClasses(obo:BFO_0000002 obo:BFO_0000003)
@@ -2174,6 +2169,12 @@ SubClassOf(obo:FMA_84244 ObjectSomeValuesFrom(obo:FMA_85868 obo:FMA_no_fmaid_Pri
 # Class: obo:FMA_84245 (Left lower second primary molar tooth)
 
 SubClassOf(obo:FMA_84245 ObjectSomeValuesFrom(obo:FMA_85868 obo:FMA_no_fmaid_Primary_mandibular_dentition))
+
+# Class: obo:NBO_0000007 (temp: mouth movement)
+
+AnnotationAssertion(obo:IAO_0000116 obo:NBO_0000007 "Import from NBO")
+AnnotationAssertion(rdfs:label obo:NBO_0000007 "temp: mouth movement"@en)
+EquivalentClasses(obo:NBO_0000007 ObjectIntersectionOf(obo:OGMS_0000060 ObjectSomeValuesFrom(obo:BFO_0000057 obo:FMA_49184)))
 
 # Class: obo:OBI_0000245 (organization)
 
@@ -5450,7 +5451,7 @@ AnnotationAssertion(rdfs:label <https://orcid.org/0000-0001-9625-1899> "Bill Dun
 AnnotationAssertion(rdfs:label <https://orcid.org/0009-0006-7251-3026> "Gopikrishnan M Chandrasekharan")
 
 
-SubClassOf(ObjectIntersectionOf(ObjectUnionOf(<http://purl.obolibrary.org/obo#OHD_a455895c_f87e_41c0_ae4a_57c7960fbb0f> obo:OHD_0002000) ObjectSomeValuesFrom(obo:RO_0003304 obo:OGMS_0000045)) obo:OHD_0000406)
+SubClassOf(ObjectIntersectionOf(ObjectUnionOf(obo:NBO_0000007 obo:OHD_0002000) ObjectSomeValuesFrom(obo:RO_0003304 obo:OGMS_0000045)) obo:OHD_0000406)
 SubObjectPropertyOf(ObjectPropertyChain(obo:BFO_0000053 obo:BFO_0000054) obo:BFO_0000056)
 SubObjectPropertyOf(ObjectPropertyChain(obo:OBI_0000293 obo:BFO_0000050) obo:BFO_0000057)
 )
