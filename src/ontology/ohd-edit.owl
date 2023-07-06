@@ -31,6 +31,8 @@ Import(<http://purl.obolibrary.org/obo/ohd/imports/ogms_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/omrse_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/ontology-metadata_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+Import(<http://purl.obolibrary.org/obo/omo/releases/2023-06-09/omo.owl>)
+Import(<http://purl.obolibrary.org/obo/ro/releases/2023-02-22/ro.owl>)
 Annotation(dc:contributor "Amit Acharya")
 Annotation(dc:contributor "Carlo Torniai")
 Annotation(dc:contributor "Dan Caplan")
@@ -1387,7 +1389,7 @@ AnnotationAssertion(rdfs:label <http://purl.org/dc/terms/contributor> "contribut
 
 AnnotationAssertion(rdfs:label <http://purl.org/dc/terms/created> "date created")
 
-# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> (<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym>)
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> (has broad synonym)
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> obo:IAO_0000118)
 
@@ -1395,11 +1397,11 @@ SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasBroadSy
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:IAO_0000118)
 
-# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> (<http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym>)
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> (has narrow synonym)
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> obo:IAO_0000118)
 
-# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> (<http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym>)
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> (has related synonym)
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> obo:IAO_0000118)
 
@@ -1461,11 +1463,6 @@ TransitiveObjectProperty(obo:OHD_0000217)
 # Object Property: obo:RO_0002354 (formed as result of)
 
 SubObjectPropertyOf(obo:RO_0002354 obo:BFO_0000056)
-
-# Object Property: obo:RO_0003304 (temp: contributes to condition)
-
-AnnotationAssertion(obo:IAO_0000116 obo:RO_0003304 "Import from RO")
-AnnotationAssertion(rdfs:label obo:RO_0003304 "temp: contributes to condition"@en)
 
 
 ############################
