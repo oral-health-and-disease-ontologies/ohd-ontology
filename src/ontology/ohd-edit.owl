@@ -18,6 +18,7 @@ Import(<http://purl.obolibrary.org/obo/imports/dental_material_import.owl>)
 Import(<http://purl.obolibrary.org/obo/imports/dental_restoration_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/caro_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/cdt_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/fma-jaws-teeth_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/fma-lymph_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/fma-mouth-mucosa_import.owl>)
@@ -1390,7 +1391,7 @@ AnnotationAssertion(rdfs:label <http://purl.org/dc/terms/created> "date created"
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> obo:IAO_0000118)
 
-# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> (has_exact_synonym)
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> (has exact synonym)
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:IAO_0000118)
 
@@ -1889,10 +1890,8 @@ SubClassOf(obo:CDT_1000022 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000004)
 
 SubClassOf(obo:CDT_1000023 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000033))
 
-# Class: obo:ECTO_9002146 (temp: exposure to acids)
+# Class: obo:ECTO_9002146 (exposure to acids)
 
-AnnotationAssertion(obo:IAO_0000116 obo:ECTO_9002146 "Import from ECTO!")
-AnnotationAssertion(rdfs:label obo:ECTO_9002146 "temp: exposure to acids")
 SubClassOf(obo:ECTO_9002146 obo:BFO_0000007)
 
 # Class: obo:FMA_12516 (Tooth)
