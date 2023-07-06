@@ -919,7 +919,6 @@ Declaration(Class(obo:OHD_0000039))
 Declaration(Class(obo:OHD_0000040))
 Declaration(Class(obo:OHD_0000041))
 Declaration(Class(obo:OHD_0000042))
-Declaration(Class(obo:OHD_0000043))
 Declaration(Class(obo:OHD_0000044))
 Declaration(Class(obo:OHD_0000045))
 Declaration(Class(obo:OHD_0000046))
@@ -1227,6 +1226,7 @@ Declaration(Class(obo:OHD_0000403))
 Declaration(Class(obo:OHD_0000406))
 Declaration(Class(obo:OHD_0000407))
 Declaration(Class(obo:OHD_0002000))
+Declaration(Class(obo:PATO_0040034))
 Declaration(Class(<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>))
 Declaration(ObjectProperty(obo:BFO_0000050))
 Declaration(ObjectProperty(obo:BFO_0000051))
@@ -2522,7 +2522,7 @@ SubClassOf(obo:OHD_0000028 ObjectHasValue(obo:BFO_0000051 obo:OHD_0000114))
 # Class: obo:OHD_0000029 (fractured tooth)
 
 AnnotationAssertion(rdfs:label obo:OHD_0000029 "fractured tooth"@en)
-SubClassOf(obo:OHD_0000029 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:BFO_0000086 obo:OHD_0000043)))
+SubClassOf(obo:OHD_0000029 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:BFO_0000086 obo:PATO_0040034)))
 
 # Class: obo:OHD_0000030 (fractured tooth finding)
 
@@ -2620,13 +2620,6 @@ AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000042 "resin filling restoration")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000042 "resin intracoronal restoration procedure")
 AnnotationAssertion(rdfs:label obo:OHD_0000042 "resin filling restoration procedure")
 EquivalentClasses(obo:OHD_0000042 ObjectIntersectionOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000037) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036)))
-
-# Class: obo:OHD_0000043 (temp: fractured)
-
-AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000043 "Replace with PATO term")
-AnnotationAssertion(rdfs:comment obo:OHD_0000043 "needs to be added to pato where it is an exact synonym of broken (i think)")
-AnnotationAssertion(rdfs:label obo:OHD_0000043 "temp: fractured"@en)
-SubClassOf(obo:OHD_0000043 obo:BFO_0000019)
 
 # Class: obo:OHD_0000044 (surgical dental procedure)
 
@@ -5225,6 +5218,12 @@ AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0002000 "http
 AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0002000 "2023-06-06T21:30:37Z")
 AnnotationAssertion(rdfs:label obo:OHD_0002000 "masticatory muscle activity")
 SubClassOf(obo:OHD_0002000 obo:OGMS_0000060)
+
+# Class: obo:PATO_0040034 (temp: fractured)
+
+AnnotationAssertion(obo:IAO_0000116 obo:PATO_0040034 "Replace with PATO term")
+AnnotationAssertion(rdfs:label obo:PATO_0040034 "temp: fractured"@en)
+SubClassOf(obo:PATO_0040034 obo:BFO_0000019)
 
 # Class: <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> (obsolete class)
 
