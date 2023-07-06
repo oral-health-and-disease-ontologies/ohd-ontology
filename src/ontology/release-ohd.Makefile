@@ -77,7 +77,7 @@ IMP=true # Global parameter to bypass import generation
 MIR=true # Global parameter to bypass mirror generation
 IMP_LARGE=true # Global parameter to bypass handling of large imports
 
-IMPORTS = omo ro iao caro fma ecto obi omrse ogms
+IMPORTS = omo ro iao caro fma ecto obi omrse ogms nbo pato
 
 IMPORT_ROOTS = $(patsubst %, $(IMPORTDIR)/%_import, $(IMPORTS))
 IMPORT_OWL_FILES = $(foreach n,$(IMPORT_ROOTS), $(n).owl)
@@ -230,10 +230,6 @@ $(MIRRORDIR)/%.owl: | $(MIRRORDIR)
 mirror-%:
 	make -f $(MAKEFILE) $(MIRRORDIR)/$*.owl -B
 
-mirror-omo:
-	@echo "--- downloading $@" # testing
-	curl -L $(URIBASE)/omo.owl --create-dirs -o $(TMPDIR)/omo.owl --retry 4 --max-time 200
-
 # --- gzip ontology mirrors ---
 
 $(MIRRORDIR)/omo.owl.gz:
@@ -262,3 +258,9 @@ $(MIRRORDIR)/omrse.owl.gz:
 
 $(MIRRORDIR)/ogms.owl.gz: 
 	gzip -fk $(MIRRORDIR)/ogms.owl
+
+$(MIRRORDIR)/nbo.owl.gz: 
+	gzip -fk $(MIRRORDIR)/nbo.owl
+
+$(MIRRORDIR)/pato.owl.gz: 
+	gzip -fk $(MIRRORDIR)/pato.owl
