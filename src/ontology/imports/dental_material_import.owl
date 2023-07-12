@@ -27,19 +27,25 @@
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000111 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000111"/>
+    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000111">
+        <rdfs:label>editor preferred term</rdfs:label>
+    </AnnotationProperty>
     
 
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000112 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000112"/>
+    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000112">
+        <rdfs:label>example of usage</rdfs:label>
+    </AnnotationProperty>
     
 
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000114 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000114"/>
+    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000114">
+        <rdfs:label>has curation status</rdfs:label>
+    </AnnotationProperty>
     
 
 
@@ -53,7 +59,9 @@
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000116 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000116"/>
+    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000116">
+        <rdfs:label>editor note</rdfs:label>
+    </AnnotationProperty>
     
 
 
@@ -83,13 +91,17 @@
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000232 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000232"/>
+    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000232">
+        <rdfs:label>curator note</rdfs:label>
+    </AnnotationProperty>
     
 
 
     <!-- http://purl.obolibrary.org/obo/IAO_0000412 -->
 
-    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000412"/>
+    <AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000412">
+        <rdfs:label>imported from</rdfs:label>
+    </AnnotationProperty>
     
 
 
@@ -384,9 +396,9 @@
             </Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">A processed material that bears a dental restoration material role.</obo:IAO_0000115>
-        <obo:IAO_0000117>Person: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000117 xml:lang="en">Person:Alan Ruttenberg</obo:IAO_0000117>
         <obo:IAO_0000118 xml:lang="en">restoration material</obo:IAO_0000118>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0002-1604-3078"/>
         <rdfs:label>dental restoration material</rdfs:label>
     </Class>
     
@@ -398,7 +410,8 @@
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000048"/>
         <obo:IAO_0000115 xml:lang="en">a metal dental restoration material that consists of silver-colored, metallic alloy which is composed of a mixture of mercury and other metals</obo:IAO_0000115>
         <obo:IAO_0000116>Titus Schleyer 1/14/2014: updated definition</obo:IAO_0000116>
-        <obo:IAO_0000117 xml:lang="en">Person:Alan Ruttenberg</obo:IAO_0000117>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0002-1604-3078"/>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0003-1829-971X"/>
         <rdfs:label xml:lang="en">amalgam dental restoration material</rdfs:label>
     </Class>
     
@@ -412,7 +425,9 @@
         <obo:IAO_0000116>Bill Duncan 12/11/2014:
 updated defintion</obo:IAO_0000116>
         <obo:IAO_0000116>Titus Schleyer 3/13/2014: slightly updated definition</obo:IAO_0000116>
-        <obo:IAO_0000117>PERSON: Pedro L. Hernández-Cott</obo:IAO_0000117>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0003-1829-971X"/>
+        <terms:contributor>Pedro L. Hernández-Cott</terms:contributor>
         <rdfs:label xml:lang="en">gold foil dental restoration material</rdfs:label>
     </Class>
     
@@ -424,7 +439,8 @@ updated defintion</obo:IAO_0000116>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000135"/>
         <obo:IAO_0000115 xml:lang="en">A ceramic material used for tooth-colored restorations.</obo:IAO_0000115>
         <obo:IAO_0000116>Titus Schleyer1/14/2014: checked definition, sounds okay</obo:IAO_0000116>
-        <obo:IAO_0000117>PERSON: Pedro L. Hernández-Cott</obo:IAO_0000117>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0003-1829-971X"/>
+        <terms:contributor>Pedro L. Hernández-Cott</terms:contributor>
         <rdfs:label xml:lang="en">porcelain dental restoration material</rdfs:label>
     </Class>
     
@@ -436,7 +452,8 @@ updated defintion</obo:IAO_0000116>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
         <obo:IAO_0000115>A tooth-colored dental restoration material made from a mixture of resin, silica and other materials used in direct restorations.</obo:IAO_0000115>
         <obo:IAO_0000116>Titus Schleyer 3/13/2014: updated definition</obo:IAO_0000116>
-        <obo:IAO_0000117>PERSON: Pedro L. Hernández-Cott</obo:IAO_0000117>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0003-1829-971X"/>
+        <terms:contributor>Pedro L. Hernández-Cott</terms:contributor>
         <rdfs:label xml:lang="en">resin-based composite dental restoration material</rdfs:label>
     </Class>
     
@@ -448,7 +465,7 @@ updated defintion</obo:IAO_0000116>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
         <obo:IAO_0000115 xml:lang="en">A dental restoration material that consists mostly of metal atoms</obo:IAO_0000115>
         <obo:IAO_0000116 xml:lang="en">Use CHEBI:33521 &apos;metal ion&apos; in a complete definition. Fixure out how to say &quot;mostly&quot; first, however</obo:IAO_0000116>
-        <obo:IAO_0000117>PERSON: Alan Ruttenberg</obo:IAO_0000117>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0002-1604-3078"/>
         <rdfs:label xml:lang="en">metal dental restoration material</rdfs:label>
     </Class>
     
@@ -459,8 +476,8 @@ updated defintion</obo:IAO_0000116>
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000135">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
         <obo:IAO_0000115>A dental restoration material that consists of non-metal, non-resin inorganic refractory compounds processed at high temperatures (600 degress Celsius / 1112 degrees Farenheit) and pressed, pollished or milled -- including porcelains, glasses, and glass-ceramics.</obo:IAO_0000115>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000119> ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>ceramic dental restoration material</rdfs:label>
     </Class>
     
@@ -471,8 +488,8 @@ updated defintion</obo:IAO_0000116>
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000136">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000048"/>
         <obo:IAO_0000115>A metal dental restoration material which contains 85% or more titanium.</obo:IAO_0000115>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000119> ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>titanium dental restoration material</rdfs:label>
     </Class>
     
@@ -483,7 +500,7 @@ updated defintion</obo:IAO_0000116>
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000137">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000048"/>
         <obo:IAO_0000115>A metal dental restoration material which the principal ingredient is stainless steel.</obo:IAO_0000115>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>stainless steel dental restoration material</rdfs:label>
     </Class>
     
@@ -494,8 +511,8 @@ updated defintion</obo:IAO_0000116>
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000146">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000048"/>
         <obo:IAO_0000115>A metal dental restoration material that is composed of a matalic alloy that contains 25% or more of gold, palladium, and/or or platinum.</obo:IAO_0000115>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000119> ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>noble metal dental restoration material</rdfs:label>
     </Class>
     
@@ -505,9 +522,9 @@ updated defintion</obo:IAO_0000116>
 
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000147">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000146"/>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000119> ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
         <obo:IAO_0000119>A metal dental restoration material that is composed of a matalic alloy that contains 60% or more of gold, palladium, and/or or platinum (with at least 40% gold).</obo:IAO_0000119>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>high noble metal dental restoration material</rdfs:label>
     </Class>
     
@@ -518,8 +535,8 @@ updated defintion</obo:IAO_0000116>
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000156">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000048"/>
         <obo:IAO_0000115>A metal dental restoration material that is composed of a matalic alloy that contains less than 25% of gold, palladium, and/or or platinum.</obo:IAO_0000115>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <obo:IAO_0000119> ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>predominantly base metal dental restoration material</rdfs:label>
     </Class>
     
@@ -532,9 +549,8 @@ updated defintion</obo:IAO_0000116>
         <obo:IAO_0000115>Bill Duncan 12/11/2014:
 Changed definition to read that a &quot;portion of dental restoration material&quot; is realized by a &quot;tooth restoration procedure&quot;.</obo:IAO_0000115>
         <obo:IAO_0000116>Titus Schleyer 1/1/2014: updated definition</obo:IAO_0000116>
-        <obo:IAO_0000117>Person:Alan Ruttenberg
-</obo:IAO_0000117>
-        <obo:IAO_0000119>Person:Alan Ruttenberg</obo:IAO_0000119>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0002-1604-3078"/>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0003-1829-971X"/>
         <rdfs:label xml:lang="en">dental restoration material role</rdfs:label>
     </Class>
     
@@ -544,7 +560,7 @@ Changed definition to read that a &quot;portion of dental restoration material&q
 
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001000">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000135"/>
-        <terms:contributor>abhik</terms:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-07-07T14:36:57Z</terms:created>
         <rdfs:label xml:lang="en">zirconium dental restoration material</rdfs:label>
     </Class>
@@ -1537,6 +1553,30 @@ I have no idea why this happening...</obo:IAO_0000116>
 
     <NamedIndividual rdf:about="https://orcid.org/0000-0001-6424-4096">
         <rdfs:label>Nivedita Dutta (Chowdhury)</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- https://orcid.org/0000-0001-9625-1899 -->
+
+    <NamedIndividual rdf:about="https://orcid.org/0000-0001-9625-1899">
+        <rdfs:label>Bill Duncan</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- https://orcid.org/0000-0002-1604-3078 -->
+
+    <NamedIndividual rdf:about="https://orcid.org/0000-0002-1604-3078">
+        <rdfs:label>Alan Ruttenberg</rdfs:label>
+    </NamedIndividual>
+    
+
+
+    <!-- https://orcid.org/0000-0003-1829-971X -->
+
+    <NamedIndividual rdf:about="https://orcid.org/0000-0003-1829-971X">
+        <rdfs:label>Titus Schleyer</rdfs:label>
     </NamedIndividual>
     
 
