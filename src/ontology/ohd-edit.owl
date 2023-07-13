@@ -3805,13 +3805,16 @@ EquivalentClasses(obo:OHD_0000233 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeV
 
 # Class: obo:OHD_0000235 (restored facial surface)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000235 "A restored tooth surface that forms the lip-facing surface of a restored anterior tooth.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000235 "A restored tooth surface that forms the lip-facing or cheek-facing surface of a restored tooth.")
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000235 "Bill Duncan 01/05/2017:
 Some dental EHR systems use the letter \"F\" for facial surfaces rather than \"L\" for labial surfaces. The reason is that \"L\" is also used for the lingual surface.")
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000235 "Gopikrishnan M. Chandrasekharan 07/12/2023:
+We decided that the facial surface should subsume both labial and buccal surfaces.")
 AnnotationAssertion(dc:contributor obo:OHD_0000235 "https://orcid.org/0000-0001-9625-1899")
+AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000235 <https://orcid.org/0009-0006-7251-3026>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000235 "2022-12-06T02:42:40Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000235 "restored facial surface"@en)
-EquivalentClasses(obo:OHD_0000235 ObjectIntersectionOf(obo:OHD_0000208 obo:OHD_0000225))
+EquivalentClasses(obo:OHD_0000235 ObjectIntersectionOf(obo:OHD_0000208 ObjectUnionOf(obo:OHD_0000222 obo:OHD_0000225)))
 
 # Class: obo:OHD_0000236 (endodontically restored tooth)
 
