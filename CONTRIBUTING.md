@@ -31,8 +31,6 @@ https://info.orcid.org/what-is-orcid/
 - Open Protégé.
 - Go to File > Preferences.
 
-**IMAGE**
-
 #### Update user details in Protégé
 - Go to Protégé preferences.
 - Click on the 'User details' tab.
