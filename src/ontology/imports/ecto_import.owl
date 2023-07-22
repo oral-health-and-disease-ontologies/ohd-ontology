@@ -6,6 +6,7 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:prov="http://www.w3.org/ns/prov#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
     <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
@@ -28,6 +29,12 @@
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000111">
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
     
 
 
@@ -36,6 +43,12 @@
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000114">
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
     
 
 
@@ -81,8 +94,51 @@ We also have the outstanding issue of how to aim different definitions to differ
     <owl:Axiom>
         <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
-        <owl:annotatedTarget>A property representing the English language definitions of what NCI means by the concept. They may also include information about the definition&apos;s source and attribution in a form that can easily be interpreted by software.</owl:annotatedTarget>
-        <obo:NCIT_P378>NCI</obo:NCIT_P378>
+        <owl:annotatedTarget xml:lang="en">The official OBI definition, explaining the meaning of a class or property. Shall be Aristotelian, formalized and normalized. Can be augmented with colloquial definitions.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">The official definition, explaining the meaning of a class or property. Shall be Aristotelian, formalized and normalized. Can be augmented with colloquial definitions.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">2012-04-05: 
+Barry Smith
+
+The official OBI definition, explaining the meaning of a class or property: &apos;Shall be Aristotelian, formalized and normalized. Can be augmented with colloquial definitions&apos;  is terrible.
+
+Can you fix to something like:
+
+A statement of necessary and sufficient conditions explaining the meaning of an expression referring to a class or property.
+
+Alan Ruttenberg
+
+Your proposed definition is a reasonable candidate, except that it is very common that necessary and sufficient conditions are not given. Mostly they are necessary, occasionally they are necessary and sufficient or just sufficient. Often they use terms that are not themselves defined and so they effectively can&apos;t be evaluated by those criteria. 
+
+On the specifics of the proposed definition:
+
+We don&apos;t have definitions of &apos;meaning&apos; or &apos;expression&apos; or &apos;property&apos;. For &apos;reference&apos; in the intended sense I think we use the term &apos;denotation&apos;. For &apos;expression&apos;, I think we you mean symbol, or identifier. For &apos;meaning&apos; it differs for class and property. For class we want documentation that let&apos;s the intended reader determine whether an entity is instance of the class, or not. For property we want documentation that let&apos;s the intended reader determine, given a pair of potential relata, whether the assertion that the relation holds is true. The &apos;intended reader&apos; part suggests that we also specify who, we expect, would be able to understand the definition, and also generalizes over human and computer reader to include textual and logical definition. 
+
+Personally, I am more comfortable weakening definition to documentation, with instructions as to what is desirable. 
+
+We also have the outstanding issue of how to aim different definitions to different audiences. A clinical audience reading chebi wants a different sort of definition documentation/definition from a chemistry trained audience, and similarly there is a need for a definition that is adequate for an ontologist to work with.  </owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON:Daniel Schober</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">GROUP:OBI:&lt;http://purl.obolibrary.org/obo/obi&gt;</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
     </owl:Axiom>
     <owl:Axiom>
         <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
@@ -90,6 +146,74 @@ We also have the outstanding issue of how to aim different definitions to differ
         <owl:annotatedTarget>DEFINITION</owl:annotatedTarget>
         <obo:NCIT_P383>PT</obo:NCIT_P383>
         <obo:NCIT_P384>NCI</obo:NCIT_P384>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget>definition</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">definition</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget>textual definition</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget>definition</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">definition</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget>textual definition</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>A property representing the English language definitions of what NCI means by the concept. They may also include information about the definition&apos;s source and attribution in a form that can easily be interpreted by software.</owl:annotatedTarget>
+        <obo:NCIT_P378>NCI</obo:NCIT_P378>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>English language definitions of what NCI means by the concept. These are limited to 1024 characters. They may also include information about the definition&apos;s source and attribution in a form that can easily be interpreted by software.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
     </owl:Axiom>
     
 
@@ -100,6 +224,18 @@ We also have the outstanding issue of how to aim different definitions to differ
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
         <rdfs:label>editor note</rdfs:label>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget>editor note</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
     
 
 
@@ -108,6 +244,12 @@ We also have the outstanding issue of how to aim different definitions to differ
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000117">
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
     
 
 
@@ -116,6 +258,12 @@ We also have the outstanding issue of how to aim different definitions to differ
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000119">
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
     
 
 
@@ -148,6 +296,12 @@ We also have the outstanding issue of how to aim different definitions to differ
     <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#created_by">
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.geneontology.org/formats/oboInOwl#created_by"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
     
 
 
@@ -156,6 +310,12 @@ We also have the outstanding issue of how to aim different definitions to differ
     <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#creation_date">
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.geneontology.org/formats/oboInOwl#creation_date"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
     
 
 
@@ -179,9 +339,16 @@ We also have the outstanding issue of how to aim different definitions to differ
     </owl:AnnotationProperty>
     <owl:Axiom>
         <owl:annotatedSource rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
         <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <owl:annotatedTarget>A property representing a fully qualified synonym, contains the string, term type, source, and an optional source code if appropriate. Each subfield is deliniated to facilitate interpretation by software.</owl:annotatedTarget>
         <obo:NCIT_P378>NCI</obo:NCIT_P378>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
     </owl:Axiom>
     <owl:Axiom>
         <owl:annotatedSource rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
@@ -189,6 +356,7 @@ We also have the outstanding issue of how to aim different definitions to differ
         <owl:annotatedTarget>FULL_SYN</owl:annotatedTarget>
         <obo:NCIT_P383>PT</obo:NCIT_P383>
         <obo:NCIT_P384>NCI</obo:NCIT_P384>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
     </owl:Axiom>
     <owl:Axiom>
         <owl:annotatedSource rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
@@ -196,6 +364,19 @@ We also have the outstanding issue of how to aim different definitions to differ
         <owl:annotatedTarget>Synonym with Source Data</owl:annotatedTarget>
         <obo:NCIT_P383>SY</obo:NCIT_P383>
         <obo:NCIT_P384>NCI</obo:NCIT_P384>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget>has exact synonym</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget>has_exact_synonym</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
     </owl:Axiom>
     
 
@@ -205,6 +386,12 @@ We also have the outstanding issue of how to aim different definitions to differ
     <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasOBONamespace">
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasOBONamespace"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
     
 
 
@@ -213,6 +400,12 @@ We also have the outstanding issue of how to aim different definitions to differ
     <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#id">
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.geneontology.org/formats/oboInOwl#id"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
     
 
 
@@ -221,6 +414,12 @@ We also have the outstanding issue of how to aim different definitions to differ
     <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#isDefinedBy">
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
     
 
 
@@ -232,6 +431,44 @@ We also have the outstanding issue of how to aim different definitions to differ
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
         <rdfs:label>label</rdfs:label>
         <rdfs:label xml:lang="en">label</rdfs:label>
+    </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget>label</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">label</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget>label</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">label</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasDerivedFrom -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/ns/prov#wasDerivedFrom">
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
     </owl:AnnotationProperty>
     
 
@@ -255,6 +492,14 @@ We also have the outstanding issue of how to aim different definitions to differ
     
 
 
+    <!-- http://www.w3.org/2001/XMLSchema#string -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#string">
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </rdf:Description>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -263,12 +508,6 @@ We also have the outstanding issue of how to aim different definitions to differ
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/BFO_0000007 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000007"/>
     
 
 
@@ -281,6 +520,36 @@ We also have the outstanding issue of how to aim different definitions to differ
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
         <rdfs:label>exposure to chemical with chemical role</rdfs:label>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ECTO_0000487"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ECTO_0000487"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/ECTO_0010000"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ECTO_0000487"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>An exposure to chemical role.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ECTO_0000487"/>
+        <owl:annotatedProperty rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <owl:annotatedTarget>exposure to chemical role</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ECTO_0000487"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget>exposure to chemical with chemical role</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
     
 
 
@@ -293,6 +562,36 @@ We also have the outstanding issue of how to aim different definitions to differ
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
         <rdfs:label>exposure to environmental quality</rdfs:label>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ECTO_0010000"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ECTO_0010000"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/ExO_0000002"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ECTO_0010000"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>A exposure event involving the interaction of an exposure receptor to quality.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ECTO_0010000"/>
+        <owl:annotatedProperty rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <owl:annotatedTarget>quality exposure</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ECTO_0010000"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget>exposure to environmental quality</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
     
 
 
@@ -305,13 +604,43 @@ We also have the outstanding issue of how to aim different definitions to differ
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
         <rdfs:label>exposure to acids</rdfs:label>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ECTO_9002146"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ECTO_9002146"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/ECTO_0000487"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ECTO_9002146"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>An exposure to acid.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ECTO_9002146"/>
+        <owl:annotatedProperty rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
+        <owl:annotatedTarget>exposure to acid</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ECTO_9002146"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget>exposure to acids</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
     
 
 
     <!-- http://purl.obolibrary.org/obo/ExO_0000002 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExO_0000002">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000007"/>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
         <obo:IAO_0000115>An interaction between an exposure stressor and an exposure_receptor.</obo:IAO_0000115>
         <oboInOwl:created_by>cmattin</oboInOwl:created_by>
         <oboInOwl:creation_date>2010-09-21T02:47:00Z</oboInOwl:creation_date>
@@ -322,24 +651,58 @@ We also have the outstanding issue of how to aim different definitions to differ
     </owl:Class>
     <owl:Axiom>
         <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ExO_0000002"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ExO_0000002"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ExO_0000002"/>
         <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <owl:annotatedTarget>An interaction between an exposure stressor and an exposure_receptor.</owl:annotatedTarget>
         <oboInOwl:hasDbXref>CTD:curators</oboInOwl:hasDbXref>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ExO_0000002"/>
+        <owl:annotatedProperty rdf:resource="http://www.geneontology.org/formats/oboInOwl#created_by"/>
+        <owl:annotatedTarget>cmattin</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ExO_0000002"/>
+        <owl:annotatedProperty rdf:resource="http://www.geneontology.org/formats/oboInOwl#creation_date"/>
+        <owl:annotatedTarget>2010-09-21T02:47:00Z</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ExO_0000002"/>
+        <owl:annotatedProperty rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasOBONamespace"/>
+        <owl:annotatedTarget>exposure_event</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ExO_0000002"/>
+        <owl:annotatedProperty rdf:resource="http://www.geneontology.org/formats/oboInOwl#id"/>
+        <owl:annotatedTarget>ExO:0000002</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/ExO_0000002"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget>exposure event</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
     </owl:Axiom>
     
 
 
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Annotations
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
 
-    <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#string">
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
-    </rdf:Description>
     <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing">
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl"/>
     </rdf:Description>
@@ -347,5 +710,5 @@ We also have the outstanding issue of how to aim different definitions to differ
 
 
 
-<!-- Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.25) https://github.com/owlcs/owlapi -->
 
