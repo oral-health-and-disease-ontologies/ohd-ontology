@@ -12,8 +12,8 @@ Prefix(protege:=<http://protege.stanford.edu/plugins/owl/protege#>)
 
 
 Ontology(<http://purl.obolibrary.org/obo/ohd.owl>
-Import(<http://purl.obolibrary.org/obo/bfo/2019-08-26/bfo.owl>)
 Import(<http://purl.obolibrary.org/obo/imports/dental_material_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/bfo2_classes_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/caro_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/cdt_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl>)
@@ -30,7 +30,6 @@ Import(<http://purl.obolibrary.org/obo/ohd/imports/omrse_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/ontology-metadata_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
 Import(<http://purl.obolibrary.org/obo/omo/releases/2023-06-09/omo.owl>)
-Import(<http://purl.obolibrary.org/obo/ro/releases/2023-02-22/ro.owl>)
 Annotation(dc:creator "Alan Ruttenberg")
 Annotation(dc:creator "Bill Duncan")
 Annotation(<http://purl.org/dc/terms/contributor> "Amit Acharya")
@@ -49,7 +48,6 @@ Attribution is satisfied by using the URIs defined in this file when using terms
 
 Declaration(Class(obo:BFO_0000002))
 Declaration(Class(obo:BFO_0000003))
-Declaration(Class(obo:BFO_0000005))
 Declaration(Class(obo:BFO_0000020))
 Declaration(Class(obo:CDT_0000120))
 Declaration(Class(obo:CDT_0000140))
@@ -1233,8 +1231,6 @@ Declaration(ObjectProperty(obo:BFO_0000053))
 Declaration(ObjectProperty(obo:BFO_0000054))
 Declaration(ObjectProperty(obo:BFO_0000055))
 Declaration(ObjectProperty(obo:BFO_0000063))
-Declaration(ObjectProperty(obo:BFO_0000086))
-Declaration(ObjectProperty(obo:BFO_0000087))
 Declaration(ObjectProperty(obo:IAO_0000136))
 Declaration(ObjectProperty(obo:OBI_0000293))
 Declaration(ObjectProperty(obo:OBI_0000299))
@@ -1242,6 +1238,7 @@ Declaration(ObjectProperty(obo:OBI_0000312))
 Declaration(ObjectProperty(obo:OHD_0000091))
 Declaration(ObjectProperty(obo:OHD_0000216))
 Declaration(ObjectProperty(obo:OHD_0000217))
+Declaration(ObjectProperty(obo:RO_0000087))
 Declaration(ObjectProperty(obo:RO_0002354))
 Declaration(ObjectProperty(obo:RO_0003304))
 Declaration(DataProperty(obo:OHD_0000014))
@@ -1398,7 +1395,7 @@ SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasExactSy
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> obo:IAO_0000118)
 
-# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> (has_related_synonym)
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> (has related synonym)
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> obo:IAO_0000118)
 
@@ -1459,7 +1456,7 @@ TransitiveObjectProperty(obo:OHD_0000217)
 
 # Object Property: obo:RO_0002354 (formed as result of)
 
-SubObjectPropertyOf(obo:RO_0002354 obo:BFO_0000056)
+SubObjectPropertyOf(obo:RO_0002354 obo:RO_0000056)
 
 
 ############################
@@ -1552,10 +1549,6 @@ DisjointClasses(obo:BFO_0000002 ObjectSomeValuesFrom(obo:BFO_0000050 obo:BFO_000
 
 DisjointClasses(obo:BFO_0000003 ObjectSomeValuesFrom(obo:BFO_0000050 obo:BFO_0000002))
 DisjointClasses(obo:BFO_0000003 ObjectSomeValuesFrom(obo:BFO_0000051 obo:BFO_0000002))
-
-# Class: obo:BFO_0000004 (independent continuant)
-
-DisjointClasses(obo:BFO_0000004 obo:BFO_0000005)
 
 # Class: obo:BFO_0000020 (specifically dependent continuant)
 
@@ -1879,9 +1872,9 @@ SubClassOf(obo:CDT_1000022 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000004)
 
 SubClassOf(obo:CDT_1000023 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000033))
 
-# Class: obo:ECTO_9002146 (exposure to acids)
+# Class: obo:ExO_0000002 (exposure event)
 
-SubClassOf(obo:ECTO_9002146 obo:BFO_0000007)
+SubClassOf(obo:ExO_0000002 obo:BFO_0000015)
 
 # Class: obo:FMA_12516 (Tooth)
 
@@ -2171,7 +2164,7 @@ SubClassOf(obo:FMA_84245 ObjectSomeValuesFrom(obo:FMA_85868 obo:FMA_no_fmaid_Pri
 
 AnnotationAssertion(obo:IAO_0000116 obo:NBO_0000007 "Import from NBO")
 AnnotationAssertion(rdfs:label obo:NBO_0000007 "temp: mouth movement"@en)
-EquivalentClasses(obo:NBO_0000007 ObjectIntersectionOf(obo:OGMS_0000060 ObjectSomeValuesFrom(obo:BFO_0000057 obo:FMA_49184)))
+EquivalentClasses(obo:NBO_0000007 ObjectIntersectionOf(obo:OGMS_0000060 ObjectSomeValuesFrom(obo:RO_0000057 obo:FMA_49184)))
 
 # Class: obo:OBI_0000245 (organization)
 
@@ -2270,8 +2263,8 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000003 "Titus Schleyer 1/14/2014: a
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000003 "PERSON:Pedro Cott")
 AnnotationAssertion(rdfs:label obo:OHD_0000003 "endodontic procedure"@en)
 EquivalentClasses(obo:OHD_0000003 ObjectIntersectionOf(obo:OHD_0000002 ObjectUnionOf(obo:OHD_0000242 obo:OHD_0000243)))
-SubClassOf(obo:OHD_0000003 ObjectSomeValuesFrom(obo:BFO_0000057 obo:FMA_12516))
-SubClassOf(obo:OHD_0000003 ObjectSomeValuesFrom(obo:BFO_0000057 obo:NCBITaxon_9606))
+SubClassOf(obo:OHD_0000003 ObjectSomeValuesFrom(obo:RO_0000057 obo:FMA_12516))
+SubClassOf(obo:OHD_0000003 ObjectSomeValuesFrom(obo:RO_0000057 obo:NCBITaxon_9606))
 
 # Class: obo:OHD_0000004 (tooth restoration procedure)
 
@@ -2301,8 +2294,8 @@ AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000004 <http
 AnnotationAssertion(rdfs:label obo:OHD_0000004 "tooth restoration procedure"@en)
 SubClassOf(obo:OHD_0000004 obo:OHD_0000002)
 SubClassOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000007))
-SubClassOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:BFO_0000057 obo:FMA_12516))
 SubClassOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:OBI_0000417 obo:OBI_0000434))
+SubClassOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:RO_0000057 obo:FMA_12516))
 
 # Class: obo:OHD_0000005 (surgical procedure)
 
@@ -2382,7 +2375,7 @@ SubClassOf(obo:OHD_0000011 ObjectIntersectionOf(obo:OGMS_0000104 ObjectSomeValue
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000012 "A Homo sapiens that bears some dental patient role.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000012 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000012 "human dental patient"@en)
-EquivalentClasses(obo:OHD_0000012 ObjectIntersectionOf(obo:NCBITaxon_9606 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000190)))
+EquivalentClasses(obo:OHD_0000012 ObjectIntersectionOf(obo:NCBITaxon_9606 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000190)))
 
 # Class: obo:OHD_0000013 (dental health care organization)
 
@@ -2418,7 +2411,7 @@ SubClassOf(obo:OHD_0000017 obo:OHD_0000052)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000018 "a dental health care provider that bears a dentist role")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000018 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000018 "dentist")
-EquivalentClasses(obo:OHD_0000018 ObjectIntersectionOf(obo:OHD_0000051 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000017)))
+EquivalentClasses(obo:OHD_0000018 ObjectIntersectionOf(obo:OHD_0000051 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000017)))
 
 # Class: obo:OHD_0000019 (dental exam)
 
@@ -2437,7 +2430,7 @@ SubClassOf(obo:OHD_0000019 ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000010)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000020 "a dental health care provider that bears a dental hygienist role")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000020 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000020 "dental hygienist")
-EquivalentClasses(obo:OHD_0000020 ObjectIntersectionOf(obo:OHD_0000051 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000016)))
+EquivalentClasses(obo:OHD_0000020 ObjectIntersectionOf(obo:OHD_0000051 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000016)))
 
 # Class: obo:OHD_0000021 (carious tooth lesion)
 
@@ -2483,7 +2476,7 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000025 "Person:Alan Ruttenberg"@en)
 AnnotationAssertion(rdfs:label obo:OHD_0000025 "hard tissue exam"@en)
 SubClassOf(obo:OHD_0000025 obo:OHD_0000019)
 SubClassOf(obo:OHD_0000025 ObjectSomeValuesFrom(obo:BFO_0000055 ObjectIntersectionOf(obo:OBI_0000067 ObjectSomeValuesFrom(obo:BFO_0000052 ObjectUnionOf(obo:FMA_12516 obo:FMA_54396)))))
-SubClassOf(obo:OHD_0000025 ObjectSomeValuesFrom(obo:BFO_0000057 ObjectUnionOf(obo:FMA_12516 obo:FMA_54396)))
+SubClassOf(obo:OHD_0000025 ObjectSomeValuesFrom(obo:RO_0000057 ObjectUnionOf(obo:FMA_12516 obo:FMA_54396)))
 
 # Class: obo:OHD_0000026 (missing tooth finding)
 
@@ -2519,7 +2512,7 @@ SubClassOf(obo:OHD_0000028 ObjectHasValue(obo:BFO_0000051 obo:OHD_0000114))
 # Class: obo:OHD_0000029 (fractured tooth)
 
 AnnotationAssertion(rdfs:label obo:OHD_0000029 "fractured tooth"@en)
-SubClassOf(obo:OHD_0000029 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:BFO_0000086 obo:PATO_0040034)))
+SubClassOf(obo:OHD_0000029 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:RO_0000053 obo:PATO_0040034)))
 
 # Class: obo:OHD_0000030 (fractured tooth finding)
 
@@ -2654,14 +2647,14 @@ EquivalentClasses(obo:OHD_0000047 ObjectIntersectionOf(obo:OHD_0000007 ObjectSom
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000049 "A human dental patient that bears a female gender role.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000049 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000049 "female dental patient")
-EquivalentClasses(obo:OHD_0000049 ObjectIntersectionOf(obo:OHD_0000012 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OMRSE_00000009)))
+EquivalentClasses(obo:OHD_0000049 ObjectIntersectionOf(obo:OHD_0000012 ObjectSomeValuesFrom(obo:RO_0000087 obo:OMRSE_00000009)))
 
 # Class: obo:OHD_0000051 (dental health care provider)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000051 "a health care provider that bears a dental health care provider role")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000051 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000051 "dental health care provider"@en)
-EquivalentClasses(obo:OHD_0000051 ObjectIntersectionOf(obo:OHD_0000179 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000052)))
+EquivalentClasses(obo:OHD_0000051 ObjectIntersectionOf(obo:OHD_0000179 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000052)))
 
 # Class: obo:OHD_0000052 (dental health care provider role)
 
@@ -2677,7 +2670,7 @@ SubClassOf(obo:OHD_0000052 ObjectSomeValuesFrom(obo:BFO_0000054 obo:OHD_0000002)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000054 "A human dental patient that bears a male gender role.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000054 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000054 "male dental patient")
-EquivalentClasses(obo:OHD_0000054 ObjectIntersectionOf(obo:OHD_0000012 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OMRSE_00000008)))
+EquivalentClasses(obo:OHD_0000054 ObjectIntersectionOf(obo:OHD_0000012 ObjectSomeValuesFrom(obo:RO_0000087 obo:OMRSE_00000008)))
 
 # Class: obo:OHD_0000055 (tooth to be crowned role)
 
@@ -2706,8 +2699,8 @@ AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000057 "Mosby. Mosby's Dental Dicti
 ")
 AnnotationAssertion(rdfs:label obo:OHD_0000057 "tooth extraction procedure")
 SubClassOf(obo:OHD_0000057 obo:OHD_0000044)
-SubClassOf(obo:OHD_0000057 ObjectSomeValuesFrom(obo:BFO_0000057 obo:FMA_12516))
 SubClassOf(obo:OHD_0000057 ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000233))
+SubClassOf(obo:OHD_0000057 ObjectSomeValuesFrom(obo:RO_0000057 obo:FMA_12516))
 
 # Class: obo:OHD_0000058 (tooth to undergo endodontic procedure role)
 
@@ -3097,6 +3090,7 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000141 "Bill Duncan 6/26/2015:
 There is not a dental restoration material of this kind. The class needs to be made obsolete.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000141 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000141 "resin with predominantly base metal dental restoration")
+AnnotationAssertion(owl:deprecated obo:OHD_0000141 "true"^^xsd:boolean)
 SubClassOf(obo:OHD_0000141 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
 
 # Class: obo:OHD_0000142 (noble metal crown restoration procedure)
@@ -3112,6 +3106,7 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000143 "Bill Duncan 6/26/2015:
 There is not a dental restoration material of this kind. The class needs to be made obsolete.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000143 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000143 "porcelain fused to noble metal dental restoration material")
+AnnotationAssertion(owl:deprecated obo:OHD_0000143 "true"^^xsd:boolean)
 SubClassOf(obo:OHD_0000143 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
 
 # Class: obo:OHD_0000144 (porcelain fused to high noble metal dental restoration material)
@@ -3120,6 +3115,7 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000144 "Bill Duncan 6/26/2015:
 There is not a dental restoration material of this kind. The class needs to be made obsolete.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000144 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000144 "porcelain fused to high noble metal dental restoration material")
+AnnotationAssertion(owl:deprecated obo:OHD_0000144 "true"^^xsd:boolean)
 SubClassOf(obo:OHD_0000144 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
 
 # Class: obo:OHD_0000145 (porcelain fused to predominantly base metal dental restoration material)
@@ -3128,6 +3124,7 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000145 "Bill Duncan 6/26/2015:
 There is not a dental restoration material of this kind. The class needs to be made obsolete.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000145 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000145 "porcelain fused to predominantly base metal dental restoration material")
+AnnotationAssertion(owl:deprecated obo:OHD_0000145 "true"^^xsd:boolean)
 SubClassOf(obo:OHD_0000145 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
 
 # Class: obo:OHD_0000148 (resin with high noble metal crown restoration procedure)
@@ -3364,63 +3361,63 @@ SubClassOf(obo:OHD_0000178 obo:OHD_0000212)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000179 "a Homo sapiens that bears a health care provider role")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000179 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000179 "health care provider"@en)
-EquivalentClasses(obo:OHD_0000179 ObjectIntersectionOf(obo:NCBITaxon_9606 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000212)))
+EquivalentClasses(obo:OHD_0000179 ObjectIntersectionOf(obo:NCBITaxon_9606 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000212)))
 
 # Class: obo:OHD_0000180 (registered nurse)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000180 "a health care provider that bears a registered nurse role")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000180 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000180 "registered nurse"@en)
-EquivalentClasses(obo:OHD_0000180 ObjectIntersectionOf(obo:OHD_0000179 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000178)))
+EquivalentClasses(obo:OHD_0000180 ObjectIntersectionOf(obo:OHD_0000179 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000178)))
 
 # Class: obo:OHD_0000181 (dental therapist)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000181 "a dental health care provider that bears a dental therapist role")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000181 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000181 "dental therapist"@en)
-EquivalentClasses(obo:OHD_0000181 ObjectIntersectionOf(obo:OHD_0000051 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000170)))
+EquivalentClasses(obo:OHD_0000181 ObjectIntersectionOf(obo:OHD_0000051 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000170)))
 
 # Class: obo:OHD_0000182 (endodontist)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000182 "a dentists that bears a endodontist role")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000182 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000182 "endodontist"@en)
-EquivalentClasses(obo:OHD_0000182 ObjectIntersectionOf(obo:OHD_0000018 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000171)))
+EquivalentClasses(obo:OHD_0000182 ObjectIntersectionOf(obo:OHD_0000018 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000171)))
 
 # Class: obo:OHD_0000183 (oral surgeon)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000183 "a dentist that bears an oral surgeon role")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000183 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000183 "oral surgeon"@en)
-EquivalentClasses(obo:OHD_0000183 ObjectIntersectionOf(obo:OHD_0000018 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000172)))
+EquivalentClasses(obo:OHD_0000183 ObjectIntersectionOf(obo:OHD_0000018 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000172)))
 
 # Class: obo:OHD_0000184 (orofacial pain dentist)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000184 "a dentist that bears an orofacial pain dentist role")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000184 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000184 "orofacial pain dentist"@en)
-EquivalentClasses(obo:OHD_0000184 ObjectIntersectionOf(obo:OHD_0000018 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000173)))
+EquivalentClasses(obo:OHD_0000184 ObjectIntersectionOf(obo:OHD_0000018 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000173)))
 
 # Class: obo:OHD_0000185 (orthodontist)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000185 "a dentist that bears an orthodontist role")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000185 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000185 "orthodontist"@en)
-EquivalentClasses(obo:OHD_0000185 ObjectIntersectionOf(obo:OHD_0000018 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000174)))
+EquivalentClasses(obo:OHD_0000185 ObjectIntersectionOf(obo:OHD_0000018 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000174)))
 
 # Class: obo:OHD_0000186 (pediatric dentist)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000186 "a dentist that bears a pediatric dentist role")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000186 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000186 "pediatric dentist"@en)
-EquivalentClasses(obo:OHD_0000186 ObjectIntersectionOf(obo:OHD_0000018 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000175)))
+EquivalentClasses(obo:OHD_0000186 ObjectIntersectionOf(obo:OHD_0000018 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000175)))
 
 # Class: obo:OHD_0000187 (periodontist)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000187 "a dentist that bears a periodontist role")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000187 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000187 "periodontist"@en)
-EquivalentClasses(obo:OHD_0000187 ObjectIntersectionOf(obo:OHD_0000018 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000176)))
+EquivalentClasses(obo:OHD_0000187 ObjectIntersectionOf(obo:OHD_0000018 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000176)))
 
 # Class: obo:OHD_0000188 (stainless steel with resin window dental restoration material)
 
@@ -3428,6 +3425,7 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000188 "Bill Duncan 6/26/2015:
 There is not a dental restoration material of this kind. The class needs to be made obsolete.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000188 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000188 "stainless steel with resin window dental restoration material")
+AnnotationAssertion(owl:deprecated obo:OHD_0000188 "true"^^xsd:boolean)
 SubClassOf(obo:OHD_0000188 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
 
 # Class: obo:OHD_0000189 (restored tooth)
@@ -3631,7 +3629,7 @@ SubClassOf(obo:OHD_0000208 ObjectSomeValuesFrom(obo:BFO_0000050 obo:OHD_0000189)
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000210 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000210 "a dental health care provider that bears a dental assistant role")
 AnnotationAssertion(rdfs:label obo:OHD_0000210 "dental assistant"@en)
-EquivalentClasses(obo:OHD_0000210 ObjectIntersectionOf(obo:OHD_0000051 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000165)))
+EquivalentClasses(obo:OHD_0000210 ObjectIntersectionOf(obo:OHD_0000051 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000165)))
 
 # Class: obo:OHD_0000211 (dental practice facility)
 
@@ -3654,7 +3652,7 @@ SubClassOf(obo:OHD_0000212 ObjectSomeValuesFrom(obo:BFO_0000054 obo:OGMS_0000096
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000213 "a dentist that bears a prosthodontist role")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000213 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000213 "prosthodontist"@en)
-EquivalentClasses(obo:OHD_0000213 ObjectIntersectionOf(obo:OHD_0000018 ObjectSomeValuesFrom(obo:BFO_0000087 obo:OHD_0000177)))
+EquivalentClasses(obo:OHD_0000213 ObjectIntersectionOf(obo:OHD_0000018 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000177)))
 
 # Class: obo:OHD_0000214 (health care organization employee role)
 
@@ -4138,8 +4136,8 @@ AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000274 <http
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000274 <https://orcid.org/0009-0006-7251-3026>)
 AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000274 "2023-06-08T16:56:25Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000274 "tooth cleaning process"@en)
-SubClassOf(obo:OHD_0000274 obo:BFO_0000007)
-SubClassOf(obo:OHD_0000274 ObjectSomeValuesFrom(obo:BFO_0000057 obo:FMA_12516))
+SubClassOf(obo:OHD_0000274 obo:BFO_0000015)
+SubClassOf(obo:OHD_0000274 ObjectSomeValuesFrom(obo:RO_0000057 obo:FMA_12516))
 
 # Class: obo:OHD_0000275 (toothbrushing)
 
@@ -4149,7 +4147,7 @@ AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000275 <http
 AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000275 "2023-06-08T16:59:29Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000275 "toothbrushing"@en)
 SubClassOf(obo:OHD_0000275 obo:OHD_0000274)
-SubClassOf(obo:OHD_0000275 ObjectSomeValuesFrom(obo:BFO_0000057 obo:OHD_0000284))
+SubClassOf(obo:OHD_0000275 ObjectSomeValuesFrom(obo:RO_0000057 obo:OHD_0000284))
 
 # Class: obo:OHD_0000276 (sleep bruxism)
 
@@ -4221,7 +4219,7 @@ AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000282 <http
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000282 <https://orcid.org/0009-0006-7251-3026>)
 AnnotationAssertion(<http://purl.org/dc/terms/created> obo:OHD_0000282 "2023-06-09T16:17:51Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000282 "tooth abrasive process"@en)
-EquivalentClasses(obo:OHD_0000282 ObjectIntersectionOf(obo:BFO_0000007 ObjectSomeValuesFrom(obo:BFO_0000057 obo:FMA_12516) ObjectSomeValuesFrom(obo:BFO_0000057 obo:OHD_0000284)))
+EquivalentClasses(obo:OHD_0000282 ObjectIntersectionOf(obo:BFO_0000015 ObjectSomeValuesFrom(obo:RO_0000057 obo:FMA_12516) ObjectSomeValuesFrom(obo:RO_0000057 obo:OHD_0000284)))
 
 # Class: obo:OHD_0000283 (subperiosteal implant framework)
 
@@ -5197,7 +5195,7 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000406 "An oral parafunction can in
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000406 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> obo:OHD_0000406 <https://orcid.org/0009-0006-7251-3026>)
 AnnotationAssertion(rdfs:label obo:OHD_0000406 "oral parafunction"@en)
-EquivalentClasses(obo:OHD_0000406 ObjectIntersectionOf(obo:OGMS_0000061 ObjectSomeValuesFrom(obo:BFO_0000057 obo:FMA_49184) ObjectSomeValuesFrom(obo:RO_0003304 obo:OGMS_0000045)))
+EquivalentClasses(obo:OHD_0000406 ObjectIntersectionOf(obo:OGMS_0000061 ObjectSomeValuesFrom(obo:RO_0000057 obo:FMA_49184) ObjectSomeValuesFrom(obo:RO_0003304 obo:OGMS_0000045)))
 
 # Class: obo:OHD_0000407 (bruxism)
 
@@ -5451,6 +5449,6 @@ AnnotationAssertion(rdfs:label <https://orcid.org/0009-0006-7251-3026> "Gopikris
 
 
 SubClassOf(ObjectIntersectionOf(ObjectUnionOf(obo:NBO_0000007 obo:OHD_0002000) ObjectSomeValuesFrom(obo:RO_0003304 obo:OGMS_0000045)) obo:OHD_0000406)
-SubObjectPropertyOf(ObjectPropertyChain(obo:BFO_0000053 obo:BFO_0000054) obo:BFO_0000056)
-SubObjectPropertyOf(ObjectPropertyChain(obo:OBI_0000293 obo:BFO_0000050) obo:BFO_0000057)
+SubObjectPropertyOf(ObjectPropertyChain(obo:BFO_0000053 obo:BFO_0000054) obo:RO_0000056)
+SubObjectPropertyOf(ObjectPropertyChain(obo:OBI_0000293 obo:BFO_0000050) obo:RO_0000057)
 )
