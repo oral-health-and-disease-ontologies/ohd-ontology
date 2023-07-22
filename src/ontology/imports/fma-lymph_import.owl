@@ -76,7 +76,7 @@
         <inverseOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: slot&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Structural slot&lt;br&gt;&lt;b&gt;:slot-inverse&lt;/b&gt;: part&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Structural anatomical relations which holds between each entity of type A and some anatomical entity of the same dimension of type B such that if A is part-of B, there is a complement C which together with A accounts for the whole (100%) of B. The inverse relation is Has-part.n12-12-07:nThis relation is equivalent to &amp;#x0022;proper_part_of&amp;#x0022; in OBO Relation Ontology which is defined as:nAs for part_of, for continuants: C part_of C&apos; if and only if: given any c that instantiates C at a time t, there is some c&apos; such that c&apos; instantiates C&apos; at time t, and c *part_of* c&apos; at t. For processes: P part_of P&apos; if and only if: given any p that instantiates P at a time t, there is some p&apos; such that p&apos; instantiates P&apos; at time t, and p *part_of* p&apos; at t. (Here *part_of* is the instance-level part-relation.) Note the additional constraint that subject and object are distinct.nSource: http://obofoundry.org/ro/&lt;br&gt;&lt;b&gt;:direct-subslots&lt;/b&gt;: member of, constitutional part of, regional part of&lt;br&gt;&lt;b&gt;:slot-value-type&lt;/b&gt;: Anatomical entity template, Class, Developmental entity</obo:IAO_0000116>
-        <rdfs:label>part of</rdfs:label>
+        <rdfs:label>part of (FMA)</rdfs:label>
     </ObjectProperty>
     
 
@@ -151,7 +151,7 @@
         <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85857"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: slot&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Structural slot&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Structural anatomical relations which holds between each entity of type A and some anatomical entity of the same dimension of type B such that if A is has_part B, there is a complement C which together with B accounts for the whole (100%) of A. The inverse relation is &apos;Part-of&apos;.n5.02.01nDefinition: &amp;#x0022;Has morphological part&amp;#x0022; or &amp;#x0022;morphological part of&amp;#x0022;  is a part-whole relationship which describes the countable elements of which an anatomical structure is composed. Allowed classes are organ component and organ subdivision, body part and body part subdivision, organ system and  organ system subdivision, cell and cell part.nExample: muscle belly and muscle tendon, cardiac chamber and cardiac valve, lobe of organ, limb.&lt;br&gt;&lt;b&gt;slot synonym&lt;/b&gt;: unattributed part&lt;br&gt;&lt;b&gt;:slot-inverse&lt;/b&gt;: part of&lt;br&gt;&lt;b&gt;:direct-subslots&lt;/b&gt;: member, constitutional part, regional part&lt;br&gt;&lt;b&gt;:slot-value-type&lt;/b&gt;: Physical anatomical entity, Anatomical entity template, Class, Developmental entity</obo:IAO_0000116>
-        <rdfs:label>part</rdfs:label>
+        <rdfs:label>part (FMA)</rdfs:label>
     </ObjectProperty>
     
 
@@ -204,15 +204,14 @@
 
     <Class rdf:about="http://example.com/left">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_62955"/>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
-                <allValuesFrom rdf:resource="http://example.com/left"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid2"/>
         <disjointWith rdf:resource="http://example.com/right"/>
         <rdfs:label>Sum of left of bilateral anatomical entity</rdfs:label>
     </Class>
+    <Restriction rdf:nodeID="genid2">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+        <allValuesFrom rdf:resource="http://example.com/left"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://example.com/left"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -222,12 +221,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://example.com/left"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
-                <allValuesFrom rdf:resource="http://example.com/left"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid2"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
@@ -243,20 +237,13 @@
 
     <Class rdf:about="http://example.com/right">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_62955"/>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
-                <allValuesFrom rdf:resource="http://example.com/right"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid6"/>
         <rdfs:label>Sum of right of bilateral anatomical entity</rdfs:label>
     </Class>
-    <Axiom>
-        <annotatedSource rdf:resource="http://example.com/left"/>
-        <annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#disjointWith"/>
-        <annotatedTarget rdf:resource="http://example.com/right"/>
-        <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
-    </Axiom>
+    <Restriction rdf:nodeID="genid6">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+        <allValuesFrom rdf:resource="http://example.com/right"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://example.com/right"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -266,12 +253,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://example.com/right"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
-                <allValuesFrom rdf:resource="http://example.com/right"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid6"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -287,28 +269,20 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_12769">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_61232"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232695"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232697"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid9"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lateral cervical lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left superficial lateral cervical lymph node, Right superficial lateral cervical lymph node&lt;br&gt;&lt;b&gt;:slot-templates&lt;/b&gt;: arterial supply &lt;i&gt;value-type&lt;/i&gt;: Class, arterial supply &lt;i&gt;value-type&lt;/i&gt;: Portion of tissue&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_12938&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_12939&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of superficial cervical lymph nodes, Set of superficial lateral cervical lymph nodes</obo:IAO_0000116>
         <rdfs:label>Superficial lateral cervical lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid9">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232695"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232697"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_12769"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232695"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232697"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid9"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
@@ -340,16 +314,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_12776">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_61230"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232680"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232683"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid15"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Anterior cervical lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left superficial anterior cervical lymph node, Right superficial anterior cervical lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_12949&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_12950&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of superficial cervical lymph nodes, Set of superficial anterior cervical lymph nodes</obo:IAO_0000116>
         <rdfs:label>Superficial anterior cervical lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid15">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232680"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232683"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_12776"/>
@@ -360,14 +333,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_12776"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232680"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232683"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid15"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -410,29 +376,26 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_224416">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224418"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224420"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12769"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12776"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid22"/>
+        <rdfs:subClassOf rdf:nodeID="genid26"/>
+        <rdfs:subClassOf rdf:nodeID="genid28"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of right superficial cervical lymph nodes, Set of left superficial cervical lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: ONARD_Instance_460001&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Superficial lateral cervical lymph node, Superficial anterior cervical lymph node&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Superficial cervical lymphatic chain</obo:IAO_0000116>
         <rdfs:label>Set of superficial cervical lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid22">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224418"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224420"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid26">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12769"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid28">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12776"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_224416"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -442,36 +405,19 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_224416"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224418"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224420"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid22"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_224416"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12769"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid26"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_224416"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12776"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid28"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -1426,77 +1372,66 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_228927">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232228"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232230"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_5953"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61233"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61234"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61235"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61236"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61237"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61238"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61239"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61240"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61241"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid128"/>
+        <rdfs:subClassOf rdf:nodeID="genid132"/>
+        <rdfs:subClassOf rdf:nodeID="genid134"/>
+        <rdfs:subClassOf rdf:nodeID="genid136"/>
+        <rdfs:subClassOf rdf:nodeID="genid138"/>
+        <rdfs:subClassOf rdf:nodeID="genid140"/>
+        <rdfs:subClassOf rdf:nodeID="genid142"/>
+        <rdfs:subClassOf rdf:nodeID="genid144"/>
+        <rdfs:subClassOf rdf:nodeID="genid146"/>
+        <rdfs:subClassOf rdf:nodeID="genid148"/>
+        <rdfs:subClassOf rdf:nodeID="genid150"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left deep cervical lymph nodes, Set of right deep cervical lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: ONARD_Instance_620009&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Deep cervical lymphatic chain&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Pretracheal lymph node, Retropharyngeal lymph node, Superior deep lateral cervical lymph node, Paratracheal lymph node, Thyroid lymph node, Prelaryngeal lymph node, Infrahyoid lymph node, Inferior deep lateral cervical lymph node, Jugulo-omohyoid lymph node, Jugulodigastric lymph node&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Morris&apos; 1966:878 From 15- 30 such nodes lie along the entire course of the carotid artery and the internal jugular vein.</obo:IAO_0000116>
         <rdfs:label>Set of deep cervical lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid128">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232228"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232230"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid132">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_5953"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid134">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61233"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid136">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61234"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid138">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61235"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid140">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61236"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid142">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61237"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid144">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61238"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid146">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61239"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid148">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61240"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid150">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61241"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_228927"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -1506,124 +1441,67 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_228927"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232228"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232230"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid128"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_228927"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_5953"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid132"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_228927"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61233"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid134"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_228927"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61234"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid136"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_228927"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61235"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid138"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_228927"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61236"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid140"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_228927"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61237"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid142"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_228927"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61238"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid144"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_228927"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61239"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid146"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_228927"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61240"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid148"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_228927"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61241"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid150"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -1633,41 +1511,36 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_229072">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78570"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_231551"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_231553"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61217"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61219"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61220"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61221"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid153"/>
+        <rdfs:subClassOf rdf:nodeID="genid157"/>
+        <rdfs:subClassOf rdf:nodeID="genid159"/>
+        <rdfs:subClassOf rdf:nodeID="genid161"/>
+        <rdfs:subClassOf rdf:nodeID="genid163"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of head&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left parotid lymph nodes, Set of right parotid lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: ONARD_Instance_620013&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of pericervical nodes&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Morris 1966:873 It contains from 10-16 nodes.&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Parotid lymphatic chain, Parotid lymphatic chain proper&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Anterior auricular lymph node, Infra-auricular lymph node, Intraglandular lymph node, Superficial parotid lymph node</obo:IAO_0000116>
         <rdfs:label>Set of parotid lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid153">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_231551"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_231553"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid157">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61217"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid159">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61219"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid161">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61220"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid163">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61221"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_229072"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -1677,58 +1550,31 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_229072"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_231551"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_231553"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid153"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_229072"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61217"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid157"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_229072"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61219"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid159"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_229072"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61220"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid161"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_229072"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61221"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid163"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -1796,15 +1642,14 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_232168">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_241932"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid172"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Set of pericervical nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: Nance FMA LIVE_Instance_230012</obo:IAO_0000116>
         <rdfs:label>Set of all lymph nodes of neck</rdfs:label>
     </Class>
+    <Restriction rdf:nodeID="genid172">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_241932"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232168"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -1814,12 +1659,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232168"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_241932"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid172"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -1887,16 +1727,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_232234">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232238"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232240"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid181"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left superior deep cervical lymph nodes, Set of right superior deep cervical lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: Nance FMA LIVE_Instance_240003</obo:IAO_0000116>
         <rdfs:label>Set of superior deep cervical lymph nodes</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid181">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232238"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232240"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232234"/>
@@ -1907,14 +1746,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232234"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232238"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232240"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid181"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -1924,16 +1756,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_232236">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232242"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232244"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid186"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left inferior deep cervical lymph nodes, Set of right inferior deep cervical lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: Nance FMA LIVE_Instance_240005</obo:IAO_0000116>
         <rdfs:label>Set of inferior deep cervical lymph nodes</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid186">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232242"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232244"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232236"/>
@@ -1944,14 +1775,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232236"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232242"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232244"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid186"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -2309,16 +2133,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_232351">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_12770"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232703"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232705"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid227"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Deep lateral cervical lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left lateral superior deep cervical lymph node, Right lateral superior deep cervical lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: Nance FMA LIVE_Instance_240092&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: Nance FMA LIVE_Instance_240094</obo:IAO_0000116>
         <rdfs:label>Lateral superior deep cervical lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid227">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232703"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232705"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232351"/>
@@ -2329,14 +2152,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232351"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232703"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232705"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid227"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -2346,16 +2162,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_232355">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_12770"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232707"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232709"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid232"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Deep lateral cervical lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left anterior superior deep cervical lymph node, Right anterior superior deep cervical lymph node&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: Nance FMA LIVE_Instance_240097&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: Nance FMA LIVE_Instance_240096</obo:IAO_0000116>
         <rdfs:label>Anterior superior deep cervical lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid232">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232707"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232709"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232355"/>
@@ -2366,14 +2181,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232355"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232707"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232709"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid232"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -2383,16 +2191,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_232358">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_12770"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232711"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232713"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid237"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Deep lateral cervical lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left lateral inferior deep cervical lymph node, Right lateral inferior deep cervical lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: Nance FMA LIVE_Instance_240099&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: Nance FMA LIVE_Instance_240100</obo:IAO_0000116>
         <rdfs:label>Lateral inferior deep cervical lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid237">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232711"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232713"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232358"/>
@@ -2403,14 +2210,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232358"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232711"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232713"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid237"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -2420,16 +2220,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_232361">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_12770"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232715"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232717"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid242"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Deep lateral cervical lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left anterior inferior deep cervical lymph node, Right anterior inferior deep cervical lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: Nance FMA LIVE_Instance_240102</obo:IAO_0000116>
         <rdfs:label>Anterior inferior deep cervical lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid242">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232715"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232717"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232361"/>
@@ -2440,14 +2239,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232361"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232715"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232717"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid242"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -2457,16 +2249,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_232364">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232483"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232485"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid247"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left anterior inferior deep cervical lymph nodes, Set of right anterior inferior deep cervical lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: Nance FMA LIVE_Instance_240105&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Anterior inferior deep cervical lymphatic chain</obo:IAO_0000116>
         <rdfs:label>Set of anterior inferior deep cervical lymph nodes</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid247">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232483"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232485"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232364"/>
@@ -2477,14 +2268,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232364"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232483"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232485"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid247"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -2494,16 +2278,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_232411">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232413"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232415"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid252"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left deep lateral cervical lymph nodes, Set of right deep lateral cervical lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: Nance FMA LIVE_Instance_240150&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Lateral deep cervical lymphatic chain</obo:IAO_0000116>
         <rdfs:label>Set of deep lateral cervical lymph nodes</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid252">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232413"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232415"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232411"/>
@@ -2514,14 +2297,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232411"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232413"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232415"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid252"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -2589,16 +2365,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_232453">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232455"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232457"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid263"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left lateral superior deep cervical lymph nodes, Set of right lateral superior deep cervical lymph nodes&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Lateral superior deep cervical lymphatic chain&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: Nance FMA LIVE_Instance_250007</obo:IAO_0000116>
         <rdfs:label>Set of lateral superior deep cervical lymph nodes</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid263">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232455"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232457"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232453"/>
@@ -2609,14 +2384,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232453"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232455"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232457"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid263"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -2684,16 +2452,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_232465">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232467"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232469"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid274"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left anterior superior deep cervical lymph nodes, Set of right anterior superior deep cervical lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: Nance FMA LIVE_Instance_250019&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Anterior superior deep cervical lymphatic chain</obo:IAO_0000116>
         <rdfs:label>Set of anterior superior deep cervical lymph nodes</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid274">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232467"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232469"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232465"/>
@@ -2704,14 +2471,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232465"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232467"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232469"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid274"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -2779,16 +2539,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_232477">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232479"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232481"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid285"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left lateral inferior deep cervical lymph nodes, Set of right lateral inferior deep cervical lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: Nance FMA LIVE_Instance_250031&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Lateral inferior deep cervical lymphatic chain</obo:IAO_0000116>
         <rdfs:label>Set of lateral inferior deep cervical lymph nodes</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid285">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232479"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232481"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232477"/>
@@ -2799,14 +2558,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232477"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232479"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232481"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid285"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -2990,16 +2742,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_232509">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232511"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232513"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid308"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left jugulodigastric lymph nodes, Set of right jugulodigastric lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: Nance FMA LIVE_Instance_250063&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Jugulodigastric lymphatic chain</obo:IAO_0000116>
         <rdfs:label>Set of jugulodigastric lymph nodes</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid308">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232511"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232513"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232509"/>
@@ -3010,14 +2761,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232509"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232511"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232513"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid308"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -4071,16 +3815,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_232754">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232756"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232758"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid421"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left jugulo-omohyoid lymph nodes, Set of right jugulo-omohyoid lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: Nance FMA LIVE_Instance_260007</obo:IAO_0000116>
         <rdfs:label>Set of jugulo-omohyoid lymph nodes</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid421">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232756"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232758"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232754"/>
@@ -4091,14 +3834,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232754"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232756"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232758"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid421"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -4166,16 +3902,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_232838">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232840"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232842"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid432"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left jugular lymph nodes, Set of right jugular lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: Nance FMA LIVE_Instance_260042</obo:IAO_0000116>
         <rdfs:label>Set of jugular lymph nodes</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid432">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232840"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232842"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232838"/>
@@ -4186,14 +3921,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232838"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232840"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232842"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid432"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -4261,16 +3989,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_232894">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232896"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232898"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid443"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left external jugular lymph nodes, Set of right external jugular lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: Nance FMA LIVE_Instance_270007&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: External jugular lymphatic chain</obo:IAO_0000116>
         <rdfs:label>Set of external jugular lymph nodes</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid443">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232896"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232898"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232894"/>
@@ -4281,14 +4008,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_232894"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232896"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232898"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid443"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -4356,16 +4076,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_234376">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_61212"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_234378"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_234380"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid454"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node of head&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left supramandibular lymph node, Right supramandibular lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: Nance FMA LIVE_Instance_340163</obo:IAO_0000116>
         <rdfs:label>Supramandibular lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid454">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_234378"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_234380"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_234376"/>
@@ -4376,14 +4095,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_234376"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_234378"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_234380"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid454"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -4452,39 +4164,34 @@
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_241932">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_70776"/>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_229072"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_71711"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_71712"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_71720"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_71721"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid466"/>
+        <rdfs:subClassOf rdf:nodeID="genid468"/>
+        <rdfs:subClassOf rdf:nodeID="genid470"/>
+        <rdfs:subClassOf rdf:nodeID="genid472"/>
+        <rdfs:subClassOf rdf:nodeID="genid474"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group, Lymph node group of neck&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of all lymph nodes of neck&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Set of submental lymph nodes, Set of occipital lymph nodes, Set of submandibular lymph nodes, Set of mastoid lymph nodes, Set of parotid lymph nodes&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: ONARD_Instance_830003, ONARD_Instance_830002&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: ONARD_Instance_830001</obo:IAO_0000116>
         <rdfs:label>Set of pericervical nodes</rdfs:label>
     </Class>
+    <Restriction rdf:nodeID="genid466">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_229072"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid468">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_71711"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid470">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_71712"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid472">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_71720"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid474">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_71721"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_241932"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -4500,56 +4207,31 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_241932"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_229072"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid466"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_241932"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_71711"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid468"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_241932"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_71712"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid470"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_241932"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_71720"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid472"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_241932"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_71721"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid474"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -4657,16 +4339,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_5953">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_12779"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_5954"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_5955"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid483"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Deep anterior cervical lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Right paratracheal lymph node, Left paratracheal lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_01622&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: ONARD_Instance_460224, fm-live_05918, KB_INSTANCE_01624, KB_INSTANCE_01623&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of paratracheal lymph nodes, Set of deep anterior cervical lymph nodes, Set of deep cervical lymph nodes</obo:IAO_0000116>
         <rdfs:label>Paratracheal lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid483">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_5954"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_5955"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_5953"/>
@@ -4677,14 +4358,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_5953"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_5954"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_5955"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid483"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -4785,16 +4459,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61214">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_61212"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232552"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232554"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid496"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node of head&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left occipital lymph node, Right occipital lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_80714&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_80715&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of occipital lymph nodes</obo:IAO_0000116>
         <rdfs:label>Occipital lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid496">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232552"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232554"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61214"/>
@@ -4805,14 +4478,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61214"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232552"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232554"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid496"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -4822,16 +4488,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61215">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_61212"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232644"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232646"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid501"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node of head&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left mastoid lymph node, Right mastoid lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_80716&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_80717, KB_INSTANCE_80718, KB_INSTANCE_80719&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of mastoid lymph nodes</obo:IAO_0000116>
         <rdfs:label>Mastoid lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid501">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232644"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232646"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61215"/>
@@ -4842,14 +4507,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61215"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232644"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232646"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid501"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -4875,16 +4533,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61217">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_61216"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77983"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77984"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid507"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Parotid lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Right superficial parotid lymph node, Left superficial parotid lymph node&lt;br&gt;&lt;b&gt;:slot-templates&lt;/b&gt;: arterial supply &lt;i&gt;value-type&lt;/i&gt;: Class, arterial supply &lt;i&gt;value-type&lt;/i&gt;: Portion of tissue&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_80722&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_80723&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of parotid lymph nodes, Set of superficial parotid lymph nodes</obo:IAO_0000116>
         <rdfs:label>Superficial parotid lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid507">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77983"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77984"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61217"/>
@@ -4895,14 +4552,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61217"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77983"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77984"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid507"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -4928,16 +4578,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61219">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_61218"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77985"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77986"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid513"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Deep parotid lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Right anterior auricular lymph node, Left anterior auricular lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: Nance FMA LIVE_Instance_230001&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Morris&apos; 1966:319 The posterior facial node include one or several anterior auricular ( preauricular) nodes, situated immediately in front of the tragus, and the larger parotid group of nodes situated both on the surface of and buried in the parotid gland.&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_80727, KB_INSTANCE_80726, Nance FMA LIVE_Instance_230002&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of deep parotid lymph nodes, Set of parotid lymph nodes</obo:IAO_0000116>
         <rdfs:label>Anterior auricular lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid513">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77985"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77986"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61219"/>
@@ -4948,14 +4597,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61219"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77985"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77986"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid513"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -4965,16 +4607,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61220">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_61218"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77987"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77988"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid518"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Deep parotid lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Right infra-auricular lymph node, Left infra-auricular lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_80728&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_80729&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of infra-auricular lymph nodes, Set of deep parotid lymph nodes, Set of parotid lymph nodes</obo:IAO_0000116>
         <rdfs:label>Infra-auricular lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid518">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77987"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77988"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61220"/>
@@ -4985,14 +4626,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61220"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77987"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77988"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid518"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -5002,16 +4636,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61221">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_61218"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77989"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77990"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid523"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Deep parotid lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left intraglandular lymph node, Right intraglandular lymph node&lt;br&gt;&lt;b&gt;:slot-templates&lt;/b&gt;: arterial supply &lt;i&gt;value-type&lt;/i&gt;: Class, arterial supply &lt;i&gt;value-type&lt;/i&gt;: Portion of tissue&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_80730&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_80731&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of intraglandular lymph nodes, Set of deep parotid lymph nodes, Set of parotid lymph nodes</obo:IAO_0000116>
         <rdfs:label>Intraglandular lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid523">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77989"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77990"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61221"/>
@@ -5022,14 +4655,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61221"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77989"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_77990"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid523"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -5055,16 +4681,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61223">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_61222"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232648"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232651"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid529"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Facial lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left buccinator lymph node, Right buccinator lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_80734&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_80735&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: KB_INSTANCE_80736, su_incus_37404, KB_AUTO-INSERT(3)_3184&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of facial lymph nodes</obo:IAO_0000116>
         <rdfs:label>Buccinator lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid529">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232648"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232651"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61223"/>
@@ -5075,14 +4700,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61223"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232648"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232651"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid529"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -5092,16 +4710,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61224">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_61212"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232673"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232676"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid534"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node of head&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left submandibular lymph node, Right submandibular lymph node&lt;br&gt;&lt;b&gt;:slot-templates&lt;/b&gt;: arterial supply &lt;i&gt;value-type&lt;/i&gt;: Class, arterial supply &lt;i&gt;value-type&lt;/i&gt;: Portion of tissue&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_80737&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of submandibular lymph nodes&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_80738, ONARD_Instance_830005</obo:IAO_0000116>
         <rdfs:label>Submandibular lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid534">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232673"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232676"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61224"/>
@@ -5112,14 +4729,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61224"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232673"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232676"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid534"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -5129,16 +4739,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61225">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_61222"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232654"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232656"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid539"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Facial lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left nasolabial lymph node, Right nasolabial lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_80739&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_80740&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: KB_INSTANCE_80741, su_incus_37405, KB_AUTO-INSERT(3)_3185&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of facial lymph nodes</obo:IAO_0000116>
         <rdfs:label>Nasolabial lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid539">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232654"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232656"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61225"/>
@@ -5149,14 +4758,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61225"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232654"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232656"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid539"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -5166,16 +4768,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61226">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_61222"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232658"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232660"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid544"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Facial lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left malar lymph node, Right malar lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_80742&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_80743&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: KB_INSTANCE_80744, su_incus_37406, KB_AUTO-INSERT(3)_3186&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of facial lymph nodes</obo:IAO_0000116>
         <rdfs:label>Malar lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid544">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232658"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232660"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61226"/>
@@ -5186,14 +4787,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61226"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232658"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232660"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid544"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -5203,16 +4797,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61227">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_61222"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232664"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232668"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid549"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Facial lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left mandibular lymph node, Right mandibular lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_80745&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_80746&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: KB_INSTANCE_80747, su_incus_37407, KB_AUTO-INSERT(3)_3187&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of facial lymph nodes</obo:IAO_0000116>
         <rdfs:label>Mandibular lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid549">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232664"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232668"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61227"/>
@@ -5223,14 +4816,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61227"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232664"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232668"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid549"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -5240,16 +4826,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61228">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_61212"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232640"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232642"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid554"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node of head&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left lingual lymph node, Right lingual lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_80748&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of lingual lymph nodes</obo:IAO_0000116>
         <rdfs:label>Lingual lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid554">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232640"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232642"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61228"/>
@@ -5260,14 +4845,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61228"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232640"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232642"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid554"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -5325,16 +4903,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61233">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_12779"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232687"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232689"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid562"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Deep anterior cervical lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left infrahyoid lymph node, Right infrahyoid lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_80755&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_80756&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of infrahyoid lymph nodes, Set of deep anterior cervical lymph nodes, Set of deep cervical lymph nodes</obo:IAO_0000116>
         <rdfs:label>Infrahyoid lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid562">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232687"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232689"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61233"/>
@@ -5345,14 +4922,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61233"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232687"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232689"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid562"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -5362,16 +4932,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61234">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_12779"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224634"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224636"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid567"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Deep anterior cervical lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Right prelaryngeal lymph node, Left prelaryngeal lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_80757&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_80758&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of prelaryngeal lymph nodes, Set of deep anterior cervical lymph nodes, Set of deep cervical lymph nodes</obo:IAO_0000116>
         <rdfs:label>Prelaryngeal lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid567">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224634"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224636"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61234"/>
@@ -5382,14 +4951,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61234"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224634"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224636"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid567"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -5399,16 +4961,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61235">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_12779"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232691"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232693"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid572"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Deep anterior cervical lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left thyroid lymph node, Right thyroid lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_80759&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_80760&lt;br&gt;&lt;b&gt;lymphatic drainage of&lt;/b&gt;: Thyroid gland&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of thyroid lymph nodes, Set of deep anterior cervical lymph nodes, Set of deep cervical lymph nodes</obo:IAO_0000116>
         <rdfs:label>Thyroid lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid572">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232691"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232693"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61235"/>
@@ -5419,14 +4980,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61235"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232691"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232693"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid572"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -5436,16 +4990,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61236">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_12779"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224630"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224632"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid577"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Deep anterior cervical lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left pretracheal lymph node, Right pretracheal lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_80761&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_80762&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of pretracheal lymph nodes, Set of deep anterior cervical lymph nodes, Set of deep cervical lymph nodes</obo:IAO_0000116>
         <rdfs:label>Pretracheal lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid577">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224630"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224632"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61236"/>
@@ -5456,14 +5009,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61236"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224630"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224632"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid577"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -5473,16 +5019,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61237">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_12779"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224626"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224628"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid582"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Deep anterior cervical lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Right retropharyngeal lymph node, Left retropharyngeal lymph node&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_80763&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_80764&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of deep cervical lymph nodes, Set of retropharyngeal lymph nodes</obo:IAO_0000116>
         <rdfs:label>Retropharyngeal lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid582">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224626"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224628"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61237"/>
@@ -5493,14 +5038,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61237"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224626"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224628"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid582"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -5542,16 +5080,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61240">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_12770"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232699"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232701"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid589"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Deep lateral cervical lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left jugulodigastric lymph node, Right jugulodigastric lymph node&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of deep cervical lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_80767&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_80768&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_37391, su_incus_37390, KB_AUTO-INSERT(3)_3199</obo:IAO_0000116>
         <rdfs:label>Jugulodigastric lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid589">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232699"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232701"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61240"/>
@@ -5562,14 +5099,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61240"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232699"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232701"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid589"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -5579,16 +5109,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_61241">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_12770"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232505"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232507"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid594"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Deep lateral cervical lymph node&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left jugulo-omohyoid lymph node, Right jugulo-omohyoid lymph node&lt;br&gt;&lt;b&gt;:slot-templates&lt;/b&gt;: arterial supply &lt;i&gt;value-type&lt;/i&gt;: Class, arterial supply &lt;i&gt;value-type&lt;/i&gt;: Portion of tissue&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of deep cervical lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_80769&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: KB_INSTANCE_80771, su_incus_37389, KB_AUTO-INSERT(3)_3200&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Gray&apos;s 95: 1612. One node is on or just above the the intermediate tendon of omohyoid, the jugulo-omohyoid node.nNote: Terminologia Anatomica 1998 defines more than one node, hence, their term, Anterior jugulo-omohyoid lymph nodes.&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_80770&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Jugulo-omohyoid lymphatic chain</obo:IAO_0000116>
         <rdfs:label>Jugulo-omohyoid lymph node</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid594">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232505"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232507"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61241"/>
@@ -5599,14 +5128,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_61241"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232505"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232507"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid594"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -5707,23 +5229,21 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_71711">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78570"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224422"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224424"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61214"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid603"/>
+        <rdfs:subClassOf rdf:nodeID="genid607"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of head&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of right occipital lymph nodes, Set of left occipital lymph nodes&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Occipital lymphatic chain&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: su_incus_15875&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: su_incus_16174, su_incus_15876, KB_AUTO-INSERT2_9400&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_39475, su_incus_39474, KB_AUTO-INSERT(3)_3176&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of pericervical nodes&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Morris 1966:873 From one to three small nodes near the occipital insertion of the semispialis capitis muscle.&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Occipital lymph node</obo:IAO_0000116>
         <rdfs:label>Set of occipital lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid603">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224422"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224424"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid607">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61214"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71711"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -5733,25 +5253,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71711"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224422"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224424"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid603"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71711"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61214"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid607"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -5761,23 +5269,21 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_71712">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78570"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224426"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224428"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61215"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid610"/>
+        <rdfs:subClassOf rdf:nodeID="genid614"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of head&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of right mastoid lymph nodes, Set of left mastoid lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: su_incus_15877&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: su_incus_16175, su_incus_15878, KB_AUTO-INSERT2_9401&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_39477, su_incus_39476, KB_AUTO-INSERT(3)_3177&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of pericervical nodes&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Mastoid lymph node</obo:IAO_0000116>
         <rdfs:label>Set of mastoid lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid610">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224426"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224428"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid614">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61215"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71712"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -5787,25 +5293,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71712"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224426"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224428"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid610"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71712"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61215"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid614"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -5815,15 +5309,14 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_71720">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78570"/>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61229"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid617"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of head&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: su_incus_15893&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: su_incus_16183, su_incus_15894, KB_AUTO-INSERT2_9409&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_39493, su_incus_39492, KB_AUTO-INSERT(3)_3189&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of pericervical nodes&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Submental lymphatic chain&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Morris 1966:875 These nodes, usually two in number, lie in the triangle bounded by the anterior bellies of the two digastric muscles and the hyoid bone.&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Submental lymph node</obo:IAO_0000116>
         <rdfs:label>Set of submental lymph nodes</rdfs:label>
     </Class>
+    <Restriction rdf:nodeID="genid617">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61229"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71720"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -5833,12 +5326,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71720"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61229"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid617"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -5848,23 +5336,21 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_71721">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78570"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224450"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224452"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61224"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid620"/>
+        <rdfs:subClassOf rdf:nodeID="genid624"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of head&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left submandibular lymph nodes, Set of right submandibular lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: su_incus_15895&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: su_incus_16184, su_incus_15896, KB_AUTO-INSERT2_9410&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_39495, su_incus_39494, KB_AUTO-INSERT(3)_3190&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Gray&apos;s 99:1612. There are usually three submandibular nodes, internal to the deep cervical fascia in the submandibular triangle. There is one at the anterior pole of the submandibular gland, and two flanking the faacial artery as it reaches the mandible.nMorris 1966:873 These consists of a chain of from three to six nodes along the inferior border of the mandible.&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of pericervical nodes&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Submandibular lymphatic chain&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Submandibular lymph node</obo:IAO_0000116>
         <rdfs:label>Set of submandibular lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid620">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224450"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224452"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid624">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61224"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71721"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -5874,25 +5360,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71721"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224450"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224452"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid620"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71721"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61224"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid624"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -5902,23 +5376,21 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_71722">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224458"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224460"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61230"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid627"/>
+        <rdfs:subClassOf rdf:nodeID="genid631"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left anterior cervical lymph nodes, Set of right anterior cervical lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: su_incus_15897&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: su_incus_16185, su_incus_15898, KB_AUTO-INSERT2_9412&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Anterior cervical lymph node&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Anterior cervical lymphatic chain, Jugular lymphatic chain&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_39499, su_incus_39500, su_incus_39498, su_incus_39501, KB_AUTO-INSERT(3)_3191, ONARD_Instance_2140004</obo:IAO_0000116>
         <rdfs:label>Set of anterior cervical lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid627">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224458"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224460"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid631">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61230"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71722"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -5928,25 +5400,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71722"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224458"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224460"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid627"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71722"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61230"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid631"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -5956,23 +5416,21 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_71724">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224462"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224464"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12776"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid634"/>
+        <rdfs:subClassOf rdf:nodeID="genid638"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left superficial anterior cervical lymph nodes, Set of right superficial anterior cervical lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: su_incus_15901&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Superficial anterior cervical lymph node&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_39502, su_incus_39496, su_incus_39503, su_incus_39497&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_AUTO-INSERT2_9413, su_incus_16187, su_incus_15902, KB_AUTO-INSERT2_9411, su_incus_16186, su_incus_15900&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Anterior superficial cervical lymphatic chain</obo:IAO_0000116>
         <rdfs:label>Set of superficial anterior cervical lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid634">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224462"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224464"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid638">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12776"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71724"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -5982,25 +5440,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71724"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224462"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224464"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid634"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71724"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12776"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid638"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -6010,47 +5456,41 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_71725">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224466"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224468"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_5953"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61233"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61234"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61235"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61236"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid641"/>
+        <rdfs:subClassOf rdf:nodeID="genid645"/>
+        <rdfs:subClassOf rdf:nodeID="genid647"/>
+        <rdfs:subClassOf rdf:nodeID="genid649"/>
+        <rdfs:subClassOf rdf:nodeID="genid651"/>
+        <rdfs:subClassOf rdf:nodeID="genid653"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left deep anterior cervical lymph nodes, Set of right deep anterior cervical lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: su_incus_15903&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_39504, su_incus_39505&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: su_incus_16188, su_incus_15904, KB_AUTO-INSERT2_9414&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Thyroid lymph node, Prelaryngeal lymph node, Infrahyoid lymph node, Pretracheal lymph node, Paratracheal lymph node&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Anterior deep cervical lymphatic chain</obo:IAO_0000116>
         <rdfs:label>Set of deep anterior cervical lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid641">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224466"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224468"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid645">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_5953"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid647">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61233"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid649">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61234"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid651">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61235"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid653">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61236"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71725"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -6060,69 +5500,37 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71725"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224466"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224468"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid641"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71725"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_5953"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid645"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71725"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61233"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid647"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71725"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61234"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid649"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71725"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61235"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid651"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71725"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61236"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid653"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -6132,23 +5540,21 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_71726">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232258"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232260"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61233"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid656"/>
+        <rdfs:subClassOf rdf:nodeID="genid660"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left infrahyoid lymph nodes, Set of right infrahyoid lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: su_incus_15905&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: su_incus_16189, su_incus_15906, KB_AUTO-INSERT2_9415&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_39507, su_incus_39506, KB_AUTO-INSERT(3)_3192&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Infrahyoid lymph node&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Infrahyoid lymphatic chain</obo:IAO_0000116>
         <rdfs:label>Set of infrahyoid lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid656">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232258"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232260"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid660">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61233"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71726"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -6158,25 +5564,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71726"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232258"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232260"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid656"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71726"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61233"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid660"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -6186,23 +5580,21 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_71727">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232262"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232264"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61234"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid663"/>
+        <rdfs:subClassOf rdf:nodeID="genid667"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left prelaryngeal lymph nodes, Set of right prelaryngeal lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: su_incus_15907&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: su_incus_16190, su_incus_15908, KB_AUTO-INSERT2_9416&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_39509, su_incus_39508, KB_AUTO-INSERT(3)_3193&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Prelaryngeal lymph node&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Prelaryngeal lymphatic chain</obo:IAO_0000116>
         <rdfs:label>Set of prelaryngeal lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid663">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232262"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232264"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid667">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61234"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71727"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -6212,25 +5604,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71727"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232262"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232264"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid663"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71727"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61234"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid667"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -6240,23 +5620,21 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_71728">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232266"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232268"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61235"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid670"/>
+        <rdfs:subClassOf rdf:nodeID="genid674"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left thyroid lymph nodes, Set of right thyroid lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: su_incus_15909&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: su_incus_16191, su_incus_15910, KB_AUTO-INSERT2_9417&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_39511, su_incus_39510, KB_AUTO-INSERT(3)_3194&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Thyroid lymph node&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Thyroid lymphatic chain</obo:IAO_0000116>
         <rdfs:label>Set of thyroid lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid670">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232266"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232268"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid674">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61235"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71728"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -6266,25 +5644,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71728"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232266"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232268"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid670"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71728"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61235"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid674"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -6294,23 +5660,21 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_71729">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232270"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232272"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61236"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid677"/>
+        <rdfs:subClassOf rdf:nodeID="genid681"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left pretracheal lymph nodes, Set of right pretracheal lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: su_incus_15911&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: su_incus_16192, su_incus_15912, KB_AUTO-INSERT2_9419&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_39515, su_incus_39514, KB_AUTO-INSERT(3)_3195&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Pretracheal lymph node&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Pretracheal lymphatic chain</obo:IAO_0000116>
         <rdfs:label>Set of pretracheal lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid677">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232270"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232272"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid681">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61236"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71729"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -6320,25 +5684,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71729"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232270"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_232272"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid677"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71729"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61236"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid681"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -6348,23 +5700,21 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_71730">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224470"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224472"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_5953"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid684"/>
+        <rdfs:subClassOf rdf:nodeID="genid688"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left paratracheal lymph nodes, Set of right paratracheal lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: su_incus_15913&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_39513, su_incus_39512, KB_AUTO-INSERT(3)_3196&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Paratracheal lymph node&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Paratracheal lymphatic chain&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: su_incus_15914, ONARD_Instance_3470001, KB_AUTO-INSERT2_9418, su_incus_16193</obo:IAO_0000116>
         <rdfs:label>Set of paratracheal lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid684">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224470"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224472"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid688">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_5953"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71730"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -6374,25 +5724,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71730"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224470"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224472"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid684"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71730"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_5953"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid688"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -6402,23 +5740,21 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_71731">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224474"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224476"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61237"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid691"/>
+        <rdfs:subClassOf rdf:nodeID="genid695"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of right retropharyngeal lymph nodes, Set of left retropharyngeal lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: su_incus_15915&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: su_incus_16194, su_incus_15916, KB_AUTO-INSERT2_9420&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_39518, su_incus_39517, su_incus_39516, KB_AUTO-INSERT(3)_3197&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Retropharyngeal lymph node&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Retropharyngeal lymphatic chain</obo:IAO_0000116>
         <rdfs:label>Set of retropharyngeal lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid691">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224474"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224476"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid695">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61237"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71731"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -6428,25 +5764,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71731"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224474"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224476"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid691"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71731"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61237"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid695"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -6456,23 +5780,21 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_71732">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224486"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224488"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61232"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid698"/>
+        <rdfs:subClassOf rdf:nodeID="genid702"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left lateral cervical lymph nodes, Set of right lateral cervical lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: su_incus_15917&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: su_incus_16195, su_incus_15918, KB_AUTO-INSERT2_9422&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_39524, su_incus_39523, su_incus_39522, su_incus_39521, KB_AUTO-INSERT(3)_3198&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Lateral cervical lymph node&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Lateral cervical lymphatic chain, Jugular lymphatic chain</obo:IAO_0000116>
         <rdfs:label>Set of lateral cervical lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid698">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224486"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224488"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid702">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61232"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71732"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -6482,25 +5804,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71732"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224486"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224488"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid698"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71732"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61232"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid702"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -6510,23 +5820,21 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_71733">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224478"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224480"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12769"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid705"/>
+        <rdfs:subClassOf rdf:nodeID="genid709"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of left superficial lateral cervical lymph nodes, Set of right superficial lateral cervical lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: su_incus_15919&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_39519, su_incus_39520&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: su_incus_16196, su_incus_15920, KB_AUTO-INSERT2_9421&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Superficial lateral cervical lymph node</obo:IAO_0000116>
         <rdfs:label>Set of superficial lateral cervical lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid705">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224478"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224480"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid709">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12769"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71733"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -6536,25 +5844,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71733"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224478"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224480"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid705"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71733"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12769"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid709"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -6564,23 +5860,21 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_71734">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224490"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224492"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61238"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid712"/>
+        <rdfs:subClassOf rdf:nodeID="genid716"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of right superior deep lateral cervical lymph nodes, Set of left superior deep lateral cervical lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: su_incus_15921&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_39525, su_incus_39526&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: su_incus_16197, su_incus_15922, KB_AUTO-INSERT2_9423&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Superior deep lateral cervical lymph node&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Superior lateral deep cervical lymphatic chain</obo:IAO_0000116>
         <rdfs:label>Set of superior deep lateral cervical lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid712">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224490"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224492"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid716">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61238"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71734"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -6590,25 +5884,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71734"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224490"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224492"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid712"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71734"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61238"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid716"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -6618,23 +5900,21 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_71735">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_78571"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224494"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224496"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61239"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid719"/>
+        <rdfs:subClassOf rdf:nodeID="genid723"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Lymph node group of neck&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Set of right inferior deep lateral cervical lymph nodes, Set of left inferior deep lateral cervical lymph nodes&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: su_incus_15923&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_39527, su_incus_39528&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: su_incus_16198, su_incus_15924, KB_AUTO-INSERT2_9424&lt;br&gt;&lt;b&gt;member&lt;/b&gt;: Inferior deep lateral cervical lymph node</obo:IAO_0000116>
         <rdfs:label>Set of inferior deep lateral cervical lymph nodes</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid719">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224494"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224496"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid723">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61239"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71735"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -6644,25 +5924,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71735"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224494"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_224496"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid719"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_71735"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_61239"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid723"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -6973,5 +6241,5 @@
 
 
 
-<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi -->
 
