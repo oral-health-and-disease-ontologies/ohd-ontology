@@ -71,7 +71,6 @@ is-a: Standard FMA slot
     <!-- http://purl.obolibrary.org/obo/FMA_85868 -->
 
     <ObjectProperty rdf:about="http://purl.obolibrary.org/obo/FMA_85868">
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
         <inverseOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85879"/>
         <obo:IAO_0000116>type: slot
 is-a: Structural slot
@@ -140,7 +139,6 @@ is-a: Structural slot
     <!-- http://purl.obolibrary.org/obo/FMA_85927 -->
 
     <ObjectProperty rdf:about="http://purl.obolibrary.org/obo/FMA_85927">
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
         <obo:IAO_0000116>type: slot
 is-a: Structural slot
@@ -222,7 +220,6 @@ slot synonym: topographic part
     <!-- http://purl.obolibrary.org/obo/FMA_85997 -->
 
     <ObjectProperty rdf:about="http://purl.obolibrary.org/obo/FMA_85997">
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
         <obo:IAO_0000116>type: slot
 is-a: Structural slot
@@ -305,13 +302,21 @@ slot synonym: gives rise to
 
     <!-- http://purl.obolibrary.org/obo/BFO_0000029 -->
 
-    <Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000029"/>
+    <Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000029">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000141"/>
+    </Class>
     
 
 
     <!-- http://purl.obolibrary.org/obo/BFO_0000040 -->
 
     <Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000040"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/BFO_0000141 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000141"/>
     
 
 
@@ -29936,9 +29941,9 @@ subclasses: Labial surface enamel of tooth, Incisal surface enamel of tooth, Lin
         <rdfs:label>MAXILLA</rdfs:label>
         <rdfs:label>JAW</rdfs:label>
         <rdfs:label>TOOTH-SOCKET</rdfs:label>
-        <rdfs:label>DENTITION</rdfs:label>
         <obo:IAO_0000116>type: nil
 is-a: </obo:IAO_0000116>
+        <rdfs:label>DENTITION</rdfs:label>
     </rdf:Description>
 </rdf:RDF>
 
