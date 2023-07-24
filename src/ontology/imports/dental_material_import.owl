@@ -183,39 +183,11 @@
     
 
 
-    <!-- http://purl.obolibrary.org/obo/BFO_0000056 -->
-
-    <ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000056">
-        <inverseOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-        <obo:IAO_0000118 xml:lang="en">participates_in</obo:IAO_0000118>
-        <rdfs:label xml:lang="en">participates in</rdfs:label>
-    </ObjectProperty>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/BFO_0000057 -->
-
-    <ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000057">
-        <obo:IAO_0000118 xml:lang="en">has_participant</obo:IAO_0000118>
-        <rdfs:label xml:lang="en">has participant</rdfs:label>
-    </ObjectProperty>
-    
-
-
     <!-- http://purl.obolibrary.org/obo/BFO_0000070 -->
 
     <ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000070">
         <obo:IAO_0000118 xml:lang="en">s_depends_on</obo:IAO_0000118>
         <rdfs:label xml:lang="en">s depends on</rdfs:label>
-    </ObjectProperty>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/BFO_0000087 -->
-
-    <ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000087">
-        <obo:IAO_0000118 xml:lang="en">has_role</obo:IAO_0000118>
-        <rdfs:label xml:lang="en">has role</rdfs:label>
     </ObjectProperty>
     
 
@@ -237,7 +209,6 @@
     <!-- http://purl.obolibrary.org/obo/OBI_0000293 -->
 
     <ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000293">
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
         <inverseOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000295"/>
         <obo:IAO_0000111>has_specified_input</obo:IAO_0000111>
         <obo:IAO_0000112 xml:lang="en">see is_input_of example_of_usage</obo:IAO_0000112>
@@ -255,7 +226,6 @@
     <!-- http://purl.obolibrary.org/obo/OBI_0000295 -->
 
     <ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000295">
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000056"/>
         <obo:IAO_0000111>is_specified_input_of</obo:IAO_0000111>
         <obo:IAO_0000112 xml:lang="en">some Autologous EBV(Epstein-Barr virus)-transformed B-LCL (B lymphocyte cell line) is_input_for instance of Chromum Release Assay described at https://wiki.cbil.upenn.edu/obiwiki/index.php/Chromium_Release_assay</obo:IAO_0000112>
         <obo:IAO_0000115 xml:lang="en">A relation between a planned process and a continuant participating in that process that is not created during  the process. The presence of the continuant during the process is explicitly specified in the plan specification which the process realizes the concretization of.</obo:IAO_0000115>
@@ -269,7 +239,6 @@
     <!-- http://purl.obolibrary.org/obo/OBI_0000299 -->
 
     <ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000299">
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
         <inverseOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000312"/>
         <obo:IAO_0000111>has_specified_output</obo:IAO_0000111>
         <obo:IAO_0000115 xml:lang="en">A relation between a planned process and a continuant participating in that process. The presence of the continuant at the end of the process is explicitly specified in the objective specification which the process realizes the concretization of.</obo:IAO_0000115>
@@ -285,7 +254,6 @@
     <!-- http://purl.obolibrary.org/obo/OBI_0000312 -->
 
     <ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000312">
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000056"/>
         <obo:IAO_0000111>is_specified_output_of</obo:IAO_0000111>
         <obo:IAO_0000115 xml:lang="en">A relation between a planned process and a continuant participating in that process. The presence of the continuant at the end of the process is explicitly specified in the objective specification which the process realizes the concretization of.</obo:IAO_0000115>
         <obo:IAO_0000117 xml:lang="en">Alan Ruttenberg</obo:IAO_0000117>
@@ -305,6 +273,15 @@
         <obo:IAO_0000119>PPPB branch derived</obo:IAO_0000119>
         <obo:IAO_0000232>modified according to email thread from 1/23/09 in accordince with DT and PPPB branch</obo:IAO_0000232>
         <rdfs:label>achieves_planned_objective</rdfs:label>
+    </ObjectProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/RO_0000087 -->
+
+    <ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_0000087">
+        <obo:IAO_0000118 xml:lang="en">has_role</obo:IAO_0000118>
+        <rdfs:label xml:lang="en">has role</rdfs:label>
     </ObjectProperty>
     
 
@@ -350,7 +327,7 @@
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000000">
         <equivalentClass>
             <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                <onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
                 <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000191"/>
             </Restriction>
         </equivalentClass>
@@ -1082,17 +1059,6 @@ member of: Secondary mandibular dentition</obo:IAO_0000116>
     
 
 
-    <!-- http://purl.obolibrary.org/obo/IAO_0000224 -->
-
-    <NamedIndividual rdf:about="http://purl.obolibrary.org/obo/IAO_0000224">
-        <obo:IAO_0000115 xml:lang="en">Core is an instance of a grouping of terms from an ontology or ontologies. It is used by the ontology to identify main classes.</obo:IAO_0000115>
-        <obo:IAO_0000117 xml:lang="en">PERSON: Alan Ruttenberg</obo:IAO_0000117>
-        <obo:IAO_0000117 xml:lang="en">PERSON: Melanie Courtot</obo:IAO_0000117>
-        <rdfs:label xml:lang="en">core</rdfs:label>
-    </NamedIndividual>
-    
-
-
     <!-- http://purl.obolibrary.org/obo/IAO_0000226 -->
 
     <NamedIndividual rdf:about="http://purl.obolibrary.org/obo/IAO_0000226">
@@ -1507,12 +1473,6 @@ I have no idea why this happening...</obo:IAO_0000116>
             <rdf:Description rdf:about="http://purl.obolibrary.org/obo/IAO_0000125"/>
             <rdf:Description rdf:about="http://purl.obolibrary.org/obo/IAO_0000423"/>
             <rdf:Description rdf:about="http://purl.obolibrary.org/obo/IAO_0000428"/>
-        </distinctMembers>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
-        <distinctMembers rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/IAO_0000224"/>
         </distinctMembers>
     </rdf:Description>
     <rdf:Description>

@@ -76,7 +76,7 @@
         <inverseOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: slot&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Structural slot&lt;br&gt;&lt;b&gt;:slot-inverse&lt;/b&gt;: part&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Structural anatomical relations which holds between each entity of type A and some anatomical entity of the same dimension of type B such that if A is part-of B, there is a complement C which together with A accounts for the whole (100%) of B. The inverse relation is Has-part.n12-12-07:nThis relation is equivalent to &amp;#x0022;proper_part_of&amp;#x0022; in OBO Relation Ontology which is defined as:nAs for part_of, for continuants: C part_of C&apos; if and only if: given any c that instantiates C at a time t, there is some c&apos; such that c&apos; instantiates C&apos; at time t, and c *part_of* c&apos; at t. For processes: P part_of P&apos; if and only if: given any p that instantiates P at a time t, there is some p&apos; such that p&apos; instantiates P&apos; at time t, and p *part_of* p&apos; at t. (Here *part_of* is the instance-level part-relation.) Note the additional constraint that subject and object are distinct.nSource: http://obofoundry.org/ro/&lt;br&gt;&lt;b&gt;:direct-subslots&lt;/b&gt;: member of, constitutional part of, regional part of&lt;br&gt;&lt;b&gt;:slot-value-type&lt;/b&gt;: Anatomical entity template, Class, Developmental entity</obo:IAO_0000116>
-        <rdfs:label>part of</rdfs:label>
+        <rdfs:label>part of (FMA)</rdfs:label>
     </ObjectProperty>
     
 
@@ -151,7 +151,7 @@
         <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/FMA_85857"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: slot&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Structural slot&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Structural anatomical relations which holds between each entity of type A and some anatomical entity of the same dimension of type B such that if A is has_part B, there is a complement C which together with B accounts for the whole (100%) of A. The inverse relation is &apos;Part-of&apos;.n5.02.01nDefinition: &amp;#x0022;Has morphological part&amp;#x0022; or &amp;#x0022;morphological part of&amp;#x0022;  is a part-whole relationship which describes the countable elements of which an anatomical structure is composed. Allowed classes are organ component and organ subdivision, body part and body part subdivision, organ system and  organ system subdivision, cell and cell part.nExample: muscle belly and muscle tendon, cardiac chamber and cardiac valve, lobe of organ, limb.&lt;br&gt;&lt;b&gt;slot synonym&lt;/b&gt;: unattributed part&lt;br&gt;&lt;b&gt;:slot-inverse&lt;/b&gt;: part of&lt;br&gt;&lt;b&gt;:direct-subslots&lt;/b&gt;: member, constitutional part, regional part&lt;br&gt;&lt;b&gt;:slot-value-type&lt;/b&gt;: Physical anatomical entity, Anatomical entity template, Class, Developmental entity</obo:IAO_0000116>
-        <rdfs:label>part</rdfs:label>
+        <rdfs:label>part (FMA)</rdfs:label>
     </ObjectProperty>
     
 
@@ -204,15 +204,14 @@
 
     <Class rdf:about="http://example.com/left">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_62955"/>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
-                <allValuesFrom rdf:resource="http://example.com/left"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid2"/>
         <disjointWith rdf:resource="http://example.com/right"/>
         <rdfs:label>Sum of left of bilateral anatomical entity</rdfs:label>
     </Class>
+    <Restriction rdf:nodeID="genid2">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+        <allValuesFrom rdf:resource="http://example.com/left"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://example.com/left"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -222,12 +221,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://example.com/left"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
-                <allValuesFrom rdf:resource="http://example.com/left"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid2"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
@@ -243,20 +237,13 @@
 
     <Class rdf:about="http://example.com/right">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_62955"/>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
-                <allValuesFrom rdf:resource="http://example.com/right"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid6"/>
         <rdfs:label>Sum of right of bilateral anatomical entity</rdfs:label>
     </Class>
-    <Axiom>
-        <annotatedSource rdf:resource="http://example.com/left"/>
-        <annotatedProperty rdf:resource="http://www.w3.org/2002/07/owl#disjointWith"/>
-        <annotatedTarget rdf:resource="http://example.com/right"/>
-        <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
-    </Axiom>
+    <Restriction rdf:nodeID="genid6">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
+        <allValuesFrom rdf:resource="http://example.com/right"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://example.com/right"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -266,12 +253,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://example.com/right"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85995"/>
-                <allValuesFrom rdf:resource="http://example.com/right"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid6"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -618,71 +600,61 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_54832">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_54831"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_54833"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_54834"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57050"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57059"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57071"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57074"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57077"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57083"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57089"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57096"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57099"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid29"/>
+        <rdfs:subClassOf rdf:nodeID="genid33"/>
+        <rdfs:subClassOf rdf:nodeID="genid35"/>
+        <rdfs:subClassOf rdf:nodeID="genid37"/>
+        <rdfs:subClassOf rdf:nodeID="genid39"/>
+        <rdfs:subClassOf rdf:nodeID="genid41"/>
+        <rdfs:subClassOf rdf:nodeID="genid43"/>
+        <rdfs:subClassOf rdf:nodeID="genid45"/>
+        <rdfs:subClassOf rdf:nodeID="genid47"/>
+        <rdfs:subClassOf rdf:nodeID="genid49"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Cranial synovial joint&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Right temporomandibular joint, Left temporomandibular joint&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_69686&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: KB_INSTANCE_69687, KB_AUTO-INSERT(3)_790&lt;br&gt;&lt;b&gt;constitutional part&lt;/b&gt;: Stylomandibular ligament, Lateral ligament of temporomandibular joint, Synovial cavity of temporomandibular joint, Articular disk of temporomandibular joint, Articular capsule of temporomandibular joint, Articular cartilage of head of mandible, Sphenomandibular ligament, Articular cartilage of posterior part of zygomatic process of temporal bone, Medial ligament of temporomandibular joint</obo:IAO_0000116>
         <rdfs:label>Temporomandibular joint</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid29">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_54833"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_54834"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid33">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57050"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid35">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57059"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid37">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57071"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid39">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57074"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid41">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57077"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid43">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57083"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid45">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57089"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid47">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57096"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid49">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57099"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54832"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -692,113 +664,61 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54832"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_54833"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_54834"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid29"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54832"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57050"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid33"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54832"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57059"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid35"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54832"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57071"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid37"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54832"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57074"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid39"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54832"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57077"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid41"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54832"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57083"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid43"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54832"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57089"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid45"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54832"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57096"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid47"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54832"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57099"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid49"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -809,63 +729,54 @@
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_54833">
         <rdfs:subClassOf rdf:resource="http://example.com/right"/>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_54832"/>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57051"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57060"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57072"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57075"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57078"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57084"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57092"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57097"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57101"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid54"/>
+        <rdfs:subClassOf rdf:nodeID="genid56"/>
+        <rdfs:subClassOf rdf:nodeID="genid58"/>
+        <rdfs:subClassOf rdf:nodeID="genid60"/>
+        <rdfs:subClassOf rdf:nodeID="genid62"/>
+        <rdfs:subClassOf rdf:nodeID="genid64"/>
+        <rdfs:subClassOf rdf:nodeID="genid66"/>
+        <rdfs:subClassOf rdf:nodeID="genid68"/>
+        <rdfs:subClassOf rdf:nodeID="genid70"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Temporomandibular joint&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_69688&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of cranial synovial joints&lt;br&gt;&lt;b&gt;constitutional part&lt;/b&gt;: Medial ligament of right temporomandibular joint, Synovial cavity of right temporomandibular joint, Articular cartilage of posterior part of zygomatic process of right temporal bone, Lateral ligament of right temporomandibular joint, Articular disk of right temporomandibular joint, Right sphenomandibular ligament, Articular capsule of right temporomandibular joint, Right stylomandibular ligament, Articular cartilage of right head of mandible&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Viscerocranium, Skeletal system of mouth</obo:IAO_0000116>
         <rdfs:label>Right temporomandibular joint</rdfs:label>
     </Class>
+    <Restriction rdf:nodeID="genid54">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57051"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid56">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57060"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid58">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57072"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid60">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57075"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid62">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57078"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid64">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57084"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid66">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57092"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid68">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57097"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid70">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57101"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54833"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -887,100 +798,55 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54833"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57051"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid54"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54833"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57060"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid56"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54833"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57072"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid58"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54833"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57075"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid60"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54833"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57078"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid62"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54833"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57084"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid64"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54833"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57092"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid66"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54833"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57097"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid68"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54833"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57101"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid70"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -991,63 +857,54 @@
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_54834">
         <rdfs:subClassOf rdf:resource="http://example.com/left"/>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_54832"/>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57052"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57061"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57073"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57076"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57079"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57086"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57095"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57098"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57102"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid75"/>
+        <rdfs:subClassOf rdf:nodeID="genid77"/>
+        <rdfs:subClassOf rdf:nodeID="genid79"/>
+        <rdfs:subClassOf rdf:nodeID="genid81"/>
+        <rdfs:subClassOf rdf:nodeID="genid83"/>
+        <rdfs:subClassOf rdf:nodeID="genid85"/>
+        <rdfs:subClassOf rdf:nodeID="genid87"/>
+        <rdfs:subClassOf rdf:nodeID="genid89"/>
+        <rdfs:subClassOf rdf:nodeID="genid91"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Temporomandibular joint&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_69689&lt;br&gt;&lt;b&gt;member of&lt;/b&gt;: Set of cranial synovial joints&lt;br&gt;&lt;b&gt;constitutional part&lt;/b&gt;: Left stylomandibular ligament, Articular capsule of left temporomandibular joint, Articular disk of left temporomandibular joint, Articular cartilage of left head of mandible, Articular cartilage of posterior part of zygomatic process of left temporal bone, Synovial cavity of left temporomandibular joint, Lateral ligament of left temporomandibular joint, Medial ligament of left temporomandibular joint, Left sphenomandibular ligament&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Viscerocranium, Skeletal system of mouth</obo:IAO_0000116>
         <rdfs:label>Left temporomandibular joint</rdfs:label>
     </Class>
+    <Restriction rdf:nodeID="genid75">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57052"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid77">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57061"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid79">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57073"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid81">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57076"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid83">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57079"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid85">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57086"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid87">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57095"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid89">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57098"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid91">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57102"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54834"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -1069,100 +926,55 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54834"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57052"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid75"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54834"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57061"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid77"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54834"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57073"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid79"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54834"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57076"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid81"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54834"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57079"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid83"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54834"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57086"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid85"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54834"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57095"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid87"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54834"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57098"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid89"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_54834"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57102"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid91"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -1222,62 +1034,42 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57050">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_34836"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57051"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57052"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57054"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57053"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid97"/>
+        <rdfs:subClassOf rdf:nodeID="genid101"/>
+        <rdfs:subClassOf rdf:nodeID="genid103"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Articular capsule&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Articular capsule of left temporomandibular joint, Articular capsule of right temporomandibular joint&lt;br&gt;&lt;b&gt;:slot-templates&lt;/b&gt;: location &lt;i&gt;value-type&lt;/i&gt;: Organ anatomical coordinate adjacency, location &lt;i&gt;value-type&lt;/i&gt;: Has_anatomical_coordinate relation, location &lt;i&gt;value-type&lt;/i&gt;: Instance&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Temporomandibular joint&lt;br&gt;&lt;b&gt;regional part&lt;/b&gt;: Fibrous membrane of articular capsule of temporomandibular joint&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74850&lt;br&gt;&lt;b&gt;constitutional part&lt;/b&gt;: Synovial membrane of articular capsule of temporomandibular joint</obo:IAO_0000116>
         <rdfs:label>Articular capsule of temporomandibular joint</rdfs:label>
     </Class>
+    <Class rdf:nodeID="genid97">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57051"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57052"/>
+        </unionOf>
+    </Class>
+    <Restriction rdf:nodeID="genid101">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57054"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid103">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57053"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57050"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57051"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57052"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid97"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57050"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57054"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid101"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57050"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57053"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid103"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
@@ -1294,21 +1086,19 @@
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57051">
         <rdfs:subClassOf rdf:resource="http://example.com/right"/>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_57050"/>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57055"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57057"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid108"/>
+        <rdfs:subClassOf rdf:nodeID="genid110"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Articular capsule of temporomandibular joint&lt;br&gt;&lt;b&gt;:slot-templates&lt;/b&gt;: location &lt;i&gt;value-type&lt;/i&gt;: Organ anatomical coordinate adjacency, location &lt;i&gt;value-type&lt;/i&gt;: Instance&lt;br&gt;&lt;b&gt;regional part&lt;/b&gt;: Fibrous membrane of articular capsule of right temporomandibular joint&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74851&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Right temporomandibular joint&lt;br&gt;&lt;b&gt;constitutional part&lt;/b&gt;: Synovial membrane of articular capsule of right temporomandibular joint</obo:IAO_0000116>
         <rdfs:label>Articular capsule of right temporomandibular joint</rdfs:label>
     </Class>
+    <Restriction rdf:nodeID="genid108">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57055"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid110">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57057"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57051"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -1330,23 +1120,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57051"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57055"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid108"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57051"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57057"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid110"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -1357,21 +1137,19 @@
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57052">
         <rdfs:subClassOf rdf:resource="http://example.com/left"/>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_57050"/>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57056"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57058"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid115"/>
+        <rdfs:subClassOf rdf:nodeID="genid117"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Articular capsule of temporomandibular joint&lt;br&gt;&lt;b&gt;:slot-templates&lt;/b&gt;: location &lt;i&gt;value-type&lt;/i&gt;: Organ anatomical coordinate adjacency, location &lt;i&gt;value-type&lt;/i&gt;: Instance&lt;br&gt;&lt;b&gt;regional part&lt;/b&gt;: Fibrous membrane of articular capsule of left temporomandibular joint&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74852&lt;br&gt;&lt;b&gt;constitutional part&lt;/b&gt;: Synovial membrane of articular capsule of left temporomandibular joint&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Left temporomandibular joint</obo:IAO_0000116>
         <rdfs:label>Articular capsule of left temporomandibular joint</rdfs:label>
     </Class>
+    <Restriction rdf:nodeID="genid115">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57056"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid117">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57058"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57052"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -1393,23 +1171,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57052"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85925"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57056"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid115"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57052"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57058"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid117"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -1419,16 +1187,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57053">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_27984"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57057"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57058"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid120"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Fibrous membrane of articular capsule&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Fibrous membrane of articular capsule of left temporomandibular joint, Fibrous membrane of articular capsule of right temporomandibular joint&lt;br&gt;&lt;b&gt;:slot-templates&lt;/b&gt;: arterial supply &lt;i&gt;value-type&lt;/i&gt;: Class, arterial supply &lt;i&gt;value-type&lt;/i&gt;: Portion of tissue&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74853&lt;br&gt;&lt;b&gt;regional part of&lt;/b&gt;: Articular capsule of temporomandibular joint</obo:IAO_0000116>
         <rdfs:label>Fibrous membrane of articular capsule of temporomandibular joint</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid120">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57057"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57058"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57053"/>
@@ -1439,14 +1206,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57053"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57057"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57058"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid120"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -1472,21 +1232,19 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57055">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_57054"/>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57064"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57066"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid126"/>
+        <rdfs:subClassOf rdf:nodeID="genid128"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Synovial membrane of articular capsule of temporomandibular joint&lt;br&gt;&lt;b&gt;regional part&lt;/b&gt;: Superior synovial membrane of articular capsule of right temporomandibular joint, Inferior synovial membrane of right temporomandibular joint&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74855&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: ONARD_Instance_2460035, ONARD_Instance_2460034&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Articular capsule of right temporomandibular joint</obo:IAO_0000116>
         <rdfs:label>Synovial membrane of articular capsule of right temporomandibular joint</rdfs:label>
     </Class>
+    <Restriction rdf:nodeID="genid126">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57064"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid128">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57066"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57055"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -1496,23 +1254,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57055"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57064"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid126"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57055"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57066"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid128"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -1522,21 +1270,19 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57056">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_57054"/>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57065"/>
-            </Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57067"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid131"/>
+        <rdfs:subClassOf rdf:nodeID="genid133"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Synovial membrane of articular capsule of temporomandibular joint&lt;br&gt;&lt;b&gt;regional part&lt;/b&gt;: Superior synovial membrane of articular capsule of left temporomandibular joint, Inferior synovial membrane of left temporomandibular joint&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74856&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: ONARD_Instance_2460033, ONARD_Instance_2460032&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Articular capsule of left temporomandibular joint</obo:IAO_0000116>
         <rdfs:label>Synovial membrane of articular capsule of left temporomandibular joint</rdfs:label>
     </Class>
+    <Restriction rdf:nodeID="genid131">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57065"/>
+    </Restriction>
+    <Restriction rdf:nodeID="genid133">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57067"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57056"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -1546,23 +1292,13 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57056"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57065"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid131"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57056"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85996"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57067"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid133"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -1630,16 +1366,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57059">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_34838"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57060"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57061"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid142"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Articular disk of synovial joint&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Articular disk of right temporomandibular joint, Articular disk of left temporomandibular joint&lt;br&gt;&lt;b&gt;:slot-templates&lt;/b&gt;: location &lt;i&gt;value-type&lt;/i&gt;: Organ anatomical coordinate adjacency, location &lt;i&gt;value-type&lt;/i&gt;: Has_anatomical_coordinate relation, location &lt;i&gt;value-type&lt;/i&gt;: Instance&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74859&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_74860, KB_INSTANCE_74861&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_35544&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Temporomandibular joint</obo:IAO_0000116>
         <rdfs:label>Articular disk of temporomandibular joint</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid142">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57060"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57061"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57059"/>
@@ -1650,14 +1385,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57059"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57060"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57061"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid142"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -1725,16 +1453,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57062">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_57054"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57066"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57067"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid153"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Synovial membrane of articular capsule of temporomandibular joint&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Superior synovial membrane of articular capsule of right temporomandibular joint, Superior synovial membrane of articular capsule of left temporomandibular joint&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74866&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_74867</obo:IAO_0000116>
         <rdfs:label>Superior synovial membrane of articular capsule of temporomandibular joint</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid153">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57066"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57067"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57062"/>
@@ -1745,14 +1472,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57062"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57066"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57067"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid153"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -1762,16 +1482,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57063">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_57054"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57064"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57065"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid158"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Synovial membrane of articular capsule of temporomandibular joint&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Inferior synovial membrane of left temporomandibular joint, Inferior synovial membrane of right temporomandibular joint&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74868&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_74869</obo:IAO_0000116>
         <rdfs:label>Inferior synovial membrane of articular capsule of temporomandibular joint</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid158">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57064"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57065"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57063"/>
@@ -1782,14 +1501,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57063"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57064"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57065"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid158"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -1931,16 +1643,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57071">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_57070"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57072"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57073"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid176"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Ligament of temporomandibular joint&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Lateral ligament of left temporomandibular joint, Lateral ligament of right temporomandibular joint&lt;br&gt;&lt;b&gt;:slot-templates&lt;/b&gt;: location &lt;i&gt;value-type&lt;/i&gt;: Organ anatomical coordinate adjacency, location &lt;i&gt;value-type&lt;/i&gt;: Has_anatomical_coordinate relation, location &lt;i&gt;value-type&lt;/i&gt;: Instance&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74876&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_74877, KB_INSTANCE_74878&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_35477&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Temporomandibular joint&lt;br&gt;&lt;b&gt;attaches to&lt;/b&gt;: Tubercle of zygomatic root</obo:IAO_0000116>
         <rdfs:label>Lateral ligament of temporomandibular joint</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid176">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57072"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57073"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57071"/>
@@ -1951,14 +1662,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57071"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57072"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57073"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid176"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -2026,16 +1730,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57074">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_57070"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57075"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57076"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid187"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Ligament of temporomandibular joint&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Medial ligament of left temporomandibular joint, Medial ligament of right temporomandibular joint&lt;br&gt;&lt;b&gt;:slot-templates&lt;/b&gt;: location &lt;i&gt;value-type&lt;/i&gt;: Organ anatomical coordinate adjacency, location &lt;i&gt;value-type&lt;/i&gt;: Instance&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74881&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_74882&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: su_incus_35476&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Temporomandibular joint</obo:IAO_0000116>
         <rdfs:label>Medial ligament of temporomandibular joint</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid187">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57075"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57076"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57074"/>
@@ -2046,14 +1749,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57074"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57075"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57076"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid187"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -2121,16 +1817,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57077">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_57070"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57078"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57079"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid198"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Ligament of temporomandibular joint&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left sphenomandibular ligament, Right sphenomandibular ligament&lt;br&gt;&lt;b&gt;:slot-templates&lt;/b&gt;: location &lt;i&gt;value-type&lt;/i&gt;: Organ anatomical coordinate adjacency, location &lt;i&gt;value-type&lt;/i&gt;: Has_anatomical_coordinate relation, location &lt;i&gt;value-type&lt;/i&gt;: Instance&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74885&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_74887&lt;br&gt;&lt;b&gt;attaches to&lt;/b&gt;: Lingula of mandible&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: KB_INSTANCE_74886, KB_AUTO-INSERT(3)_791&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Temporomandibular joint&lt;br&gt;&lt;b&gt;derives from&lt;/b&gt;: Meckel&apos;s cartilage</obo:IAO_0000116>
         <rdfs:label>Sphenomandibular ligament</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid198">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57078"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57079"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57077"/>
@@ -2141,14 +1836,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57077"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57078"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57079"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid198"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -2216,16 +1904,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57083">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_57070"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57084"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57086"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid209"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Ligament of temporomandibular joint&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Left stylomandibular ligament, Right stylomandibular ligament&lt;br&gt;&lt;b&gt;:slot-templates&lt;/b&gt;: location &lt;i&gt;value-type&lt;/i&gt;: Organ anatomical coordinate adjacency, location &lt;i&gt;value-type&lt;/i&gt;: Has_anatomical_coordinate relation, location &lt;i&gt;value-type&lt;/i&gt;: Instance&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Temporomandibular joint&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74898&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_74900&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: KB_INSTANCE_74899, KB_AUTO-INSERT(3)_792</obo:IAO_0000116>
         <rdfs:label>Stylomandibular ligament</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid209">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57084"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57086"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57083"/>
@@ -2236,14 +1923,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57083"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57084"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57086"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid209"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -2311,16 +1991,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57089">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_12264"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57092"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57095"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid220"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Articular cartilage&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Articular cartilage of left head of mandible, Articular cartilage of right head of mandible&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74908&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Temporomandibular joint</obo:IAO_0000116>
         <rdfs:label>Articular cartilage of head of mandible</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid220">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57092"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57095"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57089"/>
@@ -2331,14 +2010,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57089"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57092"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57095"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid220"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -2406,16 +2078,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57096">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_12264"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57097"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57098"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid231"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Articular cartilage&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Articular cartilage of posterior part of zygomatic process of right temporal bone, Articular cartilage of posterior part of zygomatic process of left temporal bone&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74915&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Temporomandibular joint</obo:IAO_0000116>
         <rdfs:label>Articular cartilage of posterior part of zygomatic process of temporal bone</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid231">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57097"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57098"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57096"/>
@@ -2426,14 +2097,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57096"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57097"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57098"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid231"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -2501,16 +2165,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57099">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_11356"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57101"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57102"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid242"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Synovial cavity of joint&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Synovial cavity of left temporomandibular joint, Synovial cavity of right temporomandibular joint&lt;br&gt;&lt;b&gt;:slot-templates&lt;/b&gt;: contains &lt;i&gt;value-type&lt;/i&gt;: Portion of body substance, contains &lt;i&gt;value-type&lt;/i&gt;: Class&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74918&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_74919&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Temporomandibular joint</obo:IAO_0000116>
         <rdfs:label>Synovial cavity of temporomandibular joint</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid242">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57101"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57102"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57099"/>
@@ -2521,14 +2184,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57099"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57101"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57102"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid242"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -2539,15 +2195,14 @@
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57101">
         <rdfs:subClassOf rdf:resource="http://example.com/right"/>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_57099"/>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85857"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57104"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid249"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Synovial cavity of temporomandibular joint&lt;br&gt;&lt;b&gt;:slot-templates&lt;/b&gt;: contains &lt;i&gt;value-type&lt;/i&gt;: Portion of body substance, contains &lt;i&gt;value-type&lt;/i&gt;: Class&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74921&lt;br&gt;&lt;b&gt;contains&lt;/b&gt;: Synovial fluid of right temporomandibular joint&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Right temporomandibular joint</obo:IAO_0000116>
         <rdfs:label>Synovial cavity of right temporomandibular joint</rdfs:label>
     </Class>
+    <Restriction rdf:nodeID="genid249">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85857"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57104"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57101"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -2569,12 +2224,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57101"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85857"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57104"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid249"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -2585,15 +2235,14 @@
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57102">
         <rdfs:subClassOf rdf:resource="http://example.com/left"/>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_57099"/>
-        <rdfs:subClassOf>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85857"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57105"/>
-            </Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid254"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Synovial cavity of temporomandibular joint&lt;br&gt;&lt;b&gt;:slot-templates&lt;/b&gt;: contains &lt;i&gt;value-type&lt;/i&gt;: Portion of body substance, contains &lt;i&gt;value-type&lt;/i&gt;: Class&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74922&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: KB_INSTANCE_74923&lt;br&gt;&lt;b&gt;contains&lt;/b&gt;: Synovial fluid of left temporomandibular joint&lt;br&gt;&lt;b&gt;constitutional part of&lt;/b&gt;: Left temporomandibular joint</obo:IAO_0000116>
         <rdfs:label>Synovial cavity of left temporomandibular joint</rdfs:label>
     </Class>
+    <Restriction rdf:nodeID="genid254">
+        <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85857"/>
+        <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57105"/>
+    </Restriction>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57102"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
@@ -2615,12 +2264,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57102"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Restriction>
-                <onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85857"/>
-                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_57105"/>
-            </Restriction>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid254"/>
         <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
     </Axiom>
     
@@ -2630,16 +2274,15 @@
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_57103">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_12277"/>
-        <rdfs:subClassOf>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57104"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57105"/>
-                </unionOf>
-            </Class>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:nodeID="genid257"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Portion of synovial fluid&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Synovial fluid of left temporomandibular joint, Synovial fluid of right temporomandibular joint&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: KB_INSTANCE_74924</obo:IAO_0000116>
         <rdfs:label>Synovial fluid of temporomandibular joint</rdfs:label>
+    </Class>
+    <Class rdf:nodeID="genid257">
+        <unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57104"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57105"/>
+        </unionOf>
     </Class>
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57103"/>
@@ -2650,14 +2293,7 @@
     <Axiom>
         <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_57103"/>
         <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget>
-            <Class>
-                <unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57104"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57105"/>
-                </unionOf>
-            </Class>
-        </annotatedTarget>
+        <annotatedTarget rdf:nodeID="genid257"/>
         <example:fma-translation-source>maybe-bilateral-assertions</example:fma-translation-source>
     </Axiom>
     
@@ -2776,7 +2412,6 @@
     <!-- http://purl.obolibrary.org/obo/FMA_62955 -->
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_62955">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: THING, Anatomical entity template&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Physical anatomical entity, Non-physical anatomical entity&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: fm_live_00767&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: Old definition: Biological entity, which forms the whole or a part of, or is an attribute of, the structural organization of a biological organism.&lt;br&gt;&lt;b&gt;:direct-template-slots&lt;/b&gt;: FMAID&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: KB_AUTO-INSERT(3)_4642</obo:IAO_0000116>
         <rdfs:comment>Organismal continuant entity which is enclosed by the bona fide boundary of an organism or is an attribute of its structural organization. Examples: cell, heart, head, peritoneal cavity, apex of lung, anatomical term, sagittal plane.</rdfs:comment>
         <rdfs:label>Anatomical entity</rdfs:label>
@@ -2821,19 +2456,12 @@
     <!-- http://purl.obolibrary.org/obo/FMA_67112 -->
 
     <Class rdf:about="http://purl.obolibrary.org/obo/FMA_67112">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_61775"/>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FMA_62955"/>
         <disjointWith rdf:resource="http://purl.obolibrary.org/obo/FMA_67165"/>
         <obo:IAO_0000116>&lt;br&gt;&lt;b&gt;type&lt;/b&gt;: class&lt;br&gt;&lt;b&gt;is-a&lt;/b&gt;: Physical anatomical entity&lt;br&gt;&lt;b&gt;subclasses&lt;/b&gt;: Anatomical boundary entity, Set of immaterial anatomical entities, Anatomical space&lt;br&gt;&lt;b&gt;:slot-templates&lt;/b&gt;: has mass &lt;i&gt;values&lt;/i&gt;: false&lt;br&gt;&lt;b&gt;preferred name&lt;/b&gt;: fm-live_13507&lt;br&gt;&lt;b&gt;:documentation&lt;/b&gt;: OM 12.18.00: Are arbitrary planes, lines and points non-material physical anatomical entity? These entities, although arbitrary, serve as boundaries and therefore should be classified as physical anatomical entities. E.g. Plane of esophagogastric junction, plane of thoracic inlet, midclavicular line, McBurney&apos;s point.nnNote: Previously named &amp;#x0022;Immaterial physical anatomical entity&amp;#x0022;.&lt;br&gt;&lt;b&gt;:direct-template-slots&lt;/b&gt;: has mass&lt;br&gt;&lt;b&gt;non-English equivalent&lt;/b&gt;: ONARD_Instance_580715, ONARD_Instance_580695, ONARD_Instance_610015&lt;br&gt;&lt;b&gt;synonym&lt;/b&gt;: ONARD_Instance_350000</obo:IAO_0000116>
         <rdfs:comment>Physical anatomical entity which is a three-dimensional space, surface, line or point associated with a material anatomical entity. Examples: body space, surface of heart, costal margin, apex of right lung, anterior compartment space of right arm.</rdfs:comment>
         <rdfs:label>Immaterial anatomical entity</rdfs:label>
     </Class>
-    <Axiom>
-        <annotatedSource rdf:resource="http://purl.obolibrary.org/obo/FMA_67112"/>
-        <annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/FMA_61775"/>
-        <example:fma-translation-source>fma-part-module-to-owl</example:fma-translation-source>
-    </Axiom>
     
 
 
@@ -3090,5 +2718,5 @@
 
 
 
-<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi -->
 
