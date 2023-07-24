@@ -2,32 +2,37 @@
 <rdf:RDF xmlns="http://purl.obolibrary.org/obo/ohd/ohd-base.owl#"
      xml:base="http://purl.obolibrary.org/obo/ohd/ohd-base.owl"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:iao="http://purl.obolibrary.org/obo/iao/"
      xmlns:obo="http://purl.obolibrary.org/obo/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:example="http://example.com/"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
     <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ohd/ohd-base.owl">
-        <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/ohd/releases/2023-04-14/ohd-base.owl"/>
-        <dc:contributor>Amit Acharya</dc:contributor>
-        <dc:contributor>Carlo Torniai</dc:contributor>
-        <dc:contributor>Dan Caplan</dc:contributor>
-        <dc:contributor>Mei Song</dc:contributor>
-        <dc:contributor>Melissa Haendel</dc:contributor>
-        <dc:contributor>Pedro Hernandez Cott</dc:contributor>
-        <dc:contributor>Titus Schleyer</dc:contributor>
+        <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/ohd/releases/2023-07-22/ohd-base.owl"/>
         <dc:creator>Alan Ruttenberg</dc:creator>
         <dc:creator>Bill Duncan</dc:creator>
         <dc:type rdf:resource="http://purl.obolibrary.org/obo/IAO_8000001"/>
+        <terms:contributor>Amit Acharya</terms:contributor>
+        <terms:contributor>Carlo Torniai</terms:contributor>
+        <terms:contributor>Dan Caplan</terms:contributor>
+        <terms:contributor>Mei Song</terms:contributor>
+        <terms:contributor>Melissa Haendel</terms:contributor>
+        <terms:contributor>Pedro Hernandez Cott</terms:contributor>
+        <terms:contributor>Titus Schleyer</terms:contributor>
         <rdfs:comment>Status of this document: This is a work in progress and we do not yet make any promises about the stability of URIs. A known issue is that the upper level of this ontology is an exploratory version of BFO developed in the interim between when BFO 1 was current and before BFO 2 development started. The representation of the CDT codes is tentative - we are discussing this with the ADA. The integration between OBI and OGMS is not complete - we add some axioms here in order to use both in a consistent way. The version of the subject of the FMA used here is an automatic translation of a portion of the entities and relations present in the original FMA. Work is ongoing on improving this subset and using an up-to-date version of the FMA as its basis.</rdfs:comment>
         <rdfs:comment>The Oral Health and Disease Ontology is an ontology built to be compatible with the OBO Foundry ontologies, and is a collaboration between researchers at the University at Buffalo School of Dental Medicine, the University of Pittsburg School of Dental Medicine, and the Oregon Health and Science University.
 
 This ontology is licensed under the CC-BY License. Please see http://creativecommons.org/licenses/by/3.0/
 
 Attribution is satisfied by using the URIs defined in this file when using terms from this ontology.</rdfs:comment>
-        <owl:versionInfo>2023-04-14</owl:versionInfo>
+        <owl:versionInfo>2023-07-22</owl:versionInfo>
     </owl:Ontology>
     
 
@@ -91,6 +96,16 @@ Attribution is satisfied by using the URIs defined in this file when using terms
     
 
 
+    <!-- http://purl.obolibrary.org/obo/OHD_0000053 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/OHD_0000053">
+        <obo:IAO_0000115>an annotation property that relates an individual to the data source that was used to extract information about the individual</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <rdfs:label>data source</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/OHD_0000065 -->
 
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/OHD_0000065">
@@ -129,12 +144,6 @@ Attribution is satisfied by using the URIs defined in this file when using terms
     
 
 
-    <!-- http://purl.org/dc/elements/1.1/contributor -->
-
-    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/contributor"/>
-    
-
-
     <!-- http://purl.org/dc/elements/1.1/creator -->
 
     <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
@@ -159,9 +168,95 @@ Attribution is satisfied by using the URIs defined in this file when using terms
     
 
 
+    <!-- http://purl.org/dc/terms/contributor -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/contributor">
+        <rdfs:label>contributor</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://purl.org/dc/terms/created -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/created">
+        <rdfs:label>date created</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://purl.org/dc/terms/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/creator"/>
+    
+
+
     <!-- http://www.geneontology.org/formats/oboInOwl#creation_date -->
 
     <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#creation_date"/>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym -->
+
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym">
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasExactSynonym -->
+
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym">
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym -->
+
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym">
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym -->
+
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym">
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#broadMatch -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#broadMatch">
+        <rdfs:label>has broader match</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#closeMatch -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#closeMatch">
+        <rdfs:label>has close match</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#exactMatch -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#exactMatch">
+        <rdfs:label>has exact match</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#narrowMatch -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#narrowMatch">
+        <rdfs:label>has narrower match</rdfs:label>
+    </owl:AnnotationProperty>
     
 
 
@@ -269,6 +364,12 @@ Attribution is satisfied by using the URIs defined in this file when using terms
     
 
 
+    <!-- http://purl.obolibrary.org/obo/FMA_85848 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/FMA_85848"/>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/FMA_85868 -->
 
     <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/FMA_85868"/>
@@ -314,7 +415,6 @@ Attribution is satisfied by using the URIs defined in this file when using terms
     <!-- http://purl.obolibrary.org/obo/OHD_0000091 -->
 
     <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OHD_0000091">
-        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
         <rdfs:range>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
@@ -331,7 +431,7 @@ It is going to be a shortcut relation between the material, the tooth in which t
         <obo:IAO_0000119>Adapted from:
 Mosby&apos;s Dental Dictionary, 2nd Edition. page 580. 
 Wikipedia: http://en.wikipedia.org/wiki/Dental_restoration</obo:IAO_0000119>
-        <dc:contributor>PERSON: Bill Duncan</dc:contributor>
+        <terms:contributor>PERSON: Bill Duncan</terms:contributor>
         <rdfs:label>is dental restoration of</rdfs:label>
     </owl:ObjectProperty>
     
@@ -363,6 +463,20 @@ Wikipedia: http://en.wikipedia.org/wiki/Dental_restoration</obo:IAO_0000119>
     
 
 
+    <!-- http://purl.obolibrary.org/obo/RO_0002354 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_0002354">
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000056"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/RO_0003304 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_0003304"/>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -380,8 +494,7 @@ Wikipedia: http://en.wikipedia.org/wiki/Dental_restoration</obo:IAO_0000119>
         <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/OHD_0000012"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <obo:IAO_0000115>a data property that relates an individual patient to the literal string that represents the patient&apos;s id</obo:IAO_0000115>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <dc:contributor>Bill Duncan</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label xml:lang="en">patient ID</rdfs:label>
     </owl:DatatypeProperty>
     
@@ -391,8 +504,14 @@ Wikipedia: http://en.wikipedia.org/wiki/Dental_restoration</obo:IAO_0000119>
 
     <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/OHD_0000015">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#date"/>
+                    <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#dateTime"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
         <obo:IAO_0000115>a data property that relates either:
 1. a finding to the date on which it was recorded
 2. a process to the date on which it occrred</obo:IAO_0000115>
@@ -408,23 +527,17 @@ There is a problem with occurrence date.  The date on which an event occurred an
     <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/OHD_0000050">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
         <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/OHD_0000012"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000117>a data property that relates an individual to the date on which the individual was born</obo:IAO_0000117>
-        <dc:contributor>Bill Duncan</dc:contributor>
-        <dc:contributor>a data property that relates an individual to the date on which the individual was born</dc:contributor>
-        <rdfs:label xml:lang="en">birth_date</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000053 -->
-
-    <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/OHD_0000053">
-        <obo:IAO_0000115>a data property that relates an individual to the data source that was used to extract information about the individual</obo:IAO_0000115>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <rdfs:label>data source</rdfs:label>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#date"/>
+                    <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#dateTime"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+        <obo:IAO_0000115>a data property that relates an individual to the date on which the individual was born</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <rdfs:label xml:lang="en">birth date</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -433,13 +546,10 @@ There is a problem with occurrence date.  The date on which an event occurred an
 
     <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/OHD_0000097">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <obo:IAO_0000115>A data property in which the values provide information as to whether a patient is actively being cared for by the practicet; takes values &quot;active&quot; and &quot;inactive&quot;.</obo:IAO_0000115>
         <obo:IAO_0000115>a data property in which the values provide information as to whether a patient is actively being cared for by the practicet; takes values &quot;active&quot; and &quot;inactive&quot;</obo:IAO_0000115>
-        <dc:contributor>Bill Duncan</dc:contributor>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T01:11:57Z</oboInOwl:creation_date>
         <rdfs:label>has patient activity status</rdfs:label>
-        <rdfs:label xml:lang="en">has patient activity status</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -447,14 +557,18 @@ There is a problem with occurrence date.  The date on which an event occurred an
     <!-- http://purl.obolibrary.org/obo/OHD_0000218 -->
 
     <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/OHD_0000218">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-        <obo:IAO_0000115>A data property used to record the date of a patient&apos;s first dental visit.</obo:IAO_0000115>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#date"/>
+                    <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#dateTime"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
         <obo:IAO_0000115>a data property used to record the date of a patient&apos;s first dental visit</obo:IAO_0000115>
-        <dc:contributor>Bill Duncan</dc:contributor>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T01:22:17Z</oboInOwl:creation_date>
         <rdfs:label>first dental visit date</rdfs:label>
-        <rdfs:label xml:lang="en">first dental visit date</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -462,14 +576,18 @@ There is a problem with occurrence date.  The date on which an event occurred an
     <!-- http://purl.obolibrary.org/obo/OHD_0000219 -->
 
     <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/OHD_0000219">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-        <obo:IAO_0000115>A data property used to record the date of a patient&apos;s first dental visit.</obo:IAO_0000115>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#date"/>
+                    <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#dateTime"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
         <obo:IAO_0000115>a data property used to record the last date on which a patient had a dental visit</obo:IAO_0000115>
-        <dc:contributor>Bill Duncan</dc:contributor>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T01:23:31Z</oboInOwl:creation_date>
         <rdfs:label>last dental visit date</rdfs:label>
-        <rdfs:label xml:lang="en">last dental visit date</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -478,16 +596,11 @@ There is a problem with occurrence date.  The date on which an event occurred an
 
     <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/OHD_0000234">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <obo:IAO_0000115>A data property whose value is an ADA universal tooth number that represents a tooth which is missing from a dentition.</obo:IAO_0000115>
         <obo:IAO_0000115>a data property whose value is an ADA universal tooth number that represents a tooth which is missing from a dentition</obo:IAO_0000115>
         <obo:IAO_0000116>Bill Duncan 01/03/2017:
 This data property provides a means to query for missing teeth. Since a missing tooth is not a tooth, it is wrong represent a missing tooth as an instance of a tooth. Rather, we represent a missing tooth by respresenting the instance of the dentition and then specify with this data property that the dentition is missing a tooth designated by the universtal tooth number.</obo:IAO_0000116>
-        <dc:contributor>Bill Duncan</dc:contributor>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-01-03T18:37:35Z</dc:date>
-        <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T03:13:50Z</oboInOwl:creation_date>
-        <rdfs:label xml:lang="en">missing ADA tooth number</rdfs:label>
-        <rdfs:label xml:lang="en">missing tooth number</rdfs:label>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
     </owl:DatatypeProperty>
     
 
@@ -496,27 +609,12 @@ This data property provides a means to query for missing teeth. Since a missing 
 
     <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/OHD_0000360">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <obo:IAO_0000115>A data property whose value is an ADA universal tooth number that represents the tooth associated with a tooth root that is missing from a dentition.</obo:IAO_0000115>
         <obo:IAO_0000115>a data property whose value is an ADA universal tooth number that represents the tooth associated with a tooth root that is missing from a dentition</obo:IAO_0000115>
         <obo:IAO_0000116>Bill Duncan 10/18/2017:
 This data property provides a means to query for missing tooth roots. Since a missing tooth root is not a tooth root, it is wrong represent a missing tooth root as an instance of a tooth root. Rather, we represent a missing tooth root by respresenting the instance of the dentition and then specify with this data property that the dentition is missing a tooth root that is associated with the tooth designated by the universtal tooth number.</obo:IAO_0000116>
-        <dc:contributor>Bill Duncan</dc:contributor>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-10-18T20:39:14Z</dc:date>
-        <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T03:15:41Z</oboInOwl:creation_date>
-        <rdfs:label xml:lang="en">missing ADA tooth root number</rdfs:label>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label xml:lang="en">missing tooth root number</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/ohd.owl/last_dental_visit_date -->
-
-    <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/ohd.owl/last_dental_visit_date">
-        <obo:IAO_0000115>A data property used to record the last date on which a patient had a dental visit.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
-        <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T01:25:28Z</oboInOwl:creation_date>
-        <rdfs:label>last dental visit date</rdfs:label>
     </owl:DatatypeProperty>
     
 
@@ -576,6 +674,12 @@ This data property provides a means to query for missing tooth roots. Since a mi
     <!-- http://purl.obolibrary.org/obo/BFO_0000005 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000005"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/BFO_0000007 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000007"/>
     
 
 
@@ -1766,6 +1870,14 @@ This data property provides a means to query for missing tooth roots. Since a mi
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000033"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ECTO_9002146 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ECTO_9002146">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000007"/>
     </owl:Class>
     
 
@@ -4920,6 +5032,24 @@ This data property provides a means to query for missing tooth roots. Since a mi
     
 
 
+    <!-- http://purl.obolibrary.org/obo/FMA_55624 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/FMA_55624"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/FMA_55628 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/FMA_55628"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/FMA_55629 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/FMA_55629"/>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/FMA_55636 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/FMA_55636"/>
@@ -6208,7 +6338,7 @@ This data property provides a means to query for missing tooth roots. Since a mi
     <!-- http://purl.obolibrary.org/obo/FMA_75150 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/FMA_75150">
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T21:59:52Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">Dentition</rdfs:label>
     </owl:Class>
@@ -6694,6 +6824,26 @@ This data property provides a means to query for missing tooth roots. Since a mi
     
 
 
+    <!-- http://purl.obolibrary.org/obo/NBO_0000007 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/NBO_0000007">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OGMS_0000060"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_49184"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000116>Import from NBO</obo:IAO_0000116>
+        <rdfs:label xml:lang="en">temp: mouth movement</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/NCBITaxon_9606 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
@@ -6859,6 +7009,24 @@ for now.</obo:IAO_0000116>
     
 
 
+    <!-- http://purl.obolibrary.org/obo/OGMS_0000060 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000060"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OGMS_0000061 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000061"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OGMS_0000065 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000065"/>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/OGMS_0000090 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000090">
@@ -6912,37 +7080,14 @@ for now.</obo:IAO_0000116>
     <!-- http://purl.obolibrary.org/obo/OHD_0000000 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000000">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000191"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000047"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000053"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000191"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">A processed material that bears a dental restoration material role.</obo:IAO_0000115>
-        <obo:IAO_0000117>Person: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000117 xml:lang="en">Person:Alan Ruttenberg</obo:IAO_0000117>
-        <obo:IAO_0000118 xml:lang="en">restoration material</obo:IAO_0000118>
-        <rdfs:label>dental restoration material</rdfs:label>
     </owl:Class>
     
 
 
     <!-- http://purl.obolibrary.org/obo/OHD_0000001 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000001">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000048"/>
-        <obo:IAO_0000115 xml:lang="en">a metal dental restoration material that consists of silver-colored, metallic alloy which is composed of a mixture of mercury and other metals</obo:IAO_0000115>
-        <obo:IAO_0000116>Titus Schleyer 1/14/2014: updated definition</obo:IAO_0000116>
-        <obo:IAO_0000117 xml:lang="en">Person:Alan Ruttenberg</obo:IAO_0000117>
-        <rdfs:label xml:lang="en">amalgam dental restoration material</rdfs:label>
-    </owl:Class>
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000001"/>
     
 
 
@@ -7014,24 +7159,6 @@ Changed &quot;A specific healthcare activity&quot; to &quot;A health care encoun
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000004">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
         <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000189"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000007"/>
@@ -7041,12 +7168,6 @@ Changed &quot;A specific healthcare activity&quot; to &quot;A health care encoun
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7073,11 +7194,11 @@ My reasons for doing this are:
 1) the &apos;has role&apos; axiom looks wrong. The restoration process realizes the role, but it sounds odd for the process to output the role.
 
 2) Since the tooth restoration process outputs a restored tooth, a restored tooth by definition/axiom has part some (tooth and dental restoration material).</obo:IAO_0000116>
-        <obo:IAO_0000116>Titus Schleyer 3/14/2014: slightly edited definition</obo:IAO_0000116>
         <obo:IAO_0000116>Mosby&apos;s Dental Dictionary 2nd ed</obo:IAO_0000116>
+        <obo:IAO_0000116>Titus Schleyer 3/14/2014: slightly edited definition</obo:IAO_0000116>
         <obo:IAO_0000117>PERSON:Alan Ruttenberg</obo:IAO_0000117>
         <obo:IAO_0000117>PERSON:Pedro Cott</obo:IAO_0000117>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label xml:lang="en">tooth restoration procedure</rdfs:label>
     </owl:Class>
     
@@ -7375,13 +7496,19 @@ Professional prophylaxis, radiographs, sealants, and nonsurgical periodontal the
     <!-- http://purl.obolibrary.org/obo/OHD_0000021 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000021">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000045"/>
-        <obo:IAO_0000115 xml:lang="en">A disorder that affects a tooth that includes both the infectious organisms, the material they generate from the tooth, any immune effectors that are a response to the presence of the disorder and the physical changes to the tooth (i.e., demineralization or a cavity) resulting from the disorder. It is the physical basis for the disease &quot;dental caries.&quot;</obo:IAO_0000115>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000260"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002354"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000258"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A tooth disorder that affects a tooth that includes both the infectious organisms, the material they generate from the tooth, any immune effectors that are a response to the presence of the disorder and the physical changes to the tooth (i.e., demineralization or a cavity) resulting from the disorder. It is the physical basis for the disease &quot;dental caries.&quot;</obo:IAO_0000115>
         <obo:IAO_0000116>Titus Schleyer 1/14/2014: updated definition</obo:IAO_0000116>
         <obo:IAO_0000117>Titus Schleyer</obo:IAO_0000117>
         <rdfs:comment>is caries a material entity or a quality?
 </rdfs:comment>
-        <rdfs:label xml:lang="en">carious lesion of tooth</rdfs:label>
+        <rdfs:label xml:lang="en">carious tooth lesion</rdfs:label>
     </owl:Class>
     
 
@@ -7427,7 +7554,7 @@ Professional prophylaxis, radiographs, sealants, and nonsurgical periodontal the
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A dental finding that a tooth has been restored.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T01:37:27Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">restored tooth finding</rdfs:label>
     </owl:Class>
@@ -7587,7 +7714,7 @@ http://en.wikipedia.org/wiki/Veneer_%28dentistry%29</obo:IAO_0000119>
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_12516"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000086"/>
-                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000043"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/PATO_0040034"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
@@ -7657,39 +7784,19 @@ The uri was changed for backward compatabilty in the r21 study.</obo:IAO_0000116
 
     <!-- http://purl.obolibrary.org/obo/OHD_0000034 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000034">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000048"/>
-        <obo:IAO_0000115>A metal dental restoration material which the principal ingredient is gold.</obo:IAO_0000115>
-        <obo:IAO_0000116>Bill Duncan 12/11/2014:
-updated defintion</obo:IAO_0000116>
-        <obo:IAO_0000116>Titus Schleyer 3/13/2014: slightly updated definition</obo:IAO_0000116>
-        <obo:IAO_0000117>PERSON: Pedro L. Hernández-Cott</obo:IAO_0000117>
-        <rdfs:label xml:lang="en">gold foil dental restoration material</rdfs:label>
-    </owl:Class>
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000034"/>
     
 
 
     <!-- http://purl.obolibrary.org/obo/OHD_0000035 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000035">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000135"/>
-        <obo:IAO_0000115 xml:lang="en">A ceramic material used for tooth-colored restorations.</obo:IAO_0000115>
-        <obo:IAO_0000116>Titus Schleyer1/14/2014: checked definition, sounds okay</obo:IAO_0000116>
-        <obo:IAO_0000117>PERSON: Pedro L. Hernández-Cott</obo:IAO_0000117>
-        <rdfs:label xml:lang="en">porcelain dental restoration material</rdfs:label>
-    </owl:Class>
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000035"/>
     
 
 
     <!-- http://purl.obolibrary.org/obo/OHD_0000036 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000036">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
-        <obo:IAO_0000115>A tooth-colored dental restoration material made from a mixture of resin, silica and other materials used in direct restorations.</obo:IAO_0000115>
-        <obo:IAO_0000116>Titus Schleyer 3/13/2014: updated definition</obo:IAO_0000116>
-        <obo:IAO_0000117>PERSON: Pedro L. Hernández-Cott</obo:IAO_0000117>
-        <rdfs:label xml:lang="en">resin-based composite dental restoration material</rdfs:label>
-    </owl:Class>
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000036"/>
     
 
 
@@ -7701,12 +7808,6 @@ updated defintion</obo:IAO_0000116>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A material combination in which a moldable restorative material is placed directly into or on the tooth. The material then hardens and becomes (essentially) part of the tooth. </obo:IAO_0000115>
@@ -7727,12 +7828,6 @@ Moved from this class from being a subtype of tooth restoration procedure to bei
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A material combination in which a rigid piece of restoration material is attached to a tooth. The restoration is attached to the tooth by mechanical forces or some form of cement or glue. </obo:IAO_0000115>
@@ -7860,16 +7955,6 @@ A material combination in which a rigid restoration, such as a gold inlay, is at
     
 
 
-    <!-- http://purl.obolibrary.org/obo/OHD_0000043 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000043">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000019"/>
-        <rdfs:comment>needs to be added to pato where it is an exact synonym of broken (i think)</rdfs:comment>
-        <rdfs:label xml:lang="en">fractured</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://purl.obolibrary.org/obo/OHD_0000044 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000044">
@@ -7949,13 +8034,7 @@ A material combination in which a rigid restoration, such as a gold inlay, is at
 
     <!-- http://purl.obolibrary.org/obo/OHD_0000048 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000048">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
-        <obo:IAO_0000115 xml:lang="en">A dental restoration material that consists mostly of metal atoms</obo:IAO_0000115>
-        <obo:IAO_0000116 xml:lang="en">Use CHEBI:33521 &apos;metal ion&apos; in a complete definition. Fixure out how to say &quot;mostly&quot; first, however</obo:IAO_0000116>
-        <obo:IAO_0000117>PERSON: Alan Ruttenberg</obo:IAO_0000117>
-        <rdfs:label xml:lang="en">metal dental restoration material</rdfs:label>
-    </owl:Class>
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000048"/>
     
 
 
@@ -9306,8 +9385,8 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A dental finding that a tooth was present during a clinical exam.</obo:IAO_0000115>
-        <dc:contributor>Alan Ruttenberg</dc:contributor>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor>Alan Ruttenberg</terms:contributor>
         <rdfs:label>tooth clinically present finding</rdfs:label>
     </owl:Class>
     
@@ -9467,36 +9546,19 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
 
     <!-- http://purl.obolibrary.org/obo/OHD_0000135 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000135">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
-        <obo:IAO_0000115>A dental restoration material that consists of non-metal, non-resin inorganic refractory compounds processed at high temperatures (600 degress Celsius / 1112 degrees Farenheit) and pressed, pollished or milled -- including porcelains, glasses, and glass-ceramics.</obo:IAO_0000115>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000119> ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
-        <rdfs:label>ceramic dental restoration material</rdfs:label>
-    </owl:Class>
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000135"/>
     
 
 
     <!-- http://purl.obolibrary.org/obo/OHD_0000136 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000136">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000048"/>
-        <obo:IAO_0000115>A metal dental restoration material which contains 85% or more titanium.</obo:IAO_0000115>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000119> ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
-        <rdfs:label>titanium dental restoration material</rdfs:label>
-    </owl:Class>
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000136"/>
     
 
 
     <!-- http://purl.obolibrary.org/obo/OHD_0000137 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000137">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000048"/>
-        <obo:IAO_0000115>A metal dental restoration material which the principal ingredient is stainless steel.</obo:IAO_0000115>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-        <rdfs:label>stainless steel dental restoration material</rdfs:label>
-    </owl:Class>
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000137"/>
     
 
 
@@ -9588,6 +9650,7 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
+        <obo:IAO_0000115>A crown restoration procedure that uses titanium to restore the tooth.</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <rdfs:label>titanium crown restoration procedure</rdfs:label>
     </owl:Class>
@@ -9669,25 +9732,13 @@ There is not a dental restoration material of this kind. The class needs to be m
 
     <!-- http://purl.obolibrary.org/obo/OHD_0000146 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000146">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000048"/>
-        <obo:IAO_0000115>A metal dental restoration material that is composed of a matalic alloy that contains 25% or more of gold, palladium, and/or or platinum.</obo:IAO_0000115>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000119> ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
-        <rdfs:label>noble metal dental restoration material</rdfs:label>
-    </owl:Class>
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000146"/>
     
 
 
     <!-- http://purl.obolibrary.org/obo/OHD_0000147 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000147">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000146"/>
-        <obo:IAO_0000117>PERSON: Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000119> ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
-        <obo:IAO_0000119>A metal dental restoration material that is composed of a matalic alloy that contains 60% or more of gold, palladium, and/or or platinum (with at least 40% gold).</obo:IAO_0000119>
-        <rdfs:label>high noble metal dental restoration material</rdfs:label>
-    </owl:Class>
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000147"/>
     
 
 
@@ -9883,7 +9934,7 @@ There is not a dental restoration material of this kind. The class needs to be m
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <obo:IAO_0000115>A crown restoration procedure that uses ceramic to restor the tooth.</obo:IAO_0000115>
+        <obo:IAO_0000115>A crown restoration procedure that uses ceramic to restore the tooth.</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <rdfs:label>ceramic crown restoration procedure</rdfs:label>
     </owl:Class>
@@ -9892,13 +9943,7 @@ There is not a dental restoration material of this kind. The class needs to be m
 
     <!-- http://purl.obolibrary.org/obo/OHD_0000156 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000156">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000048"/>
-        <obo:IAO_0000115>A metal dental restoration material that is composed of a matalic alloy that contains less than 25% of gold, palladium, and/or or platinum.</obo:IAO_0000115>
-        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
-        <obo:IAO_0000119> ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1</obo:IAO_0000119>
-        <rdfs:label>predominantly base metal dental restoration material</rdfs:label>
-    </owl:Class>
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000156"/>
     
 
 
@@ -10255,9 +10300,9 @@ There is not a dental restoration material of this kind. The class needs to be m
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000168">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000010"/>
-        <dc:contributor>A dental finding that a tooth has not errupted.</dc:contributor>
-        <dc:contributor>Alan Ruttenberg</dc:contributor>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor>A dental finding that a tooth has not errupted.</terms:contributor>
+        <terms:contributor>Alan Ruttenberg</terms:contributor>
         <rdfs:label>unerupted tooth finding</rdfs:label>
     </owl:Class>
     
@@ -10610,7 +10655,7 @@ There is not a dental restoration material of this kind. The class needs to be m
 A restored tooth typically results when a tooth with some type of pathological defect is restored.</obo:IAO_0000116>
         <obo:IAO_0000116>Titus Schleyer 1/1/2014: updated definition</obo:IAO_0000116>
         <obo:IAO_0000117>Alan Ruttenberg</obo:IAO_0000117>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label xml:lang="en">restored tooth</rdfs:label>
     </owl:Class>
     
@@ -10763,7 +10808,7 @@ Changed definition to read that a &quot;portion of dental restoration material&q
     <!-- http://purl.obolibrary.org/obo/OHD_0000196 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000196">
-        <owl:equivalentClass>
+        <rdfs:subClassOf>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000022"/>
@@ -10773,7 +10818,7 @@ Changed definition to read that a &quot;portion of dental restoration material&q
                     </owl:Restriction>
                 </owl:intersectionOf>
             </owl:Class>
-        </owl:equivalentClass>
+        </rdfs:subClassOf>
         <obo:IAO_0000115>A metallic inlay restoration procedure that uses titanium to restore the tooth.</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <rdfs:label xml:lang="en">titanium inlay restoration procedure</rdfs:label>
@@ -11113,7 +11158,7 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
         </rdfs:subClassOf>
         <obo:IAO_0000116>A processed material that is part of a restored tooth and forms the part of a restored tooth where a the surface enamel of the restored tooth used to be.</obo:IAO_0000116>
         <obo:IAO_0000117>Alan Ruttenberg</obo:IAO_0000117>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label xml:lang="en">restored tooth surface</rdfs:label>
     </owl:Class>
     
@@ -11145,7 +11190,7 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000211">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000004"/>
         <obo:IAO_0000115>A physical structure, such as a building, in which dental care is provided by licensed providers.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T01:28:31Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">dental practice facility</rdfs:label>
     </owl:Class>
@@ -11200,7 +11245,7 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000214">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
         <obo:IAO_0000115>A role borne by a person who is employed by health care organization.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T01:30:55Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">health care organization employee role</rdfs:label>
     </owl:Class>
@@ -11211,7 +11256,7 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000215">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000214"/>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T01:32:39Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">health care office staff role</rdfs:label>
     </owl:Class>
@@ -11233,7 +11278,7 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A dental finding that one or more surfaces of a tooth have been restored.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T01:39:35Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">restored tooth surface finding</rdfs:label>
     </owl:Class>
@@ -11248,7 +11293,7 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
         <obo:IAO_0000116>Bill Duncan 12/27/2016:
 
 This finding can indicate that a procedure was performed even when the output is not observable. For example, by looking a dental record, a provider may find that the last time a patient&apos;s teeth were cleaned was two years ago.</obo:IAO_0000116>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-12-27T01:45:45Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">dental procedure finding</rdfs:label>
     </owl:Class>
@@ -11260,7 +11305,7 @@ This finding can indicate that a procedure was performed even when the output is
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000222">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000208"/>
         <obo:IAO_0000115>A restored tooth surface that forms the buccal surface of a restored tooth.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:41:02Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">restored buccal surface</rdfs:label>
     </owl:Class>
@@ -11272,7 +11317,7 @@ This finding can indicate that a procedure was performed even when the output is
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000223">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000208"/>
         <obo:IAO_0000115>A restored tooth surface that forms the distal surface of a restored tooth.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:41:41Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">restored distal surface</rdfs:label>
     </owl:Class>
@@ -11284,7 +11329,7 @@ This finding can indicate that a procedure was performed even when the output is
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000224">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000208"/>
         <obo:IAO_0000115>A restored tooth surface that forms the incisal surface of a restored tooth.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:44:18Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">restored incisal surface</rdfs:label>
     </owl:Class>
@@ -11296,7 +11341,7 @@ This finding can indicate that a procedure was performed even when the output is
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000225">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000208"/>
         <obo:IAO_0000115>A restored tooth surface that forms the labial surface of a restored tooth.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:47:52Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">restored labial surface</rdfs:label>
     </owl:Class>
@@ -11308,7 +11353,7 @@ This finding can indicate that a procedure was performed even when the output is
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000226">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000208"/>
         <obo:IAO_0000115>A restored tooth surface that forms the lingual surface of a restored tooth.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:49:31Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">restored lingual surface</rdfs:label>
     </owl:Class>
@@ -11320,7 +11365,7 @@ This finding can indicate that a procedure was performed even when the output is
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000227">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000208"/>
         <obo:IAO_0000115>A restored tooth surface that forms the mesial surface of a restored tooth.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:50:33Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">restored mesial surface</rdfs:label>
     </owl:Class>
@@ -11332,7 +11377,7 @@ This finding can indicate that a procedure was performed even when the output is
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000228">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000208"/>
         <obo:IAO_0000115>A restored tooth surface that forms the occlusal surface of a restored tooth.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:51:08Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">restored occlusal surface</rdfs:label>
     </owl:Class>
@@ -11347,7 +11392,7 @@ This finding can indicate that a procedure was performed even when the output is
         <obo:IAO_0000116>Bill Duncan 12/29/2016:
 Typically the removal of root/crown/bone is followed by the placement of an indirect restoration.</obo:IAO_0000116>
         <obo:IAO_0000119>http://medical-dictionary.thefreedictionary.com/hemisection</obo:IAO_0000119>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:30:43Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">hemisection procedure</rdfs:label>
     </owl:Class>
@@ -11360,7 +11405,7 @@ Typically the removal of root/crown/bone is followed by the placement of an indi
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000242"/>
         <obo:IAO_0000115>A restored tooth in which the tooth&apos;s pulp is removed and replaced by dental restoration material.</obo:IAO_0000115>
         <obo:IAO_0000118>root canal treatment procedure</obo:IAO_0000118>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:21:35Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">endodontic treatment procedure</rdfs:label>
     </owl:Class>
@@ -11385,7 +11430,7 @@ Typically the removal of root/crown/bone is followed by the placement of an indi
         <obo:IAO_0000115>A tooth that has been modified in some way as the result of some surgical dental procedure.</obo:IAO_0000115>
         <obo:IAO_0000116>Bill Duncan 12/29/2016:
 The intent of this class is to represent teeth that have undergone some kind of surgical procedure, but which are not restored in the sense of having dental restoration material placed in them; e.g, a pulp debridement procedure.</obo:IAO_0000116>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:12:10Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">surgically modified tooth</rdfs:label>
     </owl:Class>
@@ -11400,7 +11445,7 @@ The intent of this class is to represent teeth that have undergone some kind of 
         <obo:IAO_0000116>Bill Duncan 12/29/2016:
 This procedure relieves some of the pain, allowing a root canal patient to wait longer before having the full procedure performed.</obo:IAO_0000116>
         <obo:IAO_0000119>http://www.ehow.com/facts_7478434_pulpal-debridement.html</obo:IAO_0000119>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:32:55Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">pulpal debridement procedure</rdfs:label>
     </owl:Class>
@@ -11426,7 +11471,7 @@ This procedure relieves some of the pain, allowing a root canal patient to wait 
 This class represents those teeth which are extracted from a patient. After all, an extracted tooth is still a tooth. It just isn&apos;t part of the patient anymore.
 
 This class provides us with a convient way to represent those teeth that have been extracted.</obo:IAO_0000116>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:15:20Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">extracted tooth</rdfs:label>
     </owl:Class>
@@ -11440,14 +11485,22 @@ This class provides us with a convient way to represent those teeth that have be
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000208"/>
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000225"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000222"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000225"/>
+                        </owl:unionOf>
+                    </owl:Class>
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <obo:IAO_0000115>A restored tooth surface that forms the lip-facing surface of a restored anterior tooth.</obo:IAO_0000115>
+        <obo:IAO_0000115>A restored tooth surface that forms the lip-facing or cheek-facing surface of a restored tooth.</obo:IAO_0000115>
         <obo:IAO_0000116>Bill Duncan 01/05/2017:
 Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather than &quot;L&quot; for labial surfaces. The reason is that &quot;L&quot; is also used for the lingual surface.</obo:IAO_0000116>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <obo:IAO_0000116>Gopikrishnan M. Chandrasekharan 07/12/2023:
+We decided that the facial surface should subsume both labial and buccal surfaces.</obo:IAO_0000116>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:42:40Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">restored facial surface</rdfs:label>
     </owl:Class>
@@ -11469,7 +11522,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A restored tooth in which some portion of the tooth&apos;s root or pulp has been replaced by dental restoration material as a result of the tooth undergoing an endodontic restorative procedure.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:00:27Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">endodontically restored tooth</rdfs:label>
     </owl:Class>
@@ -11498,7 +11551,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A restored tooth in which some portion of enamel in the tooth&apos;s crown has been restored by dental restoration material as the result of the tooth undergoing either a crown procedure or intracoronal restoration procedure.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T01:55:01Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">coronally restored tooth</rdfs:label>
     </owl:Class>
@@ -11520,7 +11573,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A coronally restored tooth in which all or part of the natural dental crown is repalced by an artificial crown as a result of the tooth undergoing an crown procedure.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T01:56:50Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">extracoronally restored tooth</rdfs:label>
     </owl:Class>
@@ -11542,7 +11595,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A coronally restored tooth in which dental restoration material is placed into a site that is located in the crown of the tooth as the result of the tooth undergoing an intracoronal restoration procedure.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T01:57:51Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">intracoronally restored tooth</rdfs:label>
     </owl:Class>
@@ -11564,7 +11617,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A coronally restored tooth in which a thin layer of material (i.e., a veneer) has been placed over one or more surfaces of the tooth as a result of the tooth undergoing a veneer restoration procedure.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T01:59:02Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">veneer surface restored tooth</rdfs:label>
     </owl:Class>
@@ -11577,7 +11630,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000242"/>
         <obo:IAO_0000115>An endodontic restorative procedure during which a tooth&apos;s root tip is removed and a root end cavity is prepared and filled with dental restoration material.</obo:IAO_0000115>
         <obo:IAO_0000119>https://en.wikipedia.org/wiki/Apicoectomy</obo:IAO_0000119>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:20:26Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">apicoectomy procedure</rdfs:label>
     </owl:Class>
@@ -11595,7 +11648,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A tooth restoration procedure during which some portion of the tooth&apos;s root or pulp is replaced by dental restoration material.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T01:52:43Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">endodontic restorative procedure</rdfs:label>
     </owl:Class>
@@ -11607,7 +11660,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000243">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000044"/>
         <obo:IAO_0000115>A surgical dental procedure that is performed on the pulp chamber and/or root canal of a tooth, or a part thereof.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:26:59Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">surgical endodontic procedure</rdfs:label>
     </owl:Class>
@@ -11619,7 +11672,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000244">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000243"/>
         <obo:IAO_0000115>A surgical endodontic procure during which a root is removed from a multi-root tooth.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:35:48Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">root amputation procedure</rdfs:label>
     </owl:Class>
@@ -11637,7 +11690,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A dental procedure during which some part of the mouth is replaced by or fitted for a prothesis.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T01:49:03Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">prosthodontics procedure</rdfs:label>
     </owl:Class>
@@ -11659,7 +11712,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A prosthodontics procedure during which a prosthesis is permanently attached to some part of the mouth.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:06:45Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">fixed prosthodontics procedure</rdfs:label>
     </owl:Class>
@@ -11671,7 +11724,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000247">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000245"/>
         <obo:IAO_0000115>A prosthodontics procedure during which a removable prosthesis is either constructed or fitted to the patient&apos;s mouth.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:08:52Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">removable prosthodontics procedure</rdfs:label>
     </owl:Class>
@@ -11706,7 +11759,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A fixed prosthodontics procedure in which a dental implant is permanently attached to the jaw.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:37:27Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">dental implant procedure</rdfs:label>
     </owl:Class>
@@ -11724,7 +11777,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A removable prosthodontics procedure in which the prosthesis being constructed or fitted replaces all of the patient&apos;s teeth.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:10:46Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">complete denture procedure</rdfs:label>
     </owl:Class>
@@ -11742,7 +11795,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A removable prosthodontics procedure in which the prosthesis being constructed or fitted replaces some but not all of the patient&apos;s teeth.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:12:21Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">removable partial denture procedure</rdfs:label>
     </owl:Class>
@@ -11754,7 +11807,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000251">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000312"/>
         <obo:IAO_0000115>A fixed partial denture that is suppored and retained by underlying tissue and one or more dental implants.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T03:41:04Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">implant supported partial denture</rdfs:label>
     </owl:Class>
@@ -11766,7 +11819,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000252">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000310"/>
         <obo:IAO_0000115>A partial denture that is designed and constructed to be removed readily from the mouth.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T03:54:24Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">removable partial denture</rdfs:label>
     </owl:Class>
@@ -11778,7 +11831,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000253">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000301"/>
         <obo:IAO_0000115>A prosthesis that replaces all the natural teeth and associated structures in either the maxilla or mandible (or both).</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T03:32:49Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">complete denture</rdfs:label>
     </owl:Class>
@@ -11789,7 +11842,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000254">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000253"/>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T03:35:25Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">complete removable denture</rdfs:label>
     </owl:Class>
@@ -11801,7 +11854,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000255">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000253"/>
         <obo:IAO_0000115>A complete denture that is perminately attached to the mouth.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T03:33:42Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">complete fixed denture</rdfs:label>
     </owl:Class>
@@ -11813,7 +11866,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000256">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000253"/>
         <obo:IAO_0000115>A complete denture that replaces all the natural teeth and associated structures in both the maxilla and mandible.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T03:34:14Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">complete full denture</rdfs:label>
     </owl:Class>
@@ -11825,9 +11878,21 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000257">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000253"/>
         <obo:IAO_0000115>A complete denture that replaces all the natural teeth and associated structures in the mandible.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T03:34:47Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">complete lower denture</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000258 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000258">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000065"/>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-06T21:29:59Z</terms:created>
+        <rdfs:label xml:lang="en">tooth decay</rdfs:label>
     </owl:Class>
     
 
@@ -11838,9 +11903,301 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000302"/>
         <obo:IAO_0000115>A prosthetic tooth with an anchoring structure surgically implanted beneath the mucosal or periosteal layer or in the bone.</obo:IAO_0000115>
         <obo:IAO_0000119>http://medical-dictionary.thefreedictionary.com/tooth+implant</obo:IAO_0000119>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:03:18Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">dental implant</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000260 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000260">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OGMS_0000045"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85848"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000115>A disorder that is part of a tooth.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="http://orcid.org/0000-0001-9625-1899"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-06T21:30:39Z</terms:created>
+        <rdfs:label xml:lang="en">tooth disorder</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000261 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000261">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000271"/>
+        <obo:IAO_0000115>A mechanical tooth lesion formed as a result of the tooth being fatigued, flexed, and deformed by biomechanical loading of the tooth. Tooth abfactions are primarily found in the cervical region of the tooth.</obo:IAO_0000115>
+        <obo:IAO_0000116>Tooth abfractions are usually wedge-shaped lesions with sharp-line angles, but sometimes circular invaginations on occlusal surfaces.</obo:IAO_0000116>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created>2023-06-06T21:30:59Z</terms:created>
+        <rdfs:label xml:lang="en">tooth abfraction lesion</rdfs:label>
+        <skos:exactMatch>SCTID:109750005</skos:exactMatch>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0000261"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>A mechanical tooth lesion formed as a result of the tooth being fatigued, flexed, and deformed by biomechanical loading of the tooth. Tooth abfactions are primarily found in the cervical region of the tooth.</owl:annotatedTarget>
+        <obo:IAO_0000119>SNOMED CT &quot;Abfraction (disorder)&quot; (SCTID: 109750005)</obo:IAO_0000119>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000262 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000262">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000290"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002354"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000407"/>
+                            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0002000"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115 xml:lang="en">A tooth friction lesion that is caused by either the functional (e.g., mastication) or parafunctional movement of the jaws (e.g., bruxism).</obo:IAO_0000115>
+        <obo:IAO_0000116>The lesion are primarily found on the occlusal and incisal surfaces of the teeth, however it can be found on the proximal surfaces as well.</obo:IAO_0000116>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-06T21:31:20Z</terms:created>
+        <rdfs:label xml:lang="en">tooth attrition lesion</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000263 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000263">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000270"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002354"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ECTO_9002146"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A non-carious tooth lesion that is formed as result of the tooth being exposed to acids.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-06T21:31:50Z</terms:created>
+        <oboInOwl:hasRelatedSynonym>dental erosion</oboInOwl:hasRelatedSynonym>
+        <rdfs:label xml:lang="en">tooth erosive lesion</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000264 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000264">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000290"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002354"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000282"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A tooth friction lesion that is formed as result of some abrasive process.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-06T21:33:29Z</terms:created>
+        <rdfs:label xml:lang="en">tooth abrasive lesion</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000265 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000265">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000021"/>
+        <obo:IAO_0000115>A carious tooth lesion that resulted from some tooth decay but the infected region is not currently decaying.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-06T21:37:28Z</terms:created>
+        <rdfs:label xml:lang="en">arrested carious lesion</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000266 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000266">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000021"/>
+        <obo:IAO_0000115>A carious tooth lesion that is currently undergoing the process of tooth decay.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-06T21:37:54Z</terms:created>
+        <rdfs:label xml:lang="en">active carious lesion</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000267 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000267">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000021"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85848"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_55629"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A carious tooth lesion that is found only within the enamel.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created>2023-06-06T21:38:37Z</terms:created>
+        <rdfs:label xml:lang="en">enamel carious lesion</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000268 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000268">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000021"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85848"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_55628"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A carious tooth legion that has extended to the dentine.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-06T21:39:01Z</terms:created>
+        <rdfs:label xml:lang="en">dentine carious lesion</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000269 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000269">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000021"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/FMA_85848"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_55624"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A carious tooth lesion that is either wholly or partially part of the tooth root.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-06T21:39:44Z</terms:created>
+        <oboInOwl:hasExactSynonym>root caries</oboInOwl:hasExactSynonym>
+        <rdfs:label xml:lang="en">tooth root carious lesion</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000270 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000270">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000260"/>
+        <obo:IAO_0000115>A tooth disorder that is not formed by tooth decay.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-07T14:15:31Z</terms:created>
+        <rdfs:label xml:lang="en">non-carious tooth lesion</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000271 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000271">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000270"/>
+        <obo:IAO_0000112>A tooth lesion caused by brushing too hard.</obo:IAO_0000112>
+        <obo:IAO_0000112>A tooth lesion caused by bruxism.</obo:IAO_0000112>
+        <obo:IAO_0000115>A non-carious tooth lesion that is the result of functional or parafunctional activity of the jaws or a process of friction or an abrasive process</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-08T16:19:59Z</terms:created>
+        <rdfs:label xml:lang="en">mechanical tooth lesion</rdfs:label>
+        <skos:broadMatch rdf:resource="http://purl.obolibrary.org/obo/GSSO_007548"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000274 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000274">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000007"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A process during which the surface of the tooth is cleaned.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-08T16:56:25Z</terms:created>
+        <rdfs:label xml:lang="en">tooth cleaning process</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000275 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000275">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000274"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000284"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A tooth cleaning process during which an object is used to clean the tooth (or teeth) by applying a powder, paste, or liquid (i.e., dentifrice).</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-08T16:59:29Z</terms:created>
+        <rdfs:label xml:lang="en">toothbrushing</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000276 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000276">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000407"/>
+        <obo:IAO_0000115>A bruxism that occurs during sleep and is characterised by rhythmic (phasic) or non-rhythmic (tonic) movements of the jaw.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created>2023-06-06T21:39:37Z</terms:created>
+        <rdfs:label xml:lang="en">sleep bruxism</rdfs:label>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0000276"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>A bruxism that occurs during sleep and is characterised by rhythmic (phasic) or non-rhythmic (tonic) movements of the jaw.</owl:annotatedTarget>
+        <obo:IAO_0000119>PMCID: PMC6287494</obo:IAO_0000119>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000277 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000277">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000260"/>
+        <obo:IAO_0000115>A tooth disorder that is an outcome of a ruture or break of some part of the tooth.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-08T17:13:14Z</terms:created>
+        <rdfs:label xml:lang="en">tooth fracture</rdfs:label>
     </owl:Class>
     
 
@@ -11857,7 +12214,7 @@ Some dental EHR systems use the letter &quot;F&quot; for facial surfaces rather 
         </rdfs:subClassOf>
         <obo:IAO_0000115>A prosthesis that forms the part of a prosthetic tooth  that is in direct contact with the bone and actually provides the fixation to the bone.</obo:IAO_0000115>
         <obo:IAO_0000119>http://www.ptcdental.com/dentaldictionary/i/implant-body/</obo:IAO_0000119>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:22:55Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">dental implant body</rdfs:label>
     </owl:Class>
@@ -11882,7 +12239,7 @@ Implant abutments are conical-shaped, and are screwed into a dental implant inte
         <obo:IAO_0000116>Bill Duncan 7/26/2017:
 Most often the dental implant abutment is an intermediate component between the implant body and the restoration.</obo:IAO_0000116>
         <obo:IAO_0000119>http://www.ptcdental.com/dentaldictionary/a/abutment/</obo:IAO_0000119>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:19:43Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">dental implant abutment</rdfs:label>
     </owl:Class>
@@ -11900,7 +12257,7 @@ Most often the dental implant abutment is an intermediate component between the 
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A prosthesis that forms the part of a prosthetic tooth which provides the prosthetic tooth with the functionallity and appearance of a natural tooth.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:27:20Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">dental implant crown</rdfs:label>
     </owl:Class>
@@ -11914,9 +12271,36 @@ Most often the dental implant abutment is an intermediate component between the 
         <obo:IAO_0000115>A prosthesis that is permanently attached attached to some part of the mouth.</obo:IAO_0000115>
         <obo:IAO_0000116>Bill Duncan 07/26/2017:
 This class is used to group dental implants and fixed dentures under one term.</obo:IAO_0000116>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:00:32Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">fixed prothesis</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000282 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000282">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000007"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000284"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000115>A process during which the tooth is affected by an abrasive material.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-09T16:17:51Z</terms:created>
+        <rdfs:label xml:lang="en">tooth abrasive process</rdfs:label>
     </owl:Class>
     
 
@@ -11928,9 +12312,22 @@ This class is used to group dental implants and fixed dentures under one term.</
         <obo:IAO_0000115>A dental implant body fabricated to fit the supporting areas of mandible or maxilla with permucosal extensions for support and attachment of abutments.</obo:IAO_0000115>
         <obo:IAO_0000119>http://dentalimplants.uchc.edu/about/types.html</obo:IAO_0000119>
         <obo:IAO_0000119>http://implantdirect.co/ai/implantcatalogpdf/glossary.pdf</obo:IAO_0000119>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:25:20Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">subperiosteal implant framework</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000284 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000284">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000040"/>
+        <obo:IAO_0000115>A material entity of a certain hardness and density that helps remove material from the surface of an entity.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-09T16:29:17Z</terms:created>
+        <rdfs:label xml:lang="en">abrasive material</rdfs:label>
     </owl:Class>
     
 
@@ -11940,7 +12337,7 @@ This class is used to group dental implants and fixed dentures under one term.</
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000285">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000278"/>
         <obo:IAO_0000115>A dental implant body that is less that 3mm in diameter.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:24:40Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">mini dental implant body</rdfs:label>
     </owl:Class>
@@ -11953,10 +12350,29 @@ This class is used to group dental implants and fixed dentures under one term.</
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000242"/>
         <obo:IAO_0000115>An endodontic restorative procedure during which material is placed over exposed or nearly dental pulp in order to protect and promote healing of the dental pulp.</obo:IAO_0000115>
         <obo:IAO_0000119>https://en.wikipedia.org/wiki/Pulp_capping</obo:IAO_0000119>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:23:54Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">pulp capping procedure</rdfs:label>
     </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000287 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000287">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000407"/>
+        <obo:IAO_0000115>A bruxism that occurs during wakeful-ness and is characterised by repetitive or sustained tooth contact and/or by bracing or thrusting of the mandible.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created>2023-06-06T21:38:37Z</terms:created>
+        <rdfs:label xml:lang="en">awake bruxism</rdfs:label>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0000287"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>A bruxism that occurs during wakeful-ness and is characterised by repetitive or sustained tooth contact and/or by bracing or thrusting of the mandible.</owl:annotatedTarget>
+        <obo:IAO_0000119>PMCID: PMC6287494</obo:IAO_0000119>
+    </owl:Axiom>
     
 
 
@@ -11966,9 +12382,23 @@ This class is used to group dental implants and fixed dentures under one term.</
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000243"/>
         <obo:IAO_0000115>A surgical endodontic procedure during which medications are placed inside the pulp chamber in order to induce the formation of living replacement tissue.</obo:IAO_0000115>
         <obo:IAO_0000119>http://www.neendosol.com/procedures/pulpal-regeneration/</obo:IAO_0000119>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T02:34:17Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">pulpal regeneration procedure</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000290 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000290">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000271"/>
+        <obo:IAO_0000115>A mechnical tooth lesion that formed as a result of some friction process.</obo:IAO_0000115>
+        <obo:IAO_0000116>A tooth friction lesion is caused by a friction process involving an external object. For example, the clasp of an ill-fitting denture, pipe stem of a tobacco pipe, friction lesion of the interproximal areas caused by vigorous use of a tooth pick etc. An abrasive material is not involved in creating the friction lesion.</obo:IAO_0000116>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created>2023-06-22T21:30:59Z</terms:created>
+        <rdfs:label xml:lang="en">tooth friction lesion</rdfs:label>
     </owl:Class>
     
 
@@ -11978,7 +12408,7 @@ This class is used to group dental implants and fixed dentures under one term.</
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000291">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000250"/>
         <obo:IAO_0000115>A removable partial denture procedure in which the prosthesis being constructed or fitted replaces some but not all of the patient&apos;s maxillary teeth.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:15:55Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">removable maxillary partial denture procedure</rdfs:label>
     </owl:Class>
@@ -11990,7 +12420,7 @@ This class is used to group dental implants and fixed dentures under one term.</
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000292">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000250"/>
         <obo:IAO_0000115>A removable partial denture procedure in which the prosthesis being constructed or fitted replaces some but not all of the patient&apos;s mandibular teeth.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:15:07Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">removable mandibular partial denture procedure</rdfs:label>
     </owl:Class>
@@ -12002,7 +12432,7 @@ This class is used to group dental implants and fixed dentures under one term.</
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000293">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000278"/>
         <obo:IAO_0000115>A dental implant body that is placed in the mouth for short duration of time in order to allow adequate time for healing or completion of definitive treatment planning.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:24:01Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">interim dental implant body</rdfs:label>
     </owl:Class>
@@ -12013,14 +12443,8 @@ This class is used to group dental implants and fixed dentures under one term.</
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000294">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000280"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000135"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <obo:IAO_0000115>A dental implant crown constructed out of ceramic.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:28:56Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">ceramic implant crown</rdfs:label>
     </owl:Class>
@@ -12031,19 +12455,7 @@ This class is used to group dental implants and fixed dentures under one term.</
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000295">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000280"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000035"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000048"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:32:56Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">porcelain fused to metal impant crown</rdfs:label>
     </owl:Class>
@@ -12061,7 +12473,7 @@ This class is used to group dental implants and fixed dentures under one term.</
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A fixed prosthodontics procedure during which an artificial crown is attached to an dental implant abutment.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:43:23Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">dental implant crown attachment procedure</rdfs:label>
     </owl:Class>
@@ -12079,7 +12491,7 @@ This class is used to group dental implants and fixed dentures under one term.</
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A dental implant crown attachment procedure in which the implant crown is composed of ceramic.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:44:43Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">ceramic dental implant crown attachement procedure</rdfs:label>
     </owl:Class>
@@ -12097,7 +12509,7 @@ This class is used to group dental implants and fixed dentures under one term.</
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A dental implant crown attachment procedure in which the implant crown is composed of porcelain fused to metal.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:46:37Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">porcelain fused to metal dental implant crown attachement procedure</rdfs:label>
     </owl:Class>
@@ -12115,7 +12527,7 @@ This class is used to group dental implants and fixed dentures under one term.</
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A fixed prosthodontics procedure during which an abutment is attached to an implant body.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:39:09Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">dental implant abutment attachement procedure</rdfs:label>
     </owl:Class>
@@ -12133,7 +12545,7 @@ This class is used to group dental implants and fixed dentures under one term.</
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A dental implant abutment attachment procedure during which a retainer for a fixed partial denture is attached to an implant body.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:40:12Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">dental implant retainer attachement procedure for fixed partial denture</rdfs:label>
     </owl:Class>
@@ -12293,7 +12705,7 @@ This class is used to group dental implants and fixed dentures under one term.</
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000309">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000300"/>
         <obo:IAO_0000115>A dental implant retainer attachement procedure for fixed partial denture in which the retainer being attached to the implant body is to be used as a retainer for a ceramic fixed partial denture.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:41:10Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">dental implant retainer attachement procedure for ceramic fixed partial denture</rdfs:label>
     </owl:Class>
@@ -12804,18 +13216,6 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000349">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000652"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000293"/>
-                <owl:allValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <obo:IAO_0000115>A material combination in which two or more dental restoration materials are combined.</obo:IAO_0000115>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <rdfs:label>dental material combination process</rdfs:label>
@@ -12840,7 +13240,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000351">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000300"/>
         <obo:IAO_0000115>A dental implant retainer attachement procedure for fixed partial denture in which the retainer being attached to the implant body is to be used as a retainer for a porcelain fused to metal fixed partial denture.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:42:02Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">dental implant retainer attachement procedure for porcelain fused to metal fixed partial denture</rdfs:label>
     </owl:Class>
@@ -12852,7 +13252,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000352">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000312"/>
         <obo:IAO_0000115>A fixed partial denture constructed out of ceramic.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T03:39:55Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">ceramic fixed partial denture</rdfs:label>
     </owl:Class>
@@ -12864,7 +13264,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000353">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000312"/>
         <obo:IAO_0000115>A fixed partial denture constructed out of porcelain fused to metal.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T03:43:52Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">porcelain fused to metal fixed partial denture</rdfs:label>
     </owl:Class>
@@ -12876,7 +13276,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000354">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000251"/>
         <obo:IAO_0000115>An implant supported fixed partial denture constructed out of ceramic.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T03:42:00Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">ceramic implant supported partial denture</rdfs:label>
     </owl:Class>
@@ -12888,7 +13288,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000355">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000251"/>
         <obo:IAO_0000115>An implant supported fixed partial denture constructed out of porcelain fused to metal.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T03:42:38Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">porcelain fused to metal implant supported partial denture</rdfs:label>
     </owl:Class>
@@ -12900,7 +13300,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000356">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000311"/>
         <obo:IAO_0000115>A tooth supported fixed partial denture constructed out of porcelain fused to metal.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T03:51:56Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">porcelain fused to metal tooth supported partial denture</rdfs:label>
     </owl:Class>
@@ -12912,7 +13312,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000357">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000311"/>
         <obo:IAO_0000115>A tooth supported fixed partial denture constructed out of ceramic.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T03:51:23Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">ceramic tooth supported partial denture</rdfs:label>
     </owl:Class>
@@ -12924,7 +13324,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000358">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000279"/>
         <obo:IAO_0000115>A dental implant abutment that serves as a retainer for a fixed partial denture.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:22:08Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">dental implant fixed partial denture retainer</rdfs:label>
     </owl:Class>
@@ -12935,14 +13335,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000359">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000280"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000147"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <obo:IAO_0000115>A dental implant crown constructed out of high noble metal.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T04:30:02Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">high noble metal implant crown</rdfs:label>
     </owl:Class>
@@ -12954,7 +13348,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000361">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000024"/>
         <obo:IAO_0000115>A caries finding in which the caries lesion is found to be in the tooth&apos;s crown.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-09T22:29:25Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">coronal caries finding</rdfs:label>
     </owl:Class>
@@ -12966,7 +13360,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000362">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000024"/>
         <obo:IAO_0000115>A caries finding in which the caries lesion is found to be in the tooth&apos;s root.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-09T22:30:09Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">tooth root caries finding</rdfs:label>
     </owl:Class>
@@ -12988,8 +13382,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 1.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:42:18Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 1</rdfs:label>
     </owl:Class>
     
@@ -13010,8 +13404,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 2.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:49:27Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 2</rdfs:label>
     </owl:Class>
     
@@ -13032,8 +13426,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 3.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:49:34Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 3</rdfs:label>
     </owl:Class>
     
@@ -13054,8 +13448,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 4.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:49:39Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 4</rdfs:label>
     </owl:Class>
     
@@ -13097,8 +13491,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 6.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:49:54Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 6</rdfs:label>
     </owl:Class>
     
@@ -13119,8 +13513,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 7.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:50:01Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 7</rdfs:label>
     </owl:Class>
     
@@ -13141,8 +13535,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 8.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:50:08Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 8</rdfs:label>
     </owl:Class>
     
@@ -13163,8 +13557,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 9.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:50:29Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 9</rdfs:label>
     </owl:Class>
     
@@ -13185,8 +13579,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 10.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:50:36Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 10</rdfs:label>
     </owl:Class>
     
@@ -13207,8 +13601,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 11.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:50:44Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 11</rdfs:label>
     </owl:Class>
     
@@ -13229,8 +13623,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 12.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:50:49Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 12</rdfs:label>
     </owl:Class>
     
@@ -13251,8 +13645,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 13.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:50:55Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 13</rdfs:label>
     </owl:Class>
     
@@ -13273,8 +13667,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 14.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:51:02Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 14</rdfs:label>
     </owl:Class>
     
@@ -13295,8 +13689,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 15.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:51:11Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 15</rdfs:label>
     </owl:Class>
     
@@ -13317,8 +13711,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 16,</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:51:17Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 16</rdfs:label>
     </owl:Class>
     
@@ -13339,8 +13733,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 17.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:51:23Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 17</rdfs:label>
     </owl:Class>
     
@@ -13361,8 +13755,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 18.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:51:28Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 18</rdfs:label>
     </owl:Class>
     
@@ -13383,8 +13777,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 19.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:51:33Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 19</rdfs:label>
     </owl:Class>
     
@@ -13405,8 +13799,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 20.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:51:38Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 20</rdfs:label>
     </owl:Class>
     
@@ -13427,8 +13821,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 21.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:51:45Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 21</rdfs:label>
     </owl:Class>
     
@@ -13449,8 +13843,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 22.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:52:02Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 22</rdfs:label>
     </owl:Class>
     
@@ -13471,8 +13865,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 23.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:52:06Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 23</rdfs:label>
     </owl:Class>
     
@@ -13493,8 +13887,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 24.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:52:13Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 24</rdfs:label>
     </owl:Class>
     
@@ -13515,8 +13909,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 25.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:52:16Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 25</rdfs:label>
     </owl:Class>
     
@@ -13537,8 +13931,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 26.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:52:20Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 26</rdfs:label>
     </owl:Class>
     
@@ -13559,8 +13953,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 27.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:52:25Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 27</rdfs:label>
     </owl:Class>
     
@@ -13581,8 +13975,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 28.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:52:36Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 28</rdfs:label>
     </owl:Class>
     
@@ -13603,8 +13997,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 29.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:52:40Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 29</rdfs:label>
     </owl:Class>
     
@@ -13625,8 +14019,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 30.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:52:48Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 30</rdfs:label>
     </owl:Class>
     
@@ -13647,8 +14041,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 31.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:52:54Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 31</rdfs:label>
     </owl:Class>
     
@@ -13669,8 +14063,8 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A secondary dentition that is missing tooth 32.</obo:IAO_0000115>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-10T03:52:59Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>secondary dentition missing tooth 32</rdfs:label>
     </owl:Class>
     
@@ -13691,7 +14085,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A dental finding procedure that an endodontic procedure was performed on the patient.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-21T03:27:27Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">endodontic procedure finding</rdfs:label>
     </owl:Class>
@@ -13713,7 +14107,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A dental finding procedure that procedure a prosthodontics procedure was performed on the patient.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-21T03:27:44Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">prosthodontics procedure finding</rdfs:label>
     </owl:Class>
@@ -13735,7 +14129,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A dental finding procedure that a surgical dental procedure was performed on the patient.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-21T03:28:02Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">surgical dental procedure finding</rdfs:label>
     </owl:Class>
@@ -13757,7 +14151,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A dental finding procedure that tooth restoration procedure was performed on the patient.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-21T03:28:33Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">tooth restoration procedure finding</rdfs:label>
     </owl:Class>
@@ -13779,7 +14173,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A dental finding procedure that a crown restoration procedure was performed on the patient.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-21T03:28:47Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">crown restoration procedure finding</rdfs:label>
     </owl:Class>
@@ -13801,7 +14195,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A dental finding procedure that an intracoronal restoration procedure was performed on the patient.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-21T03:29:24Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">intracoronal restoration procedure finding</rdfs:label>
     </owl:Class>
@@ -13823,7 +14217,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A dental finding procedure that a veneer restoration procedure was performed on the patient.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-21T03:29:54Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">veneer restoration procedure finding</rdfs:label>
     </owl:Class>
@@ -13845,9 +14239,72 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
             </owl:Class>
         </owl:equivalentClass>
         <obo:IAO_0000115>A dental finding that is about an oral evaluation.</obo:IAO_0000115>
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-21T03:30:30Z</oboInOwl:creation_date>
         <rdfs:label xml:lang="en">oral evaluation finding</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000406 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000406">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OGMS_0000061"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_49184"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0003304"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000045"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <obo:IAO_0000112>Mouth breathing</obo:IAO_0000112>
+        <obo:IAO_0000112>Teeth grinding and clenching</obo:IAO_0000112>
+        <obo:IAO_0000112>Tongue thrusting</obo:IAO_0000112>
+        <obo:IAO_0000115>A pathological process that involves the mouth and can contribute to some disorder of the head and neck region.</obo:IAO_0000115>
+        <obo:IAO_0000116>An oral parafunction can include tongue thrusting, mouth breathing, bruxism etc.</obo:IAO_0000116>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <rdfs:label xml:lang="en">oral parafunction</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000407 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000407">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0002000"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0003304"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000045"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A masticatory muscle activity that may result in a disorder within the head and neck region.</obo:IAO_0000115>
+        <obo:IAO_0000116 xml:lang="en">Involuntary holding of the teeth together and tightening of the jaw muscles or grinding of the teeth.</obo:IAO_0000116>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created>2023-06-06T21:27:37Z</terms:created>
+        <rdfs:label xml:lang="en">bruxism</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0002000 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0002000">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000060"/>
+        <obo:IAO_0000115>A bodily process that involves the masticatory muscles of the head and neck region.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created>2023-06-06T21:30:37Z</terms:created>
+        <rdfs:label>masticatory muscle activity</rdfs:label>
     </owl:Class>
     
 
@@ -13861,6 +14318,16 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <!-- http://purl.obolibrary.org/obo/OMRSE_00000009 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OMRSE_00000009"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/PATO_0040034 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/PATO_0040034">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000019"/>
+        <obo:IAO_0000116>Replace with PATO term</obo:IAO_0000116>
+        <rdfs:label xml:lang="en">temp: fractured</rdfs:label>
+    </owl:Class>
     
 
 
@@ -14411,8 +14878,8 @@ This individual is needed so that the organization identifier, missing tooth num
 
 I have no idea why this happening...</obo:IAO_0000116>
         <obo:OHD_0000273>test organization</obo:OHD_0000273>
-        <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
         <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-11-09T22:32:52Z</dc:date>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label xml:lang="en">missing tooth example</rdfs:label>
     </owl:NamedIndividual>
     
@@ -14421,9 +14888,17 @@ I have no idea why this happening...</obo:IAO_0000116>
     <!-- https://orcid.org/0000-0001-9625-1899 -->
 
     <owl:NamedIndividual rdf:about="https://orcid.org/0000-0001-9625-1899">
-        <dc:contributor>https://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <oboInOwl:creation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2022-12-06T01:13:09Z</oboInOwl:creation_date>
         <rdfs:label>Bill Duncan</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://orcid.org/0009-0006-7251-3026 -->
+
+    <owl:NamedIndividual rdf:about="https://orcid.org/0009-0006-7251-3026">
+        <rdfs:label>Gopikrishnan M Chandrasekharan</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -14532,6 +15007,32 @@ I have no idea why this happening...</obo:IAO_0000116>
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57143">
         <obo:OHD_0000065>Tooth 24</obo:OHD_0000065>
     </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/NBO_0000007"/>
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0002000"/>
+                </owl:unionOf>
+            </owl:Class>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0003304"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000045"/>
+            </owl:Restriction>
+        </owl:intersectionOf>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000406"/>
+    </owl:Class>
 </rdf:RDF>
 
 
