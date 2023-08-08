@@ -559,11 +559,24 @@ Changed definition to read that a &quot;portion of dental restoration material&q
     
 
 
+    <!-- http://purl.obolibrary.org/obo/OHD_0001001 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001001">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000191"/>
+        <obo:IAO_0000115 xml:lang="en">a dental restoration material role where the restoration material form the bulk part of the (primary body of the ) restoration</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-08-07T11:54:55Z</terms:created>
+        <rdfs:label xml:lang="en">primary dental restoration material role</rdfs:label>
+    </Class>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/OHD_0001002 -->
 
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001002">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
-        <obo:IAO_0000115 xml:lang="en">A dental restoration material  (may acts as a base, liner, adhesive and luting agent ) composed of several components that are mixed together immediately before use and form a solid upon setting.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A dental restoration material  composed of several components that are mixed together immediately before use and form a solid upon setting and bears a auxiliary dental restoration material role.</obo:IAO_0000115>
+        <obo:IAO_0000119>ISBN:0323478212</obo:IAO_0000119>
         <terms:OHD0001003 rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-07-08T10:50:36Z</terms:created>
         <rdfs:label xml:lang="en">cement dental restoration material</rdfs:label>
@@ -571,13 +584,52 @@ Changed definition to read that a &quot;portion of dental restoration material&q
     
 
 
+    <!-- http://purl.obolibrary.org/obo/OHD_0001003 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001003">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000191"/>
+        <obo:IAO_0000115 xml:lang="en">a dental restoration material role where the restoartion provide auxiliary support for the bulk restoration part. ( role of luting agent, pulp protective agent, adhesive agent or as an interim dental restoartion material role)</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-08-07T11:55:17Z</terms:created>
+        <rdfs:label xml:lang="en">auxiliary dental restoration material role</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0001004 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001004">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0001002"/>
+        <obo:IAO_0000115 xml:lang="en">A cement dental restoration material containing resin as a component which follows ISO standards 9917-2:2010</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-08-07T15:07:31Z</terms:created>
+        <rdfs:label xml:lang="en">resin-modified cement</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0001005 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001005">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0001002"/>
+        <obo:IAO_0000115 xml:lang="en">A cement dental restoration material which set with polymerization reaction and which follows ISO standards 4049:2009</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-08-07T15:16:39Z</terms:created>
+        <rdfs:label xml:lang="en">polymer based cements</rdfs:label>
+    </Class>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/OHD_0001006 -->
 
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001006">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0001002"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
+        <obo:IAO_0000115 xml:lang="en">A dental restoration material which has three essential ingredients, namely polymeric water-soluble acid, basic (ion-leachable) glass, and water.</obo:IAO_0000115>
+        <obo:IAO_0000118 xml:lang="en">Glass Ionomer Cement (GIC)</obo:IAO_0000118>
+        <obo:IAO_0000119>DOI: 10.3390/jfb7030016</obo:IAO_0000119>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-07-19T15:23:33Z</terms:created>
-        <rdfs:label xml:lang="en">Glass Ionomer Cement</rdfs:label>
+        <rdfs:label xml:lang="en">glass ionomer dental restoration material</rdfs:label>
     </Class>
     
 
@@ -585,32 +637,10 @@ Changed definition to read that a &quot;portion of dental restoration material&q
     <!-- http://purl.obolibrary.org/obo/OHD_0001007 -->
 
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001007">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0001002"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0001022"/>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-07-21T13:58:36Z</terms:created>
-        <rdfs:label xml:lang="en">Zinc Oxide Eugenol Cement</rdfs:label>
-    </Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0001008 -->
-
-    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001008">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0001006"/>
-        <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
-        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-07-31T12:03:37Z</terms:created>
-        <rdfs:label xml:lang="en">Conventional Glass Ionomer Cement</rdfs:label>
-    </Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0001009 -->
-
-    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001009">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0001006"/>
-        <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
-        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-07-31T12:04:04Z</terms:created>
-        <rdfs:label xml:lang="en">High Viscosity Glass Ionomer Cement</rdfs:label>
+        <rdfs:label xml:lang="en">zinc oxide eugenol</rdfs:label>
     </Class>
     
 
@@ -618,10 +648,10 @@ Changed definition to read that a &quot;portion of dental restoration material&q
     <!-- http://purl.obolibrary.org/obo/OHD_0001010 -->
 
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001010">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0001002"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0001022"/>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-07-31T12:05:19Z</terms:created>
-        <rdfs:label xml:lang="en">Zinc Oxide Non-Eugenol Cement</rdfs:label>
+        <rdfs:label xml:lang="en">zinc oxide non-eugenol</rdfs:label>
     </Class>
     
 
@@ -630,11 +660,11 @@ Changed definition to read that a &quot;portion of dental restoration material&q
 
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001011">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000036"/>
-        <obo:IAO_0000115 xml:lang="en">Bulk fill composites have been developed to enable the restoration to be built up in thick layers of up to 4 mm and are recommended by manufacturers to simplify clinical technique and save time compared to traditional incremental placement.</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A resin-based composite dental restoration material which enable the restoration to be built up in thick layers of up to 4 mm and are recommended by manufacturers to simplify clinical technique and save time compared to traditional incremental placement.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">Craig&apos;s restorative Dental Material</obo:IAO_0000119>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-07-31T12:07:09Z</terms:created>
-        <rdfs:label xml:lang="en">Bulkfilled</rdfs:label>
+        <rdfs:label xml:lang="en">bulkfilled resin-based composite dental restoration material</rdfs:label>
     </Class>
     
 
@@ -643,23 +673,12 @@ Changed definition to read that a &quot;portion of dental restoration material&q
 
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001012">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000036"/>
-        <obo:IAO_0000115 xml:lang="en">These low-viscosity composites are recommended for cervical lesions, restorations in 
-deciduous teeth, and other small, low- or nonstress bearing restorations</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A resin-based composite dental restoration material which has low-viscosity and recommended for cervical lesions, restorations in 
+deciduous teeth, and other small, low- or nonstress bearing restorations.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">Craig&apos;s restorative Dental Material</obo:IAO_0000119>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-07-31T12:07:24Z</terms:created>
-        <rdfs:label xml:lang="en">Flowable</rdfs:label>
-    </Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0001013 -->
-
-    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001013">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000036"/>
-        <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
-        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-07-31T12:07:47Z</terms:created>
-        <rdfs:label xml:lang="en">Hybrid all purpose</rdfs:label>
+        <rdfs:label xml:lang="en">flowable resin-based composite dental restoration material</rdfs:label>
     </Class>
     
 
@@ -668,10 +687,11 @@ deciduous teeth, and other small, low- or nonstress bearing restorations</obo:IA
 
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001014">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000036"/>
+        <obo:IAO_0000115 xml:lang="en">A resin-based composite dental restoration material which contain macrosize filler particles.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">Craig&apos;s restorative Dental Material</obo:IAO_0000119>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-07-31T12:08:04Z</terms:created>
-        <rdfs:label xml:lang="en">Macrofilled</rdfs:label>
+        <rdfs:label xml:lang="en">macrofilled resin-based composite dental restoration material</rdfs:label>
     </Class>
     
 
@@ -680,23 +700,12 @@ deciduous teeth, and other small, low- or nonstress bearing restorations</obo:IA
 
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001015">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000036"/>
-        <obo:IAO_0000115 xml:lang="en">Resin-based composite dental restoration material which composed of 
+        <obo:IAO_0000115 xml:lang="en">A resin-based composite dental restoration material which composed of 
 dimethacrylate resins with 0.04-μm colloidal sillica fillers and prepolymerized resins, which are sometimes filled with colloidal silica.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">Craig&apos;s restorative Dental Material</obo:IAO_0000119>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-07-31T12:08:13Z</terms:created>
-        <rdfs:label xml:lang="en">Microfilled</rdfs:label>
-    </Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0001016 -->
-
-    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001016">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000036"/>
-        <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
-        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-07-31T12:08:28Z</terms:created>
-        <rdfs:label xml:lang="en">Small Particle</rdfs:label>
+        <rdfs:label xml:lang="en">microfilled resin-based composite dental restoration material</rdfs:label>
     </Class>
     
 
@@ -705,12 +714,12 @@ dimethacrylate resins with 0.04-μm colloidal sillica fillers and prepolymerized
 
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001017">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000036"/>
-        <obo:IAO_0000115 xml:lang="en">Resin-based composite dental restoration material which contain nanometer-sized 
+        <obo:IAO_0000115 xml:lang="en">A resin-based composite dental restoration material which contain nanometer-sized 
 particles (1 to 100 nm) throughout the resin matrix.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">Craig&apos;s restorative Dental Material</obo:IAO_0000119>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-07-31T12:08:41Z</terms:created>
-        <rdfs:label xml:lang="en">Nano filled</rdfs:label>
+        <rdfs:label xml:lang="en">nano filled resin-based composite dental restoration material</rdfs:label>
     </Class>
     
 
@@ -719,12 +728,12 @@ particles (1 to 100 nm) throughout the resin matrix.</obo:IAO_0000115>
 
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001018">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000036"/>
-        <obo:IAO_0000115 xml:lang="en">Resin-based composite dental restoration material which consist of large particles 
+        <obo:IAO_0000115 xml:lang="en">A resin-based composite dental restoration material which consist of large particles 
 (0.4 to 5 μm) with added nanometer-sized particles. Thus they are hybrid materials, not true nanofilled composites.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">Craig&apos;s restorative Dental Material</obo:IAO_0000119>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-07-31T12:08:57Z</terms:created>
-        <rdfs:label xml:lang="en">Nano Hybrid</rdfs:label>
+        <rdfs:label xml:lang="en">nano hybrid resin-based composite dental restoration material</rdfs:label>
     </Class>
     
 
@@ -733,11 +742,11 @@ particles (1 to 100 nm) throughout the resin matrix.</obo:IAO_0000115>
 
     <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001019">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000036"/>
-        <obo:IAO_0000115 xml:lang="en">Modified resin based composite dental restoartion material which contain poly acid–modified monomers with fluoride-releasing silicate glasses and are formulated without water</obo:IAO_0000115>
+        <obo:IAO_0000115 xml:lang="en">A resin-based composite dental restoration material  which contain poly acid–modified monomers with fluoride-releasing silicate glasses and are formulated without water.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">Craig&apos;s restorative Dental Material</obo:IAO_0000119>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-07-31T12:09:12Z</terms:created>
-        <rdfs:label xml:lang="en">Compomer</rdfs:label>
+        <rdfs:label xml:lang="en">compomer resin-based composite dental restoration material</rdfs:label>
     </Class>
     
 
@@ -750,7 +759,96 @@ particles (1 to 100 nm) throughout the resin matrix.</obo:IAO_0000115>
         <obo:IAO_0000119 xml:lang="en">Craig&apos;s restorative Dental Material</obo:IAO_0000119>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-07-31T15:40:29Z</terms:created>
-        <rdfs:label xml:lang="en">Cermet cement</rdfs:label>
+        <rdfs:label xml:lang="en">cermet dental restoration material</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0001021 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001021">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0001002"/>
+        <obo:IAO_0000115 xml:lang="en">A cement dental restoration material containing components in powder liquid form and which follows ISO standards 9917-1:2007</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-08-07T15:21:32Z</terms:created>
+        <rdfs:label xml:lang="en">powder liquid cement</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0001022 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001022">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0001002"/>
+        <obo:IAO_0000115 xml:lang="en">A cement dental restoration material containing zinc-oxide as a component which follows ISO standards 3107:2004</obo:IAO_0000115>
+        <obo:IAO_0000119>ISBN:0323478212</obo:IAO_0000119>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-08-05T15:44:55Z</terms:created>
+        <rdfs:label xml:lang="en">zinc oxide dental restoartion material</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0001023 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001023">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0001006"/>
+        <obo:IAO_0000115 xml:lang="en">A glass ionomer dental restoartion material with comparively low strength and low powder:liquid ratio (1.5:1 to 3.8:1),bears a auxiliary dental restoration material role.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-08-08T12:10:47Z</terms:created>
+        <rdfs:label xml:lang="en">type I glass ionomer dental restoration material</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0001024 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001024">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0001006"/>
+        <obo:IAO_0000115 xml:lang="en">A glass ionomer dental restoartion material with comparively high strength and high powder:liquid ratio,  which bears a primary dental restoration material role where appearance matters.</obo:IAO_0000115>
+        <obo:IAO_0000118 xml:lang="en">conventional GIC</obo:IAO_0000118>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-08-08T12:18:55Z</terms:created>
+        <rdfs:label xml:lang="en">type II (i) glass ionomer dental restoration material</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0001025 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001025">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0001006"/>
+        <obo:IAO_0000115 xml:lang="en">A glass ionomer dental restoartion material with comparively high strength and high powder:liquid ratio,  which bears a primary dental restoration material role where appearance is not of importance.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-08-08T12:23:12Z</terms:created>
+        <rdfs:label xml:lang="en">type II (ii) glass ionomer dental restoration material</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0001026 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001026">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0001006"/>
+        <obo:IAO_0000115 xml:lang="en">A glass ionomer dental restoration material which include a monomer component and associated initiator system.</obo:IAO_0000115>
+        <obo:IAO_0000119>doi: 10.3390/jfb7030016</obo:IAO_0000119>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-08-08T12:27:23Z</terms:created>
+        <rdfs:comment xml:lang="en">The monomer is typically 2-hydroxyethyl methacrylate, HEMA, and the initiator is camphorquinone. Resin-modified glass-ionomers set by the twin processes of neutralization (acid-base reaction) and addition polymerization, and the resulting material has a complicated structure based on the combined products of these two reactions</rdfs:comment>
+        <rdfs:label xml:lang="en">resin-modified glass ionomer dental restoration material</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0001027 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_0001027">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0001006"/>
+        <obo:IAO_0000119>doi: 10.4103/JCD.JCD_109_19</obo:IAO_0000119>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-08-08T12:39:52Z</terms:created>
+        <rdfs:comment xml:lang="en">A glass ionomer dental restoration material which has higher mechanical properties in comparision with conventional GIC and bears the role of primary restoration material with the intended use in posterior teeth.</rdfs:comment>
+        <rdfs:label xml:lang="en">type IX glass ionomer dental restoration material</rdfs:label>
     </Class>
     
 
@@ -1781,5 +1879,5 @@ I have no idea why this happening...</obo:IAO_0000116>
 
 
 
-<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.24.2023-01-14T21:28:32Z) https://github.com/owlcs/owlapi -->
 
