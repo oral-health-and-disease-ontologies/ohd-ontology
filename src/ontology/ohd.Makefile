@@ -22,7 +22,7 @@ $(ONT).owl: $(SRC)
 # ----------------------------------------
 
 $(IMPORTDIR)/omo_import.owl: $(MIRRORDIR)/omo.owl
-	if [ $(IMP) = true ]; $(ROBOT) \
+	if [ $(IMP) = true ]; then $(ROBOT) \
         remove \
             --input $< \
             --select "owl:deprecated='true'^^xsd:boolean" \
@@ -35,7 +35,7 @@ $(IMPORTDIR)/omo_import.owl: $(MIRRORDIR)/omo.owl
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 $(IMPORTDIR)/ro_import.owl: $(MIRRORDIR)/ro.owl
-	if [ $(IMP) = true ]; $(ROBOT) \
+	if [ $(IMP) = true ]; then $(ROBOT) \
         remove \
             --input $< \
             --select "owl:deprecated='true'^^xsd:boolean" \
@@ -50,7 +50,7 @@ $(IMPORTDIR)/ro_import.owl: $(MIRRORDIR)/ro.owl
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 $(IMPORTDIR)/iao_import.owl: $(MIRRORDIR)/iao.owl
-	if [ $(IMP) = true ]; $(ROBOT) \
+	if [ $(IMP) = true ]; then $(ROBOT) \
         remove \
             --input $< \
             --select "owl:deprecated='true'^^xsd:boolean" \
@@ -65,10 +65,9 @@ $(IMPORTDIR)/iao_import.owl: $(MIRRORDIR)/iao.owl
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 $(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl
-	if [ $(IMP) = true ]; $(ROBOT) \
+	if [ $(IMP) = true ]; then $(ROBOT) \
         remove \
             --input $< \
-
             --select "owl:deprecated='true'^^xsd:boolean" \
         extract \
             --method MIREOT \
@@ -84,7 +83,7 @@ $(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl
-	if [ $(IMP) = true ]; $(ROBOT) \
+	if [ $(IMP) = true ]; then $(ROBOT) \
         remove \
             --input $< \
             --select "owl:deprecated='true'^^xsd:boolean" \
@@ -101,7 +100,7 @@ $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 $(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl
-	if [ $(IMP) = true ]; $(ROBOT) \
+	if [ $(IMP) = true ]; then $(ROBOT) \
         remove \
             --input $< \
             --select "owl:deprecated='true'^^xsd:boolean" \
@@ -119,4 +118,4 @@ $(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 $(IMPORTDIR)/bfo2_classes_import.owl:
-	if [ $(IMP) = true ]; echo "$@ is manually maintained"; fi
+	if [ $(IMP) = true ]; then echo "$@ is manually maintained"; fi
