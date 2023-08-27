@@ -46,4 +46,3 @@ These are the components in OHD
 | Filename | URL |
 | -------- | --- |
 | dental_material.owl | None |
-| dental_restoration.owl | None |
