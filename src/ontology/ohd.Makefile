@@ -117,5 +117,23 @@ $(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-$(IMPORTDIR)/bfo2_classes_import.owl:
-	if [ $(IMP) = true ]; then echo "$@ is manually maintained"; fi
+# ----------------------------------------
+# Manually maintained mirrors and imports
+# ----------------------------------------
+
+mirror-bfo2_classes \
+mirror-ncbi \
+mirror-caro mirror-cdt \
+mirror-fma-jaws-teeth \
+mirror-fma-lymph \
+mirror-fma-mouth-mucosa mirror-fma-tmj mirror-fma-tongue \
+imports/bfo2_classes_import.owl \
+imports/caro_import.owl \
+imports/cdt_import.owl \
+imports/ncbi_import.owl \
+imports/fma-jaws-teeth_import.owl \
+imports/fma-lymph_import.owl \
+imports/fma-mouth-mucosa_import.owl \
+imports/fma-tmj_import.owl \
+imports/fma-tongue_import.owl:
+	if [ $(MIR) = true ]; then echo "$@ is manually maintained"; fi
