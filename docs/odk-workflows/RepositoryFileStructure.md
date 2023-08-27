@@ -16,8 +16,6 @@ These are the current imports in OHD
 
 | Import | URL | Type |
 | ------ | --- | ---- |
-| ruttenberg-regions | http://purl.obolibrary.org/obo/bfo/2010-05-25/ruttenberg-regions.owl | None |
-| ruttenberg-relations | http://purl.obolibrary.org/obo/bfo/2010-05-25/ruttenberg-relations.owl | None |
 | bfo2_classes | http://purl.obolibrary.org/obo/bfo2_classes.owl | custom |
 | caro | http://purl.obolibrary.org/obo/caro.owl | None |
 | cdt | http://purl.obolibrary.org/obo/cdt.owl | None |
