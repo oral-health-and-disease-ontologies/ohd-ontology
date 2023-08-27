@@ -10,6 +10,7 @@ export_formats:
 release_artefacts: 
   - base
   - full
+  - non-classified
 import_group:
   module_type: filter
   annotation_properties:
@@ -24,6 +25,8 @@ import_group:
       mirror_from: http://purl.obolibrary.org/obo/bfo/2010-05-25/ruttenberg-regions.owl
     - id: ruttenberg-relations
       mirror_from: http://purl.obolibrary.org/obo/bfo/2010-05-25/ruttenberg-relations.owl
+    - id: bfo2_classes
+      module_type: custom
     - id: caro
     - id: cdt
     - id: ecto
@@ -37,7 +40,6 @@ import_group:
     - id: obi
     - id: ogms
     - id: omrse
-    - id: ontology-metadata
     - id: ro
     - id: omo
       mirror_from: http://purl.obolibrary.org/obo/omo/releases/2023-06-09/omo.owl
