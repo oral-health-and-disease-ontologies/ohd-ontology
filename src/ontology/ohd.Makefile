@@ -21,8 +21,8 @@ $(ONT).owl: $(SRC)
 # Ontology imports
 # ----------------------------------------
 
-$(IMPORTDIR)/omo_import.owl: $(MIRRORDIR)/omo.owl.gz
-	$(ROBOT) \
+$(IMPORTDIR)/omo_import.owl: $(MIRRORDIR)/omo.owl
+	if [ $(IMP) = true ]; $(ROBOT) \
         remove \
             --input $< \
             --select "owl:deprecated='true'^^xsd:boolean" \
@@ -32,10 +32,10 @@ $(IMPORTDIR)/omo_import.owl: $(MIRRORDIR)/omo.owl.gz
             --annotate-defined-by true \
             --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
-        --output $@.tmp.owl && mv $@.tmp.owl $@
+        --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-$(IMPORTDIR)/ro_import.owl: $(MIRRORDIR)/ro.owl.gz
-	$(ROBOT) \
+$(IMPORTDIR)/ro_import.owl: $(MIRRORDIR)/ro.owl
+	if [ $(IMP) = true ]; $(ROBOT) \
         remove \
             --input $< \
             --select "owl:deprecated='true'^^xsd:boolean" \
@@ -47,10 +47,10 @@ $(IMPORTDIR)/ro_import.owl: $(MIRRORDIR)/ro.owl.gz
             --annotate-defined-by true \
             --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
-        --output $@.tmp.owl && mv $@.tmp.owl $@
+        --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-$(IMPORTDIR)/iao_import.owl: $(MIRRORDIR)/iao.owl.gz
-	$(ROBOT) \
+$(IMPORTDIR)/iao_import.owl: $(MIRRORDIR)/iao.owl
+	if [ $(IMP) = true ]; $(ROBOT) \
         remove \
             --input $< \
             --select "owl:deprecated='true'^^xsd:boolean" \
@@ -62,10 +62,10 @@ $(IMPORTDIR)/iao_import.owl: $(MIRRORDIR)/iao.owl.gz
             --annotate-defined-by true \
             --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
-        --output $@.tmp.owl && mv $@.tmp.owl $@
+        --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-$(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl.gz
-	$(ROBOT) \
+$(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl
+	if [ $(IMP) = true ]; $(ROBOT) \
         remove \
             --input $< \
 
@@ -81,10 +81,10 @@ $(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl.gz
             --annotate-defined-by true \
             --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
-        --output $@.tmp.owl && mv $@.tmp.owl $@
+        --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-$(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl.gz
-	$(ROBOT) \
+$(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl
+	if [ $(IMP) = true ]; $(ROBOT) \
         remove \
             --input $< \
             --select "owl:deprecated='true'^^xsd:boolean" \
@@ -98,10 +98,10 @@ $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl.gz
             --annotate-defined-by true \
             --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
-        --output $@.tmp.owl && mv $@.tmp.owl $@
+        --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-$(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl.gz
-	$(ROBOT) \
+$(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl
+	if [ $(IMP) = true ]; $(ROBOT) \
         remove \
             --input $< \
             --select "owl:deprecated='true'^^xsd:boolean" \
@@ -116,4 +116,7 @@ $(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl.gz
             --annotate-defined-by true \
             --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
-        --output $@.tmp.owl && mv $@.tmp.owl $@
+        --output $@.tmp.owl && mv $@.tmp.owl $@; fi
+
+$(IMPORTDIR)/bfo2_classes_import.owl:
+	if [ $(IMP) = true ]; echo "$@ is manually maintained"; fi
