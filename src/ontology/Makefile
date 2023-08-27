@@ -62,7 +62,7 @@ EDIT_PREPROCESSED =         $(TMPDIR)/$(ONT)-preprocess.owl
 
 FORMATS = $(sort  owl obo json owl)
 FORMATS_INCL_TSV = $(sort $(FORMATS) tsv)
-RELEASE_ARTEFACTS = $(sort $(ONT)-base $(ONT)-full )
+RELEASE_ARTEFACTS = $(sort $(ONT)-base $(ONT)-full $(ONT)-non-classified )
 
 # ----------------------------------------
 # Top-level targets
@@ -114,7 +114,7 @@ all_main: $(MAIN_FILES)
 # ----------------------------------------
 
 
-IMPORTS =  ruttenberg-regions ruttenberg-relations caro cdt ecto fma-jaws-teeth fma-lymph fma-mouth-mucosa fma-tmj fma-tongue iao ncbi obi ogms omrse ontology-metadata ro omo ro
+IMPORTS =  ruttenberg-regions ruttenberg-relations bfo2_classes caro cdt ecto fma-jaws-teeth fma-lymph fma-mouth-mucosa fma-tmj fma-tongue iao ncbi obi ogms omrse ro omo ro
 
 IMPORT_ROOTS = $(patsubst %, $(IMPORTDIR)/%_import, $(IMPORTS))
 IMPORT_OWL_FILES = $(foreach n,$(IMPORT_ROOTS), $(n).owl)
@@ -317,6 +317,10 @@ $(IMPORTDIR)/%_import.owl: $(MIRRORDIR)/%.owl $(IMPORTDIR)/%_terms_combined.txt
 
 .PRECIOUS: $(IMPORTDIR)/%_import.owl
 
+## Module for ontology: bfo2_classes
+
+$(IMPORTDIR)/bfo2_classes_import.owl: $(MIRRORDIR)/bfo2_classes.owl
+	echo "ERROR: You have configured your default module type to be custom; this behavior needs to be overwritten in ohd.Makefile!" && false
 
 .PHONY: refresh-imports
 refresh-imports:
@@ -394,6 +398,15 @@ mirror-ruttenberg-regions: | $(TMPDIR)
 .PRECIOUS: $(MIRRORDIR)/ruttenberg-relations.owl
 mirror-ruttenberg-relations: | $(TMPDIR)
 	if [ $(MIR) = true ] && [ $(IMP) = true ]; then $(ROBOT) convert -I http://purl.obolibrary.org/obo/bfo/2010-05-25/ruttenberg-relations.owl -o $@.tmp.owl &&\
+		mv $@.tmp.owl $(TMPDIR)/$@.owl; fi
+
+
+## ONTOLOGY: bfo2_classes
+.PHONY: mirror-bfo2_classes
+.PRECIOUS: $(MIRRORDIR)/bfo2_classes.owl
+mirror-bfo2_classes: | $(TMPDIR)
+	if [ $(MIR) = true ] && [ $(IMP) = true ]; then curl -L $(OBOBASE)/bfo2_classes.owl --create-dirs -o $(MIRRORDIR)/bfo2_classes.owl --retry 4 --max-time 200 &&\
+		$(ROBOT) convert -i $(MIRRORDIR)/bfo2_classes.owl -o $@.tmp.owl &&\
 		mv $@.tmp.owl $(TMPDIR)/$@.owl; fi
 
 
@@ -514,15 +527,6 @@ mirror-omrse: | $(TMPDIR)
 		mv $@.tmp.owl $(TMPDIR)/$@.owl; fi
 
 
-## ONTOLOGY: ontology-metadata
-.PHONY: mirror-ontology-metadata
-.PRECIOUS: $(MIRRORDIR)/ontology-metadata.owl
-mirror-ontology-metadata: | $(TMPDIR)
-	if [ $(MIR) = true ] && [ $(IMP) = true ]; then curl -L $(OBOBASE)/ontology-metadata.owl --create-dirs -o $(MIRRORDIR)/ontology-metadata.owl --retry 4 --max-time 200 &&\
-		$(ROBOT) convert -i $(MIRRORDIR)/ontology-metadata.owl -o $@.tmp.owl &&\
-		mv $@.tmp.owl $(TMPDIR)/$@.owl; fi
-
-
 ## ONTOLOGY: ro
 .PHONY: mirror-ro
 .PRECIOUS: $(MIRRORDIR)/ro.owl
@@ -606,6 +610,12 @@ $(ONT)-full.json: $(ONT)-full.owl
 	$(ROBOT) annotate --input $< --ontology-iri $(ONTBASE)/$@ $(ANNOTATE_ONTOLOGY_VERSION) \
 		convert --check false -f json -o $@.tmp.json &&\
 		mv $@.tmp.json $@
+$(ONT)-non-classified.obo: $(ONT)-non-classified.owl
+	$(ROBOT) convert --input $< --check false -f obo $(OBO_FORMAT_OPTIONS) -o $@.tmp.obo && grep -v ^owl-axioms $@.tmp.obo > $@ && rm $@.tmp.obo
+$(ONT)-non-classified.json: $(ONT)-non-classified.owl
+	$(ROBOT) annotate --input $< --ontology-iri $(ONTBASE)/$@ $(ANNOTATE_ONTOLOGY_VERSION) \
+		convert --check false -f json -o $@.tmp.json &&\
+		mv $@.tmp.json $@
 # ----------------------------------------
 # Release artefacts: main release artefacts
 # ----------------------------------------
@@ -647,6 +657,10 @@ $(ONT)-full.owl: $(EDIT_PREPROCESSED) $(OTHER_SRC) $(IMPORT_FILES)
 		reason --reasoner ELK --equivalent-classes-allowed asserted-only --exclude-tautologies structural \
 		relax \
 		reduce -r ELK \
+		$(SHARED_ROBOT_COMMANDS) annotate --ontology-iri $(ONTBASE)/$@ $(ANNOTATE_ONTOLOGY_VERSION) --output $@.tmp.owl && mv $@.tmp.owl $@
+# foo-non-classified: (edit->imports-merged)
+$(ONT)-non-classified.owl: $(EDIT_PREPROCESSED) $(OTHER_SRC) $(IMPORT_FILES)
+	$(ROBOT_RELEASE_IMPORT_MODE) \
 		$(SHARED_ROBOT_COMMANDS) annotate --ontology-iri $(ONTBASE)/$@ $(ANNOTATE_ONTOLOGY_VERSION) --output $@.tmp.owl && mv $@.tmp.owl $@
 # ----------------------------------------
 # Debugging Tools

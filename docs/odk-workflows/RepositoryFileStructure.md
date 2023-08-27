@@ -18,6 +18,7 @@ These are the current imports in OHD
 | ------ | --- | ---- |
 | ruttenberg-regions | http://purl.obolibrary.org/obo/bfo/2010-05-25/ruttenberg-regions.owl | None |
 | ruttenberg-relations | http://purl.obolibrary.org/obo/bfo/2010-05-25/ruttenberg-relations.owl | None |
+| bfo2_classes | http://purl.obolibrary.org/obo/bfo2_classes.owl | custom |
 | caro | http://purl.obolibrary.org/obo/caro.owl | None |
 | cdt | http://purl.obolibrary.org/obo/cdt.owl | None |
 | ecto | http://purl.obolibrary.org/obo/ecto.owl | None |
@@ -31,7 +32,6 @@ These are the current imports in OHD
 | obi | http://purl.obolibrary.org/obo/obi.owl | None |
 | ogms | http://purl.obolibrary.org/obo/ogms.owl | None |
 | omrse | http://purl.obolibrary.org/obo/omrse.owl | None |
-| ontology-metadata | http://purl.obolibrary.org/obo/ontology-metadata.owl | None |
 | ro | http://purl.obolibrary.org/obo/ro.owl | None |
 | omo | http://purl.obolibrary.org/obo/omo/releases/2023-06-09/omo.owl | None |
 | ro | http://purl.obolibrary.org/obo/ro/releases/2023-02-22/ro.owl | None |
