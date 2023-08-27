@@ -1,95 +1,131 @@
-# Contributing to Oral Health and Disease Ontology
+# Contributing to the Oral Health and Disease Ontology (OHD) Ontology
 
-:+1: First of all: Thank you for taking the time to contribute!
+## Robot and Protégé
 
-The following is a set of guidelines for contributing to OHD. 
-These guidelines are not strict rules. Use your best judgment, and feel free to propose 
-changes to this document in a pull request.
+The OHD Ontology products and subsets are built using [ROBOT](http://robot.obolibrary.org/). Thus, you will need to
+have [ROBOT](http://robot.obolibrary.org/) installed on your system.
 
-## Table Of Contents
+Often, you will need to view the ontology products. For this, it is best to use
+the [Protégé ontology editor](https://protege.stanford.edu/) (
+see [Configuring Protégé for OHD contributions](#configuring-protégé-for-ohd-contributions)).
 
-- [Code of Conduct](#code-of-conduct)
-- [Guidelines for Contributions and Requests](#contributions)
-    * [Reporting problems with the ontology](#reporting-bugs)
-    * [Requesting new terms](#requesting-terms)
-    * [Adding new terms by yourself](#adding-terms)
-- [Best practices](#best-practices)
-    * [How to write a great issue?](#great-issues)
-    * [How to create a great pull/merge request?](#great-pulls)
+## Editor's version
 
-<a id="code-of-conduct"></a>
+The top-level ontology products and subsets are built using a release process (
+see [Updating Ontology Products and Subsets](#updating-ontology-products-and-subsets)). Changes made directly to the
+ontology, such as editing descriptions and managing imports, are made to the editors of this
+ontology: [src/ontology/ohd-edit.owl](src/ontology/ohd-edit.owl).
 
-## Code of Conduct
+## Tracking Changes to the OHD Ontology
 
-The Oral Health and Disease Ontology team strives to create a
-welcoming environment for editors, users and other contributors.
-Please carefully read our [Code of Conduct](CODE_OF_CONDUCT.md).
+To track changes made to the OHD Ontology, it is best maintained by following these steps:
 
-<a id="contributions"></a>
+1. Submit an [issue](https://github.com/oral-health-and-disease-ontologies/ohd-ontology/issues) detailing the problem.
+2. Create a branch to address this issue that uses the same number as the issue tracker. For example, if the issue
+   is `#50` in the issue tracker, name the branch `issue-50`. This allows other developers to easily know which branch
+   needs to be checked out to contribute.
+3. Create a pull request that fixes the issue. If possible, create a draft (or WIP) branch early in the process.
+4. Merge pull request once all the necessary changes have been made. If needed, tag other developers to review the pull
+   request.
+5. Delete the issue branch (e.g., branch `issue-50`).
 
-## Guidelines for Contributions and Requests
+### Updating Ontology Products and Subsets
 
-<a id="reporting-bugs"></a>
+From time to time, the [imports](src/ontology/imports/) used by the OHD Ontology will need to be updated and new
+products (i.e., ontology products and subsets) released. The general process for updating the products is as follows:
 
-### Reporting problems with the ontology
+1. Create an issue, branch, and pull request using the steps outlined
+   in [Tracking Changes to the OHD Ontology](#tracking-changes-to-the-ohd-ontology) section.
+2. Navigate to the [src/ontology](src/ontology/) directory.
+3. Execute `make clean`. This removes all imports, ontologies, and subsets from the [src/ontology](src/ontology/)
+   directory. Note, the top-level ontology products and subsets still exist; only the files in
+   the [src/ontology](src/ontology/) directory were removed.
+4. Execute `make all`. This will create new ontology products and subsets in the [src/ontology](src/ontology/)
+   directory.
+5. Review the new ontology products and subsets.
+6. Once you are satisfied with the new ontology products and subsets, execute `make release`. This will copy the new
+   products to the top-level directory.
+7. Finally, push your changes to the repository, make a pull request, and merge.
 
-Please use our [Issue Tracker](https://github.com/oral-health-and-disease-ontologies/ohd-ontology/issues/) for reporting problems with the ontology. 
-To learn how to write a good issue [see here](#great-issues).
+## Configuring Protégé for OHD Contributions
 
-<a id="requesting-terms"></a>
+### Rationale
 
-### Requesting new terms
+When a new entity is created using Protégé the entities are created using the default settings of Protégé. For example,
+using the default settings when a new entity called 'test' is created the IRI for the entity may look like this.
 
-Before you write a new request, please consider the following: 
+`http://www.semanticweb.org/user/ontologies/2023/6/untitled-ontology-43#test`
 
-- **Does the term already exist?** Before submitting suggestions for new ontology terms, check whether the term exist, 
-either as a primary term or a synonym term. You can search for your term using [OLS](http://www.ebi.ac.uk/ols/ontologies/ohd).
-- **Can you provide a definition for the term?** It should be very clear what the term means, and you should be
-able to provide a concise definition, ideally with a scientific reference.
-- **Is the ontology in scope for the term?** Sometimes, it is hard to tell whether a term "belongs" in
-and ontology. A rule of thumb is "if a similar term already exists, the new term is probably in scope."
-It can be very helpful to mention a very similar concept as part of the term request!
+Ideally, we want the new entity created in the OHD ontology to look similar to the IRI below based on OBO Foundry
+principles:
 
-#### Who can request a term?
+`http://purl.obolibrary.org/obo/OHD_0000024`
 
-Anyone can request new terms. However, there is not guarantee that your term will be added automatically. Since this is a 
-community resource, it is often necessary to do at least some of the work of adding the term yourself, see below.
+### Prerequisites
 
-#### How to write a new term request
+#### Protégé
 
-Request a new term _via_ the GitHub [Issue Tracker](https://github.com/oral-health-and-disease-ontologies/ohd-ontology/issues/).
+If you do not have installed Protégé ontology editor on your machine, please download and install it from
+this [link](https://protege.stanford.edu/).
 
-It is important to remember that it takes a lot of time for curators to process issues submitted to the tracker.
-To make this work easier, please always use issue templates if they are available (https://github.com/oral-health-and-disease-ontologies/ohd-ontology/issues/new/choose).
+#### Create ORCID identifier
 
-For how to write a good term request, please read the [best practices carefully](#great-issues).
+If you do not have an **ORCID ID** please create one by [registering here](https://orcid.org/). ORCID ID is
+a [free-of-charge identifier]((https://info.orcid.org/what-is-orcid/)) for researchers.
 
-<a id="adding-terms"></a>
+### Update Preferences
 
-### How to add a new term
+#### Where can I find Protégé preferences?
 
-If you have never editted this ontology before, first follow a [general tutorial](https://oboacademy.github.io/obook/lesson/contributing-to-obo-ontologies)
+- Open Protégé.
+- Go to **File > Preferences**.
 
-**Process**:
+#### Update user details in Protégé
 
-1. Clone the repository (In case you are not an offical team member, create a fork first)
-1. Create new branch in git, for example `git checkout -b issue123`
-1. Open src/ontology/ohd-edit.owl in your favourite editor, i.e. [Protege](https://protege.stanford.edu/). **Careful:** double check you are editing the correct file. There are many ontology files in this repository, but only one _editors file_!
-1. Perform your edit and save your changes
-1. Commit changes to branch
-1. Push changes upstream
-1. Create pull request
+- Go to Protégé **Preferences**.
+- Click on the **User details** tab.
+- Enable **Use supplied user name**.
+- Enter your full name in the field indicated.
+- Enable **Use Git user name when available**.
+- Enter your ORCID ID in the field for **ORCID**.
+- Click **OK** to save.
 
-## Best Practices
+![user_details_edit](https://github.com/oral-health-and-disease-ontologies/ohd-ontology/assets/47677575/8e452096-f685-4066-9d04-f0417451c456)
 
-<a id="great-issues"></a>
+#### Update configuration for new entities
 
-### How to write great issues?
+- Go to Protégé **Preferences**.
+- Click the **New entities** tab.
+- Update **Entity IRI**.
+    - For **Start with:** enable 'Specified IRI' and enter the following IRI in the field:
+        - `http://purl.obolibrary.org/obo`
+    - For **Followed by:** enable the forward slash option (/).
+    - For **End with:** enable 'Auto-generated ID'.
+- Update **Entity Label**.
+    - Enable **Same as label renderer**.
+- Update **Auto-generated ID**.
+    - Enable **Numeric (Iterative)**.
+    - For **Prefix:** enter **OHD_** in the field provided.
+    - For **Start:** enter the lower value integer of the ID range if one has been assigned to you. For example 2,000.
+      Most regular contributors are assigned an ID range.
+    - For **End:** enter the upper-value integer of the ID range if one has been assigned to you. For example 2,999.
+    - Enable **Remember last ID between Protégé sessions**.
+- Click **OK** to save.
 
-Please refer to the [OBO Academy best practices](https://oboacademy.github.io/obook/lesson/term-request/).
+![new_entities](https://github.com/oral-health-and-disease-ontologies/ohd-ontology/assets/47677575/745d1eb1-6169-4401-bfc4-9bed8a9e2bf9)
 
-<a id="great-pulls"></a>
+#### Update configuration for new entities metadata
 
-### How to create a great pull/merge request?
+- Go to Protégé **Preferences**.
+- Click the **New entities metadata** tab.
+- Enable **Annotate new entities with creator (user)**.
+- For **Creator property** enter the following IRI the field:
+    - `http://purl.org/dc/terms/contributor`
+- For **Creator value** enable **Use ORCID**.
+- Enable **Annotate new entities with creation date/time**.
+- For **Date property** enter the following IRI the field:
+    - `http://purl.org/dc/terms/created`
+- For **Date property** enable **ISO-8601**.
+- Click **OK** to save.
 
-Please refer to the [OBO Academy best practices](https://oboacademy.github.io/obook/howto/github-create-pull-request/)
+![new_entities_metadata](https://github.com/oral-health-and-disease-ontologies/ohd-ontology/assets/47677575/74d66507-de94-471e-81cc-959caddcff82)
