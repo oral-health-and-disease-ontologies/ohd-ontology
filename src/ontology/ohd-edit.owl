@@ -12,7 +12,7 @@ Prefix(protege:=<http://protege.stanford.edu/plugins/owl/protege#>)
 
 
 Ontology(<http://purl.obolibrary.org/obo/ohd.owl>
-Import(<http://purl.obolibrary.org/obo/imports/dental_material_import.owl>)
+Import(<http://purl.obolibrary.org/obo>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/bfo2_classes_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/caro_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/cdt_import.owl>)
@@ -3459,15 +3459,11 @@ SubClassOf(obo:OHD_0000190 ObjectSomeValuesFrom(obo:BFO_0000054 obo:OHD_0000002)
 
 # Class: obo:OHD_0000191 (dental restoration material role)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000191 "A functional prothetic role that is borne by a portion of dental restoration material and is realized in a tooth restoration procedure in which the restoration material becomes part of a restored tooth."@en)
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000191 "Bill Duncan 12/11/2014:
-Changed definition to read that a \"portion of dental restoration material\" is realized by a \"tooth restoration procedure\".")
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000191 "Titus Schleyer 1/1/2014: updated definition")
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000191 "Person:Alan Ruttenberg
-")
-AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000191 "Person:Alan Ruttenberg")
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000191 "Bill Duncan 12/11/2014:
+Changed definition to read that a \"portion of dental restoration material\" is realized by a \"tooth restoration procedure\".")
 AnnotationAssertion(rdfs:label obo:OHD_0000191 "dental restoration material role"@en)
-SubClassOf(obo:OHD_0000191 obo:OHD_0000315)
+SubClassOf(obo:OHD_0000191 obo:OBI_0000319)
 SubClassOf(obo:OHD_0000191 ObjectSomeValuesFrom(obo:BFO_0000052 obo:BFO_0000040))
 SubClassOf(obo:OHD_0000191 ObjectAllValuesFrom(obo:BFO_0000054 obo:OHD_0000004))
 
@@ -5459,4 +5455,10 @@ AnnotationAssertion(rdfs:label <https://orcid.org/0009-0006-7251-3026> "Gopikris
 SubClassOf(ObjectIntersectionOf(ObjectUnionOf(obo:NBO_0000007 obo:OHD_0002000) ObjectSomeValuesFrom(obo:RO_0003304 obo:OGMS_0000045)) obo:OHD_0000406)
 SubObjectPropertyOf(ObjectPropertyChain(obo:BFO_0000053 obo:BFO_0000054) obo:RO_0000056)
 SubObjectPropertyOf(ObjectPropertyChain(obo:OBI_0000293 obo:BFO_0000050) obo:RO_0000057)
+AnnotationAssertion(obo:IAO_0000231 obo:OHD_0001023 "glass ionomer types (e.g., type i, ii, iii) are not standardized")
+AnnotationAssertion(owl:deprecated obo:OHD_0001023 "true"^^xsd:boolean)
+AnnotationAssertion(obo:IAO_0000231 obo:OHD_0001024 "glass ionomer types (e.g., type i, ii, iii) are not standardized")
+AnnotationAssertion(owl:deprecated obo:OHD_0001024 "true"^^xsd:boolean)
+AnnotationAssertion(obo:IAO_0000231 obo:OHD_0001025 "glass ionomer types (e.g., type i, ii, iii) are not standardized")
+AnnotationAssertion(owl:deprecated obo:OHD_0001025 "true"^^xsd:boolean)
 )
