@@ -5,7 +5,7 @@ We need a standardized approach that enables efficient access to information in 
 
 OHD is in early development and subject to change without notice. The ontology can be accessed at http://purl.obolibrary.org/obo/ohd/dev/ohd.owl or browsed at http://www.ontobee.org/browser/index.php?o=OHD
 
-For more information contact mailto:alanruttenberg@gmail.com, mailto:schleyer@regenstrief.org
+For more information contact [Bill Duncan](mailto:wdduncan@gmail.com), [Alan Ruttenberg](mailto:alanruttenberg@gmail.com), or [Titus Schleyer](mailto:schleyer@regenstrief.org)
 
 # Publications and Presentations
 * [An ontology-based method for secondary use of electronic dental record data (preprint of submission to AMIA CRI 2012)](https://github.com/wdduncan/ohd-ontology/blob/master/doc/2012-09%20AMIA%20CRI%20An%20ontology-based%20method%20for%20secondary%20use%20of%20electronic%20dental%20record%20data.pdf)
