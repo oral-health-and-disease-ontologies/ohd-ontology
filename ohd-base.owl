@@ -15,7 +15,7 @@
      xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
     <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ohd/ohd-base.owl">
-        <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/ohd/releases/2023-07-22/ohd-base.owl"/>
+        <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/ohd/releases/2024-03-01/ohd-base.owl"/>
         <dc:creator>Alan Ruttenberg</dc:creator>
         <dc:creator>Bill Duncan</dc:creator>
         <dc:type rdf:resource="http://purl.obolibrary.org/obo/IAO_8000001"/>
@@ -32,7 +32,7 @@
 This ontology is licensed under the CC-BY License. Please see http://creativecommons.org/licenses/by/3.0/
 
 Attribution is satisfied by using the URIs defined in this file when using terms from this ontology.</rdfs:comment>
-        <owl:versionInfo>2023-07-22</owl:versionInfo>
+        <owl:versionInfo>2024-03-01</owl:versionInfo>
     </owl:Ontology>
     
 
@@ -87,6 +87,12 @@ Attribution is satisfied by using the URIs defined in this file when using terms
     <!-- http://purl.obolibrary.org/obo/IAO_0000119 -->
 
     <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000119"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000231 -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000231"/>
     
 
 
@@ -324,55 +330,31 @@ Attribution is satisfied by using the URIs defined in this file when using terms
     
 
 
-    <!-- http://purl.obolibrary.org/obo/BFO_0000056 -->
-
-    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000056">
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000053"/>
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000054"/>
-        </owl:propertyChainAxiom>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/BFO_0000057 -->
-
-    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000057">
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000293"/>
-            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000050"/>
-        </owl:propertyChainAxiom>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://purl.obolibrary.org/obo/BFO_0000063 -->
 
     <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000063"/>
     
 
 
-    <!-- http://purl.obolibrary.org/obo/BFO_0000086 -->
-
-    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000086"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/BFO_0000087 -->
-
-    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000087"/>
-    
-
-
     <!-- http://purl.obolibrary.org/obo/FMA_85848 -->
 
-    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/FMA_85848"/>
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/FMA_85848">
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000050"/>
+    </owl:ObjectProperty>
     
 
 
     <!-- http://purl.obolibrary.org/obo/FMA_85868 -->
 
     <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/FMA_85868"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/FMA_85995 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/FMA_85995">
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+    </owl:ObjectProperty>
     
 
 
@@ -463,10 +445,44 @@ Wikipedia: http://en.wikipedia.org/wiki/Dental_restoration</obo:IAO_0000119>
     
 
 
+    <!-- http://purl.obolibrary.org/obo/RO_0000053 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_0000053"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/RO_0000056 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_0000056">
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000053"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000054"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/RO_0000057 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_0000057">
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OBI_0000293"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000050"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/RO_0000087 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_0000087"/>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/RO_0002354 -->
 
     <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_0002354">
-        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000056"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/RO_0000056"/>
     </owl:ObjectProperty>
     
 
@@ -665,21 +681,13 @@ This data property provides a means to query for missing tooth roots. Since a mi
 
     <!-- http://purl.obolibrary.org/obo/BFO_0000004 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000004">
-        <owl:disjointWith rdf:resource="http://purl.obolibrary.org/obo/BFO_0000005"/>
-    </owl:Class>
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000004"/>
     
 
 
-    <!-- http://purl.obolibrary.org/obo/BFO_0000005 -->
+    <!-- http://purl.obolibrary.org/obo/BFO_0000015 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000005"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/BFO_0000007 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000007"/>
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000015"/>
     
 
 
@@ -1876,8 +1884,14 @@ This data property provides a means to query for missing tooth roots. Since a mi
 
     <!-- http://purl.obolibrary.org/obo/ECTO_9002146 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ECTO_9002146">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000007"/>
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ECTO_9002146"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ExO_0000002 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ExO_0000002">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000015"/>
     </owl:Class>
     
 
@@ -6832,7 +6846,7 @@ This data property provides a means to query for missing tooth roots. Since a mi
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OGMS_0000060"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000057"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_49184"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -7136,13 +7150,13 @@ Changed &quot;A specific healthcare activity&quot; to &quot;A health care encoun
         </owl:equivalentClass>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -7166,14 +7180,14 @@ Changed &quot;A specific healthcare activity&quot; to &quot;A health care encoun
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000434"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000417"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OBI_0000434"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000057"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A dental procedure in which either a whole tooth or a part of a tooth is replaced by dental restoration material in order to reestablish the tooth&apos;s anatomical and functional form and function.</obo:IAO_0000115>
@@ -7371,7 +7385,7 @@ The evaluation, diagnosis, and/or treatment (nonsurgical, surgical, or related p
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000190"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -7433,7 +7447,7 @@ Professional prophylaxis, radiographs, sealants, and nonsurgical periodontal the
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000051"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000017"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -7480,7 +7494,7 @@ Professional prophylaxis, radiographs, sealants, and nonsurgical periodontal the
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000051"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000016"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -7608,7 +7622,7 @@ Professional prophylaxis, radiographs, sealants, and nonsurgical periodontal the
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000057"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
@@ -7713,7 +7727,7 @@ http://en.wikipedia.org/wiki/Veneer_%28dentistry%29</obo:IAO_0000119>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_12516"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000086"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000053"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/PATO_0040034"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -8046,7 +8060,7 @@ A material combination in which a rigid restoration, such as a gold inlay, is at
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000012"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OMRSE_00000009"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -8067,7 +8081,7 @@ A material combination in which a rigid restoration, such as a gold inlay, is at
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000179"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000052"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -8111,7 +8125,7 @@ A material combination in which a rigid restoration, such as a gold inlay, is at
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000012"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OMRSE_00000008"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -8182,14 +8196,14 @@ A material combination in which a rigid restoration, such as a gold inlay, is at
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000044"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000233"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/OBI_0000299"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000233"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000057"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A surgical dental procedure that removes a tooth from the oral cavity.
@@ -9665,6 +9679,7 @@ I think the instrumentation (&quot; ...  by means of elevators and/or forceps&qu
 There is not a dental restoration material of this kind. The class needs to be made obsolete.</obo:IAO_0000116>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <rdfs:label>resin with predominantly base metal dental restoration</rdfs:label>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
     </owl:Class>
     
 
@@ -9702,6 +9717,7 @@ There is not a dental restoration material of this kind. The class needs to be m
 There is not a dental restoration material of this kind. The class needs to be made obsolete.</obo:IAO_0000116>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <rdfs:label>porcelain fused to noble metal dental restoration material</rdfs:label>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
     </owl:Class>
     
 
@@ -9714,6 +9730,7 @@ There is not a dental restoration material of this kind. The class needs to be m
 There is not a dental restoration material of this kind. The class needs to be made obsolete.</obo:IAO_0000116>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <rdfs:label>porcelain fused to high noble metal dental restoration material</rdfs:label>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
     </owl:Class>
     
 
@@ -9726,6 +9743,7 @@ There is not a dental restoration material of this kind. The class needs to be m
 There is not a dental restoration material of this kind. The class needs to be made obsolete.</obo:IAO_0000116>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <rdfs:label>porcelain fused to predominantly base metal dental restoration material</rdfs:label>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
     </owl:Class>
     
 
@@ -10443,7 +10461,7 @@ There is not a dental restoration material of this kind. The class needs to be m
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/NCBITaxon_9606"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000212"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -10464,7 +10482,7 @@ There is not a dental restoration material of this kind. The class needs to be m
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000179"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000178"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -10485,7 +10503,7 @@ There is not a dental restoration material of this kind. The class needs to be m
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000051"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000170"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -10506,7 +10524,7 @@ There is not a dental restoration material of this kind. The class needs to be m
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000018"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000171"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -10527,7 +10545,7 @@ There is not a dental restoration material of this kind. The class needs to be m
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000018"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000172"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -10548,7 +10566,7 @@ There is not a dental restoration material of this kind. The class needs to be m
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000018"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000173"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -10569,7 +10587,7 @@ There is not a dental restoration material of this kind. The class needs to be m
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000018"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000174"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -10590,7 +10608,7 @@ There is not a dental restoration material of this kind. The class needs to be m
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000018"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000175"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -10611,7 +10629,7 @@ There is not a dental restoration material of this kind. The class needs to be m
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000018"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000176"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -10632,6 +10650,7 @@ There is not a dental restoration material of this kind. The class needs to be m
 There is not a dental restoration material of this kind. The class needs to be made obsolete.</obo:IAO_0000116>
         <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
         <rdfs:label>stainless steel with resin window dental restoration material</rdfs:label>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
     </owl:Class>
     
 
@@ -10688,7 +10707,7 @@ A restored tooth typically results when a tooth with some type of pathological d
     <!-- http://purl.obolibrary.org/obo/OHD_0000191 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000191">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000315"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OBI_0000319"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000052"/>
@@ -10701,13 +10720,9 @@ A restored tooth typically results when a tooth with some type of pathological d
                 <owl:allValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000004"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <obo:IAO_0000115 xml:lang="en">A functional prothetic role that is borne by a portion of dental restoration material and is realized in a tooth restoration procedure in which the restoration material becomes part of a restored tooth.</obo:IAO_0000115>
-        <obo:IAO_0000115>Bill Duncan 12/11/2014:
-Changed definition to read that a &quot;portion of dental restoration material&quot; is realized by a &quot;tooth restoration procedure&quot;.</obo:IAO_0000115>
+        <obo:IAO_0000116>Bill Duncan 12/11/2014:
+Changed definition to read that a &quot;portion of dental restoration material&quot; is realized by a &quot;tooth restoration procedure&quot;.</obo:IAO_0000116>
         <obo:IAO_0000116>Titus Schleyer 1/1/2014: updated definition</obo:IAO_0000116>
-        <obo:IAO_0000117>Person:Alan Ruttenberg
-</obo:IAO_0000117>
-        <obo:IAO_0000119>Person:Alan Ruttenberg</obo:IAO_0000119>
         <rdfs:label xml:lang="en">dental restoration material role</rdfs:label>
     </owl:Class>
     
@@ -11172,7 +11187,7 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000051"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000165"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -11227,7 +11242,7 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0000018"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000087"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000087"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000177"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -12135,10 +12150,10 @@ We decided that the facial surface should subsume both labial and buccal surface
     <!-- http://purl.obolibrary.org/obo/OHD_0000274 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000274">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000007"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000015"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -12157,7 +12172,7 @@ We decided that the facial surface should subsume both labial and buccal surface
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000274"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000057"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000284"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -12284,13 +12299,13 @@ This class is used to group dental implants and fixed dentures under one term.</
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000007"/>
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000015"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000057"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_12516"/>
                     </owl:Restriction>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000057"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000284"/>
                     </owl:Restriction>
                 </owl:intersectionOf>
@@ -14254,7 +14269,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
                 <owl:intersectionOf rdf:parseType="Collection">
                     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OGMS_0000061"/>
                     <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000057"/>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0000057"/>
                         <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/FMA_49184"/>
                     </owl:Restriction>
                     <owl:Restriction>
@@ -15007,6 +15022,18 @@ I have no idea why this happening...</obo:IAO_0000116>
     <rdf:Description rdf:about="http://purl.obolibrary.org/obo/FMA_57143">
         <obo:OHD_0000065>Tooth 24</obo:OHD_0000065>
     </rdf:Description>
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0001023">
+        <obo:IAO_0000231>glass ionomer types (e.g., type i, ii, iii) are not standardized</obo:IAO_0000231>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0001024">
+        <obo:IAO_0000231>glass ionomer types (e.g., type i, ii, iii) are not standardized</obo:IAO_0000231>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0001025">
+        <obo:IAO_0000231>glass ionomer types (e.g., type i, ii, iii) are not standardized</obo:IAO_0000231>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </rdf:Description>
     
 
 
@@ -15037,5 +15064,5 @@ I have no idea why this happening...</obo:IAO_0000116>
 
 
 
-<!-- Generated by the OWL API (version 4.5.25) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.26) https://github.com/owlcs/owlapi -->
 
