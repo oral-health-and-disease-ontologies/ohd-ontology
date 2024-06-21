@@ -916,6 +916,7 @@ Declaration(Class(obo:OHD_0000039))
 Declaration(Class(obo:OHD_0000040))
 Declaration(Class(obo:OHD_0000041))
 Declaration(Class(obo:OHD_0000042))
+Declaration(Class(obo:OHD_0000043))
 Declaration(Class(obo:OHD_0000044))
 Declaration(Class(obo:OHD_0000045))
 Declaration(Class(obo:OHD_0000046))
@@ -1220,8 +1221,15 @@ Declaration(Class(obo:OHD_0000400))
 Declaration(Class(obo:OHD_0000401))
 Declaration(Class(obo:OHD_0000402))
 Declaration(Class(obo:OHD_0000403))
+Declaration(Class(obo:OHD_0000405))
 Declaration(Class(obo:OHD_0000406))
 Declaration(Class(obo:OHD_0000407))
+Declaration(Class(obo:OHD_0000408))
+Declaration(Class(obo:OHD_0000409))
+Declaration(Class(obo:OHD_0000410))
+Declaration(Class(obo:OHD_0000411))
+Declaration(Class(obo:OHD_0000412))
+Declaration(Class(obo:OHD_0000413))
 Declaration(Class(obo:OHD_0002000))
 Declaration(Class(obo:PATO_0040034))
 Declaration(Class(<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>))
@@ -1316,7 +1324,10 @@ Declaration(NamedIndividual(obo:OHD_0000130))
 Declaration(NamedIndividual(obo:OHD_0000131))
 Declaration(NamedIndividual(obo:OHD_0000132))
 Declaration(NamedIndividual(obo:OHD_0000363))
+Declaration(NamedIndividual(<https://orcid.org/0000-0001-6378-1703>))
 Declaration(NamedIndividual(<https://orcid.org/0000-0001-9625-1899>))
+Declaration(NamedIndividual(<https://orcid.org/0000-0001-9990-8331>))
+Declaration(NamedIndividual(<https://orcid.org/0009-0003-5583-4731>))
 Declaration(NamedIndividual(<https://orcid.org/0009-0006-7251-3026>))
 Declaration(AnnotationProperty(obo:IAO_0000111))
 Declaration(AnnotationProperty(obo:IAO_0000112))
@@ -2619,6 +2630,19 @@ AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000042 "resin intracoronal restorat
 AnnotationAssertion(dcterms:contributor obo:OHD_0000042 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(rdfs:label obo:OHD_0000042 "resin filling restoration procedure")
 EquivalentClasses(obo:OHD_0000042 ObjectIntersectionOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000037) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036)))
+
+# Class: obo:OHD_0000043 (dentin hypersensitivity)
+
+AnnotationAssertion(Annotation(obo:IAO_0000119 "PMID:24724135") obo:IAO_0000115 obo:OHD_0000043 "A disposition of the tooth that is realized in an experience of pain derived from exposed dentin.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000043 <https://orcid.org/0000-0001-6378-1703>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000043 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000043 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000043 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000043 <https://orcid.org/0009-0006-7251-3026>)
+AnnotationAssertion(dcterms:created obo:OHD_0000043 "2024-06-21T14:26:11Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000043 "dentin hypersensitivity"@en)
+SubClassOf(obo:OHD_0000043 obo:BFO_0000016)
+SubClassOf(obo:OHD_0000043 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000410))
 
 # Class: obo:OHD_0000044 (surgical dental procedure)
 
@@ -5189,6 +5213,17 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date>
 AnnotationAssertion(rdfs:label obo:OHD_0000403 "oral evaluation finding"@en)
 EquivalentClasses(obo:OHD_0000403 ObjectIntersectionOf(obo:OHD_0000010 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000197)))
 
+# Class: obo:OHD_0000405 (thermal dentin hypersensitivity)
+
+AnnotationAssertion(obo:OHD_0000092 obo:OHD_0000405 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000405 <https://orcid.org/0000-0001-6378-1703>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000405 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000405 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000405 <https://orcid.org/0009-0006-7251-3026>)
+AnnotationAssertion(dcterms:created obo:OHD_0000405 "2024-06-21T14:48:22Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000405 "thermal dentin hypersensitivity"@en)
+SubClassOf(obo:OHD_0000405 obo:OHD_0000043)
+
 # Class: obo:OHD_0000406 (oral parafunction)
 
 AnnotationAssertion(obo:IAO_0000112 obo:OHD_0000406 "Mouth breathing")
@@ -5211,6 +5246,69 @@ AnnotationAssertion(dcterms:created obo:OHD_0000407 "2023-06-06T21:27:37Z")
 AnnotationAssertion(rdfs:label obo:OHD_0000407 "bruxism"@en)
 SubClassOf(obo:OHD_0000407 obo:OHD_0002000)
 SubClassOf(obo:OHD_0000407 ObjectSomeValuesFrom(obo:RO_0003304 obo:OGMS_0000045))
+
+# Class: obo:OHD_0000408 (tactile dentin hypersensitivity)
+
+AnnotationAssertion(dcterms:contributor obo:OHD_0000408 <https://orcid.org/0000-0001-6378-1703>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000408 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000408 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000408 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000408 <https://orcid.org/0009-0006-7251-3026>)
+AnnotationAssertion(dcterms:created obo:OHD_0000408 "2024-06-21T14:53:42Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000408 "tactile dentin hypersensitivity"@en)
+SubClassOf(obo:OHD_0000408 obo:OHD_0000043)
+
+# Class: obo:OHD_0000409 (chemical dentin hypersensitivity)
+
+AnnotationAssertion(dcterms:contributor obo:OHD_0000409 <<https://orcid.org/0000-0001-6378-1703>>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000409 <https://orcid.org/0000-0001-6378-1703>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000409 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000409 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000409 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000409 <https://orcid.org/0009-0006-7251-3026>)
+AnnotationAssertion(dcterms:created obo:OHD_0000409 "2024-06-21T14:54:01Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000409 "chemical dentin hypersensitivity"@en)
+SubClassOf(obo:OHD_0000409 obo:OHD_0000043)
+
+# Class: obo:OHD_0000410 (exposed dentin)
+
+AnnotationAssertion(dcterms:contributor obo:OHD_0000410 <https://orcid.org/0000-0001-6378-1703>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000410 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000410 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000410 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000410 <https://orcid.org/0009-0006-7251-3026>)
+AnnotationAssertion(dcterms:created obo:OHD_0000410 "2024-06-21T14:56:09Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000410 "exposed dentin"@en)
+SubClassOf(obo:OHD_0000410 obo:OHD_0000260)
+
+# Class: obo:OHD_0000411 (thermal dentin hypersensitivity due to heat)
+
+AnnotationAssertion(dcterms:contributor obo:OHD_0000411 <https://orcid.org/0000-0001-6378-1703>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000411 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000411 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000411 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000411 <https://orcid.org/0009-0006-7251-3026>)
+AnnotationAssertion(dcterms:created obo:OHD_0000411 "2024-06-21T14:58:12Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000411 "thermal dentin hypersensitivity due to heat"@en)
+SubClassOf(obo:OHD_0000411 obo:OHD_0000405)
+
+# Class: obo:OHD_0000412 (thermal dentin hypersensitivity due to cold)
+
+AnnotationAssertion(dcterms:contributor obo:OHD_0000412 <https://orcid.org/0000-0001-6378-1703>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000412 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000412 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000412 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000412 <https://orcid.org/0009-0006-7251-3026>)
+AnnotationAssertion(dcterms:created obo:OHD_0000412 "2024-06-21T14:58:20Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000412 "thermal dentin hypersensitivity due to cold"@en)
+SubClassOf(obo:OHD_0000412 obo:OHD_0000405)
+
+# Class: obo:OHD_0000413 (tooth fracture with exposed dentin)
+
+AnnotationAssertion(dcterms:contributor obo:OHD_0000413 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000413 "2024-06-21T15:02:39Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000413 "tooth fracture with exposed dentin"@en)
+EquivalentClasses(obo:OHD_0000413 ObjectIntersectionOf(obo:OHD_0000277 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000410)))
 
 # Class: obo:OHD_0002000 (masticatory muscle activity)
 
@@ -5441,11 +5539,29 @@ AnnotationAssertion(rdfs:label obo:OHD_0000363 "missing tooth example"@en)
 DataPropertyAssertion(obo:OHD_0000234 obo:OHD_0000363 "1")
 DataPropertyAssertion(obo:OHD_0000360 obo:OHD_0000363 "1")
 
+# Individual: <https://orcid.org/0000-0001-6378-1703> (Matthew Diller)
+
+AnnotationAssertion(dcterms:contributor <https://orcid.org/0000-0001-6378-1703> <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created <https://orcid.org/0000-0001-6378-1703> "2024-06-21T14:42:43Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label <https://orcid.org/0000-0001-6378-1703> "Matthew Diller"@en)
+
 # Individual: <https://orcid.org/0000-0001-9625-1899> (Bill Duncan)
 
 AnnotationAssertion(dcterms:contributor <https://orcid.org/0000-0001-9625-1899> <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> <https://orcid.org/0000-0001-9625-1899> "2022-12-06T01:13:09Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label <https://orcid.org/0000-0001-9625-1899> "Bill Duncan")
+
+# Individual: <https://orcid.org/0000-0001-9990-8331> (Alexander D. Diehl)
+
+AnnotationAssertion(dcterms:contributor <https://orcid.org/0000-0001-9990-8331> <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created <https://orcid.org/0000-0001-9990-8331> "2024-06-21T14:43:39Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label <https://orcid.org/0000-0001-9990-8331> "Alexander D. Diehl"@en)
+
+# Individual: <https://orcid.org/0009-0003-5583-4731> (Ava E. Cunningham)
+
+AnnotationAssertion(dcterms:contributor <https://orcid.org/0009-0003-5583-4731> <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created <https://orcid.org/0009-0003-5583-4731> "2024-06-21T14:44:26Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label <https://orcid.org/0009-0003-5583-4731> "Ava E. Cunningham"@en)
 
 # Individual: <https://orcid.org/0009-0006-7251-3026> (Gopikrishnan M Chandrasekharan)
 
