@@ -844,9 +844,115 @@ Widened the definition to include other materials used in restoration processes 
     
 
 
+    <!-- http://purl.obolibrary.org/obo/OHD_1000 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_1000">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Organization"/>
+        <rdfs:label xml:lang="en">Manufacturer</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_1001 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_1001">
+        <rdfs:label xml:lang="en">Clinical Manipulation</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_1002 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_1002">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_1001"/>
+        <rdfs:label xml:lang="en">Material Manipulation</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_1003 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_1003">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_1001"/>
+        <rdfs:label xml:lang="en">Placement Technique</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_1004 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_1004">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_1001"/>
+        <rdfs:label xml:lang="en">Tooth Surface Preparation</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_1005 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_1005">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_1003"/>
+        <rdfs:label xml:lang="en">Less Complex Technique</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_1006 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_1006">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_1003"/>
+        <rdfs:label xml:lang="en">More Complex Technique</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_1007 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_1007">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_1006"/>
+        <rdfs:label xml:lang="en">Adhesive Technique</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_1008 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/OHD_1008">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_1006"/>
+        <rdfs:label xml:lang="en">Dentine Bonding Agent Technique</rdfs:label>
+    </Class>
+    
+
+
     <!-- http://www.geneontology.org/formats/oboInOwl#ObsoleteClass -->
 
     <Class rdf:about="http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"/>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Agent -->
+
+    <Class rdf:about="http://www.w3.org/ns/prov#Agent">
+        <rdfs:label>Agent</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Organization -->
+
+    <Class rdf:about="http://www.w3.org/ns/prov#Organization">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Agent"/>
+        <rdfs:label>Organization</rdfs:label>
+    </Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Person -->
+
+    <Class rdf:about="http://www.w3.org/ns/prov#Person">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Agent"/>
+        <rdfs:label>Person</rdfs:label>
+    </Class>
     
 
 
