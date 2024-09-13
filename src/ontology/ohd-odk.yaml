@@ -1,0 +1,60 @@
+id: ohd
+title: "Oral Health and Disease Ontology"
+github_org: oral-health-and-disease-ontologies
+repo: ohd-ontology
+report_fail_on: ERROR
+export_formats:
+  - owl
+  - obo
+  - json
+release_artefacts: 
+  - base
+  - full
+  - non-classified
+import_group:
+  module_type: filter
+  annotation_properties:
+    - rdfs:label
+    - IAO:0000115
+    - IAO:0000116
+    - IAO:0000111
+    - oboInOwl:hasDbXref
+    - rdfs:comment
+  products:
+    - id: bfo2_classes
+      module_type: custom
+    - id: caro
+    - id: cdt
+    - id: ecto
+    - id: fma-jaws-teeth
+    - id: fma-lymph
+    - id: fma-mouth-mucosa
+    - id: fma-tmj
+    - id: fma-tongue
+    - id: iao
+    - id: ncbi
+    - id: obi
+    - id: ogms
+    - id: omrse
+    - id: ro
+    - id: omo
+      mirror_from: http://purl.obolibrary.org/obo/omo/releases/2023-06-09/omo.owl
+    - id: ro
+      mirror_from: http://purl.obolibrary.org/obo/ro/releases/2023-02-22/ro.owl
+components:
+  products:
+    - filename: dental_material.owl
+robot_java_args: '-Xmx8G'
+custom_makefile_header: |
+  ### Workflow
+  #
+  # Tasks to edit and release OMRSE.
+  #
+  # #### Edit
+  #
+  # 1. [Prepare release](prepare_release)
+  # 2. [Refresh imports](all_imports)
+  # 3. [Update repo to latest ODK](update_repo)
+create_obo_metadata: FALSE
+documentation:
+  documentation_system: mkdocs
