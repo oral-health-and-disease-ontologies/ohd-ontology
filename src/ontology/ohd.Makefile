@@ -82,6 +82,42 @@ $(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
+$(IMPORTDIR)/envo_import.owl: $(MIRRORDIR)/envo.owl
+	if [ $(IMP) = true ]; then $(ROBOT) \
+        remove \
+            --input $< \
+            --select "owl:deprecated='true'^^xsd:boolean" \
+        extract \
+            --method MIREOT \
+            --branch-from-term BFO:0000040 \
+        extract \
+            --method MIREOT \
+            --lower-terms $(IMPORTDIR)/envo_terms.txt \
+            --intermediates minimal \
+        annotate \
+            --annotate-defined-by true \
+            --annotate-derived-from true \
+            --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        --output $@.tmp.owl && mv $@.tmp.owl $@; fi
+
+$(IMPORTDIR)/chebi_import.owl: $(MIRRORDIR)/chebi.owl.gz
+	if [ $(IMP) = true ]; then $(ROBOT) \
+        remove \
+            --input $< \
+            --select "owl:deprecated='true'^^xsd:boolean" \
+        extract \
+            --method MIREOT \
+            --branch-from-term CHEBI:24431 \
+        extract \
+            --method MIREOT \
+            --lower-terms $(IMPORTDIR)/chebi_terms.txt \
+            --intermediates minimal \
+        annotate \
+            --annotate-defined-by true \
+            --annotate-derived-from true \
+            --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        --output $@.tmp.owl && mv $@.tmp.owl $@; fi
+
 $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl
 	if [ $(IMP) = true ]; then $(ROBOT) \
         remove \
