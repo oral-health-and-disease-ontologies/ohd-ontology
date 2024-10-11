@@ -7,10 +7,14 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:prov="http://www.w3.org/ns/prov#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
-    <Ontology rdf:about="http://purl.obolibrary.org/obo/ohd/components/dental_material.owl"/>
+    <Ontology rdf:about="http://purl.obolibrary.org/obo/ohd/components/dental_material.owl">
+        <imports rdf:resource="http://purl.obolibrary.org/obo/ohd/components/collaborators.owl"/>
+        <imports rdf:resource="http://purl.obolibrary.org/obo/ro/releases/2023-02-22/ro.owl"/>
+    </Ontology>
     
 
 
@@ -462,8 +466,6 @@ Bill D. 08-04-2023: Not all resins are tooth colored. Some are cream colored. Al
         <obo:IAO_0000119>Chang, S.W., 2012. Chemical characteristics of mineral trioxide aggregate and its hydration reaction. 
 Restorative dentistry &amp; endodontics, 37(4), pp.188-193.</obo:IAO_0000119>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
-        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
-        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-10-12T21:52:17Z</terms:created>
         <rdfs:comment>It is used in pulp capping, apexification, pulpotomy, and treatment of perforation.</rdfs:comment>
         <rdfs:label>mineral trioxide aggregate cement dental restoration material</rdfs:label>
@@ -477,10 +479,7 @@ Restorative dentistry &amp; endodontics, 37(4), pp.188-193.</obo:IAO_0000119>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000000"/>
         <obo:IAO_0000115>A dental restoration material that has a nonmetallic inorganic structure consisting primarily of compounds containing oxygen combined with one or more metallic or semi-metallic elements that are processed at high temperatures, pressed, and polished or milled.</obo:IAO_0000115>
         <obo:IAO_0000119>ISBN: 9780323697552</obo:IAO_0000119>
-        <terms:contributor rdf:resource="https://orcid.org/0000-0001-6378-1703"/>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
-        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
-        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9990-8331"/>
         <rdfs:label>ceramic dental restoration material</rdfs:label>
     </Class>
     
@@ -2030,63 +2029,9 @@ I have no idea why this happening...</obo:IAO_0000116>
     
 
 
-    <!-- https://orcid.org/0000-0001-6378-1703 -->
-
-    <NamedIndividual rdf:about="https://orcid.org/0000-0001-6378-1703">
-        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
-        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-09-13T19:10:52Z</terms:created>
-        <rdfs:label xml:lang="en">Matthew Diller</rdfs:label>
-    </NamedIndividual>
-    
-
-
     <!-- https://orcid.org/0000-0001-6424-4096 -->
 
-    <NamedIndividual rdf:about="https://orcid.org/0000-0001-6424-4096">
-        <rdfs:label>Nivedita Dutta (Chowdhury)</rdfs:label>
-    </NamedIndividual>
-    
-
-
-    <!-- https://orcid.org/0000-0001-9625-1899 -->
-
-    <NamedIndividual rdf:about="https://orcid.org/0000-0001-9625-1899">
-        <rdfs:label>Bill Duncan</rdfs:label>
-    </NamedIndividual>
-    
-
-
-    <!-- https://orcid.org/0000-0001-9990-8331 -->
-
-    <NamedIndividual rdf:about="https://orcid.org/0000-0001-9990-8331">
-        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
-        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-09-13T19:10:13Z</terms:created>
-        <rdfs:label xml:lang="en">Alexander D. Diehl</rdfs:label>
-    </NamedIndividual>
-    
-
-
-    <!-- https://orcid.org/0000-0002-1604-3078 -->
-
-    <NamedIndividual rdf:about="https://orcid.org/0000-0002-1604-3078">
-        <rdfs:label>Alan Ruttenberg</rdfs:label>
-    </NamedIndividual>
-    
-
-
-    <!-- https://orcid.org/0000-0003-1829-971X -->
-
-    <NamedIndividual rdf:about="https://orcid.org/0000-0003-1829-971X">
-        <rdfs:label>Titus Schleyer</rdfs:label>
-    </NamedIndividual>
-    
-
-
-    <!-- https://orcid.org/0009-0006-7251-3026 -->
-
-    <NamedIndividual rdf:about="https://orcid.org/0009-0006-7251-3026">
-        <rdfs:label>Gopikrishnan M Chandrasekharan</rdfs:label>
-    </NamedIndividual>
+    <NamedIndividual rdf:about="https://orcid.org/0000-0001-6424-4096"/>
     
 
 

@@ -38,17 +38,17 @@ import_group:
     - id: omrse
     - id: ro
     - id: omo
-      mirror_from: http://purl.obolibrary.org/obo/omo/releases/2023-06-09/omo.owl
-    - id: ro
-      mirror_from: http://purl.obolibrary.org/obo/ro/releases/2023-02-22/ro.owl
+    - id: chebi
+      use_gzipped: TRUE
 components:
   products:
     - filename: dental_material.owl
-robot_java_args: '-Xmx8G'
+    - filename: collaborators.owl
+robot_java_args: '-Xmx16G'
 custom_makefile_header: |
   ### Workflow
   #
-  # Tasks to edit and release OMRSE.
+  # Tasks to edit and release OHD.
   #
   # #### Edit
   #
