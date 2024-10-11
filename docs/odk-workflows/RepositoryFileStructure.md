@@ -32,6 +32,7 @@ These are the current imports in OHD
 | omrse | http://purl.obolibrary.org/obo/omrse.owl | None |
 | ro | http://purl.obolibrary.org/obo/ro.owl | None |
 | omo | http://purl.obolibrary.org/obo/omo.owl | None |
+| envo | http://purl.obolibrary.org/obo/envo.owl | None |
 | chebi | http://purl.obolibrary.org/obo/chebi.owl | None |
 
 ## Components

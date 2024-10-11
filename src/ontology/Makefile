@@ -16,7 +16,7 @@
 # 3. [Update repo to latest ODK](update_repo)
 
 # Fingerprint of the configuration file when this Makefile was last generated
-CONFIG_HASH=                c19fb2f2996eda07ef2b0e2f7d989174b199eaac294d0fc7f6eb4ee03d652d4f
+CONFIG_HASH=                059e9d32b669798cc3c31bffd79da3a2a41587170fc01f7149f0af75d6fedf25
 
 
 # ----------------------------------------
@@ -165,7 +165,7 @@ all_main: $(MAIN_FILES)
 # ----------------------------------------
 
 
-IMPORTS =  bfo2_classes caro cdt ecto fma-jaws-teeth fma-lymph fma-mouth-mucosa fma-tmj fma-tongue iao ncbi obi ogms omrse ro omo chebi
+IMPORTS =  bfo2_classes caro cdt ecto fma-jaws-teeth fma-lymph fma-mouth-mucosa fma-tmj fma-tongue iao ncbi obi ogms omrse ro omo envo chebi
 
 IMPORT_ROOTS = $(patsubst %, $(IMPORTDIR)/%_import, $(IMPORTS))
 IMPORT_OWL_FILES = $(foreach n,$(IMPORT_ROOTS), $(n).owl)
@@ -567,6 +567,14 @@ mirror-ro: | $(TMPDIR)
 mirror-omo: | $(TMPDIR)
 	curl -L $(OBOBASE)/omo.owl --create-dirs -o $(TMPDIR)/omo-download.owl --retry 4 --max-time 200 && \
 	$(ROBOT) convert -i $(TMPDIR)/omo-download.owl -o $(TMPDIR)/$@.owl
+
+
+## ONTOLOGY: envo
+.PHONY: mirror-envo
+.PRECIOUS: $(MIRRORDIR)/envo.owl
+mirror-envo: | $(TMPDIR)
+	curl -L $(OBOBASE)/envo.owl --create-dirs -o $(TMPDIR)/envo-download.owl --retry 4 --max-time 200 && \
+	$(ROBOT) convert -i $(TMPDIR)/envo-download.owl -o $(TMPDIR)/$@.owl
 
 
 ## ONTOLOGY: chebi
