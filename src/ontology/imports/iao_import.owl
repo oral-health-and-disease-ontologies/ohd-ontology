@@ -7,8 +7,11 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:prov="http://www.w3.org/ns/prov#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
+    <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl">
+        <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Ontology>
     
 
 
@@ -31,6 +34,30 @@
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
         <rdfs:label xml:lang="en">BFO OWL specification label</rdfs:label>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000179"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000179"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">Relates an entity in the ontology to the name of the variable that is used to represent it in the code that generates the BFO OWL file from the lispy specification.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000179"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000232"/>
+        <owl:annotatedTarget xml:lang="en">Really of interest to developers only</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000179"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">BFO OWL specification label</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -43,6 +70,36 @@
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
         <rdfs:label xml:lang="en">BFO CLIF specification label</rdfs:label>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000180"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000180"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">Relates an entity in the ontology to the term that is used to represent it in the the CLIF specification of BFO2</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000180"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget>Person:Alan Ruttenberg</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000180"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000232"/>
+        <owl:annotatedTarget xml:lang="en">Really of interest to developers only</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000180"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">BFO CLIF specification label</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -57,6 +114,54 @@
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
         <rdfs:label xml:lang="en">editor preferred term</rdfs:label>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">editor preferred term</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">The concise, meaningful, and human-friendly name for a class or property preferred by the ontology developers. (US-English)</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON:Daniel Schober</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">GROUP:OBI:&lt;http://purl.obolibrary.org/obo/obi&gt;</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">editor preferred term</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -71,6 +176,54 @@
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
         <rdfs:label xml:lang="en">example of usage</rdfs:label>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">example of usage</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">A phrase describing how a term should be used and/or a citation to a work which uses it. May also include other kinds of examples that facilitate immediate understanding, such as widely know prototypes or instances of a class, or cases where a relation is said to hold.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON:Daniel Schober</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">GROUP:OBI:&lt;http://purl.obolibrary.org/obo/obi&gt;</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">example of usage</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -84,6 +237,42 @@
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
         <rdfs:label xml:lang="en">has curation status</rdfs:label>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">has curation status</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON:Alan Ruttenberg</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON:Bill Bug</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON:Melanie Courtot</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">has curation status</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -118,6 +307,79 @@ We also have the outstanding issue of how to aim different definitions to differ
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
         <rdfs:label xml:lang="en">definition</rdfs:label>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">definition</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">The official definition, explaining the meaning of a class or property. Shall be Aristotelian, formalized and normalized. Can be augmented with colloquial definitions.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">2012-04-05: 
+Barry Smith
+
+The official OBI definition, explaining the meaning of a class or property: &apos;Shall be Aristotelian, formalized and normalized. Can be augmented with colloquial definitions&apos;  is terrible.
+
+Can you fix to something like:
+
+A statement of necessary and sufficient conditions explaining the meaning of an expression referring to a class or property.
+
+Alan Ruttenberg
+
+Your proposed definition is a reasonable candidate, except that it is very common that necessary and sufficient conditions are not given. Mostly they are necessary, occasionally they are necessary and sufficient or just sufficient. Often they use terms that are not themselves defined and so they effectively can&apos;t be evaluated by those criteria. 
+
+On the specifics of the proposed definition:
+
+We don&apos;t have definitions of &apos;meaning&apos; or &apos;expression&apos; or &apos;property&apos;. For &apos;reference&apos; in the intended sense I think we use the term &apos;denotation&apos;. For &apos;expression&apos;, I think we you mean symbol, or identifier. For &apos;meaning&apos; it differs for class and property. For class we want documentation that let&apos;s the intended reader determine whether an entity is instance of the class, or not. For property we want documentation that let&apos;s the intended reader determine, given a pair of potential relata, whether the assertion that the relation holds is true. The &apos;intended reader&apos; part suggests that we also specify who, we expect, would be able to understand the definition, and also generalizes over human and computer reader to include textual and logical definition. 
+
+Personally, I am more comfortable weakening definition to documentation, with instructions as to what is desirable. 
+
+We also have the outstanding issue of how to aim different definitions to different audiences. A clinical audience reading chebi wants a different sort of definition documentation/definition from a chemistry trained audience, and similarly there is a need for a definition that is adequate for an ontologist to work with.  </owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON:Daniel Schober</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">GROUP:OBI:&lt;http://purl.obolibrary.org/obo/obi&gt;</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">definition</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -132,6 +394,54 @@ We also have the outstanding issue of how to aim different definitions to differ
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
         <rdfs:label xml:lang="en">editor note</rdfs:label>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">editor note</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">An administrative note intended for its editor. It may not be included in the publication version of the ontology, so it should contain nothing necessary for end users to understand the ontology.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON:Daniel Schober</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">GROUP:OBI:&lt;http://purl.obofoundry.org/obo/obi&gt;</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">editor note</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -147,6 +457,60 @@ We also have the outstanding issue of how to aim different definitions to differ
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
         <rdfs:label xml:lang="en">term editor</rdfs:label>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">term editor</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">Name of editor entering the term in the file. The term editor is a point of contact for information regarding the term. The term editor may be, but is not always, the author of the definition, which may have been worked upon by several people</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">20110707, MC: label update to term editor and definition modified accordingly. See https://github.com/information-artifact-ontology/IAO/issues/115.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON:Daniel Schober</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">GROUP:OBI:&lt;http://purl.obolibrary.org/obo/obi&gt;</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">term editor</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -163,6 +527,60 @@ We also have the outstanding issue of how to aim different definitions to differ
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
         <rdfs:label xml:lang="en">alternative label</rdfs:label>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">alternative label</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">A label for a class or property that can be used to refer to the class or property instead of the preferred rdfs:label. Alternative labels should be used to indicate community- or context-specific labels, abbreviations, shorthand forms and the like.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget>OBO Operations committee</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON:Daniel Schober</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">GROUP:OBI:&lt;http://purl.obolibrary.org/obo/obi&gt;</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#comment"/>
+        <owl:annotatedTarget>Consider re-defing to: An alternative name for a class or property which can mean the same thing as the preferred name (semantically equivalent, narrow, broad or related).</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">alternative label</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -178,6 +596,60 @@ We also have the outstanding issue of how to aim different definitions to differ
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
         <rdfs:label xml:lang="en">definition source</rdfs:label>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">definition source</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">Formal citation, e.g. identifier in external database to indicate / attribute source(s) for the definition. Free text indicate / attribute source(s) for the definition. EXAMPLE: Author Name, URI, MeSH Term C04, PUBMED ID, Wiki uri on 31.01.2007</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON:Daniel Schober</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">Discussion on obo-discuss mailing-list, see http://bit.ly/hgm99w</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">GROUP:OBI:&lt;http://purl.obolibrary.org/obo/obi&gt;</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">definition source</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -191,6 +663,48 @@ We also have the outstanding issue of how to aim different definitions to differ
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
         <rdfs:label xml:lang="en">curator note</rdfs:label>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000232"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000232"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">curator note</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000232"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000232"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">An administrative note of use for a curator but of no use for a user</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000232"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON:Alan Ruttenberg</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000232"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000232"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">curator note</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -207,6 +721,60 @@ We also have the outstanding issue of how to aim different definitions to differ
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
         <rdfs:label xml:lang="en">term tracker item</rdfs:label>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000233"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000233"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">term tracker item</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000233"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedTarget xml:lang="en">the URI for an OBI Terms ticket at sourceforge, such as https://sourceforge.net/p/obi/obi-terms/772/</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000233"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000233"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">An IRI or similar locator for a request or discussion of an ontology term.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000233"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">Person: Jie Zheng, Chris Stoeckert, Alan Ruttenberg</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000233"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">Person: Jie Zheng, Chris Stoeckert, Alan Ruttenberg</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000233"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#comment"/>
+        <owl:annotatedTarget xml:lang="en">The &apos;tracker item&apos; can associate a tracker with a specific ontology term.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000233"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">term tracker item</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -222,6 +790,60 @@ We also have the outstanding issue of how to aim different definitions to differ
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
         <rdfs:label xml:lang="en">imported from</rdfs:label>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000412"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">imported from</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000412"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000412"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">imported from</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000412"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000412"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">For external terms/classes, the ontology from which the term was imported</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000412"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON:Alan Ruttenberg</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000412"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON:Melanie Courtot</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000412"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">GROUP:OBI:&lt;http://purl.obolibrary.org/obo/obi&gt;</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000412"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -235,6 +857,48 @@ We also have the outstanding issue of how to aim different definitions to differ
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
         <rdfs:label xml:lang="en">elucidation</rdfs:label>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000600"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000600"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">elucidation</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000600"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">person:Alan Ruttenberg</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000600"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">Person:Barry Smith</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000600"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000600"/>
+        <owl:annotatedTarget xml:lang="en">Primitive terms in a highest-level ontology such as BFO are terms which are so basic to our understanding of reality that there is no way of defining them in a non-circular fashion. For these, therefore, we can provide only elucidations, supplemented by examples and by axioms</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000600"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000600"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">elucidation</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -248,6 +912,48 @@ We also have the outstanding issue of how to aim different definitions to differ
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
         <rdfs:label xml:lang="en">has associated axiom(fol)</rdfs:label>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000602"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000602"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">has associated axiom(fol)</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000602"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">Person:Alan Ruttenberg</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000602"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">Person:Alan Ruttenberg</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000602"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000600"/>
+        <owl:annotatedTarget xml:lang="en">An axiom expressed in first order logic using CLIF syntax</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000602"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000602"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">has associated axiom(fol)</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -261,6 +967,42 @@ We also have the outstanding issue of how to aim different definitions to differ
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
         <rdfs:label>retired from use as of</rdfs:label>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000604"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000604"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">retired from use as of</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000604"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>relates a class of CRID to the date after which further instances should not be made, according to the central authority</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000604"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">In OWL 2 add AnnotationPropertyRange xsd:dateTimeStamp</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000604"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">Alan Ruttenberg</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000604"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget>retired from use as of</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -277,57 +1019,68 @@ We also have the outstanding issue of how to aim different definitions to differ
     <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator">
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
     </owl:AnnotationProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.org/dc/elements/1.1/creator"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
     <!-- http://www.w3.org/2000/01/rdf-schema#comment -->
 
-    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#comment">
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
-    </owl:AnnotationProperty>
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#comment"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.w3.org/2000/01/rdf-schema#comment"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
     <!-- http://www.w3.org/2000/01/rdf-schema#isDefinedBy -->
 
-    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#isDefinedBy">
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
-    </owl:AnnotationProperty>
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
     <!-- http://www.w3.org/2000/01/rdf-schema#label -->
 
-    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
-    </owl:AnnotationProperty>
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#label"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
     <!-- http://www.w3.org/2000/01/rdf-schema#seeAlso -->
 
-    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#seeAlso">
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#seeAlso"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.w3.org/2000/01/rdf-schema#seeAlso"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasDerivedFrom -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/ns/prov#wasDerivedFrom">
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
     </owl:AnnotationProperty>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Datatypes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral -->
-
-    <rdf:Description rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
-    </rdf:Description>
     
 
 
@@ -359,14 +1112,76 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
         <rdfs:label xml:lang="en">is about</rdfs:label>
     </owl:ObjectProperty>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subPropertyOf"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedTarget xml:lang="en">This document is about information artifacts and their representations</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">A (currently) primitive relation that relates an information artifact to an entity.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">7/6/2009 Alan Ruttenberg. Following discussion with Jonathan Rees, and introduction of &quot;mentions&quot; relation. Weaken the is_about relationship to be primitive. 
+
+We will try to build it back up by elaborating the various subproperties that are more precisely defined.
+
+Some currently missing phenomena that should be considered &quot;about&quot; are predications - &quot;The only person who knows the answer is sitting beside me&quot; , Allegory, Satire, and other literary forms that can be topical without explicitly mentioning the topic.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">person:Alan Ruttenberg</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">Smith, Ceusters, Ruttenberg, 2000 years of philosophy</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">is about</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
     <!-- http://www.w3.org/2002/07/owl#topObjectProperty -->
 
-    <owl:ObjectProperty rdf:about="http://www.w3.org/2002/07/owl#topObjectProperty">
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
-    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -396,15 +1211,65 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     </owl:Class>
     <owl:Axiom>
         <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000179"/>
+        <owl:annotatedTarget>gdc</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000180"/>
+        <owl:annotatedTarget>GenericallyDependentContinuant</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedTarget xml:lang="en">The entries in your database are patterns instantiated as quality instances in your hard drive. The database itself is an aggregate of such patterns. When you create the database you create a particular instance of the generically dependent continuant type database. Each entry in the database is an instance of the generically dependent continuant type IAO: information content entity.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedTarget xml:lang="en">the pdf file on your laptop, the pdf file that is a copy thereof on my laptop</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedTarget xml:lang="en">the sequence of this protein molecule; the sequence that is a copy thereof in that protein molecule.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
         <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <owl:annotatedTarget xml:lang="en">b is a generically dependent continuant = Def. b is a continuant that g-depends_on one or more other entities. (axiom label in BFO2 Reference: [074-001])</owl:annotatedTarget>
         <obo:IAO_0010000 rdf:resource="http://purl.obolibrary.org/obo/bfo/axiom/074-001"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
     </owl:Axiom>
     <owl:Axiom>
         <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
         <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000602"/>
         <owl:annotatedTarget>(iff (GenericallyDependentContinuant a) (and (Continuant a) (exists (b t) (genericallyDependsOnAt a b t)))) // axiom label in BFO2 CLIF: [074-001] </owl:annotatedTarget>
         <obo:IAO_0010000 rdf:resource="http://purl.obolibrary.org/obo/bfo/axiom/074-001"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/bfo.owl"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">generically dependent continuant</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
     </owl:Axiom>
     
 
@@ -430,6 +1295,108 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
         <rdfs:label xml:lang="en">objective specification</rdfs:label>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000033"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">objective specification</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedTarget xml:lang="en">In the protocol of a ChIP assay the objective specification says to identify protein and DNA interaction.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">A directive information entity that describes an intended process endpoint. When part of a plan specification the concretization is realized in a planned process in which the bearer tries to effect the world so that the process endpoint is achieved.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">2009-03-16: original definition when imported from OBI read: &quot;objective is an non realizable information entity which can serve as that  proper part of a plan towards which the realization of the plan is directed.&quot;</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">2014-03-31: In the example of usage (&quot;In the protocol of a ChIP assay the objective specification says to identify protein and DNA interaction&quot;) there is a protocol which is the ChIP assay protocol. In addition to being concretized on paper, the protocol can be concretized as a realizable entity, such as a plan that inheres in a person. The objective specification is the part that says that some protein and DNA interactions are identified. This is a specification of a process endpoint: the boundary in the process before which they are not identified and after which they are. During the realization of the plan, the goal is to get to the point of having the interactions, and participants in the realization of the plan try to do that.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">Answers the question, why did you do this experiment?</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Alan Ruttenberg</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Barry Smith</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Bjoern Peters</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Jennifer Fostel</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
+        <owl:annotatedTarget xml:lang="en">goal specification</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">OBI Plan and Planned Process/Roles Branch</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">OBI_0000217</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000005"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">objective specification</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -445,6 +1412,54 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
         <rdfs:label xml:lang="en">action specification</rdfs:label>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000007"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000007"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000033"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000007"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedTarget xml:lang="en">Pour the contents of flask 1 into flask 2</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000007"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000007"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">A directive information entity that describes an action the bearer will take.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000007"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">Alan Ruttenberg</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000007"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">OBI Plan and Planned Process branch</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000007"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">action specification</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -462,6 +1477,61 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
         <rdfs:label xml:lang="en">datum label</rdfs:label>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000009"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000009"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000009"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">datum label</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000009"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000009"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">A label is a symbol that is part of some other datum and is used to either partially define  the denotation of that datum or to provide a means for identifying the datum as a member of the set of data with the same label</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000009"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">http://www.golovchenko.org/cgi-bin/wnsearch?q=label#4n</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000009"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">GROUP: IAO</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000009"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000232"/>
+        <owl:annotatedTarget>9/22/11 BP: changed the rdfs:label for this class from &apos;label&apos; to &apos;datum label&apos; to convey that this class is not intended to cover all kinds of labels (stickers, radiolabels, etc.), and not even all kind of textual labels, but rather the kind of labels occuring in a datum. 
+</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000009"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">datum label</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -491,6 +1561,108 @@ JAR: A data item is an approximately justified approximately true approximate be
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
         <rdfs:label xml:lang="en">data item</rdfs:label>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">data item</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedTarget xml:lang="en">Data items include counts of things, analyte concentrations, and statistical summaries.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">An information content entity that is intended to be a truthful statement about something (modulo, e.g., measurement precision or other systematic errors) and is constructed/acquired by a method which reliably tends to produce (approximately) truthful statements.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">2/2/2009 Alan and Bjoern discussing FACS run output data. This is a data item because it is about the cell population. Each element records an event and is typically further composed a set of measurment data items that record the fluorescent intensity stimulated by one of the lasers.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">2009-03-16: data item deliberatly ambiguous: we merged data set and datum to be one entity, not knowing how to define singular versus plural. So data item is more general than datum.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">2009-03-16: removed datum as alternative term as datum specifically refers to singular form, and is thus not an exact synonym.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget>2014-03-31: See discussion at http://odontomachus.wordpress.com/2014/03/30/aboutness-objects-propositions/</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">JAR: datum     -- well, this will be very tricky to define, but maybe some 
+information-like stuff that might be put into a computer and that is 
+meant, by someone, to denote and/or to be interpreted by some 
+process... I would include lists, tables, sentences... I think I might 
+defer to Barry, or to Brian Cantwell Smith
+
+JAR: A data item is an approximately justified approximately true approximate belief</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Alan Ruttenberg</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Chris Stoeckert</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Jonathan Rees</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
+        <owl:annotatedTarget xml:lang="en">data</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">data item</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -512,6 +1684,90 @@ JAR: A data item is an approximately justified approximately true approximate be
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
         <rdfs:label xml:lang="en">symbol</rdfs:label>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000028"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000028"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000028"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">symbol</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000028"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedTarget xml:lang="en">a serial number such as &quot;12324X&quot;</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000028"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedTarget xml:lang="en">a stop sign</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000028"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedTarget xml:lang="en">a written proper name such as &quot;OBI&quot;</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000028"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000028"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">An information content entity that is a mark(s) or character(s) used as a conventional representation of another entity.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000028"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">20091104, MC: this needs work and will most probably change</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000028"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">2014-03-31: We would like to have a deeper analysis of &apos;mark&apos; and &apos;sign&apos; in the future (see https://github.com/information-artifact-ontology/IAO/issues/154).</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000028"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: James A. Overton</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000028"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Jonathan Rees</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000028"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">based on Oxford English Dictionary</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000028"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">symbol</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -532,6 +1788,74 @@ Previous. An information content entity is a non-realizable information entity t
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
         <rdfs:label xml:lang="en">information content entity</rdfs:label>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">information content entity</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedTarget xml:lang="en">Examples of information content entites include journal articles, data, graphical layouts, and graphs.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">A generically dependent continuant that is about some thing.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">2014-03-10: The use of &quot;thing&quot; is intended to be general enough to include universals and configurations (see https://groups.google.com/d/msg/information-ontology/GBxvYZCk1oc/-L6B5fSBBTQJ).</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">information_content_entity &apos;is_encoded_in&apos; some digital_entity in obi before split (040907). information_content_entity &apos;is_encoded_in&apos; some physical_document in obi before split (040907).
+
+Previous. An information content entity is a non-realizable information entity that &apos;is encoded in&apos; some digital or physical entity.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Chris Stoeckert</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">OBI_0000142</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">information content entity</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -550,6 +1874,72 @@ Previous. An information content entity is a non-realizable information entity t
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
         <rdfs:label xml:lang="en">directive information entity</rdfs:label>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000033"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000033"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000033"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000033"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">An information content entity whose concretizations indicate to their bearer how to realize them in a process.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000033"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">2009-03-16: provenance: a term realizable information entity was proposed for OBI (OBI_0000337) , edited by the PlanAndPlannedProcess branch. Original definition was  &quot;is the specification of a process that can be concretized and realized by an actor&quot; with alternative term  &quot;instruction&quot;.It has been subsequently moved to IAO where the objective for which the original term was defined was satisfied with the definitionof this, different, term.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000033"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">2013-05-30 Alan Ruttenberg: What differentiates a directive information entity from an information concretization is that it can have concretizations that are either qualities or realizable entities. The concretizations that are realizable entities are created when an individual chooses to take up the direction, i.e. has the intention to (try to) realize it.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000033"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">8/6/2009 Alan Ruttenberg: Changed label from &quot;information entity about a realizable&quot; after discussions at ICBO</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000033"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">Werner pushed back on calling it realizable information entity as it isn&apos;t realizable. However this name isn&apos;t right either. An example would be a recipe. The realizable entity would be a plan, but the information entity isn&apos;t about the plan, it, once concretized, *is* the plan. -Alan</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000033"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Alan Ruttenberg</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000033"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Bjoern Peters</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000033"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">directive information entity</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -580,6 +1970,114 @@ Request that IAO either clarify these or change definitions not to use them</rdf
         <rdfs:label xml:lang="en">plan specification</rdfs:label>
         <rdfs:seeAlso xml:lang="en">https://github.com/information-artifact-ontology/IAO/issues/231#issuecomment-1010455131</rdfs:seeAlso>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000104"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000104"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000033"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000104"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">plan specification</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000104"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedTarget xml:lang="en">PMID: 18323827.Nat Med. 2008 Mar;14(3):226.New plan proposed to help resolve conflicting medical advice.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000104"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000122"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000104"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">A directive information entity with action specifications and objective specifications as parts, and that may be concretized as a realizable entity that, if realized, is realized in a process in which the bearer tries to achieve the objectives by taking the actions specified.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000104"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">2009-03-16: provenance: a term a plan was proposed for OBI (OBI_0000344) , edited by the PlanAndPlannedProcess branch. Original definition was &quot; a plan is a specification of a process that is realized by an actor to achieve the objective specified as part of the plan&quot;. It has been subsequently moved to IAO where the objective for which the original term was defined was satisfied with the definitionof this, different, term.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000104"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">2014-03-31: A plan specification can have other parts, such as conditional specifications.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000104"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">2022-01-16 Updated definition to that proposed by Clint Dowloand, IAO Issue 231.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000104"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">Alternative previous definition: a plan is a set of instructions that specify how an objective should be achieved</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000104"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">Alan Ruttenberg</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000104"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">Clint Dowland</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000104"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">OBI Plan and Planned Process branch</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000104"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">OBI_0000344</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000104"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#comment"/>
+        <owl:annotatedTarget xml:lang="en">2/3/2009 Comment from OBI review.
+
+Action specification not well enough specified.
+Conditional specification not well enough specified.
+Question whether all plan specifications have objective specifications.
+
+Request that IAO either clarify these or change definitions not to use them</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000104"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">plan specification</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000104"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#seeAlso"/>
+        <owl:annotatedTarget xml:lang="en">https://github.com/information-artifact-ontology/IAO/issues/231#issuecomment-1010455131</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -599,6 +2097,78 @@ Request that IAO either clarify these or change definitions not to use them</rdf
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
         <rdfs:label xml:lang="en">centrally registered identifier symbol</rdfs:label>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000577"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000577"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000028"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000577"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedTarget xml:lang="en">The sentence &quot;The article has Pubmed ID 12345.&quot; contains a CRID that has two parts: one part is the CRID symbol, which is &apos;12345&apos;; the other part denotes the CRID registry, which is Pubmed.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000577"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000577"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">A symbol that is part of a CRID and that is sufficient to look up a record from the CRID&apos;s registry.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000577"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Alan Ruttenberg</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000577"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Bill Hogan</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000577"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Bjoern Peters</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000577"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Melanie Courtot</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000577"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
+        <owl:annotatedTarget>CRID symbol</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000577"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">Original proposal from Bjoern, discussions at IAO calls</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000577"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">centrally registered identifier symbol</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -621,6 +2191,96 @@ Request that IAO either clarify these or change definitions not to use them</rdf
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
         <rdfs:label xml:lang="en">centrally registered identifier</rdfs:label>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000578"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000578"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0020000"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000578"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000112"/>
+        <owl:annotatedTarget xml:lang="en">The sentence &quot;The article has Pubmed ID 12345.&quot; contains a CRID that has two parts: one part is the CRID symbol, which is &apos;12345&apos;; the other part denotes the CRID registry, which is Pubmed.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000578"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000114"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000578"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">An information content entity that consists of a CRID symbol and additional information about the CRID registry to which it belongs.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000578"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">2014-05-05: In defining this term we take no position on what the CRID denotes. In particular do not assume it denotes a *record* in the CRID registry (since the registry might not have &apos;records&apos;).</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000578"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">Alan, IAO call 20101124: potentially the CRID denotes the instance it was associated with during creation.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000578"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000116"/>
+        <owl:annotatedTarget xml:lang="en">Note, IAO call 20101124: URIs are not always CRID, as not centrally registered. We acknowledge that CRID is a subset of a larger identifier class, but this subset fulfills our current needs. OBI PURLs are CRID as they are registered with OCLC. UPCs (Universal Product Codes from AC Nielsen)are not CRID as they are not centrally registered.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000578"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Alan Ruttenberg</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000578"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Bill Hogan</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000578"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Bjoern Peters</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000578"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">PERSON: Melanie Courtot</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000578"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
+        <owl:annotatedTarget>CRID</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000578"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000119"/>
+        <owl:annotatedTarget xml:lang="en">Original proposal from Bjoern, discussions at IAO calls</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0000578"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">centrally registered identifier</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
     
 
 
@@ -639,23 +2299,75 @@ Request that IAO either clarify these or change definitions not to use them</rdf
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
         <rdfs:label xml:lang="en">identifier</rdfs:label>
     </owl:Class>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Annotations
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    <rdf:Description rdf:about="http://www.w3.org/2001/XMLSchema#string">
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl"/>
-    </rdf:Description>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0020000"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        <owl:annotatedTarget rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0020000"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0020000"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000111"/>
+        <owl:annotatedTarget xml:lang="en">identifier</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0020000"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget xml:lang="en">An information content entity that is the outcome of a dubbing process and is used to refer to one instance of entity shared by a group of people to refer to that individual entity.</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0020000"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">Justin Whorton</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0020000"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000117"/>
+        <owl:annotatedTarget xml:lang="en">Mathias Brochhausen</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0020000"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000118"/>
+        <owl:annotatedTarget xml:lang="en">proper name</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0020000"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000233"/>
+        <owl:annotatedTarget xml:lang="en">https://github.com/information-artifact-ontology/IAO/issues/237</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0020000"/>
+        <owl:annotatedProperty rdf:resource="http://purl.org/dc/elements/1.1/creator"/>
+        <owl:annotatedTarget>Mathias Brochhausen</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0020000"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#comment"/>
+        <owl:annotatedTarget xml:lang="en">Sep 29, 2016: The current definition has been amended from the previous version: &quot;A proper name is an information content entity that is the outcome of a dubbing process and is used to refer to one instance of entity shared by a group of people to refer to that individual entity.&quot; to more accuratly reflect the necessary and sufficient condition on the class. (MB)</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/IAO_0020000"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <owl:annotatedTarget xml:lang="en">identifier</owl:annotatedTarget>
+        <prov:wasDerivedFrom rdf:resource="http://purl.obolibrary.org/obo/iao/2022-11-07/iao.owl"/>
+    </owl:Axiom>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.29) https://github.com/owlcs/owlapi -->
 
