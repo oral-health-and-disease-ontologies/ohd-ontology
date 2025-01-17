@@ -1100,6 +1100,7 @@ Declaration(Class(obo:OHD_0000268))
 Declaration(Class(obo:OHD_0000269))
 Declaration(Class(obo:OHD_0000270))
 Declaration(Class(obo:OHD_0000271))
+Declaration(Class(obo:OHD_0000272))
 Declaration(Class(obo:OHD_0000274))
 Declaration(Class(obo:OHD_0000275))
 Declaration(Class(obo:OHD_0000276))
@@ -1114,6 +1115,7 @@ Declaration(Class(obo:OHD_0000284))
 Declaration(Class(obo:OHD_0000285))
 Declaration(Class(obo:OHD_0000286))
 Declaration(Class(obo:OHD_0000287))
+Declaration(Class(obo:OHD_0000288))
 Declaration(Class(obo:OHD_0000289))
 Declaration(Class(obo:OHD_0000290))
 Declaration(Class(obo:OHD_0000291))
@@ -4174,6 +4176,13 @@ AnnotationAssertion(rdfs:label obo:OHD_0000271 "mechanical tooth lesion"@en)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#broadMatch> obo:OHD_0000271 obo:GSSO_007548)
 SubClassOf(obo:OHD_0000271 obo:OHD_0000270)
 
+# Class: obo:OHD_0000272 (patient reported favorable outcome)
+
+AnnotationAssertion(dcterms:contributor obo:OHD_0000272 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000272 "2025-01-17T15:47:18Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000272 "patient reported favorable outcome"@en)
+SubClassOf(obo:OHD_0000272 obo:OHD_0005001)
+
 # Class: obo:OHD_0000274 (tooth cleaning process)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000274 "A process during which the surface of the tooth is cleaned.")
@@ -4310,6 +4319,13 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000287 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000287 "2023-06-06T21:38:37Z")
 AnnotationAssertion(rdfs:label obo:OHD_0000287 "awake bruxism"@en)
 SubClassOf(obo:OHD_0000287 obo:OHD_0000407)
+
+# Class: obo:OHD_0000288 (patient reported unfavorable outcome)
+
+AnnotationAssertion(dcterms:contributor obo:OHD_0000288 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000288 "2025-01-17T15:48:15Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000288 "patient reported unfavorable outcome"@en)
+SubClassOf(obo:OHD_0000288 obo:OHD_0005001)
 
 # Class: obo:OHD_0000289 (pulpal regeneration procedure)
 
@@ -5346,8 +5362,10 @@ SubClassOf(obo:OHD_0005000 obo:IAO_0000027)
 
 # Class: obo:OHD_0005001 (patient reported outcome)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0005001 "A data item that is about a report by a patient concerning a healthcare intervention. A patient reported outcome can include subjective feelings regarding symptoms, functions in daily life, physical, mental, emotional, spiritual, and social well-being, and satisfaction with healthcare that has been received.")
-AnnotationAssertion(obo:IAO_0000116 obo:OHD_0005001 "this term should be imported from more general ontology like OGMS.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/patient-reported-outcome") Annotation(obo:IAO_0000119 "https://www.pcori.org/sites/default/files/UMD-NORD-Telecon-Two-Patient-Reported-Outcomes.pdf") obo:IAO_0000115 obo:OHD_0005001 "A data item that comes directly from a patient about how they function or feel in relation to the patient's health.  A patient reported outcome can include subjective feelings regarding symptoms, functions in daily life, physical, mental, emotional, spiritual, and social well-being, and satisfaction with healthcare that has been received.")
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0005001 "This term should be imported from more general ontology like OGMS.")
+AnnotationAssertion(dc:contributor obo:OHD_0005001 <https://orcid.org/0000-0001-6378-1703>)
+AnnotationAssertion(dc:contributor obo:OHD_0005001 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0005001 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0005001 "https://orcid.org/0000-0001-9990-8331")
 AnnotationAssertion(dcterms:contributor obo:OHD_0005001 "https://orcid.org/0009-0003-7246-1252")
@@ -5363,20 +5381,20 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0005002 "https://orcid.org/0009-
 AnnotationAssertion(rdfs:label obo:OHD_0005002 "patient reported dental outcome"@en)
 SubClassOf(obo:OHD_0005002 obo:OHD_0005001)
 
-# Class: obo:OHD_0005003 (patient reported positive dental outcome)
+# Class: obo:OHD_0005003 (A patient reported dental favorable outcome)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0005003 "A patient reported dental outcome that is favorable and related to a dental condition or treatment.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0005003 "https://orcid.org/0000-0001-9990-8331")
 AnnotationAssertion(dcterms:contributor obo:OHD_0005003 "https://orcid.org/0009-0003-7246-1252")
-AnnotationAssertion(rdfs:label obo:OHD_0005003 "patient reported positive dental outcome"@en)
+AnnotationAssertion(rdfs:label obo:OHD_0005003 "A patient reported dental favorable outcome"@en)
 SubClassOf(obo:OHD_0005003 obo:OHD_0005002)
 
-# Class: obo:OHD_0005004 (patient reported negative dental outcome)
+# Class: obo:OHD_0005004 (patient reported unfavorable dental outcome)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0005004 "A patient-reported outcome that indicates an unfavorable experience or result related to a dental condition or treatment")
 AnnotationAssertion(dcterms:contributor obo:OHD_0005004 "https://orcid.org/0000-0001-9990-8331")
 AnnotationAssertion(dcterms:contributor obo:OHD_0005004 "https://orcid.org/0009-0003-7246-1252")
-AnnotationAssertion(rdfs:label obo:OHD_0005004 "patient reported negative dental outcome"@en)
+AnnotationAssertion(rdfs:label obo:OHD_0005004 "patient reported unfavorable dental outcome"@en)
 SubClassOf(obo:OHD_0005004 obo:OHD_0005002)
 
 # Class: obo:OHD_0005005 (clinical outcome)
