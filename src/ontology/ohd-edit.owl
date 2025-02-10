@@ -1241,10 +1241,14 @@ Declaration(Class(obo:OHD_0000412))
 Declaration(Class(obo:OHD_0000413))
 Declaration(Class(obo:OHD_0000414))
 Declaration(Class(obo:OHD_0002000))
+Declaration(Class(obo:OHD_0005000))
 Declaration(Class(obo:OHD_0005001))
 Declaration(Class(obo:OHD_0005002))
 Declaration(Class(obo:OHD_0005003))
 Declaration(Class(obo:OHD_0005004))
+Declaration(Class(obo:OHD_0005005))
+Declaration(Class(obo:OHD_0005006))
+Declaration(Class(obo:OHD_0005007))
 Declaration(Class(obo:PATO_0040034))
 Declaration(Class(<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>))
 Declaration(ObjectProperty(obo:BFO_0000050))
@@ -1356,6 +1360,7 @@ Declaration(AnnotationProperty(obo:OHD_0000065))
 Declaration(AnnotationProperty(obo:OHD_0000092))
 Declaration(AnnotationProperty(obo:OHD_0000209))
 Declaration(AnnotationProperty(obo:OHD_0000273))
+Declaration(AnnotationProperty(obo:OHD_0005009))
 Declaration(AnnotationProperty(dc:creator))
 Declaration(AnnotationProperty(dc:date))
 Declaration(AnnotationProperty(dc:source))
@@ -1364,6 +1369,7 @@ Declaration(AnnotationProperty(dcterms:created))
 Declaration(AnnotationProperty(dcterms:creator))
 Declaration(AnnotationProperty(dcterms:description))
 Declaration(AnnotationProperty(dcterms:title))
+Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#SubsetProperty>))
 Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#creation_date>))
 Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym>))
 Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym>))
@@ -1403,6 +1409,11 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000209 "Alan Ruttenberg")
 AnnotationAssertion(rdfs:comment obo:OHD_0000209 "mark true for representational units that are duplicate/conflict others")
 AnnotationAssertion(rdfs:label obo:OHD_0000209 "duplicated"@en)
 
+# Annotation Property: obo:OHD_0005009 (dental fear and anxiety)
+
+AnnotationAssertion(rdfs:label obo:OHD_0005009 "dental fear and anxiety"@en)
+SubAnnotationPropertyOf(obo:OHD_0005009 <http://www.geneontology.org/formats/oboInOwl#SubsetProperty>)
+
 # Annotation Property: dcterms:contributor (contributor)
 
 AnnotationAssertion(rdfs:label dcterms:contributor "contributor")
@@ -1410,6 +1421,10 @@ AnnotationAssertion(rdfs:label dcterms:contributor "contributor")
 # Annotation Property: dcterms:created (date created)
 
 AnnotationAssertion(rdfs:label dcterms:created "date created")
+
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#SubsetProperty> (subset_property)
+
+AnnotationAssertion(rdfs:label <http://www.geneontology.org/formats/oboInOwl#SubsetProperty> "subset_property"@en)
 
 # Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> (has broad synonym)
 
@@ -5372,6 +5387,12 @@ AnnotationAssertion(dcterms:created obo:OHD_0002000 "2023-06-06T21:30:37Z")
 AnnotationAssertion(rdfs:label obo:OHD_0002000 "masticatory muscle activity")
 SubClassOf(obo:OHD_0002000 obo:OGMS_0000060)
 
+# Class: obo:OHD_0005000 (**behavioral defense response)
+
+AnnotationAssertion(rdfs:comment obo:OHD_0005000 "http://purl.obolibrary.org/obo/GO_0002209")
+AnnotationAssertion(rdfs:label obo:OHD_0005000 "**behavioral defense response"@en)
+SubClassOf(obo:OHD_0005000 obo:BFO_0000015)
+
 # Class: obo:OHD_0005001 (patient-reported outcome)
 
 AnnotationAssertion(Annotation(obo:IAO_0000119 "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/patient-reported-outcome") Annotation(obo:IAO_0000119 "https://www.pcori.org/sites/default/files/UMD-NORD-Telecon-Two-Patient-Reported-Outcomes.pdf") obo:IAO_0000115 obo:OHD_0005001 "A data item that comes directly from a patient about how they function or feel in relation to the patient's health.  A patient reported outcome can include subjective feelings regarding symptoms, functions in daily life, physical, mental, emotional, spiritual, and social well-being, and satisfaction with healthcare that has been received.")
@@ -5412,6 +5433,36 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0005004 <https://orcid.org/0000-
 AnnotationAssertion(dcterms:contributor obo:OHD_0005004 <https://orcid.org/0009-0003-7246-1252>)
 AnnotationAssertion(rdfs:label obo:OHD_0005004 "patient-reported unfavorable dental outcome"@en)
 EquivalentClasses(obo:OHD_0005004 ObjectIntersectionOf(obo:OHD_0000288 ObjectSomeValuesFrom(obo:IAO_0000136 obo:FMA_49184)))
+
+# Class: obo:OHD_0005005 (avoidance behavior)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0005005 "A behavioral defense response in which an organism seeks to avoid encounter with a potential external threat.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0005005 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0005005 <https://orcid.org/0009-0003-7246-1252>)
+AnnotationAssertion(dcterms:created obo:OHD_0005005 "2025-02-10T00:00:00Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0005005 obo:OHD_0005009)
+AnnotationAssertion(rdfs:label obo:OHD_0005005 "avoidance behavior"@en)
+SubClassOf(obo:OHD_0005005 obo:OHD_0005000)
+
+# Class: obo:OHD_0005006 (health encounter avoidance behavior)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0005006 "Avoidance behavior that involves delay in seeking healthcare treatment due to fear, anxiety, or other psychological factors.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0005006 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0005006 <https://orcid.org/0009-0003-7246-1252>)
+AnnotationAssertion(dcterms:created obo:OHD_0005006 "2025-02-10T18:00:21Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0005006 obo:OHD_0005009)
+AnnotationAssertion(rdfs:label obo:OHD_0005006 "health encounter avoidance behavior"@en)
+SubClassOf(obo:OHD_0005006 obo:OHD_0005005)
+
+# Class: obo:OHD_0005007 (dental visit avoidance behavior)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0005007 "A healthcare visit avoidance behavior that involves delay in seeking dental treatment.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0005007 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0005007 <https://orcid.org/0009-0003-7246-1252>)
+AnnotationAssertion(dcterms:created obo:OHD_0005007 "2025-02-10T18:03:15Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0005007 obo:OHD_0005009)
+AnnotationAssertion(rdfs:label obo:OHD_0005007 "dental visit avoidance behavior"@en)
+SubClassOf(obo:OHD_0005007 obo:OHD_0005006)
 
 # Class: obo:PATO_0040034 (temp: fractured)
 
