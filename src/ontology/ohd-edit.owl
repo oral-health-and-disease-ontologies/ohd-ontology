@@ -12,6 +12,7 @@ Prefix(dcterms:=<http://purl.org/dc/terms/>)
 
 Ontology(<http://purl.obolibrary.org/obo/ohd.owl>
 Import(<http://purl.obolibrary.org/obo/ohd/components/dental_material.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/components/ohd_contributors.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/bfo2_classes_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/caro_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/cdt_import.owl>)
@@ -1092,6 +1093,7 @@ Declaration(Class(obo:OHD_0000268))
 Declaration(Class(obo:OHD_0000269))
 Declaration(Class(obo:OHD_0000270))
 Declaration(Class(obo:OHD_0000271))
+Declaration(Class(obo:OHD_0000272))
 Declaration(Class(obo:OHD_0000274))
 Declaration(Class(obo:OHD_0000275))
 Declaration(Class(obo:OHD_0000276))
@@ -1106,6 +1108,7 @@ Declaration(Class(obo:OHD_0000284))
 Declaration(Class(obo:OHD_0000285))
 Declaration(Class(obo:OHD_0000286))
 Declaration(Class(obo:OHD_0000287))
+Declaration(Class(obo:OHD_0000288))
 Declaration(Class(obo:OHD_0000289))
 Declaration(Class(obo:OHD_0000290))
 Declaration(Class(obo:OHD_0000291))
@@ -1219,6 +1222,7 @@ Declaration(Class(obo:OHD_0000400))
 Declaration(Class(obo:OHD_0000401))
 Declaration(Class(obo:OHD_0000402))
 Declaration(Class(obo:OHD_0000403))
+Declaration(Class(obo:OHD_0000404))
 Declaration(Class(obo:OHD_0000405))
 Declaration(Class(obo:OHD_0000406))
 Declaration(Class(obo:OHD_0000407))
@@ -1228,7 +1232,12 @@ Declaration(Class(obo:OHD_0000410))
 Declaration(Class(obo:OHD_0000411))
 Declaration(Class(obo:OHD_0000412))
 Declaration(Class(obo:OHD_0000413))
+Declaration(Class(obo:OHD_0000414))
 Declaration(Class(obo:OHD_0002000))
+Declaration(Class(obo:OHD_0005001))
+Declaration(Class(obo:OHD_0005002))
+Declaration(Class(obo:OHD_0005003))
+Declaration(Class(obo:OHD_0005004))
 Declaration(Class(obo:PATO_0040034))
 Declaration(Class(<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>))
 Declaration(ObjectProperty(obo:BFO_0000050))
@@ -2221,7 +2230,7 @@ SubClassOf(obo:OBI_0000245 obo:BFO_0000040)
 SubClassOf(obo:OGMS_0000055 obo:OGMS_0000097)
 SubClassOf(obo:OGMS_0000055 ObjectSomeValuesFrom(obo:BFO_0000050 obo:OGMS_0000096))
 
-# Class: obo:OGMS_0000056 (laboratory test)
+# Class: obo:OGMS_0000056 (clinical laboratory test)
 
 SubClassOf(obo:OGMS_0000056 obo:OBI_0000011)
 
@@ -2240,7 +2249,7 @@ SubClassOf(obo:OGMS_0000090 obo:OBI_0000011)
 
 SubClassOf(obo:OGMS_0000096 obo:OBI_0000011)
 
-# Class: obo:OGMS_0000103 (prophylaxis)
+# Class: obo:OGMS_0000103 (disease prophylaxis)
 
 SubClassOf(obo:OGMS_0000103 obo:OBI_0000011)
 
@@ -2524,10 +2533,10 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000031 "Alan Ruttenberg 4/12/2012: 
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000031 "Bill Duncan 6/26/2015:
 The old uri was DOID_216. I assume this class is intended to be an import from the disease ontology.
 The uri was changed for backward compatabilty in the r21 study.")
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000031 "Person:Alan Ruttenberg"@en)
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000031 "Person:Bill Duncan"@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000031 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000031 <https://orcid.org/0000-0002-1604-3078>)
 AnnotationAssertion(rdfs:label obo:OHD_0000031 "dental caries"@en)
-SubClassOf(obo:OHD_0000031 obo:OGMS_0000031)
+SubClassOf(obo:OHD_0000031 obo:OHD_0000404)
 
 # Class: obo:OHD_0000032 (soft tissue exam)
 
@@ -3900,10 +3909,10 @@ SubClassOf(obo:OHD_0000259 obo:OHD_0000302)
 # Class: obo:OHD_0000260 (tooth disorder)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000260 "A disorder that is part of a tooth.")
-AnnotationAssertion(dcterms:contributor obo:OHD_0000260 <http://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000260 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000260 "2023-06-06T21:30:39Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000260 "tooth disorder"@en)
-EquivalentClasses(obo:OHD_0000260 ObjectIntersectionOf(obo:OGMS_0000045 ObjectSomeValuesFrom(obo:FMA_85848 obo:FMA_12516)))
+EquivalentClasses(obo:OHD_0000260 ObjectIntersectionOf(obo:OHD_0000414 ObjectSomeValuesFrom(obo:FMA_85848 obo:FMA_12516)))
 
 # Class: obo:OHD_0000261 (tooth abfraction lesion)
 
@@ -3995,6 +4004,16 @@ AnnotationAssertion(dcterms:created obo:OHD_0000271 "2023-06-08T16:19:59Z"^^xsd:
 AnnotationAssertion(rdfs:label obo:OHD_0000271 "mechanical tooth lesion"@en)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#broadMatch> obo:OHD_0000271 obo:GSSO_007548)
 SubClassOf(obo:OHD_0000271 obo:OHD_0000270)
+
+# Class: obo:OHD_0000272 (patient-reported favorable outcome)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000272 "A patient-reported outcome that reports a favorable outcome in regards to the patient's health.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000272 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000272 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000272 <https://orcid.org/0009-0003-7246-1252>)
+AnnotationAssertion(dcterms:created obo:OHD_0000272 "2025-01-17T15:47:18Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000272 "patient-reported favorable outcome"@en)
+SubClassOf(obo:OHD_0000272 obo:OHD_0005001)
 
 # Class: obo:OHD_0000274 (tooth cleaning process)
 
@@ -4111,6 +4130,16 @@ AnnotationAssertion(Annotation(obo:IAO_0000119 "PMCID: PMC6287494") obo:IAO_0000
 AnnotationAssertion(dcterms:created obo:OHD_0000287 "2023-06-06T21:38:37Z")
 AnnotationAssertion(rdfs:label obo:OHD_0000287 "awake bruxism"@en)
 SubClassOf(obo:OHD_0000287 obo:OHD_0000407)
+
+# Class: obo:OHD_0000288 (patient-reported unfavorable outcome)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000288 "A patient-reported outcome that reports an ufavorable outcome in regards to the patient's health.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000288 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000288 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000288 <https://orcid.org/0009-0003-7246-1252>)
+AnnotationAssertion(dcterms:created obo:OHD_0000288 "2025-01-17T15:48:15Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000288 "patient-reported unfavorable outcome"@en)
+SubClassOf(obo:OHD_0000288 obo:OHD_0005001)
 
 # Class: obo:OHD_0000289 (pulpal regeneration procedure)
 
@@ -4963,6 +4992,16 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date>
 AnnotationAssertion(rdfs:label obo:OHD_0000403 "oral evaluation finding"@en)
 EquivalentClasses(obo:OHD_0000403 ObjectIntersectionOf(obo:OHD_0000010 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000197)))
 
+# Class: obo:OHD_0000404 (mouth disease)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000404 "A disease that is a characteristic of a mouth.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000404 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000404 "2025-01-17T19:58:44Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000404 "mouth disease"@en)
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#exactMatch> obo:OHD_0000404 obo:DOID_403)
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#exactMatch> obo:OHD_0000404 obo:MONDO_0006858)
+EquivalentClasses(obo:OHD_0000404 ObjectIntersectionOf(obo:OGMS_0000031 ObjectSomeValuesFrom(obo:RO_0000052 obo:FMA_49184)))
+
 # Class: obo:OHD_0000405 (thermal dentin hypersensitivity)
 
 AnnotationAssertion(dcterms:created obo:OHD_0000405 "2024-06-21T14:48:22Z"^^xsd:dateTime)
@@ -5024,12 +5063,62 @@ AnnotationAssertion(dcterms:created obo:OHD_0000413 "2024-06-21T15:02:39Z"^^xsd:
 AnnotationAssertion(rdfs:label obo:OHD_0000413 "tooth fracture with exposed dentin"@en)
 EquivalentClasses(obo:OHD_0000413 ObjectIntersectionOf(obo:OHD_0000277 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000410)))
 
+# Class: obo:OHD_0000414 (mouth disorder)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000414 "A disorder that is part of a mouth.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000414 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000414 "2025-01-17T20:08:15Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000414 "mouth disorder"@en)
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#exactMatch> obo:OHD_0000414 obo:MONDO_0006858)
+EquivalentClasses(obo:OHD_0000414 ObjectIntersectionOf(obo:OGMS_0000045 ObjectSomeValuesFrom(obo:FMA_85848 obo:FMA_49184)))
+
 # Class: obo:OHD_0002000 (masticatory muscle activity)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0002000 "A bodily process that involves the masticatory muscles of the head and neck region.")
 AnnotationAssertion(dcterms:created obo:OHD_0002000 "2023-06-06T21:30:37Z")
 AnnotationAssertion(rdfs:label obo:OHD_0002000 "masticatory muscle activity")
 SubClassOf(obo:OHD_0002000 obo:OGMS_0000060)
+
+# Class: obo:OHD_0005001 (patient-reported outcome)
+
+AnnotationAssertion(Annotation(obo:IAO_0000119 "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/patient-reported-outcome") Annotation(obo:IAO_0000119 "https://www.pcori.org/sites/default/files/UMD-NORD-Telecon-Two-Patient-Reported-Outcomes.pdf") obo:IAO_0000115 obo:OHD_0005001 "A data item that comes directly from a patient about how they function or feel in relation to the patient's health.  A patient reported outcome can include subjective feelings regarding symptoms, functions in daily life, physical, mental, emotional, spiritual, and social well-being, and satisfaction with healthcare that has been received.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0005001 "A patient-reported outcome that reports a favorable outcome in regards to the patient's health.")
+AnnotationAssertion(obo:IAO_0000116 obo:OHD_0005001 "This term should be imported from more general ontology like OGMS.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0005001 <https://orcid.org/0000-0001-6378-1703>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0005001 <https://orcid.org/0000-0001-6424-4096>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0005001 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0005001 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0005001 <https://orcid.org/0009-0003-7246-1252>)
+AnnotationAssertion(rdfs:label obo:OHD_0005001 "patient-reported outcome"@en)
+AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#closeMatch> obo:OHD_0005001 "http://purl.obolibrary.org/obo/NCIT_C95401")
+SubClassOf(obo:OHD_0005001 obo:IAO_0000027)
+
+# Class: obo:OHD_0005002 (patient-reported dental outcome)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0005002 "A patient reported outcome regarding a dental condition or treatment.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0005002 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0005002 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0005002 <https://orcid.org/0009-0003-7246-1252>)
+AnnotationAssertion(rdfs:label obo:OHD_0005002 "patient-reported dental outcome"@en)
+EquivalentClasses(obo:OHD_0005002 ObjectIntersectionOf(obo:OHD_0005001 ObjectSomeValuesFrom(obo:IAO_0000136 obo:FMA_49184)))
+
+# Class: obo:OHD_0005003 (patient-reported favorable dental outcome)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0005003 "A patient reported dental outcome that is favorable and related to a dental condition or treatment.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0005003 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0005003 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0005003 <https://orcid.org/0009-0003-7246-1252>)
+AnnotationAssertion(rdfs:label obo:OHD_0005003 "patient-reported favorable dental outcome"@en)
+EquivalentClasses(obo:OHD_0005003 ObjectIntersectionOf(obo:OHD_0000272 ObjectSomeValuesFrom(obo:IAO_0000136 obo:FMA_49184)))
+
+# Class: obo:OHD_0005004 (patient-reported unfavorable dental outcome)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0005004 "A patient-reported outcome that indicates an unfavorable experience or result related to a dental condition or treatment")
+AnnotationAssertion(dcterms:contributor obo:OHD_0005004 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0005004 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0005004 <https://orcid.org/0009-0003-7246-1252>)
+AnnotationAssertion(rdfs:label obo:OHD_0005004 "patient-reported unfavorable dental outcome"@en)
+EquivalentClasses(obo:OHD_0005004 ObjectIntersectionOf(obo:OHD_0000288 ObjectSomeValuesFrom(obo:IAO_0000136 obo:FMA_49184)))
 
 # Class: obo:PATO_0040034 (temp: fractured)
 
@@ -5266,9 +5355,9 @@ AnnotationAssertion(rdfs:label <https://orcid.org/0000-0001-9990-8331> "Alexande
 
 AnnotationAssertion(rdfs:label <https://orcid.org/0009-0003-5583-4731> "Ava E. Cunningham"@en)
 
-# Individual: <https://orcid.org/0009-0003-7246-1252> (Ram Challa)
+# Individual: <https://orcid.org/0009-0003-7246-1252> (Ram A.N.R. Challa)
 
-AnnotationAssertion(rdfs:label <https://orcid.org/0009-0003-7246-1252> "Ram Challa"@en)
+AnnotationAssertion(rdfs:label <https://orcid.org/0009-0003-7246-1252> "Ram A.N.R. Challa"@en)
 
 # Individual: <https://orcid.org/0009-0006-7251-3026> (Gopikrishnan M Chandrasekharan)
 
