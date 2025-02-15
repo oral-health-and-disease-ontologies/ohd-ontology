@@ -1241,6 +1241,9 @@ Declaration(Class(obo:OHD_0000411))
 Declaration(Class(obo:OHD_0000412))
 Declaration(Class(obo:OHD_0000413))
 Declaration(Class(obo:OHD_0000414))
+Declaration(Class(obo:OHD_0000415))
+Declaration(Class(obo:OHD_0000416))
+Declaration(Class(obo:OHD_0000417))
 Declaration(Class(obo:OHD_0002000))
 Declaration(Class(obo:OHD_0005001))
 Declaration(Class(obo:OHD_0005002))
@@ -2282,7 +2285,7 @@ SubClassOf(obo:OHD_0000000 obo:OBI_0000047)
 
 # Class: obo:OHD_0000002 (dental procedure)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000002 "A heath care encounter that realizes a dental patient role in which the patient undergoes a diagnostic or therapeutic process.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000002 "A health care encounter that realizes a dental patient role in which the patient undergoes a diagnostic or therapeutic process.")
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000002 "Bill Duncan 5/12/2015:
 
 Changed \"A specific healthcare activity\" to \"A health care encounter in which\"")
@@ -5364,6 +5367,30 @@ AnnotationAssertion(rdfs:label obo:OHD_0000414 "mouth disorder"@en)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#exactMatch> obo:OHD_0000414 obo:MONDO_0006858)
 EquivalentClasses(obo:OHD_0000414 ObjectIntersectionOf(obo:OGMS_0000045 ObjectSomeValuesFrom(obo:FMA_85848 obo:FMA_49184)))
 
+# Class: obo:OHD_0000415 (dental fear survey)
+
+AnnotationAssertion(dcterms:contributor obo:OHD_0000415 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000415 "2025-02-15T18:25:18Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000415 "dental fear survey"@en)
+SubClassOf(obo:OHD_0000415 obo:BFO_0000031)
+
+# Class: obo:OHD_0000416 (Center for Oral Health Research in Appalachia (COHRA2) dental fear survey)
+
+AnnotationAssertion(Annotation(obo:IAO_0000119 "https://pmc.ncbi.nlm.nih.gov/articles/PMC4451284/") Annotation(obo:IAO_0000119 "https://www.dental.pitt.edu/research/center-oral-health-research-appalachia/cohra2-cohort-study") Annotation(rdfs:comment "https://pmc.ncbi.nlm.nih.gov/articles/PMC2443132/") obo:IAO_0000115 obo:OHD_0000416 "A dental fear survey admistered as part of the Center for Oral Health Research in Appalachia (COHRA), Cohort 2, study.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000416 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000416 "2025-02-15T18:27:08Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000416 "Center for Oral Health Research in Appalachia (COHRA2) dental fear survey"@en)
+SubClassOf(obo:OHD_0000416 obo:OHD_0000415)
+
+# Class: obo:OHD_0000417 (Kleinknecht Dental Fear Survey)
+
+AnnotationAssertion(Annotation(obo:IAO_0000119 "https://opendentistryjournal.com/contents/volumes/V3/TODENTJ-3-161/TODENTJ-3-161.pdf") Annotation(obo:IAO_0000119 "https://www.dentalfearcentral.org/media/Kleinknecht-Dental-Fear-Survey.pdf") obo:IAO_0000115 obo:OHD_0000417 "A dental fear survey developed by Ronald Kleinknecht.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000417 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000417 "2025-02-15T18:32:14Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0000417 "This version of the Kleinknecht Dental Fear Survey has 20 questions. The survey  origninally has 27 questions.")
+AnnotationAssertion(rdfs:label obo:OHD_0000417 "Kleinknecht Dental Fear Survey"@en)
+SubClassOf(obo:OHD_0000417 obo:OHD_0000415)
+
 # Class: obo:OHD_0002000 (masticatory muscle activity)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0002000 "A bodily process that involves the masticatory muscles of the head and neck region.")
@@ -5375,7 +5402,7 @@ SubClassOf(obo:OHD_0002000 obo:OGMS_0000060)
 
 # Class: obo:OHD_0005001 (patient-reported outcome)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/patient-reported-outcome") Annotation(obo:IAO_0000119 "https://www.pcori.org/sites/default/files/UMD-NORD-Telecon-Two-Patient-Reported-Outcomes.pdf") obo:IAO_0000115 obo:OHD_0005001 "A data item that comes directly from a patient about how they function or feel in relation to the patient's health.  A patient reported outcome can include subjective feelings regarding symptoms, functions in daily life, physical, mental, emotional, spiritual, and social well-being, and satisfaction with healthcare that has been received.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/patient-reported-outcome") Annotation(obo:IAO_0000119 "https://www.pcori.org/sites/default/files/UMD-NORD-Telecon-Two-Patient-Reported-Outcomes.pdf") obo:IAO_0000115 obo:OHD_0005001 "A data item that comes directly from a patient about how they function or feel in relation to the patient's health.  A patient reported outcome can include subjective feelings regarding symptoms, functions in daily life, physical, mental, emotional, spiritual, and social well-being, and satisfaction with health care that has been received.")
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0005001 "A patient-reported outcome that reports a favorable outcome in regards to the patient's health.")
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0005001 "This term should be imported from more general ontology like OGMS.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0005001 <https://orcid.org/0000-0001-6378-1703>)
