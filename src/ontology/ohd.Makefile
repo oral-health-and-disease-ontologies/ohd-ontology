@@ -32,9 +32,10 @@ $(IMPORTDIR)/omo_import.owl: $(MIRRORDIR)/omo.owl
             --annotate-defined-by true \
             --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        convert --format ofn \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-$(IMPORTDIR)/ro_import.owl: $(MIRRORDIR)/ro.owl
+$(IMPORTDIR)/ro_import.owl: $(MIRRORDIR)/ro.owl $(IMPORTDIR)/ro_terms.txt
 	if [ $(IMP) = true ]; then $(ROBOT) \
         remove \
             --input $< \
@@ -42,14 +43,15 @@ $(IMPORTDIR)/ro_import.owl: $(MIRRORDIR)/ro.owl
             --select classes \
         extract \
             --method MIREOT \
-            --lower-terms $(IMPORTDIR)/ro_terms.txt \
+            --lower-terms $(word 2, $^) \
         annotate \
             --annotate-defined-by true \
             --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        convert --format ofn \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-$(IMPORTDIR)/iao_import.owl: $(MIRRORDIR)/iao.owl
+$(IMPORTDIR)/iao_import.owl: $(MIRRORDIR)/iao.owl $(IMPORTDIR)/iao_terms.txt
 	if [ $(IMP) = true ]; then $(ROBOT) \
         remove \
             --input $< \
@@ -57,14 +59,15 @@ $(IMPORTDIR)/iao_import.owl: $(MIRRORDIR)/iao.owl
         extract \
             --method MIREOT \
             --upper-term BFO:0000031 \
-            --lower-terms $(IMPORTDIR)/iao_terms.txt \
+            --lower-terms $(word 2, $^) \
         annotate \
             --annotate-defined-by true \
             --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        convert --format ofn \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-$(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl
+$(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl $(IMPORTDIR)/caro_terms.txt
 	if [ $(IMP) = true ]; then $(ROBOT) \
         remove \
             --input $< \
@@ -74,15 +77,16 @@ $(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl
             --branch-from-term BFO:0000040 \
         extract \
             --method MIREOT \
-            --lower-terms $(IMPORTDIR)/caro_terms.txt \
+            --lower-terms $(word 2, $^) \
             --intermediates minimal \
         annotate \
             --annotate-defined-by true \
             --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        convert --format ofn \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-$(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl
+$(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl $(IMPORTDIR)/ecto_terms.txt
 	if [ $(IMP) = true ]; then $(ROBOT) \
         remove \
             --input $< \
@@ -92,11 +96,12 @@ $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl
             --branch-from-term http://purl.obolibrary.org/obo/ExO_0000002 \
         extract \
             --method MIREOT \
-            --lower-terms $(IMPORTDIR)/ecto_terms.txt \
+            --lower-terms $(word 2, $^) \
         annotate \
             --annotate-defined-by true \
             --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        convert --format ofn \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 # imports SDC, process, ICE, and material entity braches from OGMS 
@@ -119,6 +124,7 @@ $(IMPORTDIR)/ogms_import.owl: $(MIRRORDIR)/ogms.owl $(IMPORTDIR)/ogms_terms.txt
             --annotate-defined-by true \
             --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        convert --format ofn \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 # used for testing
@@ -151,7 +157,6 @@ mirror-fma-jaws-teeth \
 mirror-fma-lymph \
 mirror-fma-mouth-mucosa mirror-fma-tmj mirror-fma-tongue \
 imports/bfo2_classes_import.owl \
-imports/caro_import.owl \
 imports/cdt_import.owl \
 imports/ncbi_import.owl \
 imports/fma-jaws-teeth_import.owl \
