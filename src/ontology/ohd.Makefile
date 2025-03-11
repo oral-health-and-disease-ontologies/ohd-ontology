@@ -5,130 +5,171 @@
 # ----------------------------------------
 
 $(ONT).owl: $(SRC)
-	@echo "\n** building $@ **"
+	@echo "*** building ***"
 	$(ROBOT) \
 		merge -i $< \
-	    reason --reasoner hermit --annotate-inferred-axioms true --exclude-duplicate-axioms true \
-	    annotate \
-	        --ontology-iri $(URIBASE)/$@ \
-	        --version-iri $(ONTBASE)/releases/$(VERSION)/$@ \
-	        --annotation owl:versionInfo $(VERSION) \
-	    reduce \
-	    convert -o $@.tmp.owl && mv $@.tmp.owl $@
-	    
+		reason --reasoner hermit --annotate-inferred-axioms true --exclude-duplicate-axioms true \
+		annotate \
+			--ontology-iri $(URIBASE)/$@ \
+			--version-iri $(ONTBASE)/releases/$(VERSION)/$@ \
+			--annotation owl:versionInfo $(VERSION) \
+		reduce \
+		convert -o $@.tmp.owl && mv $@.tmp.owl $@
 
 # ----------------------------------------
 # Ontology imports
 # ----------------------------------------
 
 $(IMPORTDIR)/omo_import.owl: $(MIRRORDIR)/omo.owl
+	@echo "*** building $@ ***"
 	if [ $(IMP) = true ]; then $(ROBOT) \
-        remove \
-            --input $< \
-            --select "owl:deprecated='true'^^xsd:boolean" \
-        remove \
-            --select classes \
-        annotate \
-            --annotate-defined-by true \
-            --annotate-derived-from true \
-            --ontology-iri $(URIBASE)/$(ONT)/$@ \
-        convert --format ofn \
-        --output $@.tmp.owl && mv $@.tmp.owl $@; fi
+		remove \
+			--input $< \
+			--select "owl:deprecated='true'^^xsd:boolean" \
+		remove \
+			--select classes \
+		annotate \
+			--annotate-defined-by true \
+			--annotate-derived-from true \
+			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+		convert --format ofn \
+		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 $(IMPORTDIR)/ro_import.owl: $(MIRRORDIR)/ro.owl $(IMPORTDIR)/ro_terms.txt
+	@echo "*** building $@ ***"
 	if [ $(IMP) = true ]; then $(ROBOT) \
-        remove \
-            --input $< \
-            --select "owl:deprecated='true'^^xsd:boolean" \
-            --select classes \
-        extract \
-            --method MIREOT \
-            --lower-terms $(word 2, $^) \
-        annotate \
-            --annotate-defined-by true \
-            --annotate-derived-from true \
-            --ontology-iri $(URIBASE)/$(ONT)/$@ \
-        convert --format ofn \
-        --output $@.tmp.owl && mv $@.tmp.owl $@; fi
+		remove \
+			--input $< \
+			--select "owl:deprecated='true'^^xsd:boolean" \
+			--select classes \
+		extract \
+			--method MIREOT \
+			--lower-terms $(word 2, $^) \
+		annotate \
+			--annotate-defined-by true \
+			--annotate-derived-from true \
+			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+		convert --format ofn \
+		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 $(IMPORTDIR)/iao_import.owl: $(MIRRORDIR)/iao.owl $(IMPORTDIR)/iao_terms.txt
+	@echo "*** building $@ ***"
 	if [ $(IMP) = true ]; then $(ROBOT) \
-        remove \
-            --input $< \
-            --select "owl:deprecated='true'^^xsd:boolean" \
-        extract \
-            --method MIREOT \
-            --upper-term BFO:0000031 \
-            --lower-terms $(word 2, $^) \
-        annotate \
-            --annotate-defined-by true \
-            --annotate-derived-from true \
-            --ontology-iri $(URIBASE)/$(ONT)/$@ \
-        convert --format ofn \
-        --output $@.tmp.owl && mv $@.tmp.owl $@; fi
+		remove \
+			--input $< \
+			--select "owl:deprecated='true'^^xsd:boolean" \
+		extract \
+			--method MIREOT \
+			--upper-term BFO:0000031 \
+			--lower-terms $(word 2, $^) \
+		annotate \
+			--annotate-defined-by true \
+			--annotate-derived-from true \
+			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+		convert --format ofn \
+		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 $(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl $(IMPORTDIR)/caro_terms.txt
+	@echo "*** building $@ ***"
 	if [ $(IMP) = true ]; then $(ROBOT) \
-        remove \
-            --input $< \
-            --select "owl:deprecated='true'^^xsd:boolean" \
-        extract \
-            --method MIREOT \
-            --branch-from-term BFO:0000040 \
-        extract \
-            --method MIREOT \
-            --lower-terms $(word 2, $^) \
-            --intermediates minimal \
-        annotate \
-            --annotate-defined-by true \
-            --annotate-derived-from true \
-            --ontology-iri $(URIBASE)/$(ONT)/$@ \
-        convert --format ofn \
-        --output $@.tmp.owl && mv $@.tmp.owl $@; fi
+		remove \
+			--input $< \
+			--select "owl:deprecated='true'^^xsd:boolean" \
+		extract \
+			--method MIREOT \
+			--branch-from-term BFO:0000040 \
+		extract \
+			--method MIREOT \
+			--lower-terms $(word 2, $^) \
+			--intermediates minimal \
+		annotate \
+			--annotate-defined-by true \
+			--annotate-derived-from true \
+			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+		convert --format ofn \
+		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl $(IMPORTDIR)/ecto_terms.txt
+	@echo "*** building $@ ***"
 	if [ $(IMP) = true ]; then $(ROBOT) \
-        remove \
-            --input $< \
-            --select "owl:deprecated='true'^^xsd:boolean" \
-        extract \
-            --method MIREOT \
-            --branch-from-term http://purl.obolibrary.org/obo/ExO_0000002 \
-        extract \
-            --method MIREOT \
-            --lower-terms $(word 2, $^) \
-        annotate \
-            --annotate-defined-by true \
-            --annotate-derived-from true \
-            --ontology-iri $(URIBASE)/$(ONT)/$@ \
-        convert --format ofn \
-        --output $@.tmp.owl && mv $@.tmp.owl $@; fi
+		remove \
+			--input $< \
+			--select "owl:deprecated='true'^^xsd:boolean" \
+		extract \
+			--method MIREOT \
+			--branch-from-term http://purl.obolibrary.org/obo/ExO_0000002 \
+		extract \
+			--method MIREOT \
+			--lower-terms $(word 2, $^) \
+		annotate \
+			--annotate-defined-by true \
+			--annotate-derived-from true \
+			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+		convert --format ofn \
+		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 # imports SDC, process, ICE, and material entity braches from OGMS 
 # lower terms are determined by ogms_terms.txt
 $(IMPORTDIR)/ogms_import.owl: $(MIRRORDIR)/ogms.owl $(IMPORTDIR)/ogms_terms.txt
+	@echo "*** building $@ ***"
 	if [ $(IMP) = true ]; then $(ROBOT) \
-        remove \
-            --input $< \
-            --select "owl:deprecated='true'^^xsd:boolean" \
-        extract \
-            --method MIREOT \
-            --branch-from-term http://purl.obolibrary.org/obo/BFO_0000015 \
-            --branch-from-term http://purl.obolibrary.org/obo/BFO_0000020 \
-            --branch-from-term http://purl.obolibrary.org/obo/IAO_0000030 \
-            --branch-from-term http://purl.obolibrary.org/obo/BFO_0000040 \
-        extract \
-            --method MIREOT \
-            --lower-terms $(word 2, $^) \
-        annotate \
-            --annotate-defined-by true \
-            --annotate-derived-from true \
-            --ontology-iri $(URIBASE)/$(ONT)/$@ \
-        convert --format ofn \
-        --output $@.tmp.owl && mv $@.tmp.owl $@; fi
+		remove \
+			--input $< \
+			--select "owl:deprecated='true'^^xsd:boolean" \
+		extract \
+			--method MIREOT \
+			--branch-from-term http://purl.obolibrary.org/obo/BFO_0000015 \
+			--branch-from-term http://purl.obolibrary.org/obo/BFO_0000020 \
+			--branch-from-term http://purl.obolibrary.org/obo/IAO_0000030 \
+			--branch-from-term http://purl.obolibrary.org/obo/BFO_0000040 \
+		extract \
+			--method MIREOT \
+			--lower-terms $(word 2, $^) \
+		annotate \
+			--annotate-defined-by true \
+			--annotate-derived-from true \
+			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+		convert --format ofn \
+		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
+
+# $(IMPORTDIR)/omrse_import.owl: $(MIRRORDIR)/omrse.owl $(IMPORTDIR)/omrse_terms.txt
+#   @echo "*** building $@ ***"
+# 	if [ $(IMP) = true ]; then $(ROBOT) \
+#         remove \
+#             --input $< \
+#             --select "owl:deprecated='true'^^xsd:boolean" \
+#         extract \
+#             --method TOP \
+#             --term-file $(word 2, $^) \
+#         annotate \
+#             --annotate-defined-by true \
+#             --annotate-derived-from true \
+#             --ontology-iri $(URIBASE)/$(ONT)/$@ \
+#         convert --format ofn \
+#         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
+
+$(IMPORTDIR)/omrse_import.owl: $(MIRRORDIR)/omrse.owl $(IMPORTDIR)/omrse_terms.txt
+	@echo "*** building $@ ***"
+	$(ROBOT) \
+		filter \
+			--input $< \
+			--term-file $(word 2, $^) \
+			--select "annotations self ancestors" \
+			--axioms logical \
+			--signature true \
+			--trim true \
+		remove \
+			--select "owl:deprecated='true'^^xsd:boolean" \
+		annotate \
+			--annotate-defined-by true \
+			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/$@ \
+		convert --format ofn \
+		--output $@.tmp.owl && mv $@.tmp.owl $@
 
 # used for testing
 # $(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl
+#   @echo "*** building $@ ***"
 # 	if [ $(IMP) = true ]; then $(ROBOT) \
 #         remove \
 #             --input $< \

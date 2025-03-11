@@ -572,14 +572,16 @@ mirror-ro: | $(TMPDIR)
 .PHONY: mirror-omo
 .PRECIOUS: $(MIRRORDIR)/omo.owl
 mirror-omo: | $(TMPDIR)
-	$(ROBOT) convert -I http://purl.obolibrary.org/obo/omo/releases/2023-06-09/omo.owl -o $(TMPDIR)/$@.owl
+# $(ROBOT) convert -I http://purl.obolibrary.org/obo/omo/releases/2023-06-09/omo.owl -o $(TMPDIR)/$@.owl
+	$(ROBOT) convert -I http://purl.obolibrary.org/obo/omo.owl -o $(TMPDIR)/$@.owl
 
 
 ## ONTOLOGY: ro
 .PHONY: mirror-ro
 .PRECIOUS: $(MIRRORDIR)/ro.owl
 mirror-ro: | $(TMPDIR)
-	$(ROBOT) convert -I http://purl.obolibrary.org/obo/ro/releases/2023-02-22/ro.owl -o $(TMPDIR)/$@.owl
+# $(ROBOT) convert -I http://purl.obolibrary.org/obo/ro/releases/2023-02-22/ro.owl -o $(TMPDIR)/$@.owl
+	$(ROBOT) convert -I http://purl.obolibrary.org/obo/ro.owl -o $(TMPDIR)/$@.owl
 
 
 $(MIRRORDIR)/%.owl: mirror-% | $(MIRRORDIR)
