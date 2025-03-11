@@ -165,7 +165,7 @@ all_main: $(MAIN_FILES)
 # ----------------------------------------
 
 
-IMPORTS =  bfo2_classes caro cdt ecto fma-jaws-teeth fma-lymph fma-mouth-mucosa fma-tmj fma-tongue iao ncbi obi ogms omrse ro omo ro
+IMPORTS =  bfo2_classes caro cdt ecto fma-jaws-teeth fma-lymph fma-mouth-mucosa fma-tmj fma-tongue iao ncbi obi ogms omrse ro omo ido
 
 IMPORT_ROOTS = $(patsubst %, $(IMPORTDIR)/%_import, $(IMPORTS))
 IMPORT_OWL_FILES = $(foreach n,$(IMPORT_ROOTS), $(n).owl)
@@ -542,6 +542,14 @@ mirror-obi: | $(TMPDIR)
 mirror-ogms: | $(TMPDIR)
 	curl -L $(OBOBASE)/ogms.owl --create-dirs -o $(TMPDIR)/ogms-download.owl --retry 4 --max-time 200 && \
 	$(ROBOT) convert -i $(TMPDIR)/ogms-download.owl -o $(TMPDIR)/$@.owl
+
+
+## ONTOLOGY: ido
+.PHONY: mirror-ido
+.PRECIOUS: $(MIRRORDIR)/ido.owl
+mirror-ido: | $(TMPDIR)
+	curl -L $(OBOBASE)/ido.owl --create-dirs -o $(TMPDIR)/ido-download.owl --retry 4 --max-time 200 && \
+	$(ROBOT) convert -i $(TMPDIR)/ido-download.owl -o $(TMPDIR)/$@.owl
 
 
 ## ONTOLOGY: omrse

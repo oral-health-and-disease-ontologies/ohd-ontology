@@ -99,23 +99,46 @@ $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-$(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl
+# imports SDC, process, ICE, and material entity braches from OGMS 
+# lower terms are determined by ogms_terms.txt
+$(IMPORTDIR)/ogms_import.owl: $(MIRRORDIR)/ogms.owl $(IMPORTDIR)/ogms_terms.txt
 	if [ $(IMP) = true ]; then $(ROBOT) \
         remove \
             --input $< \
             --select "owl:deprecated='true'^^xsd:boolean" \
         extract \
-            --method STAR \
-            --term-file $(IMPORTDIR)/obi_terms.txt \
-        remove \
-            --term-file $(IMPORTDIR)/obi_terms.txt \
-            --exclude-terms  $(IMPORTDIR)/annotation_terms.txt \
-            --select complement \
+            --method MIREOT \
+            --branch-from-term http://purl.obolibrary.org/obo/BFO_0000015 \
+            --branch-from-term http://purl.obolibrary.org/obo/BFO_0000020 \
+            --branch-from-term http://purl.obolibrary.org/obo/IAO_0000030 \
+            --branch-from-term http://purl.obolibrary.org/obo/BFO_0000040 \
+        extract \
+            --method MIREOT \
+            --lower-terms $(word 2, $^) \
         annotate \
             --annotate-defined-by true \
             --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
+
+# used for testing
+# $(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl
+# 	if [ $(IMP) = true ]; then $(ROBOT) \
+#         remove \
+#             --input $< \
+#             --select "owl:deprecated='true'^^xsd:boolean" \
+#         extract \
+#             --method STAR \
+#             --term-file $(IMPORTDIR)/obi_terms.txt \
+#         remove \
+#             --term-file $(IMPORTDIR)/obi_terms.txt \
+#             --exclude-terms  $(IMPORTDIR)/annotation_terms.txt \
+#             --select complement \
+#         annotate \
+#             --annotate-defined-by true \
+#             --annotate-derived-from true \
+#             --ontology-iri $(URIBASE)/$(ONT)/$@ \
+#         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 # ----------------------------------------
 # Manually maintained mirrors and imports
