@@ -472,46 +472,6 @@ mirror-ecto: | $(TMPDIR)
 	$(ROBOT) convert -i $(TMPDIR)/ecto-download.owl -o $(TMPDIR)/$@.owl
 
 
-## ONTOLOGY: fma-jaws-teeth
-.PHONY: mirror-fma-jaws-teeth
-.PRECIOUS: $(MIRRORDIR)/fma-jaws-teeth.owl
-mirror-fma-jaws-teeth: | $(TMPDIR)
-	curl -L $(OBOBASE)/fma-jaws-teeth.owl --create-dirs -o $(TMPDIR)/fma-jaws-teeth-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/fma-jaws-teeth-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: fma-lymph
-.PHONY: mirror-fma-lymph
-.PRECIOUS: $(MIRRORDIR)/fma-lymph.owl
-mirror-fma-lymph: | $(TMPDIR)
-	curl -L $(OBOBASE)/fma-lymph.owl --create-dirs -o $(TMPDIR)/fma-lymph-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/fma-lymph-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: fma-mouth-mucosa
-.PHONY: mirror-fma-mouth-mucosa
-.PRECIOUS: $(MIRRORDIR)/fma-mouth-mucosa.owl
-mirror-fma-mouth-mucosa: | $(TMPDIR)
-	curl -L $(OBOBASE)/fma-mouth-mucosa.owl --create-dirs -o $(TMPDIR)/fma-mouth-mucosa-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/fma-mouth-mucosa-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: fma-tmj
-.PHONY: mirror-fma-tmj
-.PRECIOUS: $(MIRRORDIR)/fma-tmj.owl
-mirror-fma-tmj: | $(TMPDIR)
-	curl -L $(OBOBASE)/fma-tmj.owl --create-dirs -o $(TMPDIR)/fma-tmj-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/fma-tmj-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: fma-tongue
-.PHONY: mirror-fma-tongue
-.PRECIOUS: $(MIRRORDIR)/fma-tongue.owl
-mirror-fma-tongue: | $(TMPDIR)
-	curl -L $(OBOBASE)/fma-tongue.owl --create-dirs -o $(TMPDIR)/fma-tongue-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/fma-tongue-download.owl -o $(TMPDIR)/$@.owl
-
-
 ## ONTOLOGY: iao
 .PHONY: mirror-iao
 .PRECIOUS: $(MIRRORDIR)/iao.owl
@@ -572,16 +532,7 @@ mirror-ro: | $(TMPDIR)
 .PHONY: mirror-omo
 .PRECIOUS: $(MIRRORDIR)/omo.owl
 mirror-omo: | $(TMPDIR)
-# $(ROBOT) convert -I http://purl.obolibrary.org/obo/omo/releases/2023-06-09/omo.owl -o $(TMPDIR)/$@.owl
 	$(ROBOT) convert -I http://purl.obolibrary.org/obo/omo.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: ro
-.PHONY: mirror-ro
-.PRECIOUS: $(MIRRORDIR)/ro.owl
-mirror-ro: | $(TMPDIR)
-# $(ROBOT) convert -I http://purl.obolibrary.org/obo/ro/releases/2023-02-22/ro.owl -o $(TMPDIR)/$@.owl
-	$(ROBOT) convert -I http://purl.obolibrary.org/obo/ro.owl -o $(TMPDIR)/$@.owl
 
 
 $(MIRRORDIR)/%.owl: mirror-% | $(MIRRORDIR)
