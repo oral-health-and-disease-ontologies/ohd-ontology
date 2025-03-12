@@ -1243,6 +1243,7 @@ Declaration(Class(obo:OHD_0000412))
 Declaration(Class(obo:OHD_0000413))
 Declaration(Class(obo:OHD_0000414))
 Declaration(Class(obo:OHD_0000415))
+Declaration(Class(obo:OHD_0000416))
 Declaration(Class(obo:OHD_0002000))
 Declaration(Class(obo:OHD_0005001))
 Declaration(Class(obo:OHD_0005002))
@@ -2569,6 +2570,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000031 <https://orcid.org/0000-
 AnnotationAssertion(dcterms:contributor obo:OHD_0000031 <https://orcid.org/0000-0002-1604-3078>)
 AnnotationAssertion(rdfs:label obo:OHD_0000031 "dental caries"@en)
 SubClassOf(obo:OHD_0000031 obo:OHD_0000404)
+SubClassOf(obo:OHD_0000031 ObjectSomeValuesFrom(obo:RO_0004017 obo:OHD_0000415))
 
 # Class: obo:OHD_0000032 (soft tissue exam)
 
@@ -5373,6 +5375,15 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000415 <https://orcid.org/0000-
 AnnotationAssertion(dcterms:created obo:OHD_0000415 "2025-03-12T22:52:42Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000415 "oral dybiosis"@en)
 SubClassOf(obo:OHD_0000415 obo:IDO_0000504)
+
+# Class: obo:OHD_0000416 (dental caries disease course)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000416 "A disease course that realizes dental caries.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000416 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000416 "2025-03-12T23:02:32Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000416 "dental caries disease course"@en)
+SubClassOf(obo:OHD_0000416 obo:OGMS_0000063)
+SubClassOf(obo:OHD_0000416 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000031))
 
 # Class: obo:OHD_0002000 (masticatory muscle activity)
 
