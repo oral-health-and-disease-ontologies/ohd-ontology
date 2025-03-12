@@ -77,7 +77,7 @@ $(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl $(IMPORTDIR)/caro_terms.txt
 			--select "owl:deprecated='true'^^xsd:boolean" \
 		extract \
 			--method MIREOT \
-			--branch-from-term BFO:0000040 \
+			--branch-from-term BFO:0000001 \
 		extract \
 			--method MIREOT \
 			--lower-terms $(word 2, $^) \
@@ -89,6 +89,12 @@ $(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl $(IMPORTDIR)/caro_terms.txt
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
+# Creates import from the occurrent branch
+# and removes the classes:
+#  - exposure event or process
+#  - exposure to environmental quality
+#  - exposure to chemical with chemical role
+# Note: exposure event or process has bee obsoleted in RO, but it is still in ecto
 $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl $(IMPORTDIR)/ecto_terms.txt
 	@echo "*** building $@ ***"
 	if [ $(IMP) = true ]; then $(ROBOT) \
@@ -97,10 +103,12 @@ $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl $(IMPORTDIR)/ecto_terms.txt
 			--select "owl:deprecated='true'^^xsd:boolean" \
 		extract \
 			--method MIREOT \
-			--branch-from-term http://purl.obolibrary.org/obo/ExO_0000002 \
-		extract \
-			--method MIREOT \
 			--lower-terms $(word 2, $^) \
+		remove \
+			--term http://purl.obolibrary.org/obo/RO_0002310 \
+			--term http://purl.obolibrary.org/obo/ECTO_0010000 \
+			--term http://purl.obolibrary.org/obo/ECTO_0000487 \
+			--preserve-structure false \
 		annotate \
 			--annotate-defined-by true \
 			--annotate-derived-from true \
@@ -108,8 +116,8 @@ $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl $(IMPORTDIR)/ecto_terms.txt
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-# imports SDC, process, ICE, and material entity braches from OGMS 
-# lower terms are determined by ogms_terms.txt
+# Lower terms are determined by ogms_terms.txt
+# Note: the '_undefined primitive term' branch is removed
 $(IMPORTDIR)/ogms_import.owl: $(MIRRORDIR)/ogms.owl $(IMPORTDIR)/ogms_terms.txt
 	@echo "*** building $@ ***"
 	if [ $(IMP) = true ]; then $(ROBOT) \
@@ -118,13 +126,10 @@ $(IMPORTDIR)/ogms_import.owl: $(MIRRORDIR)/ogms.owl $(IMPORTDIR)/ogms_terms.txt
 			--select "owl:deprecated='true'^^xsd:boolean" \
 		extract \
 			--method MIREOT \
-			--branch-from-term http://purl.obolibrary.org/obo/BFO_0000015 \
-			--branch-from-term http://purl.obolibrary.org/obo/BFO_0000020 \
-			--branch-from-term http://purl.obolibrary.org/obo/IAO_0000030 \
-			--branch-from-term http://purl.obolibrary.org/obo/BFO_0000040 \
-		extract \
-			--method MIREOT \
 			--lower-terms $(word 2, $^) \
+		remove \
+			--term http://purl.obolibrary.org/obo/OGMS_0000067 \
+			--select "self descendants" \
 		annotate \
 			--annotate-defined-by true \
 			--annotate-derived-from true \
@@ -132,22 +137,7 @@ $(IMPORTDIR)/ogms_import.owl: $(MIRRORDIR)/ogms.owl $(IMPORTDIR)/ogms_terms.txt
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-# $(IMPORTDIR)/omrse_import.owl: $(MIRRORDIR)/omrse.owl $(IMPORTDIR)/omrse_terms.txt
-#   @echo "*** building $@ ***"
-# 	if [ $(IMP) = true ]; then $(ROBOT) \
-#         remove \
-#             --input $< \
-#             --select "owl:deprecated='true'^^xsd:boolean" \
-#         extract \
-#             --method TOP \
-#             --term-file $(word 2, $^) \
-#         annotate \
-#             --annotate-defined-by true \
-#             --annotate-derived-from true \
-#             --ontology-iri $(URIBASE)/$(ONT)/$@ \
-#         convert --format ofn \
-#         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
-
+# Filters out all terms except those in the terms file
 $(IMPORTDIR)/omrse_import.owl: $(MIRRORDIR)/omrse.owl $(IMPORTDIR)/omrse_terms.txt
 	@echo "*** building $@ ***"
 	$(ROBOT) \
