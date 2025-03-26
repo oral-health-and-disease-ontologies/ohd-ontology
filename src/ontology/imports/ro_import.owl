@@ -60,6 +60,9 @@ Declaration(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.o
 Declaration(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002431>))
 Declaration(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002500>))
 Declaration(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002502>))
+Declaration(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002506>))
+Declaration(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002559>))
+Declaration(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002566>))
 Declaration(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002595>))
 Declaration(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) ObjectProperty(<http://purl.obolibrary.org/obo/RO_0003302>))
 Declaration(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) ObjectProperty(<http://purl.obolibrary.org/obo/RO_0003304>))
@@ -994,6 +997,36 @@ AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002502>
 AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) rdfs:label <http://purl.obolibrary.org/obo/RO_0002502> "depends on")
 AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) rdfs:seeAlso <http://purl.obolibrary.org/obo/RO_0002502> <http://purl.obolibrary.org/obo/BFO_0000169>)
 SubObjectPropertyOf(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) <http://purl.obolibrary.org/obo/RO_0002502> owl:topObjectProperty)
+
+# Object Property: <http://purl.obolibrary.org/obo/RO_0002506> (causal relation between entities)
+
+AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) <http://purl.obolibrary.org/obo/IAO_0000116> <http://purl.obolibrary.org/obo/RO_0002506> "The intent is that the process branch of the causal property hierarchy is primary (causal relations hold between occurrents/processes), and that the material branch is defined in terms of the process branch")
+AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) <http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/RO_0002506> <https://orcid.org/0000-0002-6601-2165>)
+AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) <http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/RO_0002506> <http://purl.obolibrary.org/obo/ro/docs/causal-relations>)
+AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) <http://purl.obolibrary.org/obo/IAO_0000232> <http://purl.obolibrary.org/obo/RO_0002506> "Do not use this relation directly. It is intended as a grouping for a diverse set of relations, all involving cause and effect.")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002506> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) rdfs:label <http://purl.obolibrary.org/obo/RO_0002506> "causal relation between entities")
+SubObjectPropertyOf(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) <http://purl.obolibrary.org/obo/RO_0002506> <http://purl.obolibrary.org/obo/RO_0002410>)
+
+# Object Property: <http://purl.obolibrary.org/obo/RO_0002559> (causally influenced by)
+
+AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) <http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/RO_0002559> <https://orcid.org/0000-0002-6601-2165>)
+AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) <http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/RO_0002559> <http://purl.obolibrary.org/obo/ro/docs/causal-relations>)
+AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) <http://purl.obolibrary.org/obo/IAO_0000589> <http://purl.obolibrary.org/obo/RO_0002559> "causally influenced by (entity-centric)")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002559> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) rdfs:label <http://purl.obolibrary.org/obo/RO_0002559> "causally influenced by")
+SubObjectPropertyOf(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) <http://purl.obolibrary.org/obo/RO_0002559> <http://purl.obolibrary.org/obo/RO_0002506>)
+
+# Object Property: <http://purl.obolibrary.org/obo/RO_0002566> (causally influences)
+
+AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/RO_0002566> "The entity or characteristic A is causally upstream of the entity or characteristic B, A having an effect on B. An entity corresponds to any biological type of entity as long as a mass is measurable. A characteristic corresponds to a particular specificity of an entity (e.g., phenotype, shape, size).")
+AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) <http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/RO_0002566> <https://orcid.org/0000-0002-6601-2165>)
+AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) <http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/RO_0002566> <https://orcid.org/0000-0003-4639-4431>)
+AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) <http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/RO_0002566> <http://purl.obolibrary.org/obo/ro/docs/causal-relations>)
+AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) <http://purl.obolibrary.org/obo/IAO_0000589> <http://purl.obolibrary.org/obo/RO_0002566> "causally influences (entity-centric)")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002566> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) rdfs:label <http://purl.obolibrary.org/obo/RO_0002566> "causally influences")
+SubObjectPropertyOf(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ro/releases/2025-03-05/ro.owl>) <http://purl.obolibrary.org/obo/RO_0002566> <http://purl.obolibrary.org/obo/RO_0002506>)
 
 # Object Property: <http://purl.obolibrary.org/obo/RO_0002595> (causal relation between material entity and a process)
 
