@@ -1240,12 +1240,17 @@ Declaration(Class(obo:OHD_0000411))
 Declaration(Class(obo:OHD_0000412))
 Declaration(Class(obo:OHD_0000413))
 Declaration(Class(obo:OHD_0000414))
+Declaration(Class(obo:OHD_0000415))
+Declaration(Class(obo:OHD_0000416))
+Declaration(Class(obo:OHD_0000417))
 Declaration(Class(obo:OHD_0000418))
+Declaration(Class(obo:OHD_0000419))
 Declaration(Class(obo:OHD_0000420))
 Declaration(Class(obo:OHD_0000421))
 Declaration(Class(obo:OHD_0000422))
 Declaration(Class(obo:OHD_0000423))
 Declaration(Class(obo:OHD_0000424))
+Declaration(Class(obo:OHD_0000425))
 Declaration(Class(obo:OHD_0000426))
 Declaration(Class(obo:OHD_0000427))
 Declaration(Class(obo:OHD_0000428))
@@ -5547,6 +5552,32 @@ AnnotationAssertion(rdfs:label obo:OHD_0000414 "mouth disorder"@en)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#exactMatch> obo:OHD_0000414 obo:MONDO_0006858)
 EquivalentClasses(obo:OHD_0000414 ObjectIntersectionOf(obo:OGMS_0000045 ObjectSomeValuesFrom(obo:FMA_85848 obo:FMA_49184)))
 
+# Class: obo:OHD_0000415 (data collection)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000415 "An information content entity that contains multiple structured collections of data items.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000415 <http://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000415 "2025-04-13T21:18:24Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000415 "data collection"@en)
+SubClassOf(obo:OHD_0000415 obo:IAO_0000030)
+
+# Class: obo:OHD_0000416 (dataset)
+
+AnnotationAssertion(obo:IAO_0000112 obo:OHD_0000416 "A set of records in which each record contains a patient's demographic information.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000416 "A data collection that consists of multiple records or tables which contain records. Although a dataset may contain single record or table, a dataset does not have to be organized as rows and columns and is often saved as a single file.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000416 <http://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000416 "2025-04-13T21:18:30Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000416 "dataset"@en)
+SubClassOf(obo:OHD_0000416 obo:OHD_0000415)
+
+# Class: obo:OHD_0000417 (data record)
+
+AnnotationAssertion(obo:IAO_0000112 obo:OHD_0000417 "A set of fields that contain information about a patient, such as the patient's first name, last name, and birthdate.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000417 "A data collection that consists of one or more data fields and structures the data fields as a logical unit.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000417 <http://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000417 "2025-04-13T21:18:38Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000417 "data record"@en)
+SubClassOf(obo:OHD_0000417 obo:OHD_0000415)
+
 # Class: obo:OHD_0000418 (study question)
 
 AnnotationAssertion(dcterms:contributor obo:OHD_0000418 <https://orcid.org/0000-0001-9625-1899>)
@@ -5554,6 +5585,14 @@ AnnotationAssertion(dcterms:created obo:OHD_0000418 "2025-02-15T18:38:57Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000418 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000418 "study question"@en)
 SubClassOf(obo:OHD_0000418 obo:OHD_0008011)
+
+# Class: obo:OHD_0000419 (data table)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000419 "A data collection in which the data items are organized into rows and columns.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000419 <http://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000419 "2025-04-13T21:19:03Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000419 "data table"@en)
+SubClassOf(obo:OHD_0000419 obo:OHD_0000415)
 
 # Class: obo:OHD_0000420 (COHRA2 study question)
 
@@ -5606,6 +5645,15 @@ EquivalentClasses(obo:OHD_0000424 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0
 SubClassOf(obo:OHD_0000424 obo:OHD_0008010)
 SubClassOf(obo:OHD_0000424 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
 SubClassOf(obo:OHD_0000424 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008049))
+
+# Class: obo:OHD_0000425 (data field)
+
+AnnotationAssertion(obo:IAO_0000112 obo:OHD_0000425 "The birthdate field in a record containing patient information.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000425 "A data item that is part of a record and serves as a single unit of information within the record.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000425 <http://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000425 "2025-04-13T21:19:13Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000425 "data field"@en)
+SubClassOf(obo:OHD_0000425 obo:IAO_0000027)
 
 # Class: obo:OHD_0000426 (DFS 05. I perspire.)
 
@@ -6590,12 +6638,12 @@ AnnotationAssertion(dc:date obo:OHD_0008003 "2025-03-10T12:48:45Z"^^xsd:dateTime
 AnnotationAssertion(rdfs:label obo:OHD_0008003 "Dental Anxiety Scale (DAS) question"@en)
 SubClassOf(obo:OHD_0008003 obo:OHD_0008009)
 
-# Class: obo:OHD_0008004 (dental fear and anxiety study)
+# Class: obo:OHD_0008004 (dental fear and anxiety study dataset)
 
 AnnotationAssertion(dc:creator obo:OHD_0008004 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dc:date obo:OHD_0008004 "2025-03-10T12:49:35Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0008004 "dental fear and anxiety study"@en)
-SubClassOf(obo:OHD_0008004 obo:IAO_0000030)
+AnnotationAssertion(rdfs:label obo:OHD_0008004 "dental fear and anxiety study dataset"@en)
+SubClassOf(obo:OHD_0008004 obo:OHD_0000416)
 
 # Class: obo:OHD_0008005 (COHRA Study)
 
