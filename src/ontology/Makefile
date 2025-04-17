@@ -165,7 +165,7 @@ all_main: $(MAIN_FILES)
 # ----------------------------------------
 
 
-IMPORTS =  bfo2_classes caro cdt ecto fma-jaws-teeth fma-lymph fma-mouth-mucosa fma-tmj fma-tongue iao ncbi obi ogms omrse ro omo ido
+IMPORTS =  bfo2_classes caro cdt ecto fma-jaws-teeth fma-lymph fma-mouth-mucosa fma-tmj fma-tongue iao ncbi obi ogms omrse ro omo go
 
 IMPORT_ROOTS = $(patsubst %, $(IMPORTDIR)/%_import, $(IMPORTS))
 IMPORT_OWL_FILES = $(foreach n,$(IMPORT_ROOTS), $(n).owl)
@@ -356,21 +356,19 @@ ANNOTATION_PROPERTIES=rdfs:label IAO:0000115 IAO:0000116 IAO:0000111 oboInOwl:ha
 # This pattern uses ROBOT to generate an import module
 
 # Should be able to drop this if robot can just take a big messy list of terms as input.
-$(IMPORTDIR)/%_terms_combined.txt: $(IMPORTSEED) $(IMPORTDIR)/%_terms.txt
-	if [ $(IMP) = true ]; then cat $^ | grep -v ^# | sort | uniq >  $@; fi
+# $(IMPORTDIR)/%_terms_combined.txt: $(IMPORTSEED) $(IMPORTDIR)/%_terms.txt
+# 	if [ $(IMP) = true ]; then cat $^ | grep -v ^# | sort | uniq >  $@; fi
 
 
+# $(IMPORTDIR)/%_import.owl: $(MIRRORDIR)/%.owl $(IMPORTDIR)/%_terms_combined.txt
+# 	if [ $(IMP) = true ]; then $(ROBOT) merge -i $< \
+# 		query --update ../sparql/preprocess-module.ru \
+# 		remove --base-iri $(OBOBASE)"/$(shell echo $* | tr a-z A-Z)_" --axioms external --preserve-structure false --trim false \
+# 		remove $(patsubst %, --term %, $(ANNOTATION_PROPERTIES)) -T $(IMPORTDIR)/$*_terms_combined.txt --select complement \
+# 		query --update ../sparql/inject-subset-declaration.ru --update ../sparql/inject-synonymtype-declaration.ru --update ../sparql/postprocess-module.ru \
+# 		$(ANNOTATE_CONVERT_FILE); fi
 
-
-$(IMPORTDIR)/%_import.owl: $(MIRRORDIR)/%.owl $(IMPORTDIR)/%_terms_combined.txt
-	if [ $(IMP) = true ]; then $(ROBOT) merge -i $< \
-		query --update ../sparql/preprocess-module.ru \
-		remove --base-iri $(OBOBASE)"/$(shell echo $* | tr a-z A-Z)_" --axioms external --preserve-structure false --trim false \
-		remove $(patsubst %, --term %, $(ANNOTATION_PROPERTIES)) -T $(IMPORTDIR)/$*_terms_combined.txt --select complement \
-		query --update ../sparql/inject-subset-declaration.ru --update ../sparql/inject-synonymtype-declaration.ru --update ../sparql/postprocess-module.ru \
-		$(ANNOTATE_CONVERT_FILE); fi
-
-.PRECIOUS: $(IMPORTDIR)/%_import.owl
+# .PRECIOUS: $(IMPORTDIR)/%_import.owl
 
 ## Module for ontology: bfo2_classes
 
@@ -430,123 +428,6 @@ $(COMPONENTSDIR)/%.owl: | $(COMPONENTSDIR)
 
 
 # ----------------------------------------
-# Mirroring upstream ontologies
-# ----------------------------------------
-
-IMP=true # Global parameter to bypass import generation
-MIR=true # Global parameter to bypass mirror generation
-IMP_LARGE=true # Global parameter to bypass handling of large imports
-
-ifeq ($(strip $(MIR)),true)
-
-
-## ONTOLOGY: bfo2_classes
-.PHONY: mirror-bfo2_classes
-.PRECIOUS: $(MIRRORDIR)/bfo2_classes.owl
-mirror-bfo2_classes: | $(TMPDIR)
-	curl -L $(OBOBASE)/bfo2_classes.owl --create-dirs -o $(TMPDIR)/bfo2_classes-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/bfo2_classes-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: caro
-.PHONY: mirror-caro
-.PRECIOUS: $(MIRRORDIR)/caro.owl
-mirror-caro: | $(TMPDIR)
-	curl -L $(OBOBASE)/caro.owl --create-dirs -o $(TMPDIR)/caro-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/caro-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: cdt
-.PHONY: mirror-cdt
-.PRECIOUS: $(MIRRORDIR)/cdt.owl
-mirror-cdt: | $(TMPDIR)
-	curl -L $(OBOBASE)/cdt.owl --create-dirs -o $(TMPDIR)/cdt-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/cdt-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: ecto
-.PHONY: mirror-ecto
-.PRECIOUS: $(MIRRORDIR)/ecto.owl
-mirror-ecto: | $(TMPDIR)
-	curl -L $(OBOBASE)/ecto.owl --create-dirs -o $(TMPDIR)/ecto-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/ecto-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: iao
-.PHONY: mirror-iao
-.PRECIOUS: $(MIRRORDIR)/iao.owl
-mirror-iao: | $(TMPDIR)
-	curl -L $(OBOBASE)/iao.owl --create-dirs -o $(TMPDIR)/iao-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/iao-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: ncbi
-.PHONY: mirror-ncbi
-.PRECIOUS: $(MIRRORDIR)/ncbi.owl
-mirror-ncbi: | $(TMPDIR)
-	curl -L $(OBOBASE)/ncbi.owl --create-dirs -o $(TMPDIR)/ncbi-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/ncbi-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: obi
-.PHONY: mirror-obi
-.PRECIOUS: $(MIRRORDIR)/obi.owl
-mirror-obi: | $(TMPDIR)
-	curl -L $(OBOBASE)/obi.owl --create-dirs -o $(TMPDIR)/obi-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/obi-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: ogms
-.PHONY: mirror-ogms
-.PRECIOUS: $(MIRRORDIR)/ogms.owl
-mirror-ogms: | $(TMPDIR)
-	curl -L $(OBOBASE)/ogms.owl --create-dirs -o $(TMPDIR)/ogms-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/ogms-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: ido
-.PHONY: mirror-ido
-.PRECIOUS: $(MIRRORDIR)/ido.owl
-mirror-ido: | $(TMPDIR)
-	curl -L $(OBOBASE)/ido.owl --create-dirs -o $(TMPDIR)/ido-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/ido-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: omrse
-.PHONY: mirror-omrse
-.PRECIOUS: $(MIRRORDIR)/omrse.owl
-mirror-omrse: | $(TMPDIR)
-	curl -L $(OBOBASE)/omrse.owl --create-dirs -o $(TMPDIR)/omrse-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/omrse-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: ro
-.PHONY: mirror-ro
-.PRECIOUS: $(MIRRORDIR)/ro.owl
-mirror-ro: | $(TMPDIR)
-	curl -L $(OBOBASE)/ro.owl --create-dirs -o $(TMPDIR)/ro-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/ro-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: omo
-.PHONY: mirror-omo
-.PRECIOUS: $(MIRRORDIR)/omo.owl
-mirror-omo: | $(TMPDIR)
-	$(ROBOT) convert -I http://purl.obolibrary.org/obo/omo.owl -o $(TMPDIR)/$@.owl
-
-
-$(MIRRORDIR)/%.owl: mirror-% | $(MIRRORDIR)
-	if [ -f $(TMPDIR)/mirror-$*.owl ]; then if cmp -s $(TMPDIR)/mirror-$*.owl $@ ; then echo "Mirror identical, ignoring."; else echo "Mirrors different, updating." &&\
-		cp $(TMPDIR)/mirror-$*.owl $@; fi; fi
-
-else # MIR=false
-$(MIRRORDIR)/%.owl:
-	@echo "Not refreshing $@ because the mirrorring pipeline is disabled (MIR=$(MIR))."
-endif
-
-
-
-# ----------------------------------------
 # Subsets
 # ----------------------------------------
 $(SUBSETDIR)/%.tsv: $(SUBSETDIR)/%.owl
@@ -583,7 +464,6 @@ endif
 # ----------------------------------------
 # Release artefacts: export formats
 # ----------------------------------------
-
 
 $(ONT)-base.obo: $(ONT)-base.owl
 	$(ROBOT) convert --input $< --check false -f obo $(OBO_FORMAT_OPTIONS) -o $@.tmp.obo && grep -v ^owl-axioms $@.tmp.obo > $@ && rm $@.tmp.obo
@@ -689,8 +569,6 @@ validate-all-tsv: $(ALL_TSV_FILES)
 # ----------------------------------------
 # Editors Utilities
 # ----------------------------------------
-
-
 
 .PHONY: normalize_src
 normalize_src: $(SRC)

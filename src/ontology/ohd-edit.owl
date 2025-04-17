@@ -11,6 +11,7 @@ Prefix(dcterms:=<http://purl.org/dc/terms/>)
 
 
 Ontology(<http://purl.obolibrary.org/obo/ohd.owl>
+Import(<http://purl.obolibrary.org/obo/go/releases/2025-03-16/go.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/components/dental_material.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/components/ohd_contributors.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/bfo2_classes_import.owl>)
@@ -1430,7 +1431,7 @@ SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasExactSy
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> obo:IAO_0000118)
 
-# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> (has related synonym)
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> (has_related_synonym)
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> obo:IAO_0000118)
 
@@ -2203,6 +2204,10 @@ SubClassOf(obo:FMA_84244 ObjectSomeValuesFrom(obo:FMA_85868 obo:FMA_no_fmaid_Pri
 
 SubClassOf(obo:FMA_84245 ObjectSomeValuesFrom(obo:FMA_85868 obo:FMA_no_fmaid_Primary_mandibular_dentition))
 
+# Class: obo:GO_0008150 (biological_process)
+
+SubClassOf(obo:GO_0008150 obo:BFO_0000015)
+
 # Class: obo:NBO_0000007 (temp: mouth movement)
 
 AnnotationAssertion(obo:IAO_0000116 obo:NBO_0000007 "Import from NBO")
@@ -2249,6 +2254,23 @@ AnnotationAssertion(obo:IAO_0000119 obo:OBI_0000245 "GROUP: OBI")
 AnnotationAssertion(rdfs:label obo:OBI_0000245 "organization"@en)
 SubClassOf(obo:OBI_0000245 obo:BFO_0000040)
 
+# Class: obo:OBI_0000441 (assay objective)
+
+SubClassOf(obo:OBI_0000441 obo:IAO_0000005)
+
+# Class: obo:OBI_0000456 (material transformation objective)
+
+SubClassOf(obo:OBI_0000456 obo:IAO_0000005)
+
+# Class: obo:OBI_0000806 (material maintenance objective)
+
+SubClassOf(obo:OBI_0000806 obo:IAO_0000005)
+
+# Class: obo:OGMS_0000024 (obsolete_sign)
+
+AnnotationAssertion(owl:deprecated obo:OGMS_0000024 "true"^^xsd:boolean)
+SubClassOf(obo:OGMS_0000024 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
+
 # Class: obo:OGMS_0000055 (clinical history taking)
 
 SubClassOf(obo:OGMS_0000055 obo:OGMS_0000097)
@@ -2264,6 +2286,10 @@ SubClassOf(obo:OGMS_0000057 obo:OBI_0000011)
 SubClassOf(obo:OGMS_0000057 obo:OGMS_0000097)
 SubClassOf(obo:OGMS_0000057 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OBI_0000093))
 SubClassOf(obo:OGMS_0000057 ObjectSomeValuesFrom(obo:OBI_0000417 obo:OBI_0000441))
+
+# Class: obo:OGMS_0000088 (patient symptom report)
+
+SubClassOf(obo:OGMS_0000088 obo:IAO_0000030)
 
 # Class: obo:OGMS_0000090 (treatment)
 
@@ -5442,6 +5468,10 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0005004 <https://orcid.org/0000-
 AnnotationAssertion(dcterms:contributor obo:OHD_0005004 <https://orcid.org/0009-0003-7246-1252>)
 AnnotationAssertion(rdfs:label obo:OHD_0005004 "patient-reported unfavorable dental outcome"@en)
 EquivalentClasses(obo:OHD_0005004 ObjectIntersectionOf(obo:OHD_0000288 ObjectSomeValuesFrom(obo:IAO_0000136 obo:FMA_49184)))
+
+# Class: obo:OMRSE_00000007 (gender role)
+
+SubClassOf(obo:OMRSE_00000007 obo:BFO_0000023)
 
 # Class: obo:PATO_0040034 (temp: fractured)
 
