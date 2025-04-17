@@ -97,9 +97,7 @@ $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl
             --select "owl:deprecated='true'^^xsd:boolean" \
         extract \
             --method MIREOT \
-            --branch-from-term http://purl.obolibrary.org/obo/ExO_0000002 \
-        extract \
-            --method MIREOT \
+            --upper-term  http://purl.obolibrary.org/obo/ExO_0000002 \
             --lower-terms $(IMPORTDIR)/ecto_terms.txt \
         annotate \
             --annotate-defined-by true \
@@ -115,6 +113,7 @@ $(IMPORTDIR)/go_import.owl: $(MIRRORDIR)/go.owl
             --select "owl:deprecated='true'^^xsd:boolean" \
         extract \
             --method MIREOT \
+            --upper-term http://purl.obolibrary.org/obo/GO_0008150 \
             --lower-terms $(IMPORTDIR)/go_terms.txt \
         annotate \
             --annotate-defined-by true \
