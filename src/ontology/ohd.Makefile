@@ -102,6 +102,21 @@ $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
+.PRECIOUS: $(IMPORTDIR)/go_import.owl
+$(IMPORTDIR)/go_import.owl: $(MIRRORDIR)/go.owl
+	if [ $(IMP) = true ]; then $(ROBOT) \
+        remove \
+            --input $< \
+            --select "owl:deprecated='true'^^xsd:boolean" \
+        extract \
+            --method MIREOT \
+            --lower-terms $(IMPORTDIR)/go_terms.txt \
+        annotate \
+            --annotate-defined-by true \
+            --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        convert --format ofn \
+        --output $@.tmp.owl && mv $@.tmp.owl $@; fi
+
 $(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl
 	if [ $(IMP) = true ]; then $(ROBOT) \
         remove \
