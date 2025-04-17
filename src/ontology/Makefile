@@ -165,7 +165,7 @@ all_main: $(MAIN_FILES)
 # ----------------------------------------
 
 
-IMPORTS =  bfo2_classes caro cdt ecto fma-jaws-teeth fma-lymph fma-mouth-mucosa fma-tmj fma-tongue iao ncbi obi ogms omrse ro omo go
+IMPORTS =  bfo2_classes caro cdt ecto fma-jaws-teeth fma-lymph fma-mouth-mucosa fma-tmj fma-tongue iao ncbi obi ogms omrse ro omo go ido
 
 IMPORT_ROOTS = $(patsubst %, $(IMPORTDIR)/%_import, $(IMPORTS))
 IMPORT_OWL_FILES = $(foreach n,$(IMPORT_ROOTS), $(n).owl)

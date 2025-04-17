@@ -60,9 +60,17 @@ Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002410>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002431>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002500>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002502>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002506>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002559>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002566>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002595>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0003302>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0003304>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0004017>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0004019>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0004020>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0004023>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0040035>))
 Declaration(ObjectProperty(owl:topObjectProperty))
 Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0000111>))
 Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0000112>))
@@ -985,6 +993,36 @@ AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0002502> "depe
 AnnotationAssertion(rdfs:seeAlso <http://purl.obolibrary.org/obo/RO_0002502> <http://purl.obolibrary.org/obo/BFO_0000169>)
 SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0002502> owl:topObjectProperty)
 
+# Object Property: <http://purl.obolibrary.org/obo/RO_0002506> (causal relation between entities)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000116> <http://purl.obolibrary.org/obo/RO_0002506> "The intent is that the process branch of the causal property hierarchy is primary (causal relations hold between occurrents/processes), and that the material branch is defined in terms of the process branch")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/RO_0002506> <https://orcid.org/0000-0002-6601-2165>)
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/RO_0002506> <http://purl.obolibrary.org/obo/ro/docs/causal-relations>)
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000232> <http://purl.obolibrary.org/obo/RO_0002506> "Do not use this relation directly. It is intended as a grouping for a diverse set of relations, all involving cause and effect.")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002506> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0002506> "causal relation between entities")
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0002506> <http://purl.obolibrary.org/obo/RO_0002410>)
+
+# Object Property: <http://purl.obolibrary.org/obo/RO_0002559> (causally influenced by)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/RO_0002559> <https://orcid.org/0000-0002-6601-2165>)
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/RO_0002559> <http://purl.obolibrary.org/obo/ro/docs/causal-relations>)
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000589> <http://purl.obolibrary.org/obo/RO_0002559> "causally influenced by (entity-centric)")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002559> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0002559> "causally influenced by")
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0002559> <http://purl.obolibrary.org/obo/RO_0002506>)
+
+# Object Property: <http://purl.obolibrary.org/obo/RO_0002566> (causally influences)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/RO_0002566> "The entity or characteristic A is causally upstream of the entity or characteristic B, A having an effect on B. An entity corresponds to any biological type of entity as long as a mass is measurable. A characteristic corresponds to a particular specificity of an entity (e.g., phenotype, shape, size).")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/RO_0002566> <https://orcid.org/0000-0002-6601-2165>)
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/RO_0002566> <https://orcid.org/0000-0003-4639-4431>)
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/RO_0002566> <http://purl.obolibrary.org/obo/ro/docs/causal-relations>)
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000589> <http://purl.obolibrary.org/obo/RO_0002566> "causally influences (entity-centric)")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002566> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0002566> "causally influences")
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0002566> <http://purl.obolibrary.org/obo/RO_0002506>)
+
 # Object Property: <http://purl.obolibrary.org/obo/RO_0002595> (causal relation between material entity and a process)
 
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/RO_0002595> "A relationship that holds between a material entity and a process in which causality is involved, with either the material entity or some part of the material entity exerting some influence over the process, or the process influencing some aspect of the material entity.")
@@ -1015,6 +1053,53 @@ AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.ob
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0003304> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0003304> "contributes to condition"@en)
 SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0003304> <http://purl.obolibrary.org/obo/RO_0003302>)
+
+# Object Property: <http://purl.obolibrary.org/obo/RO_0004017> (realizable has basis in)
+
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#created_by> <http://purl.obolibrary.org/obo/RO_0004017> <https://orcid.org/0000-0002-6601-2165>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> <http://purl.obolibrary.org/obo/RO_0004017> "2017-11-05T03:20:01Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0004017> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0004017> "realizable has basis in")
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0004017> <http://purl.obolibrary.org/obo/RO_0002410>)
+
+# Object Property: <http://purl.obolibrary.org/obo/RO_0004019> (disease has basis in)
+
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#created_by> <http://purl.obolibrary.org/obo/RO_0004019> <https://orcid.org/0000-0002-6601-2165>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> <http://purl.obolibrary.org/obo/RO_0004019> "2017-11-05T03:26:47Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0004019> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0004019> "disease has basis in")
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0004019> <http://purl.obolibrary.org/obo/RO_0004017>)
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0004019> <http://purl.obolibrary.org/obo/RO_0004023>)
+
+# Object Property: <http://purl.obolibrary.org/obo/RO_0004020> (disease has basis in dysfunction of)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/RO_0004020> "A relation that holds between the disease and a material entity where the physical basis of the disease is a disorder of that material entity that affects its function.")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000589> <http://purl.obolibrary.org/obo/RO_0004020> "disease has basis in dysfunction of (disease to anatomical structure)")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#created_by> <http://purl.obolibrary.org/obo/RO_0004020> <https://orcid.org/0000-0002-6601-2165>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> <http://purl.obolibrary.org/obo/RO_0004020> "2017-11-05T03:29:32Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0004020> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0004020> "disease has basis in dysfunction of")
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0004020> <http://purl.obolibrary.org/obo/RO_0004019>)
+
+# Object Property: <http://purl.obolibrary.org/obo/RO_0004023> (causal relationship with disease as subject)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000232> <http://purl.obolibrary.org/obo/RO_0004023> "Do not use this relation directly. It is intended as a grouping for a diverse set of relations, all of which have a disease as the subject.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#created_by> <http://purl.obolibrary.org/obo/RO_0004023> <https://orcid.org/0000-0002-6601-2165>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> <http://purl.obolibrary.org/obo/RO_0004023> "2017-11-05T03:50:54Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0004023> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0004023> "causal relationship with disease as subject")
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0004023> <http://purl.obolibrary.org/obo/RO_0002410>)
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0004023> <http://purl.obolibrary.org/obo/RO_0040035>)
+
+# Object Property: <http://purl.obolibrary.org/obo/RO_0040035> (disease relationship)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/RO_0040035> "This relation groups  relations between diseases and any other kind of entity.")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000232> <http://purl.obolibrary.org/obo/RO_0040035> "Do not use this relation directly. It is intended as a grouping for a diverse set of relations, in which the subject or object is a disease.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#created_by> <http://purl.obolibrary.org/obo/RO_0040035> <https://orcid.org/0000-0002-6601-2165>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> <http://purl.obolibrary.org/obo/RO_0040035> "2018-09-26T00:00:32Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0040035> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0040035> "disease relationship")
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0040035> owl:topObjectProperty)
 
 
 
