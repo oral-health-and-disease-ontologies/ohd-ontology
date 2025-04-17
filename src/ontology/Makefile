@@ -15,10 +15,13 @@
 # 2. [Refresh imports](all_imports)
 # 3. [Update repo to latest ODK](update_repo)
 
+<<<<<<< HEAD
 # Fingerprint of the configuration file when this Makefile was last generated
 CONFIG_HASH=                059e9d32b669798cc3c31bffd79da3a2a41587170fc01f7149f0af75d6fedf25
 
 
+=======
+>>>>>>> main
 # ----------------------------------------
 # Standard Constants
 # ----------------------------------------
@@ -85,7 +88,7 @@ all: all_odk
 all_odk: odkversion config_check test custom_reports all_assets
 
 .PHONY: test
-test: odkversion reason_test sparql_test robot_reports $(REPORTDIR)/validate_profile_owl2dl_$(ONT).owl.txt
+test: reason_test sparql_test robot_reports $(REPORTDIR)/validate_profile_owl2dl_$(ONT).owl.txt
 	echo "Finished running all tests successfully."
 
 .PHONY: test
@@ -99,17 +102,6 @@ release_diff: $(REPORTDIR)/release-diff.md
 reason_test: $(EDIT_PREPROCESSED)
 	$(ROBOT) reason --input $< --reasoner ELK --equivalent-classes-allowed asserted-only \
 		--exclude-tautologies structural --output test.owl && rm test.owl
-
-.PHONY: odkversion
-odkversion:
-	@echo "ODK Makefile $(ODK_VERSION_MAKEFILE)"
-	@odk-info --tools
-.PHONY: config_check
-config_check:
-	@if [ "$$(sha256sum $(ONT)-odk.yaml | cut -c1-64)" = "$(CONFIG_HASH)" ]; then \
-		echo "Repository is up-to-date." ; else \
-		echo "Your ODK configuration has changed since this Makefile was generated. You may need to run 'make update_repo'." ; fi
-
 
 $(TMPDIR) $(REPORTDIR) $(MIRRORDIR) $(IMPORTDIR) $(COMPONENTSDIR) $(SUBSETDIR):
 	mkdir -p $@
@@ -165,7 +157,11 @@ all_main: $(MAIN_FILES)
 # ----------------------------------------
 
 
+<<<<<<< HEAD
 IMPORTS =  bfo2_classes caro cdt ecto fma-jaws-teeth fma-lymph fma-mouth-mucosa fma-tmj fma-tongue iao ncbi obi ogms omrse ro omo envo chebi
+=======
+IMPORTS =  bfo2_classes caro cdt ecto fma-jaws-teeth fma-lymph fma-mouth-mucosa fma-tmj fma-tongue iao ncbi obi ogms omrse ro omo go ido
+>>>>>>> main
 
 IMPORT_ROOTS = $(patsubst %, $(IMPORTDIR)/%_import, $(IMPORTS))
 IMPORT_OWL_FILES = $(foreach n,$(IMPORT_ROOTS), $(n).owl)
@@ -356,21 +352,19 @@ ANNOTATION_PROPERTIES=rdfs:label IAO:0000115 IAO:0000116 IAO:0000111 oboInOwl:ha
 # This pattern uses ROBOT to generate an import module
 
 # Should be able to drop this if robot can just take a big messy list of terms as input.
-$(IMPORTDIR)/%_terms_combined.txt: $(IMPORTSEED) $(IMPORTDIR)/%_terms.txt
-	if [ $(IMP) = true ]; then cat $^ | grep -v ^# | sort | uniq >  $@; fi
+# $(IMPORTDIR)/%_terms_combined.txt: $(IMPORTSEED) $(IMPORTDIR)/%_terms.txt
+# 	if [ $(IMP) = true ]; then cat $^ | grep -v ^# | sort | uniq >  $@; fi
 
 
+# $(IMPORTDIR)/%_import.owl: $(MIRRORDIR)/%.owl $(IMPORTDIR)/%_terms_combined.txt
+# 	if [ $(IMP) = true ]; then $(ROBOT) merge -i $< \
+# 		query --update ../sparql/preprocess-module.ru \
+# 		remove --base-iri $(OBOBASE)"/$(shell echo $* | tr a-z A-Z)_" --axioms external --preserve-structure false --trim false \
+# 		remove $(patsubst %, --term %, $(ANNOTATION_PROPERTIES)) -T $(IMPORTDIR)/$*_terms_combined.txt --select complement \
+# 		query --update ../sparql/inject-subset-declaration.ru --update ../sparql/inject-synonymtype-declaration.ru --update ../sparql/postprocess-module.ru \
+# 		$(ANNOTATE_CONVERT_FILE); fi
 
-
-$(IMPORTDIR)/%_import.owl: $(MIRRORDIR)/%.owl $(IMPORTDIR)/%_terms_combined.txt
-	if [ $(IMP) = true ]; then $(ROBOT) merge -i $< \
-		query --update ../sparql/preprocess-module.ru \
-		remove --base-iri $(OBOBASE)"/$(shell echo $* | tr a-z A-Z)_" --axioms external --preserve-structure false --trim false \
-		remove $(patsubst %, --term %, $(ANNOTATION_PROPERTIES)) -T $(IMPORTDIR)/$*_terms_combined.txt --select complement \
-		query --update ../sparql/inject-subset-declaration.ru --update ../sparql/inject-synonymtype-declaration.ru --update ../sparql/postprocess-module.ru \
-		$(ANNOTATE_CONVERT_FILE); fi
-
-.PRECIOUS: $(IMPORTDIR)/%_import.owl
+# .PRECIOUS: $(IMPORTDIR)/%_import.owl
 
 ## Module for ontology: bfo2_classes
 
@@ -431,6 +425,7 @@ $(COMPONENTSDIR)/%.owl: | $(COMPONENTSDIR)
 
 
 # ----------------------------------------
+<<<<<<< HEAD
 # Mirroring upstream ontologies
 # ----------------------------------------
 
@@ -597,6 +592,8 @@ endif
 
 
 # ----------------------------------------
+=======
+>>>>>>> main
 # Subsets
 # ----------------------------------------
 $(SUBSETDIR)/%.tsv: $(SUBSETDIR)/%.owl
@@ -633,7 +630,6 @@ endif
 # ----------------------------------------
 # Release artefacts: export formats
 # ----------------------------------------
-
 
 $(ONT)-base.obo: $(ONT)-base.owl
 	$(ROBOT) convert --input $< --check false -f obo $(OBO_FORMAT_OPTIONS) -o $@.tmp.obo && grep -v ^owl-axioms $@.tmp.obo > $@ && rm $@.tmp.obo
@@ -739,8 +735,6 @@ validate-all-tsv: $(ALL_TSV_FILES)
 # ----------------------------------------
 # Editors Utilities
 # ----------------------------------------
-
-
 
 .PHONY: normalize_src
 normalize_src: $(SRC)
