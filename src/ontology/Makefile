@@ -15,10 +15,6 @@
 # 2. [Refresh imports](all_imports)
 # 3. [Update repo to latest ODK](update_repo)
 
-# Fingerprint of the configuration file when this Makefile was last generated
-CONFIG_HASH=                de078a1737a86d7ed0c0f97a3797828bf82ba464d582b9e05905660dde9a77e0
-
-
 # ----------------------------------------
 # Standard Constants
 # ----------------------------------------
@@ -85,7 +81,7 @@ all: all_odk
 all_odk: odkversion config_check test custom_reports all_assets
 
 .PHONY: test
-test: odkversion reason_test sparql_test robot_reports $(REPORTDIR)/validate_profile_owl2dl_$(ONT).owl.txt
+test: reason_test sparql_test robot_reports $(REPORTDIR)/validate_profile_owl2dl_$(ONT).owl.txt
 	echo "Finished running all tests successfully."
 
 .PHONY: test
@@ -99,17 +95,6 @@ release_diff: $(REPORTDIR)/release-diff.md
 reason_test: $(EDIT_PREPROCESSED)
 	$(ROBOT) reason --input $< --reasoner ELK --equivalent-classes-allowed asserted-only \
 		--exclude-tautologies structural --output test.owl && rm test.owl
-
-.PHONY: odkversion
-odkversion:
-	@echo "ODK Makefile $(ODK_VERSION_MAKEFILE)"
-	@odk-info --tools
-.PHONY: config_check
-config_check:
-	@if [ "$$(sha256sum $(ONT)-odk.yaml | cut -c1-64)" = "$(CONFIG_HASH)" ]; then \
-		echo "Repository is up-to-date." ; else \
-		echo "Your ODK configuration has changed since this Makefile was generated. You may need to run 'make update_repo'." ; fi
-
 
 $(TMPDIR) $(REPORTDIR) $(MIRRORDIR) $(IMPORTDIR) $(COMPONENTSDIR) $(SUBSETDIR):
 	mkdir -p $@
@@ -165,7 +150,7 @@ all_main: $(MAIN_FILES)
 # ----------------------------------------
 
 
-IMPORTS =  bfo2_classes caro cdt ecto fma-jaws-teeth fma-lymph fma-mouth-mucosa fma-tmj fma-tongue iao ncbi obi ogms omrse ro omo go
+IMPORTS =  bfo2_classes caro cdt ecto fma-jaws-teeth fma-lymph fma-mouth-mucosa fma-tmj fma-tongue iao ncbi obi ogms omrse ro omo go ido
 
 IMPORT_ROOTS = $(patsubst %, $(IMPORTDIR)/%_import, $(IMPORTS))
 IMPORT_OWL_FILES = $(foreach n,$(IMPORT_ROOTS), $(n).owl)
