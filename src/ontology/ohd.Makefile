@@ -35,6 +35,7 @@ $(IMPORTDIR)/omo_import.owl: $(MIRRORDIR)/omo.owl
         annotate \
             --annotate-defined-by true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        convert --format ofn \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 .PRECIOUS: $(IMPORTDIR)/ro_import.owl
@@ -50,6 +51,7 @@ $(IMPORTDIR)/ro_import.owl: $(MIRRORDIR)/ro.owl
         annotate \
             --annotate-defined-by true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        convert --format ofn \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 .PRECIOUS: $(IMPORTDIR)/iao_import.owl
@@ -65,6 +67,7 @@ $(IMPORTDIR)/iao_import.owl: $(MIRRORDIR)/iao.owl
         annotate \
             --annotate-defined-by true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        convert --format ofn \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 .PRECIOUS: $(IMPORTDIR)/caro_import.owl
@@ -83,6 +86,7 @@ $(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl
         annotate \
             --annotate-defined-by true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        convert --format ofn \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 .PRECIOUS: $(IMPORTDIR)/ecto_import.owl
@@ -100,6 +104,7 @@ $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl
         annotate \
             --annotate-defined-by true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
+        convert --format ofn \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 .PRECIOUS: $(IMPORTDIR)/go_import.owl
