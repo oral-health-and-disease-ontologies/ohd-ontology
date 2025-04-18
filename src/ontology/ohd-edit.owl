@@ -1249,6 +1249,7 @@ Declaration(Class(obo:OHD_0000416))
 Declaration(Class(obo:OHD_0000417))
 Declaration(Class(obo:OHD_0000418))
 Declaration(Class(obo:OHD_0000419))
+Declaration(Class(obo:OHD_0000420))
 Declaration(Class(obo:OHD_0000421))
 Declaration(Class(obo:OHD_0000422))
 Declaration(Class(obo:OHD_0000423))
@@ -1270,6 +1271,8 @@ Declaration(Class(obo:OHD_0000438))
 Declaration(Class(obo:OHD_0000439))
 Declaration(Class(obo:OHD_0000440))
 Declaration(Class(obo:OHD_0000441))
+Declaration(Class(obo:OHD_0000442))
+Declaration(Class(obo:OHD_0000443))
 Declaration(Class(obo:OHD_0000444))
 Declaration(Class(obo:OHD_0000445))
 Declaration(Class(obo:OHD_0000446))
@@ -1297,11 +1300,7 @@ Declaration(Class(obo:OHD_0000514))
 Declaration(Class(obo:OHD_0000515))
 Declaration(Class(obo:OHD_0000516))
 Declaration(Class(obo:OHD_0000517))
-Declaration(Class(obo:OHD_0000415))
-Declaration(Class(obo:OHD_0000416))
-Declaration(Class(obo:OHD_0000417))
 Declaration(Class(obo:OHD_0002000))
-Declaration(Class(obo:OHD_0005000))
 Declaration(Class(obo:OHD_0005001))
 Declaration(Class(obo:OHD_0005002))
 Declaration(Class(obo:OHD_0005003))
@@ -1453,7 +1452,6 @@ Declaration(NamedIndividual(obo:OHD_0000130))
 Declaration(NamedIndividual(obo:OHD_0000131))
 Declaration(NamedIndividual(obo:OHD_0000132))
 Declaration(NamedIndividual(obo:OHD_0000363))
-Declaration(NamedIndividual(obo:OHD_0005016))
 Declaration(NamedIndividual(<https://orcid.org/0000-0001-6378-1703>))
 Declaration(NamedIndividual(<https://orcid.org/0000-0001-9625-1899>))
 Declaration(NamedIndividual(<https://orcid.org/0000-0001-9990-8331>))
@@ -2647,7 +2645,7 @@ AnnotationAssertion(rdfs:comment obo:OHD_0000021 "is caries a material entity or
 ")
 AnnotationAssertion(rdfs:label obo:OHD_0000021 "carious tooth lesion"@en)
 SubClassOf(obo:OHD_0000021 obo:OHD_0000260)
-SubClassOf(obo:OHD_0000021 ObjectSomeValuesFrom(obo:RO_0002354 obo:OHD_0000417))
+SubClassOf(obo:OHD_0000021 ObjectSomeValuesFrom(obo:RO_0002354 obo:OHD_0000442))
 
 # Class: obo:OHD_0000022 (metallic inlay restoration procedure)
 
@@ -2727,7 +2725,7 @@ EquivalentClasses(obo:OHD_0000030 ObjectIntersectionOf(obo:OHD_0000010 ObjectSom
 
 # Class: obo:OHD_0000031 (dental caries)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000031 "A disease realized as a disease course in which a carious lesion develops in a tooth, resulting in demineralization, loss of tooth structure/appearance of a cavity or other structural damage to the tooth."@en)
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000031 "An infectious disease realized in a disease course during which a carious lesion develops in a tooth, resulting in demineralization, loss of tooth structure/appearance of a cavity or other structural damage to the tooth."@en)
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000031 " Titus Schleyer 3/4/2014: definition updated")
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000031 "Alan Ruttenberg 4/12/2012: We need to hook up the disease with the material basis, and possible a representation of the disease course. However we don't have the 'has material basis' relation yet, and its not clear that it is useful to represent the disease course."@en)
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000031 "Bill Duncan 6/26/2015:
@@ -2737,7 +2735,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000031 <https://orcid.org/0000-
 AnnotationAssertion(dcterms:contributor obo:OHD_0000031 <https://orcid.org/0000-0002-1604-3078>)
 AnnotationAssertion(rdfs:label obo:OHD_0000031 "dental caries"@en)
 SubClassOf(obo:OHD_0000031 obo:IDO_0000436)
-SubClassOf(obo:OHD_0000031 ObjectSomeValuesFrom(obo:RO_0004020 obo:OHD_0000415))
+SubClassOf(obo:OHD_0000031 ObjectSomeValuesFrom(obo:BFO_0000054 obo:OHD_0000443))
+SubClassOf(obo:OHD_0000031 ObjectSomeValuesFrom(obo:RO_0004020 obo:OHD_0000420))
 
 # Class: obo:OHD_0000032 (soft tissue exam)
 
@@ -5532,7 +5531,7 @@ EquivalentClasses(obo:OHD_0000414 ObjectIntersectionOf(obo:OGMS_0000045 ObjectSo
 # Class: obo:OHD_0000415 (data collection)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000415 "An information content entity that contains multiple structured collections of data items.")
-AnnotationAssertion(dcterms:contributor obo:OHD_0000415 <http://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000415 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000415 "2025-04-13T21:18:24Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000415 "data collection"@en)
 SubClassOf(obo:OHD_0000415 obo:IAO_0000030)
@@ -5541,7 +5540,7 @@ SubClassOf(obo:OHD_0000415 obo:IAO_0000030)
 
 AnnotationAssertion(obo:IAO_0000112 obo:OHD_0000416 "A set of records in which each record contains a patient's demographic information.")
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000416 "A data collection that consists of multiple records or tables which contain records. Although a dataset may contain single record or table, a dataset does not have to be organized as rows and columns and is often saved as a single file.")
-AnnotationAssertion(dcterms:contributor obo:OHD_0000416 <http://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000416 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000416 "2025-04-13T21:18:30Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000416 "dataset"@en)
 SubClassOf(obo:OHD_0000416 obo:OHD_0000415)
@@ -5550,10 +5549,11 @@ SubClassOf(obo:OHD_0000416 obo:OHD_0000415)
 
 AnnotationAssertion(obo:IAO_0000112 obo:OHD_0000417 "A set of fields that contain information about a patient, such as the patient's first name, last name, and birthdate.")
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000417 "A data collection that consists of one or more data fields and structures the data fields as a logical unit.")
-AnnotationAssertion(dcterms:contributor obo:OHD_0000417 <http://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000417 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000417 "2025-04-13T21:18:38Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000417 "data record"@en)
 SubClassOf(obo:OHD_0000417 obo:OHD_0000415)
+SubClassOf(obo:OHD_0000417 ObjectSomeValuesFrom(obo:BFO_0000050 obo:OHD_0000416))
 
 # Class: obo:OHD_0000418 (study question)
 
@@ -5566,10 +5566,20 @@ SubClassOf(obo:OHD_0000418 obo:OHD_0008011)
 # Class: obo:OHD_0000419 (data table)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000419 "A data collection in which the data items are organized into rows and columns.")
-AnnotationAssertion(dcterms:contributor obo:OHD_0000419 <http://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000419 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000419 "2025-04-13T21:19:03Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000419 "data table"@en)
 SubClassOf(obo:OHD_0000419 obo:OHD_0000415)
+
+# Class: obo:OHD_0000420 (oral dysbiosis)
+
+AnnotationAssertion(Annotation(obo:IAO_0000119 "https://pmc.ncbi.nlm.nih.gov/articles/PMC10304820") obo:IAO_0000115 obo:OHD_0000420 "An infectious disorder that is the result of an imbalance or disruption of the microorganisms which normally exist within the mouth.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000420 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000420 "2025-03-12T22:52:42Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0000420 <https://orcid.org/0009-0006-7251-3026>)
+AnnotationAssertion(rdfs:label obo:OHD_0000420 "oral dysbiosis"@en)
+SubClassOf(obo:OHD_0000420 obo:IDO_0000504)
+SubClassOf(obo:OHD_0000420 ObjectSomeValuesFrom(obo:RO_0002566 obo:OHD_0000443))
 
 # Class: obo:OHD_0000421 (DFS 01. Has fear of dental work ever caused you to put off making an appointment?)
 
@@ -5791,6 +5801,25 @@ AnnotationAssertion(rdfs:label obo:OHD_0000441 "DFS 20. All things considered, h
 EquivalentClasses(obo:OHD_0000441 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000441))
 SubClassOf(obo:OHD_0000441 obo:OHD_0008010)
 SubClassOf(obo:OHD_0000441 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
+
+# Class: obo:OHD_0000442 (bacterial tooth demineralization process)
+
+AnnotationAssertion(Annotation(obo:IAO_0000119 "https://www.ncbi.nlm.nih.gov/books/NBK8259") obo:IAO_0000115 obo:OHD_0000442 "A pathological bodily process during which tooth mineral is solubilized by acid produced by certain bacteria that adhere to the tooth surface in bacterial communities known as dental plaque.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000442 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000442 <https://orcid.org/0009-0006-7251-3026>)
+AnnotationAssertion(dcterms:created obo:OHD_0000442 "2025-03-12T23:20:57Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000442 "bacterial tooth demineralization process"@en)
+SubClassOf(obo:OHD_0000442 obo:OGMS_0000061)
+SubClassOf(obo:OHD_0000442 ObjectSomeValuesFrom(obo:BFO_0000050 obo:OHD_0000443))
+
+# Class: obo:OHD_0000443 (dental caries disease course)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000443 "An infectious disease course that realizes dental caries.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000443 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000443 <https://orcid.org/0009-0006-7251-3026>)
+AnnotationAssertion(dcterms:created obo:OHD_0000443 "2025-03-12T23:02:32Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000443 "dental caries disease course"@en)
+SubClassOf(obo:OHD_0000443 obo:IDO_0000495)
 
 # Class: obo:OHD_0000444 (Modified Dental Anxiety Scale (MDAS))
 
@@ -6036,36 +6065,6 @@ AnnotationAssertion(rdfs:comment obo:OHD_0000517 "value 5")
 AnnotationAssertion(rdfs:label obo:OHD_0000517 "MDAS - Extremely anxious"@en)
 SubClassOf(obo:OHD_0000517 obo:OHD_0000512)
 
-# Class: obo:OHD_0000415 (oral dybiosis)
-
-AnnotationAssertion(Annotation(obo:IAO_0000119 "https://pmc.ncbi.nlm.nih.gov/articles/PMC10304820") obo:IAO_0000115 obo:OHD_0000415 "An infectious disorder that is the result of an imbalance or disruption of the microorganisms which normally exist within the mouth.")
-AnnotationAssertion(dcterms:contributor obo:OHD_0000415 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(dcterms:contributor obo:OHD_0000415 <https://orcid.org/0009-0006-7251-3026>)
-AnnotationAssertion(dcterms:created obo:OHD_0000415 "2025-03-12T22:52:42Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0000415 "oral dybiosis"@en)
-SubClassOf(obo:OHD_0000415 obo:IDO_0000504)
-SubClassOf(obo:OHD_0000415 ObjectSomeValuesFrom(obo:RO_0002500 obo:OHD_0000416))
-
-# Class: obo:OHD_0000416 (dental caries disease course)
-
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000416 "An infectious disease course that realizes dental caries.")
-AnnotationAssertion(dcterms:contributor obo:OHD_0000416 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(dcterms:contributor obo:OHD_0000416 <https://orcid.org/0009-0006-7251-3026>)
-AnnotationAssertion(dcterms:created obo:OHD_0000416 "2025-03-12T23:02:32Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0000416 "dental caries disease course"@en)
-SubClassOf(obo:OHD_0000416 obo:IDO_0000495)
-SubClassOf(obo:OHD_0000416 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000031))
-
-# Class: obo:OHD_0000417 (bacterial tooth demineralization process)
-
-AnnotationAssertion(Annotation(obo:IAO_0000119 "https://www.ncbi.nlm.nih.gov/books/NBK8259") obo:IAO_0000115 obo:OHD_0000417 "A pathological bodily process during which tooth mineral is solubilized by acid produced by certain bacteria that adhere to the tooth surface in bacterial communities known as dental plaque.")
-AnnotationAssertion(dcterms:contributor obo:OHD_0000417 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(dcterms:contributor obo:OHD_0000417 <https://orcid.org/0009-0006-7251-3026>)
-AnnotationAssertion(dcterms:created obo:OHD_0000417 "2025-03-12T23:20:57Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0000417 "bacterial tooth demineralization process"@en)
-SubClassOf(obo:OHD_0000417 obo:OGMS_0000061)
-SubClassOf(obo:OHD_0000417 ObjectSomeValuesFrom(obo:BFO_0000050 obo:OHD_0000416))
-
 # Class: obo:OHD_0002000 (masticatory muscle activity)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0002000 "A bodily process that involves the masticatory muscles of the head and neck region.")
@@ -6074,12 +6073,6 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0002000 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0002000 "2023-06-06T21:30:37Z")
 AnnotationAssertion(rdfs:label obo:OHD_0002000 "masticatory muscle activity")
 SubClassOf(obo:OHD_0002000 obo:OGMS_0000060)
-
-# Class: obo:OHD_0005000 (**behavioral defense response)
-
-AnnotationAssertion(rdfs:comment obo:OHD_0005000 "http://purl.obolibrary.org/obo/GO_0002209")
-AnnotationAssertion(rdfs:label obo:OHD_0005000 "**behavioral defense response"@en)
-SubClassOf(obo:OHD_0005000 obo:BFO_0000015)
 
 # Class: obo:OHD_0005001 (patient-reported outcome)
 
@@ -6130,7 +6123,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0005005 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0005005 "2025-02-10T00:00:00Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0005005 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0005005 "avoidance behavior"@en)
-SubClassOf(obo:OHD_0005005 obo:OHD_0005000)
+SubClassOf(obo:OHD_0005005 obo:GO_0002209)
 
 # Class: obo:OHD_0005006 (health encounter avoidance behavior)
 
@@ -6203,7 +6196,6 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0005015 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0005015 "2025-02-12T15:54:56Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0005015 "dental visit avoidance behavior that involves not showing up for a dental appointment"@en)
 SubClassOf(obo:OHD_0005015 obo:OHD_0005013)
-
 
 # Class: obo:OHD_0008001 (Index of Dental Anxiety and Fear (IDAF-4C+) Question)
 
@@ -6741,12 +6733,6 @@ AnnotationAssertion(dcterms:created obo:OHD_0000363 "2017-11-09T22:32:52Z")
 AnnotationAssertion(rdfs:label obo:OHD_0000363 "missing tooth example"@en)
 DataPropertyAssertion(obo:OHD_0000234 obo:OHD_0000363 "1")
 DataPropertyAssertion(obo:OHD_0000360 obo:OHD_0000363 "1")
-
-# Individual: obo:OHD_0005016 (Elena Milivinti)
-
-AnnotationAssertion(dcterms:contributor obo:OHD_0005016 <https://orcid.org/0009-0003-7246-1252>)
-AnnotationAssertion(dcterms:created obo:OHD_0005016 "2025-02-12T16:00:33Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0005016 "Elena Milivinti"@en)
 
 # Individual: <https://orcid.org/0000-0001-6378-1703> (Matthew Diller)
 
