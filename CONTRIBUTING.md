@@ -84,7 +84,9 @@ a [free-of-charge identifier]((https://info.orcid.org/what-is-orcid/)) for resea
 
 - Go to Protégé **Preferences**.
 - Click on the **User details** tab.
-  ![User details](src/images/User%20details.png)
+
+  <img src="src/images/User%20details.png" width="893" height="873"/>
+  
 - Enable **Use supplied user name**.
 - Enter your full name in the field indicated.
 - Enable **Use Git user name when available**.
@@ -96,7 +98,9 @@ a [free-of-charge identifier]((https://info.orcid.org/what-is-orcid/)) for resea
 
 - Go to Protégé **Preferences**.
 - Click the **New entities** tab.
-  ![Check New entities](src/images/New%20entities.png)
+
+  <img src="src/images/New%20entities.png" width="893" height="873"/>
+
 - Update **Entity IRI**.
     - For **Start with:** enable 'Specified IRI' and enter the following IRI in the field:
         - `http://purl.obolibrary.org/obo`
@@ -118,7 +122,9 @@ a [free-of-charge identifier]((https://info.orcid.org/what-is-orcid/)) for resea
 
 - Go to Protégé **Preferences**.
 - Click the **New entities metadata** tab.
-  ![New entities metadata](src/images/New%20entities%20metadata.png)
+
+  <img src="src/images/New%20entities%20metadata.png" width="892" height="748"/>
+  
 - Enable **Annotate new entities with creator (user)**.
 - For **Creator property** enter the following IRI the field:
     - `http://purl.org/dc/terms/contributor`
