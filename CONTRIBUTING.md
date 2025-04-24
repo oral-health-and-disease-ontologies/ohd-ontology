@@ -84,18 +84,23 @@ a [free-of-charge identifier]((https://info.orcid.org/what-is-orcid/)) for resea
 
 - Go to Protégé **Preferences**.
 - Click on the **User details** tab.
+
+  <img src="src/images/User%20details.png" width="893" height="873"/>
+  
 - Enable **Use supplied user name**.
 - Enter your full name in the field indicated.
 - Enable **Use Git user name when available**.
 - Enter your ORCID ID in the field for **ORCID**.
 - Click **OK** to save.
 
-![user_details_edit](https://github.com/oral-health-and-disease-ontologies/ohd-ontology/assets/47677575/8e452096-f685-4066-9d04-f0417451c456)
 
 #### Update configuration for new entities
 
 - Go to Protégé **Preferences**.
 - Click the **New entities** tab.
+
+  <img src="src/images/New%20entities.png" width="893" height="873"/>
+
 - Update **Entity IRI**.
     - For **Start with:** enable 'Specified IRI' and enter the following IRI in the field:
         - `http://purl.obolibrary.org/obo`
@@ -106,18 +111,20 @@ a [free-of-charge identifier]((https://info.orcid.org/what-is-orcid/)) for resea
 - Update **Auto-generated ID**.
     - Enable **Numeric (Iterative)**.
     - For **Prefix:** enter **OHD_** in the field provided.
-    - For **Start:** enter the lower value integer of the ID range if one has been assigned to you. For example 2,000.
-      Most regular contributors are assigned an ID range.
-    - For **End:** enter the upper-value integer of the ID range if one has been assigned to you. For example 2,999.
+    - For **Suffix:** leave this blank.
+    - For **Digit count:** enter 7.
+    - For an ID range, **Start:** and **End:** contact the OHD group if one has not been assigned.
     - Enable **Remember last ID between Protégé sessions**.
 - Click **OK** to save.
 
-![new_entities](https://github.com/oral-health-and-disease-ontologies/ohd-ontology/assets/47677575/745d1eb1-6169-4401-bfc4-9bed8a9e2bf9)
 
 #### Update configuration for new entities metadata
 
 - Go to Protégé **Preferences**.
 - Click the **New entities metadata** tab.
+
+  <img src="src/images/New%20entities%20metadata.png" width="892" height="748"/>
+  
 - Enable **Annotate new entities with creator (user)**.
 - For **Creator property** enter the following IRI the field:
     - `http://purl.org/dc/terms/contributor`
@@ -128,4 +135,3 @@ a [free-of-charge identifier]((https://info.orcid.org/what-is-orcid/)) for resea
 - For **Date property** enable **ISO-8601**.
 - Click **OK** to save.
 
-![new_entities_metadata](https://github.com/oral-health-and-disease-ontologies/ohd-ontology/assets/47677575/74d66507-de94-471e-81cc-959caddcff82)
