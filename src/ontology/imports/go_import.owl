@@ -11,15 +11,23 @@ Ontology(<http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>
 
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0001662>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0002209>))
+Declaration(Class(<http://purl.obolibrary.org/obo/GO_0003008>))
+Declaration(Class(<http://purl.obolibrary.org/obo/GO_0003013>))
+Declaration(Class(<http://purl.obolibrary.org/obo/GO_0003015>))
+Declaration(Class(<http://purl.obolibrary.org/obo/GO_0003016>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0006950>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0006952>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0006954>))
+Declaration(Class(<http://purl.obolibrary.org/obo/GO_0007585>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0007610>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0008150>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0032501>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0033555>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0042596>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0050896>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/BFO_0000050>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/BFO_0000051>))
+Declaration(ObjectProperty(owl:topObjectProperty))
 Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0000115>))
 Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0000233>))
 Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#created_by>))
@@ -120,6 +128,31 @@ AnnotationAssertion(rdfs:isDefinedBy <http://www.geneontology.org/formats/oboInO
 AnnotationAssertion(rdfs:label <http://www.geneontology.org/formats/oboInOwl#shorthand> "shorthand")
 
 
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://purl.obolibrary.org/obo/BFO_0000050> (part of)
+
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/BFO_0000050> "BFO:0000050")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/BFO_0000050> "external")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/BFO_0000050> "part_of")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#shorthand> <http://purl.obolibrary.org/obo/BFO_0000050> "part_of")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/BFO_0000050> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/BFO_0000050> "part of")
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/BFO_0000050> owl:topObjectProperty)
+
+# Object Property: <http://purl.obolibrary.org/obo/BFO_0000051> (has part)
+
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/BFO_0000051> "BFO:0000051")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/BFO_0000051> "external")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/BFO_0000051> "has_part")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#shorthand> <http://purl.obolibrary.org/obo/BFO_0000051> "has_part")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/BFO_0000051> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/BFO_0000051> "has part")
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/BFO_0000051> owl:topObjectProperty)
+
+
 
 ############################
 #   Classes
@@ -146,6 +179,50 @@ AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0002209>
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0002209> "behavioral defense response")
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0002209> <http://purl.obolibrary.org/obo/GO_0006952>)
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0002209> <http://purl.obolibrary.org/obo/GO_0007610>)
+
+# Class: <http://purl.obolibrary.org/obo/GO_0003008> (system process)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:mtg_cardio") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0003008> "A multicellular organismal process carried out by any of the organs or tissues in an organ system. An organ system is a regularly interacting or interdependent group of organs or tissues that work together to carry out a biological objective.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/GO_0003008> "organ system process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0003008> "biological_process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0003008> "GO:0003008")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0003008> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0003008> "system process")
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0003008> <http://purl.obolibrary.org/obo/GO_0032501>)
+
+# Class: <http://purl.obolibrary.org/obo/GO_0003013> (circulatory system process)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:mtg_cardio") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0003013> "An organ system process carried out by any of the organs or tissues of the circulatory system. The circulatory system is an organ system that moves extracellular fluids to and from tissue within a multicellular organism.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/GO_0003013> "Wikipedia:Circulatory_system")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0003013> "biological_process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0003013> "GO:0003013")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0003013> <http://purl.obolibrary.org/obo/go#goslim_chembl>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0003013> <http://purl.obolibrary.org/obo/go#goslim_generic>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0003013> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0003013> "circulatory system process")
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0003013> <http://purl.obolibrary.org/obo/GO_0003008>)
+
+# Class: <http://purl.obolibrary.org/obo/GO_0003015> (heart process)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:mtg_cardio") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0003015> "A circulatory system process carried out by the heart. The heart is a hollow, muscular organ, which, by contracting rhythmically, keeps up the circulation of the blood. The heart is a hollow, muscular organ, which, by contracting rhythmically, keeps up the circulation of the blood.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0003015> "biological_process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/GO_0003015> "cardiac process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0003015> "GO:0003015")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0003015> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0003015> "heart process")
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0003015> <http://purl.obolibrary.org/obo/GO_0003013>)
+
+# Class: <http://purl.obolibrary.org/obo/GO_0003016> (respiratory system process)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:dph") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:mtg_cardio") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:tb") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0003016> "A process carried out by the organs or tissues of the respiratory system. The respiratory system is an organ system responsible for respiratory gaseous exchange.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasAlternativeId> <http://purl.obolibrary.org/obo/GO_0003016> "GO:0010802")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/GO_0003016> "respiratory gaseous exchange")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0003016> "biological_process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0003016> "GO:0003016")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0003016> <http://purl.obolibrary.org/obo/go#goslim_generic>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0003016> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0003016> "respiratory system process")
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0003016> <http://purl.obolibrary.org/obo/GO_0003008>)
 
 # Class: <http://purl.obolibrary.org/obo/GO_0006950> (response to stress)
 
@@ -191,6 +268,18 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <htt
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0006954> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0006954> "inflammatory response")
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0006954> <http://purl.obolibrary.org/obo/GO_0006952>)
+
+# Class: <http://purl.obolibrary.org/obo/GO_0007585> (respiratory gaseous exchange by respiratory system)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "ISBN:0198506732") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0007585> "The process of gaseous exchange between an organism and its environment. In plants, microorganisms, and many small animals, air or water makes direct contact with the organism's cells or tissue fluids, and the processes of diffusion supply the organism with dioxygen (O2) and remove carbon dioxide (CO2). In larger animals the efficiency of gaseous exchange is improved by specialized respiratory organs, such as lungs and gills, which are ventilated by breathing mechanisms.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> <http://purl.obolibrary.org/obo/GO_0007585> "breathing")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> <http://purl.obolibrary.org/obo/GO_0007585> "respiration")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0007585> "biological_process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0007585> "GO:0007585")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0007585> <http://purl.obolibrary.org/obo/go#goslim_chembl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0007585> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0007585> "respiratory gaseous exchange by respiratory system")
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0007585> <http://purl.obolibrary.org/obo/GO_0032501>)
 
 # Class: <http://purl.obolibrary.org/obo/GO_0007610> (behavior)
 
