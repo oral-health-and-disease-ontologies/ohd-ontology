@@ -118,6 +118,7 @@ $(IMPORTDIR)/go_import.owl: $(MIRRORDIR)/go.owl
 		annotate \
 			--annotate-defined-by true \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/$@ \
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
@@ -134,6 +135,27 @@ $(IMPORTDIR)/ido_import.owl: $(MIRRORDIR)/ido.owl $(IMPORTDIR)/ido_terms.txt
 			--trim true \
 		remove \
 			--select "owl:deprecated='true'^^xsd:boolean" \
+		annotate \
+			--annotate-defined-by true \
+			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/$@ \
+		convert --format ofn \
+		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
+
+# Filters out all terms except those in the terms file
+.PRECIOUS: $(IMPORTDIR)/uberon_import.owl
+$(IMPORTDIR)/uberon_import.owl: $(MIRRORDIR)/uberon.owl $(IMPORTDIR)/uberon_terms.txt
+	if [ $(IMP) = true ]; then $(ROBOT) \
+		remove --preserve-structure true \
+			--input $< \
+			--select "owl:deprecated='true'^^xsd:boolean" \
+			--term http://purl.obolibrary.org/obo/UBERON_0000456 \
+		filter \
+			--term-file $(word 2, $^) \
+			--select "annotations self ancestors" \
+			--axioms logical \
+			--signature true \
+			--trim true \
 		annotate \
 			--annotate-defined-by true \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
