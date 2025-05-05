@@ -1,0 +1,77 @@
+Prefix(:=<http://purl.obolibrary.org/obo/ohd/imports/symp_import.owl#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://purl.obolibrary.org/obo/ohd/imports/symp_import.owl>
+<http://purl.obolibrary.org/obo/ohd/imports/symp_import.owl>
+
+Declaration(Class(<http://purl.obolibrary.org/obo/SYMP_0000458>))
+Declaration(Class(<http://purl.obolibrary.org/obo/SYMP_0000459>))
+Declaration(Class(<http://purl.obolibrary.org/obo/SYMP_0000462>))
+Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0000115>))
+Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasDbXref>))
+Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace>))
+Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#id>))
+############################
+#   Annotation Properties
+############################
+
+# Annotation Property: <http://purl.obolibrary.org/obo/IAO_0000115> (<http://purl.obolibrary.org/obo/IAO_0000115>)
+
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/ohd/imports/symp_import.owl>)
+
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasDbXref> (<http://www.geneontology.org/formats/oboInOwl#hasDbXref>)
+
+AnnotationAssertion(rdfs:isDefinedBy <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/ohd/imports/symp_import.owl>)
+
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> (<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace>)
+
+AnnotationAssertion(rdfs:isDefinedBy <http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/ohd/imports/symp_import.owl>)
+
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#id> (<http://www.geneontology.org/formats/oboInOwl#id>)
+
+AnnotationAssertion(rdfs:isDefinedBy <http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/ohd/imports/symp_import.owl>)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://purl.obolibrary.org/obo/SYMP_0000458> (nausea)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "url:http://www.nlm.nih.gov/medlineplus/nauseaandvomiting.html") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/SYMP_0000458> "Nausea is a digestive system symptom characterized by an uneasy or unsettled feeling in the stomach together with an urge to vomit.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/SYMP_0000458> "ICD9CM_2005:787.02")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/SYMP_0000458> "UMLS_CUI:C0375548")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/SYMP_0000458> "UMLS_ICD9CM_2005_AUI:A0750850")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/SYMP_0000458> "symptoms")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/SYMP_0000458> "SYMP:0000458")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/SYMP_0000458> <http://purl.obolibrary.org/obo/ohd/imports/symp_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/SYMP_0000458> "nausea")
+SubClassOf(<http://purl.obolibrary.org/obo/SYMP_0000458> <http://purl.obolibrary.org/obo/SYMP_0000459>)
+
+# Class: <http://purl.obolibrary.org/obo/SYMP_0000459> (digestive system symptom)
+
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/SYMP_0000459> "ICD9CM_2005:787")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/SYMP_0000459> "UMLS_CUI:C0159058")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/SYMP_0000459> "UMLS_ICD9CM_2005_AUI:A0284224")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/SYMP_0000459> "symptoms")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/SYMP_0000459> "SYMP:0000459")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/SYMP_0000459> <http://purl.obolibrary.org/obo/ohd/imports/symp_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/SYMP_0000459> "digestive system symptom")
+SubClassOf(<http://purl.obolibrary.org/obo/SYMP_0000459> <http://purl.obolibrary.org/obo/SYMP_0000462>)
+
+# Class: <http://purl.obolibrary.org/obo/SYMP_0000462> (symptom)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "url:https://link.springer.com/chapter/10.1007/978-1-4615-4789-1_5") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "url:https://www.merriam-webster.com/dictionary/symptom") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "url:https://www.nature.com/subjects/signs-and-symptoms") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/SYMP_0000462> "A symptom is a perceived change in function, sensation, loss, disturbance or appearance reported by a patient indicative of a disease.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/SYMP_0000462> "symptoms")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/SYMP_0000462> "SYMP:0000462")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/SYMP_0000462> <http://purl.obolibrary.org/obo/ohd/imports/symp_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/SYMP_0000462> "symptom")
+
+
+)
