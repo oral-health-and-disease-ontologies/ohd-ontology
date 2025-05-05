@@ -163,6 +163,26 @@ $(IMPORTDIR)/uberon_import.owl: $(MIRRORDIR)/uberon.owl $(IMPORTDIR)/uberon_term
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
+# Filters out all terms except those in the terms file
+.PRECIOUS: $(IMPORTDIR)/symp_import.owl
+$(IMPORTDIR)/symp_import.owl: $(MIRRORDIR)/symp.owl $(IMPORTDIR)/symp_terms.txt
+	if [ $(IMP) = true ]; then $(ROBOT) \
+		remove --preserve-structure true \
+			--input $< \
+			--select "owl:deprecated='true'^^xsd:boolean" \
+		filter \
+			--term-file $(word 2, $^) \
+			--select "annotations self ancestors" \
+			--axioms logical \
+			--signature true \
+			--trim true \
+		annotate \
+			--annotate-defined-by true \
+			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/$@ \
+		convert --format ofn \
+		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
+
 $(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl
 	if [ $(IMP) = true ]; then $(ROBOT) \
 		remove \
