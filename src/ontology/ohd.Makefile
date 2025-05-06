@@ -172,9 +172,8 @@ $(IMPORTDIR)/symp_import.owl: $(MIRRORDIR)/symp.owl $(IMPORTDIR)/symp_terms.txt
 			--select "owl:deprecated='true'^^xsd:boolean" \
 		filter \
 			--term-file $(word 2, $^) \
-			--select "annotations self ancestors" \
+			--select "annotations self" \
 			--axioms logical \
-			--signature true \
 			--trim true \
 		annotate \
 			--annotate-defined-by true \

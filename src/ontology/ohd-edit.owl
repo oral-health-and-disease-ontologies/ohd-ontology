@@ -30,6 +30,7 @@ Import(<http://purl.obolibrary.org/obo/ohd/imports/ogms_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/omo_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/omrse_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/symp_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl>)
 Annotation(dcterms:contributor <https://orcid.org/0000-0001-6378-1703>)
 Annotation(dcterms:contributor <https://orcid.org/0000-0001-6424-4096>)
@@ -2063,10 +2064,6 @@ SubClassOf(obo:CDT_1000023 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000033)
 # Class: obo:ExO_0000002 (exposure event)
 
 SubClassOf(obo:ExO_0000002 obo:BFO_0000015)
-
-# Class: obo:SYMP_0000459 (digestive system symptom)
-
-SubClassOf(obo:SYMP_0000459 obo:OGMS_0000020)
 
 # Class: obo:FMA_12516 (Tooth)
 
@@ -6642,6 +6639,10 @@ SubClassOf(obo:OMRSE_00000007 obo:BFO_0000023)
 AnnotationAssertion(obo:IAO_0000116 obo:PATO_0040034 "Replace with PATO term")
 AnnotationAssertion(rdfs:label obo:PATO_0040034 "temp: fractured"@en)
 SubClassOf(obo:PATO_0040034 obo:BFO_0000019)
+
+# Class: obo:SYMP_0000459 (digestive system symptom)
+
+SubClassOf(obo:SYMP_0000459 obo:OGMS_0000020)
 
 # Class: <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> (obsolete class)
 
