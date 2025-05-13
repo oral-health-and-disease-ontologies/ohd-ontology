@@ -24,12 +24,15 @@ Import(<http://purl.obolibrary.org/obo/ohd/imports/fma-tmj_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/fma-tongue_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/ido_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/mf_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/ncbi_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/obi_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/ogms_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/omo_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/omrse_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/pato_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl>)
 Annotation(dcterms:contributor <https://orcid.org/0000-0001-6378-1703>)
 Annotation(dcterms:contributor <https://orcid.org/0000-0001-6424-4096>)
 Annotation(dcterms:contributor <https://orcid.org/0000-0001-9990-8331>)
@@ -1316,8 +1319,11 @@ Declaration(Class(obo:OHD_0005014))
 Declaration(Class(obo:OHD_0005015))
 Declaration(Class(obo:OHD_0008000))
 Declaration(Class(obo:OHD_0008001))
+Declaration(Class(obo:OHD_0008002))
 Declaration(Class(obo:OHD_0008003))
 Declaration(Class(obo:OHD_0008004))
+Declaration(Class(obo:OHD_0008005))
+Declaration(Class(obo:OHD_0008006))
 Declaration(Class(obo:OHD_0008008))
 Declaration(Class(obo:OHD_0008009))
 Declaration(Class(obo:OHD_0008010))
@@ -1365,6 +1371,7 @@ Declaration(ObjectProperty(obo:OHD_0000091))
 Declaration(ObjectProperty(obo:OHD_0000216))
 Declaration(ObjectProperty(obo:OHD_0000217))
 Declaration(ObjectProperty(obo:OHD_0008045))
+Declaration(ObjectProperty(obo:OHD_0017000))
 Declaration(ObjectProperty(obo:RO_0000087))
 Declaration(ObjectProperty(obo:RO_0002354))
 Declaration(ObjectProperty(obo:RO_0003304))
@@ -1536,7 +1543,7 @@ AnnotationAssertion(rdfs:label <http://www.geneontology.org/formats/oboInOwl#Sub
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> obo:IAO_0000118)
 
-# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> (has exact synonym)
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> (has_exact_synonym)
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:IAO_0000118)
 
@@ -1616,6 +1623,13 @@ TransitiveObjectProperty(obo:OHD_0000217)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008045 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008045 "2025-04-04T00:42:44Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0008045 "based on information in"@en)
+
+# Object Property: obo:OHD_0017000 (symptom of)
+
+AnnotationAssertion(dcterms:contributor obo:OHD_0017000 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0017000 "2025-05-13T21:41:20Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0017000 "symptom of"@en)
+InverseObjectProperties(obo:OHD_0017000 obo:RO_0002452)
 
 # Object Property: obo:RO_0002354 (formed as result of)
 
@@ -6203,6 +6217,13 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:
 AnnotationAssertion(rdfs:label obo:OHD_0008001 "Index of Dental Anxiety and Fear (IDAF-4C+) Question"@en)
 SubClassOf(obo:OHD_0008001 obo:OHD_0008009)
 
+# Class: obo:OHD_0008002 (seeing dental drill)
+
+AnnotationAssertion(dcterms:contributor obo:OHD_0008002 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008002 "2025-05-13T21:34:58Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0008002 "seeing dental drill"@en)
+SubClassOf(obo:OHD_0008002 obo:MF_0000024)
+
 # Class: obo:OHD_0008003 (Dental Anxiety Scale (DAS) question)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008003 "A question that appears in the Dental Anxiety Scale (DAS)."@en)
@@ -6220,6 +6241,20 @@ AnnotationAssertion(dcterms:created obo:OHD_0008004 "2025-03-10T12:49:35Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008004 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008004 "dental fear and anxiety study dataset"@en)
 SubClassOf(obo:OHD_0008004 obo:OHD_0000416)
+
+# Class: obo:OHD_0008005 (hearing dental drill)
+
+AnnotationAssertion(dcterms:contributor obo:OHD_0008005 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008005 "2025-05-13T21:39:33Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0008005 "hearing dental drill"@en)
+SubClassOf(obo:OHD_0008005 obo:MF_0000038)
+
+# Class: obo:OHD_0008006 (sitting)
+
+AnnotationAssertion(dcterms:contributor obo:OHD_0008006 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008006 "2025-05-13T22:06:11Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0008006 "sitting"@en)
+SubClassOf(obo:OHD_0008006 obo:PATO_0000140)
 
 # Class: obo:OHD_0008008 (dental fear and anxiety assessment instrument)
 
@@ -6474,7 +6509,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0008049 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0008049 "2025-04-04T13:22:01Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008049 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008049 "increased breathing rate"@en)
-SubClassOf(obo:OHD_0008049 obo:OGMS_0000060)
+SubClassOf(obo:OHD_0008049 obo:GO_0003016)
 
 # Class: obo:OHD_0008050 (perspiration)
 
@@ -6499,7 +6534,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0008052 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0008052 "2025-04-04T13:31:33Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008052 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008052 "increased heart rate"@en)
-SubClassOf(obo:OHD_0008052 obo:OGMS_0000060)
+SubClassOf(obo:OHD_0008052 obo:GO_0003015)
 
 # Class: obo:OMRSE_00000007 (gender role)
 

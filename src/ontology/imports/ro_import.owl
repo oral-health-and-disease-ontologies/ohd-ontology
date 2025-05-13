@@ -36,6 +36,7 @@ Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002086>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002087>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002090>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002131>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002200>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002215>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002216>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002222>))
@@ -58,6 +59,7 @@ Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002354>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002400>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002410>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002431>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002452>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002500>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002502>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002506>))
@@ -70,6 +72,7 @@ Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0004017>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0004019>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0004020>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0004023>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0016001>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0040035>))
 Declaration(ObjectProperty(owl:topObjectProperty))
 Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0000111>))
@@ -89,7 +92,9 @@ Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/RO_0001900>))
 Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/RO_0002423>))
 Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/RO_0002575>))
 Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/RO_0040042>))
+Declaration(AnnotationProperty(<http://purl.org/dc/terms/contributor>))
 Declaration(AnnotationProperty(<http://purl.org/dc/terms/creator>))
+Declaration(AnnotationProperty(<http://purl.org/dc/terms/date>))
 Declaration(AnnotationProperty(<http://purl.org/dc/terms/source>))
 Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#created_by>))
 Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#creation_date>))
@@ -306,9 +311,17 @@ AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0040042>
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0040042> "is homeomorphic for")
 AnnotationAssertion(rdfs:seeAlso <http://purl.obolibrary.org/obo/RO_0040042> <https://github.com/oborel/obo-relations/issues/164>)
 
+# Annotation Property: <http://purl.org/dc/terms/contributor> (<http://purl.org/dc/terms/contributor>)
+
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+
 # Annotation Property: <http://purl.org/dc/terms/creator> (<http://purl.org/dc/terms/creator>)
 
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.org/dc/terms/creator> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+
+# Annotation Property: <http://purl.org/dc/terms/date> (<http://purl.org/dc/terms/date>)
+
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.org/dc/terms/date> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
 
 # Annotation Property: <http://purl.org/dc/terms/source> (<http://purl.org/dc/terms/source>)
 
@@ -702,6 +715,16 @@ AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002131>
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0002131> "overlaps"@en)
 SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0002131> <http://purl.obolibrary.org/obo/RO_0002323>)
 
+# Object Property: <http://purl.obolibrary.org/obo/RO_0002200> (has phenotype)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000114> <http://purl.obolibrary.org/obo/RO_0002200> <http://purl.obolibrary.org/obo/IAO_0000125>)
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/RO_0002200> "A relationship that holds between a biological entity and a phenotype. Here a phenotype is construed broadly as any kind of quality of an organism part, a collection of these qualities, or a change in quality or qualities (e.g. abnormally increased temperature). The subject of this relationship can be an organism (where the organism has the phenotype, i.e. the qualities inhere in parts of this organism), a genomic entity such as a gene or genotype (if modifications of the gene or the genotype causes the phenotype), or a condition such as a disease (such that if the condition inheres in an organism, then the organism has the phenotype).")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/RO_0002200> <https://orcid.org/0000-0002-6601-2165>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/RO_0002200> <http://purl.obolibrary.org/obo/ro/subsets#ro-eco>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002200> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0002200> "has phenotype"@en)
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0002200> <http://purl.obolibrary.org/obo/RO_0016001>)
+
 # Object Property: <http://purl.obolibrary.org/obo/RO_0002215> (capable of)
 
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000112> <http://purl.obolibrary.org/obo/RO_0002215> "mechanosensory neuron capable of detection of mechanical stimulus involved in sensory perception (GO:0050974)")
@@ -977,6 +1000,14 @@ SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0002431> <http://purl.obo
 SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0002431> <http://purl.obolibrary.org/obo/RO_0002328>)
 SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0002431> <http://purl.obolibrary.org/obo/RO_0002500>)
 
+# Object Property: <http://purl.obolibrary.org/obo/RO_0002452> (has symptom)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/RO_0002452> "A relation that holds between a disease or an organism and a phenotype")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/RO_0002452> <https://orcid.org/0000-0002-6601-2165>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002452> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0002452> "has symptom")
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0002452> <http://purl.obolibrary.org/obo/RO_0002200>)
+
 # Object Property: <http://purl.obolibrary.org/obo/RO_0002500> (causal agent in process)
 
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/RO_0002500> "A relationship between a material entity and a process where the material entity has some causal role that influences the process")
@@ -1090,6 +1121,16 @@ AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0004023>
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0004023> "causal relationship with disease as subject")
 SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0004023> <http://purl.obolibrary.org/obo/RO_0002410>)
 SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0004023> <http://purl.obolibrary.org/obo/RO_0040035>)
+
+# Object Property: <http://purl.obolibrary.org/obo/RO_0016001> (has phenotype or disease)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000232> <http://purl.obolibrary.org/obo/RO_0016001> "Do not use this relation directly. It is intended as a grouping for a set of relations regarding presentation of phenotypes and disease.")
+AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/RO_0016001> <https://orcid.org/0000-0002-7463-6306>)
+AnnotationAssertion(<http://purl.org/dc/terms/date> <http://purl.obolibrary.org/obo/RO_0016001> "2021-11-05T17:30:14Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0016001> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0016001> "has phenotype or disease")
+AnnotationAssertion(rdfs:seeAlso <http://purl.obolibrary.org/obo/RO_0016001> "https://github.com/oborel/obo-relations/issues/478")
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0016001> owl:topObjectProperty)
 
 # Object Property: <http://purl.obolibrary.org/obo/RO_0040035> (disease relationship)
 
