@@ -24,7 +24,8 @@ $(ONT).owl: $(SRC)
 # Ontology imports
 # ----------------------------------------
 
-.PRECIOUS: $(IMPORTDIR)/mf_import.owl: $(MIRRORDIR)/mf.owl $(IMPORTDIR)/mf_terms.txt 
+.PRECIOUS: $(IMPORTDIR)/mf_import.owl
+$(IMPORTDIR)/mf_import.owl: $(MIRRORDIR)/mf.owl $(IMPORTDIR)/mf_terms.txt 
 	@echo "*** building $@ ***"
 	$(ROBOT) \
 		filter \
@@ -43,7 +44,8 @@ $(ONT).owl: $(SRC)
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@
 
-.PRECIOUS: $(IMPORTDIR)/pato_import.owl: $(MIRRORDIR)/pato.owl $(IMPORTDIR)/pato_terms.txt
+.PRECIOUS: $(IMPORTDIR)/pato_import.owl
+$(IMPORTDIR)/pato_import.owl: $(MIRRORDIR)/pato.owl $(IMPORTDIR)/pato_terms.txt
 	@echo "*** building $@ ***"
 	$(ROBOT) \
 		filter \
@@ -62,7 +64,8 @@ $(ONT).owl: $(SRC)
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@
 
-.PRECIOUS: $(IMPORTDIR)/uberon_import.owl: $(MIRRORDIR)/uberon.owl $(IMPORTDIR)/uberon_terms.txt
+.PRECIOUS: $(IMPORTDIR)/uberon_import.owl
+$(IMPORTDIR)/uberon_import.owl: $(MIRRORDIR)/uberon.owl $(IMPORTDIR)/uberon_terms.txt
 	@echo "*** building $@ ***"
 	$(ROBOT) \
 		filter \
