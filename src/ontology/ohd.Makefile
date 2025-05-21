@@ -141,6 +141,22 @@ $(IMPORTDIR)/ido_import.owl: $(MIRRORDIR)/ido.owl $(IMPORTDIR)/ido_terms.txt
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
+.PRECIOUS: $(IMPORTDIR)/ohmi_import.owl
+$(IMPORTDIR)/ohmi_import.owl: $(MIRRORDIR)/ohmi.owl $(IMPORTDIR)/ohmi_terms.txt
+	if [ $(IMP) = true ]; then $(ROBOT) \
+		remove \
+			--input $< \
+			--select "owl:deprecated='true'^^xsd:boolean" \
+			--select classes \
+		extract \
+			--method MIREOT \
+			--lower-terms  $(word 2, $^) \
+		annotate \
+			--annotate-defined-by true \
+			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+		convert --format ofn \
+		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
+
 $(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl
 	if [ $(IMP) = true ]; then $(ROBOT) \
 		remove \
