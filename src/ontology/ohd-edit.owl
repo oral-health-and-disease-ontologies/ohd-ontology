@@ -1323,7 +1323,6 @@ Declaration(Class(obo:OHD_0008002))
 Declaration(Class(obo:OHD_0008003))
 Declaration(Class(obo:OHD_0008004))
 Declaration(Class(obo:OHD_0008005))
-Declaration(Class(obo:OHD_0008006))
 Declaration(Class(obo:OHD_0008008))
 Declaration(Class(obo:OHD_0008009))
 Declaration(Class(obo:OHD_0008010))
@@ -1354,6 +1353,7 @@ Declaration(Class(obo:OHD_0008034))
 Declaration(Class(obo:OHD_0008035))
 Declaration(Class(obo:OHD_0008036))
 Declaration(Class(obo:OHD_0008037))
+Declaration(Class(obo:OHD_0008038))
 Declaration(Class(obo:OHD_0008044))
 Declaration(Class(obo:OHD_0008047))
 Declaration(Class(obo:OHD_0008049))
@@ -1552,7 +1552,7 @@ SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasBroadSy
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:IAO_0000118)
 
-# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> (has narrow synonym)
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> (has_narrow_synonym)
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> obo:IAO_0000118)
 
@@ -5701,7 +5701,7 @@ AnnotationAssertion(dcterms:created obo:OHD_0000432 "2025-02-15T18:53:41Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000432 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000432 "DFS 11. Being seated in the dental chair."@en)
 SubClassOf(obo:OHD_0000432 obo:OHD_0008010)
-SubClassOf(obo:OHD_0000432 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008006))
+SubClassOf(obo:OHD_0000432 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008038))
 
 # Class: obo:OHD_0000433 (DFS 12. The smell of the dentist’s office.)
 
@@ -6087,7 +6087,6 @@ SubClassOf(obo:OHD_0002000 obo:OGMS_0000060)
 # Class: obo:OHD_0005001 (patient-reported outcome)
 
 AnnotationAssertion(Annotation(obo:IAO_0000119 "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/patient-reported-outcome") Annotation(obo:IAO_0000119 "https://www.pcori.org/sites/default/files/UMD-NORD-Telecon-Two-Patient-Reported-Outcomes.pdf") obo:IAO_0000115 obo:OHD_0005001 "A data item that comes directly from a patient about how they function or feel in relation to the patient's health.  A patient reported outcome can include subjective feelings regarding symptoms, functions in daily life, physical, mental, emotional, spiritual, and social well-being, and satisfaction with the health  care that has been received.")
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0005001 "A patient-reported outcome that reports a favorable outcome in regards to the patient's health.")
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0005001 "This term should be imported from more general ontology like OGMS.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0005001 <https://orcid.org/0000-0001-6378-1703>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0005001 <https://orcid.org/0000-0001-6424-4096>)
@@ -6264,13 +6263,6 @@ AnnotationAssertion(dcterms:created obo:OHD_0008005 "2025-05-13T21:39:33Z"^^xsd:
 AnnotationAssertion(rdfs:label obo:OHD_0008005 "hearing dental drill"@en)
 SubClassOf(obo:OHD_0008005 obo:MF_0000038)
 
-# Class: obo:OHD_0008006 (sitting position)
-
-AnnotationAssertion(dcterms:contributor obo:OHD_0008006 <https://orcid.org/0009-0002-7282-0836>)
-AnnotationAssertion(dcterms:created obo:OHD_0008006 "2025-05-13T22:06:11Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0008006 "sitting position"@en)
-SubClassOf(obo:OHD_0008006 obo:PATO_0000140)
-
 # Class: obo:OHD_0008008 (dental fear and anxiety assessment instrument)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008008 "An evaluative information entity used to measure dental fear and anxiety."@en)
@@ -6438,12 +6430,12 @@ SubClassOf(obo:OHD_0008026 obo:MF_0000024)
 
 # Class: obo:OHD_0008027 (sitting in waiting room)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008027 "A planned process in which an individual sits in a waiting room."@en)
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008027 "A process in which an individual sits in a waiting room."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008027 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008027 "2025-03-28T00:44:02Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008027 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008027 "sitting in waiting room"@en)
-SubClassOf(obo:OHD_0008027 obo:BFO_0000015)
+SubClassOf(obo:OHD_0008027 obo:OHD_0008038)
 
 # Class: obo:OHD_0008028 (tooth drilling procedure)
 
@@ -6532,6 +6524,15 @@ AnnotationAssertion(dcterms:created obo:OHD_0008037 "2025-05-14T01:31:15Z"^^xsd:
 AnnotationAssertion(rdfs:label obo:OHD_0008037 "feeling dental drill vibrations"@en)
 SubClassOf(obo:OHD_0008037 obo:MF_0000056)
 
+# Class: obo:OHD_0008038 (sitting process)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008038 "Process during which an individual remains in a seated position."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008038 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008038 "2025-05-20T17:31:22Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008038 obo:OHD_0005009)
+AnnotationAssertion(rdfs:label obo:OHD_0008038 "sitting process"@en)
+SubClassOf(obo:OHD_0008038 obo:BFO_0000015)
+
 # Class: obo:OHD_0008044 (dental procedure question)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008044 "A question that is about some dental procedure."@en)
@@ -6549,7 +6550,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0008047 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0008047 "2025-04-04T13:05:36Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008047 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008047 "question about physiological effect"@en)
-EquivalentClasses(obo:OHD_0008047 ObjectIntersectionOf(obo:OHD_0008011 ObjectUnionOf(ObjectSomeValuesFrom(obo:IAO_0000136 obo:GO_0003008) ObjectSomeValuesFrom(obo:IAO_0000136 obo:OGMS_0000060))))
+EquivalentClasses(obo:OHD_0008047 ObjectIntersectionOf(obo:OHD_0008011 ObjectUnionOf(ObjectSomeValuesFrom(obo:IAO_0000136 obo:GO_0003008) ObjectSomeValuesFrom(obo:IAO_0000136 obo:GO_0032941) ObjectSomeValuesFrom(obo:IAO_0000136 obo:OGMS_0000061))))
 SubClassOf(obo:OHD_0008047 obo:OHD_0008011)
 
 # Class: obo:OHD_0008049 (increased breathing rate)
@@ -6561,14 +6562,14 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:
 AnnotationAssertion(rdfs:label obo:OHD_0008049 "increased breathing rate"@en)
 SubClassOf(obo:OHD_0008049 obo:GO_0003016)
 
-# Class: obo:OHD_0008050 (perspiration)
+# Class: obo:OHD_0008050 (perspiring)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008050 "A bodily process in which sweat is secreted by sweat glands."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008050 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008050 "2025-04-04T13:25:26Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008050 obo:OHD_0005009)
-AnnotationAssertion(rdfs:label obo:OHD_0008050 "perspiration"@en)
-SubClassOf(obo:OHD_0008050 obo:OGMS_0000060)
+AnnotationAssertion(rdfs:label obo:OHD_0008050 "perspiring"@en)
+SubClassOf(obo:OHD_0008050 obo:GO_0032941)
 
 # Class: obo:OHD_0008051 (nausea)
 
