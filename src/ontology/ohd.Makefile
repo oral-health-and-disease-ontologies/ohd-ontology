@@ -1,8 +1,26 @@
 # CUSTOM MAKE GOALS FOR OHD
 
 # empty target used for forcing a rule to run
-FORCE:
+FORCE: ;
 
+prepare_release: test custom_reports all_assets
+	rsync -R $(RELEASE_ASSETS) $(RELEASEDIR) &&\
+	rm -f $(CLEANFILES) &&\
+	echo "Release files are now in $(RELEASEDIR) - now you should commit, push and make a release \
+        on your git hosting site such as GitHub or GitLab"
+
+.PHONY: all_assets
+all_assets: $(ASSETS)
+
+.PHONY: test
+test: reason_test sparql_test robot_reports $(REPORTDIR)/validate_profile_owl2dl_$(ONT).owl.txt
+	@echo "** Finished running all tests successfully. **"
+
+.PHONY: reason_test
+reason_test: $(EDIT_PREPROCESSED)
+	$(ROBOT) reason --input $< --reasoner HERMIT --equivalent-classes-allowed asserted-only \
+		--exclude-tautologies structural --output test.owl && rm test.owl
+		
 # ----------------------------------------
 # Release artifacts
 # ----------------------------------------
