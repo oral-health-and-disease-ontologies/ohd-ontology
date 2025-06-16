@@ -1,0 +1,296 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY obo "http://purl.obolibrary.org/obo/" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY vdw "http://purl.obolibrary.org/obo/ohd/vdw/" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY database-code "http://purl.obolibrary.org/obo/ohd/vdw/database-code/" >
+]>
+
+
+<rdf:RDF xmlns="&obo;ohd/vdw/database-codes-import.owl#"
+     xml:base="&obo;ohd/vdw/database-codes-import.owl"
+     xmlns:obo="http://purl.obolibrary.org/obo/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:vdw="&obo;ohd/vdw/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:database-code="&obo;ohd/vdw/database-code/">
+    <owl:Ontology rdf:about="&obo;ohd/vdw/database-codes-import.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000112 -->
+
+    <owl:AnnotationProperty rdf:about="&obo;IAO_0000112">
+        <rdfs:label xml:lang="en">example of usage</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000115 -->
+
+    <owl:AnnotationProperty rdf:about="&obo;IAO_0000115">
+        <rdfs:label xml:lang="en">definition</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000116 -->
+
+    <owl:AnnotationProperty rdf:about="&obo;IAO_0000116">
+        <rdfs:label xml:lang="en">editor note</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000117 -->
+
+    <owl:AnnotationProperty rdf:about="&obo;IAO_0000117">
+        <rdfs:label xml:lang="en">term editor</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000038 -->
+
+    <owl:AnnotationProperty rdf:about="&obo;ohd/vdw/OHD_VDW_0000038">
+        <rdfs:label xml:lang="en">VDW code value</rdfs:label>
+        <obo:IAO_0000115>an annotation that provides that value of a code in the Virtual Data Warehouse (VDW) that is associated with an entity</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000112>The African American race code in the VDW is annotated using the VDW code value &quot;BA&quot;.</obo:IAO_0000112>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000578 -->
+
+    <owl:Class rdf:about="&obo;IAO_0000578"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000024 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000024">
+        <rdfs:label xml:lang="en">VDW database code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;IAO_0000578"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000112>The code &quot;AS&quot; in the race field of table specifies that a patient is Asian.</obo:IAO_0000112>
+        <obo:IAO_0000115>a CRID existing as part of the Virtual Dabase Warehouse (VDW) that specifies information about an entity</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000030 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000030">
+        <rdfs:label xml:lang="en">Hispanic ethnicity code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/OHD_VDW_0000024"/>
+        <obo:IAO_0000116>Bill Duncan 09/17/2015:
+In the VDW, this field is simply called &quot;ethnicity&quot;. The values are:
+Y = yes
+N = no
+U = unknown</obo:IAO_0000116>
+        <obo:IAO_0000115>a VDW database code that is used to represent whether the patient is of Hispanic origin</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000031 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000031">
+        <rdfs:label xml:lang="en">race code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/OHD_VDW_0000024"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a VDW database code that is used to represent the race of the patient</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000032 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000032">
+        <rdfs:label xml:lang="en">facility code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/OHD_VDW_0000024"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a VDW database code that represents of health care facility</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000033 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000033">
+        <rdfs:label xml:lang="en">provider type code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/OHD_VDW_0000024"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000034 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000034">
+        <rdfs:label xml:lang="en">provider specialty code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/OHD_VDW_0000024"/>
+        <obo:IAO_0000115>a VDW database code that repesents the provider&apos;s specialty</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000035 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000035">
+        <rdfs:label xml:lang="en">study id code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/OHD_VDW_0000024"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000036 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000036">
+        <rdfs:label xml:lang="en">study encounter id code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/OHD_VDW_0000024"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000037 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000037">
+        <rdfs:label xml:lang="en">provider study id code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/OHD_VDW_0000024"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000039 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000039">
+        <rdfs:label xml:lang="en">African American race code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/OHD_VDW_0000031"/>
+        <vdw:OHD_VDW_0000038>BA</vdw:OHD_VDW_0000038>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a race code that is about an African American patient</obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000040 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000040">
+        <rdfs:label xml:lang="en">white race code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/OHD_VDW_0000031"/>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <obo:IAO_0000115>a race code that is about a white patient</obo:IAO_0000115>
+        <vdw:OHD_VDW_0000038>WH</vdw:OHD_VDW_0000038>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000041 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000041">
+        <rdfs:label xml:lang="en">Asian race code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/OHD_VDW_0000031"/>
+        <vdw:OHD_VDW_0000038>AS</vdw:OHD_VDW_0000038>
+        <obo:IAO_0000115>a race code that is about an Asian patient </obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000042 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000042">
+        <rdfs:label xml:lang="en">Native American race code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/OHD_VDW_0000031"/>
+        <obo:IAO_0000116>Bill Duncan 09/17/2015:
+In the VDW documentation, this code about patients who are either &quot;American Indian or Alaska Native&quot;.</obo:IAO_0000116>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <vdw:OHD_VDW_0000038>IN</vdw:OHD_VDW_0000038>
+        <obo:IAO_0000115>a race code that is about an African American patient </obo:IAO_0000115>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000043 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000043">
+        <rdfs:label xml:lang="en">Pacific Islander race code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/OHD_VDW_0000031"/>
+        <obo:IAO_0000115>a race code that is about a Pacific Islander patient</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <vdw:OHD_VDW_0000038>HP</vdw:OHD_VDW_0000038>
+        <obo:IAO_0000116>Bill Duncan 09/17/2015:
+In the VDW documentation, this code about patients who are either &quot;Native Hawaiian or Other Pacific Islander&quot;.</obo:IAO_0000116>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000044 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000044">
+        <rdfs:label xml:lang="en">more than one race race code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/OHD_VDW_0000031"/>
+        <obo:IAO_0000115>a race code that is about a patient who is of more than one race</obo:IAO_0000115>
+        <vdw:OHD_VDW_0000038>MU</vdw:OHD_VDW_0000038>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000045 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000045">
+        <rdfs:label xml:lang="en">other race code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/OHD_VDW_0000031"/>
+        <obo:IAO_0000115>a race code that is about a patient whose race cannot be represented using the VDW&apos;s current set of race codes</obo:IAO_0000115>
+        <vdw:OHD_VDW_0000038>OT</vdw:OHD_VDW_0000038>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ohd/vdw/OHD_VDW_0000046 -->
+
+    <owl:Class rdf:about="&obo;ohd/vdw/OHD_VDW_0000046">
+        <rdfs:label xml:lang="en">unknown race code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;ohd/vdw/OHD_VDW_0000031"/>
+        <obo:IAO_0000115>a race code that is about a patient for whom we do not know the race</obo:IAO_0000115>
+        <obo:IAO_0000117>Bill Duncan</obo:IAO_0000117>
+        <vdw:OHD_VDW_0000038>UN</vdw:OHD_VDW_0000038>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
