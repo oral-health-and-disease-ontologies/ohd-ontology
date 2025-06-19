@@ -1377,6 +1377,7 @@ Declaration(Class(obo:OHD_0010017))
 Declaration(Class(obo:OHD_0010018))
 Declaration(Class(obo:OHD_0010019))
 Declaration(Class(obo:OHD_0010020))
+Declaration(Class(obo:OHD_0010021))
 Declaration(Class(obo:OHD_0010022))
 Declaration(Class(obo:OHD_0010023))
 Declaration(Class(obo:OHD_0010024))
@@ -1441,6 +1442,11 @@ Declaration(Class(obo:OHD_0010083))
 Declaration(Class(obo:OHD_0010084))
 Declaration(Class(obo:OHD_0010085))
 Declaration(Class(obo:OHD_0010086))
+Declaration(Class(obo:OHD_0010087))
+Declaration(Class(obo:OHD_0010088))
+Declaration(Class(obo:OHD_0010089))
+Declaration(Class(obo:OHD_0010090))
+Declaration(Class(obo:OHD_0010091))
 Declaration(Class(obo:OHD_0010096))
 Declaration(Class(obo:OHD_0010097))
 Declaration(Class(obo:OHD_0010098))
@@ -1452,7 +1458,6 @@ Declaration(Class(obo:OHD_0010103))
 Declaration(Class(obo:OHD_0010104))
 Declaration(Class(obo:OHD_0010105))
 Declaration(Class(obo:OHD_0010106))
-Declaration(Class(obo:OHD_0010108))
 Declaration(Class(obo:OHD_0010109))
 Declaration(Class(obo:OHD_0010110))
 Declaration(Class(obo:OHD_0010111))
@@ -6894,6 +6899,15 @@ AnnotationAssertion(rdfs:label obo:OHD_0010020 "reversible pulpitis")
 SubClassOf(obo:OHD_0010020 obo:OHD_0010060)
 SubClassOf(obo:OHD_0010020 ObjectSomeValuesFrom(obo:RO_0000053 obo:OHD_0010062))
 
+# Class: obo:OHD_0010021 (periodontitis due to operation)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010021 "Periodontitis due to injury occuring because of an operation.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010021 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010021 "2025-06-19T18:48:48Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0010021 "periodontitis due to operation"@en)
+SubClassOf(obo:OHD_0010021 obo:OHD_0010072)
+SubClassOf(obo:OHD_0010021 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000044))
+
 # Class: obo:OHD_0010022 (oral mucosal pain)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010022 "Pain due to a disease or disorder involving the oral mucosa.")
@@ -7029,8 +7043,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0010037 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0010037 "2025-06-10T19:25:03Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:comment obo:OHD_0010037 "ICOP number: 1.2.2.2")
 AnnotationAssertion(rdfs:label obo:OHD_0010037 "salivary gland pain due to infection"@en)
-EquivalentClasses(obo:OHD_0010037 ObjectIntersectionOf(obo:OHD_0010023 ObjectSomeValuesFrom(obo:BFO_0000055 obo:IDO_0000586)))
 SubClassOf(obo:OHD_0010037 obo:OHD_0010023)
+SubClassOf(obo:OHD_0010037 ObjectSomeValuesFrom(obo:BFO_0000055 obo:IDO_0000586))
 
 # Class: obo:OHD_0010038 (salivary gland pain due to bacterial infection)
 
@@ -7039,8 +7053,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0010038 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0010038 "2025-06-10T19:27:44Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:comment obo:OHD_0010038 "ICOP number: 1.2.2.2.1")
 AnnotationAssertion(rdfs:label obo:OHD_0010038 "salivary gland pain due to bacterial infection"@en)
-EquivalentClasses(obo:OHD_0010038 ObjectIntersectionOf(obo:OHD_0010037 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010096)))
 SubClassOf(obo:OHD_0010038 obo:OHD_0010037)
+SubClassOf(obo:OHD_0010038 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010096))
 
 # Class: obo:OHD_0010039 (salivary gland pain due to viral infection)
 
@@ -7049,8 +7063,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0010039 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0010039 "2025-06-10T19:29:37Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:comment obo:OHD_0010039 "ICOP number: 1.2.2.2.2")
 AnnotationAssertion(rdfs:label obo:OHD_0010039 "salivary gland pain due to viral infection"@en)
-EquivalentClasses(obo:OHD_0010039 ObjectIntersectionOf(obo:OHD_0010037 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010031)))
 SubClassOf(obo:OHD_0010039 obo:OHD_0010037)
+SubClassOf(obo:OHD_0010039 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010031))
 
 # Class: obo:OHD_0010040 (oral mucosal pain due to infection)
 
@@ -7441,8 +7455,8 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010081 "Pulpal pain cuased by rever
 AnnotationAssertion(dcterms:contributor obo:OHD_0010081 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010081 "2025-06-12T18:16:30Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010081 "pulpal pain due to reversible pulpitis resulting from caries not extending to the pulp"@en)
-EquivalentClasses(obo:OHD_0010081 ObjectIntersectionOf(obo:OHD_0010067 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010080)))
 SubClassOf(obo:OHD_0010081 obo:OHD_0010067)
+SubClassOf(obo:OHD_0010081 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010080))
 
 # Class: obo:OHD_0010082 (reversible pulpitis due to dental hard-tissue fracture with exposed dentin)
 
@@ -7460,8 +7474,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0010083 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0010083 "2025-06-12T18:39:15Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:comment obo:OHD_0010083 "ICOP number: 1.1.1.3.1.2")
 AnnotationAssertion(rdfs:label obo:OHD_0010083 "pulpal pain due to reversible pulpitis resulting from dental hard-tissue defect with exposed dentin"@en)
-EquivalentClasses(obo:OHD_0010083 ObjectIntersectionOf(obo:OHD_0010067 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010082)))
 SubClassOf(obo:OHD_0010083 obo:OHD_0010067)
+SubClassOf(obo:OHD_0010083 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010082))
 
 # Class: obo:OHD_0010084 (dental caries extending to the pulp)
 
@@ -7490,6 +7504,52 @@ AnnotationAssertion(rdfs:comment obo:OHD_0010086 "ICOP number: 1.1.1.3.2.1")
 AnnotationAssertion(rdfs:label obo:OHD_0010086 "pulpal due to irreversible pulpitis resulting from caries extending to the pulp"@en)
 SubClassOf(obo:OHD_0010086 obo:OHD_0010069)
 SubClassOf(obo:OHD_0010086 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010068))
+
+# Class: obo:OHD_0010087 (postoperative periodontal pain)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010087 "Periodontal pain due to traumatically induced periodontal inflammation which has been caused by surgical intervention.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010087 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010087 "2025-06-19T18:52:23Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010087 "ICOP number: 1.1.2.1.1.2")
+AnnotationAssertion(rdfs:label obo:OHD_0010087 "postoperative periodontal pain"@en)
+SubClassOf(obo:OHD_0010087 obo:OHD_0010073)
+SubClassOf(obo:OHD_0010087 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010021))
+
+# Class: obo:OHD_0010088 (apical periodontitis)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010088 "Periodontitis occuring around the apex of the affected tooth.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010088 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010088 "2025-06-19T19:04:30Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0010088 "apical periodontitis"@en)
+SubClassOf(obo:OHD_0010088 obo:OHD_0010070)
+
+# Class: obo:OHD_0010089 (endodontic disease)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010089 "A mouth disease occuring within the tooth pulp.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010089 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010089 "2025-06-19T19:08:06Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0010089 "endodontic disease"@en)
+SubClassOf(obo:OHD_0010089 obo:OHD_0000404)
+SubClassOf(obo:OHD_0010089 ObjectSomeValuesFrom(obo:RO_0001025 obo:FMA_55631))
+
+# Class: obo:OHD_0010090 (apical periodontitis due to endodontic disease)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010090 "Apical periodontitis occuring because of a diagnosed endodontic disease.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010090 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010090 "2025-06-19T19:09:00Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0010090 "apical periodontitis due to endodontic disease"@en)
+SubClassOf(obo:OHD_0010090 obo:OHD_0010088)
+SubClassOf(obo:OHD_0010090 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010089))
+
+# Class: obo:OHD_0010091 (periodontal pain due to apical periodontitis resulting from endodontic disease)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010091 "Periodontal pain due to periodontits that is apical occuring becayse of an endodontic disease.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010091 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010091 "2025-06-19T19:11:03Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010091 "ICOP number: 1.1.2.1.2")
+AnnotationAssertion(rdfs:label obo:OHD_0010091 "periodontal pain due to apical periodontitis resulting from endodontic disease"@en)
+SubClassOf(obo:OHD_0010091 obo:OHD_0010071)
+SubClassOf(obo:OHD_0010091 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010090))
 
 # Class: obo:OHD_0010096 (bacterial infection)
 
@@ -7592,12 +7652,6 @@ AnnotationAssertion(rdfs:comment obo:OHD_0010106 "ICOP number: 1.1.1.1.3.2")
 AnnotationAssertion(rdfs:label obo:OHD_0010106 "pulpal pain due to placement of a restoration"@en)
 SubClassOf(obo:OHD_0010106 obo:OHD_0010078)
 SubClassOf(obo:OHD_0010106 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000004))
-
-# Class: obo:OHD_0010108 (dental hard-tissue fracture without pulp exposure)
-
-AnnotationAssertion(dcterms:contributor obo:OHD_0010108 <https://orcid.org/0009-0003-5583-4731>)
-AnnotationAssertion(dcterms:created obo:OHD_0010108 "2025-06-17T18:19:16Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0010108 "dental hard-tissue fracture without pulp exposure"@en)
 
 # Class: obo:OHD_0010109 (aggressive periodontitis)
 
