@@ -105,6 +105,7 @@ $(IMPORTDIR)/envo_import.owl: $(MIRRORDIR)/envo.owl
             --annotate-defined-by true \
             --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
+		convert --format ofn \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 $(IMPORTDIR)/chebi_import.owl: $(MIRRORDIR)/chebi.owl.gz
@@ -123,6 +124,7 @@ $(IMPORTDIR)/chebi_import.owl: $(MIRRORDIR)/chebi.owl.gz
             --annotate-defined-by true \
             --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
+		convert --format ofn \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl
@@ -191,6 +193,7 @@ $(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl
 		annotate \
 			--annotate-defined-by true \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 # ----------------------------------------
