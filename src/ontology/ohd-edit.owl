@@ -1088,6 +1088,7 @@ Declaration(Class(obo:OHD_0000254))
 Declaration(Class(obo:OHD_0000255))
 Declaration(Class(obo:OHD_0000256))
 Declaration(Class(obo:OHD_0000257))
+Declaration(Class(obo:OHD_0000258))
 Declaration(Class(obo:OHD_0000259))
 Declaration(Class(obo:OHD_0000260))
 Declaration(Class(obo:OHD_0000261))
@@ -1414,11 +1415,11 @@ AnnotationAssertion(rdfs:label dcterms:contributor "contributor")
 
 AnnotationAssertion(rdfs:label dcterms:created "date created")
 
-# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> (has broad synonym)
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> (has_broad_synonym)
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> obo:IAO_0000118)
 
-# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> (has exact synonym)
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> (has_exact_synonym)
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:IAO_0000118)
 
@@ -2656,7 +2657,7 @@ AnnotationAssertion(Annotation(obo:IAO_0000119 "PMID:24724135") obo:IAO_0000115 
 AnnotationAssertion(dcterms:created obo:OHD_0000043 "2024-06-21T14:26:11Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000043 "dentin hypersensitivity"@en)
 SubClassOf(obo:OHD_0000043 obo:BFO_0000016)
-SubClassOf(obo:OHD_0000043 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000410))
+SubClassOf(obo:OHD_0000043 ObjectSomeValuesFrom(obo:RO_0000052 obo:OHD_0000410))
 
 # Class: obo:OHD_0000044 (surgical dental procedure)
 
@@ -5437,6 +5438,7 @@ AnnotationAssertion(rdfs:label <https://orcid.org/0009-0003-7246-1252> "Ram A.N.
 # Individual: <https://orcid.org/0009-0006-7251-3026> (Gopikrishnan M Chandrasekharan)
 
 AnnotationAssertion(rdfs:label <https://orcid.org/0009-0006-7251-3026> "Gopikrishnan M Chandrasekharan")
+
 
 SubClassOf(ObjectIntersectionOf(ObjectUnionOf(obo:NBO_0000007 obo:OHD_0002000) ObjectSomeValuesFrom(obo:RO_0003304 obo:OGMS_0000045)) obo:OHD_0000406)
 SubObjectPropertyOf(ObjectPropertyChain(obo:BFO_0000053 obo:BFO_0000054) obo:RO_0000056)

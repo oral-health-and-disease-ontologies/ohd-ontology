@@ -89,7 +89,6 @@ $(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-<<<<<<< HEAD
 $(IMPORTDIR)/envo_import.owl: $(MIRRORDIR)/envo.owl
 	if [ $(IMP) = true ]; then $(ROBOT) \
         remove \
@@ -126,9 +125,6 @@ $(IMPORTDIR)/chebi_import.owl: $(MIRRORDIR)/chebi.owl.gz
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-=======
-.PRECIOUS: $(IMPORTDIR)/ecto_import.owl
->>>>>>> main
 $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl
 	if [ $(IMP) = true ]; then $(ROBOT) \
 		remove \

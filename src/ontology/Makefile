@@ -15,13 +15,6 @@
 # 2. [Refresh imports](all_imports)
 # 3. [Update repo to latest ODK](update_repo)
 
-<<<<<<< HEAD
-# Fingerprint of the configuration file when this Makefile was last generated
-CONFIG_HASH=                059e9d32b669798cc3c31bffd79da3a2a41587170fc01f7149f0af75d6fedf25
-
-
-=======
->>>>>>> main
 # ----------------------------------------
 # Standard Constants
 # ----------------------------------------
@@ -157,11 +150,7 @@ all_main: $(MAIN_FILES)
 # ----------------------------------------
 
 
-<<<<<<< HEAD
-IMPORTS =  bfo2_classes caro cdt ecto fma-jaws-teeth fma-lymph fma-mouth-mucosa fma-tmj fma-tongue iao ncbi obi ogms omrse ro omo envo chebi
-=======
-IMPORTS =  bfo2_classes caro cdt ecto fma-jaws-teeth fma-lymph fma-mouth-mucosa fma-tmj fma-tongue iao ncbi obi ogms omrse ro omo go ido
->>>>>>> main
+IMPORTS =  bfo2_classes caro cdt ecto fma-jaws-teeth fma-lymph fma-mouth-mucosa fma-tmj fma-tongue iao ncbi obi ogms omrse ro omo go ido envo chebi
 
 IMPORT_ROOTS = $(patsubst %, $(IMPORTDIR)/%_import, $(IMPORTS))
 IMPORT_OWL_FILES = $(foreach n,$(IMPORT_ROOTS), $(n).owl)
@@ -425,175 +414,6 @@ $(COMPONENTSDIR)/%.owl: | $(COMPONENTSDIR)
 
 
 # ----------------------------------------
-<<<<<<< HEAD
-# Mirroring upstream ontologies
-# ----------------------------------------
-
-IMP=true # Global parameter to bypass import generation
-MIR=true # Global parameter to bypass mirror generation
-IMP_LARGE=true # Global parameter to bypass handling of large imports
-
-ifeq ($(strip $(MIR)),true)
-
-
-## ONTOLOGY: bfo2_classes
-.PHONY: mirror-bfo2_classes
-.PRECIOUS: $(MIRRORDIR)/bfo2_classes.owl
-mirror-bfo2_classes: | $(TMPDIR)
-	curl -L $(OBOBASE)/bfo2_classes.owl --create-dirs -o $(TMPDIR)/bfo2_classes-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/bfo2_classes-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: caro
-.PHONY: mirror-caro
-.PRECIOUS: $(MIRRORDIR)/caro.owl
-mirror-caro: | $(TMPDIR)
-	curl -L $(OBOBASE)/caro.owl --create-dirs -o $(TMPDIR)/caro-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/caro-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: cdt
-.PHONY: mirror-cdt
-.PRECIOUS: $(MIRRORDIR)/cdt.owl
-mirror-cdt: | $(TMPDIR)
-	curl -L $(OBOBASE)/cdt.owl --create-dirs -o $(TMPDIR)/cdt-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/cdt-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: ecto
-.PHONY: mirror-ecto
-.PRECIOUS: $(MIRRORDIR)/ecto.owl
-mirror-ecto: | $(TMPDIR)
-	curl -L $(OBOBASE)/ecto.owl --create-dirs -o $(TMPDIR)/ecto-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/ecto-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: fma-jaws-teeth
-.PHONY: mirror-fma-jaws-teeth
-.PRECIOUS: $(MIRRORDIR)/fma-jaws-teeth.owl
-mirror-fma-jaws-teeth: | $(TMPDIR)
-	curl -L $(OBOBASE)/fma-jaws-teeth.owl --create-dirs -o $(TMPDIR)/fma-jaws-teeth-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/fma-jaws-teeth-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: fma-lymph
-.PHONY: mirror-fma-lymph
-.PRECIOUS: $(MIRRORDIR)/fma-lymph.owl
-mirror-fma-lymph: | $(TMPDIR)
-	curl -L $(OBOBASE)/fma-lymph.owl --create-dirs -o $(TMPDIR)/fma-lymph-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/fma-lymph-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: fma-mouth-mucosa
-.PHONY: mirror-fma-mouth-mucosa
-.PRECIOUS: $(MIRRORDIR)/fma-mouth-mucosa.owl
-mirror-fma-mouth-mucosa: | $(TMPDIR)
-	curl -L $(OBOBASE)/fma-mouth-mucosa.owl --create-dirs -o $(TMPDIR)/fma-mouth-mucosa-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/fma-mouth-mucosa-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: fma-tmj
-.PHONY: mirror-fma-tmj
-.PRECIOUS: $(MIRRORDIR)/fma-tmj.owl
-mirror-fma-tmj: | $(TMPDIR)
-	curl -L $(OBOBASE)/fma-tmj.owl --create-dirs -o $(TMPDIR)/fma-tmj-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/fma-tmj-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: fma-tongue
-.PHONY: mirror-fma-tongue
-.PRECIOUS: $(MIRRORDIR)/fma-tongue.owl
-mirror-fma-tongue: | $(TMPDIR)
-	curl -L $(OBOBASE)/fma-tongue.owl --create-dirs -o $(TMPDIR)/fma-tongue-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/fma-tongue-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: iao
-.PHONY: mirror-iao
-.PRECIOUS: $(MIRRORDIR)/iao.owl
-mirror-iao: | $(TMPDIR)
-	curl -L $(OBOBASE)/iao.owl --create-dirs -o $(TMPDIR)/iao-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/iao-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: ncbi
-.PHONY: mirror-ncbi
-.PRECIOUS: $(MIRRORDIR)/ncbi.owl
-mirror-ncbi: | $(TMPDIR)
-	curl -L $(OBOBASE)/ncbi.owl --create-dirs -o $(TMPDIR)/ncbi-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/ncbi-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: obi
-.PHONY: mirror-obi
-.PRECIOUS: $(MIRRORDIR)/obi.owl
-mirror-obi: | $(TMPDIR)
-	curl -L $(OBOBASE)/obi.owl --create-dirs -o $(TMPDIR)/obi-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/obi-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: ogms
-.PHONY: mirror-ogms
-.PRECIOUS: $(MIRRORDIR)/ogms.owl
-mirror-ogms: | $(TMPDIR)
-	curl -L $(OBOBASE)/ogms.owl --create-dirs -o $(TMPDIR)/ogms-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/ogms-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: omrse
-.PHONY: mirror-omrse
-.PRECIOUS: $(MIRRORDIR)/omrse.owl
-mirror-omrse: | $(TMPDIR)
-	curl -L $(OBOBASE)/omrse.owl --create-dirs -o $(TMPDIR)/omrse-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/omrse-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: ro
-.PHONY: mirror-ro
-.PRECIOUS: $(MIRRORDIR)/ro.owl
-mirror-ro: | $(TMPDIR)
-	curl -L $(OBOBASE)/ro.owl --create-dirs -o $(TMPDIR)/ro-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/ro-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: omo
-.PHONY: mirror-omo
-.PRECIOUS: $(MIRRORDIR)/omo.owl
-mirror-omo: | $(TMPDIR)
-	curl -L $(OBOBASE)/omo.owl --create-dirs -o $(TMPDIR)/omo-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/omo-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: envo
-.PHONY: mirror-envo
-.PRECIOUS: $(MIRRORDIR)/envo.owl
-mirror-envo: | $(TMPDIR)
-	curl -L $(OBOBASE)/envo.owl --create-dirs -o $(TMPDIR)/envo-download.owl --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(TMPDIR)/envo-download.owl -o $(TMPDIR)/$@.owl
-
-
-## ONTOLOGY: chebi
-.PHONY: mirror-chebi
-.PRECIOUS: $(MIRRORDIR)/chebi.owl
-mirror-chebi: | $(TMPDIR)
-	curl -L $(OBOBASE)/chebi.owl.gz --create-dirs -o $(MIRRORDIR)/chebi.owl.gz --retry 4 --max-time 200 && \
-	$(ROBOT) convert -i $(MIRRORDIR)/chebi.owl.gz -o $(TMPDIR)/$@.owl
-
-
-$(MIRRORDIR)/%.owl: mirror-% | $(MIRRORDIR)
-	if [ -f $(TMPDIR)/mirror-$*.owl ]; then if cmp -s $(TMPDIR)/mirror-$*.owl $@ ; then echo "Mirror identical, ignoring."; else echo "Mirrors different, updating." &&\
-		cp $(TMPDIR)/mirror-$*.owl $@; fi; fi
-
-else # MIR=false
-$(MIRRORDIR)/%.owl:
-	@echo "Not refreshing $@ because the mirrorring pipeline is disabled (MIR=$(MIR))."
-endif
-
-
-
-# ----------------------------------------
-=======
->>>>>>> main
 # Subsets
 # ----------------------------------------
 $(SUBSETDIR)/%.tsv: $(SUBSETDIR)/%.owl
