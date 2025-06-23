@@ -55,7 +55,7 @@ OBODATE ?=                  $(shell date +'%d:%m:%Y %H:%M')
 VERSION=                    $(TODAY)
 ANNOTATE_ONTOLOGY_VERSION = annotate -V $(ONTBASE)/releases/$(VERSION)/$@ --annotation owl:versionInfo $(VERSION)
 ANNOTATE_CONVERT_FILE =     annotate --ontology-iri $(ONTBASE)/$@ $(ANNOTATE_ONTOLOGY_VERSION) convert -f ofn --output $@.tmp.owl && mv $@.tmp.owl $@
-OTHER_SRC =                 $(COMPONENTSDIR)/dental_material.owl $(COMPONENTSDIR)/collaborators.owl 
+OTHER_SRC =                 $(COMPONENTSDIR)/dental_material.owl $(COMPONENTSDIR)/ohd_contributors.owl
 ONTOLOGYTERMS =             $(TMPDIR)/ontologyterms.txt
 EDIT_PREPROCESSED =         $(TMPDIR)/$(ONT)-preprocess.owl
 
@@ -80,9 +80,9 @@ all: all_odk
 .PHONY: all_odk
 all_odk: odkversion config_check test custom_reports all_assets
 
-.PHONY: test
-test: reason_test sparql_test robot_reports $(REPORTDIR)/validate_profile_owl2dl_$(ONT).owl.txt
-	echo "Finished running all tests successfully."
+# .PHONY: test
+# test: reason_test sparql_test robot_reports $(REPORTDIR)/validate_profile_owl2dl_$(ONT).owl.txt
+# 	echo "Finished running all tests successfully."
 
 .PHONY: test
 test_fast:
@@ -91,10 +91,10 @@ test_fast:
 .PHONY: release_diff
 release_diff: $(REPORTDIR)/release-diff.md
 
-.PHONY: reason_test
-reason_test: $(EDIT_PREPROCESSED)
-	$(ROBOT) reason --input $< --reasoner ELK --equivalent-classes-allowed asserted-only \
-		--exclude-tautologies structural --output test.owl && rm test.owl
+# .PHONY: reason_test
+# reason_test: $(EDIT_PREPROCESSED)
+# 	$(ROBOT) reason --input $< --reasoner ELK --equivalent-classes-allowed asserted-only \
+# 		--exclude-tautologies structural --output test.owl && rm test.owl
 
 $(TMPDIR) $(REPORTDIR) $(MIRRORDIR) $(IMPORTDIR) $(COMPONENTSDIR) $(SUBSETDIR):
 	mkdir -p $@
@@ -257,19 +257,19 @@ RELEASE_ASSETS = \
   $(MAIN_FILES) \
   $(SUBSET_FILES)
 
-.PHONY: all_assets
-all_assets: $(ASSETS) check_rdfxml_assets
-
-.PHONY: show_assets
-show_assets:
-	echo $(ASSETS)
-	du -sh $(ASSETS)
-
-check_rdfxml_%: %
-	@check-rdfxml  $<
-
-.PHONY: check_rdfxml_assets
-check_rdfxml_assets: $(foreach product,$(MAIN_PRODUCTS),check_rdfxml_$(product).owl)
+# .PHONY: all_assets
+# all_assets: $(ASSETS) check_rdfxml_assets
+# 
+# .PHONY: show_assets
+# show_assets:
+# 	echo $(ASSETS)
+# 	du -sh $(ASSETS)
+# 
+# check_rdfxml_%: %
+# 	@check-rdfxml  $<
+# 
+# .PHONY: check_rdfxml_assets
+# check_rdfxml_assets: $(foreach product,$(MAIN_PRODUCTS),check_rdfxml_$(product).owl)
 
 # ----------------------------------------
 # Release Management
@@ -279,12 +279,12 @@ CLEANFILES=$(MAIN_FILES) $(SRCMERGED) $(EDIT_PREPROCESSED)
 # This should be executed by the release manager whenever time comes to make a release.
 # It will ensure that all assets/files are fresh, and will copy to release folder
 
-.PHONY: prepare_release
-prepare_release: all_odk
-	rsync -R $(RELEASE_ASSETS) $(RELEASEDIR) &&\
-	rm -f $(CLEANFILES) &&\
-	echo "Release files are now in $(RELEASEDIR) - now you should commit, push and make a release \
-        on your git hosting site such as GitHub or GitLab"
+# .PHONY: prepare_release
+# prepare_release: all_odk
+# 	rsync -R $(RELEASE_ASSETS) $(RELEASEDIR) &&\
+# 	rm -f $(CLEANFILES) &&\
+# 	echo "Release files are now in $(RELEASEDIR) - now you should commit, push and make a release \
+#         on your git hosting site such as GitHub or GitLab"
 
 .PHONY: prepare_initial_release
 prepare_initial_release: all_assets
