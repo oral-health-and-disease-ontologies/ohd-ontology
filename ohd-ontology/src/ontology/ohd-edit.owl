@@ -1384,6 +1384,7 @@ Declaration(Class(obo:OHD_0010024))
 Declaration(Class(obo:OHD_0010025))
 Declaration(Class(obo:OHD_0010026))
 Declaration(Class(obo:OHD_0010027))
+Declaration(Class(obo:OHD_0010028))
 Declaration(Class(obo:OHD_0010029))
 Declaration(Class(obo:OHD_0010030))
 Declaration(Class(obo:OHD_0010031))
@@ -1447,6 +1448,10 @@ Declaration(Class(obo:OHD_0010088))
 Declaration(Class(obo:OHD_0010089))
 Declaration(Class(obo:OHD_0010090))
 Declaration(Class(obo:OHD_0010091))
+Declaration(Class(obo:OHD_0010092))
+Declaration(Class(obo:OHD_0010093))
+Declaration(Class(obo:OHD_0010094))
+Declaration(Class(obo:OHD_0010095))
 Declaration(Class(obo:OHD_0010096))
 Declaration(Class(obo:OHD_0010097))
 Declaration(Class(obo:OHD_0010098))
@@ -1458,6 +1463,8 @@ Declaration(Class(obo:OHD_0010103))
 Declaration(Class(obo:OHD_0010104))
 Declaration(Class(obo:OHD_0010105))
 Declaration(Class(obo:OHD_0010106))
+Declaration(Class(obo:OHD_0010107))
+Declaration(Class(obo:OHD_0010108))
 Declaration(Class(obo:OHD_0010109))
 Declaration(Class(obo:OHD_0010110))
 Declaration(Class(obo:OHD_0010111))
@@ -6963,6 +6970,14 @@ AnnotationAssertion(rdfs:label obo:OHD_0010027 "gingival pain due to infection"@
 SubClassOf(obo:OHD_0010027 obo:OHD_0010024)
 SubClassOf(obo:OHD_0010027 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010026))
 
+# Class: obo:OHD_0010028 (exposed dental pulp)
+
+AnnotationAssertion(dcterms:contributor obo:OHD_0010028 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010028 "2025-06-23T19:47:27Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010028 "A tooth disorder invovling the exposure of dental pulp.")
+AnnotationAssertion(rdfs:label obo:OHD_0010028 "exposed dental pulp"@en)
+SubClassOf(obo:OHD_0010028 obo:OHD_0000260)
+
 # Class: obo:OHD_0010029 (gingivitis due to bacterial infection)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010029 "Gingivitis due to a bacterial infection.")
@@ -7306,8 +7321,8 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010065 "An infection occuring withi
 AnnotationAssertion(dcterms:contributor obo:OHD_0010065 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010065 "2025-06-11T18:46:27Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010065 "dentin infection"@en)
-EquivalentClasses(obo:OHD_0010065 ObjectIntersectionOf(obo:IDO_0000586 ObjectSomeValuesFrom(obo:RO_0001025 obo:FMA_55628)))
 SubClassOf(obo:OHD_0010065 obo:IDO_0000586)
+SubClassOf(obo:OHD_0010065 ObjectSomeValuesFrom(obo:RO_0001025 obo:FMA_55628))
 
 # Class: obo:OHD_0010066 (reversible pulpitis due to dentin infection)
 
@@ -7551,6 +7566,40 @@ AnnotationAssertion(rdfs:label obo:OHD_0010091 "periodontal pain due to apical p
 SubClassOf(obo:OHD_0010091 obo:OHD_0010071)
 SubClassOf(obo:OHD_0010091 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010090))
 
+# Class: obo:OHD_0010092 (exposed dental pulp due to dental trauma)
+
+AnnotationAssertion(dcterms:contributor obo:OHD_0010092 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010092 "2025-06-23T19:50:16Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010092 "Exposed dental pulp occuring because of dental trauma.")
+AnnotationAssertion(rdfs:label obo:OHD_0010092 "exposed dental pulp due to dental trauma"@en)
+SubClassOf(obo:OHD_0010092 obo:OHD_0010028)
+
+# Class: obo:OHD_0010093 (pulpal pain due to pulp exposure resulting from dental trauma)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010093 "Pulpal pain due to dental trauma that has exposes vital pulp tissue in the affected tooth because of any of the following: fracture involving enamel, dentin and pulp (complicated crown fracture), fracture involving root cementum, dentin and pulp (complicated root fracture), and fracture involving enamel, root cementum, dentin and pulp (complicated crown-root fracture) and occurs within minutes to hours after the trauma.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010093 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010093 "2025-06-23T19:54:50Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010093 "ICOP number: 1.1.1.2")
+AnnotationAssertion(rdfs:label obo:OHD_0010093 "pulpal pain due to pulp exposure resulting from dental trauma"@en)
+SubClassOf(obo:OHD_0010093 obo:OHD_0010002)
+SubClassOf(obo:OHD_0010093 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010092))
+
+# Class: obo:OHD_0010094 (tooth crack)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010094 "A tooth fracture that is not complete.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010094 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010094 "2025-06-23T20:10:14Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0010094 "tooth crack"@en)
+SubClassOf(obo:OHD_0010094 obo:OHD_0000277)
+
+# Class: obo:OHD_0010095 (tooth crack without evidence of missing tooth substance)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010095 "A tooth crack that does not invovle any loss of enamel or dentin.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010095 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010095 "2025-06-23T20:12:54Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0010095 "tooth crack without evidence of missing tooth substance"@en)
+SubClassOf(obo:OHD_0010095 obo:OHD_0010094)
+
 # Class: obo:OHD_0010096 (bacterial infection)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010096 "An infectious disorder caused by bacteria.")
@@ -7565,8 +7614,8 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010097 "An infection that occurs wi
 AnnotationAssertion(dcterms:contributor obo:OHD_0010097 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010097 "2025-06-16T18:25:26Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010097 "dental pulp infection"@en)
-EquivalentClasses(obo:OHD_0010097 ObjectIntersectionOf(obo:IDO_0000586 ObjectSomeValuesFrom(obo:RO_0001025 obo:FMA_55631)))
 SubClassOf(obo:OHD_0010097 obo:IDO_0000586)
+SubClassOf(obo:OHD_0010097 ObjectSomeValuesFrom(obo:RO_0001025 obo:FMA_55631))
 
 # Class: obo:OHD_0010098 (irreversible pulpitis due to dental pulp infection)
 
@@ -7652,6 +7701,25 @@ AnnotationAssertion(rdfs:comment obo:OHD_0010106 "ICOP number: 1.1.1.1.3.2")
 AnnotationAssertion(rdfs:label obo:OHD_0010106 "pulpal pain due to placement of a restoration"@en)
 SubClassOf(obo:OHD_0010106 obo:OHD_0010078)
 SubClassOf(obo:OHD_0010106 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000004))
+
+# Class: obo:OHD_0010107 (reversible pulpitis due to tooth crack without evidence of missing tooth substance)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010107 "Reversible pulpitits due to a tooth crach without evidence of missing tooth substances.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010107 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010107 "2025-06-23T20:17:04Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0010107 "reversible pulpitis due to tooth crack without evidence of missing tooth substance"@en)
+SubClassOf(obo:OHD_0010107 obo:OHD_0010066)
+SubClassOf(obo:OHD_0010107 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010095))
+
+# Class: obo:OHD_0010108 (pulpal pain due to reversible pulpitis resulting from tooth crack without evidence of missing tooth substance.)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010108 "Pulpal pain caused by reversible pulpitis due to infection of dentin because of a crack or incomplete fracture of the affected tooth, involving the enamel or enamel and dentin. Has evidence of at least one of the following: sharp pain upon biting, pain on release of occlusal biting pressure or external application of force, and cold hypersensitivity.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010108 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010108 "2025-06-23T20:21:16Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010108 "ICOP number: 1.1.1.3.1.3")
+AnnotationAssertion(rdfs:label obo:OHD_0010108 "pulpal pain due to reversible pulpitis resulting from tooth crack without evidence of missing tooth substance."@en)
+SubClassOf(obo:OHD_0010108 obo:OHD_0010067)
+SubClassOf(obo:OHD_0010108 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010107))
 
 # Class: obo:OHD_0010109 (aggressive periodontitis)
 
