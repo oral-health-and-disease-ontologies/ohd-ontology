@@ -12,15 +12,29 @@ prepare_release: test custom_reports all_assets
 .PHONY: all_assets
 all_assets: $(ASSETS)
 
-.PHONY: test
-test: reason_test sparql_test robot_reports $(REPORTDIR)/validate_profile_owl2dl_$(ONT).owl.txt
+
+.PHONY: elk_test
+# HERMIT takes a long time to run and causes a heap space error with github actions
+# So, setting up a test that uses ELK
+elk_test: elk_reason_test sparql_test robot_reports $(REPORTDIR)/validate_profile_owl2dl_$(ONT).owl.txt
 	@echo "** Finished running all tests successfully. **"
+
+.PHONY: elk_test_fast
+# runs elk_test w/o cheking import checks (i.e., $(MAKE) IMP=false PAT=false COMP=false MIR=false)
+elk_test_fast:
+	$(MAKE_FAST) elk_test
 
 .PHONY: reason_test
 reason_test: $(EDIT_PREPROCESSED)
 	$(ROBOT) reason --input $< --reasoner HERMIT --equivalent-classes-allowed asserted-only \
 		--exclude-tautologies structural --output test.owl && rm test.owl
-		
+
+.PHONY: elk_reason_test
+# run reasoning test using ELK
+elk_reason_test: $(EDIT_PREPROCESSED)
+	$(ROBOT) reason --input $< --reasoner ELK --equivalent-classes-allowed asserted-only \
+		--exclude-tautologies structural --output test.owl && rm test.owl
+
 # ----------------------------------------
 # Release artifacts
 # ----------------------------------------
@@ -29,7 +43,7 @@ $(ONT).owl: $(SRC)
 	@echo "\n** building $@ **"
 	$(ROBOT) \
 		merge -i $< \
-		reason --reasoner hermit --annotate-inferred-axioms true --exclude-duplicate-axioms true \
+		reason --reasoner ELK --annotate-inferred-axioms true --exclude-duplicate-axioms true \
 		annotate \
 			--ontology-iri $(URIBASE)/$@ \
 			--version-iri $(ONTBASE)/releases/$(VERSION)/$@ \
@@ -107,7 +121,44 @@ $(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-.PRECIOUS: $(IMPORTDIR)/ecto_import.owl
+$(IMPORTDIR)/envo_import.owl: $(MIRRORDIR)/envo.owl
+	if [ $(IMP) = true ]; then $(ROBOT) \
+        remove \
+            --input $< \
+            --select "owl:deprecated='true'^^xsd:boolean" \
+        extract \
+            --method MIREOT \
+            --branch-from-term BFO:0000040 \
+        extract \
+            --method MIREOT \
+            --lower-terms $(IMPORTDIR)/envo_terms.txt \
+            --intermediates minimal \
+        annotate \
+            --annotate-defined-by true \
+            --annotate-derived-from true \
+            --ontology-iri $(URIBASE)/$(ONT)/$@ \
+		convert --format ofn \
+        --output $@.tmp.owl && mv $@.tmp.owl $@; fi
+
+$(IMPORTDIR)/chebi_import.owl: $(MIRRORDIR)/chebi.owl.gz
+	if [ $(IMP) = true ]; then $(ROBOT) \
+        remove \
+            --input $< \
+            --select "owl:deprecated='true'^^xsd:boolean" \
+        extract \
+            --method MIREOT \
+            --branch-from-term CHEBI:24431 \
+        extract \
+            --method MIREOT \
+            --lower-terms $(IMPORTDIR)/chebi_terms.txt \
+            --intermediates minimal \
+        annotate \
+            --annotate-defined-by true \
+            --annotate-derived-from true \
+            --ontology-iri $(URIBASE)/$(ONT)/$@ \
+		convert --format ofn \
+        --output $@.tmp.owl && mv $@.tmp.owl $@; fi
+
 $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl
 	if [ $(IMP) = true ]; then $(ROBOT) \
 		remove \
@@ -190,6 +241,7 @@ $(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl
 		annotate \
 			--annotate-defined-by true \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 # ----------------------------------------
