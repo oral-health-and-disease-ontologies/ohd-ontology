@@ -28,7 +28,6 @@ Import(<http://purl.obolibrary.org/obo/ohd/imports/ncbi_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/obi_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/ogms_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/omo_import.owl>)
-Import(<http://purl.obolibrary.org/obo/ohd/imports/omrse_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/pato_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohmi/2019-09-17/ohmi.owl>)
@@ -1358,7 +1357,9 @@ Declaration(Class(obo:OHD_0008049))
 Declaration(Class(obo:OHD_0008050))
 Declaration(Class(obo:OHD_0008051))
 Declaration(Class(obo:OHD_0008052))
-Declaration(Class(obo:PATO_0040034))
+Declaration(Class(obo:OMRSE_00000007))
+Declaration(Class(obo:OMRSE_00000008))
+Declaration(Class(obo:OMRSE_00000009))
 Declaration(Class(<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>))
 Declaration(ObjectProperty(obo:BFO_0000050))
 Declaration(ObjectProperty(obo:BFO_0000051))
@@ -2695,7 +2696,7 @@ SubClassOf(obo:OHD_0000028 ObjectHasValue(obo:BFO_0000051 obo:OHD_0000114))
 # Class: obo:OHD_0000029 (fractured tooth)
 
 AnnotationAssertion(rdfs:label obo:OHD_0000029 "fractured tooth"@en)
-SubClassOf(obo:OHD_0000029 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:RO_0000053 obo:PATO_0040034)))
+EquivalentClasses(obo:OHD_0000029 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:RO_0000053 obo:PATO_0040034)))
 
 # Class: obo:OHD_0000030 (fractured tooth finding)
 
@@ -6266,14 +6267,9 @@ SubClassOf(obo:OHD_0008052 obo:OGMS_0000060)
 
 SubClassOf(obo:OHMI_0000015 ObjectSomeValuesFrom(obo:RO_0001025 obo:FMA_49184))
 
-# Class: obo:OMRSE_00000007 (gender role)
+# Class: obo:OMRSE_00000007 (obo:OMRSE_00000007)
 
 SubClassOf(obo:OMRSE_00000007 obo:BFO_0000023)
-
-# Class: obo:PATO_0040034 (fractured)
-
-AnnotationAssertion(obo:IAO_0000116 obo:PATO_0040034 "Replace with PATO term")
-SubClassOf(obo:PATO_0040034 obo:BFO_0000019)
 
 # Class: <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> (obsolete class)
 
