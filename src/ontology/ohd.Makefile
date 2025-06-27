@@ -67,11 +67,12 @@ $(IMPORTDIR)/omo_import.owl: $(MIRRORDIR)/omo.owl
 		annotate \
 			--annotate-defined-by true \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 .PRECIOUS: $(IMPORTDIR)/ro_import.owl
-$(IMPORTDIR)/ro_import.owl: $(MIRRORDIR)/ro.owl
+$(IMPORTDIR)/ro_import.owl: $(MIRRORDIR)/ro.owl $(IMPORTDIR)/ro_terms.txt
 	if [ $(IMP) = true ]; then $(ROBOT) \
 		remove \
 			--input $< \
@@ -79,15 +80,16 @@ $(IMPORTDIR)/ro_import.owl: $(MIRRORDIR)/ro.owl
 			--select classes \
 		extract \
 			--method MIREOT \
-			--lower-terms $(IMPORTDIR)/ro_terms.txt \
+			--lower-terms $(word 2, $^) \
 		annotate \
 			--annotate-defined-by true \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-.PRECIOUS: $(IMPORTDIR)/iao_import.owl
-$(IMPORTDIR)/iao_import.owl: $(MIRRORDIR)/iao.owl
+.PRECIOUS: $(IMPORTDIR)/iao_import.owl 
+$(IMPORTDIR)/iao_import.owl: $(MIRRORDIR)/iao.owl $(IMPORTDIR)/iao_terms.txt
 	if [ $(IMP) = true ]; then $(ROBOT) \
 		remove \
 			--input $< \
@@ -95,15 +97,16 @@ $(IMPORTDIR)/iao_import.owl: $(MIRRORDIR)/iao.owl
 		extract \
 			--method MIREOT \
 			--upper-term BFO:0000031 \
-			--lower-terms $(IMPORTDIR)/iao_terms.txt \
+			--lower-terms $(word 2, $^) \
 		annotate \
 			--annotate-defined-by true \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 .PRECIOUS: $(IMPORTDIR)/caro_import.owl
-$(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl
+$(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl $(IMPORTDIR)/caro_terms.txt
 	if [ $(IMP) = true ]; then $(ROBOT) \
 		remove \
 			--input $< \
@@ -113,15 +116,16 @@ $(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl
 			--branch-from-term BFO:0000040 \
 		extract \
 			--method MIREOT \
-			--lower-terms $(IMPORTDIR)/caro_terms.txt \
+			--lower-terms $(word 2, $^) \
 			--intermediates minimal \
 		annotate \
 			--annotate-defined-by true \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-$(IMPORTDIR)/envo_import.owl: $(MIRRORDIR)/envo.owl
+$(IMPORTDIR)/envo_import.owl: $(MIRRORDIR)/envo.owl $(IMPORTDIR)/envo_terms.txt 
 	if [ $(IMP) = true ]; then $(ROBOT) \
         remove \
             --input $< \
@@ -131,16 +135,16 @@ $(IMPORTDIR)/envo_import.owl: $(MIRRORDIR)/envo.owl
             --branch-from-term BFO:0000001 \
         extract \
             --method MIREOT \
-            --lower-terms $(IMPORTDIR)/envo_terms.txt \
+            --lower-terms $(word 2, $^) \
             --intermediates minimal \
         annotate \
             --annotate-defined-by true \
-            --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-$(IMPORTDIR)/chebi_import.owl: $(MIRRORDIR)/chebi.owl.gz
+$(IMPORTDIR)/chebi_import.owl: $(MIRRORDIR)/chebi.owl.gz $(IMPORTDIR)/chebi_terms.txt
 	if [ $(IMP) = true ]; then $(ROBOT) \
         remove \
             --input $< \
@@ -150,16 +154,16 @@ $(IMPORTDIR)/chebi_import.owl: $(MIRRORDIR)/chebi.owl.gz
             --branch-from-term CHEBI:24431 \
         extract \
             --method MIREOT \
-            --lower-terms $(IMPORTDIR)/chebi_terms.txt \
+            --lower-terms  $(word 2, $^) \
             --intermediates minimal \
         annotate \
             --annotate-defined-by true \
-            --annotate-derived-from true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-$(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl
+$(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl $(IMPORTDIR)/ecto_terms.txt
 	if [ $(IMP) = true ]; then $(ROBOT) \
 		remove \
 			--input $< \
@@ -167,15 +171,16 @@ $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl
 		extract \
 			--method MIREOT \
 			--upper-term  http://purl.obolibrary.org/obo/ExO_0000002 \
-			--lower-terms $(IMPORTDIR)/ecto_terms.txt \
+			--lower-terms $(word 2, $^) \
 		annotate \
 			--annotate-defined-by true \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 .PRECIOUS: $(IMPORTDIR)/go_import.owl
-$(IMPORTDIR)/go_import.owl: $(MIRRORDIR)/go.owl
+$(IMPORTDIR)/go_import.owl: $(MIRRORDIR)/go.owl $(IMPORTDIR)/go_terms.txt
 	if [ $(IMP) = true ]; then $(ROBOT) \
 		remove \
 			--input $< \
@@ -183,10 +188,11 @@ $(IMPORTDIR)/go_import.owl: $(MIRRORDIR)/go.owl
 		extract \
 			--method MIREOT \
 			--upper-term http://purl.obolibrary.org/obo/GO_0008150 \
-			--lower-terms $(IMPORTDIR)/go_terms.txt \
+			--lower-terms $(word 2, $^) \
 		annotate \
 			--annotate-defined-by true \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
@@ -207,6 +213,7 @@ $(IMPORTDIR)/ido_import.owl: $(MIRRORDIR)/ido.owl $(IMPORTDIR)/ido_terms.txt
 			--annotate-defined-by true \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
 			--version-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
@@ -223,6 +230,7 @@ $(IMPORTDIR)/ohmi_import.owl: $(MIRRORDIR)/ohmi.owl $(IMPORTDIR)/ohmi_terms.txt
 		annotate \
 			--annotate-defined-by true \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
@@ -242,25 +250,66 @@ $(IMPORTDIR)/pato_import.owl: $(MIRRORDIR)/pato.owl $(IMPORTDIR)/pato_terms.txt
 		annotate \
 			--annotate-defined-by true \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
-			--version-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-$(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl
+# Filters out all terms except those in the terms file
+.PRECIOUS: $(IMPORTDIR)/ogms_import.owl
+$(IMPORTDIR)/ogms_import.owl: $(MIRRORDIR)/ogms.owl $(IMPORTDIR)/ogms_terms.txt
+	if [ $(IMP) = true ]; then $(ROBOT) \
+		filter \
+			--input $< \
+			--term-file $(word 2, $^) \
+			--select "annotations self ancestors" \
+			--axioms logical \
+			--signature true \
+			--trim true \
+		remove \
+			--select "owl:deprecated='true'^^xsd:boolean" \
+		annotate \
+			--annotate-defined-by true \
+			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
+		convert --format ofn \
+		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
+
+# Filters out all terms except those in the terms file
+.PRECIOUS: $(IMPORTDIR)/omrse_import.owl
+$(IMPORTDIR)/omrse_import.owl: $(MIRRORDIR)/omrse.owl $(IMPORTDIR)/omrse_terms.txt
+	if [ $(IMP) = true ]; then $(ROBOT) \
+		filter \
+			--input $< \
+			--term-file $(word 2, $^) \
+			--select "annotations self ancestors" \
+			--axioms logical \
+			--signature true \
+			--trim true \
+		remove \
+			--select "owl:deprecated='true'^^xsd:boolean" \
+		annotate \
+			--annotate-defined-by true \
+			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
+		convert --format ofn \
+		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
+
+$(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl $(IMPORTDIR)/obi_terms.txt
 	if [ $(IMP) = true ]; then $(ROBOT) \
 		remove \
 			--input $< \
 			--select "owl:deprecated='true'^^xsd:boolean" \
 		extract \
 			--method STAR \
-			--term-file $(IMPORTDIR)/obi_terms.txt \
+			--term-file $(word 2, $^) \
 		remove \
-			--term-file $(IMPORTDIR)/obi_terms.txt \
+			--term-file $(word 2, $^) \
 			--exclude-terms  $(IMPORTDIR)/annotation_terms.txt \
 			--select complement \
 		annotate \
 			--annotate-defined-by true \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
