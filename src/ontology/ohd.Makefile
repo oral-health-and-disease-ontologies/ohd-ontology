@@ -128,7 +128,7 @@ $(IMPORTDIR)/envo_import.owl: $(MIRRORDIR)/envo.owl
             --select "owl:deprecated='true'^^xsd:boolean" \
         extract \
             --method MIREOT \
-            --branch-from-term BFO:0000040 \
+            --branch-from-term BFO:0000001 \
         extract \
             --method MIREOT \
             --lower-terms $(IMPORTDIR)/envo_terms.txt \

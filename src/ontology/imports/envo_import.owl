@@ -8,9 +8,12 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 
 Ontology(<http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>
 
+Declaration(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) Class(<http://purl.obolibrary.org/obo/BFO_0000001>))
+Declaration(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) Class(<http://purl.obolibrary.org/obo/BFO_0000004>))
 Declaration(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) Class(<http://purl.obolibrary.org/obo/BFO_0000040>))
 Declaration(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) Class(<http://purl.obolibrary.org/obo/ENVO_01000481>))
 Declaration(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0000115>))
+Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0010000>))
 Declaration(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#created_by>))
 Declaration(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym>))
 Declaration(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym>))
@@ -25,6 +28,10 @@ Declaration(AnnotationProperty(<http://www.w3.org/ns/prov#wasDerivedFrom>))
 
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>)
 AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) rdfs:label <http://purl.obolibrary.org/obo/IAO_0000115> "definition")
+
+# Annotation Property: <http://purl.obolibrary.org/obo/IAO_0010000> (<http://purl.obolibrary.org/obo/IAO_0010000>)
+
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/IAO_0010000> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>)
 
 # Annotation Property: <http://www.geneontology.org/formats/oboInOwl#created_by> (<http://www.geneontology.org/formats/oboInOwl#created_by>)
 
@@ -50,13 +57,27 @@ AnnotationAssertion(rdfs:isDefinedBy <http://www.w3.org/ns/prov#wasDerivedFrom> 
 #   Classes
 ############################
 
+# Class: <http://purl.obolibrary.org/obo/BFO_0000001> (entity)
+
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/BFO_0000001> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>)
+AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) rdfs:label <http://purl.obolibrary.org/obo/BFO_0000001> "entity"@en)
+SubClassOf(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) <http://purl.obolibrary.org/obo/BFO_0000001> owl:Thing)
+
+# Class: <http://purl.obolibrary.org/obo/BFO_0000004> (independent continuant)
+
+AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/BFO_0000004> "A continuant that is a bearer of quality and realizable entity entities, in which other entities inhere and which itself cannot inhere in anything."@en)
+AnnotationAssertion(Annotation(<http://purl.obolibrary.org/obo/IAO_0010000> <http://purl.obolibrary.org/obo/bfo/axiom/017-002>) Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/BFO_0000004> "b is an independent continuant = Def. b is a continuant which is such that there is no c and no t such that b s-depends_on c at t. (axiom label in BFO2 Reference: [017-002])"@en)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/BFO_0000004> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>)
+AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) rdfs:label <http://purl.obolibrary.org/obo/BFO_0000004> "independent continuant"@en)
+SubClassOf(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) <http://purl.obolibrary.org/obo/BFO_0000004> <http://purl.obolibrary.org/obo/BFO_0000001>)
+
 # Class: <http://purl.obolibrary.org/obo/BFO_0000040> (material entity)
 
 AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/BFO_0000040> "An independent continuant that is spatially extended whose identity is independent of that of other entities and can be maintained through time."@en)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/BFO_0000040> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>)
 AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) rdfs:label <http://purl.obolibrary.org/obo/BFO_0000040> "material entity")
 AnnotationAssertion(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) rdfs:label <http://purl.obolibrary.org/obo/BFO_0000040> "material entity"@en)
-SubClassOf(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) <http://purl.obolibrary.org/obo/BFO_0000040> owl:Thing)
+SubClassOf(Annotation(<http://www.w3.org/ns/prov#wasDerivedFrom> <http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>) <http://purl.obolibrary.org/obo/BFO_0000040> <http://purl.obolibrary.org/obo/BFO_0000004>)
 
 # Class: <http://purl.obolibrary.org/obo/ENVO_01000481> (silica-based glass)
 
