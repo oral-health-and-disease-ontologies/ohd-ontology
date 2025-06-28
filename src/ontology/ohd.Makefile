@@ -66,6 +66,7 @@ $(IMPORTDIR)/omo_import.owl: $(MIRRORDIR)/omo.owl
 			--select classes \
 		annotate \
 			--annotate-defined-by true \
+		annotate \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
 			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
@@ -83,6 +84,7 @@ $(IMPORTDIR)/ro_import.owl: $(MIRRORDIR)/ro.owl $(IMPORTDIR)/ro_terms.txt
 			--lower-terms $(word 2, $^) \
 		annotate \
 			--annotate-defined-by true \
+		annotate \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
 			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
@@ -100,6 +102,7 @@ $(IMPORTDIR)/iao_import.owl: $(MIRRORDIR)/iao.owl $(IMPORTDIR)/iao_terms.txt
 			--lower-terms $(word 2, $^) \
 		annotate \
 			--annotate-defined-by true \
+		annotate \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
 			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
@@ -120,6 +123,7 @@ $(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl $(IMPORTDIR)/caro_terms.txt
 			--intermediates minimal \
 		annotate \
 			--annotate-defined-by true \
+		annotate \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
 			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
@@ -137,8 +141,9 @@ $(IMPORTDIR)/envo_import.owl: $(MIRRORDIR)/envo.owl $(IMPORTDIR)/envo_terms.txt
             --method MIREOT \
             --lower-terms $(word 2, $^) \
             --intermediates minimal \
+		annotate \
+			--annotate-defined-by true \
         annotate \
-            --annotate-defined-by true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
 			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
@@ -156,8 +161,9 @@ $(IMPORTDIR)/chebi_import.owl: $(MIRRORDIR)/chebi.owl.gz $(IMPORTDIR)/chebi_term
             --method MIREOT \
             --lower-terms  $(word 2, $^) \
             --intermediates minimal \
+		annotate \
+			--annotate-defined-by true \
         annotate \
-            --annotate-defined-by true \
             --ontology-iri $(URIBASE)/$(ONT)/$@ \
 			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
@@ -174,6 +180,7 @@ $(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl $(IMPORTDIR)/ecto_terms.txt
 			--lower-terms $(word 2, $^) \
 		annotate \
 			--annotate-defined-by true \
+		annotate \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
 			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
@@ -191,6 +198,7 @@ $(IMPORTDIR)/go_import.owl: $(MIRRORDIR)/go.owl $(IMPORTDIR)/go_terms.txt
 			--lower-terms $(word 2, $^) \
 		annotate \
 			--annotate-defined-by true \
+		annotate \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
 			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
@@ -211,6 +219,7 @@ $(IMPORTDIR)/ido_import.owl: $(MIRRORDIR)/ido.owl $(IMPORTDIR)/ido_terms.txt
 			--select "owl:deprecated='true'^^xsd:boolean" \
 		annotate \
 			--annotate-defined-by true \
+		annotate \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
 			--version-iri $(URIBASE)/$(ONT)/$@ \
 			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
@@ -229,6 +238,7 @@ $(IMPORTDIR)/ohmi_import.owl: $(MIRRORDIR)/ohmi.owl $(IMPORTDIR)/ohmi_terms.txt
 			--lower-terms  $(word 2, $^) \
 		annotate \
 			--annotate-defined-by true \
+		annotate \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
 			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
@@ -249,6 +259,7 @@ $(IMPORTDIR)/pato_import.owl: $(MIRRORDIR)/pato.owl $(IMPORTDIR)/pato_terms.txt
 			--select "owl:deprecated='true'^^xsd:boolean" \
 		annotate \
 			--annotate-defined-by true \
+		annotate \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
 			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
@@ -269,6 +280,7 @@ $(IMPORTDIR)/ogms_import.owl: $(MIRRORDIR)/ogms.owl $(IMPORTDIR)/ogms_terms.txt
 			--select "owl:deprecated='true'^^xsd:boolean" \
 		annotate \
 			--annotate-defined-by true \
+		annotate \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
 			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
@@ -289,10 +301,19 @@ $(IMPORTDIR)/omrse_import.owl: $(MIRRORDIR)/omrse.owl $(IMPORTDIR)/omrse_terms.t
 			--select "owl:deprecated='true'^^xsd:boolean" \
 		annotate \
 			--annotate-defined-by true \
+		annotate \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
 			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
+
+# --output $@.tmp.owl && \
+# $(ROBOT) annotate \
+# 	--input  $@.tmp.owl \
+# 	--ontology-iri $(URIBASE)/$(ONT)/$@ \
+# 	--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
+# convert --format ofn \
+# --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 $(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl $(IMPORTDIR)/obi_terms.txt
 	if [ $(IMP) = true ]; then $(ROBOT) \
@@ -308,6 +329,7 @@ $(IMPORTDIR)/obi_import_test.owl: $(MIRRORDIR)/obi.owl $(IMPORTDIR)/obi_terms.tx
 			--select complement \
 		annotate \
 			--annotate-defined-by true \
+		annotate \
 			--ontology-iri $(URIBASE)/$(ONT)/$@ \
 			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
 		convert --format ofn \
