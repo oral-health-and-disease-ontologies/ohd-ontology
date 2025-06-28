@@ -398,6 +398,6 @@ $(MIRRORDIR)/%.owl: FORCE | $(TMPDIR)
 			cp $(TMPDIR)/mirror-$*.owl $@; fi; fi
 
 else # MIR=false
-$(MIRRORDIR)/%.owl:
+$(MIRRORDIR)/%.owl $(MIRRORDIR)/%.owl.gz:
 	@echo "Not refreshing $@ because the mirrorring pipeline is disabled (MIR=$(MIR))."
 endif
