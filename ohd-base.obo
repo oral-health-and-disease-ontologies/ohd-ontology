@@ -1,19 +1,10 @@
 format-version: 1.2
-data-version: ohd/releases/2025-06-26/ohd-base.owl
+data-version: ohd/releases/2025-06-28/ohd-base.owl
 subsetdef: OHD:0005009 ""
-idspace: cito http://purl.org/spar/cito/ 
 idspace: dc http://purl.org/dc/elements/1.1/ 
 idspace: dcterms http://purl.org/dc/terms/ 
-idspace: doap http://usefulinc.com/ns/doap# 
-idspace: example http://example.com/ 
-idspace: foaf http://xmlns.com/foaf/0.1/ 
-idspace: oboInOwl1 http://www.geneontology.org/formats/oboInOwl# 
-idspace: protege http://protege.stanford.edu/plugins/owl/protege# 
-idspace: prov http://www.w3.org/ns/prov# 
+idspace: oboInOwl http://www.geneontology.org/formats/oboInOwl# 
 idspace: skos http://www.w3.org/2004/02/skos/core# 
-idspace: swrl http://www.w3.org/2003/11/swrl# 
-idspace: swrla http://swrl.stanford.edu/ontologies/3.3/swrla.owl# 
-idspace: swrlb http://www.w3.org/2003/11/swrlb# 
 remark: Status of this document: This is a work in progress and we do not yet make any promises about the stability of URIs. A known issue is that the upper level of this ontology is an exploratory version of BFO developed in the interim between when BFO 1 was current and before BFO 2 development started. The representation of the CDT codes is tentative - we are discussing this with the ADA. The integration between OBI and OGMS is not complete - we add some axioms here in order to use both in a consistent way. The version of the subject of the FMA used here is an automatic translation of a portion of the entities and relations present in the original FMA. Work is ongoing on improving this subset and using an up-to-date version of the FMA as its basis.
 remark: The Oral Health and Disease Ontology is an ontology built to be compatible with the OBO Foundry ontologies, and is a collaboration between researchers at the University at Buffalo School of Dental Medicine, the University of Pittsburg School of Dental Medicine, and the Oregon Health and Science University.\n\nThis ontology is licensed under the CC-BY License. Please see http://creativecommons.org/licenses/by/3.0/\n\nAttribution is satisfied by using the URIs defined in this file when using terms from this ontology.
 ontology: ohd/ohd-base
@@ -36,7 +27,7 @@ property_value: dcterms:contributor "Pedro Hernandez Cott" xsd:string
 property_value: dcterms:description "The Oral Health and Disease Ontology (OHD) is an OBO Foundry ontology used for representing  oral-health maladies, their diagnosis, and treatment. It is has been used to represent the content of dental practice health records and is intended to be further developed for use in translation medicine. It demonstrates a principled split between billing codes as information entities and what the codes are about, such as dental procedures, materials, and patients." xsd:string
 property_value: dcterms:license http://creativecommons.org/licenses/by/4.0/
 property_value: dcterms:title "Oral Health and Disease Ontology" xsd:string
-property_value: owl:versionInfo "2025-06-26" xsd:string
+property_value: owl:versionInfo "2025-06-28" xsd:string
 
 [Term]
 id: OHD:0000000
@@ -74,7 +65,7 @@ property_value: IAO:0000117 "PERSON:Pedro Cott" xsd:string
 id: OHD:0000003
 name: endodontic procedure
 def: "A dental procedure that is performed on the pulp chamber and/or root canal of a tooth, or a part thereof." []
-is_a: OHD:0000002 {is_inferred="true"} ! dental procedure
+is_a: OHD:0000002 ! dental procedure
 relationship: RO:0000057 FMA:12516
 relationship: RO:0000057 NCBITaxon:9606
 property_value: IAO:0000116 "Titus Schleyer 1/14/2014: adapted definition" xsd:string
@@ -125,7 +116,7 @@ relationship: BFO:0000054 OHD:0000004 ! tooth restoration procedure
 id: OHD:0000008
 name: tooth to be filled role
 def: "A tooth to be restored role that is realized by an intracoronal restoration procedure" []
-is_a: OHD:0000007 {is_inferred="true"} ! tooth to be restored role
+is_a: OHD:0000007 ! tooth to be restored role
 intersection_of: OHD:0000007 ! tooth to be restored role
 intersection_of: BFO:0000054 OHD:0000006 ! intracoronal restoration procedure
 relationship: BFO:0000054 OHD:0000006 ! intracoronal restoration procedure
@@ -161,7 +152,7 @@ def: "should use obi class with modifications to not include restriction that ha
 id: OHD:0000012
 name: human dental patient
 def: "A Homo sapiens that bears some dental patient role." []
-is_a: NCBITaxon:9606 {is_inferred="true"}
+is_a: NCBITaxon:9606
 intersection_of: NCBITaxon:9606
 intersection_of: RO:0000087 OHD:0000190 ! dental patient role
 relationship: RO:0000087 OHD:0000190 ! dental patient role
@@ -194,7 +185,7 @@ property_value: IAO:0000119 "Mosby. Mosby's Dental Dictionary, 2nd Edition. Mosb
 id: OHD:0000018
 name: dentist
 def: "a dental health care provider that bears a dentist role" []
-is_a: OHD:0000051 {is_inferred="true"} ! dental healthcare provider
+is_a: OHD:0000051 ! dental healthcare provider
 intersection_of: OHD:0000051 ! dental healthcare provider
 intersection_of: RO:0000087 OHD:0000017 ! dentist role
 relationship: RO:0000087 OHD:0000017 ! dentist role
@@ -216,7 +207,7 @@ property_value: IAO:0000117 "Person:Alan Ruttenberg" xsd:string
 id: OHD:0000020
 name: dental hygienist
 def: "a dental health care provider that bears a dental hygienist role" []
-is_a: OHD:0000051 {is_inferred="true"} ! dental healthcare provider
+is_a: OHD:0000051 ! dental healthcare provider
 intersection_of: OHD:0000051 ! dental healthcare provider
 intersection_of: RO:0000087 OHD:0000016 ! dental hygienist role
 relationship: RO:0000087 OHD:0000016 ! dental hygienist role
@@ -236,8 +227,8 @@ property_value: IAO:0000117 "Titus Schleyer" xsd:string
 id: OHD:0000022
 name: metallic inlay restoration procedure
 def: "An inlay restoration procedure that uses metal to restore the tooth." []
-is_a: OHD:0000133 {is_inferred="true"} ! inlay restoration procedure
-is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
+is_a: OHD:0000133 ! inlay restoration procedure
+is_a: OHD:0000304 ! indirect restoration procedure
 intersection_of: OHD:0000133 ! inlay restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000048 ! metal dental restoration material
@@ -248,7 +239,7 @@ property_value: IAO:0000118 "metallic inlay restoration" xsd:string
 id: OHD:0000023
 name: restored tooth finding
 def: "A dental finding that a tooth has been restored." []
-is_a: OHD:0000010 {is_inferred="true"} ! dental finding
+is_a: OHD:0000010 ! dental finding
 intersection_of: OHD:0000010 ! dental finding
 intersection_of: IAO:0000136 OHD:0000189 ! restored tooth
 relationship: IAO:0000136 OHD:0000189 ! restored tooth
@@ -300,11 +291,15 @@ property_value: IAO:0000117 "Bill Duncan" xsd:string
 [Term]
 id: OHD:0000029
 name: fractured tooth
+is_a: FMA:12516
+intersection_of: FMA:12516
+intersection_of: RO:0000053 PATO:0040034
+relationship: RO:0000053 PATO:0040034
 
 [Term]
 id: OHD:0000030
 name: fractured tooth finding
-is_a: OHD:0000010 {is_inferred="true"} ! dental finding
+is_a: OHD:0000010 ! dental finding
 intersection_of: OHD:0000010 ! dental finding
 intersection_of: IAO:0000136 OHD:0000029 ! fractured tooth
 relationship: IAO:0000136 OHD:0000029 ! fractured tooth
@@ -347,6 +342,13 @@ property_value: IAO:0000116 "Bill Duncan 12/11/2014:\nupdated defintion" xsd:str
 property_value: IAO:0000116 "Titus Schleyer 3/13/2014: slightly updated definition" xsd:string
 
 [Term]
+id: OHD:0000035
+name: porcelain dental restoration material
+is_a: oboInOwl:ObsoleteClass
+is_obsolete: true
+replaced_by: OHD:0000135
+
+[Term]
 id: OHD:0000036
 name: resin-based composite dental restoration material
 def: "A dental restoration material that is primarily composed of highly cross-linked organic polymeric matrix reinforced by filler particles and/or short fibers bound to the matrix by coupling agents and set by light and or chemically activated polymerization reaction." [] {IAO:0000119="ISBN:0323478212", IAO:0000119="Craig's restorative Dental Material"}
@@ -380,8 +382,8 @@ property_value: IAO:0000117 "Bill Duncan" xsd:string
 id: OHD:0000039
 name: gold filling restoration procedure
 def: "An intracoronal restoration procedure that uses gold foil to restore the tooth." []
-is_a: OHD:0000006 {is_inferred="true"} ! intracoronal restoration procedure
-is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
+is_a: OHD:0000006 ! intracoronal restoration procedure
+is_a: OHD:0000304 ! indirect restoration procedure
 intersection_of: OHD:0000006 ! intracoronal restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000034 ! gold foil dental restoration material
@@ -393,8 +395,8 @@ property_value: IAO:0000118 "gold foil intracoronal restoration procedure" xsd:s
 id: OHD:0000040
 name: 3/4 noble metal crown restoration procedure
 def: "A 3/4 crown restoration procedure that uses noble metal to restore the tooth." []
-is_a: OHD:0000142 {is_inferred="true"} ! noble metal crown restoration procedure
-is_a: OHD:0000305 {is_inferred="true"} ! 3/4 crown restoration procedure
+is_a: OHD:0000142 ! noble metal crown restoration procedure
+is_a: OHD:0000305 ! 3/4 crown restoration procedure
 intersection_of: OHD:0000305 ! 3/4 crown restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000146 ! noble metal dental restoration material
@@ -403,8 +405,8 @@ intersection_of: OBI:0000293 OHD:0000146 ! noble metal dental restoration materi
 id: OHD:0000041
 name: amalgam filling restoration procedure
 def: "An intracoronal restoration procedure that uses amalgam to restore the tooth." []
-is_a: OHD:0000006 {is_inferred="true"} ! intracoronal restoration procedure
-is_a: OHD:0000303 {is_inferred="true"} ! direct restoration procedure
+is_a: OHD:0000006 ! intracoronal restoration procedure
+is_a: OHD:0000303 ! direct restoration procedure
 intersection_of: OHD:0000006 ! intracoronal restoration procedure
 intersection_of: BFO:0000051 OHD:0000037 ! direct dental material insertion process
 intersection_of: OBI:0000293 OHD:0000001 ! amalgam dental restoration material
@@ -416,8 +418,8 @@ property_value: IAO:0000118 "amalgam intracoronal restoration procedure" xsd:str
 id: OHD:0000042
 name: resin filling restoration procedure
 def: "An intracoronal restoration procedure that uses resin to restore the tooth." []
-is_a: OHD:0000006 {is_inferred="true"} ! intracoronal restoration procedure
-is_a: OHD:0000303 {is_inferred="true"} ! direct restoration procedure
+is_a: OHD:0000006 ! intracoronal restoration procedure
+is_a: OHD:0000303 ! direct restoration procedure
 intersection_of: OHD:0000006 ! intracoronal restoration procedure
 intersection_of: BFO:0000051 OHD:0000037 ! direct dental material insertion process
 intersection_of: OBI:0000293 OHD:0000036 ! resin-based composite dental restoration material
@@ -445,7 +447,7 @@ property_value: IAO:0000119 "Mosby's Dental Dictionary 2nd ed" xsd:string
 id: OHD:0000045
 name: resin laminate veneer restoration procedure
 def: "A veneer restoration procedure that uses resin laminate to restore the tooth." []
-is_a: OHD:0000027 {is_inferred="true"} ! veneer restoration procedure
+is_a: OHD:0000027 ! veneer restoration procedure
 intersection_of: OHD:0000027 ! veneer restoration procedure
 intersection_of: OBI:0000293 OHD:0000036 ! resin-based composite dental restoration material
 relationship: OBI:0000293 OHD:0000036 ! resin-based composite dental restoration material
@@ -455,17 +457,17 @@ property_value: IAO:0000118 "resin laminate veneer restoration" xsd:string
 id: OHD:0000046
 name: porcelain laminate veneer restoration procedure
 def: "A veneer restoration procedure that uses porcelain laminate to restore the tooth." []
-is_a: OHD:0000027 {is_inferred="true"} ! veneer restoration procedure
+is_a: OHD:0000027 ! veneer restoration procedure
 intersection_of: OHD:0000027 ! veneer restoration procedure
-intersection_of: OBI:0000293 OHD:0000035
-relationship: OBI:0000293 OHD:0000035
+intersection_of: OBI:0000293 OHD:0000135 ! ceramic dental restoration material
+relationship: OBI:0000293 OHD:0000135 ! ceramic dental restoration material
 property_value: IAO:0000118 "porcelain laminate veneer restoration" xsd:string
 
 [Term]
 id: OHD:0000047
 name: tooth to undergo veneer procedure role
 def: "A tooth to be restored role that is realized by a veneer restoration procedure" []
-is_a: OHD:0000007 {is_inferred="true"} ! tooth to be restored role
+is_a: OHD:0000007 ! tooth to be restored role
 intersection_of: OHD:0000007 ! tooth to be restored role
 intersection_of: BFO:0000054 OHD:0000027 ! veneer restoration procedure
 relationship: BFO:0000054 OHD:0000027 ! veneer restoration procedure
@@ -482,7 +484,7 @@ property_value: IAO:0000116 "Use CHEBI:33521 'metal ion' in a complete definitio
 id: OHD:0000049
 name: female dental patient
 def: "A human dental patient that bears a female gender role." []
-is_a: OHD:0000012 {is_inferred="true"} ! human dental patient
+is_a: OHD:0000012 ! human dental patient
 intersection_of: OHD:0000012 ! human dental patient
 intersection_of: RO:0000087 OMRSE:00000009
 relationship: RO:0000087 OMRSE:00000009
@@ -492,7 +494,7 @@ property_value: IAO:0000117 "Bill Duncan" xsd:string
 id: OHD:0000051
 name: dental healthcare provider
 def: "a health care provider that bears a dental health care provider role" []
-is_a: OHD:0000179 {is_inferred="true"} ! healthcare provider
+is_a: OHD:0000179 ! healthcare provider
 intersection_of: OHD:0000179 ! healthcare provider
 intersection_of: RO:0000087 OHD:0000052 ! dental healthcare provider role
 relationship: RO:0000087 OHD:0000052 ! dental healthcare provider role
@@ -510,7 +512,7 @@ property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 id: OHD:0000054
 name: male dental patient
 def: "A human dental patient that bears a male gender role." []
-is_a: OHD:0000012 {is_inferred="true"} ! human dental patient
+is_a: OHD:0000012 ! human dental patient
 intersection_of: OHD:0000012 ! human dental patient
 intersection_of: RO:0000087 OMRSE:00000008
 relationship: RO:0000087 OMRSE:00000008
@@ -520,7 +522,7 @@ property_value: IAO:0000117 "Bill Duncan" xsd:string
 id: OHD:0000055
 name: tooth to be crowned role
 def: "A tooth to be restored role that is realized by a crown restoration procedure" []
-is_a: OHD:0000007 {is_inferred="true"} ! tooth to be restored role
+is_a: OHD:0000007 ! tooth to be restored role
 intersection_of: OHD:0000007 ! tooth to be restored role
 intersection_of: BFO:0000054 OHD:0000033 ! crown restoration procedure
 relationship: BFO:0000054 OHD:0000033 ! crown restoration procedure
@@ -779,8 +781,8 @@ relationship: IAO:0000136 FMA:12516
 id: OHD:0000094
 name: ceramic inlay restoration procedure
 def: "An inlay restoration procedure that uses ceramic to restore the tooth." []
-is_a: OHD:0000133 {is_inferred="true"} ! inlay restoration procedure
-is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
+is_a: OHD:0000133 ! inlay restoration procedure
+is_a: OHD:0000304 ! indirect restoration procedure
 intersection_of: OHD:0000133 ! inlay restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000135 ! ceramic dental restoration material
@@ -791,8 +793,8 @@ property_value: IAO:0000118 "ceramic inlay restoration" xsd:string
 id: OHD:0000095
 name: ceramic onlay restoration procedure
 def: "An onlay restoration procedure that uses ceramic to restore the tooth." []
-is_a: OHD:0000134 {is_inferred="true"} ! onlay restoration procedure
-is_a: OHD:0000155 {is_inferred="true"} ! ceramic crown restoration procedure
+is_a: OHD:0000134 ! onlay restoration procedure
+is_a: OHD:0000155 ! ceramic crown restoration procedure
 intersection_of: OHD:0000134 ! onlay restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000135 ! ceramic dental restoration material
@@ -802,7 +804,7 @@ property_value: IAO:0000118 "ceramic onlay restoration" xsd:string
 id: OHD:0000096
 name: resin inlay restoration procedure
 def: "An inlay restoration procedure that uses resin to restore the tooth." []
-is_a: OHD:0000133 {is_inferred="true"} ! inlay restoration procedure
+is_a: OHD:0000133 ! inlay restoration procedure
 intersection_of: OHD:0000133 ! inlay restoration procedure
 intersection_of: OBI:0000293 OHD:0000036 ! resin-based composite dental restoration material
 relationship: OBI:0000293 OHD:0000036 ! resin-based composite dental restoration material
@@ -813,7 +815,7 @@ property_value: IAO:0000118 "resin inlay restoration" xsd:string
 id: OHD:0000098
 name: tooth to undergo inlay procedure role
 def: "A tooth to be restored role that is realized by an inlay restoration procedure" []
-is_a: OHD:0000008 {is_inferred="true"} ! tooth to be filled role
+is_a: OHD:0000008 ! tooth to be filled role
 intersection_of: OHD:0000007 ! tooth to be restored role
 intersection_of: BFO:0000054 OHD:0000133 ! inlay restoration procedure
 relationship: BFO:0000054 OHD:0000133 ! inlay restoration procedure
@@ -822,7 +824,7 @@ relationship: BFO:0000054 OHD:0000133 ! inlay restoration procedure
 id: OHD:0000099
 name: tooth to undergo onlay procedure role
 def: "A tooth to be restored role that is realized by an onlay restoration procedure" []
-is_a: OHD:0000055 {is_inferred="true"} ! tooth to be crowned role
+is_a: OHD:0000055 ! tooth to be crowned role
 intersection_of: OHD:0000007 ! tooth to be restored role
 intersection_of: BFO:0000054 OHD:0000134 ! onlay restoration procedure
 relationship: BFO:0000054 OHD:0000134 ! onlay restoration procedure
@@ -882,8 +884,8 @@ property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 id: OHD:0000138
 name: metallic onlay restoration procedure
 def: "An onlay restoration procedure that uses metal to restore the tooth." []
-is_a: OHD:0000134 {is_inferred="true"} ! onlay restoration procedure
-is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
+is_a: OHD:0000134 ! onlay restoration procedure
+is_a: OHD:0000304 ! indirect restoration procedure
 intersection_of: OHD:0000134 ! onlay restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000048 ! metal dental restoration material
@@ -893,17 +895,17 @@ property_value: IAO:0000118 "metallic onlay restoration" xsd:string
 [Term]
 id: OHD:0000139
 name: resin with predominantly base metal crown restoration procedure
-def: "A crown restoration procedure in which the artifical crown used to restore the tooth is formed by covering all or some of a predominantly base metal substrate with resin." []
-is_a: OHD:0000033 {is_inferred="true"} ! crown restoration procedure
-is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
+def: "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by covering all or some of a predominantly base metal substrate with resin." []
+is_a: OHD:0000033 ! crown restoration procedure
+is_a: OHD:0000304 ! indirect restoration procedure
 property_value: IAO:0000119 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Resin_With_Predominately_Base_Metal__Dental_Procedure_Code_Description" xsd:string
 
 [Term]
 id: OHD:0000140
 name: titanium crown restoration procedure
 def: "A crown restoration procedure that uses titanium to restore the tooth." []
-is_a: OHD:0000033 {is_inferred="true"} ! crown restoration procedure
-is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
+is_a: OHD:0000033 ! crown restoration procedure
+is_a: OHD:0000304 ! indirect restoration procedure
 intersection_of: OHD:0000033 ! crown restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000136 ! titanium dental restoration material
@@ -912,7 +914,7 @@ relationship: OBI:0000293 OHD:0000136 ! titanium dental restoration material
 [Term]
 id: OHD:0000141
 name: resin with predominantly base metal dental restoration
-is_a: oboInOwl1:ObsoleteClass
+is_a: oboInOwl:ObsoleteClass
 property_value: IAO:0000116 "Bill Duncan 6/26/2015:\nThere is not a dental restoration material of this kind. The class needs to be made obsolete." xsd:string
 property_value: IAO:0000117 "Bill Duncan" xsd:string
 is_obsolete: true
@@ -921,8 +923,8 @@ is_obsolete: true
 id: OHD:0000142
 name: noble metal crown restoration procedure
 def: "A crown restoration procedure that uses noble metal to restore the tooth." []
-is_a: OHD:0000033 {is_inferred="true"} ! crown restoration procedure
-is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
+is_a: OHD:0000033 ! crown restoration procedure
+is_a: OHD:0000304 ! indirect restoration procedure
 intersection_of: OHD:0000033 ! crown restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000146 ! noble metal dental restoration material
@@ -931,7 +933,7 @@ relationship: OBI:0000293 OHD:0000146 ! noble metal dental restoration material
 [Term]
 id: OHD:0000143
 name: porcelain fused to noble metal dental restoration material
-is_a: oboInOwl1:ObsoleteClass
+is_a: oboInOwl:ObsoleteClass
 property_value: IAO:0000116 "Bill Duncan 6/26/2015:\nThere is not a dental restoration material of this kind. The class needs to be made obsolete." xsd:string
 property_value: IAO:0000117 "Bill Duncan" xsd:string
 is_obsolete: true
@@ -939,7 +941,7 @@ is_obsolete: true
 [Term]
 id: OHD:0000144
 name: porcelain fused to high noble metal dental restoration material
-is_a: oboInOwl1:ObsoleteClass
+is_a: oboInOwl:ObsoleteClass
 property_value: IAO:0000116 "Bill Duncan 6/26/2015:\nThere is not a dental restoration material of this kind. The class needs to be made obsolete." xsd:string
 property_value: IAO:0000117 "Bill Duncan" xsd:string
 is_obsolete: true
@@ -947,7 +949,7 @@ is_obsolete: true
 [Term]
 id: OHD:0000145
 name: porcelain fused to predominantly base metal dental restoration material
-is_a: oboInOwl1:ObsoleteClass
+is_a: oboInOwl:ObsoleteClass
 property_value: IAO:0000116 "Bill Duncan 6/26/2015:\nThere is not a dental restoration material of this kind. The class needs to be made obsolete." xsd:string
 property_value: IAO:0000117 "Bill Duncan" xsd:string
 is_obsolete: true
@@ -973,15 +975,15 @@ property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 id: OHD:0000148
 name: resin with high noble metal crown restoration procedure
 def: "A resin with noble metal crown restoraton procedure that uses high noble metal as a substrate." []
-is_a: OHD:0000166 {is_inferred="true"} ! resin with noble metal crown restoration procedure
+is_a: OHD:0000166 ! resin with noble metal crown restoration procedure
 property_value: IAO:0000119 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Resin_With_High_Noble_Metal__Dental_Procedure_Code_Description" xsd:string
 
 [Term]
 id: OHD:0000149
 name: 3/4 resin crown restoration procedure
 def: "A 3/4 crown restoration procedure that uses resin to restore the tooth." []
-is_a: OHD:0000154 {is_inferred="true"} ! resin crown restoration procedure
-is_a: OHD:0000305 {is_inferred="true"} ! 3/4 crown restoration procedure
+is_a: OHD:0000154 ! resin crown restoration procedure
+is_a: OHD:0000305 ! 3/4 crown restoration procedure
 intersection_of: OHD:0000305 ! 3/4 crown restoration procedure
 intersection_of: OBI:0000293 OHD:0000036 ! resin-based composite dental restoration material
 
@@ -989,8 +991,8 @@ intersection_of: OBI:0000293 OHD:0000036 ! resin-based composite dental restorat
 id: OHD:0000150
 name: 3/4 high noble metal crown restoration procedure
 def: "A 3/4 noble metal crown restoration procedure that uses high noble metal to restore the tooth." []
-is_a: OHD:0000040 {is_inferred="true"} ! 3/4 noble metal crown restoration procedure
-is_a: OHD:0000157 {is_inferred="true"} ! high noble metal crown restoration procedure
+is_a: OHD:0000040 ! 3/4 noble metal crown restoration procedure
+is_a: OHD:0000157 ! high noble metal crown restoration procedure
 intersection_of: OHD:0000040 ! 3/4 noble metal crown restoration procedure
 intersection_of: OBI:0000293 OHD:0000147 ! high noble metal dental restoration material
 
@@ -998,8 +1000,8 @@ intersection_of: OBI:0000293 OHD:0000147 ! high noble metal dental restoration m
 id: OHD:0000151
 name: 3/4 predominantly base metal crown restoration procedure
 def: "A 3/4 crown restoration procedure that uses predominantly base metal to restore the tooth." []
-is_a: OHD:0000162 {is_inferred="true"} ! predominantly base metal crown restoration procedure
-is_a: OHD:0000305 {is_inferred="true"} ! 3/4 crown restoration procedure
+is_a: OHD:0000162 ! predominantly base metal crown restoration procedure
+is_a: OHD:0000305 ! 3/4 crown restoration procedure
 intersection_of: OHD:0000305 ! 3/4 crown restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000156 ! predominantly base metal dental restoration material
@@ -1008,8 +1010,8 @@ intersection_of: OBI:0000293 OHD:0000156 ! predominantly base metal dental resto
 id: OHD:0000152
 name: 3/4 ceramic crown restoration procedure
 def: "A 3/4 crown restoration procedure that uses ceramic to restore the tooth." []
-is_a: OHD:0000155 {is_inferred="true"} ! ceramic crown restoration procedure
-is_a: OHD:0000305 {is_inferred="true"} ! 3/4 crown restoration procedure
+is_a: OHD:0000155 ! ceramic crown restoration procedure
+is_a: OHD:0000305 ! 3/4 crown restoration procedure
 intersection_of: OHD:0000305 ! 3/4 crown restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000135 ! ceramic dental restoration material
@@ -1018,8 +1020,8 @@ intersection_of: OBI:0000293 OHD:0000135 ! ceramic dental restoration material
 id: OHD:0000153
 name: noble metal onlay restoration procedure
 def: "A metallic onlay restoration procedure that uses noble metal to restore the tooth." []
-is_a: OHD:0000138 {is_inferred="true"} ! metallic onlay restoration procedure
-is_a: OHD:0000142 {is_inferred="true"} ! noble metal crown restoration procedure
+is_a: OHD:0000138 ! metallic onlay restoration procedure
+is_a: OHD:0000142 ! noble metal crown restoration procedure
 intersection_of: OHD:0000138 ! metallic onlay restoration procedure
 intersection_of: OBI:0000293 OHD:0000146 ! noble metal dental restoration material
 
@@ -1027,7 +1029,7 @@ intersection_of: OBI:0000293 OHD:0000146 ! noble metal dental restoration materi
 id: OHD:0000154
 name: resin crown restoration procedure
 def: "A crown restoration procedure that uses resin to restore the tooth." []
-is_a: OHD:0000033 {is_inferred="true"} ! crown restoration procedure
+is_a: OHD:0000033 ! crown restoration procedure
 intersection_of: OHD:0000033 ! crown restoration procedure
 intersection_of: OBI:0000293 OHD:0000036 ! resin-based composite dental restoration material
 relationship: OBI:0000293 OHD:0000036 ! resin-based composite dental restoration material
@@ -1036,8 +1038,8 @@ relationship: OBI:0000293 OHD:0000036 ! resin-based composite dental restoration
 id: OHD:0000155
 name: ceramic crown restoration procedure
 def: "A crown restoration procedure that uses ceramic to restore the tooth." []
-is_a: OHD:0000033 {is_inferred="true"} ! crown restoration procedure
-is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
+is_a: OHD:0000033 ! crown restoration procedure
+is_a: OHD:0000304 ! indirect restoration procedure
 intersection_of: OHD:0000033 ! crown restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000135 ! ceramic dental restoration material
@@ -1065,14 +1067,14 @@ property_value: IAO:0000117 "Bill Duncan" xsd:string
 id: OHD:0000158
 name: porcelain fused to high noble metal crown restoration procedure
 def: "A procelain fused to nobal metal crown restoration procedure that uses high noble metal as a substrate.\n" []
-is_a: OHD:0000160 {is_inferred="true"} ! porcelain fused to noble metal crown restoration procedure
+is_a: OHD:0000160 ! porcelain fused to noble metal crown restoration procedure
 property_value: IAO:0000119 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Porcelain_Fused_To_High_Noble_Metal__Dental_Procedure_Code_Description" xsd:string
 
 [Term]
 id: OHD:0000159
 name: high noble metal onlay restoration procedure
-is_a: OHD:0000153 {is_inferred="true"} ! noble metal onlay restoration procedure
-is_a: OHD:0000157 {is_inferred="true"} ! high noble metal crown restoration procedure
+is_a: OHD:0000153 ! noble metal onlay restoration procedure
+is_a: OHD:0000157 ! high noble metal crown restoration procedure
 intersection_of: OHD:0000153 ! noble metal onlay restoration procedure
 intersection_of: OBI:0000293 OHD:0000147 ! high noble metal dental restoration material
 property_value: IAO:0000117 "A noble metal onlay restoration procedure that uses high noble metal to restore the tooth." xsd:string
@@ -1080,24 +1082,24 @@ property_value: IAO:0000117 "A noble metal onlay restoration procedure that uses
 [Term]
 id: OHD:0000160
 name: porcelain fused to noble metal crown restoration procedure
-def: "A crown restoration procedure in which the artifical crown used to restore the tooth is formed by fusing porcelain to a substrate composed of noble metal." []
-is_a: OHD:0000033 {is_inferred="true"} ! crown restoration procedure
-is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
+def: "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by fusing porcelain to a substrate composed of noble metal." []
+is_a: OHD:0000033 ! crown restoration procedure
+is_a: OHD:0000304 ! indirect restoration procedure
 property_value: IAO:0000119 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Porcelain_Fused_To_Noble_Metal__Dental_Procedure_Code_Description" xsd:string
 
 [Term]
 id: OHD:0000161
 name: porcelain fused to predominantly base metal crown restoration procedure
-def: "A crown restoration procedure in which the artifical crown used to restore the tooth is formed by fusing porcelain to a substrate composed of predominatly base metal." []
-is_a: OHD:0000033 {is_inferred="true"} ! crown restoration procedure
-is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
+def: "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by fusing porcelain to a substrate composed of predominatly base metal." []
+is_a: OHD:0000033 ! crown restoration procedure
+is_a: OHD:0000304 ! indirect restoration procedure
 property_value: IAO:0000119 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Porcelain_Fused_To_Predominately_Base_Metal__Dental_Procedure_Code_Description" xsd:string
 
 [Term]
 id: OHD:0000162
 name: predominantly base metal crown restoration procedure
-is_a: OHD:0000033 {is_inferred="true"} ! crown restoration procedure
-is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
+is_a: OHD:0000033 ! crown restoration procedure
+is_a: OHD:0000304 ! indirect restoration procedure
 intersection_of: OHD:0000033 ! crown restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000156 ! predominantly base metal dental restoration material
@@ -1107,8 +1109,8 @@ relationship: OBI:0000293 OHD:0000156 ! predominantly base metal dental restorat
 id: OHD:0000163
 name: stainless steel crown restoration procedure
 def: "A crown restoration procedure that uses stainless steel to restore the tooth." []
-is_a: OHD:0000033 {is_inferred="true"} ! crown restoration procedure
-is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
+is_a: OHD:0000033 ! crown restoration procedure
+is_a: OHD:0000304 ! indirect restoration procedure
 intersection_of: OHD:0000033 ! crown restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000137 ! stainless steel dental restoration material
@@ -1117,9 +1119,9 @@ relationship: OBI:0000293 OHD:0000137 ! stainless steel dental restoration mater
 [Term]
 id: OHD:0000164
 name: stainless steel with resin window crown restoration procedure
-def: "A crown restoration procedure in which the artifical crown used to restore the tooth is formed by cutting a window into a stainless steel prosthetic crown and filling the window with resin.\n" []
-is_a: OHD:0000033 {is_inferred="true"} ! crown restoration procedure
-is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
+def: "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by cutting a window into a stainless steel prosthetic crown and filling the window with resin." []
+is_a: OHD:0000033 ! crown restoration procedure
+is_a: OHD:0000304 ! indirect restoration procedure
 property_value: IAO:0000119 "http://www.dentalcare.com/en-US/dental-education/continuing-education/ce379/ce379.aspx?ModuleName=coursecontent&PartID=3&SectionID=-1" xsd:string
 property_value: IAO:0000119 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Prefabricated_Stainless_Steel_with_Resin__Dental_Procedure_Code_Description" xsd:string
 
@@ -1133,15 +1135,15 @@ property_value: IAO:0000119 "Mosby. Mosby's Dental Dictionary, 2nd Edition. Mosb
 [Term]
 id: OHD:0000166
 name: resin with noble metal crown restoration procedure
-def: "A crown restoration procedure in which the artifical crown used to restore the tooth is formed by covering all or some of a noble metal substrate with resin." []
-is_a: OHD:0000033 {is_inferred="true"} ! crown restoration procedure
-is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
+def: "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by covering all or some of a noble metal substrate with resin." []
+is_a: OHD:0000033 ! crown restoration procedure
+is_a: OHD:0000304 ! indirect restoration procedure
 property_value: IAO:0000119 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Resin_With_Noble_Metal__Dental_Procedure_Code_Description" xsd:string
 
 [Term]
 id: OHD:0000167
 name: noble metal inlay restoration procedure
-is_a: OHD:0000022 {is_inferred="true"} ! metallic inlay restoration procedure
+is_a: OHD:0000022 ! metallic inlay restoration procedure
 intersection_of: OHD:0000022 ! metallic inlay restoration procedure
 intersection_of: OBI:0000293 OHD:0000146 ! noble metal dental restoration material
 relationship: OBI:0000293 OHD:0000146 ! noble metal dental restoration material
@@ -1157,8 +1159,8 @@ is_a: OHD:0000010 ! dental finding
 id: OHD:0000169
 name: resin onlay restoration procedure
 def: "An onlay restoration procedure that uses resin to restore the tooth." []
-is_a: OHD:0000134 {is_inferred="true"} ! onlay restoration procedure
-is_a: OHD:0000154 {is_inferred="true"} ! resin crown restoration procedure
+is_a: OHD:0000134 ! onlay restoration procedure
+is_a: OHD:0000154 ! resin crown restoration procedure
 intersection_of: OHD:0000134 ! onlay restoration procedure
 intersection_of: OBI:0000293 OHD:0000036 ! resin-based composite dental restoration material
 property_value: IAO:0000118 "resin onlay restoration procedure" xsd:string
@@ -1227,7 +1229,7 @@ property_value: IAO:0000119 "http://www.nursingworld.org/EspeciallyForYou/What-i
 id: OHD:0000179
 name: healthcare provider
 def: "a Homo sapiens that bears a health care provider role" []
-is_a: NCBITaxon:9606 {is_inferred="true"}
+is_a: NCBITaxon:9606
 intersection_of: NCBITaxon:9606
 intersection_of: RO:0000087 OHD:0000212 ! healthcare provider role
 relationship: RO:0000087 OHD:0000212 ! healthcare provider role
@@ -1237,7 +1239,7 @@ property_value: IAO:0000117 "Bill Duncan" xsd:string
 id: OHD:0000180
 name: registered nurse
 def: "a health care provider that bears a registered nurse role" []
-is_a: OHD:0000179 {is_inferred="true"} ! healthcare provider
+is_a: OHD:0000179 ! healthcare provider
 intersection_of: OHD:0000179 ! healthcare provider
 intersection_of: RO:0000087 OHD:0000178 ! registered nurse role
 relationship: RO:0000087 OHD:0000178 ! registered nurse role
@@ -1247,7 +1249,7 @@ property_value: IAO:0000117 "Bill Duncan" xsd:string
 id: OHD:0000181
 name: dental therapist
 def: "a dental health care provider that bears a dental therapist role" []
-is_a: OHD:0000051 {is_inferred="true"} ! dental healthcare provider
+is_a: OHD:0000051 ! dental healthcare provider
 intersection_of: OHD:0000051 ! dental healthcare provider
 intersection_of: RO:0000087 OHD:0000170 ! dental therapist role
 relationship: RO:0000087 OHD:0000170 ! dental therapist role
@@ -1257,7 +1259,7 @@ property_value: IAO:0000117 "Bill Duncan" xsd:string
 id: OHD:0000182
 name: endodontist
 def: "a dentists that bears a endodontist role" []
-is_a: OHD:0000018 {is_inferred="true"} ! dentist
+is_a: OHD:0000018 ! dentist
 intersection_of: OHD:0000018 ! dentist
 intersection_of: RO:0000087 OHD:0000171 ! endodontist role
 relationship: RO:0000087 OHD:0000171 ! endodontist role
@@ -1267,7 +1269,7 @@ property_value: IAO:0000117 "Bill Duncan" xsd:string
 id: OHD:0000183
 name: oral surgeon
 def: "a dentist that bears an oral surgeon role" []
-is_a: OHD:0000018 {is_inferred="true"} ! dentist
+is_a: OHD:0000018 ! dentist
 intersection_of: OHD:0000018 ! dentist
 intersection_of: RO:0000087 OHD:0000172 ! oral surgeon role
 relationship: RO:0000087 OHD:0000172 ! oral surgeon role
@@ -1277,7 +1279,7 @@ property_value: IAO:0000117 "Bill Duncan" xsd:string
 id: OHD:0000184
 name: orofacial pain dentist
 def: "a dentist that bears an orofacial pain dentist role" []
-is_a: OHD:0000018 {is_inferred="true"} ! dentist
+is_a: OHD:0000018 ! dentist
 intersection_of: OHD:0000018 ! dentist
 intersection_of: RO:0000087 OHD:0000173 ! orofacial pain dentist role
 relationship: RO:0000087 OHD:0000173 ! orofacial pain dentist role
@@ -1287,7 +1289,7 @@ property_value: IAO:0000117 "Bill Duncan" xsd:string
 id: OHD:0000185
 name: orthodontist
 def: "a dentist that bears an orthodontist role" []
-is_a: OHD:0000018 {is_inferred="true"} ! dentist
+is_a: OHD:0000018 ! dentist
 intersection_of: OHD:0000018 ! dentist
 intersection_of: RO:0000087 OHD:0000174 ! orthodontist role
 relationship: RO:0000087 OHD:0000174 ! orthodontist role
@@ -1297,7 +1299,7 @@ property_value: IAO:0000117 "Bill Duncan" xsd:string
 id: OHD:0000186
 name: pediatric dentist
 def: "a dentist that bears a pediatric dentist role" []
-is_a: OHD:0000018 {is_inferred="true"} ! dentist
+is_a: OHD:0000018 ! dentist
 intersection_of: OHD:0000018 ! dentist
 intersection_of: RO:0000087 OHD:0000175 ! pediatric dentist role
 relationship: RO:0000087 OHD:0000175 ! pediatric dentist role
@@ -1307,7 +1309,7 @@ property_value: IAO:0000117 "Bill Duncan" xsd:string
 id: OHD:0000187
 name: periodontist
 def: "a dentist that bears a periodontist role" []
-is_a: OHD:0000018 {is_inferred="true"} ! dentist
+is_a: OHD:0000018 ! dentist
 intersection_of: OHD:0000018 ! dentist
 intersection_of: RO:0000087 OHD:0000176 ! periodontist role
 relationship: RO:0000087 OHD:0000176 ! periodontist role
@@ -1316,7 +1318,7 @@ property_value: IAO:0000117 "Bill Duncan" xsd:string
 [Term]
 id: OHD:0000188
 name: stainless steel with resin window dental restoration material
-is_a: oboInOwl1:ObsoleteClass
+is_a: oboInOwl:ObsoleteClass
 property_value: IAO:0000116 "Bill Duncan 6/26/2015:\nThere is not a dental restoration material of this kind. The class needs to be made obsolete." xsd:string
 property_value: IAO:0000117 "Bill Duncan" xsd:string
 is_obsolete: true
@@ -1325,7 +1327,7 @@ is_obsolete: true
 id: OHD:0000189
 name: restored tooth
 def: "A tooth that has been restored by using dental restoration material to replace decayed or missing parts of the tooth." []
-is_a: FMA:12516 {is_inferred="true"}
+is_a: FMA:12516
 intersection_of: FMA:12516
 intersection_of: BFO:0000051 OHD:0000000 ! dental restoration material
 relationship: BFO:0000051 OHD:0000000 ! dental restoration material
@@ -1360,7 +1362,7 @@ property_value: IAO:0000116 "Titus Schleyer 1/1/2014: updated definition" xsd:st
 [Term]
 id: OHD:0000192
 name: high noble metal inlay restoration procedure
-is_a: OHD:0000167 {is_inferred="true"} ! noble metal inlay restoration procedure
+is_a: OHD:0000167 ! noble metal inlay restoration procedure
 intersection_of: OHD:0000167 ! noble metal inlay restoration procedure
 intersection_of: OBI:0000293 OHD:0000147 ! high noble metal dental restoration material
 relationship: OBI:0000293 OHD:0000147 ! high noble metal dental restoration material
@@ -1370,8 +1372,8 @@ property_value: IAO:0000117 "An inlay restoration procedure that uses high noble
 id: OHD:0000193
 name: predominantly base metal onlay restoration procedure
 def: "An onlay restoration procedure that uses predominantly base metal to restore the tooth." []
-is_a: OHD:0000138 {is_inferred="true"} ! metallic onlay restoration procedure
-is_a: OHD:0000162 {is_inferred="true"} ! predominantly base metal crown restoration procedure
+is_a: OHD:0000138 ! metallic onlay restoration procedure
+is_a: OHD:0000162 ! predominantly base metal crown restoration procedure
 intersection_of: OHD:0000134 ! onlay restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000156 ! predominantly base metal dental restoration material
@@ -1380,7 +1382,7 @@ intersection_of: OBI:0000293 OHD:0000156 ! predominantly base metal dental resto
 id: OHD:0000194
 name: predominantly base metal inlay restoration procedure
 def: "An inlay restoration procedure that uses predominantly base metal to restore the tooth." []
-is_a: OHD:0000022 {is_inferred="true"} ! metallic inlay restoration procedure
+is_a: OHD:0000022 ! metallic inlay restoration procedure
 intersection_of: OHD:0000133 ! inlay restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000156 ! predominantly base metal dental restoration material
@@ -1390,8 +1392,8 @@ relationship: OBI:0000293 OHD:0000156 ! predominantly base metal dental restorat
 id: OHD:0000195
 name: titanium onlay restoration procedure
 def: "A metallic onlay restoration procedure that uses titanium to restore the tooth." []
-is_a: OHD:0000138 {is_inferred="true"} ! metallic onlay restoration procedure
-is_a: OHD:0000140 {is_inferred="true"} ! titanium crown restoration procedure
+is_a: OHD:0000138 ! metallic onlay restoration procedure
+is_a: OHD:0000140 ! titanium crown restoration procedure
 intersection_of: OHD:0000138 ! metallic onlay restoration procedure
 intersection_of: OBI:0000293 OHD:0000136 ! titanium dental restoration material
 
@@ -1508,7 +1510,7 @@ property_value: IAO:0000117 "Alan Ruttenberg" xsd:string
 [Term]
 id: OHD:0000210
 name: dental assistant
-is_a: OHD:0000051 {is_inferred="true"} ! dental healthcare provider
+is_a: OHD:0000051 ! dental healthcare provider
 intersection_of: OHD:0000051 ! dental healthcare provider
 intersection_of: RO:0000087 OHD:0000165 ! dental assistant role
 relationship: RO:0000087 OHD:0000165 ! dental assistant role
@@ -1535,7 +1537,7 @@ property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 id: OHD:0000213
 name: prosthodontist
 def: "a dentist that bears a prosthodontist role" []
-is_a: OHD:0000018 {is_inferred="true"} ! dentist
+is_a: OHD:0000018 ! dentist
 intersection_of: OHD:0000018 ! dentist
 intersection_of: RO:0000087 OHD:0000177 ! prosthodontist role
 relationship: RO:0000087 OHD:0000177 ! prosthodontist role
@@ -1560,7 +1562,7 @@ creation_date: 2022-12-06T01:32:39Z
 id: OHD:0000220
 name: restored tooth surface finding
 def: "A dental finding that one or more surfaces of a tooth have been restored." []
-is_a: OHD:0000010 {is_inferred="true"} ! dental finding
+is_a: OHD:0000010 ! dental finding
 intersection_of: OHD:0000010 ! dental finding
 intersection_of: IAO:0000136 OHD:0000208 ! restored tooth surface
 relationship: IAO:0000136 OHD:0000208 ! restored tooth surface
@@ -1578,7 +1580,7 @@ creation_date: 2016-12-27T01:45:45Z
 id: OHD:0000222
 name: restored buccal surface
 def: "A restored tooth surface that forms the buccal surface of a restored tooth." []
-is_a: OHD:0000235 {is_inferred="true"} ! restored facial surface
+is_a: OHD:0000235 ! restored facial surface
 creation_date: 2022-12-06T02:41:02Z
 
 [Term]
@@ -1599,7 +1601,7 @@ creation_date: 2022-12-06T02:44:18Z
 id: OHD:0000225
 name: restored labial surface
 def: "A restored tooth surface that forms the labial surface of a restored tooth." []
-is_a: OHD:0000235 {is_inferred="true"} ! restored facial surface
+is_a: OHD:0000235 ! restored facial surface
 creation_date: 2022-12-06T02:47:52Z
 
 [Term]
@@ -1644,7 +1646,7 @@ creation_date: 2022-12-06T02:21:35Z
 id: OHD:0000231
 name: surgically modified tooth
 def: "A tooth that has been modified in some way as the result of some surgical dental procedure." []
-is_a: FMA:12516 {is_inferred="true"}
+is_a: FMA:12516
 intersection_of: FMA:12516
 intersection_of: OBI:0000312 OHD:0000044 ! surgical dental procedure
 relationship: OBI:0000312 OHD:0000044 ! surgical dental procedure
@@ -1665,7 +1667,7 @@ creation_date: 2022-12-06T02:32:55Z
 id: OHD:0000233
 name: extracted tooth
 def: "A tooth that has been surgically extracted from a patient's mouth." []
-is_a: FMA:12516 {is_inferred="true"}
+is_a: FMA:12516
 intersection_of: FMA:12516
 intersection_of: OBI:0000295 OHD:0000057 ! tooth extraction procedure
 relationship: OBI:0000295 OHD:0000057 ! tooth extraction procedure
@@ -1676,7 +1678,7 @@ creation_date: 2022-12-06T02:15:20Z
 id: OHD:0000235
 name: restored facial surface
 def: "A restored tooth surface that forms the lip-facing or cheek-facing surface of a restored tooth." []
-is_a: OHD:0000208 {is_inferred="true"} ! restored tooth surface
+is_a: OHD:0000208 ! restored tooth surface
 property_value: IAO:0000116 "Bill Duncan 01/05/2017:\nSome dental EHR systems use the letter \"F\" for facial surfaces rather than \"L\" for labial surfaces. The reason is that \"L\" is also used for the lingual surface." xsd:string
 property_value: IAO:0000116 "Gopikrishnan M. Chandrasekharan 07/12/2023:\nWe decided that the facial surface should subsume both labial and buccal surfaces." xsd:string
 creation_date: 2022-12-06T02:42:40Z
@@ -1685,7 +1687,7 @@ creation_date: 2022-12-06T02:42:40Z
 id: OHD:0000236
 name: endodontically restored tooth
 def: "A restored tooth in which some portion of the tooth's root or pulp has been replaced by dental restoration material as a result of the tooth undergoing an endodontic restorative procedure." []
-is_a: OHD:0000189 {is_inferred="true"} ! restored tooth
+is_a: OHD:0000189 ! restored tooth
 intersection_of: OHD:0000189 ! restored tooth
 intersection_of: OBI:0000295 OHD:0000242 ! endodontic restorative procedure
 relationship: OBI:0000295 OHD:0000242 ! endodontic restorative procedure
@@ -1695,14 +1697,14 @@ creation_date: 2022-12-06T02:00:27Z
 id: OHD:0000237
 name: coronally restored tooth
 def: "A restored tooth in which some portion of enamel in the tooth's crown has been restored by dental restoration material as the result of the tooth undergoing either a crown procedure or intracoronal restoration procedure." []
-is_a: OHD:0000189 {is_inferred="true"} ! restored tooth
+is_a: OHD:0000189 ! restored tooth
 creation_date: 2022-12-06T01:55:01Z
 
 [Term]
 id: OHD:0000238
 name: extracoronally restored tooth
 def: "A coronally restored tooth in which all or part of the natural dental crown is repalced by an artificial crown as a result of the tooth undergoing an crown procedure." []
-is_a: OHD:0000237 {is_inferred="true"} ! coronally restored tooth
+is_a: OHD:0000237 ! coronally restored tooth
 intersection_of: OHD:0000237 ! coronally restored tooth
 intersection_of: OBI:0000295 OHD:0000033 ! crown restoration procedure
 relationship: OBI:0000295 OHD:0000033 ! crown restoration procedure
@@ -1712,7 +1714,7 @@ creation_date: 2022-12-06T01:56:50Z
 id: OHD:0000239
 name: intracoronally restored tooth
 def: "A coronally restored tooth in which dental restoration material is placed into a site that is located in the crown of the tooth as the result of the tooth undergoing an intracoronal restoration procedure." []
-is_a: OHD:0000237 {is_inferred="true"} ! coronally restored tooth
+is_a: OHD:0000237 ! coronally restored tooth
 intersection_of: OHD:0000237 ! coronally restored tooth
 intersection_of: OBI:0000295 OHD:0000006 ! intracoronal restoration procedure
 relationship: OBI:0000295 OHD:0000006 ! intracoronal restoration procedure
@@ -1722,7 +1724,7 @@ creation_date: 2022-12-06T01:57:51Z
 id: OHD:0000240
 name: veneer surface restored tooth
 def: "A coronally restored tooth in which a thin layer of material (i.e., a veneer) has been placed over one or more surfaces of the tooth as a result of the tooth undergoing a veneer restoration procedure." []
-is_a: OHD:0000237 {is_inferred="true"} ! coronally restored tooth
+is_a: OHD:0000237 ! coronally restored tooth
 intersection_of: OHD:0000237 ! coronally restored tooth
 intersection_of: OBI:0000295 OHD:0000027 ! veneer restoration procedure
 relationship: OBI:0000295 OHD:0000027 ! veneer restoration procedure
@@ -1740,7 +1742,7 @@ creation_date: 2022-12-06T02:20:26Z
 id: OHD:0000242
 name: endodontic restorative procedure
 def: "A tooth restoration procedure during which some portion of the tooth's root or pulp is replaced by dental restoration material." []
-is_a: OHD:0000003 {is_inferred="true"} ! endodontic procedure
+is_a: OHD:0000003 ! endodontic procedure
 relationship: OBI:0000299 OHD:0000236 ! endodontically restored tooth
 creation_date: 2022-12-06T01:52:43Z
 
@@ -1748,7 +1750,7 @@ creation_date: 2022-12-06T01:52:43Z
 id: OHD:0000243
 name: surgical endodontic procedure
 def: "A surgical dental procedure that is performed on the pulp chamber and/or root canal of a tooth, or a part thereof." []
-is_a: OHD:0000003 {is_inferred="true"} ! endodontic procedure
+is_a: OHD:0000003 ! endodontic procedure
 is_a: OHD:0000044 ! surgical dental procedure
 creation_date: 2022-12-06T02:26:59Z
 
@@ -1771,7 +1773,7 @@ creation_date: 2022-12-06T01:49:03Z
 id: OHD:0000246
 name: fixed prosthodontics procedure
 def: "A prosthodontics procedure during which a prosthesis is permanently attached to some part of the mouth." []
-is_a: OHD:0000245 {is_inferred="true"} ! prosthodontics procedure
+is_a: OHD:0000245 ! prosthodontics procedure
 intersection_of: OHD:0000245 ! prosthodontics procedure
 intersection_of: OBI:0000299 OHD:0000281 ! fixed prothesis
 relationship: OBI:0000299 OHD:0000281 ! fixed prothesis
@@ -1788,7 +1790,7 @@ creation_date: 2022-12-06T04:08:52Z
 id: OHD:0000248
 name: dental implant procedure
 def: "A fixed prosthodontics procedure in which a dental implant is permanently attached to the jaw." []
-is_a: OHD:0000246 {is_inferred="true"} ! fixed prosthodontics procedure
+is_a: OHD:0000246 ! fixed prosthodontics procedure
 creation_date: 2022-12-06T04:37:27Z
 
 [Term]
@@ -1873,7 +1875,7 @@ creation_date: 2022-12-06T04:03:18Z
 id: OHD:0000260
 name: tooth disorder
 def: "A disorder that is part of a tooth." []
-is_a: OHD:0000414 {is_inferred="true"} ! mouth disorder
+is_a: OHD:0000414 ! mouth disorder
 intersection_of: OHD:0000414 ! mouth disorder
 intersection_of: FMA:85848 FMA:12516
 relationship: FMA:85848 FMA:12516
@@ -1893,7 +1895,6 @@ property_value: skos:exactMatch "SCTID:109750005" xsd:string
 id: OHD:0000262
 name: tooth attrition lesion
 def: "A tooth friction lesion that is caused by either the functional (e.g., mastication) or parafunctional movement of the jaws (e.g., bruxism)." []
-is_a: CARO:0000000 {is_inferred="true"}
 is_a: OHD:0000290 ! tooth friction lesion
 property_value: dcterms:created "2023-06-06T21:31:20Z" xsd:dateTime
 property_value: IAO:0000116 "The lesion are primarily found on the occlusal and incisal surfaces of the teeth, however it can be found on the proximal surfaces as well." xsd:string
@@ -1903,7 +1904,6 @@ id: OHD:0000263
 name: tooth erosive lesion
 def: "A non-carious tooth lesion that is formed as result of the tooth being exposed to acids." []
 synonym: "dental erosion" RELATED []
-is_a: CARO:0000000 {is_inferred="true"}
 is_a: OHD:0000270 ! non-carious tooth lesion
 relationship: RO:0002354 ECTO:9002146
 property_value: dcterms:created "2023-06-06T21:31:50Z" xsd:dateTime
@@ -1912,7 +1912,6 @@ property_value: dcterms:created "2023-06-06T21:31:50Z" xsd:dateTime
 id: OHD:0000264
 name: tooth abrasive lesion
 def: "A tooth friction lesion that is formed as result of some abrasive process." []
-is_a: CARO:0000000 {is_inferred="true"}
 is_a: OHD:0000290 ! tooth friction lesion
 relationship: RO:0002354 OHD:0000282 ! tooth abrasive process
 property_value: dcterms:created "2023-06-06T21:33:29Z" xsd:dateTime
@@ -1996,7 +1995,7 @@ id: OHD:0000275
 name: toothbrushing
 def: "A tooth cleaning process during which an object is used to clean the tooth (or teeth) by applying a powder, paste, or liquid (i.e., dentifrice)." []
 is_a: OHD:0000274 ! tooth cleaning process
-is_a: OHD:0000282 {is_inferred="true"} ! tooth abrasive process
+is_a: OHD:0000282 ! tooth abrasive process
 property_value: dcterms:created "2023-06-08T16:59:29Z" xsd:dateTime
 
 [Term]
@@ -2053,7 +2052,7 @@ creation_date: 2022-12-06T04:00:32Z
 id: OHD:0000282
 name: tooth abrasive process
 def: "A process during which the tooth is affected by an abrasive material." []
-is_a: BFO:0000015 {is_inferred="true"}
+is_a: BFO:0000015
 intersection_of: BFO:0000015
 intersection_of: RO:0000057 FMA:12516
 intersection_of: RO:0000057 OHD:0000284 ! abrasive material
@@ -2163,7 +2162,7 @@ creation_date: 2022-12-06T04:32:56Z
 id: OHD:0000296
 name: dental implant crown attachment procedure
 def: "A fixed prosthodontics procedure during which an artificial crown is attached to an dental implant abutment." []
-is_a: OHD:0000248 {is_inferred="true"} ! dental implant procedure
+is_a: OHD:0000248 ! dental implant procedure
 relationship: OBI:0000299 OHD:0000280 ! dental implant crown
 creation_date: 2022-12-06T04:43:23Z
 
@@ -2187,7 +2186,7 @@ creation_date: 2022-12-06T04:46:37Z
 id: OHD:0000299
 name: dental implant abutment attachement procedure
 def: "A fixed prosthodontics procedure during which an abutment is attached to an implant body." []
-is_a: OHD:0000248 {is_inferred="true"} ! dental implant procedure
+is_a: OHD:0000248 ! dental implant procedure
 relationship: OBI:0000299 OHD:0000279 ! dental implant abutment
 creation_date: 2022-12-06T04:39:09Z
 
@@ -2203,7 +2202,7 @@ creation_date: 2022-12-06T04:40:12Z
 id: OHD:0000301
 name: prosthesis
 def: "a processed material that bears a prothetic role" []
-is_a: OBI:0000047 {is_inferred="true"}
+is_a: OBI:0000047
 intersection_of: OBI:0000047
 intersection_of: BFO:0000053 OHD:0000314 ! prosthetic role
 relationship: BFO:0000053 OHD:0000314 ! prosthetic role
@@ -2213,7 +2212,7 @@ property_value: IAO:0000117 "Bill Duncan" xsd:string
 id: OHD:0000302
 name: prosthetic tooth
 def: "a prosthesis that has been fabricated for use as a substitute for a natural tooth" []
-is_a: OHD:0000206 {is_inferred="true"} ! functional tooth
+is_a: OHD:0000206 ! functional tooth
 is_a: OHD:0000301 ! prosthesis
 relationship: BFO:0000053 OHD:0000315 ! functional prosthetic role
 property_value: IAO:0000116 "usually made of porcelain or plastic " xsd:string
@@ -2224,7 +2223,7 @@ property_value: IAO:0000119 "Mosby. Mosby's Dental Dictionary, 2nd Edition. Mosb
 id: OHD:0000303
 name: direct restoration procedure
 def: "A tooth restoration procedure in which the dental restoration material is placed in the tooth via some direct dental restoration material combination process." []
-is_a: OHD:0000004 {is_inferred="true"} ! tooth restoration procedure
+is_a: OHD:0000004 ! tooth restoration procedure
 intersection_of: OHD:0000004 ! tooth restoration procedure
 intersection_of: BFO:0000051 OHD:0000037 ! direct dental material insertion process
 relationship: BFO:0000051 OHD:0000037 ! direct dental material insertion process
@@ -2233,7 +2232,7 @@ relationship: BFO:0000051 OHD:0000037 ! direct dental material insertion process
 id: OHD:0000304
 name: indirect restoration procedure
 def: "A tooth restoration procedure in which the dental restoration material is placed in the tooth via some dental material tooth attachment process." []
-is_a: OHD:0000004 {is_inferred="true"} ! tooth restoration procedure
+is_a: OHD:0000004 ! tooth restoration procedure
 intersection_of: OHD:0000004 ! tooth restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 relationship: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
@@ -2336,7 +2335,7 @@ property_value: IAO:0000117 "Bill Duncan" xsd:string
 [Term]
 id: OHD:0000316
 name: pontic
-is_a: OHD:0000302 {is_inferred="true"} ! prosthetic tooth
+is_a: OHD:0000302 ! prosthetic tooth
 intersection_of: OHD:0000302 ! prosthetic tooth
 intersection_of: BFO:0000050 OHD:0000312 ! fixed partial denture
 relationship: BFO:0000050 OHD:0000312 ! fixed partial denture
@@ -2695,231 +2694,231 @@ creation_date: 2017-11-09T22:30:09Z
 id: OHD:0000364
 name: secondary dentition missing tooth 1
 def: "A secondary dentition that is missing tooth 1." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:42:18Z" xsd:string
 
 [Term]
 id: OHD:0000365
 name: secondary dentition missing tooth 2
 def: "A secondary dentition that is missing tooth 2." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:49:27Z" xsd:string
 
 [Term]
 id: OHD:0000366
 name: secondary dentition missing tooth 3
 def: "A secondary dentition that is missing tooth 3." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:49:34Z" xsd:string
 
 [Term]
 id: OHD:0000367
 name: secondary dentition missing tooth 4
 def: "A secondary dentition that is missing tooth 4." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:49:39Z" xsd:string
 
 [Term]
 id: OHD:0000368
 name: secondary dentition missing tooth 5
 def: "A secondary dentition that is missing tooth 5." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:49:48Z" xsd:string
 
 [Term]
 id: OHD:0000369
 name: secondary dentition missing tooth 6
 def: "A secondary dentition that is missing tooth 6." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:49:54Z" xsd:string
 
 [Term]
 id: OHD:0000370
 name: secondary dentition missing tooth 7
 def: "A secondary dentition that is missing tooth 7." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:50:01Z" xsd:string
 
 [Term]
 id: OHD:0000371
 name: secondary dentition missing tooth 8
 def: "A secondary dentition that is missing tooth 8." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:50:08Z" xsd:string
 
 [Term]
 id: OHD:0000372
 name: secondary dentition missing tooth 9
 def: "A secondary dentition that is missing tooth 9." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:50:29Z" xsd:string
 
 [Term]
 id: OHD:0000373
 name: secondary dentition missing tooth 10
 def: "A secondary dentition that is missing tooth 10." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:50:36Z" xsd:string
 
 [Term]
 id: OHD:0000374
 name: secondary dentition missing tooth 11
 def: "A secondary dentition that is missing tooth 11." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:50:44Z" xsd:string
 
 [Term]
 id: OHD:0000375
 name: secondary dentition missing tooth 12
 def: "A secondary dentition that is missing tooth 12." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:50:49Z" xsd:string
 
 [Term]
 id: OHD:0000376
 name: secondary dentition missing tooth 13
 def: "A secondary dentition that is missing tooth 13." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:50:55Z" xsd:string
 
 [Term]
 id: OHD:0000377
 name: secondary dentition missing tooth 14
 def: "A secondary dentition that is missing tooth 14." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:51:02Z" xsd:string
 
 [Term]
 id: OHD:0000378
 name: secondary dentition missing tooth 15
 def: "A secondary dentition that is missing tooth 15." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:51:11Z" xsd:string
 
 [Term]
 id: OHD:0000379
 name: secondary dentition missing tooth 16
 def: "A secondary dentition that is missing tooth 16," []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:51:17Z" xsd:string
 
 [Term]
 id: OHD:0000380
 name: secondary dentition missing tooth 17
 def: "A secondary dentition that is missing tooth 17." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:51:23Z" xsd:string
 
 [Term]
 id: OHD:0000381
 name: secondary dentition missing tooth 18
 def: "A secondary dentition that is missing tooth 18." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:51:28Z" xsd:string
 
 [Term]
 id: OHD:0000382
 name: secondary dentition missing tooth 19
 def: "A secondary dentition that is missing tooth 19." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:51:33Z" xsd:string
 
 [Term]
 id: OHD:0000383
 name: secondary dentition missing tooth 20
 def: "A secondary dentition that is missing tooth 20." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:51:38Z" xsd:string
 
 [Term]
 id: OHD:0000384
 name: secondary dentition missing tooth 21
 def: "A secondary dentition that is missing tooth 21." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:51:45Z" xsd:string
 
 [Term]
 id: OHD:0000385
 name: secondary dentition missing tooth 22
 def: "A secondary dentition that is missing tooth 22." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:52:02Z" xsd:string
 
 [Term]
 id: OHD:0000386
 name: secondary dentition missing tooth 23
 def: "A secondary dentition that is missing tooth 23." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:52:06Z" xsd:string
 
 [Term]
 id: OHD:0000387
 name: secondary dentition missing tooth 24
 def: "A secondary dentition that is missing tooth 24." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:52:13Z" xsd:string
 
 [Term]
 id: OHD:0000388
 name: secondary dentition missing tooth 25
 def: "A secondary dentition that is missing tooth 25." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:52:16Z" xsd:string
 
 [Term]
 id: OHD:0000389
 name: secondary dentition missing tooth 26
 def: "A secondary dentition that is missing tooth 26." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:52:20Z" xsd:string
 
 [Term]
 id: OHD:0000390
 name: secondary dentition missing tooth 27
 def: "A secondary dentition that is missing tooth 27." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:52:25Z" xsd:string
 
 [Term]
 id: OHD:0000391
 name: secondary dentition missing tooth 28
 def: "A secondary dentition that is missing tooth 28." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:52:36Z" xsd:string
 
 [Term]
 id: OHD:0000392
 name: secondary dentition missing tooth 29
 def: "A secondary dentition that is missing tooth 29." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:52:40Z" xsd:string
 
 [Term]
 id: OHD:0000393
 name: secondary dentition missing tooth 30
 def: "A secondary dentition that is missing tooth 30." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:52:48Z" xsd:string
 
 [Term]
 id: OHD:0000394
 name: secondary dentition missing tooth 31
 def: "A secondary dentition that is missing tooth 31." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:52:54Z" xsd:string
 
 [Term]
 id: OHD:0000395
 name: secondary dentition missing tooth 32
 def: "A secondary dentition that is missing tooth 32." []
-is_a: FMA:75152 {is_inferred="true"}
+is_a: FMA:75152
 property_value: dcterms:created "2017-11-10T03:52:59Z" xsd:string
 
 [Term]
 id: OHD:0000396
 name: endodontic procedure finding
 def: "A dental finding procedure that an endodontic procedure was performed on the patient." []
-is_a: OHD:0000221 {is_inferred="true"} ! dental procedure finding
+is_a: OHD:0000221 ! dental procedure finding
 intersection_of: OHD:0000221 ! dental procedure finding
 intersection_of: IAO:0000136 OHD:0000003 ! endodontic procedure
 relationship: IAO:0000136 OHD:0000003 ! endodontic procedure
@@ -2929,7 +2928,7 @@ creation_date: 2017-11-21T03:27:27Z
 id: OHD:0000397
 name: prosthodontics procedure finding
 def: "A dental finding procedure that procedure a prosthodontics procedure was performed on the patient." []
-is_a: OHD:0000221 {is_inferred="true"} ! dental procedure finding
+is_a: OHD:0000221 ! dental procedure finding
 intersection_of: OHD:0000221 ! dental procedure finding
 intersection_of: IAO:0000136 OHD:0000245 ! prosthodontics procedure
 relationship: IAO:0000136 OHD:0000245 ! prosthodontics procedure
@@ -2939,7 +2938,7 @@ creation_date: 2017-11-21T03:27:44Z
 id: OHD:0000398
 name: surgical dental procedure finding
 def: "A dental finding procedure that a surgical dental procedure was performed on the patient." []
-is_a: OHD:0000221 {is_inferred="true"} ! dental procedure finding
+is_a: OHD:0000221 ! dental procedure finding
 intersection_of: OHD:0000221 ! dental procedure finding
 intersection_of: IAO:0000136 OHD:0000044 ! surgical dental procedure
 relationship: IAO:0000136 OHD:0000044 ! surgical dental procedure
@@ -2949,7 +2948,7 @@ creation_date: 2017-11-21T03:28:02Z
 id: OHD:0000399
 name: tooth restoration procedure finding
 def: "A dental finding procedure that tooth restoration procedure was performed on the patient." []
-is_a: OHD:0000221 {is_inferred="true"} ! dental procedure finding
+is_a: OHD:0000221 ! dental procedure finding
 intersection_of: OHD:0000221 ! dental procedure finding
 intersection_of: IAO:0000136 OHD:0000004 ! tooth restoration procedure
 relationship: IAO:0000136 OHD:0000004 ! tooth restoration procedure
@@ -2959,7 +2958,7 @@ creation_date: 2017-11-21T03:28:33Z
 id: OHD:0000400
 name: crown restoration procedure finding
 def: "A dental finding procedure that a crown restoration procedure was performed on the patient." []
-is_a: OHD:0000399 {is_inferred="true"} ! tooth restoration procedure finding
+is_a: OHD:0000399 ! tooth restoration procedure finding
 intersection_of: OHD:0000399 ! tooth restoration procedure finding
 intersection_of: IAO:0000136 OHD:0000033 ! crown restoration procedure
 relationship: IAO:0000136 OHD:0000033 ! crown restoration procedure
@@ -2969,7 +2968,7 @@ creation_date: 2017-11-21T03:28:47Z
 id: OHD:0000401
 name: intracoronal restoration procedure finding
 def: "A dental finding procedure that an intracoronal restoration procedure was performed on the patient." []
-is_a: OHD:0000399 {is_inferred="true"} ! tooth restoration procedure finding
+is_a: OHD:0000399 ! tooth restoration procedure finding
 intersection_of: OHD:0000399 ! tooth restoration procedure finding
 intersection_of: IAO:0000136 OHD:0000006 ! intracoronal restoration procedure
 relationship: IAO:0000136 OHD:0000006 ! intracoronal restoration procedure
@@ -2979,7 +2978,7 @@ creation_date: 2017-11-21T03:29:24Z
 id: OHD:0000402
 name: veneer restoration procedure finding
 def: "A dental finding procedure that a veneer restoration procedure was performed on the patient." []
-is_a: OHD:0000399 {is_inferred="true"} ! tooth restoration procedure finding
+is_a: OHD:0000399 ! tooth restoration procedure finding
 intersection_of: OHD:0000399 ! tooth restoration procedure finding
 intersection_of: IAO:0000136 OHD:0000027 ! veneer restoration procedure
 relationship: IAO:0000136 OHD:0000027 ! veneer restoration procedure
@@ -2989,7 +2988,7 @@ creation_date: 2017-11-21T03:29:54Z
 id: OHD:0000403
 name: oral evaluation finding
 def: "A dental finding that is about an oral evaluation." []
-is_a: OHD:0000010 {is_inferred="true"} ! dental finding
+is_a: OHD:0000010 ! dental finding
 intersection_of: OHD:0000010 ! dental finding
 intersection_of: IAO:0000136 OHD:0000197 ! oral evaluation
 relationship: IAO:0000136 OHD:0000197 ! oral evaluation
@@ -2999,7 +2998,7 @@ creation_date: 2017-11-21T03:30:30Z
 id: OHD:0000404
 name: mouth disease
 def: "A disease that is a characteristic of a mouth." []
-is_a: OGMS:0000031 {is_inferred="true"}
+is_a: OGMS:0000031
 intersection_of: OGMS:0000031
 intersection_of: RO:0000052 FMA:49184
 relationship: RO:0000052 FMA:49184
@@ -3018,8 +3017,8 @@ property_value: dcterms:created "2024-06-21T14:48:22Z" xsd:dateTime
 id: OHD:0000406
 name: oral parafunction
 def: "A pathological process that involves the mouth and can contribute to some disorder of the head and neck region." []
-is_a: NBO:0000007 {is_inferred="true"}
-is_a: OGMS:0000061 {is_inferred="true"}
+is_a: NBO:0000007
+is_a: OGMS:0000061
 intersection_of: OGMS:0000061
 intersection_of: RO:0000057 FMA:49184
 intersection_of: RO:0003304 OGMS:0000045
@@ -3033,7 +3032,7 @@ property_value: IAO:0000116 "An oral parafunction can include tongue thrusting, 
 id: OHD:0000407
 name: bruxism
 def: "A masticatory muscle activity that may result in a disorder within the head and neck region." []
-is_a: OHD:0000406 {is_inferred="true"} ! oral parafunction
+is_a: OHD:0000406 ! oral parafunction
 is_a: OHD:0002000 ! masticatory muscle activity
 property_value: dcterms:created "2023-06-06T21:27:37Z" xsd:string
 property_value: IAO:0000116 "Involuntary holding of the teeth together and tightening of the jaw muscles or grinding of the teeth." xsd:string
@@ -3071,7 +3070,7 @@ property_value: dcterms:created "2024-06-21T14:58:20Z" xsd:dateTime
 [Term]
 id: OHD:0000413
 name: tooth fracture with exposed dentin
-is_a: OHD:0000277 {is_inferred="true"} ! tooth fracture
+is_a: OHD:0000277 ! tooth fracture
 intersection_of: OHD:0000277 ! tooth fracture
 intersection_of: BFO:0000051 OHD:0000410 ! exposed dentin
 relationship: BFO:0000051 OHD:0000410 ! exposed dentin
@@ -3081,7 +3080,7 @@ property_value: dcterms:created "2024-06-21T15:02:39Z" xsd:dateTime
 id: OHD:0000414
 name: mouth disorder
 def: "A disorder that is part of a mouth." []
-is_a: OGMS:0000045 {is_inferred="true"}
+is_a: OGMS:0000045
 intersection_of: OGMS:0000045
 intersection_of: FMA:85848 FMA:49184
 relationship: FMA:85848 FMA:49184
@@ -3120,7 +3119,7 @@ property_value: IAO:0000112 "A set of fields that contain information about a pa
 id: OHD:0000418
 name: oral microbiome
 def: "A microbiome that is located in the mouth." []
-is_a: OHMI:0000003 {is_inferred="true"}
+is_a: OHMI:0000003
 intersection_of: OHMI:0000003
 intersection_of: RO:0001025 FMA:49184
 relationship: RO:0001025 FMA:49184
@@ -3150,8 +3149,8 @@ id: OHD:0000421
 name: DFS 01. Has fear of dental work ever caused you to put off making an appointment?
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008024 {is_inferred="true"} ! question assessing delay in scheduling a dental appointment
-is_a: OHD:0008041 {is_inferred="true"} ! question about prior to dental visit
+is_a: OHD:0008024 ! question assessing delay in scheduling a dental appointment
+is_a: OHD:0008041 ! question about prior to dental visit
 relationship: OHD:0008045 OHD:0000421 ! based on information in DFS 01. Has fear of dental work ever caused you to put off making an appointment?
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T18:42:53Z" xsd:dateTime
@@ -3161,8 +3160,8 @@ id: OHD:0000422
 name: DFS 02. Has fear of dental work ever caused you to cancel or not appear for an appointment?
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008023 {is_inferred="true"} ! question assessing canceling or not showing up for a dental appointment
-is_a: OHD:0008041 {is_inferred="true"} ! question about prior to dental visit
+is_a: OHD:0008023 ! question assessing canceling or not showing up for a dental appointment
+is_a: OHD:0008041 ! question about prior to dental visit
 relationship: OHD:0008045 OHD:0000422 ! based on information in DFS 02. Has fear of dental work ever caused you to cancel or not appear for an appointment?
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T18:43:08Z" xsd:dateTime
@@ -3172,8 +3171,8 @@ id: OHD:0000423
 name: DFS 03. My muscles become tense.
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
-is_a: OHD:0008047 {is_inferred="true"} ! question about physiological effect
+is_a: OHD:0008042 ! question about during dental visit
+is_a: OHD:0008047 ! question about physiological effect
 relationship: IAO:0000136 OHD:0008048 ! muscle tensing
 relationship: OHD:0008045 OHD:0000423 ! based on information in DFS 03. My muscles become tense.
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -3184,8 +3183,8 @@ id: OHD:0000424
 name: DFS 04. My breathing rate increases.
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
-is_a: OHD:0008047 {is_inferred="true"} ! question about physiological effect
+is_a: OHD:0008042 ! question about during dental visit
+is_a: OHD:0008047 ! question about physiological effect
 relationship: IAO:0000136 OHD:0008049 ! increased breathing rate
 relationship: OHD:0008045 OHD:0000424 ! based on information in DFS 04. My breathing rate increases.
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -3205,8 +3204,8 @@ id: OHD:0000426
 name: DFS 05. I perspire.
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
-is_a: OHD:0008047 {is_inferred="true"} ! question about physiological effect
+is_a: OHD:0008042 ! question about during dental visit
+is_a: OHD:0008047 ! question about physiological effect
 relationship: IAO:0000136 OHD:0008050 ! perspiration
 relationship: OHD:0008045 OHD:0000426 ! based on information in DFS 05. I perspire.
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -3217,8 +3216,8 @@ id: OHD:0000427
 name: DFS 06. I feel nauseated and sick to my stomach.
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
-is_a: OHD:0008047 {is_inferred="true"} ! question about physiological effect
+is_a: OHD:0008042 ! question about during dental visit
+is_a: OHD:0008047 ! question about physiological effect
 relationship: IAO:0000136 OHD:0008051 ! nausea
 relationship: OHD:0008045 OHD:0000427 ! based on information in DFS 06. I feel nauseated and sick to my stomach.
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -3229,8 +3228,8 @@ id: OHD:0000428
 name: DFS 07. My heart beats faster.
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
-is_a: OHD:0008047 {is_inferred="true"} ! question about physiological effect
+is_a: OHD:0008042 ! question about during dental visit
+is_a: OHD:0008047 ! question about physiological effect
 relationship: IAO:0000136 OHD:0008052 ! increased heart rate
 relationship: OHD:0008045 OHD:0000428 ! based on information in DFS 07. My heart beats faster.
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -3241,7 +3240,7 @@ id: OHD:0000429
 name: DFS 08. Making an appointment for dentistry.
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008041 {is_inferred="true"} ! question about prior to dental visit
+is_a: OHD:0008041 ! question about prior to dental visit
 relationship: OHD:0008045 OHD:0000429 ! based on information in DFS 08. Making an appointment for dentistry.
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T18:53:00Z" xsd:dateTime
@@ -3251,7 +3250,7 @@ id: OHD:0000430
 name: DFS 09. Approaching the dentist’s office.
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008041 {is_inferred="true"} ! question about prior to dental visit
+is_a: OHD:0008041 ! question about prior to dental visit
 relationship: OHD:0008045 OHD:0000430 ! based on information in DFS 09. Approaching the dentist’s office.
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T18:53:10Z" xsd:dateTime
@@ -3261,7 +3260,7 @@ id: OHD:0000431
 name: DFS 10. Sitting in the waiting room.
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008029 {is_inferred="true"} ! question about sitting in a waiting room
+is_a: OHD:0008029 ! question about sitting in a waiting room
 relationship: OHD:0008045 OHD:0000431 ! based on information in DFS 10. Sitting in the waiting room.
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T18:53:25Z" xsd:dateTime
@@ -3271,7 +3270,7 @@ id: OHD:0000432
 name: DFS 11. Being seated in the dental chair.
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
+is_a: OHD:0008042 ! question about during dental visit
 relationship: OHD:0008045 OHD:0000432 ! based on information in DFS 11. Being seated in the dental chair.
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T18:53:41Z" xsd:dateTime
@@ -3281,7 +3280,7 @@ id: OHD:0000433
 name: DFS 12. The smell of the dentist’s office.
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
+is_a: OHD:0008042 ! question about during dental visit
 relationship: OHD:0008045 OHD:0000433 ! based on information in DFS 12. The smell of the dentist’s office.
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T18:53:56Z" xsd:dateTime
@@ -3291,7 +3290,7 @@ id: OHD:0000434
 name: DFS 13. Seeing the dentist walk in.
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
+is_a: OHD:0008042 ! question about during dental visit
 relationship: OHD:0008045 OHD:0000434 ! based on information in DFS 13. Seeing the dentist walk in.
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T18:54:08Z" xsd:dateTime
@@ -3301,7 +3300,7 @@ id: OHD:0000435
 name: DFS 14. Seeing the anesthetic needle.
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
+is_a: OHD:0008042 ! question about during dental visit
 relationship: OHD:0008045 OHD:0000435 ! based on information in DFS 14. Seeing the anesthetic needle.
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T18:54:22Z" xsd:dateTime
@@ -3311,7 +3310,7 @@ id: OHD:0000436
 name: DFS 15. Feeling the needle injected.
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
+is_a: OHD:0008042 ! question about during dental visit
 relationship: OHD:0008045 OHD:0000436 ! based on information in DFS 15. Feeling the needle injected.
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T18:54:43Z" xsd:dateTime
@@ -3321,8 +3320,8 @@ id: OHD:0000437
 name: DFS 16. Seeing the drill.
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008030 {is_inferred="true"} ! question about tooth drilling
-is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
+is_a: OHD:0008030 ! question about tooth drilling
+is_a: OHD:0008042 ! question about during dental visit
 relationship: OHD:0008045 OHD:0000437 ! based on information in DFS 16. Seeing the drill.
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T18:54:54Z" xsd:dateTime
@@ -3332,8 +3331,8 @@ id: OHD:0000438
 name: DFS 17. Hearing the drill.
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008030 {is_inferred="true"} ! question about tooth drilling
-is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
+is_a: OHD:0008030 ! question about tooth drilling
+is_a: OHD:0008042 ! question about during dental visit
 relationship: OHD:0008045 OHD:0000438 ! based on information in DFS 17. Hearing the drill.
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T18:55:07Z" xsd:dateTime
@@ -3343,8 +3342,8 @@ id: OHD:0000439
 name: DFS 18. Feeling the vibrations of the drill.
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008030 {is_inferred="true"} ! question about tooth drilling
-is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
+is_a: OHD:0008030 ! question about tooth drilling
+is_a: OHD:0008042 ! question about during dental visit
 relationship: OHD:0008045 OHD:0000439 ! based on information in DFS 18. Feeling the vibrations of the drill.
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T18:55:19Z" xsd:dateTime
@@ -3354,8 +3353,8 @@ id: OHD:0000440
 name: DFS 19. Having your teeth cleaned.
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008035 {is_inferred="true"} ! question about a tooth cleaning procedure
-is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
+is_a: OHD:0008035 ! question about a tooth cleaning procedure
+is_a: OHD:0008042 ! question about during dental visit
 relationship: OHD:0008045 OHD:0000440 ! based on information in DFS 19. Having your teeth cleaned.
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T18:55:32Z" xsd:dateTime
@@ -3365,7 +3364,7 @@ id: OHD:0000441
 name: DFS 20. All things considered, how fearful are you of having dental work done?
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
+is_a: OHD:0008042 ! question about during dental visit
 relationship: OHD:0008045 OHD:0000441 ! based on information in DFS 20. All things considered, how fearful are you of having dental work done?
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T18:55:46Z" xsd:dateTime
@@ -3412,7 +3411,7 @@ id: OHD:0000446
 name: MDAS 1. If you went to your Dentist for TREATMENT TOMORROW, how would you feel?
 subset: OHD:0005009
 is_a: OHD:0000445 ! Modified Dental Anxiety Scale (MDAS) question
-is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
+is_a: OHD:0008042 ! question about during dental visit
 relationship: IAO:0000136 OGMS:0000090
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T19:02:30Z" xsd:dateTime
@@ -3422,7 +3421,7 @@ id: OHD:0000447
 name: MDAS 2. If you were sitting in the WAITING ROOM (waiting for treatment), how would you feel?
 subset: OHD:0005009
 is_a: OHD:0000445 ! Modified Dental Anxiety Scale (MDAS) question
-is_a: OHD:0008029 {is_inferred="true"} ! question about sitting in a waiting room
+is_a: OHD:0008029 ! question about sitting in a waiting room
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T19:02:44Z" xsd:dateTime
 
@@ -3431,8 +3430,8 @@ id: OHD:0000448
 name: MDAS 3. If you were about to have a TOOTH DRILLED, how would you feel?
 subset: OHD:0005009
 is_a: OHD:0000445 ! Modified Dental Anxiety Scale (MDAS) question
-is_a: OHD:0008030 {is_inferred="true"} ! question about tooth drilling
-is_a: OHD:0008041 {is_inferred="true"} ! question about prior to dental visit
+is_a: OHD:0008030 ! question about tooth drilling
+is_a: OHD:0008041 ! question about prior to dental visit
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T19:02:54Z" xsd:dateTime
 
@@ -3441,8 +3440,8 @@ id: OHD:0000449
 name: MDAS 4. If you were about to have your TEETH SCALED AND POLISHED, how would you feel?
 subset: OHD:0005009
 is_a: OHD:0000445 ! Modified Dental Anxiety Scale (MDAS) question
-is_a: OHD:0008035 {is_inferred="true"} ! question about a tooth cleaning procedure
-is_a: OHD:0008041 {is_inferred="true"} ! question about prior to dental visit
+is_a: OHD:0008035 ! question about a tooth cleaning procedure
+is_a: OHD:0008041 ! question about prior to dental visit
 relationship: IAO:0000136 OHD:0008031 ! tooth scaling procedure
 relationship: IAO:0000136 OHD:0008032 ! tooth polishing procedure
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -3453,7 +3452,7 @@ id: OHD:0000450
 name: MDAS 5. If you were about to have a LOCAL ANAESTHETIC INJECTION in your gum, above an upper back tooth, how would you feel?
 subset: OHD:0005009
 is_a: OHD:0000445 ! Modified Dental Anxiety Scale (MDAS) question
-is_a: OHD:0008041 {is_inferred="true"} ! question about prior to dental visit
+is_a: OHD:0008041 ! question about prior to dental visit
 relationship: IAO:0000136 OHD:0008033 ! local anaesthetic injection
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-02-15T19:27:40Z" xsd:dateTime
@@ -4118,7 +4117,7 @@ property_value: skos:closeMatch "http://purl.obolibrary.org/obo/NCIT_C95401" xsd
 id: OHD:0005002
 name: patient-reported dental outcome
 def: "A patient reported outcome regarding a dental condition or treatment." []
-is_a: OHD:0005001 {is_inferred="true"} ! patient-reported outcome
+is_a: OHD:0005001 ! patient-reported outcome
 intersection_of: OHD:0005001 ! patient-reported outcome
 intersection_of: IAO:0000136 FMA:49184
 relationship: IAO:0000136 FMA:49184
@@ -4130,8 +4129,8 @@ property_value: dcterms:contributor https://orcid.org/0009-0003-7246-1252
 id: OHD:0005003
 name: patient-reported favorable dental outcome
 def: "A patient reported dental outcome that is favorable and related to a dental condition or treatment." []
-is_a: OHD:0000272 {is_inferred="true"} ! patient-reported favorable outcome
-is_a: OHD:0005002 {is_inferred="true"} ! patient-reported dental outcome
+is_a: OHD:0000272 ! patient-reported favorable outcome
+is_a: OHD:0005002 ! patient-reported dental outcome
 intersection_of: OHD:0000272 ! patient-reported favorable outcome
 intersection_of: IAO:0000136 FMA:49184
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -4142,8 +4141,8 @@ property_value: dcterms:contributor https://orcid.org/0009-0003-7246-1252
 id: OHD:0005004
 name: patient-reported unfavorable dental outcome
 def: "A patient-reported outcome that indicates an unfavorable experience or result related to a dental condition or treatment" []
-is_a: OHD:0000288 {is_inferred="true"} ! patient-reported unfavorable outcome
-is_a: OHD:0005002 {is_inferred="true"} ! patient-reported dental outcome
+is_a: OHD:0000288 ! patient-reported unfavorable outcome
+is_a: OHD:0005002 ! patient-reported dental outcome
 intersection_of: OHD:0000288 ! patient-reported unfavorable outcome
 intersection_of: IAO:0000136 FMA:49184
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -4418,7 +4417,7 @@ property_value: dcterms:created "2025-03-28T00:56:24Z" xsd:dateTime
 id: OHD:0008029
 name: question about sitting in a waiting room
 subset: OHD:0005009
-is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
+is_a: OHD:0008042 ! question about during dental visit
 intersection_of: OHD:0008042 ! question about during dental visit
 intersection_of: IAO:0000136 OHD:0008027 ! sitting in waiting room
 relationship: IAO:0000136 OHD:0008027 ! sitting in waiting room
@@ -4429,7 +4428,7 @@ property_value: dcterms:created "2025-03-28T01:11:07Z" xsd:dateTime
 id: OHD:0008030
 name: question about tooth drilling
 subset: OHD:0005009
-is_a: OHD:0008044 {is_inferred="true"} ! question about dental procedure
+is_a: OHD:0008044 ! question about dental procedure
 intersection_of: OHD:0008044 ! question about dental procedure
 intersection_of: IAO:0000136 OHD:0008028 ! tooth drilling procedure
 relationship: IAO:0000136 OHD:0008028 ! tooth drilling procedure
@@ -4468,7 +4467,7 @@ property_value: dcterms:created "2025-03-28T01:53:03Z" xsd:dateTime
 id: OHD:0008035
 name: question about a tooth cleaning procedure
 subset: OHD:0005009
-is_a: OHD:0008044 {is_inferred="true"} ! question about dental procedure
+is_a: OHD:0008044 ! question about dental procedure
 intersection_of: OHD:0008044 ! question about dental procedure
 intersection_of: IAO:0000136 OHD:0008034 ! tooth cleaning procedure ****
 relationship: IAO:0000136 OHD:0008034 ! tooth cleaning procedure ****
