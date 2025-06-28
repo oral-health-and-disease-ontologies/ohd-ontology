@@ -67,9 +67,9 @@
         "val" : "The Oral Health and Disease Ontology is an ontology built to be compatible with the OBO Foundry ontologies, and is a collaboration between researchers at the University at Buffalo School of Dental Medicine, the University of Pittsburg School of Dental Medicine, and the Oregon Health and Science University.\n\nThis ontology is licensed under the CC-BY License. Please see http://creativecommons.org/licenses/by/3.0/\n\nAttribution is satisfied by using the URIs defined in this file when using terms from this ontology."
       }, {
         "pred" : "http://www.w3.org/2002/07/owl#versionInfo",
-        "val" : "2025-06-26"
+        "val" : "2025-06-28"
       } ],
-      "version" : "http://purl.obolibrary.org/obo/ohd/releases/2025-06-26/ohd-base.json"
+      "version" : "http://purl.obolibrary.org/obo/ohd/releases/2025-06-28/ohd-base.json"
     },
     "nodes" : [ {
       "id" : "http://purl.obolibrary.org/obo/BFO_0000004",
@@ -88,9 +88,6 @@
       "type" : "CLASS"
     }, {
       "id" : "http://purl.obolibrary.org/obo/BFO_0000040",
-      "type" : "CLASS"
-    }, {
-      "id" : "http://purl.obolibrary.org/obo/CARO_0000000",
       "type" : "CLASS"
     }, {
       "id" : "http://purl.obolibrary.org/obo/CHEBI_133331",
@@ -893,7 +890,15 @@
       }
     }, {
       "id" : "http://purl.obolibrary.org/obo/OHD_0000035",
-      "type" : "CLASS"
+      "lbl" : "porcelain dental restoration material",
+      "type" : "CLASS",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://purl.obolibrary.org/obo/IAO_0100001",
+          "val" : "http://purl.obolibrary.org/obo/OHD_0000135"
+        } ],
+        "deprecated" : true
+      }
     }, {
       "id" : "http://purl.obolibrary.org/obo/OHD_0000036",
       "lbl" : "resin-based composite dental restoration material",
@@ -1770,7 +1775,7 @@
       "type" : "CLASS",
       "meta" : {
         "definition" : {
-          "val" : "A crown restoration procedure in which the artifical crown used to restore the tooth is formed by covering all or some of a predominantly base metal substrate with resin."
+          "val" : "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by covering all or some of a predominantly base metal substrate with resin."
         },
         "basicPropertyValues" : [ {
           "pred" : "http://purl.obolibrary.org/obo/IAO_0000119",
@@ -2018,7 +2023,7 @@
       "type" : "CLASS",
       "meta" : {
         "definition" : {
-          "val" : "A crown restoration procedure in which the artifical crown used to restore the tooth is formed by fusing porcelain to a substrate composed of noble metal."
+          "val" : "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by fusing porcelain to a substrate composed of noble metal."
         },
         "basicPropertyValues" : [ {
           "pred" : "http://purl.obolibrary.org/obo/IAO_0000119",
@@ -2031,7 +2036,7 @@
       "type" : "CLASS",
       "meta" : {
         "definition" : {
-          "val" : "A crown restoration procedure in which the artifical crown used to restore the tooth is formed by fusing porcelain to a substrate composed of predominatly base metal."
+          "val" : "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by fusing porcelain to a substrate composed of predominatly base metal."
         },
         "basicPropertyValues" : [ {
           "pred" : "http://purl.obolibrary.org/obo/IAO_0000119",
@@ -2057,7 +2062,7 @@
       "type" : "CLASS",
       "meta" : {
         "definition" : {
-          "val" : "A crown restoration procedure in which the artifical crown used to restore the tooth is formed by cutting a window into a stainless steel prosthetic crown and filling the window with resin.\n"
+          "val" : "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by cutting a window into a stainless steel prosthetic crown and filling the window with resin."
         },
         "basicPropertyValues" : [ {
           "pred" : "http://purl.obolibrary.org/obo/IAO_0000119",
@@ -2086,7 +2091,7 @@
       "type" : "CLASS",
       "meta" : {
         "definition" : {
-          "val" : "A crown restoration procedure in which the artifical crown used to restore the tooth is formed by covering all or some of a noble metal substrate with resin."
+          "val" : "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by covering all or some of a noble metal substrate with resin."
         },
         "basicPropertyValues" : [ {
           "pred" : "http://purl.obolibrary.org/obo/IAO_0000119",
@@ -8566,6 +8571,10 @@
       "type" : "PROPERTY",
       "propertyType" : "ANNOTATION"
     }, {
+      "id" : "http://purl.obolibrary.org/obo/IAO_0100001",
+      "type" : "PROPERTY",
+      "propertyType" : "ANNOTATION"
+    }, {
       "id" : "http://purl.obolibrary.org/obo/OHD_0000053",
       "lbl" : "data source",
       "type" : "PROPERTY",
@@ -8676,10 +8685,6 @@
       "type" : "PROPERTY",
       "propertyType" : "ANNOTATION"
     }, {
-      "id" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-      "type" : "PROPERTY",
-      "propertyType" : "ANNOTATION"
-    }, {
       "id" : "http://www.w3.org/2004/02/skos/core#broadMatch",
       "type" : "PROPERTY",
       "propertyType" : "ANNOTATION"
@@ -8750,13 +8755,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000003",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000002",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000002"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000003",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000057",
@@ -8800,13 +8799,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000008",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000007",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000007"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000008",
       "pred" : "http://purl.obolibrary.org/obo/BFO_0000054",
@@ -8826,13 +8819,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000012",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/NCBITaxon_9606",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/NCBITaxon_9606"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000012",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000087",
@@ -8852,13 +8839,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000018",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000051",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000051"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000018",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000087",
@@ -8878,13 +8859,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000020",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000051",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000051"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000020",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000087",
@@ -8900,23 +8875,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000022",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000133",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000133"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000022",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000022",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -8924,13 +8887,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000023",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000010",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000010"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000023",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -8964,15 +8921,17 @@
       "pred" : "is_a",
       "obj" : "http://purl.obolibrary.org/obo/OHD_0000026"
     }, {
+      "sub" : "http://purl.obolibrary.org/obo/OHD_0000029",
+      "pred" : "is_a",
+      "obj" : "http://purl.obolibrary.org/obo/FMA_12516"
+    }, {
+      "sub" : "http://purl.obolibrary.org/obo/OHD_0000029",
+      "pred" : "http://purl.obolibrary.org/obo/RO_0000053",
+      "obj" : "http://purl.obolibrary.org/obo/PATO_0040034"
+    }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000030",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000010",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000010"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000030",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -9002,6 +8961,10 @@
       "pred" : "is_a",
       "obj" : "http://purl.obolibrary.org/obo/OHD_0000048"
     }, {
+      "sub" : "http://purl.obolibrary.org/obo/OHD_0000035",
+      "pred" : "is_a",
+      "obj" : "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
+    }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000036",
       "pred" : "is_a",
       "obj" : "http://purl.obolibrary.org/obo/OHD_0000000"
@@ -9024,23 +8987,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000039",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000006",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000006"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000039",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000039",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -9048,43 +8999,19 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000040",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000142",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000142"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000040",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000305",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000305"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000041",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000006",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000006"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000041",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000303",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000303"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000041",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -9092,23 +9019,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000042",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000006",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000006"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000042",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000303",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000303"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000042",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -9128,13 +9043,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000045",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000027",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000027"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000045",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -9142,27 +9051,15 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000046",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000027",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000027"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000046",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000035"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000135"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000047",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000007",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000007"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000047",
       "pred" : "http://purl.obolibrary.org/obo/BFO_0000054",
@@ -9174,13 +9071,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000049",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000012",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000012"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000049",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000087",
@@ -9188,13 +9079,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000051",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000179",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000179"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000051",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000087",
@@ -9210,13 +9095,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000054",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000012",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000012"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000054",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000087",
@@ -9224,13 +9103,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000055",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000007",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000007"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000055",
       "pred" : "http://purl.obolibrary.org/obo/BFO_0000054",
@@ -9402,23 +9275,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000094",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000133",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000133"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000094",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000094",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -9426,33 +9287,15 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000095",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000134",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000134"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000095",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000155",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000155"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000096",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000133",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000133"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000096",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -9460,13 +9303,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000098",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000008",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000008"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000098",
       "pred" : "http://purl.obolibrary.org/obo/BFO_0000054",
@@ -9474,13 +9311,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000099",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000055",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000055"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000099",
       "pred" : "http://purl.obolibrary.org/obo/BFO_0000054",
@@ -9516,23 +9347,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000138",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000134",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000134"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000138",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000138",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -9540,43 +9359,19 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000139",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000139",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000140",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000140",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000140",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -9588,23 +9383,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000142",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000142",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000142",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -9632,123 +9415,51 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000148",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000166",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000166"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000149",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000154",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000154"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000149",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000305",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000305"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000150",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000040",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000040"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000150",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000157",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000157"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000151",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000162",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000162"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000151",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000305",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000305"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000152",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000155",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000155"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000152",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000305",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000305"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000153",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000138",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000138"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000153",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000142",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000142"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000154",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000154",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -9756,23 +9467,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000155",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000155",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000155",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -9792,93 +9491,39 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000158",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000160",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000160"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000159",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000153",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000153"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000159",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000157",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000157"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000160",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000160",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000161",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000161",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000162",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000162",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000162",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -9886,23 +9531,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000163",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000163",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000163",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -9910,23 +9543,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000164",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000164",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000165",
       "pred" : "is_a",
@@ -9934,33 +9555,15 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000166",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000033"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000166",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000167",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000022",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000022"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000167",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -9972,23 +9575,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000169",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000134",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000134"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000169",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000154",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000154"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000170",
       "pred" : "is_a",
@@ -10028,13 +9619,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000179",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/NCBITaxon_9606",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/NCBITaxon_9606"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000179",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000087",
@@ -10042,13 +9627,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000180",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000179",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000179"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000180",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000087",
@@ -10056,13 +9635,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000181",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000051",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000051"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000181",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000087",
@@ -10070,13 +9643,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000182",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000018",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000018"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000182",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000087",
@@ -10084,13 +9651,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000183",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000018",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000018"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000183",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000087",
@@ -10098,13 +9659,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000184",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000018",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000018"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000184",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000087",
@@ -10112,13 +9667,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000185",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000018",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000018"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000185",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000087",
@@ -10126,13 +9675,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000186",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000018",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000018"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000186",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000087",
@@ -10140,13 +9683,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000187",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000018",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000018"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000187",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000087",
@@ -10158,13 +9695,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000189",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_12516",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_12516"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000189",
       "pred" : "http://purl.obolibrary.org/obo/BFO_0000051",
@@ -10192,13 +9723,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000192",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000167",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000167"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000192",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -10206,33 +9731,15 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000193",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000138",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000138"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000193",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000162",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000162"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000194",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000022",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000022"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000194",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -10240,23 +9747,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000195",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000138",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000138"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000195",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000140",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000140"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000197",
       "pred" : "is_a",
@@ -10336,13 +9831,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000210",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000051",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000051"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000210",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000087",
@@ -10366,13 +9855,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000213",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000018",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000018"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000213",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000087",
@@ -10388,13 +9871,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000220",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000010",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000010"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000220",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -10406,13 +9883,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000222",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000235",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000235"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000223",
       "pred" : "is_a",
@@ -10424,13 +9895,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000225",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000235",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000235"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000226",
       "pred" : "is_a",
@@ -10454,13 +9919,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000231",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_12516",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_12516"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000231",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000312",
@@ -10472,13 +9931,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000233",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_12516",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_12516"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000233",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000295",
@@ -10486,23 +9939,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000235",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000208",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000208"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000236",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000189",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000189"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000236",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000295",
@@ -10510,23 +9951,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000237",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000189",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000189"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000238",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000237",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000237"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000238",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000295",
@@ -10534,13 +9963,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000239",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000237",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000237"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000239",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000295",
@@ -10548,13 +9971,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000240",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000237",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000237"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000240",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000295",
@@ -10566,13 +9983,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000242",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000003",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000003"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000242",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000299",
@@ -10580,13 +9991,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000243",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000003",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000003"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000243",
       "pred" : "is_a",
@@ -10606,13 +10011,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000246",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000245",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000245"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000246",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000299",
@@ -10624,13 +10023,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000248",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000246",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000246"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000249",
       "pred" : "is_a",
@@ -10686,13 +10079,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000260",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000414",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000414"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000260",
       "pred" : "http://purl.obolibrary.org/obo/FMA_85848",
@@ -10704,27 +10091,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000262",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/CARO_0000000",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
-    }, {
-      "sub" : "http://purl.obolibrary.org/obo/OHD_0000262",
-      "pred" : "is_a",
       "obj" : "http://purl.obolibrary.org/obo/OHD_0000290"
-    }, {
-      "sub" : "http://purl.obolibrary.org/obo/OHD_0000263",
-      "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/CARO_0000000",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000263",
       "pred" : "is_a",
@@ -10733,16 +10100,6 @@
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000263",
       "pred" : "http://purl.obolibrary.org/obo/RO_0002354",
       "obj" : "http://purl.obolibrary.org/obo/ECTO_9002146"
-    }, {
-      "sub" : "http://purl.obolibrary.org/obo/OHD_0000264",
-      "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/CARO_0000000",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000264",
       "pred" : "is_a",
@@ -10810,13 +10167,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000275",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000282",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000282"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000276",
       "pred" : "is_a",
@@ -10856,13 +10207,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000282",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/BFO_0000015",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/BFO_0000015"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000282",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000057",
@@ -10926,13 +10271,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000296",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000248",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000248"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000296",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000299",
@@ -10956,13 +10295,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000299",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000248",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000248"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000299",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000299",
@@ -10978,13 +10311,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000301",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OBI_0000047",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OBI_0000047"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000301",
       "pred" : "http://purl.obolibrary.org/obo/BFO_0000053",
@@ -10992,13 +10319,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000302",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000206",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000206"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000302",
       "pred" : "is_a",
@@ -11010,13 +10331,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000303",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000004",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000004"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000303",
       "pred" : "http://purl.obolibrary.org/obo/BFO_0000051",
@@ -11024,13 +10339,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000304",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000004",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000004"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000304",
       "pred" : "http://purl.obolibrary.org/obo/BFO_0000051",
@@ -11094,13 +10403,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000316",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000302",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000302"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000316",
       "pred" : "http://purl.obolibrary.org/obo/BFO_0000050",
@@ -11288,333 +10591,135 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000364",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000365",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000366",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000367",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000368",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000369",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000370",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000371",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000372",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000373",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000374",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000375",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000376",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000377",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000378",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000379",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000380",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000381",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000382",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000383",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000384",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000385",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000386",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000387",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000388",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000389",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000390",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000391",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000392",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000393",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000394",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000395",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/FMA_75152",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/FMA_75152"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000396",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000221",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000221"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000396",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -11622,13 +10727,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000397",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000221",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000221"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000397",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -11636,13 +10735,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000398",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000221",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000221"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000398",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -11650,13 +10743,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000399",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000221",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000221"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000399",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -11664,13 +10751,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000400",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000399",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000399"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000400",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -11678,13 +10759,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000401",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000399",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000399"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000401",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -11692,13 +10767,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000402",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000399",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000399"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000402",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -11706,13 +10775,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000403",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000010",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000010"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000403",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -11720,13 +10783,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000404",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OGMS_0000031",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OGMS_0000031"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000404",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000052",
@@ -11738,23 +10795,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000406",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/NBO_0000007",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/NBO_0000007"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000406",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OGMS_0000061",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OGMS_0000061"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000406",
       "pred" : "http://purl.obolibrary.org/obo/RO_0003304",
@@ -11762,13 +10807,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000407",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000406",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000406"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000407",
       "pred" : "is_a",
@@ -11796,13 +10835,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000413",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000277",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000277"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000413",
       "pred" : "http://purl.obolibrary.org/obo/BFO_0000051",
@@ -11810,13 +10843,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000414",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OGMS_0000045",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OGMS_0000045"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000414",
       "pred" : "http://purl.obolibrary.org/obo/FMA_85848",
@@ -11840,13 +10867,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000418",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHMI_0000003",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHMI_0000003"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000418",
       "pred" : "http://purl.obolibrary.org/obo/RO_0001025",
@@ -11874,23 +10895,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000421",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008024",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008024"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000421",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008041",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008041"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000421",
       "pred" : "http://purl.obolibrary.org/obo/OHD_0008045",
@@ -11902,23 +10911,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000422",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008023",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008023"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000422",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008041",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008041"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000422",
       "pred" : "http://purl.obolibrary.org/obo/OHD_0008045",
@@ -11930,23 +10927,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000423",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000423",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000423",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -11962,23 +10947,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000424",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000424",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000424",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -11998,23 +10971,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000426",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000426",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000426",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -12030,23 +10991,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000427",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000427",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000427",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -12062,23 +11011,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000428",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000428",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000428",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -12094,13 +11031,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000429",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008041",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008041"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000429",
       "pred" : "http://purl.obolibrary.org/obo/OHD_0008045",
@@ -12112,13 +11043,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000430",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008041",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008041"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000430",
       "pred" : "http://purl.obolibrary.org/obo/OHD_0008045",
@@ -12130,13 +11055,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000431",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008029",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008029"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000431",
       "pred" : "http://purl.obolibrary.org/obo/OHD_0008045",
@@ -12148,13 +11067,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000432",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000432",
       "pred" : "http://purl.obolibrary.org/obo/OHD_0008045",
@@ -12166,13 +11079,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000433",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000433",
       "pred" : "http://purl.obolibrary.org/obo/OHD_0008045",
@@ -12184,13 +11091,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000434",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000434",
       "pred" : "http://purl.obolibrary.org/obo/OHD_0008045",
@@ -12202,13 +11103,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000435",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000435",
       "pred" : "http://purl.obolibrary.org/obo/OHD_0008045",
@@ -12220,13 +11115,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000436",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000436",
       "pred" : "http://purl.obolibrary.org/obo/OHD_0008045",
@@ -12238,23 +11127,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000437",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008030",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008030"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000437",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000437",
       "pred" : "http://purl.obolibrary.org/obo/OHD_0008045",
@@ -12266,23 +11143,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000438",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008030",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008030"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000438",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000438",
       "pred" : "http://purl.obolibrary.org/obo/OHD_0008045",
@@ -12294,23 +11159,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000439",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008030",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008030"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000439",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000439",
       "pred" : "http://purl.obolibrary.org/obo/OHD_0008045",
@@ -12322,23 +11175,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000440",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008035",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008035"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000440",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000440",
       "pred" : "http://purl.obolibrary.org/obo/OHD_0008045",
@@ -12350,13 +11191,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000441",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000441",
       "pred" : "http://purl.obolibrary.org/obo/OHD_0008045",
@@ -12388,13 +11223,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000446",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000446",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -12406,13 +11235,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000447",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008029",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008029"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000448",
       "pred" : "is_a",
@@ -12420,23 +11243,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000448",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008030",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008030"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000448",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008041",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008041"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000449",
       "pred" : "is_a",
@@ -12444,23 +11255,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000449",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008035",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008035"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000449",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008041",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008041"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000449",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -12476,13 +11275,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000450",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008041",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008041"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000450",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -12846,13 +11639,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0005002",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0005001",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0005001"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0005002",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -12860,43 +11647,19 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0005003",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000272",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000272"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0005003",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0005002",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0005002"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0005004",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000288",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000288"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0005004",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0005002",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0005002"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0005005",
       "pred" : "is_a",
@@ -13040,13 +11803,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008029",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008029",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -13054,13 +11811,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008030",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008044",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008044"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008030",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -13084,13 +11835,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008035",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008044",
-      "meta" : {
-        "basicPropertyValues" : [ {
-          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
-          "val" : "true"
-        } ]
-      }
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008044"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008035",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -13494,6 +12239,13 @@
         "fillerId" : "http://purl.obolibrary.org/obo/OHD_0000189"
       } ]
     }, {
+      "definedClassId" : "http://purl.obolibrary.org/obo/OHD_0000029",
+      "genusIds" : [ "http://purl.obolibrary.org/obo/FMA_12516" ],
+      "restrictions" : [ {
+        "propertyId" : "http://purl.obolibrary.org/obo/RO_0000053",
+        "fillerId" : "http://purl.obolibrary.org/obo/PATO_0040034"
+      } ]
+    }, {
       "definedClassId" : "http://purl.obolibrary.org/obo/OHD_0000030",
       "genusIds" : [ "http://purl.obolibrary.org/obo/OHD_0000010" ],
       "restrictions" : [ {
@@ -13552,7 +12304,7 @@
       "genusIds" : [ "http://purl.obolibrary.org/obo/OHD_0000027" ],
       "restrictions" : [ {
         "propertyId" : "http://purl.obolibrary.org/obo/OBI_0000293",
-        "fillerId" : "http://purl.obolibrary.org/obo/OHD_0000035"
+        "fillerId" : "http://purl.obolibrary.org/obo/OHD_0000135"
       } ]
     }, {
       "definedClassId" : "http://purl.obolibrary.org/obo/OHD_0000047",
