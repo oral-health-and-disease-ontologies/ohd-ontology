@@ -11,7 +11,6 @@ Prefix(dcterms:=<http://purl.org/dc/terms/>)
 
 
 Ontology(<http://purl.obolibrary.org/obo/ohd.owl>
-Import(<http://purl.obolibrary.org/obo/go/releases/2025-03-16/go.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/components/dental_material.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/bfo2_classes_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/caro_import.owl>)
@@ -22,15 +21,17 @@ Import(<http://purl.obolibrary.org/obo/ohd/imports/fma-lymph_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/fma-mouth-mucosa_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/fma-tmj_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/fma-tongue_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/ido_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/ncbi_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/obi_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/ogms_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/ohmi_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/omo_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/omrse_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/pato_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
-Import(<http://purl.obolibrary.org/obo/ohmi/2019-09-17/ohmi.owl>)
 Annotation(dcterms:contributor <https://orcid.org/0000-0001-6378-1703>)
 Annotation(dcterms:contributor <https://orcid.org/0000-0001-6424-4096>)
 Annotation(dcterms:contributor <https://orcid.org/0000-0001-9990-8331>)
@@ -887,8 +888,24 @@ Declaration(Class(obo:FMA_no_fmaid_Primary_maxillary_dentition))
 Declaration(Class(obo:FMA_no_fmaid_Secondary_mandibular_dentition))
 Declaration(Class(obo:FMA_no_fmaid_Secondary_maxillary_dentition))
 Declaration(Class(obo:FMA_no_fmaid_Surface_enamel_of_tooth))
+Declaration(Class(obo:GO_0002209))
 Declaration(Class(obo:NBO_0000007))
 Declaration(Class(obo:OBI_0000245))
+Declaration(Class(obo:OGMS_0000014))
+Declaration(Class(obo:OGMS_0000024))
+Declaration(Class(obo:OGMS_0000055))
+Declaration(Class(obo:OGMS_0000056))
+Declaration(Class(obo:OGMS_0000057))
+Declaration(Class(obo:OGMS_0000060))
+Declaration(Class(obo:OGMS_0000061))
+Declaration(Class(obo:OGMS_0000065))
+Declaration(Class(obo:OGMS_0000088))
+Declaration(Class(obo:OGMS_0000090))
+Declaration(Class(obo:OGMS_0000096))
+Declaration(Class(obo:OGMS_0000097))
+Declaration(Class(obo:OGMS_0000099))
+Declaration(Class(obo:OGMS_0000103))
+Declaration(Class(obo:OGMS_0000104))
 Declaration(Class(obo:OHD_0000002))
 Declaration(Class(obo:OHD_0000003))
 Declaration(Class(obo:OHD_0000004))
@@ -1357,6 +1374,11 @@ Declaration(Class(obo:OHD_0008049))
 Declaration(Class(obo:OHD_0008050))
 Declaration(Class(obo:OHD_0008051))
 Declaration(Class(obo:OHD_0008052))
+Declaration(Class(obo:OHMI_0000003))
+Declaration(Class(obo:OHMI_0000015))
+Declaration(Class(obo:OMRSE_00000007))
+Declaration(Class(obo:OMRSE_00000008))
+Declaration(Class(obo:OMRSE_00000009))
 Declaration(Class(obo:PATO_0040034))
 Declaration(Class(<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>))
 Declaration(ObjectProperty(obo:BFO_0000050))
@@ -1541,7 +1563,7 @@ AnnotationAssertion(rdfs:label dcterms:created "date created")
 
 AnnotationAssertion(rdfs:label <http://www.geneontology.org/formats/oboInOwl#SubsetProperty> "subset_property"@en)
 
-# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> (has_broad_synonym)
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> (has broad synonym)
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> obo:IAO_0000118)
 
@@ -2392,7 +2414,7 @@ SubClassOf(obo:OBI_0000456 obo:IAO_0000005)
 
 SubClassOf(obo:OBI_0000806 obo:IAO_0000005)
 
-# Class: obo:OGMS_0000024 (obsolete_sign)
+# Class: obo:OGMS_0000024 (obo:OGMS_0000024)
 
 AnnotationAssertion(owl:deprecated obo:OGMS_0000024 "true"^^xsd:boolean)
 SubClassOf(obo:OGMS_0000024 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
@@ -2694,7 +2716,7 @@ SubClassOf(obo:OHD_0000028 ObjectHasValue(obo:BFO_0000051 obo:OHD_0000114))
 # Class: obo:OHD_0000029 (fractured tooth)
 
 AnnotationAssertion(rdfs:label obo:OHD_0000029 "fractured tooth"@en)
-SubClassOf(obo:OHD_0000029 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:RO_0000053 obo:PATO_0040034)))
+EquivalentClasses(obo:OHD_0000029 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:RO_0000053 obo:PATO_0040034)))
 
 # Class: obo:OHD_0000030 (fractured tooth finding)
 
@@ -2729,6 +2751,13 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000033 "A tooth restoration procedu
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000033 "Titus Schleyer 1/14/2014: adapted definition")
 AnnotationAssertion(rdfs:label obo:OHD_0000033 "crown restoration procedure"@en)
 SubClassOf(obo:OHD_0000033 obo:OHD_0000004)
+
+# Class: obo:OHD_0000035 (porcelain dental restoration material)
+
+AnnotationAssertion(obo:IAO_0100001 obo:OHD_0000035 obo:OHD_0000135)
+AnnotationAssertion(rdfs:label obo:OHD_0000035 "porcelain dental restoration material")
+AnnotationAssertion(owl:deprecated obo:OHD_0000035 "true"^^xsd:boolean)
+SubClassOf(obo:OHD_0000035 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
 
 # Class: obo:OHD_0000037 (direct dental material insertion process)
 
@@ -2819,7 +2848,7 @@ EquivalentClasses(obo:OHD_0000045 ObjectIntersectionOf(obo:OHD_0000027 ObjectSom
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000046 "A veneer restoration procedure that uses porcelain laminate to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000046 "porcelain laminate veneer restoration")
 AnnotationAssertion(rdfs:label obo:OHD_0000046 "porcelain laminate veneer restoration procedure")
-EquivalentClasses(obo:OHD_0000046 ObjectIntersectionOf(obo:OHD_0000027 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000035)))
+EquivalentClasses(obo:OHD_0000046 ObjectIntersectionOf(obo:OHD_0000027 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000135)))
 
 # Class: obo:OHD_0000047 (tooth to undergo veneer procedure role)
 
@@ -3242,7 +3271,7 @@ EquivalentClasses(obo:OHD_0000138 ObjectIntersectionOf(obo:OHD_0000134 ObjectSom
 
 # Class: obo:OHD_0000139 (resin with predominantly base metal crown restoration procedure)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000139 "A crown restoration procedure in which the artifical crown used to restore the tooth is formed by covering all or some of a predominantly base metal substrate with resin.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000139 "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by covering all or some of a predominantly base metal substrate with resin.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000139 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Resin_With_Predominately_Base_Metal__Dental_Procedure_Code_Description")
 AnnotationAssertion(rdfs:label obo:OHD_0000139 "resin with predominantly base metal crown restoration procedure")
 EquivalentClasses(obo:OHD_0000139 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000349 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000156))))))
@@ -3358,7 +3387,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000158 "A procelain fused to nobal 
 ")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000158 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Porcelain_Fused_To_High_Noble_Metal__Dental_Procedure_Code_Description")
 AnnotationAssertion(rdfs:label obo:OHD_0000158 "porcelain fused to high noble metal crown restoration procedure")
-EquivalentClasses(obo:OHD_0000158 ObjectIntersectionOf(obo:OHD_0000160 ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000306 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000035) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000147))))))
+EquivalentClasses(obo:OHD_0000158 ObjectIntersectionOf(obo:OHD_0000160 ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000306 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000135) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000147))))))
 
 # Class: obo:OHD_0000159 (high noble metal onlay restoration procedure)
 
@@ -3368,17 +3397,17 @@ EquivalentClasses(obo:OHD_0000159 ObjectIntersectionOf(obo:OHD_0000153 ObjectSom
 
 # Class: obo:OHD_0000160 (porcelain fused to noble metal crown restoration procedure)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000160 "A crown restoration procedure in which the artifical crown used to restore the tooth is formed by fusing porcelain to a substrate composed of noble metal.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000160 "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by fusing porcelain to a substrate composed of noble metal.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000160 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Porcelain_Fused_To_Noble_Metal__Dental_Procedure_Code_Description")
 AnnotationAssertion(rdfs:label obo:OHD_0000160 "porcelain fused to noble metal crown restoration procedure")
-EquivalentClasses(obo:OHD_0000160 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000306 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000035) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000146))))))
+EquivalentClasses(obo:OHD_0000160 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000306 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000135) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000146))))))
 
 # Class: obo:OHD_0000161 (porcelain fused to predominantly base metal crown restoration procedure)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000161 "A crown restoration procedure in which the artifical crown used to restore the tooth is formed by fusing porcelain to a substrate composed of predominatly base metal.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000161 "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by fusing porcelain to a substrate composed of predominatly base metal.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000161 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Porcelain_Fused_To_Predominately_Base_Metal__Dental_Procedure_Code_Description")
 AnnotationAssertion(rdfs:label obo:OHD_0000161 "porcelain fused to predominantly base metal crown restoration procedure")
-EquivalentClasses(obo:OHD_0000161 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000306 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000035) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000156))))))
+EquivalentClasses(obo:OHD_0000161 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000306 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000135) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000156))))))
 
 # Class: obo:OHD_0000162 (predominantly base metal crown restoration procedure)
 
@@ -3393,8 +3422,7 @@ EquivalentClasses(obo:OHD_0000163 ObjectIntersectionOf(obo:OHD_0000033 ObjectSom
 
 # Class: obo:OHD_0000164 (stainless steel with resin window crown restoration procedure)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000164 "A crown restoration procedure in which the artifical crown used to restore the tooth is formed by cutting a window into a stainless steel prosthetic crown and filling the window with resin.
-")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000164 "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by cutting a window into a stainless steel prosthetic crown and filling the window with resin.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000164 "http://www.dentalcare.com/en-US/dental-education/continuing-education/ce379/ce379.aspx?ModuleName=coursecontent&PartID=3&SectionID=-1")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000164 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Prefabricated_Stainless_Steel_with_Resin__Dental_Procedure_Code_Description")
 AnnotationAssertion(rdfs:label obo:OHD_0000164 "stainless steel with resin window crown restoration procedure")
@@ -3410,7 +3438,7 @@ SubClassOf(obo:OHD_0000165 obo:OHD_0000052)
 
 # Class: obo:OHD_0000166 (resin with noble metal crown restoration procedure)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000166 "A crown restoration procedure in which the artifical crown used to restore the tooth is formed by covering all or some of a noble metal substrate with resin.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000166 "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by covering all or some of a noble metal substrate with resin.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000166 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Resin_With_Noble_Metal__Dental_Procedure_Code_Description")
 AnnotationAssertion(rdfs:label obo:OHD_0000166 "resin with noble metal crown restoration procedure")
 EquivalentClasses(obo:OHD_0000166 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000349) ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000349 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000146))))))
@@ -6269,12 +6297,6 @@ SubClassOf(obo:OHMI_0000015 ObjectSomeValuesFrom(obo:RO_0001025 obo:FMA_49184))
 # Class: obo:OMRSE_00000007 (gender role)
 
 SubClassOf(obo:OMRSE_00000007 obo:BFO_0000023)
-
-# Class: obo:PATO_0040034 (temp: fractured)
-
-AnnotationAssertion(obo:IAO_0000116 obo:PATO_0040034 "Replace with PATO term")
-AnnotationAssertion(rdfs:label obo:PATO_0040034 "temp: fractured"@en)
-SubClassOf(obo:PATO_0040034 obo:BFO_0000019)
 
 # Class: <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> (obsolete class)
 
