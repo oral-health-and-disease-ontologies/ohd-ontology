@@ -889,8 +889,10 @@ Declaration(Class(obo:FMA_no_fmaid_Primary_maxillary_dentition))
 Declaration(Class(obo:FMA_no_fmaid_Secondary_mandibular_dentition))
 Declaration(Class(obo:FMA_no_fmaid_Secondary_maxillary_dentition))
 Declaration(Class(obo:FMA_no_fmaid_Surface_enamel_of_tooth))
+Declaration(Class(obo:GO_0002524))
 Declaration(Class(obo:NBO_0000007))
 Declaration(Class(obo:OBI_0000245))
+Declaration(Class(obo:OBI_1110054))
 Declaration(Class(obo:OHD_0000002))
 Declaration(Class(obo:OHD_0000003))
 Declaration(Class(obo:OHD_0000004))
@@ -1617,6 +1619,35 @@ Declaration(Class(obo:OHD_0010257))
 Declaration(Class(obo:OHD_0010258))
 Declaration(Class(obo:OHD_0010259))
 Declaration(Class(obo:OHD_0010260))
+Declaration(Class(obo:OHD_0010261))
+Declaration(Class(obo:OHD_0010262))
+Declaration(Class(obo:OHD_0010263))
+Declaration(Class(obo:OHD_0010264))
+Declaration(Class(obo:OHD_0010265))
+Declaration(Class(obo:OHD_0010266))
+Declaration(Class(obo:OHD_0010267))
+Declaration(Class(obo:OHD_0010268))
+Declaration(Class(obo:OHD_0010269))
+Declaration(Class(obo:OHD_0010270))
+Declaration(Class(obo:OHD_0010271))
+Declaration(Class(obo:OHD_0010272))
+Declaration(Class(obo:OHD_0010273))
+Declaration(Class(obo:OHD_0010274))
+Declaration(Class(obo:OHD_0010275))
+Declaration(Class(obo:OHD_0010276))
+Declaration(Class(obo:OHD_0010277))
+Declaration(Class(obo:OHD_0010278))
+Declaration(Class(obo:OHD_0010279))
+Declaration(Class(obo:OHD_0010280))
+Declaration(Class(obo:OHD_0010281))
+Declaration(Class(obo:OHD_0010282))
+Declaration(Class(obo:OHD_0010283))
+Declaration(Class(obo:OHD_0010284))
+Declaration(Class(obo:OHD_0010285))
+Declaration(Class(obo:OHD_0010286))
+Declaration(Class(obo:OHD_0010287))
+Declaration(Class(obo:OHD_0010288))
+Declaration(Class(obo:OHD_0010291))
 Declaration(Class(obo:PATO_0040034))
 Declaration(Class(<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>))
 Declaration(ObjectProperty(obo:BFO_0000050))
@@ -2602,6 +2633,10 @@ SubClassOf(obo:FMA_84244 ObjectSomeValuesFrom(obo:FMA_85868 obo:FMA_no_fmaid_Pri
 
 SubClassOf(obo:FMA_84245 ObjectSomeValuesFrom(obo:FMA_85868 obo:FMA_no_fmaid_Primary_mandibular_dentition))
 
+# Class: obo:GO_0002524 (hypersensitivity)
+
+AnnotationAssertion(rdfs:label obo:GO_0002524 "hypersensitivity"@en)
+
 # Class: obo:GO_0008150 (biological_process)
 
 SubClassOf(obo:GO_0008150 obo:BFO_0000015)
@@ -2663,6 +2698,11 @@ SubClassOf(obo:OBI_0000456 obo:IAO_0000005)
 # Class: obo:OBI_0000806 (material maintenance objective)
 
 SubClassOf(obo:OBI_0000806 obo:IAO_0000005)
+
+# Class: obo:OBI_1110054 (autoimmune disease)
+
+AnnotationAssertion(rdfs:label obo:OBI_1110054 "autoimmune disease"@en)
+SubClassOf(obo:OBI_1110054 obo:OGMS_0000031)
 
 # Class: obo:OGMS_0000024 (obsolete_sign)
 
@@ -8080,6 +8120,7 @@ SubClassOf(obo:OHD_0010131 obo:OHD_0010129)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010132 "Orofacial pain attributed to lesion or disease of the glossopharyngeal nerve.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0010132 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010132 "2025-06-18T17:55:16Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:OHD_0010132 "glossopharyngeal nerve associated pain")
 AnnotationAssertion(rdfs:comment obo:OHD_0010132 "ICOP number: 4.2")
 AnnotationAssertion(rdfs:label obo:OHD_0010132 "pain due to lesion or disease of the glossopharyngeal nerve"@en)
 SubClassOf(obo:OHD_0010132 obo:OHD_0010142)
@@ -9165,7 +9206,8 @@ SubClassOf(obo:OHD_0010252 obo:OGMS_0000085)
 
 # Class: obo:OHD_0010253 (glossopharyngeal neuropathic pain)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010253 "Pain within the distribution of the glossopharyngeal nerve (posterior part of the tongue, tonsillar fossa, pharynx or beneath the angle of the lower jaw). In addition, pain is commonly perceived in the ipsilateral ear. The primary pain is usually continuous or near-continuous, and commonly described as burning or squeezing, or likened to pins and needles. Brief paroxysms may be superimposed but they are not the predominant pain type. This combination distinguishes 4.2.2 Glossopharyngeal neuropathic pain from 4.2.1 Glossopharyngeal neuralgia. Sensory deficits may be present in the ipsilateral posterior part of the tongue and tonsillar fossa, and the gag reflex may be weak or missing.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010253 "Glossopharyngeal nerve associated pain that occurs within the distribution of the glossopharyngeal nerve (posterior part of the tongue, tonsillar fossa, pharynx or beneath the angle of the lower jaw). In addition, pain is commonly perceived in the ipsilateral ear. The primary pain is usually continuous or near-continuous, and commonly described as burning or squeezing, or likened to pins and needles. Brief paroxysms may be superimposed but they are not the predominant pain type. This combination distinguishes 4.2.2 Glossopharyngeal neuropathic pain from 4.2.1 Glossopharyngeal neuralgia. Sensory deficits may be present in the ipsilateral posterior part of the tongue and tonsillar fossa, and the gag reflex may be weak or missing.")
+AnnotationAssertion(obo:IAO_0000119 obo:OHD_0010253 "PMID:32103673")
 AnnotationAssertion(dcterms:contributor obo:OHD_0010253 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010253 "2025-07-02T19:24:40Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:comment obo:OHD_0010253 "ICOP number: 4.2.2")
@@ -9235,6 +9277,266 @@ AnnotationAssertion(dcterms:created obo:OHD_0010260 "2025-07-02T19:37:03Z"^^xsd:
 AnnotationAssertion(rdfs:comment obo:OHD_0010260 "ICOP number: 5.3")
 AnnotationAssertion(rdfs:label obo:OHD_0010260 "trigeminal autonomic orofacial pain"@en)
 SubClassOf(obo:OHD_0010260 obo:OHD_0010255)
+
+# Class: obo:OHD_0010261 (orofacial cluster attacks)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010261 "Attacks of severe, strictly unilateral facial and/or oral pain, without head pain, lasting 15–180 minutes and occurring from once every other day to eight times a day. The pain is associated with ipsilateral conjunctival injection, lacrimation, nasal congestion, rhinorrhoea, forehead and facial sweating, miosis, ptosis and/or eyelid oedema, and/or with restlessness or agitation.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010261 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010261 "2025-07-07T17:16:21Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010261 "ICOP number: 5.3.1")
+AnnotationAssertion(rdfs:label obo:OHD_0010261 "orofacial cluster attacks"@en)
+SubClassOf(obo:OHD_0010261 obo:OHD_0010260)
+
+# Class: obo:OHD_0010262 (episodic orofacial cluster attacks)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010262 "Orofacial cluster attacks occurring in periods lasting from 7 days to 1 year, separated by pain-free periods lasting at least 3 months.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010262 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010262 "2025-07-07T17:16:59Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010262 "ICOP number: 5.3.1.1")
+AnnotationAssertion(rdfs:label obo:OHD_0010262 "episodic orofacial cluster attacks"@en)
+SubClassOf(obo:OHD_0010262 obo:OHD_0010261)
+
+# Class: obo:OHD_0010263 (chronic orofacial cluster attacks)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010263 "Orofacial cluster attacks occurring for more than 1 year without remission, or with remission periods lasting less than 3 months.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010263 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010263 "2025-07-07T17:17:49Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010263 "ICOP number: 5.3.1.2")
+AnnotationAssertion(rdfs:label obo:OHD_0010263 "chronic orofacial cluster attacks"@en)
+SubClassOf(obo:OHD_0010263 obo:OHD_0010261)
+
+# Class: obo:OHD_0010264 (paroxysmal hemifacial pain)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010264 "Attacks of severe, strictly hemifacial pain, without head pain, lasting 2–30 minutes and occurring several or many times a day. The attacks may be associated with ipsilateral conjunctival injection, lacrimation, nasal congestion, rhinorrhoea, forehead and facial sweating, miosis, ptosis and/or eyelid oedema.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010264 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010264 "2025-07-07T17:18:22Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010264 "ICOP number: 5.3.2")
+AnnotationAssertion(rdfs:label obo:OHD_0010264 "paroxysmal hemifacial pain"@en)
+SubClassOf(obo:OHD_0010264 obo:OHD_0010260)
+
+# Class: obo:OHD_0010265 (episodic paroxysmal hemifacial pain)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010265 "Attacks of paroxysmal hemifacial pain occurring in periods lasting from 7 days to 1 year, separated by pain-free periods lasting at least 3 months.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010265 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010265 "2025-07-07T17:19:05Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010265 "ICOP number: 5.3.2.1")
+AnnotationAssertion(rdfs:label obo:OHD_0010265 "episodic paroxysmal hemifacial pain"@en)
+SubClassOf(obo:OHD_0010265 obo:OHD_0010264)
+SubClassOf(obo:OHD_0010265 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010266))
+
+# Class: obo:OHD_0010266 (episodic pain)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010266 "Pain occuring from 7 days to 1 year, separated by pain-free periods lasting at least 3 months.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010266 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010266 "2025-07-07T17:20:14Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0010266 "episodic pain"@en)
+SubClassOf(obo:OHD_0010266 obo:OGMS_0000085)
+
+# Class: obo:OHD_0010267 (chronic paroxysmal hemifacial pain)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010267 "Attacks of paroxysmal hemifacial pain occurring for more than 1 year without remission, or with remission periods lasting less than 3 months.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010267 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010267 "2025-07-07T17:22:04Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010267 "ICOP number: 5.3.2.2")
+AnnotationAssertion(rdfs:label obo:OHD_0010267 "chronic paroxysmal hemifacial pain"@en)
+SubClassOf(obo:OHD_0010267 obo:OHD_0010264)
+
+# Class: obo:OHD_0010268 (short-lasting unilateral neuralgiform facial pain attacks with cranial autonomic symptoms (SUNFA))
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010268 "Attacks of moderate or severe, strictly unilateral oral and/or facial pain, without head pain, lasting seconds to minutes, occurring at least once a day and usually associated with prominent lacrimation and redness of the ipsilateral eye and/or other local autonomic symptoms and/or signs.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010268 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010268 "2025-07-07T17:23:06Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010268 "ICOP number: 5.3.3")
+AnnotationAssertion(rdfs:label obo:OHD_0010268 "short-lasting unilateral neuralgiform facial pain attacks with cranial autonomic symptoms (SUNFA)"@en)
+SubClassOf(obo:OHD_0010268 obo:OHD_0010260)
+
+# Class: obo:OHD_0010269 (episodic SUNFA)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010269 "Attacks of SUNFA occurring in periods lasting from 7 days to 1 year, separated by pain-free periods lasting at least 3 months.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010269 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010269 "2025-07-07T17:26:23Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010269 "ICOP number: 5.3.3.1")
+AnnotationAssertion(rdfs:label obo:OHD_0010269 "episodic SUNFA"@en)
+SubClassOf(obo:OHD_0010269 obo:OHD_0010268)
+
+# Class: obo:OHD_0010270 (chronic SUNFA)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010270 "Attacks of SUNFA occurring for more than 1 year without remission, or with remission periods lasting less than 3 months.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010270 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010270 "2025-07-07T17:26:56Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010270 "ICOP number: 5.3.3.2")
+AnnotationAssertion(rdfs:label obo:OHD_0010270 "chronic SUNFA"@en)
+SubClassOf(obo:OHD_0010270 obo:OHD_0010268)
+
+# Class: obo:OHD_0010271 (hemifacial continuous pain with autonomic symptoms)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010271 "While no isolated facial equivalent of 3.4 Hemicrania continua, described in International Classification of Headache Disorders 3rd Edition,, has so far been clearly established, extension of pain into the face in hemicrania continua has been described. Thus, pain referral and/or radiation to oral and/or facial structures may cause diagnostic difficulties.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010271 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010271 "2025-07-07T17:27:44Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010271 "ICOP number: 5.3.4")
+AnnotationAssertion(rdfs:label obo:OHD_0010271 "hemifacial continuous pain with autonomic symptoms"@en)
+SubClassOf(obo:OHD_0010271 obo:OHD_0010260)
+
+# Class: obo:OHD_0010272 (neurovascular orofacial pain)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010272 "Attacks of variable duration of moderate or severe intraoral pain, without head pain, often accompanied by toothache-like symptoms, with mild autonomic and/or migrainous symptoms. Two subforms are represented by patients with relatively short attacks (1–4 hours) and those with longer attacks (>4 hours).")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010272 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010272 "2025-07-07T17:28:50Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010272 "ICOP number: 5.4")
+AnnotationAssertion(rdfs:label obo:OHD_0010272 "neurovascular orofacial pain"@en)
+SubClassOf(obo:OHD_0010272 obo:OHD_0010255)
+
+# Class: obo:OHD_0010273 (short-lasting neurovascular orofacial pain)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010273 "Neurovascular orofacial pain that lasts between 1-4 hours.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010273 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010273 "2025-07-07T17:30:01Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010273 "ICOP number: 5.4.1")
+AnnotationAssertion(rdfs:label obo:OHD_0010273 "short-lasting neurovascular orofacial pain"@en)
+SubClassOf(obo:OHD_0010273 obo:OHD_0010272)
+
+# Class: obo:OHD_0010274 (long-lasting neurovascular orofacial pain)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010274 "Neurovascular orofacial pain that lasts more than 4 hours.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010274 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010274 "2025-07-07T17:30:34Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010274 "ICOP number: 5.4.2")
+AnnotationAssertion(rdfs:label obo:OHD_0010274 "long-lasting neurovascular orofacial pain"@en)
+SubClassOf(obo:OHD_0010274 obo:OHD_0010272)
+
+# Class: obo:OHD_0010275 (idiopathic orofacial pain)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010275 "Orofacial pain involving unilateral or bilateral intraoral or facial pain in the distribution(s) of one or more branches of the trigeminal nerve(s) for which the aetiology is unknown. The pain is usually persistent, of moderate intensity, poorly localized and described as dull, pressing or of burning character.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010275 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010275 "2025-07-07T17:31:21Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010275 "ICOP number: 6")
+AnnotationAssertion(rdfs:label obo:OHD_0010275 "idiopathic orofacial pain"@en)
+SubClassOf(obo:OHD_0010275 obo:OHD_0010000)
+
+# Class: obo:OHD_0010276 (burning mouth syndrome (BMS))
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010276 "An intraoral burning or dysaesthetic sensation, recurring daily for more than 2 hours per day for more than 3 months, without evident causative lesions on clinical examination and investigation.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010276 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010276 "2025-07-07T17:32:34Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010276 "ICOP number: 6.1")
+AnnotationAssertion(rdfs:label obo:OHD_0010276 "burning mouth syndrome (BMS)"@en)
+SubClassOf(obo:OHD_0010276 obo:OHD_0010275)
+
+# Class: obo:OHD_0010277 (burning mouth syndrome without somatosensory changes)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010277 "An intraoral burning or dysaesthetic sensation, recurring daily for more than 2 hours per day for more than 3 months, unaccompanied by somatosensory changes and without evident causative lesions on clinical examination and investigation.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010277 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010277 "2025-07-07T17:33:11Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010277 "ICOP number: 6.1.1")
+AnnotationAssertion(rdfs:label obo:OHD_0010277 "burning mouth syndrome without somatosensory changes"@en)
+SubClassOf(obo:OHD_0010277 obo:OHD_0010276)
+
+# Class: obo:OHD_0010278 (burning mouth syndrome with somatosensory changes)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010278 "An intraoral burning or dysaesthetic sensation, recurring daily for more than 2 hours per day for more than 3 months and accompanied by negative and/or positive somatosensory changes, without evident causative lesion(s) on clinical examination and investigation.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010278 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010278 "2025-07-07T17:34:39Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010278 "ICOP number: 6.1.2")
+AnnotationAssertion(rdfs:label obo:OHD_0010278 "burning mouth syndrome with somatosensory changes"@en)
+SubClassOf(obo:OHD_0010278 obo:OHD_0010276)
+
+# Class: obo:OHD_0010279 (probable burning mouth syndrome)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010279 "An intraoral burning or dysaesthetic sensation, recurring daily for more than 2 hours per day but for less than 3 months, without evident causative lesions on clinical examination and investigation.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010279 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010279 "2025-07-07T17:35:50Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010279 "ICOP number: 6.1.3")
+AnnotationAssertion(rdfs:label obo:OHD_0010279 "probable burning mouth syndrome"@en)
+SubClassOf(obo:OHD_0010279 obo:OHD_0010276)
+
+# Class: obo:OHD_0010280 (persistent idiopathic facial pain (PIFP))
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010280 "Persistent facial pain, with variable features, recurring daily for more than 2 hours per day for more than 3 months, in the absence of clinical neurological deficit or preceding causative event.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010280 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010280 "2025-07-07T17:36:33Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010280 "ICOP number: 6.2")
+AnnotationAssertion(rdfs:label obo:OHD_0010280 "persistent idiopathic facial pain (PIFP)"@en)
+SubClassOf(obo:OHD_0010280 obo:OHD_0010275)
+
+# Class: obo:OHD_0010281 (persistent idiopathic facial pain without somatosensory changes)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010281 "Persistent facial pain, with variable features, recurring daily for more than 2 hours per day for more than 3 months, unaccompanied by somatosensory changes and in the absence of clinical neurological deficit or preceding causative event.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010281 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010281 "2025-07-07T17:37:25Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010281 "ICOP number: 6.2.1")
+AnnotationAssertion(rdfs:label obo:OHD_0010281 "persistent idiopathic facial pain without somatosensory changes"@en)
+SubClassOf(obo:OHD_0010281 obo:OHD_0010280)
+
+# Class: obo:OHD_0010282 (persistent idiopathic facial pain with somatosensory changes)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010282 "Persistent facial pain, with variable features, recurring daily for more than 2 hours per day for more than 3 months and accompanied by negative and/or positive somatosensory changes, in the absence of clinical neurological deficit or preceding causative event.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010282 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010282 "2025-07-07T17:38:09Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010282 "ICOP number: 6.2.2")
+AnnotationAssertion(rdfs:label obo:OHD_0010282 "persistent idiopathic facial pain with somatosensory changes"@en)
+SubClassOf(obo:OHD_0010282 obo:OHD_0010280)
+
+# Class: obo:OHD_0010283 (probable persistent idiopathic facial pain)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010283 "Facial pain, with variable features, recurring daily for more than 2 hours per day but for less than 3 months, in the absence of clinical neurological deficit or preceding causative event.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010283 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010283 "2025-07-07T17:38:41Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010283 "ICOP number: 6.2.3")
+AnnotationAssertion(rdfs:label obo:OHD_0010283 "probable persistent idiopathic facial pain"@en)
+SubClassOf(obo:OHD_0010283 obo:OHD_0010280)
+
+# Class: obo:OHD_0010284 (persistent idiopathic dentoalveolar pain)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010284 "Persistent unilateral intraoral dentoalveolar pain, rarely occurring in multiple sites, with variable features but recurring daily for more than 2 hours per day for more than 3 months, in the absence of any preceding causative event.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010284 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010284 "2025-07-07T17:39:28Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010284 "ICOP number: 6.3")
+AnnotationAssertion(rdfs:label obo:OHD_0010284 "persistent idiopathic dentoalveolar pain"@en)
+SubClassOf(obo:OHD_0010284 obo:OHD_0010275)
+
+# Class: obo:OHD_0010285 (persistent idiopathic dentoalveolar pain without somatosensory changes)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010285 "Persistent unilateral intraoral dentoalveolar pain, rarely occurring in multiple sites, with variable features, recurring daily for more than 2 hours per day for more than 3 months, unaccompanied by somatosensory changes and in the absence of any preceding causative event.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010285 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010285 "2025-07-07T17:41:16Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010285 "ICOP number: 6.3.1")
+AnnotationAssertion(rdfs:label obo:OHD_0010285 "persistent idiopathic dentoalveolar pain without somatosensory changes"@en)
+SubClassOf(obo:OHD_0010285 obo:OHD_0010284)
+
+# Class: obo:OHD_0010286 (persistent idiopathic dentoalveolar pain with somatosensory changes)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010286 "Persistent unilateral intraoral dentoalveolar pain, rarely occurring in multiple sites, with variable features, recurring daily for more than 2 hours per day for more than 3 months and accompanied by negative and/or positive somatosensory changes, in the absence of any preceding causative event.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010286 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010286 "2025-07-07T17:41:53Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010286 "ICOP number: 6.3.2")
+AnnotationAssertion(rdfs:label obo:OHD_0010286 "persistent idiopathic dentoalveolar pain with somatosensory changes"@en)
+SubClassOf(obo:OHD_0010286 obo:OHD_0010284)
+
+# Class: obo:OHD_0010287 (probable persistent idiopathic dentoalveolar pain)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010287 "Unilateral intraoral dentoalveolar pain, rarely occurring in multiple sites, with variable features, recurring daily for more than 2 hours per day but for less than 3 months, in the absence of any preceding causative event.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010287 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010287 "2025-07-07T17:42:36Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010287 "ICOP number: 6.3.3")
+AnnotationAssertion(rdfs:label obo:OHD_0010287 "probable persistent idiopathic dentoalveolar pain"@en)
+SubClassOf(obo:OHD_0010287 obo:OHD_0010284)
+
+# Class: obo:OHD_0010288 (constant unilateral facial pain with additional attacks (CUFPA))
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010288 "Constant (unremitting) dull unilateral facial pain of mild to moderate intensity, accompanied by distinct attacks of moderate to severe pain in the same location lasting 10--30 minutes. There are no typical autonomic and/or migrainoid features accompanying either the constant pain or the additional pain attacks.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010288 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010288 "2025-07-07T17:43:15Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0010288 "ICOP number: 6.4")
+AnnotationAssertion(rdfs:label obo:OHD_0010288 "constant unilateral facial pain with additional attacks (CUFPA)"@en)
+SubClassOf(obo:OHD_0010288 obo:OHD_0010275)
+
+# Class: obo:OHD_0010291 (tendonitis)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010291 "A disorder of a tendon caused by inflammation.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010291 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010291 "2025-07-07T18:48:59Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0010291 "tendonitis"@en)
+SubClassOf(obo:OHD_0010291 obo:OGMS_0000045)
 
 # Class: obo:OMRSE_00000007 (gender role)
 
