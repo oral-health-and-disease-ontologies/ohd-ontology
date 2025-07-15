@@ -31,8 +31,9 @@ These are the current imports in OHD
 | ogms | http://purl.obolibrary.org/obo/ogms.owl | None |
 | omrse | http://purl.obolibrary.org/obo/omrse.owl | None |
 | ro | http://purl.obolibrary.org/obo/ro.owl | None |
-| omo | http://purl.obolibrary.org/obo/omo/releases/2023-06-09/omo.owl | None |
-| ro | http://purl.obolibrary.org/obo/ro/releases/2023-02-22/ro.owl | None |
+| omo | http://purl.obolibrary.org/obo/omo.owl | None |
+| envo | http://purl.obolibrary.org/obo/envo.owl | None |
+| chebi | http://purl.obolibrary.org/obo/chebi.owl | None |
 
 ## Components
 Components, in contrast to imports, are considered full members of the ontology. This means that any axiom in a component is also included in the ontology base - which means it is considered _native_ to the ontology. While this sounds complicated, consider this: conceptually, no component should be part of more than one ontology. If that seems to be the case, we are most likely talking about an import. Components are often not needed for ontologies, but there are some use cases:
@@ -46,3 +47,4 @@ These are the components in OHD
 | Filename | URL |
 | -------- | --- |
 | dental_material.owl | None |
+| collaborators.owl | None |
