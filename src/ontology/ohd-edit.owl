@@ -140,12 +140,10 @@ Declaration(Class(obo:ECTO_9002146))
 Declaration(Class(obo:FMA_10474))
 Declaration(Class(obo:FMA_11356))
 Declaration(Class(obo:FMA_12277))
-Declaration(Class(obo:FMA_12516))
 Declaration(Class(obo:FMA_12769))
 Declaration(Class(obo:FMA_12770))
 Declaration(Class(obo:FMA_12776))
 Declaration(Class(obo:FMA_12779))
-Declaration(Class(obo:FMA_12823))
 Declaration(Class(obo:FMA_14069))
 Declaration(Class(obo:FMA_20932))
 Declaration(Class(obo:FMA_224416))
@@ -1381,6 +1379,8 @@ Declaration(Class(obo:OMRSE_00000007))
 Declaration(Class(obo:OMRSE_00000008))
 Declaration(Class(obo:OMRSE_00000009))
 Declaration(Class(obo:PATO_0040034))
+Declaration(Class(obo:UBERON_0001091))
+Declaration(Class(obo:UBERON_0001098))
 Declaration(Class(<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>))
 Declaration(ObjectProperty(obo:BFO_0000050))
 Declaration(ObjectProperty(obo:BFO_0000051))
@@ -1572,7 +1572,7 @@ SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasBroadSy
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:IAO_0000118)
 
-# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> (has_narrow_synonym)
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> (has narrow synonym)
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> obo:IAO_0000118)
 
@@ -1622,7 +1622,7 @@ AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000091 "Adapted from:
 Mosby's Dental Dictionary, 2nd Edition. page 580. 
 Wikipedia: http://en.wikipedia.org/wiki/Dental_restoration")
 AnnotationAssertion(rdfs:label obo:OHD_0000091 "is dental restoration of")
-ObjectPropertyRange(obo:OHD_0000091 ObjectSomeValuesFrom(obo:BFO_0000050 obo:FMA_12516))
+ObjectPropertyRange(obo:OHD_0000091 ObjectSomeValuesFrom(obo:BFO_0000050 obo:UBERON_0001091))
 
 # Object Property: obo:OHD_0000216 (next visit)
 
@@ -2070,11 +2070,6 @@ SubClassOf(obo:CDT_1000023 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000033)
 
 SubClassOf(obo:ExO_0000002 obo:BFO_0000015)
 
-# Class: obo:FMA_12516 (Tooth)
-
-AnnotationAssertion(rdfs:label obo:FMA_12516 "Tooth")
-SubClassOf(obo:FMA_12516 obo:FMA_305751)
-
 # Class: obo:FMA_24218 (Subdivision of head)
 
 AnnotationAssertion(obo:IAO_0000118 obo:FMA_24218 "Head region")
@@ -2481,8 +2476,8 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000003 "Titus Schleyer 1/14/2014: a
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000003 "PERSON:Pedro Cott")
 AnnotationAssertion(rdfs:label obo:OHD_0000003 "endodontic procedure"@en)
 EquivalentClasses(obo:OHD_0000003 ObjectIntersectionOf(obo:OHD_0000002 ObjectUnionOf(obo:OHD_0000242 obo:OHD_0000243)))
-SubClassOf(obo:OHD_0000003 ObjectSomeValuesFrom(obo:RO_0000057 obo:FMA_12516))
 SubClassOf(obo:OHD_0000003 ObjectSomeValuesFrom(obo:RO_0000057 obo:NCBITaxon_9606))
+SubClassOf(obo:OHD_0000003 ObjectSomeValuesFrom(obo:RO_0000057 obo:UBERON_0001091))
 
 # Class: obo:OHD_0000004 (tooth restoration procedure)
 
@@ -2512,7 +2507,7 @@ AnnotationAssertion(rdfs:label obo:OHD_0000004 "tooth restoration procedure"@en)
 SubClassOf(obo:OHD_0000004 obo:OHD_0000002)
 SubClassOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000007))
 SubClassOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:OBI_0000417 obo:OBI_0000434))
-SubClassOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:RO_0000057 obo:FMA_12516))
+SubClassOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:RO_0000057 obo:UBERON_0001091))
 
 # Class: obo:OHD_0000005 (surgical procedure)
 
@@ -2683,8 +2678,8 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000025 "Titus Schleyer 1/14/14: ess
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000025 "Person:Alan Ruttenberg"@en)
 AnnotationAssertion(rdfs:label obo:OHD_0000025 "hard tissue exam"@en)
 SubClassOf(obo:OHD_0000025 obo:OHD_0000019)
-SubClassOf(obo:OHD_0000025 ObjectSomeValuesFrom(obo:BFO_0000055 ObjectIntersectionOf(obo:OBI_0000067 ObjectSomeValuesFrom(obo:BFO_0000052 ObjectUnionOf(obo:FMA_12516 obo:FMA_54396)))))
-SubClassOf(obo:OHD_0000025 ObjectSomeValuesFrom(obo:RO_0000057 ObjectUnionOf(obo:FMA_12516 obo:FMA_54396)))
+SubClassOf(obo:OHD_0000025 ObjectSomeValuesFrom(obo:BFO_0000055 ObjectIntersectionOf(obo:OBI_0000067 ObjectSomeValuesFrom(obo:BFO_0000052 ObjectUnionOf(obo:FMA_54396 obo:UBERON_0001091)))))
+SubClassOf(obo:OHD_0000025 ObjectSomeValuesFrom(obo:RO_0000057 ObjectUnionOf(obo:FMA_54396 obo:UBERON_0001091)))
 
 # Class: obo:OHD_0000026 (missing tooth finding)
 
@@ -2719,7 +2714,7 @@ SubClassOf(obo:OHD_0000028 ObjectHasValue(obo:BFO_0000051 obo:OHD_0000114))
 # Class: obo:OHD_0000029 (fractured tooth)
 
 AnnotationAssertion(rdfs:label obo:OHD_0000029 "fractured tooth"@en)
-EquivalentClasses(obo:OHD_0000029 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:RO_0000053 obo:PATO_0040034)))
+EquivalentClasses(obo:OHD_0000029 ObjectIntersectionOf(obo:UBERON_0001091 ObjectSomeValuesFrom(obo:RO_0000053 obo:PATO_0040034)))
 
 # Class: obo:OHD_0000030 (fractured tooth finding)
 
@@ -2773,7 +2768,7 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000037 "Titus Schleyer 1/1/2014: ma
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000037 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000037 "direct dental material insertion process"@en)
 SubClassOf(obo:OHD_0000037 obo:OBI_0000652)
-SubClassOf(obo:OHD_0000037 ObjectSomeValuesFrom(obo:OBI_0000293 obo:FMA_12516))
+SubClassOf(obo:OHD_0000037 ObjectSomeValuesFrom(obo:OBI_0000293 obo:UBERON_0001091))
 
 # Class: obo:OHD_0000038 (dental material tooth attachment process)
 
@@ -2793,7 +2788,7 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000038 "Titus Schleyer 1/14/2014: m
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000038 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000038 "dental material tooth attachment process"@en)
 SubClassOf(obo:OHD_0000038 obo:OBI_0000652)
-SubClassOf(obo:OHD_0000038 ObjectSomeValuesFrom(obo:OBI_0000293 obo:FMA_12516))
+SubClassOf(obo:OHD_0000038 ObjectSomeValuesFrom(obo:OBI_0000293 obo:UBERON_0001091))
 
 # Class: obo:OHD_0000039 (gold filling restoration procedure)
 
@@ -2916,7 +2911,7 @@ AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000057 "Mosby. Mosby's Dental Dicti
 AnnotationAssertion(rdfs:label obo:OHD_0000057 "tooth extraction procedure")
 SubClassOf(obo:OHD_0000057 obo:OHD_0000044)
 SubClassOf(obo:OHD_0000057 ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000233))
-SubClassOf(obo:OHD_0000057 ObjectSomeValuesFrom(obo:RO_0000057 obo:FMA_12516))
+SubClassOf(obo:OHD_0000057 ObjectSomeValuesFrom(obo:RO_0000057 obo:UBERON_0001091))
 
 # Class: obo:OHD_0000058 (tooth to undergo endodontic procedure role)
 
@@ -3210,7 +3205,7 @@ SubClassOf(obo:OHD_0000090 ObjectHasValue(obo:BFO_0000051 obo:OHD_0000132))
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000093 "A dental finding that a tooth was present during a clinical exam.")
 AnnotationAssertion(rdfs:label obo:OHD_0000093 "tooth clinically present finding")
 SubClassOf(obo:OHD_0000093 obo:OHD_0000010)
-SubClassOf(obo:OHD_0000093 ObjectSomeValuesFrom(obo:IAO_0000136 obo:FMA_12516))
+SubClassOf(obo:OHD_0000093 ObjectSomeValuesFrom(obo:IAO_0000136 obo:UBERON_0001091))
 
 # Class: obo:OHD_0000094 (ceramic inlay restoration procedure)
 
@@ -3609,7 +3604,7 @@ A restored tooth typically results when a tooth with some type of pathological d
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000189 "Titus Schleyer 1/1/2014: updated definition")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000189 "Alan Ruttenberg")
 AnnotationAssertion(rdfs:label obo:OHD_0000189 "restored tooth"@en)
-EquivalentClasses(obo:OHD_0000189 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000000)))
+EquivalentClasses(obo:OHD_0000189 ObjectIntersectionOf(obo:UBERON_0001091 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000000)))
 
 # Class: obo:OHD_0000190 (dental patient role)
 
@@ -3634,8 +3629,8 @@ SubClassOf(obo:OHD_0000191 ObjectAllValuesFrom(obo:BFO_0000054 obo:OHD_0000004))
 # Class: obo:OHD_0000192 (high noble metal inlay restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000192 "An inlay restoration procedure that uses high noble metal to restore the tooth."@en)
-AnnotationAssertion(dcterms:contributor obo:OHD_0000192 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000192 "An inlay restoration procedure that uses high noble metal to restore the tooth.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000192 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(rdfs:label obo:OHD_0000192 "high noble metal inlay restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000192 ObjectIntersectionOf(obo:OHD_0000167 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000147)))
 
@@ -3689,8 +3684,8 @@ SubClassOf(obo:OHD_0000198 ObjectSomeValuesFrom(obo:BFO_0000051 ObjectUnionOf(ob
 # Class: obo:OHD_0000199 (prefabricated resin crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000199 "a resin crown restoration procedure in which the artificial crown has been produced beforehand"@en)
-AnnotationAssertion(dcterms:contributor obo:OHD_0000199 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000199 "a resin crown restoration procedure in which the artificial crown has been produced beforehand")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000199 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(rdfs:label obo:OHD_0000199 "prefabricated resin crown restoration procedure"@en)
 SubClassOf(obo:OHD_0000199 obo:OHD_0000154)
 
@@ -3763,7 +3758,7 @@ SubClassOf(obo:OHD_0000205 ObjectSomeValuesFrom(obo:OBI_0000293 ObjectUnionOf(ob
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000206 "A natural, modified or prosthetic tooth")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000206 "Alan Ruttenberg")
 AnnotationAssertion(rdfs:label obo:OHD_0000206 "functional tooth"@en)
-EquivalentClasses(obo:OHD_0000206 ObjectUnionOf(obo:FMA_12516 obo:OHD_0000189 obo:OHD_0000302))
+EquivalentClasses(obo:OHD_0000206 ObjectUnionOf(obo:OHD_0000189 obo:OHD_0000302 obo:UBERON_0001091))
 SubClassOf(obo:OHD_0000206 obo:OBI_0000047)
 
 # Class: obo:OHD_0000207 (tooth surface to be restored role)
@@ -3921,7 +3916,7 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000231 "Bill Duncan 12/29/2016:
 The intent of this class is to represent teeth that have undergone some kind of surgical procedure, but which are not restored in the sense of having dental restoration material placed in them; e.g, a pulp debridement procedure.")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000231 "2022-12-06T02:12:10Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000231 "surgically modified tooth"@en)
-EquivalentClasses(obo:OHD_0000231 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:OBI_0000312 obo:OHD_0000044)))
+EquivalentClasses(obo:OHD_0000231 ObjectIntersectionOf(obo:UBERON_0001091 ObjectSomeValuesFrom(obo:OBI_0000312 obo:OHD_0000044)))
 
 # Class: obo:OHD_0000232 (pulpal debridement procedure)
 
@@ -3942,7 +3937,7 @@ This class represents those teeth which are extracted from a patient. After all,
 This class provides us with a convient way to represent those teeth that have been extracted.")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000233 "2022-12-06T02:15:20Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000233 "extracted tooth"@en)
-EquivalentClasses(obo:OHD_0000233 ObjectIntersectionOf(obo:FMA_12516 ObjectSomeValuesFrom(obo:OBI_0000295 obo:OHD_0000057)))
+EquivalentClasses(obo:OHD_0000233 ObjectIntersectionOf(obo:UBERON_0001091 ObjectSomeValuesFrom(obo:OBI_0000295 obo:OHD_0000057)))
 
 # Class: obo:OHD_0000235 (restored facial surface)
 
@@ -4133,7 +4128,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000260 "A disorder that is part of 
 AnnotationAssertion(dcterms:contributor obo:OHD_0000260 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000260 "2023-06-06T21:30:39Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000260 "tooth disorder"@en)
-EquivalentClasses(obo:OHD_0000260 ObjectIntersectionOf(obo:OHD_0000414 ObjectSomeValuesFrom(obo:FMA_85848 obo:FMA_12516)))
+EquivalentClasses(obo:OHD_0000260 ObjectIntersectionOf(obo:OHD_0000414 ObjectSomeValuesFrom(obo:FMA_85848 obo:UBERON_0001091)))
 
 # Class: obo:OHD_0000261 (tooth abfraction lesion)
 
@@ -4242,7 +4237,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000274 "A process during which the 
 AnnotationAssertion(dcterms:created obo:OHD_0000274 "2023-06-08T16:56:25Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000274 "tooth cleaning process"@en)
 SubClassOf(obo:OHD_0000274 obo:BFO_0000015)
-SubClassOf(obo:OHD_0000274 ObjectSomeValuesFrom(obo:RO_0000057 obo:FMA_12516))
+SubClassOf(obo:OHD_0000274 ObjectSomeValuesFrom(obo:RO_0000057 obo:UBERON_0001091))
 
 # Class: obo:OHD_0000275 (toothbrushing)
 
@@ -4312,7 +4307,7 @@ SubClassOf(obo:OHD_0000281 obo:OHD_0000301)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000282 "A process during which the tooth is affected by an abrasive material.")
 AnnotationAssertion(dcterms:created obo:OHD_0000282 "2023-06-09T16:17:51Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000282 "tooth abrasive process"@en)
-EquivalentClasses(obo:OHD_0000282 ObjectIntersectionOf(obo:BFO_0000015 ObjectSomeValuesFrom(obo:RO_0000057 obo:FMA_12516) ObjectSomeValuesFrom(obo:RO_0000057 obo:OHD_0000284)))
+EquivalentClasses(obo:OHD_0000282 ObjectIntersectionOf(obo:BFO_0000015 ObjectSomeValuesFrom(obo:RO_0000057 obo:OHD_0000284) ObjectSomeValuesFrom(obo:RO_0000057 obo:UBERON_0001091)))
 
 # Class: obo:OHD_0000283 (subperiosteal implant framework)
 
@@ -4500,8 +4495,8 @@ SubClassOf(obo:OHD_0000306 obo:OHD_0000349)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000307 "A tooth that is either an incisor or a canine.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000307 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000307 "Anterior Tooth")
-EquivalentClasses(obo:OHD_0000307 ObjectUnionOf(obo:FMA_12823 obo:FMA_55636))
-SubClassOf(obo:OHD_0000307 obo:FMA_12516)
+EquivalentClasses(obo:OHD_0000307 ObjectUnionOf(obo:FMA_55636 obo:UBERON_0001098))
+SubClassOf(obo:OHD_0000307 obo:UBERON_0001091)
 
 # Class: obo:OHD_0000308 (Posterior Tooth)
 
@@ -4509,7 +4504,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000308 "A tooth that is either a mo
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000308 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000308 "Posterior Tooth")
 EquivalentClasses(obo:OHD_0000308 ObjectUnionOf(obo:FMA_55637 obo:FMA_55638))
-SubClassOf(obo:OHD_0000308 obo:FMA_12516)
+SubClassOf(obo:OHD_0000308 obo:UBERON_0001091)
 
 # Class: obo:OHD_0000309 (dental implant retainer attachement procedure for ceramic fixed partial denture)
 
