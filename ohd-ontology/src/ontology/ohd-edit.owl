@@ -1649,6 +1649,7 @@ Declaration(Class(obo:OHD_0010286))
 Declaration(Class(obo:OHD_0010287))
 Declaration(Class(obo:OHD_0010288))
 Declaration(Class(obo:OHD_0010289))
+Declaration(Class(obo:OHD_0010290))
 Declaration(Class(obo:OHD_0010291))
 Declaration(Class(obo:OHD_0010292))
 Declaration(Class(obo:OHD_0010293))
@@ -7937,7 +7938,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0010101 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0010101 "2025-06-16T18:37:16Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010101 "periodontitis due to periodontal disease"@en)
 SubClassOf(obo:OHD_0010101 obo:OHD_0010070)
-SubClassOf(obo:OHD_0010101 ObjectSomeValuesFrom(obo:RO_0002410 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010100)))
+SubClassOf(obo:OHD_0010101 ObjectSomeValuesFrom(obo:RO_0002410 obo:OHD_0010290))
 
 # Class: obo:OHD_0010102 (periodontal pain due to periodontal disease)
 
@@ -9815,6 +9816,16 @@ AnnotationAssertion(dcterms:created obo:OHD_0010289 "2025-07-14T15:26:18Z"^^xsd:
 AnnotationAssertion(rdfs:label obo:OHD_0010289 "inflammation"@en)
 EquivalentClasses(obo:OHD_0010289 ObjectIntersectionOf(obo:OGMS_0000045 ObjectSomeValuesFrom(obo:RO_0002353 obo:GO_0006954)))
 SubClassOf(obo:OHD_0010289 obo:OGMS_0000045)
+
+# Class: obo:OHD_0010290 (periodontal disease course)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010290 "A disease course in which periodontal disease is realized.")
+AnnotationAssertion(dc:contributor obo:OHD_0010290 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dc:contributor obo:OHD_0010290 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0010290 <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(dcterms:created obo:OHD_0010290 "2025-07-16T14:31:57Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0010290 "periodontal disease course"@en)
+SubClassOf(obo:OHD_0010290 obo:OGMS_0000063)
 
 # Class: obo:OHD_0010291 (tendonitis)
 
