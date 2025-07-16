@@ -7,10 +7,15 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 
 
 Ontology(<http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>
-<http://purl.obolibrary.org/obo/ohd/imports/2025-06-28/go_import.owl>
+<http://purl.obolibrary.org/obo/ohd/imports/2025-07-16/go_import.owl>
 
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0001662>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0002209>))
+Declaration(Class(<http://purl.obolibrary.org/obo/GO_0002376>))
+Declaration(Class(<http://purl.obolibrary.org/obo/GO_0002437>))
+Declaration(Class(<http://purl.obolibrary.org/obo/GO_0002438>))
+Declaration(Class(<http://purl.obolibrary.org/obo/GO_0002524>))
+Declaration(Class(<http://purl.obolibrary.org/obo/GO_0002526>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0003008>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0003012>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0003013>))
@@ -20,6 +25,9 @@ Declaration(Class(<http://purl.obolibrary.org/obo/GO_0006810>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0006936>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0006950>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0006952>))
+Declaration(Class(<http://purl.obolibrary.org/obo/GO_0006954>))
+Declaration(Class(<http://purl.obolibrary.org/obo/GO_0006955>))
+Declaration(Class(<http://purl.obolibrary.org/obo/GO_0007585>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0007610>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0008150>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0032501>))
@@ -31,11 +39,15 @@ Declaration(Class(<http://purl.obolibrary.org/obo/GO_0046903>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0050896>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0051179>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0051234>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/BFO_0000050>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/BFO_0000051>))
+Declaration(ObjectProperty(owl:topObjectProperty))
 Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0000115>))
 Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0000233>))
 Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#created_by>))
 Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#creation_date>))
 Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasAlternativeId>))
+Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym>))
 Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasDbXref>))
 Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym>))
 Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym>))
@@ -83,6 +95,11 @@ AnnotationAssertion(rdfs:label <http://www.geneontology.org/formats/oboInOwl#cre
 AnnotationAssertion(rdfs:isDefinedBy <http://www.geneontology.org/formats/oboInOwl#hasAlternativeId> <http://purl.obolibrary.org/obo/go.owl>)
 AnnotationAssertion(rdfs:label <http://www.geneontology.org/formats/oboInOwl#hasAlternativeId> "has_alternative_id")
 
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> (has_broad_synonym)
+
+AnnotationAssertion(rdfs:isDefinedBy <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> <http://purl.obolibrary.org/obo/go.owl>)
+AnnotationAssertion(rdfs:label <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> "has_broad_synonym")
+
 # Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasDbXref> (<http://www.geneontology.org/formats/oboInOwl#hasDbXref>)
 
 AnnotationAssertion(rdfs:isDefinedBy <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/go.owl>)
@@ -94,7 +111,7 @@ AnnotationAssertion(rdfs:label <http://www.geneontology.org/formats/oboInOwl#has
 
 # Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> (has_narrow_synonym)
 
-AnnotationAssertion(rdfs:isDefinedBy <http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> <http://purl.obolibrary.org/obo/go.owl>)
 AnnotationAssertion(rdfs:label <http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> "has_narrow_synonym")
 
 # Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> (has_obo_namespace)
@@ -131,6 +148,31 @@ AnnotationAssertion(rdfs:isDefinedBy <http://www.geneontology.org/formats/oboInO
 AnnotationAssertion(rdfs:label <http://www.geneontology.org/formats/oboInOwl#shorthand> "shorthand")
 
 
+############################
+#   Object Properties
+############################
+
+# Object Property: <http://purl.obolibrary.org/obo/BFO_0000050> (part of)
+
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/BFO_0000050> "BFO:0000050")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/BFO_0000050> "external")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/BFO_0000050> "part_of")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#shorthand> <http://purl.obolibrary.org/obo/BFO_0000050> "part_of")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/BFO_0000050> <http://purl.obolibrary.org/obo/go.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/BFO_0000050> "part of")
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/BFO_0000050> owl:topObjectProperty)
+
+# Object Property: <http://purl.obolibrary.org/obo/BFO_0000051> (has part)
+
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/BFO_0000051> "BFO:0000051")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/BFO_0000051> "external")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/BFO_0000051> "has_part")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#shorthand> <http://purl.obolibrary.org/obo/BFO_0000051> "has_part")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/BFO_0000051> <http://purl.obolibrary.org/obo/go.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/BFO_0000051> "has part")
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/BFO_0000051> owl:topObjectProperty)
+
+
 
 ############################
 #   Classes
@@ -158,13 +200,70 @@ AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0002209> "beha
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0002209> <http://purl.obolibrary.org/obo/GO_0006952>)
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0002209> <http://purl.obolibrary.org/obo/GO_0007610>)
 
+# Class: <http://purl.obolibrary.org/obo/GO_0002376> (immune system process)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:add") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GO_REF:0000022") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0002376> "Any process involved in the development or functioning of the immune system, an organismal system for calibrated responses to potential internal or invasive threats.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/GO_0002376> "Wikipedia:Immune_system")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0002376> "biological_process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0002376> "GO:0002376")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0002376> <http://purl.obolibrary.org/obo/go#goslim_agr>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0002376> <http://purl.obolibrary.org/obo/go#goslim_chembl>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0002376> <http://purl.obolibrary.org/obo/go#goslim_flybase_ribbon>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0002376> <http://purl.obolibrary.org/obo/go#goslim_generic>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0002376> <http://purl.obolibrary.org/obo/go#goslim_mouse>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0002376> <http://purl.obolibrary.org/obo/go#goslim_pir>)
+AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/GO_0002376> "Note that this term is a direct child of 'biological_process ; GO:0008150' because some immune system processes are types of cellular process (GO:0009987), whereas others are types of multicellular organism process (GO:0032501).")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0002376> <http://purl.obolibrary.org/obo/go.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0002376> "immune system process")
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0002376> <http://purl.obolibrary.org/obo/GO_0008150>)
+
+# Class: <http://purl.obolibrary.org/obo/GO_0002437> (inflammatory response to antigenic stimulus)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:add") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "ISBN:0781735149") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0002437> "An inflammatory response to an antigenic stimulus, which can be include any number of T cell or B cell epitopes.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0002437> "biological_process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0002437> "GO:0002437")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0002437> <http://purl.obolibrary.org/obo/go.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0002437> "inflammatory response to antigenic stimulus")
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0002437> <http://purl.obolibrary.org/obo/GO_0006954>)
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0002437> <http://purl.obolibrary.org/obo/GO_0006955>)
+
+# Class: <http://purl.obolibrary.org/obo/GO_0002438> (acute inflammatory response to antigenic stimulus)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:add") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GO_REF:0000022") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "ISBN:0781735149") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0002438> "An acute inflammatory response to an antigenic stimulus. An acute inflammatory response occurs within a matter of minutes or hours, and either resolves within a few days or becomes a chronic inflammatory response.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0002438> "biological_process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0002438> "GO:0002438")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0002438> <http://purl.obolibrary.org/obo/go.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0002438> "acute inflammatory response to antigenic stimulus")
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0002438> <http://purl.obolibrary.org/obo/GO_0002437>)
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0002438> <http://purl.obolibrary.org/obo/GO_0002526>)
+
+# Class: <http://purl.obolibrary.org/obo/GO_0002524> (hypersensitivity)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:jal") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "ISBN:0781735149") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0002524> "An inflammatory response to an exogenous environmental antigen or an endogenous antigen initiated by the adaptive immune system.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/GO_0002524> "Wikipedia:Hypersensitivity")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0002524> "biological_process")
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "ISBN:0781735149") <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/GO_0002524> "hypersensitivity response")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0002524> "GO:0002524")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0002524> <http://purl.obolibrary.org/obo/go.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0002524> "hypersensitivity")
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0002524> <http://purl.obolibrary.org/obo/GO_0002438>)
+
+# Class: <http://purl.obolibrary.org/obo/GO_0002526> (acute inflammatory response)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:add") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GO_REF:0000022") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "ISBN:0781735149") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0002526> "Inflammation which comprises a rapid, short-lived, relatively uniform response to acute injury or antigenic challenge and is characterized by accumulations of fluid, plasma proteins, and granulocytic leukocytes. An acute inflammatory response occurs within a matter of minutes or hours, and either resolves within a few days or becomes a chronic inflammatory response.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0002526> "biological_process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0002526> "GO:0002526")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0002526> <http://purl.obolibrary.org/obo/go.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0002526> "acute inflammatory response")
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0002526> <http://purl.obolibrary.org/obo/GO_0006954>)
+
 # Class: <http://purl.obolibrary.org/obo/GO_0003008> (system process)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:mtg_cardio") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0003008> "A multicellular organismal process carried out by any of the organs or tissues in an organ system. An organ system is a regularly interacting or interdependent group of organs or tissues that work together to carry out a biological objective.")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/GO_0003008> "organ system process")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0003008> "biological_process")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0003008> "GO:0003008")
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0003008> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0003008> <http://purl.obolibrary.org/obo/go.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0003008> "system process")
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0003008> <http://purl.obolibrary.org/obo/GO_0032501>)
 
@@ -176,7 +275,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasRelatedSyno
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0003012> "GO:0003012")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0003012> <http://purl.obolibrary.org/obo/go#goslim_drosophila>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0003012> <http://purl.obolibrary.org/obo/go#goslim_generic>)
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0003012> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0003012> <http://purl.obolibrary.org/obo/go.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0003012> "muscle system process")
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0003012> <http://purl.obolibrary.org/obo/GO_0003008>)
 
@@ -188,7 +287,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespac
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0003013> "GO:0003013")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0003013> <http://purl.obolibrary.org/obo/go#goslim_chembl>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0003013> <http://purl.obolibrary.org/obo/go#goslim_generic>)
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0003013> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0003013> <http://purl.obolibrary.org/obo/go.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0003013> "circulatory system process")
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0003013> <http://purl.obolibrary.org/obo/GO_0003008>)
 
@@ -198,7 +297,7 @@ AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#has
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0003015> "biological_process")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/GO_0003015> "cardiac process")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0003015> "GO:0003015")
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0003015> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0003015> <http://purl.obolibrary.org/obo/go.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0003015> "heart process")
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0003015> <http://purl.obolibrary.org/obo/GO_0003013>)
 
@@ -210,7 +309,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynony
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0003016> "biological_process")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0003016> "GO:0003016")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0003016> <http://purl.obolibrary.org/obo/go#goslim_generic>)
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0003016> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0003016> <http://purl.obolibrary.org/obo/go.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0003016> "respiratory system process")
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0003016> <http://purl.obolibrary.org/obo/GO_0003008>)
 
@@ -237,7 +336,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <htt
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0006810> <http://purl.obolibrary.org/obo/go#goslim_prokaryote>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0006810> <http://purl.obolibrary.org/obo/go#goslim_prokaryote_ribbon>)
 AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/GO_0006810> "Note that this term should not be used for direct annotation. It should be possible to make a more specific annotation to one of the children of this term, for e.g. to transmembrane transport, to microtubule-based transport or to vesicle-mediated transport.")
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0006810> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0006810> <http://purl.obolibrary.org/obo/go.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0006810> "transport")
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0006810> <http://purl.obolibrary.org/obo/GO_0051234>)
 
@@ -249,7 +348,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <ht
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0006936> "biological_process")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0006936> "GO:0006936")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0006936> <http://purl.obolibrary.org/obo/go#goslim_pir>)
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0006936> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0006936> <http://purl.obolibrary.org/obo/go.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0006936> "muscle contraction")
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0006936> <http://purl.obolibrary.org/obo/GO_0003012>)
 
@@ -285,6 +384,41 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://pu
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0006952> <http://purl.obolibrary.org/obo/go.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0006952> "defense response")
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0006952> <http://purl.obolibrary.org/obo/GO_0006950>)
+
+# Class: <http://purl.obolibrary.org/obo/GO_0006954> (inflammatory response)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GO_REF:0000022") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "ISBN:0198506732") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0006954> "The immediate defensive reaction (by vertebrate tissue) to infection or injury caused by chemical or physical agents. The process is characterized by local vasodilation, extravasation of plasma into intercellular spaces and accumulation of white blood cells and macrophages.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> <http://purl.obolibrary.org/obo/GO_0006954> "inflammation")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/GO_0006954> "Wikipedia:Inflammation")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0006954> "biological_process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0006954> "GO:0006954")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0006954> <http://purl.obolibrary.org/obo/go#goslim_generic>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0006954> <http://purl.obolibrary.org/obo/go.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0006954> "inflammatory response")
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0006954> <http://purl.obolibrary.org/obo/GO_0006952>)
+
+# Class: <http://purl.obolibrary.org/obo/GO_0006955> (immune response)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:add") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GO_REF:0000022") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0006955> "Any immune system process that functions in the calibrated response of an organism to a potential internal or invasive threat.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0006955> "biological_process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0006955> "GO:0006955")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0006955> <http://purl.obolibrary.org/obo/go#goslim_drosophila>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0006955> <http://purl.obolibrary.org/obo/go.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0006955> "immune response")
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0006955> <http://purl.obolibrary.org/obo/GO_0002376>)
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0006955> <http://purl.obolibrary.org/obo/GO_0050896>)
+
+# Class: <http://purl.obolibrary.org/obo/GO_0007585> (respiratory gaseous exchange by respiratory system)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "ISBN:0198506732") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0007585> "The process of gaseous exchange between an organism and its environment. In plants, microorganisms, and many small animals, air or water makes direct contact with the organism's cells or tissue fluids, and the processes of diffusion supply the organism with dioxygen (O2) and remove carbon dioxide (CO2). In larger animals the efficiency of gaseous exchange is improved by specialized respiratory organs, such as lungs and gills, which are ventilated by breathing mechanisms.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> <http://purl.obolibrary.org/obo/GO_0007585> "breathing")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> <http://purl.obolibrary.org/obo/GO_0007585> "respiration")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0007585> "biological_process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0007585> "GO:0007585")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0007585> <http://purl.obolibrary.org/obo/go#goslim_chembl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0007585> <http://purl.obolibrary.org/obo/go.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0007585> "respiratory gaseous exchange by respiratory system")
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0007585> <http://purl.obolibrary.org/obo/GO_0032501>)
 
 # Class: <http://purl.obolibrary.org/obo/GO_0007610> (behavior)
 
@@ -363,7 +497,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynony
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0032941> "biological_process")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:mah") <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/GO_0032941> "expulsion of gland contents")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0032941> "GO:0032941")
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0032941> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0032941> <http://purl.obolibrary.org/obo/go.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0032941> "secretion by tissue")
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0032941> <http://purl.obolibrary.org/obo/GO_0032501>)
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0032941> <http://purl.obolibrary.org/obo/GO_0046903>)
@@ -385,7 +519,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespac
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0040011> "GO:0040011")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0040011> <http://purl.obolibrary.org/obo/go#goslim_chembl>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0040011> <http://purl.obolibrary.org/obo/go#goslim_pir>)
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0040011> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0040011> <http://purl.obolibrary.org/obo/go.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0040011> "locomotion")
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0040011> <http://purl.obolibrary.org/obo/GO_0008150>)
 
@@ -406,7 +540,7 @@ AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#has
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0046903> "biological_process")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0046903> "GO:0046903")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0046903> <http://purl.obolibrary.org/obo/go#goslim_pir>)
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0046903> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0046903> <http://purl.obolibrary.org/obo/go.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0046903> "secretion")
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0046903> <http://purl.obolibrary.org/obo/GO_0006810>)
 
@@ -448,7 +582,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasRelatedSyno
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0051179> "GO:0051179")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0051179> <http://purl.obolibrary.org/obo/go#gocheck_do_not_annotate>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0051179> <http://purl.obolibrary.org/obo/go#goslim_pir>)
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0051179> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0051179> <http://purl.obolibrary.org/obo/go.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0051179> "localization")
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0051179> <http://purl.obolibrary.org/obo/GO_0008150>)
 
@@ -464,7 +598,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <htt
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0051234> <http://purl.obolibrary.org/obo/go#goslim_flybase_ribbon>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0051234> <http://purl.obolibrary.org/obo/go#goslim_mouse>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0051234> <http://purl.obolibrary.org/obo/go#goslim_pir>)
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0051234> <http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0051234> <http://purl.obolibrary.org/obo/go.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0051234> "establishment of localization")
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0051234> <http://purl.obolibrary.org/obo/GO_0051179>)
 

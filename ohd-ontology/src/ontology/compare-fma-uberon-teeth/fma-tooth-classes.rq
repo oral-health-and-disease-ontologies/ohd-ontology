@@ -1,0 +1,12 @@
+prefix obo: <http://purl.obolibrary.org/obo/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+
+select ?curie ?label ?fma_id where {
+    ?iri rdfs:subClassOf* obo:FMA_12516;
+         rdfs:label ?label .
+	
+	bind(strafter(str(?iri), "http://purl.obolibrary.org/obo/") as ?suffix_id)
+	bind(replace(?suffix_id, "FMA_", "FMA:") as ?fma_id)
+	bind(concat("obo:", ?suffix_id) as ?curie)
+}
+
