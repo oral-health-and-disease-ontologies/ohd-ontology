@@ -6899,7 +6899,7 @@ EquivalentClasses(obo:OHD_0008020 ObjectIntersectionOf(obo:OHD_0008011 ObjectSom
 EquivalentClasses(obo:OHD_0008020 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:OHD_0008046 obo:OHD_0005005)))
 SubClassOf(obo:OHD_0008020 obo:OHD_0008011)
 
-# Class: obo:OHD_0008021 (question assessing health encounter avoidance behavior)
+# Class: obo:OHD_0008021 (health encounter avoidance question)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008021 "A question that assesses some avoidance behavior directed at a health encounter."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008021 <https://orcid.org/0009-0002-7282-0836>)
@@ -6911,7 +6911,7 @@ EquivalentClasses(obo:OHD_0008021 ObjectIntersectionOf(obo:OHD_0008020 ObjectSom
 EquivalentClasses(obo:OHD_0008021 ObjectIntersectionOf(obo:OHD_0008020 ObjectSomeValuesFrom(obo:OHD_0008046 obo:OHD_0005006)))
 SubClassOf(obo:OHD_0008021 obo:OHD_0008020)
 
-# Class: obo:OHD_0008022 (question assessing dental visit avoidance behavior)
+# Class: obo:OHD_0008022 (dental visit avoidance question)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008022 "A question that assesses some avoidance behavior directed at a dental visit."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008022 <https://orcid.org/0009-0002-7282-0836>)
@@ -7058,16 +7058,13 @@ AnnotationAssertion(dcterms:created obo:OHD_0008036 "2025-03-28T12:48:08Z"^^xsd:
 AnnotationAssertion(dcterms:created obo:OHD_0008036 "2025-05-14T01:29:07Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008036 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008036 "feeling needle injection"@en)
-AnnotationAssertion(rdfs:label obo:OHD_0008036 "question about dental visit phase"@en)
 SubClassOf(obo:OHD_0008036 obo:MF_0000056)
 
 # Class: obo:OHD_0008037 (prior to dental visit)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008037 "A touching process in which vibrations from a dental drill are perceived."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008037 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008037 "2025-03-28T12:50:59Z"^^xsd:dateTime)
 AnnotationAssertion(dcterms:created obo:OHD_0008037 "2025-05-14T01:31:15Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0008037 "feeling dental drill vibrations"@en)
 AnnotationAssertion(rdfs:label obo:OHD_0008037 "prior to dental visit"@en)
 SubClassOf(obo:OHD_0008037 obo:OHD_0000009)
 
@@ -7102,8 +7099,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0008041 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0008041 "2025-03-28T12:54:40Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008041 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008041 "question about prior to dental visit"@en)
-EquivalentClasses(obo:OHD_0008041 ObjectIntersectionOf(obo:OHD_0008036 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008037)))
-SubClassOf(obo:OHD_0008041 obo:OHD_0008036)
+SubClassOf(obo:OHD_0008041 obo:OHD_0008011)
+SubClassOf(obo:OHD_0008041 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008037))
 
 # Class: obo:OHD_0008042 (question about during dental visit)
 
@@ -7119,8 +7116,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0008043 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0008043 "2025-03-28T12:57:13Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008043 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008043 "question about after dental visit"@en)
-EquivalentClasses(obo:OHD_0008043 ObjectIntersectionOf(obo:OHD_0008036 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008040)))
-SubClassOf(obo:OHD_0008043 obo:OHD_0008036)
+SubClassOf(obo:OHD_0008043 obo:OHD_0008011)
+SubClassOf(obo:OHD_0008043 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008040))
 
 # Class: obo:OHD_0008044 (question about dental procedure)
 
