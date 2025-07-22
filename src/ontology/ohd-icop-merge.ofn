@@ -1331,7 +1331,6 @@ Declaration(Class(obo:OHD_0005005))
 Declaration(Class(obo:OHD_0005006))
 Declaration(Class(obo:OHD_0005007))
 Declaration(Class(obo:OHD_0005010))
-Declaration(Class(obo:OHD_0005011))
 Declaration(Class(obo:OHD_0005012))
 Declaration(Class(obo:OHD_0005013))
 Declaration(Class(obo:OHD_0005014))
@@ -1380,9 +1379,7 @@ Declaration(Class(obo:OHD_0008042))
 Declaration(Class(obo:OHD_0008043))
 Declaration(Class(obo:OHD_0008044))
 Declaration(Class(obo:OHD_0008047))
-Declaration(Class(obo:OHD_0008048))
 Declaration(Class(obo:OHD_0008049))
-Declaration(Class(obo:OHD_0008050))
 Declaration(Class(obo:OHD_0008051))
 Declaration(Class(obo:OHD_0008052))
 Declaration(Class(obo:OHD_0010000))
@@ -1716,7 +1713,6 @@ Declaration(ObjectProperty(obo:OHD_0000091))
 Declaration(ObjectProperty(obo:OHD_0000216))
 Declaration(ObjectProperty(obo:OHD_0000217))
 Declaration(ObjectProperty(obo:OHD_0008045))
-Declaration(ObjectProperty(obo:OHD_0008046))
 Declaration(ObjectProperty(obo:OHD_0017000))
 Declaration(ObjectProperty(obo:RO_0000087))
 Declaration(ObjectProperty(obo:RO_0002354))
@@ -1816,7 +1812,6 @@ Declaration(AnnotationProperty(obo:OHD_0000092))
 Declaration(AnnotationProperty(obo:OHD_0000209))
 Declaration(AnnotationProperty(obo:OHD_0000273))
 Declaration(AnnotationProperty(obo:OHD_0005009))
-Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/http://www.geneontology.org/formats/oboInOwl#SubsetProperty>))
 Declaration(AnnotationProperty(dc:creator))
 Declaration(AnnotationProperty(dc:date))
 Declaration(AnnotationProperty(dc:source))
@@ -1868,12 +1863,7 @@ AnnotationAssertion(rdfs:label obo:OHD_0000209 "duplicated"@en)
 # Annotation Property: obo:OHD_0005009 (dental fear and anxiety)
 
 AnnotationAssertion(rdfs:label obo:OHD_0005009 "dental fear and anxiety"@en)
-SubAnnotationPropertyOf(obo:OHD_0005009 <http://purl.obolibrary.org/obo/http://www.geneontology.org/formats/oboInOwl#SubsetProperty>)
 SubAnnotationPropertyOf(obo:OHD_0005009 <http://www.geneontology.org/formats/oboInOwl#SubsetProperty>)
-
-# Annotation Property: <http://purl.obolibrary.org/obo/http://www.geneontology.org/formats/oboInOwl#SubsetProperty> (subset_property)
-
-AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/http://www.geneontology.org/formats/oboInOwl#SubsetProperty> "subset_property"@en)
 
 # Annotation Property: dcterms:contributor (contributor)
 
@@ -1971,13 +1961,6 @@ TransitiveObjectProperty(obo:OHD_0000217)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008045 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008045 "2025-04-04T00:42:44Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0008045 "based on information in"@en)
-
-# Object Property: obo:OHD_0008046 (assesses behavior)
-
-AnnotationAssertion(dcterms:contributor obo:OHD_0008046 <https://orcid.org/0009-0002-7282-0836>)
-AnnotationAssertion(dcterms:created obo:OHD_0008046 "2025-04-04T01:13:53Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0008046 "assesses behavior"@en)
-SubObjectPropertyOf(obo:OHD_0008046 obo:IAO_0000136)
 
 # Object Property: obo:OHD_0017000 (symptom of)
 
@@ -4946,11 +4929,11 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date>
 AnnotationAssertion(rdfs:label obo:OHD_0000294 "ceramic implant crown"@en)
 SubClassOf(obo:OHD_0000294 obo:OHD_0000280)
 
-# Class: obo:OHD_0000295 (porcelain fused to metal impant crown)
+# Class: obo:OHD_0000295 (porcelain fused to metal implant crown)
 
 AnnotationAssertion(dcterms:contributor obo:OHD_0000295 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000295 "2022-12-06T04:32:56Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0000295 "porcelain fused to metal impant crown"@en)
+AnnotationAssertion(rdfs:label obo:OHD_0000295 "porcelain fused to metal implant crown"@en)
 SubClassOf(obo:OHD_0000295 obo:OHD_0000280)
 
 # Class: obo:OHD_0000296 (dental implant crown attachment procedure)
@@ -6010,11 +5993,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000421 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000421 "2025-02-15T18:42:53Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000421 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000421 "DFS 01. Has fear of dental work ever caused you to put off making an appointment?"@en)
-EquivalentClasses(obo:OHD_0000421 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000421))
 SubClassOf(obo:OHD_0000421 obo:OHD_0008010)
 SubClassOf(obo:OHD_0000421 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005012))
-SubClassOf(obo:OHD_0000421 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008037))
-SubClassOf(obo:OHD_0000421 ObjectSomeValuesFrom(obo:OHD_0008046 obo:OHD_0005012))
 
 # Class: obo:OHD_0000422 (DFS 02. Has fear of dental work ever caused you to cancel or not appear for an appointment?)
 
@@ -6024,11 +6004,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000422 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000422 "2025-02-15T18:43:08Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000422 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000422 "DFS 02. Has fear of dental work ever caused you to cancel or not appear for an appointment?"@en)
-EquivalentClasses(obo:OHD_0000422 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000422))
 SubClassOf(obo:OHD_0000422 obo:OHD_0008010)
 SubClassOf(obo:OHD_0000422 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005013))
-SubClassOf(obo:OHD_0000422 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008037))
-SubClassOf(obo:OHD_0000422 ObjectSomeValuesFrom(obo:OHD_0008046 obo:OHD_0005013))
 
 # Class: obo:OHD_0000423 (DFS 03. My muscles become tense.)
 
@@ -6038,11 +6015,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000423 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000423 "2025-02-15T18:43:22Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000423 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000423 "DFS 03. My muscles become tense."@en)
-EquivalentClasses(obo:OHD_0000423 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000423))
 SubClassOf(obo:OHD_0000423 obo:OHD_0008010)
 SubClassOf(obo:OHD_0000423 ObjectSomeValuesFrom(obo:IAO_0000136 obo:GO_0006936))
-SubClassOf(obo:OHD_0000423 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
-SubClassOf(obo:OHD_0000423 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008048))
 
 # Class: obo:OHD_0000424 (DFS 04. My breathing rate increases.)
 
@@ -6052,9 +6026,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000424 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000424 "2025-02-15T18:43:32Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000424 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000424 "DFS 04. My breathing rate increases."@en)
-EquivalentClasses(obo:OHD_0000424 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000424))
 SubClassOf(obo:OHD_0000424 obo:OHD_0008010)
-SubClassOf(obo:OHD_0000424 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
 SubClassOf(obo:OHD_0000424 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008049))
 
 # Class: obo:OHD_0000425 (data field)
@@ -6074,10 +6046,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000426 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000426 "2025-02-15T18:51:13Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000426 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000426 "DFS 05. I perspire."@en)
-EquivalentClasses(obo:OHD_0000426 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000426))
 SubClassOf(obo:OHD_0000426 obo:OHD_0008010)
-SubClassOf(obo:OHD_0000426 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
-SubClassOf(obo:OHD_0000426 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008050))
 
 # Class: obo:OHD_0000427 (DFS 06. I feel nauseated and sick to my stomach.)
 
@@ -6087,9 +6056,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000427 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000427 "2025-02-15T18:51:33Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000427 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000427 "DFS 06. I feel nauseated and sick to my stomach."@en)
-EquivalentClasses(obo:OHD_0000427 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000427))
 SubClassOf(obo:OHD_0000427 obo:OHD_0008010)
-SubClassOf(obo:OHD_0000427 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
 SubClassOf(obo:OHD_0000427 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008051))
 
 # Class: obo:OHD_0000428 (DFS 07. My heart beats faster.)
@@ -6100,9 +6067,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000428 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000428 "2025-02-15T18:52:23Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000428 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000428 "DFS 07. My heart beats faster."@en)
-EquivalentClasses(obo:OHD_0000428 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000428))
 SubClassOf(obo:OHD_0000428 obo:OHD_0008010)
-SubClassOf(obo:OHD_0000428 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
 SubClassOf(obo:OHD_0000428 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008052))
 
 # Class: obo:OHD_0000429 (DFS 08. Making an appointment for dentistry.)
@@ -6113,9 +6078,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000429 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000429 "2025-02-15T18:53:00Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000429 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000429 "DFS 08. Making an appointment for dentistry."@en)
-EquivalentClasses(obo:OHD_0000429 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000429))
 SubClassOf(obo:OHD_0000429 obo:OHD_0008010)
-SubClassOf(obo:OHD_0000429 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008037))
 
 # Class: obo:OHD_0000430 (DFS 09. Approaching the dentist’s office.)
 
@@ -6125,10 +6088,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000430 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000430 "2025-02-15T18:53:10Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000430 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000430 "DFS 09. Approaching the dentist’s office."@en)
-EquivalentClasses(obo:OHD_0000430 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000430))
 SubClassOf(obo:OHD_0000430 obo:OHD_0008010)
 SubClassOf(obo:OHD_0000430 ObjectSomeValuesFrom(obo:IAO_0000136 obo:GO_0040011))
-SubClassOf(obo:OHD_0000430 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008037))
 
 # Class: obo:OHD_0000431 (DFS 10. Sitting in the waiting room.)
 
@@ -6138,10 +6099,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000431 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000431 "2025-02-15T18:53:25Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000431 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000431 "DFS 10. Sitting in the waiting room."@en)
-EquivalentClasses(obo:OHD_0000431 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000431))
 SubClassOf(obo:OHD_0000431 obo:OHD_0008010)
 SubClassOf(obo:OHD_0000431 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008027))
-SubClassOf(obo:OHD_0000431 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
 
 # Class: obo:OHD_0000432 (DFS 11. Being seated in the dental chair.)
 
@@ -6151,10 +6110,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000432 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000432 "2025-02-15T18:53:41Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000432 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000432 "DFS 11. Being seated in the dental chair."@en)
-EquivalentClasses(obo:OHD_0000432 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000432))
 SubClassOf(obo:OHD_0000432 obo:OHD_0008010)
 SubClassOf(obo:OHD_0000432 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008038))
-SubClassOf(obo:OHD_0000432 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
 
 # Class: obo:OHD_0000433 (DFS 12. The smell of the dentist’s office.)
 
@@ -6164,10 +6121,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000433 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000433 "2025-02-15T18:53:56Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000433 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000433 "DFS 12. The smell of the dentist’s office."@en)
-EquivalentClasses(obo:OHD_0000433 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000433))
 SubClassOf(obo:OHD_0000433 obo:OHD_0008010)
 SubClassOf(obo:OHD_0000433 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008016))
-SubClassOf(obo:OHD_0000433 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
 
 # Class: obo:OHD_0000434 (DFS 13. Seeing the dentist walk in.)
 
@@ -6177,10 +6132,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000434 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000434 "2025-02-15T18:54:08Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000434 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000434 "DFS 13. Seeing the dentist walk in."@en)
-EquivalentClasses(obo:OHD_0000434 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000434))
 SubClassOf(obo:OHD_0000434 obo:OHD_0008010)
 SubClassOf(obo:OHD_0000434 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008025))
-SubClassOf(obo:OHD_0000434 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
 
 # Class: obo:OHD_0000435 (DFS 14. Seeing the anesthetic needle.)
 
@@ -6190,10 +6143,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000435 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000435 "2025-02-15T18:54:22Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000435 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000435 "DFS 14. Seeing the anesthetic needle."@en)
-EquivalentClasses(obo:OHD_0000435 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000435))
 SubClassOf(obo:OHD_0000435 obo:OHD_0008010)
 SubClassOf(obo:OHD_0000435 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008026))
-SubClassOf(obo:OHD_0000435 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
 
 # Class: obo:OHD_0000436 (DFS 15. Feeling the needle injected.)
 
@@ -6203,10 +6154,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000436 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000436 "2025-02-15T18:54:43Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000436 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000436 "DFS 15. Feeling the needle injected."@en)
-EquivalentClasses(obo:OHD_0000436 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000436))
 SubClassOf(obo:OHD_0000436 obo:OHD_0008010)
 SubClassOf(obo:OHD_0000436 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008036))
-SubClassOf(obo:OHD_0000436 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
 
 # Class: obo:OHD_0000437 (DFS 16. Seeing the drill.)
 
@@ -6216,11 +6165,9 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000437 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000437 "2025-02-15T18:54:54Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000437 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000437 "DFS 16. Seeing the drill."@en)
-EquivalentClasses(obo:OHD_0000437 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000437))
 SubClassOf(obo:OHD_0000437 obo:OHD_0008010)
 SubClassOf(obo:OHD_0000437 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008002))
 SubClassOf(obo:OHD_0000437 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008028))
-SubClassOf(obo:OHD_0000437 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
 
 # Class: obo:OHD_0000438 (DFS 17. Hearing the drill.)
 
@@ -6230,11 +6177,9 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000438 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000438 "2025-02-15T18:55:07Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000438 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000438 "DFS 17. Hearing the drill."@en)
-EquivalentClasses(obo:OHD_0000438 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000438))
 SubClassOf(obo:OHD_0000438 obo:OHD_0008010)
 SubClassOf(obo:OHD_0000438 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008005))
 SubClassOf(obo:OHD_0000438 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008028))
-SubClassOf(obo:OHD_0000438 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
 
 # Class: obo:OHD_0000439 (DFS 18. Feeling the vibrations of the drill.)
 
@@ -6244,11 +6189,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000439 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000439 "2025-02-15T18:55:19Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000439 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000439 "DFS 18. Feeling the vibrations of the drill."@en)
-EquivalentClasses(obo:OHD_0000439 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000439))
 SubClassOf(obo:OHD_0000439 obo:OHD_0008010)
 SubClassOf(obo:OHD_0000439 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008028))
-SubClassOf(obo:OHD_0000439 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008037))
-SubClassOf(obo:OHD_0000439 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
 
 # Class: obo:OHD_0000440 (DFS 19. Having your teeth cleaned.)
 
@@ -6258,10 +6200,8 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000440 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000440 "2025-02-15T18:55:32Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000440 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000440 "DFS 19. Having your teeth cleaned."@en)
-EquivalentClasses(obo:OHD_0000440 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000440))
 SubClassOf(obo:OHD_0000440 obo:OHD_0008010)
 SubClassOf(obo:OHD_0000440 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008034))
-SubClassOf(obo:OHD_0000440 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
 
 # Class: obo:OHD_0000441 (DFS 20. All things considered, how fearful are you of having dental work done?)
 
@@ -6271,9 +6211,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000441 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000441 "2025-02-15T18:55:46Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000441 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000441 "DFS 20. All things considered, how fearful are you of having dental work done?"@en)
-EquivalentClasses(obo:OHD_0000441 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0000441))
 SubClassOf(obo:OHD_0000441 obo:OHD_0008010)
-SubClassOf(obo:OHD_0000441 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
 
 # Class: obo:OHD_0000442 (bacterial tooth demineralization process)
 
@@ -6327,7 +6265,6 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:
 AnnotationAssertion(rdfs:label obo:OHD_0000446 "MDAS 1. If you went to your Dentist for TREATMENT TOMORROW, how would you feel?"@en)
 SubClassOf(obo:OHD_0000446 obo:OHD_0000445)
 SubClassOf(obo:OHD_0000446 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OGMS_0000090))
-SubClassOf(obo:OHD_0000446 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
 
 # Class: obo:OHD_0000447 (MDAS 2. If you were sitting in the WAITING ROOM (waiting for treatment), how would you feel?)
 
@@ -6339,7 +6276,6 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:
 AnnotationAssertion(rdfs:label obo:OHD_0000447 "MDAS 2. If you were sitting in the WAITING ROOM (waiting for treatment), how would you feel?"@en)
 SubClassOf(obo:OHD_0000447 obo:OHD_0000445)
 SubClassOf(obo:OHD_0000447 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008027))
-SubClassOf(obo:OHD_0000447 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039))
 
 # Class: obo:OHD_0000448 (MDAS 3. If you were about to have a TOOTH DRILLED, how would you feel?)
 
@@ -6351,7 +6287,6 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:
 AnnotationAssertion(rdfs:label obo:OHD_0000448 "MDAS 3. If you were about to have a TOOTH DRILLED, how would you feel?"@en)
 SubClassOf(obo:OHD_0000448 obo:OHD_0000445)
 SubClassOf(obo:OHD_0000448 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008028))
-SubClassOf(obo:OHD_0000448 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008037))
 
 # Class: obo:OHD_0000449 (MDAS 4. If you were about to have your TEETH SCALED AND POLISHED, how would you feel?)
 
@@ -6364,7 +6299,6 @@ AnnotationAssertion(rdfs:label obo:OHD_0000449 "MDAS 4. If you were about to hav
 SubClassOf(obo:OHD_0000449 obo:OHD_0000445)
 SubClassOf(obo:OHD_0000449 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008031))
 SubClassOf(obo:OHD_0000449 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008032))
-SubClassOf(obo:OHD_0000449 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008037))
 
 # Class: obo:OHD_0000450 (MDAS 5. If you were about to have a LOCAL ANAESTHETIC INJECTION in your gum, above an upper back tooth, how would you feel?)
 
@@ -6376,7 +6310,6 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:
 AnnotationAssertion(rdfs:label obo:OHD_0000450 "MDAS 5. If you were about to have a LOCAL ANAESTHETIC INJECTION in your gum, above an upper back tooth, how would you feel?"@en)
 SubClassOf(obo:OHD_0000450 obo:OHD_0000445)
 SubClassOf(obo:OHD_0000450 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008033))
-SubClassOf(obo:OHD_0000450 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008037))
 
 # Class: obo:OHD_0000482 (dental fear survey answer)
 
@@ -6683,15 +6616,6 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:
 AnnotationAssertion(rdfs:label obo:OHD_0005010 "health care encounter avoidance behavior that involves delay in scheduling a health care appointment"@en)
 SubClassOf(obo:OHD_0005010 obo:OHD_0005006)
 
-# Class: obo:OHD_0005011 (health care encounter avoidance behavior that involves delay in scheduling a health care appointment)
-
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0005011 "A health care encounter avoidance behavior that involves delay in scheduling a health care appointment due to fear, anxiety, or other psychological factors.")
-AnnotationAssertion(dcterms:contributor obo:OHD_0005011 <https://orcid.org/0009-0003-7246-1252>)
-AnnotationAssertion(dcterms:created obo:OHD_0005011 "2025-02-12T15:51:24Z"^^xsd:dateTime)
-AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0005011 obo:OHD_0005009)
-AnnotationAssertion(rdfs:label obo:OHD_0005011 "health care encounter avoidance behavior that involves delay in scheduling a health care appointment"@en)
-SubClassOf(obo:OHD_0005011 obo:OHD_0005010)
-
 # Class: obo:OHD_0005012 (dental visit avoidance behavior that involves delay in scheduling a dental appointment)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0005012 "A dental visit avoidance behavior that involves delay in scheduling a dental appointment due to fear, anxiety, or other psychological factors.")
@@ -6827,6 +6751,7 @@ SubClassOf(obo:OHD_0008011 obo:IAO_0000030)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008012 "A dental fear survey answer which answers a question in a dental fear assessment instrument."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008012 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008012 "2025-03-15T15:49:58Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008012 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008012 "dental fear survey assessment instrument answer"@en)
 SubClassOf(obo:OHD_0008012 obo:OHD_0000482)
 
@@ -6898,9 +6823,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0008020 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0008020 "2025-03-15T16:22:39Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008020 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008020 "avoidance behavior question"@en)
-AnnotationAssertion(rdfs:label obo:OHD_0008020 "question assessing avoidance behavior"@en)
 EquivalentClasses(obo:OHD_0008020 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005005)))
-EquivalentClasses(obo:OHD_0008020 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:OHD_0008046 obo:OHD_0005005)))
 SubClassOf(obo:OHD_0008020 obo:OHD_0008011)
 
 # Class: obo:OHD_0008021 (question assessing health encounter avoidance behavior)
@@ -6910,9 +6833,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0008021 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0008021 "2025-03-15T16:25:28Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008021 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008021 "health encounter avoidance question"@en)
-AnnotationAssertion(rdfs:label obo:OHD_0008021 "question assessing health encounter avoidance behavior"@en)
 EquivalentClasses(obo:OHD_0008021 ObjectIntersectionOf(obo:OHD_0008020 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005006)))
-EquivalentClasses(obo:OHD_0008021 ObjectIntersectionOf(obo:OHD_0008020 ObjectSomeValuesFrom(obo:OHD_0008046 obo:OHD_0005006)))
 SubClassOf(obo:OHD_0008021 obo:OHD_0008020)
 
 # Class: obo:OHD_0008022 (question assessing dental visit avoidance behavior)
@@ -6922,21 +6843,17 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0008022 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0008022 "2025-03-15T16:26:49Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008022 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008022 "dental visit avoidance question"@en)
-AnnotationAssertion(rdfs:label obo:OHD_0008022 "question assessing dental visit avoidance behavior"@en)
 EquivalentClasses(obo:OHD_0008022 ObjectIntersectionOf(obo:OHD_0008021 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005007)))
-EquivalentClasses(obo:OHD_0008022 ObjectIntersectionOf(obo:OHD_0008021 ObjectSomeValuesFrom(obo:OHD_0008046 obo:OHD_0005007)))
 SubClassOf(obo:OHD_0008022 obo:OHD_0008021)
 
-# Class: obo:OHD_0008023 (question assessing canceling or not showing up for a dental appointment)
+# Class: obo:OHD_0008023 (question about canceling or not showing up for a dental appointment)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008023 "A question that assesses some cancellation or failure to appear for a dental appointment."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008023 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008023 "2025-03-15T16:30:10Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008023 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008023 "question about canceling or not showing up for a dental appointment"@en)
-AnnotationAssertion(rdfs:label obo:OHD_0008023 "question assessing canceling or not showing up for a dental appointment"@en)
 EquivalentClasses(obo:OHD_0008023 ObjectIntersectionOf(obo:OHD_0008022 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005013)))
-EquivalentClasses(obo:OHD_0008023 ObjectIntersectionOf(obo:OHD_0008022 ObjectSomeValuesFrom(obo:OHD_0008046 obo:OHD_0005013)))
 SubClassOf(obo:OHD_0008023 obo:OHD_0008022)
 
 # Class: obo:OHD_0008024 (question about delay in scheduling a dental appointment)
@@ -6946,9 +6863,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0008024 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0008024 "2025-03-15T16:31:41Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008024 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008024 "question about delay in scheduling a dental appointment"@en)
-AnnotationAssertion(rdfs:label obo:OHD_0008024 "question assessing delay in scheduling a dental appointment"@en)
 EquivalentClasses(obo:OHD_0008024 ObjectIntersectionOf(obo:OHD_0008022 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005012)))
-EquivalentClasses(obo:OHD_0008024 ObjectIntersectionOf(obo:OHD_0008022 ObjectSomeValuesFrom(obo:OHD_0008046 obo:OHD_0005012)))
 SubClassOf(obo:OHD_0008024 obo:OHD_0008022)
 
 # Class: obo:OHD_0008025 (seeing dentist)
@@ -6974,7 +6889,6 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0008027 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0008027 "2025-03-28T00:44:02Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008027 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008027 "sitting in waiting room"@en)
-SubClassOf(obo:OHD_0008027 obo:BFO_0000015)
 SubClassOf(obo:OHD_0008027 obo:OHD_0008038)
 
 # Class: obo:OHD_0008028 (tooth drilling procedure)
@@ -6994,7 +6908,6 @@ AnnotationAssertion(dcterms:created obo:OHD_0008029 "2025-03-28T01:11:07Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008029 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008029 "question about sitting in a waiting room"@en)
 EquivalentClasses(obo:OHD_0008029 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008027)))
-EquivalentClasses(obo:OHD_0008029 ObjectIntersectionOf(obo:OHD_0008042 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008027)))
 SubClassOf(obo:OHD_0008029 obo:OHD_0008011)
 
 # Class: obo:OHD_0008030 (question about tooth drilling)
@@ -7029,6 +6942,7 @@ SubClassOf(obo:OHD_0008032 obo:OHD_0008034)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008033 "A health care encounter in which a health care provider injects an anaesthetic which is intended to numb a portion of the body."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008033 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008033 "2025-03-28T01:50:32Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008033 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008033 "local anaesthetic injection"@en)
 SubClassOf(obo:OHD_0008033 obo:OGMS_0000097)
 
@@ -7039,7 +6953,6 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0008034 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0008034 "2025-03-28T01:53:03Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008034 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008034 "tooth cleaning procedure"@en)
-AnnotationAssertion(rdfs:label obo:OHD_0008034 "tooth cleaning procedure ****"@en)
 SubClassOf(obo:OHD_0008034 obo:OHD_0000002)
 SubClassOf(obo:OHD_0008034 obo:OHD_0000274)
 SubClassOf(obo:OHD_0008034 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000052))
@@ -7123,14 +7036,13 @@ AnnotationAssertion(rdfs:label obo:OHD_0008043 "question about after dental visi
 SubClassOf(obo:OHD_0008043 obo:OHD_0008011)
 SubClassOf(obo:OHD_0008043 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008040))
 
-# Class: obo:OHD_0008044 (question about dental procedure)
+# Class: obo:OHD_0008044 (dental procedure question)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008044 "A question that is about some dental procedure."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008044 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008044 "2025-03-28T13:26:13Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008044 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008044 "dental procedure question"@en)
-AnnotationAssertion(rdfs:label obo:OHD_0008044 "question about dental procedure"@en)
 EquivalentClasses(obo:OHD_0008044 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000002)))
 SubClassOf(obo:OHD_0008044 obo:OHD_0008011)
 
@@ -7142,15 +7054,7 @@ AnnotationAssertion(dcterms:created obo:OHD_0008047 "2025-04-04T13:05:36Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008047 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008047 "question about physiological effect"@en)
 EquivalentClasses(obo:OHD_0008047 ObjectIntersectionOf(obo:OHD_0008011 ObjectUnionOf(ObjectSomeValuesFrom(obo:IAO_0000136 obo:GO_0003008) ObjectSomeValuesFrom(obo:IAO_0000136 obo:GO_0032941) ObjectSomeValuesFrom(obo:IAO_0000136 obo:OGMS_0000061))))
-EquivalentClasses(obo:OHD_0008047 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OGMS_0000060)))
 SubClassOf(obo:OHD_0008047 obo:OHD_0008011)
-
-# Class: obo:OHD_0008048 (muscle tensing)
-
-AnnotationAssertion(dcterms:contributor obo:OHD_0008048 <https://orcid.org/0009-0002-7282-0836>)
-AnnotationAssertion(dcterms:created obo:OHD_0008048 "2025-04-04T13:19:10Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0008048 "muscle tensing"@en)
-SubClassOf(obo:OHD_0008048 obo:OGMS_0000060)
 
 # Class: obo:OHD_0008049 (increased breathing rate)
 
@@ -7160,18 +7064,6 @@ AnnotationAssertion(dcterms:created obo:OHD_0008049 "2025-04-04T13:22:01Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008049 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008049 "increased breathing rate"@en)
 SubClassOf(obo:OHD_0008049 obo:GO_0003016)
-SubClassOf(obo:OHD_0008049 obo:OGMS_0000060)
-
-# Class: obo:OHD_0008050 (perspiration)
-
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008050 "A bodily process in which sweat is secreted by sweat glands."@en)
-AnnotationAssertion(dcterms:contributor obo:OHD_0008050 <https://orcid.org/0009-0002-7282-0836>)
-AnnotationAssertion(dcterms:created obo:OHD_0008050 "2025-04-04T13:25:26Z"^^xsd:dateTime)
-AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008050 obo:OHD_0005009)
-AnnotationAssertion(rdfs:label obo:OHD_0008050 "perspiration"@en)
-AnnotationAssertion(rdfs:label obo:OHD_0008050 "perspiring"@en)
-SubClassOf(obo:OHD_0008050 obo:GO_0032941)
-SubClassOf(obo:OHD_0008050 obo:OGMS_0000060)
 
 # Class: obo:OHD_0008051 (nausea)
 
@@ -7189,7 +7081,6 @@ AnnotationAssertion(dcterms:created obo:OHD_0008052 "2025-04-04T13:31:33Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008052 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008052 "increased heart rate"@en)
 SubClassOf(obo:OHD_0008052 obo:GO_0003015)
-SubClassOf(obo:OHD_0008052 obo:OGMS_0000060)
 
 # Class: obo:OHD_0010000 (orofacial pain)
 
@@ -10349,10 +10240,9 @@ SubClassOf(obo:OHMI_0000015 ObjectSomeValuesFrom(obo:RO_0001025 obo:FMA_49184))
 
 SubClassOf(obo:OMRSE_00000007 obo:BFO_0000023)
 
-# Class: obo:PATO_0040034 (temp: fractured)
+# Class: obo:PATO_0040034 (fractured)
 
 AnnotationAssertion(obo:IAO_0000116 obo:PATO_0040034 "Replace with PATO term")
-AnnotationAssertion(rdfs:label obo:PATO_0040034 "temp: fractured"@en)
 SubClassOf(obo:PATO_0040034 obo:BFO_0000019)
 
 # Class: <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> (obsolete class)
