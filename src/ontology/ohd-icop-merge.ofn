@@ -1986,6 +1986,10 @@ AnnotationAssertion(dcterms:created obo:OHD_0017000 "2025-05-13T21:41:20Z"^^xsd:
 AnnotationAssertion(rdfs:label obo:OHD_0017000 "symptom of"@en)
 InverseObjectProperties(obo:OHD_0017000 obo:RO_0002452)
 
+# Object Property: obo:RO_0001025 (located in)
+
+SymmetricObjectProperty(obo:RO_0001025)
+
 # Object Property: obo:RO_0002354 (formed as result of)
 
 SubObjectPropertyOf(obo:RO_0002354 obo:RO_0000056)
@@ -6899,7 +6903,7 @@ EquivalentClasses(obo:OHD_0008020 ObjectIntersectionOf(obo:OHD_0008011 ObjectSom
 EquivalentClasses(obo:OHD_0008020 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:OHD_0008046 obo:OHD_0005005)))
 SubClassOf(obo:OHD_0008020 obo:OHD_0008011)
 
-# Class: obo:OHD_0008021 (health encounter avoidance question)
+# Class: obo:OHD_0008021 (question assessing health encounter avoidance behavior)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008021 "A question that assesses some avoidance behavior directed at a health encounter."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008021 <https://orcid.org/0009-0002-7282-0836>)
@@ -6911,7 +6915,7 @@ EquivalentClasses(obo:OHD_0008021 ObjectIntersectionOf(obo:OHD_0008020 ObjectSom
 EquivalentClasses(obo:OHD_0008021 ObjectIntersectionOf(obo:OHD_0008020 ObjectSomeValuesFrom(obo:OHD_0008046 obo:OHD_0005006)))
 SubClassOf(obo:OHD_0008021 obo:OHD_0008020)
 
-# Class: obo:OHD_0008022 (dental visit avoidance question)
+# Class: obo:OHD_0008022 (question assessing dental visit avoidance behavior)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008022 "A question that assesses some avoidance behavior directed at a dental visit."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008022 <https://orcid.org/0009-0002-7282-0836>)
@@ -7288,7 +7292,7 @@ AnnotationAssertion(rdfs:comment obo:OHD_0010007 "ICOP term: 1.2.3")
 AnnotationAssertion(rdfs:comment obo:OHD_0010007 "http://purl.obolibrary.org/obo/UBERON_0012360")
 AnnotationAssertion(rdfs:label obo:OHD_0010007 "jaw bone pain"@en)
 SubClassOf(obo:OHD_0010007 obo:OHD_0010186)
-SubClassOf(obo:OHD_0010007 ObjectUnionOf(ObjectSomeValuesFrom(obo:RO_0001025 obo:FMA_52748) ObjectSomeValuesFrom(obo:RO_0001025 obo:FMA_9711)))
+SubClassOf(obo:OHD_0010007 ObjectUnionOf(ObjectSomeValuesFrom(obo:BFO_0000066 obo:FMA_52748) ObjectSomeValuesFrom(obo:BFO_0000066 obo:FMA_9711)))
 
 # Class: obo:OHD_0010008 (pulpal pain due to hypersensitivity)
 
@@ -7669,7 +7673,7 @@ AnnotationAssertion(dcterms:created obo:OHD_0010042 "2025-06-10T19:39:13Z"^^xsd:
 AnnotationAssertion(rdfs:label obo:OHD_0010042 "oral mucosal inflammation"@en)
 EquivalentClasses(obo:OHD_0010042 ObjectIntersectionOf(obo:OHD_0010116 ObjectSomeValuesFrom(obo:RO_0002353 obo:GO_0006954)))
 SubClassOf(obo:OHD_0010042 obo:OHD_0010116)
-SubClassOf(obo:OHD_0010042 ObjectSomeValuesFrom(obo:RO_0001025 obo:FMA_85355))
+SubClassOf(obo:OHD_0010042 ObjectSomeValuesFrom(obo:BFO_0000066 obo:FMA_85355))
 
 # Class: obo:OHD_0010043 (oral mucosal inflammation due to infection)
 
@@ -7906,7 +7910,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0010065 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0010065 "2025-06-11T18:46:27Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010065 "dentin infection"@en)
 SubClassOf(obo:OHD_0010065 obo:IDO_0000586)
-SubClassOf(obo:OHD_0010065 ObjectSomeValuesFrom(obo:RO_0001025 obo:FMA_55628))
+SubClassOf(obo:OHD_0010065 ObjectSomeValuesFrom(obo:BFO_0000066 obo:FMA_55628))
 
 # Class: obo:OHD_0010066 (reversible pulpitis due to dentin infection)
 
@@ -8100,7 +8104,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010084 "Dental caries that have ext
 AnnotationAssertion(dcterms:contributor obo:OHD_0010084 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010084 "2025-06-12T19:01:28Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010084 "dental caries extending to the pulp"@en)
-EquivalentClasses(obo:OHD_0010084 ObjectIntersectionOf(obo:OHD_0000031 ObjectSomeValuesFrom(obo:RO_0001025 obo:FMA_55631)))
+EquivalentClasses(obo:OHD_0010084 ObjectIntersectionOf(obo:OHD_0000031 ObjectSomeValuesFrom(obo:BFO_0000066 obo:FMA_55631)))
 SubClassOf(obo:OHD_0010084 obo:OHD_0000031)
 
 # Class: obo:OHD_0010085 (irreversible pulpitis due to dental caries extending to the pulp)
@@ -8229,7 +8233,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0010097 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0010097 "2025-06-16T18:25:26Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010097 "dental pulp infection"@en)
 SubClassOf(obo:OHD_0010097 obo:IDO_0000586)
-SubClassOf(obo:OHD_0010097 ObjectSomeValuesFrom(obo:RO_0001025 obo:FMA_55631))
+SubClassOf(obo:OHD_0010097 ObjectSomeValuesFrom(obo:BFO_0000066 obo:FMA_55631))
 
 # Class: obo:OHD_0010098 (irreversible pulpitis due to dental pulp infection)
 
@@ -8717,7 +8721,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0010146 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0010146 "2025-06-25T18:50:29Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010146 "hyperarticulation following dental restorative procedure"@en)
 SubClassOf(obo:OHD_0010146 obo:OHD_0010144)
-SubClassOf(obo:OHD_0010146 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000004))
+SubClassOf(obo:OHD_0010146 ObjectSomeValuesFrom(obo:RO_0002410 obo:OHD_0000004))
 
 # Class: obo:OHD_0010147 (pulpal pain due to extensive removal of dentin)
 
@@ -8737,7 +8741,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0010148 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0010148 "2025-06-25T18:59:05Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010148 "dental injury"@en)
 SubClassOf(obo:OHD_0010148 obo:OGMS_0000102)
-SubClassOf(obo:OHD_0010148 ObjectSomeValuesFrom(obo:RO_0001025 obo:FMA_49184))
+SubClassOf(obo:OHD_0010148 ObjectSomeValuesFrom(obo:BFO_0000066 obo:FMA_49184))
 
 # Class: obo:OHD_0010149 (dental hard tissue fracture)
 
@@ -8977,7 +8981,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0010172 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0010172 "2025-06-26T18:36:01Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010172 "endodontic infection"@en)
 SubClassOf(obo:OHD_0010172 obo:IDO_0000504)
-SubClassOf(obo:OHD_0010172 ObjectSomeValuesFrom(obo:RO_0001025 obo:FMA_55631))
+SubClassOf(obo:OHD_0010172 ObjectSomeValuesFrom(obo:BFO_0000066 obo:FMA_55631))
 
 # Class: obo:OHD_0010173 (periodontal pain due to endodontic infection)
 
@@ -9746,7 +9750,7 @@ AnnotationAssertion(dcterms:created obo:OHD_0010249 "2025-07-02T19:15:13Z"^^xsd:
 AnnotationAssertion(rdfs:comment obo:OHD_0010249 "ICOP number: 4.1.1.1.2")
 AnnotationAssertion(rdfs:label obo:OHD_0010249 "classical trigeminal neuralgia with concomitant continuous pain"@en)
 SubClassOf(obo:OHD_0010249 obo:OHD_0010130)
-SubClassOf(obo:OHD_0010249 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010248))
+SubClassOf(obo:OHD_0010249 ObjectSomeValuesFrom(obo:RO_0002410 obo:OHD_0010248))
 
 # Class: obo:OHD_0010250 (idiopathic trigeminal neuralgia with concomitant continuous pain)
 
