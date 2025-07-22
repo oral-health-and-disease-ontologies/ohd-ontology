@@ -1716,7 +1716,6 @@ Declaration(ObjectProperty(obo:OHD_0000091))
 Declaration(ObjectProperty(obo:OHD_0000216))
 Declaration(ObjectProperty(obo:OHD_0000217))
 Declaration(ObjectProperty(obo:OHD_0008045))
-Declaration(ObjectProperty(obo:OHD_0008046))
 Declaration(ObjectProperty(obo:OHD_0017000))
 Declaration(ObjectProperty(obo:RO_0000087))
 Declaration(ObjectProperty(obo:RO_0002354))
@@ -1971,13 +1970,6 @@ TransitiveObjectProperty(obo:OHD_0000217)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008045 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008045 "2025-04-04T00:42:44Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0008045 "based on information in"@en)
-
-# Object Property: obo:OHD_0008046 (assesses behavior)
-
-AnnotationAssertion(dcterms:contributor obo:OHD_0008046 <https://orcid.org/0009-0002-7282-0836>)
-AnnotationAssertion(dcterms:created obo:OHD_0008046 "2025-04-04T01:13:53Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0008046 "assesses behavior"@en)
-SubObjectPropertyOf(obo:OHD_0008046 obo:IAO_0000136)
 
 # Object Property: obo:OHD_0017000 (symptom of)
 
@@ -6010,7 +6002,6 @@ EquivalentClasses(obo:OHD_0000421 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0
 SubClassOf(obo:OHD_0000421 obo:OHD_0008010)
 SubClassOf(obo:OHD_0000421 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005012))
 SubClassOf(obo:OHD_0000421 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008037))
-SubClassOf(obo:OHD_0000421 ObjectSomeValuesFrom(obo:OHD_0008046 obo:OHD_0005012))
 
 # Class: obo:OHD_0000422 (DFS 02. Has fear of dental work ever caused you to cancel or not appear for an appointment?)
 
@@ -6024,7 +6015,6 @@ EquivalentClasses(obo:OHD_0000422 ObjectSomeValuesFrom(obo:OHD_0008045 obo:OHD_0
 SubClassOf(obo:OHD_0000422 obo:OHD_0008010)
 SubClassOf(obo:OHD_0000422 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005013))
 SubClassOf(obo:OHD_0000422 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008037))
-SubClassOf(obo:OHD_0000422 ObjectSomeValuesFrom(obo:OHD_0008046 obo:OHD_0005013))
 
 # Class: obo:OHD_0000423 (DFS 03. My muscles become tense.)
 
@@ -6896,7 +6886,6 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:
 AnnotationAssertion(rdfs:label obo:OHD_0008020 "avoidance behavior question"@en)
 AnnotationAssertion(rdfs:label obo:OHD_0008020 "question assessing avoidance behavior"@en)
 EquivalentClasses(obo:OHD_0008020 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005005)))
-EquivalentClasses(obo:OHD_0008020 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:OHD_0008046 obo:OHD_0005005)))
 SubClassOf(obo:OHD_0008020 obo:OHD_0008011)
 
 # Class: obo:OHD_0008021 (health encounter avoidance question)
@@ -6908,10 +6897,9 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:
 AnnotationAssertion(rdfs:label obo:OHD_0008021 "health encounter avoidance question"@en)
 AnnotationAssertion(rdfs:label obo:OHD_0008021 "question assessing health encounter avoidance behavior"@en)
 EquivalentClasses(obo:OHD_0008021 ObjectIntersectionOf(obo:OHD_0008020 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005006)))
-EquivalentClasses(obo:OHD_0008021 ObjectIntersectionOf(obo:OHD_0008020 ObjectSomeValuesFrom(obo:OHD_0008046 obo:OHD_0005006)))
 SubClassOf(obo:OHD_0008021 obo:OHD_0008020)
 
-# Class: obo:OHD_0008022 (dental visit avoidance question)
+# Class: obo:OHD_0008022 (question assessing dental visit avoidance behavior)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008022 "A question that assesses some avoidance behavior directed at a dental visit."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008022 <https://orcid.org/0009-0002-7282-0836>)
@@ -6920,7 +6908,6 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:
 AnnotationAssertion(rdfs:label obo:OHD_0008022 "dental visit avoidance question"@en)
 AnnotationAssertion(rdfs:label obo:OHD_0008022 "question assessing dental visit avoidance behavior"@en)
 EquivalentClasses(obo:OHD_0008022 ObjectIntersectionOf(obo:OHD_0008021 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005007)))
-EquivalentClasses(obo:OHD_0008022 ObjectIntersectionOf(obo:OHD_0008021 ObjectSomeValuesFrom(obo:OHD_0008046 obo:OHD_0005007)))
 SubClassOf(obo:OHD_0008022 obo:OHD_0008021)
 
 # Class: obo:OHD_0008023 (question assessing canceling or not showing up for a dental appointment)
@@ -6932,7 +6919,6 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:
 AnnotationAssertion(rdfs:label obo:OHD_0008023 "question about canceling or not showing up for a dental appointment"@en)
 AnnotationAssertion(rdfs:label obo:OHD_0008023 "question assessing canceling or not showing up for a dental appointment"@en)
 EquivalentClasses(obo:OHD_0008023 ObjectIntersectionOf(obo:OHD_0008022 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005013)))
-EquivalentClasses(obo:OHD_0008023 ObjectIntersectionOf(obo:OHD_0008022 ObjectSomeValuesFrom(obo:OHD_0008046 obo:OHD_0005013)))
 SubClassOf(obo:OHD_0008023 obo:OHD_0008022)
 
 # Class: obo:OHD_0008024 (question about delay in scheduling a dental appointment)
@@ -6944,7 +6930,6 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:
 AnnotationAssertion(rdfs:label obo:OHD_0008024 "question about delay in scheduling a dental appointment"@en)
 AnnotationAssertion(rdfs:label obo:OHD_0008024 "question assessing delay in scheduling a dental appointment"@en)
 EquivalentClasses(obo:OHD_0008024 ObjectIntersectionOf(obo:OHD_0008022 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005012)))
-EquivalentClasses(obo:OHD_0008024 ObjectIntersectionOf(obo:OHD_0008022 ObjectSomeValuesFrom(obo:OHD_0008046 obo:OHD_0005012)))
 SubClassOf(obo:OHD_0008024 obo:OHD_0008022)
 
 # Class: obo:OHD_0008025 (seeing dentist)
