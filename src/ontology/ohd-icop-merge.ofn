@@ -1381,7 +1381,6 @@ Declaration(Class(obo:OHD_0008044))
 Declaration(Class(obo:OHD_0008047))
 Declaration(Class(obo:OHD_0008048))
 Declaration(Class(obo:OHD_0008049))
-Declaration(Class(obo:OHD_0008050))
 Declaration(Class(obo:OHD_0008051))
 Declaration(Class(obo:OHD_0008052))
 Declaration(Class(obo:OHD_0010000))
@@ -1814,7 +1813,6 @@ Declaration(AnnotationProperty(obo:OHD_0000092))
 Declaration(AnnotationProperty(obo:OHD_0000209))
 Declaration(AnnotationProperty(obo:OHD_0000273))
 Declaration(AnnotationProperty(obo:OHD_0005009))
-Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/http://www.geneontology.org/formats/oboInOwl#SubsetProperty>))
 Declaration(AnnotationProperty(dc:creator))
 Declaration(AnnotationProperty(dc:date))
 Declaration(AnnotationProperty(dc:source))
@@ -1866,12 +1864,7 @@ AnnotationAssertion(rdfs:label obo:OHD_0000209 "duplicated"@en)
 # Annotation Property: obo:OHD_0005009 (dental fear and anxiety)
 
 AnnotationAssertion(rdfs:label obo:OHD_0005009 "dental fear and anxiety"@en)
-SubAnnotationPropertyOf(obo:OHD_0005009 <http://purl.obolibrary.org/obo/http://www.geneontology.org/formats/oboInOwl#SubsetProperty>)
 SubAnnotationPropertyOf(obo:OHD_0005009 <http://www.geneontology.org/formats/oboInOwl#SubsetProperty>)
-
-# Annotation Property: <http://purl.obolibrary.org/obo/http://www.geneontology.org/formats/oboInOwl#SubsetProperty> (subset_property)
-
-AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/http://www.geneontology.org/formats/oboInOwl#SubsetProperty> "subset_property"@en)
 
 # Annotation Property: dcterms:contributor (contributor)
 
@@ -6051,7 +6044,6 @@ AnnotationAssertion(dcterms:created obo:OHD_0000426 "2025-02-15T18:51:13Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000426 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000426 "DFS 05. I perspire."@en)
 SubClassOf(obo:OHD_0000426 obo:OHD_0008010)
-SubClassOf(obo:OHD_0000426 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008050))
 
 # Class: obo:OHD_0000427 (DFS 06. I feel nauseated and sick to my stomach.)
 
@@ -7085,17 +7077,6 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:
 AnnotationAssertion(rdfs:label obo:OHD_0008049 "increased breathing rate"@en)
 SubClassOf(obo:OHD_0008049 obo:GO_0003016)
 SubClassOf(obo:OHD_0008049 obo:OGMS_0000060)
-
-# Class: obo:OHD_0008050 (perspiration)
-
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008050 "A bodily process in which sweat is secreted by sweat glands."@en)
-AnnotationAssertion(dcterms:contributor obo:OHD_0008050 <https://orcid.org/0009-0002-7282-0836>)
-AnnotationAssertion(dcterms:created obo:OHD_0008050 "2025-04-04T13:25:26Z"^^xsd:dateTime)
-AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008050 obo:OHD_0005009)
-AnnotationAssertion(rdfs:label obo:OHD_0008050 "perspiration"@en)
-AnnotationAssertion(rdfs:label obo:OHD_0008050 "perspiring"@en)
-SubClassOf(obo:OHD_0008050 obo:GO_0032941)
-SubClassOf(obo:OHD_0008050 obo:OGMS_0000060)
 
 # Class: obo:OHD_0008051 (nausea)
 
