@@ -1297,6 +1297,7 @@ Declaration(Class(obo:OHD_0000447))
 Declaration(Class(obo:OHD_0000448))
 Declaration(Class(obo:OHD_0000449))
 Declaration(Class(obo:OHD_0000450))
+Declaration(Class(obo:OHD_0000451))
 Declaration(Class(obo:OHD_0000482))
 Declaration(Class(obo:OHD_0000499))
 Declaration(Class(obo:OHD_0000500))
@@ -6042,6 +6043,7 @@ AnnotationAssertion(dcterms:created obo:OHD_0000426 "2025-02-15T18:51:13Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000426 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000426 "DFS 05. I perspire."@en)
 SubClassOf(obo:OHD_0000426 obo:OHD_0008010)
+SubClassOf(obo:OHD_0000426 ObjectSomeValuesFrom(obo:IAO_0000136 obo:GO_0160269))
 
 # Class: obo:OHD_0000427 (DFS 06. I feel nauseated and sick to my stomach.)
 
@@ -6185,6 +6187,7 @@ AnnotationAssertion(dcterms:created obo:OHD_0000439 "2025-02-15T18:55:19Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000439 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000439 "DFS 18. Feeling the vibrations of the drill."@en)
 SubClassOf(obo:OHD_0000439 obo:OHD_0008010)
+SubClassOf(obo:OHD_0000439 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000451))
 SubClassOf(obo:OHD_0000439 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008028))
 
 # Class: obo:OHD_0000440 (DFS 19. Having your teeth cleaned.)
@@ -6305,6 +6308,15 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:
 AnnotationAssertion(rdfs:label obo:OHD_0000450 "MDAS 5. If you were about to have a LOCAL ANAESTHETIC INJECTION in your gum, above an upper back tooth, how would you feel?"@en)
 SubClassOf(obo:OHD_0000450 obo:OHD_0000445)
 SubClassOf(obo:OHD_0000450 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008033))
+
+# Class: obo:OHD_0000451 (feeling dental drill vibrations)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000451 "A touching process in which vibrations from a dental drill are perceived.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000451 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000451 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0000451 "2025-05-14T01:31:15Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000451 "feeling dental drill vibrations"@en)
+SubClassOf(obo:OHD_0000451 obo:MF_0000056)
 
 # Class: obo:OHD_0000482 (dental fear survey answer)
 
