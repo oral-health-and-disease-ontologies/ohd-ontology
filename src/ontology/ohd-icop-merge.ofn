@@ -6885,6 +6885,8 @@ AnnotationAssertion(dcterms:created obo:OHD_0008027 "2025-03-28T00:44:02Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008027 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008027 "sitting in waiting room"@en)
 SubClassOf(obo:OHD_0008027 obo:OHD_0008038)
+SubClassOf(obo:OHD_0008027 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000190))
+SubClassOf(obo:OHD_0008027 ObjectSomeValuesFrom(obo:RO_0002092 obo:OHD_0000009))
 
 # Class: obo:OHD_0008028 (tooth drilling procedure)
 
@@ -6972,13 +6974,14 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:
 AnnotationAssertion(rdfs:label obo:OHD_0008036 "feeling needle injection"@en)
 SubClassOf(obo:OHD_0008036 obo:MF_0000056)
 
-# Class: obo:OHD_0008037 (prior to dental visit)
+# Class: obo:OHD_0008037 (process before dental visit)
 
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008037 "A process that happens before a dental visit.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0008037 <https://orcid.org/0009-0002-7282-0836>)
-AnnotationAssertion(dcterms:created obo:OHD_0008037 "2025-03-28T12:50:59Z"^^xsd:dateTime)
 AnnotationAssertion(dcterms:created obo:OHD_0008037 "2025-05-14T01:31:15Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0008037 "prior to dental visit"@en)
-SubClassOf(obo:OHD_0008037 obo:OHD_0000009)
+AnnotationAssertion(rdfs:label obo:OHD_0008037 "process before dental visit"@en)
+SubClassOf(obo:OHD_0008037 obo:BFO_0000015)
+SubClassOf(obo:OHD_0008037 ObjectSomeValuesFrom(obo:BFO_0000063 obo:OHD_0000009))
 
 # Class: obo:OHD_0008038 (sitting process)
 
@@ -6991,19 +6994,22 @@ AnnotationAssertion(rdfs:label obo:OHD_0008038 "dental visit phase"@en)
 AnnotationAssertion(rdfs:label obo:OHD_0008038 "sitting process"@en)
 SubClassOf(obo:OHD_0008038 obo:BFO_0000015)
 
-# Class: obo:OHD_0008039 (during dental visit)
+# Class: obo:OHD_0008039 (process during dental visit)
 
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008039 "A process that happens during a dental visit and involves the patient participating in the dental visit.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0008039 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008039 "2025-03-28T12:51:33Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0008039 "during dental visit"@en)
-SubClassOf(obo:OHD_0008039 obo:OHD_0008038)
+AnnotationAssertion(rdfs:label obo:OHD_0008039 "process during dental visit"@en)
+EquivalentClasses(obo:OHD_0008039 ObjectIntersectionOf(obo:BFO_0000015 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000190) ObjectSomeValuesFrom(obo:RO_0002092 obo:OHD_0000009)))
 
-# Class: obo:OHD_0008040 (after dental visit)
+# Class: obo:OHD_0008040 (process after dental visit)
 
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008040 "A process that happens after a dental visit.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0008040 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008040 "2025-03-28T12:52:05Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0008040 "after dental visit"@en)
-SubClassOf(obo:OHD_0008040 obo:OHD_0008038)
+AnnotationAssertion(rdfs:label obo:OHD_0008040 "process after dental visit"@en)
+SubClassOf(obo:OHD_0008040 obo:BFO_0000015)
+SubClassOf(obo:OHD_0008040 ObjectSomeValuesFrom(obo:BFO_0000062 obo:OHD_0000009))
 
 # Class: obo:OHD_0008041 (question about prior to dental visit)
 
