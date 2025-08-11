@@ -7,7 +7,7 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 
 
 Ontology(<http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>
-<http://purl.obolibrary.org/obo/ohd/imports/2025-06-28/ro_import.owl>
+<http://purl.obolibrary.org/obo/ohd/imports/2025-08-04/ro_import.owl>
 
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/BFO_0000050>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/BFO_0000051>))
@@ -35,6 +35,9 @@ Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0001025>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002086>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002087>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002090>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002091>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002092>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002093>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002131>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002200>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002215>))
@@ -313,7 +316,7 @@ AnnotationAssertion(rdfs:seeAlso <http://purl.obolibrary.org/obo/RO_0040042> <ht
 
 # Annotation Property: <http://purl.org/dc/terms/contributor> (<http://purl.org/dc/terms/contributor>)
 
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/ro.owl>)
 
 # Annotation Property: <http://purl.org/dc/terms/creator> (<http://purl.org/dc/terms/creator>)
 
@@ -321,7 +324,7 @@ AnnotationAssertion(rdfs:isDefinedBy <http://purl.org/dc/terms/creator> <http://
 
 # Annotation Property: <http://purl.org/dc/terms/date> (<http://purl.org/dc/terms/date>)
 
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.org/dc/terms/date> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.org/dc/terms/date> <http://purl.obolibrary.org/obo/ro.owl>)
 
 # Annotation Property: <http://purl.org/dc/terms/source> (<http://purl.org/dc/terms/source>)
 
@@ -702,6 +705,43 @@ AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002090>
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0002090> "immediately precedes"@en)
 SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0002090> <http://purl.obolibrary.org/obo/BFO_0000063>)
 
+# Object Property: <http://purl.obolibrary.org/obo/RO_0002091> (starts during)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/RO_0002091> "David Osumi-Sutherland")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000118> <http://purl.obolibrary.org/obo/RO_0002091> "io")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/RO_0002091> <http://purl.obolibrary.org/obo/ro/subsets#ro-eco>)
+AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/RO_0002091> "X starts_during Y iff: (start(Y) before_or_simultaneous_with start(X)) AND (start(X) before_or_simultaneous_with end(Y))"@en)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002091> <http://purl.obolibrary.org/obo/ro.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0002091> "starts during"@en)
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0002091> <http://purl.obolibrary.org/obo/RO_0002222>)
+
+# Object Property: <http://purl.obolibrary.org/obo/RO_0002092> (happens during)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/RO_0002092> "David Osumi-Sutherland")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000118> <http://purl.obolibrary.org/obo/RO_0002092> "d")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000118> <http://purl.obolibrary.org/obo/RO_0002092> "during")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/RO_0002092> <http://purl.obolibrary.org/obo/valid_for_go_annotation_extension>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/RO_0002092> <http://purl.obolibrary.org/obo/valid_for_go_ontology>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/RO_0002092> <http://purl.obolibrary.org/obo/valid_for_gocam>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/RO_0002092> <http://purl.obolibrary.org/obo/ro/subsets#ro-eco>)
+AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/RO_0002092> "X happens_during Y iff: (start(Y) before_or_simultaneous_with start(X)) AND (end(X) before_or_simultaneous_with end(Y))"@en)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002092> <http://purl.obolibrary.org/obo/ro.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0002092> "happens during"@en)
+AnnotationAssertion(rdfs:seeAlso <http://purl.obolibrary.org/obo/RO_0002092> "https://wiki.geneontology.org/Happens_during"^^xsd:anyURI)
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0002092> <http://purl.obolibrary.org/obo/RO_0002091>)
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0002092> <http://purl.obolibrary.org/obo/RO_0002093>)
+
+# Object Property: <http://purl.obolibrary.org/obo/RO_0002093> (ends during)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/RO_0002093> "David Osumi-Sutherland")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000118> <http://purl.obolibrary.org/obo/RO_0002093> "o")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000118> <http://purl.obolibrary.org/obo/RO_0002093> "overlaps")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/RO_0002093> <http://purl.obolibrary.org/obo/ro/subsets#ro-eco>)
+AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/RO_0002093> "X ends_during Y iff: ((start(Y) before_or_simultaneous_with end(X)) AND end(X) before_or_simultaneous_with end(Y). "@en)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002093> <http://purl.obolibrary.org/obo/ro.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0002093> "ends during"@en)
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0002093> <http://purl.obolibrary.org/obo/RO_0002222>)
+
 # Object Property: <http://purl.obolibrary.org/obo/RO_0002131> (overlaps)
 
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000114> <http://purl.obolibrary.org/obo/RO_0002131> <http://purl.obolibrary.org/obo/IAO_0000125>)
@@ -721,7 +761,7 @@ AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000114> <http://purl.ob
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/RO_0002200> "A relationship that holds between a biological entity and a phenotype. Here a phenotype is construed broadly as any kind of quality of an organism part, a collection of these qualities, or a change in quality or qualities (e.g. abnormally increased temperature). The subject of this relationship can be an organism (where the organism has the phenotype, i.e. the qualities inhere in parts of this organism), a genomic entity such as a gene or genotype (if modifications of the gene or the genotype causes the phenotype), or a condition such as a disease (such that if the condition inheres in an organism, then the organism has the phenotype).")
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/RO_0002200> <https://orcid.org/0000-0002-6601-2165>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/RO_0002200> <http://purl.obolibrary.org/obo/ro/subsets#ro-eco>)
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002200> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002200> <http://purl.obolibrary.org/obo/ro.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0002200> "has phenotype"@en)
 SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0002200> <http://purl.obolibrary.org/obo/RO_0016001>)
 
@@ -1004,7 +1044,7 @@ SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0002431> <http://purl.obo
 
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/RO_0002452> "A relation that holds between a disease or an organism and a phenotype")
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/RO_0002452> <https://orcid.org/0000-0002-6601-2165>)
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002452> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002452> <http://purl.obolibrary.org/obo/ro.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0002452> "has symptom")
 SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0002452> <http://purl.obolibrary.org/obo/RO_0002200>)
 
@@ -1127,7 +1167,7 @@ SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0004023> <http://purl.obo
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000232> <http://purl.obolibrary.org/obo/RO_0016001> "Do not use this relation directly. It is intended as a grouping for a set of relations regarding presentation of phenotypes and disease.")
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/RO_0016001> <https://orcid.org/0000-0002-7463-6306>)
 AnnotationAssertion(<http://purl.org/dc/terms/date> <http://purl.obolibrary.org/obo/RO_0016001> "2021-11-05T17:30:14Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0016001> <http://purl.obolibrary.org/obo/ohd/imports/ro_import.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0016001> <http://purl.obolibrary.org/obo/ro.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0016001> "has phenotype or disease")
 AnnotationAssertion(rdfs:seeAlso <http://purl.obolibrary.org/obo/RO_0016001> "https://github.com/oborel/obo-relations/issues/478")
 SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0016001> owl:topObjectProperty)
