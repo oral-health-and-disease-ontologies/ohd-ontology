@@ -412,28 +412,6 @@ $(COMPONENTSDIR)/%.owl: | $(COMPONENTSDIR)
 .PRECIOUS: $(COMPONENTSDIR)/%.owl
 
 
-
-# ----------------------------------------
-# Subsets
-# ----------------------------------------
-$(SUBSETDIR)/%.tsv: $(SUBSETDIR)/%.owl
-	$(ROBOT) query -f tsv -i $< -s ../sparql/labels.sparql $@
-.PRECIOUS: $(SUBSETDIR)/%.tsv
-
-$(SUBSETDIR)/%.owl: $(ONT).owl | $(SUBSETDIR)
-	$(OWLTOOLS) $< --extract-ontology-subset --fill-gaps --subset $* -o $@.tmp.owl && mv $@.tmp.owl $@ &&\
-	$(ROBOT) annotate --input $@ --ontology-iri $(ONTBASE)/$@ $(ANNOTATE_ONTOLOGY_VERSION) -o $@.tmp.owl && mv $@.tmp.owl $@
-.PRECIOUS: $(SUBSETDIR)/%.owl
-
-
-$(SUBSETDIR)/%.obo: $(SUBSETDIR)/%.owl
-	$(ROBOT) convert --input $< --check false -f obo $(OBO_FORMAT_OPTIONS) -o $@.tmp.obo && grep -v ^owl-axioms $@.tmp.obo > $@ && rm $@.tmp.obo
-
-$(SUBSETDIR)/%.json: $(SUBSETDIR)/%.owl
-	$(ROBOT) convert --input $< --check false -f json -o $@.tmp.json &&\
-	mv $@.tmp.json $@
-
-
 # ---------------------------------------------
 # Sparql queries: Table exports / Query Reports
 # ---------------------------------------------
@@ -652,3 +630,4 @@ endef
 export data
 
 include ohd.Makefile
+include ohd-subsets.Makefile
