@@ -14,6 +14,7 @@
      xmlns:example="http://example.com/"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
     <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/odfa.owl">
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9191-6978"/>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-9990-8331"/>
         <terms:contributor rdf:resource="https://orcid.org/0000-0002-0766-8455"/>
@@ -25,9 +26,9 @@
         <terms:description>The Ontology of Dental care-related Fear, Anxiety, and/or Phobia (ODFA) contains terms for defining and classifying dental-care related fear, anxiety, and/or phobia (DFA). The ODFA’s concepts and relations facilitate the development of tools and resources capable of enhancing our understanding of the impacts of DFA, and when applied to study data, the ODFA enables the integration and interoperability of data from multiple studies.
 
 The ODFA is developed as a subset of the Oral Health and Disease Ontology (http://purl.obolibrary.org/obo/ohd.owl). Issues and new term requests can be submitted at https://github.com/oral-health-and-disease-ontologies/ohd-ontology/issues.</terms:description>
-        <terms:license>https://creativecommons.org/publicdomain/zero/1.0/</terms:license>
+        <terms:license rdf:resource="http://creativecommons.org/licenses/by/4.0/"/>
         <terms:title>Ontology of Dental care-related Fear, Anxiety, and/or Phobia (ODFA)</terms:title>
-        <owl:versionInfo>2025-08-04</owl:versionInfo>
+        <owl:versionInfo>2025-08-28</owl:versionInfo>
     </owl:Ontology>
     
 
@@ -257,6 +258,12 @@ The ODFA is developed as a subset of the Oral Health and Disease Ontology (http:
     
 
 
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym -->
+
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym"/>
+    
+
+
     <!-- http://www.geneontology.org/formats/oboInOwl#hasDbXref -->
 
     <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#hasDbXref"/>
@@ -362,16 +369,22 @@ A continuant cannot be part of an occurrent: use &apos;participates in&apos;. An
         <obo:RO_0040042 rdf:resource="http://purl.obolibrary.org/obo/BFO_0000020"/>
         <obo:RO_0040042 rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
         <oboInOwl:hasDbXref>BFO:0000050</oboInOwl:hasDbXref>
+        <oboInOwl:hasOBONamespace>external</oboInOwl:hasOBONamespace>
         <oboInOwl:hasOBONamespace>quality</oboInOwl:hasOBONamespace>
+        <oboInOwl:hasOBONamespace>spatial</oboInOwl:hasOBONamespace>
+        <oboInOwl:hasOBONamespace>uberon</oboInOwl:hasOBONamespace>
         <oboInOwl:id>part_of</oboInOwl:id>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/valid_for_go_annotation_extension"/>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/valid_for_go_gp2term"/>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/valid_for_go_ontology"/>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/valid_for_gocam"/>
         <oboInOwl:shorthand>part_of</oboInOwl:shorthand>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ido.owl"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/pato.owl"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ro.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl"/>
+        <rdfs:label>part of</rdfs:label>
         <rdfs:label xml:lang="en">part of</rdfs:label>
         <rdfs:label>part_of</rdfs:label>
         <rdfs:seeAlso rdf:resource="http://ontologydesignpatterns.org/wiki/Community:Parts_and_Collections"/>
@@ -400,15 +413,21 @@ A continuant cannot have an occurrent as part: use &apos;participates in&apos;. 
         <obo:IAO_0000118 xml:lang="en">has_part</obo:IAO_0000118>
         <obo:RO_0001900 rdf:resource="http://purl.obolibrary.org/obo/RO_0001901"/>
         <oboInOwl:hasDbXref>BFO:0000051</oboInOwl:hasDbXref>
+        <oboInOwl:hasOBONamespace>external</oboInOwl:hasOBONamespace>
         <oboInOwl:hasOBONamespace>quality</oboInOwl:hasOBONamespace>
+        <oboInOwl:hasOBONamespace>spatial</oboInOwl:hasOBONamespace>
+        <oboInOwl:hasOBONamespace>uberon</oboInOwl:hasOBONamespace>
         <oboInOwl:id>has_part</oboInOwl:id>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/valid_for_go_annotation_extension"/>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/valid_for_go_ontology"/>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/valid_for_gocam"/>
         <oboInOwl:shorthand>has_part</oboInOwl:shorthand>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ido.owl"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/pato.owl"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ro.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl"/>
+        <rdfs:label>has part</rdfs:label>
         <rdfs:label xml:lang="en">has part</rdfs:label>
         <rdfs:label>has_part</rdfs:label>
     </owl:ObjectProperty>
@@ -476,6 +495,34 @@ A continuant cannot have an occurrent as part: use &apos;participates in&apos;. 
         <rdfs:comment>Paraphrase of elucidation: a relation between a process and a realizable entity, where there is some material entity that is bearer of the realizable entity and participates in the process, and the realizable entity comes to be realized in the course of the process</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
         <rdfs:label xml:lang="en">realizes</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/BFO_0000062 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000062">
+        <obo:IAO_0000111 xml:lang="en">preceded by</obo:IAO_0000111>
+        <obo:IAO_0000115 xml:lang="en">x is preceded by y if and only if the time point at which y ends is before or equivalent to the time point at which x starts. Formally: x preceded by y iff ω(y) &lt;= α(x), where α is a function that maps a process to a start point, and ω is a function that maps a process to an end point.</obo:IAO_0000115>
+        <obo:IAO_0000116 xml:lang="en">An example is: translation preceded_by transcription; aging preceded_by development (not however death preceded_by aging). Where derives_from links classes of continuants, preceded_by links classes of processes. Clearly, however, these two relations are not independent of each other. Thus if cells of type C1 derive_from cells of type C, then any cell division involving an instance of C1 in a given lineage is preceded_by cellular processes involving an instance of C.    The assertion P preceded_by P1 tells us something about Ps in general: that is, it tells us something about what happened earlier, given what we know about what happened later. Thus it does not provide information pointing in the opposite direction, concerning instances of P1 in general; that is, that each is such as to be succeeded by some instance of P. Note that an assertion to the effect that P preceded_by P1 is rather weak; it tells us little about the relations between the underlying instances in virtue of which the preceded_by relation obtains. Typically we will be interested in stronger relations, for example in the relation immediately_preceded_by, or in relations which combine preceded_by with a condition to the effect that the corresponding instances of P and P1 share participants, or that their participants are connected by relations of derivation, or (as a first step along the road to a treatment of causality) that the one process in some way affects (for example, initiates or regulates) the other.</obo:IAO_0000116>
+        <obo:IAO_0000118 xml:lang="en">is preceded by</obo:IAO_0000118>
+        <obo:IAO_0000118 xml:lang="en">preceded_by</obo:IAO_0000118>
+        <terms:source>http://www.obofoundry.org/ro/#OBO_REL:preceded_by</terms:source>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/ro/subsets#ro-eco"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ro.owl"/>
+        <rdfs:label xml:lang="en">preceded by</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/BFO_0000063 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000063">
+        <obo:IAO_0000111 xml:lang="en">precedes</obo:IAO_0000111>
+        <obo:IAO_0000115 xml:lang="en">x precedes y if and only if the time point at which x ends is before or equivalent to the time point at which y starts. Formally: x precedes y iff ω(x) &lt;= α(y), where α is a function that maps a process to a start point, and ω is a function that maps a process to an end point.</obo:IAO_0000115>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/ro/subsets#ro-eco"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ro.owl"/>
+        <rdfs:label xml:lang="en">precedes</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -595,6 +642,24 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
     
 
 
+    <!-- http://purl.obolibrary.org/obo/RO_0002092 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_0002092">
+        <obo:IAO_0000117>David Osumi-Sutherland</obo:IAO_0000117>
+        <obo:IAO_0000118>d</obo:IAO_0000118>
+        <obo:IAO_0000118>during</obo:IAO_0000118>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/valid_for_go_annotation_extension"/>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/valid_for_go_ontology"/>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/valid_for_gocam"/>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/ro/subsets#ro-eco"/>
+        <rdfs:comment xml:lang="en">X happens_during Y iff: (start(Y) before_or_simultaneous_with start(X)) AND (end(X) before_or_simultaneous_with end(Y))</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ro.owl"/>
+        <rdfs:label xml:lang="en">happens during</rdfs:label>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://wiki.geneontology.org/Happens_during</rdfs:seeAlso>
+    </owl:ObjectProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -613,6 +678,7 @@ Some currently missing phenomena that should be considered &quot;about&quot; are
         <obo:IAO_0000115>a data property whose value is an ADA universal tooth number that represents a tooth which is missing from a dentition</obo:IAO_0000115>
         <obo:IAO_0000116>Bill Duncan 01/03/2017:
 This data property provides a means to query for missing teeth. Since a missing tooth is not a tooth, it is wrong represent a missing tooth as an instance of a tooth. Rather, we represent a missing tooth by respresenting the instance of the dentition and then specify with this data property that the dentition is missing a tooth designated by the universtal tooth number.</obo:IAO_0000116>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <terms:created>2017-01-03T18:37:35Z</terms:created>
         <rdfs:label xml:lang="en">missing tooth number</rdfs:label>
     </owl:DatatypeProperty>
@@ -626,6 +692,7 @@ This data property provides a means to query for missing teeth. Since a missing 
         <obo:IAO_0000115>a data property whose value is an ADA universal tooth number that represents the tooth associated with a tooth root that is missing from a dentition</obo:IAO_0000115>
         <obo:IAO_0000116>Bill Duncan 10/18/2017:
 This data property provides a means to query for missing tooth roots. Since a missing tooth root is not a tooth root, it is wrong represent a missing tooth root as an instance of a tooth root. Rather, we represent a missing tooth root by respresenting the instance of the dentition and then specify with this data property that the dentition is missing a tooth root that is associated with the tooth designated by the universtal tooth number.</obo:IAO_0000116>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <terms:created>2017-10-18T20:39:14Z</terms:created>
         <rdfs:label xml:lang="en">missing tooth root number</rdfs:label>
     </owl:DatatypeProperty>
@@ -1177,6 +1244,52 @@ This data property provides a means to query for missing tooth roots. Since a mi
     
 
 
+    <!-- http://purl.obolibrary.org/obo/BFO_0000016 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000016">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000017"/>
+        <owl:disjointWith rdf:resource="http://purl.obolibrary.org/obo/BFO_0000023"/>
+        <obo:BFO_0000179>disposition</obo:BFO_0000179>
+        <obo:BFO_0000180>Disposition</obo:BFO_0000180>
+        <obo:IAO_0000112 xml:lang="en">an atom of element X has the disposition to decay to an atom of element Y</obo:IAO_0000112>
+        <obo:IAO_0000112 xml:lang="en">certain people have a predisposition to colon cancer</obo:IAO_0000112>
+        <obo:IAO_0000112 xml:lang="en">children are innately disposed to categorize objects in certain ways.</obo:IAO_0000112>
+        <obo:IAO_0000112 xml:lang="en">the cell wall is disposed to filter chemicals in endocytosis and exocytosis</obo:IAO_0000112>
+        <obo:IAO_0000116 xml:lang="en">BFO 2 Reference: Dispositions exist along a strength continuum. Weaker forms of disposition are realized in only a fraction of triggering cases. These forms occur in a significant number of cases of a similar type.</obo:IAO_0000116>
+        <obo:IAO_0000600 xml:lang="en">b is a disposition means: b is a realizable entity &amp; b’s bearer is some material entity &amp; b is such that if it ceases to exist, then its bearer is physically changed, &amp; b’s realization occurs when and because this bearer is in some special physical circumstances, &amp; this realization occurs in virtue of the bearer’s physical make-up. (axiom label in BFO2 Reference: [062-002])</obo:IAO_0000600>
+        <obo:IAO_0000601 xml:lang="en">If b is a realizable entity then for all t at which b exists, b s-depends_on some material entity at t. (axiom label in BFO2 Reference: [063-002])</obo:IAO_0000601>
+        <obo:IAO_0000602>(forall (x t) (if (and (RealizableEntity x) (existsAt x t)) (exists (y) (and (MaterialEntity y) (specificallyDepends x y t))))) // axiom label in BFO2 CLIF: [063-002] </obo:IAO_0000602>
+        <obo:IAO_0000602>(forall (x) (if (Disposition x) (and (RealizableEntity x) (exists (y) (and (MaterialEntity y) (bearerOfAt x y t)))))) // axiom label in BFO2 CLIF: [062-002] </obo:IAO_0000602>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/bfo.owl"/>
+        <rdfs:label xml:lang="en">disposition</rdfs:label>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000016"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000600"/>
+        <owl:annotatedTarget xml:lang="en">b is a disposition means: b is a realizable entity &amp; b’s bearer is some material entity &amp; b is such that if it ceases to exist, then its bearer is physically changed, &amp; b’s realization occurs when and because this bearer is in some special physical circumstances, &amp; this realization occurs in virtue of the bearer’s physical make-up. (axiom label in BFO2 Reference: [062-002])</owl:annotatedTarget>
+        <obo:IAO_0010000 rdf:resource="http://purl.obolibrary.org/obo/bfo/axiom/062-002"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000016"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000601"/>
+        <owl:annotatedTarget xml:lang="en">If b is a realizable entity then for all t at which b exists, b s-depends_on some material entity at t. (axiom label in BFO2 Reference: [063-002])</owl:annotatedTarget>
+        <obo:IAO_0010000 rdf:resource="http://purl.obolibrary.org/obo/bfo/axiom/063-002"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000016"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000602"/>
+        <owl:annotatedTarget>(forall (x t) (if (and (RealizableEntity x) (existsAt x t)) (exists (y) (and (MaterialEntity y) (specificallyDepends x y t))))) // axiom label in BFO2 CLIF: [063-002] </owl:annotatedTarget>
+        <obo:IAO_0010000 rdf:resource="http://purl.obolibrary.org/obo/bfo/axiom/063-002"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/BFO_0000016"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000602"/>
+        <owl:annotatedTarget>(forall (x) (if (Disposition x) (and (RealizableEntity x) (exists (y) (and (MaterialEntity y) (bearerOfAt x y t)))))) // axiom label in BFO2 CLIF: [062-002] </owl:annotatedTarget>
+        <obo:IAO_0010000 rdf:resource="http://purl.obolibrary.org/obo/bfo/axiom/062-002"/>
+    </owl:Axiom>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/BFO_0000017 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000017">
@@ -1637,7 +1750,7 @@ regional part: Region of organ component</obo:IAO_0000116>
         <oboInOwl:hasExactSynonym>organ system process</oboInOwl:hasExactSynonym>
         <oboInOwl:hasOBONamespace>biological_process</oboInOwl:hasOBONamespace>
         <oboInOwl:id>GO:0003008</oboInOwl:id>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/go_import.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
         <rdfs:label>system process</rdfs:label>
     </owl:Class>
     <owl:Axiom>
@@ -1659,7 +1772,7 @@ regional part: Region of organ component</obo:IAO_0000116>
         <oboInOwl:id>GO:0003012</oboInOwl:id>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_drosophila"/>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_generic"/>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/go_import.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
         <rdfs:label>muscle system process</rdfs:label>
     </owl:Class>
     <owl:Axiom>
@@ -1681,7 +1794,7 @@ regional part: Region of organ component</obo:IAO_0000116>
         <oboInOwl:id>GO:0003013</oboInOwl:id>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_chembl"/>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_generic"/>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/go_import.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
         <rdfs:label>circulatory system process</rdfs:label>
     </owl:Class>
     <owl:Axiom>
@@ -1701,7 +1814,7 @@ regional part: Region of organ component</obo:IAO_0000116>
         <oboInOwl:hasOBONamespace>biological_process</oboInOwl:hasOBONamespace>
         <oboInOwl:hasRelatedSynonym>cardiac process</oboInOwl:hasRelatedSynonym>
         <oboInOwl:id>GO:0003015</oboInOwl:id>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/go_import.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
         <rdfs:label>heart process</rdfs:label>
     </owl:Class>
     <owl:Axiom>
@@ -1723,7 +1836,7 @@ regional part: Region of organ component</obo:IAO_0000116>
         <oboInOwl:hasOBONamespace>biological_process</oboInOwl:hasOBONamespace>
         <oboInOwl:id>GO:0003016</oboInOwl:id>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_generic"/>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/go_import.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
         <rdfs:label>respiratory system process</rdfs:label>
     </owl:Class>
     <owl:Axiom>
@@ -1762,15 +1875,9 @@ regional part: Region of organ component</obo:IAO_0000116>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_prokaryote"/>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_prokaryote_ribbon"/>
         <rdfs:comment>Note that this term should not be used for direct annotation. It should be possible to make a more specific annotation to one of the children of this term, for e.g. to transmembrane transport, to microtubule-based transport or to vesicle-mediated transport.</rdfs:comment>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/go_import.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
         <rdfs:label>transport</rdfs:label>
     </owl:Class>
-    <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/GO_0006810"/>
-        <owl:annotatedProperty rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasDbXref"/>
-        <owl:annotatedTarget>Reactome:R-HSA-382551</owl:annotatedTarget>
-        <rdfs:label>Transport of small molecules</rdfs:label>
-    </owl:Axiom>
     <owl:Axiom>
         <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/GO_0006810"/>
         <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
@@ -1779,6 +1886,12 @@ regional part: Region of organ component</obo:IAO_0000116>
         <oboInOwl:hasDbXref>GOC:dph</oboInOwl:hasDbXref>
         <oboInOwl:hasDbXref>GOC:jl</oboInOwl:hasDbXref>
         <oboInOwl:hasDbXref>GOC:mah</oboInOwl:hasDbXref>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/GO_0006810"/>
+        <owl:annotatedProperty rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasDbXref"/>
+        <owl:annotatedTarget>Reactome:R-HSA-382551</owl:annotatedTarget>
+        <rdfs:label>Transport of small molecules</rdfs:label>
     </owl:Axiom>
     
 
@@ -1793,7 +1906,7 @@ regional part: Region of organ component</obo:IAO_0000116>
         <oboInOwl:hasOBONamespace>biological_process</oboInOwl:hasOBONamespace>
         <oboInOwl:id>GO:0006936</oboInOwl:id>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_pir"/>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/go_import.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
         <rdfs:label>muscle contraction</rdfs:label>
     </owl:Class>
     <owl:Axiom>
@@ -1862,6 +1975,29 @@ regional part: Region of organ component</obo:IAO_0000116>
         <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <owl:annotatedTarget>Reactions, triggered in response to the presence of a foreign body or the occurrence of an injury, which result in restriction of damage to the organism attacked or prevention/recovery from the infection caused by the attack.</owl:annotatedTarget>
         <oboInOwl:hasDbXref>GOC:go_curators</oboInOwl:hasDbXref>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/GO_0007589 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/GO_0007589">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/GO_0046903"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/GO_0050878"/>
+        <obo:IAO_0000115>The controlled release of a fluid by a cell or tissue in an animal.</obo:IAO_0000115>
+        <oboInOwl:hasOBONamespace>biological_process</oboInOwl:hasOBONamespace>
+        <oboInOwl:id>GO:0007589</oboInOwl:id>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
+        <rdfs:label>body fluid secretion</rdfs:label>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/GO_0007589"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>The controlled release of a fluid by a cell or tissue in an animal.</owl:annotatedTarget>
+        <oboInOwl:hasDbXref>GOC:ai</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:dph</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:mah</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:tb</oboInOwl:hasDbXref>
     </owl:Axiom>
     
 
@@ -1986,7 +2122,7 @@ regional part: Region of organ component</obo:IAO_0000116>
         <oboInOwl:hasOBONamespace>biological_process</oboInOwl:hasOBONamespace>
         <oboInOwl:hasRelatedSynonym>expulsion of gland contents</oboInOwl:hasRelatedSynonym>
         <oboInOwl:id>GO:0032941</oboInOwl:id>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/go_import.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
         <rdfs:label>secretion by tissue</rdfs:label>
     </owl:Class>
     <owl:Axiom>
@@ -2013,7 +2149,7 @@ regional part: Region of organ component</obo:IAO_0000116>
         <oboInOwl:id>GO:0040011</oboInOwl:id>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_chembl"/>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_pir"/>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/go_import.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
         <rdfs:label>locomotion</rdfs:label>
     </owl:Class>
     <owl:Axiom>
@@ -2033,7 +2169,7 @@ regional part: Region of organ component</obo:IAO_0000116>
         <oboInOwl:hasOBONamespace>biological_process</oboInOwl:hasOBONamespace>
         <oboInOwl:id>GO:0046903</oboInOwl:id>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_pir"/>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/go_import.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
         <rdfs:label>secretion</rdfs:label>
     </owl:Class>
     <owl:Axiom>
@@ -2041,6 +2177,28 @@ regional part: Region of organ component</obo:IAO_0000116>
         <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
         <owl:annotatedTarget>The controlled release of a substance by a cell or a tissue.</owl:annotatedTarget>
         <oboInOwl:hasDbXref>GOC:ai</oboInOwl:hasDbXref>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/GO_0050878 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/GO_0050878">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/GO_0065008"/>
+        <obo:IAO_0000115>Any process that modulates the levels of body fluids.</obo:IAO_0000115>
+        <oboInOwl:hasOBONamespace>biological_process</oboInOwl:hasOBONamespace>
+        <oboInOwl:id>GO:0050878</oboInOwl:id>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_pir"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
+        <rdfs:label>regulation of body fluid levels</rdfs:label>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/GO_0050878"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>Any process that modulates the levels of body fluids.</owl:annotatedTarget>
+        <oboInOwl:hasDbXref>GOC:ai</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:dph</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:tb</oboInOwl:hasDbXref>
     </owl:Axiom>
     
 
@@ -2096,7 +2254,7 @@ regional part: Region of organ component</obo:IAO_0000116>
         <oboInOwl:id>GO:0051179</oboInOwl:id>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#gocheck_do_not_annotate"/>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_pir"/>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/go_import.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
         <rdfs:label>localization</rdfs:label>
     </owl:Class>
     <owl:Axiom>
@@ -2137,8 +2295,8 @@ regional part: Region of organ component</obo:IAO_0000116>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_flybase_ribbon"/>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_mouse"/>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_pir"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ido.owl"/>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/go_import.owl"/>
         <rdfs:label>establishment of localization</rdfs:label>
     </owl:Class>
     <owl:Axiom>
@@ -2153,6 +2311,86 @@ regional part: Region of organ component</obo:IAO_0000116>
         <owl:annotatedProperty rdf:resource="http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"/>
         <owl:annotatedTarget>establishment of localisation</owl:annotatedTarget>
         <oboInOwl:hasDbXref>GOC:mah</oboInOwl:hasDbXref>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/GO_0065007 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/GO_0065007">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/GO_0008150"/>
+        <obo:IAO_0000115>Any process that modulates a measurable attribute of any biological process, quality or function.</obo:IAO_0000115>
+        <oboInOwl:hasBroadSynonym>regulation</oboInOwl:hasBroadSynonym>
+        <oboInOwl:hasOBONamespace>biological_process</oboInOwl:hasOBONamespace>
+        <oboInOwl:id>GO:0065007</oboInOwl:id>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#gocheck_do_not_annotate"/>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_pir"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
+        <rdfs:label>biological regulation</rdfs:label>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/GO_0065007"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>Any process that modulates a measurable attribute of any biological process, quality or function.</owl:annotatedTarget>
+        <oboInOwl:hasDbXref>GOC:dph</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:isa_complete</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:mah</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:pr</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:vw</oboInOwl:hasDbXref>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/GO_0065008 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/GO_0065008">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/GO_0065007"/>
+        <obo:IAO_0000115>Any process that modulates a qualitative or quantitative trait of a biological quality. A biological quality is a measurable attribute of an organism or part of an organism, such as size, mass, shape, color, etc.</obo:IAO_0000115>
+        <obo:IAO_0000233 rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://github.com/geneontology/go-ontology/issues/30599</obo:IAO_0000233>
+        <oboInOwl:hasExactSynonym>regulation of biological attribute</oboInOwl:hasExactSynonym>
+        <oboInOwl:hasExactSynonym>regulation of biological characteristic</oboInOwl:hasExactSynonym>
+        <oboInOwl:hasOBONamespace>biological_process</oboInOwl:hasOBONamespace>
+        <oboInOwl:id>GO:0065008</oboInOwl:id>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#gocheck_do_not_annotate"/>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_pir"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
+        <rdfs:label>regulation of biological quality</rdfs:label>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/GO_0065008"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>Any process that modulates a qualitative or quantitative trait of a biological quality. A biological quality is a measurable attribute of an organism or part of an organism, such as size, mass, shape, color, etc.</owl:annotatedTarget>
+        <oboInOwl:hasDbXref>GOC:dph</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:isa_complete</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:mah</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:pr</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:vw</oboInOwl:hasDbXref>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/GO_0160269 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/GO_0160269">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/GO_0007589"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/GO_0032941"/>
+        <obo:IAO_0000115>The regulated release of sweat from the sweat glands.</obo:IAO_0000115>
+        <obo:IAO_0000233 rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://github.com/geneontology/go-ontology/issues/30274.</obo:IAO_0000233>
+        <oboInOwl:created_by>rynl</oboInOwl:created_by>
+        <oboInOwl:creation_date>2025-05-19T20:55:14Z</oboInOwl:creation_date>
+        <oboInOwl:hasExactSynonym>perspiration</oboInOwl:hasExactSynonym>
+        <oboInOwl:hasExactSynonym>perspiring</oboInOwl:hasExactSynonym>
+        <oboInOwl:hasExactSynonym>sweating</oboInOwl:hasExactSynonym>
+        <oboInOwl:hasOBONamespace>biological_process</oboInOwl:hasOBONamespace>
+        <oboInOwl:id>GO:0160269</oboInOwl:id>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
+        <rdfs:label>sweat secretion</rdfs:label>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/GO_0160269"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>The regulated release of sweat from the sweat glands.</owl:annotatedTarget>
+        <oboInOwl:hasDbXref>PMID:1778649</oboInOwl:hasDbXref>
     </owl:Axiom>
     
 
@@ -2265,6 +2503,47 @@ Previous. An information content entity is a non-realizable information entity t
         <obo:IAO_0000117 xml:lang="en">PERSON: Bjoern Peters</obo:IAO_0000117>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
         <rdfs:label xml:lang="en">directive information entity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IDO_0000436 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/IDO_0000436">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000031"/>
+        <obo:IAO_0000115 xml:lang="en">A disease whose physical basis is an infectious disorder.</obo:IAO_0000115>
+        <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
+        <obo:IAO_0000117>Alexander Diehl</obo:IAO_0000117>
+        <obo:IAO_0000117>Lindsay Cowell</obo:IAO_0000117>
+        <obo:IAO_0000118 xml:lang="en">tranmissible disease</obo:IAO_0000118>
+        <rdfs:comment>The disposition is realized in an infectious disease course.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ido.owl"/>
+        <rdfs:label xml:lang="en">infectious disease</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IDO_0000495 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/IDO_0000495">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OGMS_0000063"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IDO_0000436"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000063"/>
+        <obo:IAO_0000115 xml:lang="en">A disease course that is the realization of an infectious disease.</obo:IAO_0000115>
+        <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
+        <obo:IAO_0000117>Alexander Diehl</obo:IAO_0000117>
+        <obo:IAO_0000117>Lindsay Cowell</obo:IAO_0000117>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ido.owl"/>
+        <rdfs:label xml:lang="en">infectious disease course</rdfs:label>
     </owl:Class>
     
 
@@ -2534,6 +2813,22 @@ This issue is outside the scope of OBI.</obo:IAO_0000116>
     
 
 
+    <!-- http://purl.obolibrary.org/obo/OGMS_0000031 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000031">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000016"/>
+        <obo:IAO_0000115 xml:lang="en">A disposition (i) to undergo pathological processes that (ii) exists in an organism because of one or more disorders in that organism.</obo:IAO_0000115>
+        <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
+        <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
+        <obo:IAO_0000232>creation date: 2009-06-23T11:21:20Z</obo:IAO_0000232>
+        <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ogms.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ido.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ogms.owl"/>
+        <rdfs:label>disease</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/OGMS_0000060 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000060">
@@ -2560,6 +2855,22 @@ This issue is outside the scope of OBI.</obo:IAO_0000116>
         <obo:IAO_0000232>creation date: 2009-06-23T11:54:29Z</obo:IAO_0000232>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ogms.owl"/>
         <rdfs:label>pathological bodily process</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OGMS_0000063 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000063">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000015"/>
+        <obo:IAO_0000115 xml:lang="en">The totality of all processes through which a given disease instance is realized.</obo:IAO_0000115>
+        <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
+        <obo:IAO_0000119>http://ontology.buffalo.edu/medo/Disease_and_Diagnosis.pdf</obo:IAO_0000119>
+        <obo:IAO_0000232>creation date: 2009-06-23T11:55:44Z</obo:IAO_0000232>
+        <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/ogms.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ido.owl"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ogms.owl"/>
+        <rdfs:label>disease course</rdfs:label>
     </owl:Class>
     
 
@@ -2608,6 +2919,20 @@ editor date: 2017-04-18</obo:IAO_0000232>
     
 
 
+    <!-- http://purl.obolibrary.org/obo/OGMS_0000099 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OGMS_0000099">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000097"/>
+        <obo:IAO_0000115 xml:lang="en">TODO</obo:IAO_0000115>
+        <obo:IAO_0000117>Albert Goldfain</obo:IAO_0000117>
+        <obo:IAO_0000119>http://groups.google.com/group/ogms-discuss/browse_thread/thread/a2dbc2ed1dff99d6</obo:IAO_0000119>
+        <obo:IAO_0000232>creation date: 2011-02-21T09:57:44Z</obo:IAO_0000232>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ogms.owl"/>
+        <rdfs:label>outpatient encounter</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/OHD_0000000 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000000">
@@ -2635,17 +2960,24 @@ editor date: 2017-04-18</obo:IAO_0000232>
     <!-- http://purl.obolibrary.org/obo/OHD_0000002 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000002">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000190"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000097"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0008039"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
                 <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000052"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000190"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002092"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000009"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A healthcare encounter that realizes a dental patient role in which the patient undergoes a diagnostic or therapeutic process.</obo:IAO_0000115>
@@ -2656,6 +2988,12 @@ Changed &quot;A specific healthcare activity&quot; to &quot;A health care encoun
         <obo:IAO_0000117>PERSON:Pedro Cott</obo:IAO_0000117>
         <rdfs:label xml:lang="en">dental procedure</rdfs:label>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/OHD_0008039"/>
+        <oboInOwl:is_inferred>true</oboInOwl:is_inferred>
+    </owl:Axiom>
     
 
 
@@ -2703,6 +3041,7 @@ My reasons for doing this are:
         <obo:IAO_0000116>Titus Schleyer 3/14/2014: slightly edited definition</obo:IAO_0000116>
         <obo:IAO_0000117>PERSON:Alan Ruttenberg</obo:IAO_0000117>
         <obo:IAO_0000117>PERSON:Pedro Cott</obo:IAO_0000117>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label xml:lang="en">tooth restoration procedure</rdfs:label>
     </owl:Class>
     
@@ -2733,7 +3072,27 @@ My reasons for doing this are:
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A target of material addition role that inheres in a tooth and is realized by a tooth restoration procedure during which the tooth bearing the role is restored to health.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label>tooth to be restored role</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000009 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000009">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OGMS_0000099"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000052"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>An outpatient encounter during which a dental health care professional and a patient meet for the purpose of evaluating, treating disorders of, or preventing deterioration of the patient&apos;s oral health.</obo:IAO_0000115>
+        <obo:IAO_0000116>Titus Schleyer 1/14/14: adapted definition</obo:IAO_0000116>
+        <obo:IAO_0000117>PERSON:Alan Ruttenberg</obo:IAO_0000117>
+        <obo:IAO_0000119>Adapted from Mosby&apos;s Dental Dictionary</obo:IAO_0000119>
+        <rdfs:label xml:lang="en">dental visit</rdfs:label>
     </owl:Class>
     
 
@@ -2872,6 +3231,7 @@ My reasons for doing this are:
 A restored tooth typically results when a tooth with some type of pathological defect is restored.</obo:IAO_0000116>
         <obo:IAO_0000116>Titus Schleyer 1/1/2014: updated definition</obo:IAO_0000116>
         <obo:IAO_0000117>Alan Ruttenberg</obo:IAO_0000117>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <rdfs:label xml:lang="en">restored tooth</rdfs:label>
     </owl:Class>
     <owl:Axiom>
@@ -2993,6 +3353,8 @@ Widened the definition to include other materials used in restoration processes 
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115>A process during which the surface of the tooth is cleaned.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-08T16:56:25Z</terms:created>
         <rdfs:label xml:lang="en">tooth cleaning process</rdfs:label>
     </owl:Class>
@@ -3230,7 +3592,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0008050"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/GO_0160269"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">A Dental Fear Survey (DFS) question prompting users with &quot;I perspire.&quot;</obo:IAO_0000115>
@@ -3538,13 +3900,13 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0008028"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000451"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0008037"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0008028"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">A Dental Fear Survey (DFS) question prompting users with &quot;Feeling the vibrations of the drill.&quot;</obo:IAO_0000115>
@@ -3604,11 +3966,26 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     
 
 
+    <!-- http://purl.obolibrary.org/obo/OHD_0000443 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000443">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IDO_0000495"/>
+        <obo:IAO_0000115>An infectious disease course that realizes dental caries.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0006-7251-3026"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-12T23:02:32Z</terms:created>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/OHD_0005009"/>
+        <rdfs:label xml:lang="en">dental caries disease course</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/OHD_0000444 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000444">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0008008"/>
         <obo:IAO_0000115 xml:lang="en">A dental fear and anxiety assessment instrument initially described by Humphris et al. (1995) that was developed to improve the psychometrics and content validity of the original Dental Anxiety Scale (DAS) by adding an item about receiving dental injections, and ordering the potential answers to each item so that they range from least to greatest level of anxiety.</obo:IAO_0000115>
+        <obo:IAO_0000115>A dental fear survey consisting of five questions and summed together to produce a total score ranging from 5 to 25.</obo:IAO_0000115>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <terms:contributor rdf:resource="https://orcid.org/0009-0002-7282-0836"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-02-15T19:01:50Z</terms:created>
@@ -3621,6 +3998,13 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
         <owl:annotatedTarget xml:lang="en">A dental fear and anxiety assessment instrument initially described by Humphris et al. (1995) that was developed to improve the psychometrics and content validity of the original Dental Anxiety Scale (DAS) by adding an item about receiving dental injections, and ordering the potential answers to each item so that they range from least to greatest level of anxiety.</owl:annotatedTarget>
         <obo:IAO_0000119>https://link.springer.com/article/10.1186/1472-6831-9-20</obo:IAO_0000119>
         <obo:IAO_0000119>https://link.springer.com/content/pdf/10.1186/1472-6831-8-29.pdf</obo:IAO_0000119>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0000444"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>A dental fear survey consisting of five questions and summed together to produce a total score ranging from 5 to 25.</owl:annotatedTarget>
+        <obo:IAO_0000119>Humphris, G., T. Morrison, and S. J. E. Lindsay. &quot;The Modified Dental Anxiety Scale: UK norms and evidence for validity.&quot; Community Dental Health 12.3 (1995): 143-150.</obo:IAO_0000119>
+        <obo:IAO_0000119>https://link.springer.com/article/10.1186/1472-6831-9-20</obo:IAO_0000119>
     </owl:Axiom>
     
 
@@ -3763,6 +4147,19 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-02-15T19:27:40Z</terms:created>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/OHD_0005009"/>
         <rdfs:label xml:lang="en">MDAS 5. If you were about to have a LOCAL ANAESTHETIC INJECTION in your gum, above an upper back tooth, how would you feel?</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0000451 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000451">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/MF_0000056"/>
+        <obo:IAO_0000115>A touching process in which vibrations from a dental drill are perceived.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0002-7282-0836"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-05-14T01:31:15Z</terms:created>
+        <rdfs:label xml:lang="en">feeling dental drill vibrations</rdfs:label>
     </owl:Class>
     
 
@@ -4094,6 +4491,12 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0005007">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0005006"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000063"/>
+                <owl:allValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000009"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <obo:IAO_0000115>A healthcare visit avoidance behavior that involves delay in seeking dental treatment.</obo:IAO_0000115>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-9990-8331"/>
         <terms:contributor rdf:resource="https://orcid.org/0009-0003-7246-1252"/>
@@ -4309,6 +4712,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
         <obo:IAO_0000115 xml:lang="en">A dental fear survey answer which answers a question in a dental fear assessment instrument.</obo:IAO_0000115>
         <terms:contributor rdf:resource="https://orcid.org/0009-0002-7282-0836"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-15T15:49:58Z</terms:created>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/OHD_0005009"/>
         <rdfs:label xml:lang="en">dental fear survey assessment instrument answer</rdfs:label>
     </owl:Class>
     
@@ -4560,12 +4964,31 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0008027">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0008038"/>
-        <obo:IAO_0000115 xml:lang="en">A process in which an individual sits in a waiting room.</obo:IAO_0000115>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0008039"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000190"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002092"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000009"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115 xml:lang="en">A process in which a patient sits in a waiting room.</obo:IAO_0000115>
         <terms:contributor rdf:resource="https://orcid.org/0009-0002-7282-0836"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-28T00:44:02Z</terms:created>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/OHD_0005009"/>
-        <rdfs:label xml:lang="en">sitting in waiting room</rdfs:label>
+        <rdfs:label xml:lang="en">patient sitting in waiting room</rdfs:label>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0008027"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/OHD_0008039"/>
+        <oboInOwl:is_inferred>true</oboInOwl:is_inferred>
+    </owl:Axiom>
     
 
 
@@ -4596,13 +5019,19 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0008011"/>
-        <obo:IAO_0000115 xml:lang="en">A question that is about sitting in a waiting room.</obo:IAO_0000115>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0008042"/>
+        <obo:IAO_0000115 xml:lang="en">A question that is about a patient sitting in a waiting room.</obo:IAO_0000115>
         <terms:contributor rdf:resource="https://orcid.org/0009-0002-7282-0836"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-28T01:11:07Z</terms:created>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/OHD_0005009"/>
-        <rdfs:label xml:lang="en">question about sitting in a waiting room</rdfs:label>
+        <rdfs:label xml:lang="en">question about patient sitting in a waiting room</rdfs:label>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0008029"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/OHD_0008042"/>
+        <oboInOwl:is_inferred>true</oboInOwl:is_inferred>
+    </owl:Axiom>
     
 
 
@@ -4669,6 +5098,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
         <obo:IAO_0000115 xml:lang="en">A health care encounter in which a health care provider injects an anaesthetic which is intended to numb a portion of the body.</obo:IAO_0000115>
         <terms:contributor rdf:resource="https://orcid.org/0009-0002-7282-0836"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-28T01:50:32Z</terms:created>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/OHD_0005009"/>
         <rdfs:label xml:lang="en">local anaesthetic injection</rdfs:label>
     </owl:Class>
     
@@ -4679,24 +5109,12 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0008034">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0000274"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000190"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <obo:IAO_0000115 xml:lang="en">A tooth cleaning process performed by a physician on a patient.</obo:IAO_0000115>
         <terms:contributor rdf:resource="https://orcid.org/0009-0002-7282-0836"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-28T01:53:03Z</terms:created>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/OHD_0005009"/>
         <rdfs:label xml:lang="en">tooth cleaning procedure</rdfs:label>
     </owl:Class>
-    <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0008034"/>
-        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
-        <oboInOwl:is_inferred>true</oboInOwl:is_inferred>
-    </owl:Axiom>
     
 
 
@@ -4736,7 +5154,9 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/MF_0000056"/>
         <obo:IAO_0000115 xml:lang="en">A touching process in which a needle injection is perceived.</obo:IAO_0000115>
         <terms:contributor rdf:resource="https://orcid.org/0009-0002-7282-0836"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-28T12:48:08Z</terms:created>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-05-14T01:29:07Z</terms:created>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/OHD_0005009"/>
         <rdfs:label xml:lang="en">feeling needle injection</rdfs:label>
     </owl:Class>
     
@@ -4745,11 +5165,17 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <!-- http://purl.obolibrary.org/obo/OHD_0008037 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0008037">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/MF_0000056"/>
-        <obo:IAO_0000115 xml:lang="en">A touching process in which vibrations from a dental drill are perceived.</obo:IAO_0000115>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000015"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000063"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000009"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A process that happens before a dental visit and concerns some dental encounter.</obo:IAO_0000115>
         <terms:contributor rdf:resource="https://orcid.org/0009-0002-7282-0836"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-05-14T01:31:15Z</terms:created>
-        <rdfs:label xml:lang="en">feeling dental drill vibrations</rdfs:label>
+        <rdfs:label xml:lang="en">process before dental visit</rdfs:label>
     </owl:Class>
     
 
@@ -4760,9 +5186,149 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000015"/>
         <obo:IAO_0000115 xml:lang="en">Process during which an individual remains in a seated position.</obo:IAO_0000115>
         <terms:contributor rdf:resource="https://orcid.org/0009-0002-7282-0836"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-28T12:51:19Z</terms:created>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-05-20T17:31:22Z</terms:created>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/OHD_0005009"/>
+        <rdfs:label xml:lang="en">dental visit phase</rdfs:label>
         <rdfs:label xml:lang="en">sitting process</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0008039 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0008039">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000015"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000055"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000190"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002092"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000009"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000015"/>
+        <obo:IAO_0000115>A process that happens during a dental visit and involves the patient participating in the dental visit.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0002-7282-0836"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-28T12:51:33Z</terms:created>
+        <rdfs:label xml:lang="en">process during dental visit</rdfs:label>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0008039"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/BFO_0000015"/>
+        <oboInOwl:is_inferred>true</oboInOwl:is_inferred>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0008040 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0008040">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000015"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/BFO_0000062"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0000009"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A process that happens after a dental visit and concerns some dental encounter.</obo:IAO_0000115>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0002-7282-0836"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-28T12:52:05Z</terms:created>
+        <rdfs:label xml:lang="en">process after dental visit</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0008041 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0008041">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0008011"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0008037"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0008011"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0008037"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0002-7282-0836"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-28T12:54:40Z</terms:created>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/OHD_0005009"/>
+        <rdfs:label xml:lang="en">question about prior to dental visit</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0008042 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0008042">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0008011"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0008039"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0008011"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0008039"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0002-7282-0836"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-28T12:56:37Z</terms:created>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/OHD_0005009"/>
+        <rdfs:label xml:lang="en">question about during dental visit</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OHD_0008043 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0008043">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://purl.obolibrary.org/obo/OHD_0008011"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                        <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0008040"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0008011"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/OHD_0008040"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <terms:contributor rdf:resource="https://orcid.org/0009-0002-7282-0836"/>
+        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-28T12:57:13Z</terms:created>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/OHD_0005009"/>
+        <rdfs:label xml:lang="en">question about after dental visit</rdfs:label>
     </owl:Class>
     
 
@@ -4781,13 +5347,19 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0008011"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0008042"/>
         <obo:IAO_0000115 xml:lang="en">A question that is about some dental procedure.</obo:IAO_0000115>
         <terms:contributor rdf:resource="https://orcid.org/0009-0002-7282-0836"/>
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-03-28T13:26:13Z</terms:created>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/OHD_0005009"/>
         <rdfs:label xml:lang="en">dental procedure question</rdfs:label>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0008044"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/OHD_0008042"/>
+        <oboInOwl:is_inferred>true</oboInOwl:is_inferred>
+    </owl:Axiom>
     
 
 
@@ -4836,19 +5408,6 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
         <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-04-04T13:22:01Z</terms:created>
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/OHD_0005009"/>
         <rdfs:label xml:lang="en">increased breathing rate</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0008050 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0008050">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/GO_0032941"/>
-        <obo:IAO_0000115 xml:lang="en">A bodily process in which sweat is secreted by sweat glands.</obo:IAO_0000115>
-        <terms:contributor rdf:resource="https://orcid.org/0009-0002-7282-0836"/>
-        <terms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-04-04T13:25:26Z</terms:created>
-        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/OHD_0005009"/>
-        <rdfs:label xml:lang="en">perspiring</rdfs:label>
     </owl:Class>
     
 
@@ -5768,8 +6327,81 @@ This individual is needed so that the organization identifier, missing tooth num
 I have no idea why this happening...</obo:IAO_0000116>
         <obo:OHD_0000273>test organization</obo:OHD_0000273>
         <dc:contributor>http://orcid.org/0000-0001-9625-1899</dc:contributor>
+        <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <terms:created>2017-11-09T22:32:52Z</terms:created>
         <rdfs:label xml:lang="en">missing tooth example</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://orcid.org/0000-0001-9191-6978 -->
+
+    <owl:NamedIndividual rdf:about="https://orcid.org/0000-0001-9191-6978">
+        <rdfs:label xml:lang="en">Astha Singhal</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://orcid.org/0000-0001-9625-1899 -->
+
+    <owl:NamedIndividual rdf:about="https://orcid.org/0000-0001-9625-1899">
+        <rdfs:label xml:lang="en">Bill Duncan</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://orcid.org/0000-0001-9990-8331 -->
+
+    <owl:NamedIndividual rdf:about="https://orcid.org/0000-0001-9990-8331">
+        <rdfs:label xml:lang="en">Alexander D. Diehl</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://orcid.org/0000-0002-0766-8455 -->
+
+    <owl:NamedIndividual rdf:about="https://orcid.org/0000-0002-0766-8455">
+        <rdfs:label xml:lang="en">Daniel W. McNeil</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://orcid.org/0000-0002-3097-4717 -->
+
+    <owl:NamedIndividual rdf:about="https://orcid.org/0000-0002-3097-4717">
+        <rdfs:label xml:lang="en">Brenda Heaton</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://orcid.org/0000-0002-3943-6819 -->
+
+    <owl:NamedIndividual rdf:about="https://orcid.org/0000-0002-3943-6819">
+        <rdfs:label xml:lang="en">Olga Ensz</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://orcid.org/0009-0002-7282-0836 -->
+
+    <owl:NamedIndividual rdf:about="https://orcid.org/0009-0002-7282-0836">
+        <rdfs:label xml:lang="en">Finn Wilson</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://orcid.org/0009-0003-7246-1252 -->
+
+    <owl:NamedIndividual rdf:about="https://orcid.org/0009-0003-7246-1252">
+        <rdfs:label xml:lang="en">Ram A. N. R. Challa</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://orcid.org/0009-0008-1739-5105 -->
+
+    <owl:NamedIndividual rdf:about="https://orcid.org/0009-0008-1739-5105">
+        <rdfs:label xml:lang="en">Elena Milivinti</rdfs:label>
     </owl:NamedIndividual>
 </rdf:RDF>
 
