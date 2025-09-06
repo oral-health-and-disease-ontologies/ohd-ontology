@@ -127,11 +127,6 @@ Declaration(Class(obo:CDT_1000019))
 Declaration(Class(obo:CDT_1000022))
 Declaration(Class(obo:CDT_1000023))
 Declaration(Class(obo:ECTO_9002146))
-Declaration(Class(obo:FMA_24218))
-Declaration(Class(obo:FMA_49184))
-Declaration(Class(obo:FMA_54393))
-Declaration(Class(obo:FMA_55600))
-Declaration(Class(obo:FMA_67504))
 Declaration(Class(obo:GO_0002209))
 Declaration(Class(obo:GO_0002524))
 Declaration(Class(obo:GO_0006955))
@@ -948,6 +943,7 @@ Declaration(Class(obo:UBERON_0000043))
 Declaration(Class(obo:UBERON_0000060))
 Declaration(Class(obo:UBERON_0000061))
 Declaration(Class(obo:UBERON_0000094))
+Declaration(Class(obo:UBERON_0000165))
 Declaration(Class(obo:UBERON_0000344))
 Declaration(Class(obo:UBERON_0000378))
 Declaration(Class(obo:UBERON_0000396))
@@ -992,6 +988,7 @@ Declaration(Class(obo:UBERON_0003674))
 Declaration(Class(obo:UBERON_0003682))
 Declaration(Class(obo:UBERON_0003700))
 Declaration(Class(obo:UBERON_0003729))
+Declaration(Class(obo:UBERON_0004473))
 Declaration(Class(obo:UBERON_0004529))
 Declaration(Class(obo:UBERON_0004650))
 Declaration(Class(obo:UBERON_0005019))
@@ -1338,11 +1335,11 @@ AnnotationAssertion(rdfs:label <http://www.w3.org/2004/02/skos/core#narrowMatch>
 #   Object Properties
 ############################
 
-# Object Property: obo:FMA_85848 (part of (FMA))
+# Object Property: obo:FMA_85848 (obo:FMA_85848)
 
 SubObjectPropertyOf(obo:FMA_85848 obo:BFO_0000050)
 
-# Object Property: obo:FMA_85995 (part (FMA))
+# Object Property: obo:FMA_85995 (obo:FMA_85995)
 
 SubObjectPropertyOf(obo:FMA_85995 obo:BFO_0000051)
 
@@ -1819,34 +1816,6 @@ SubClassOf(obo:CDT_1000023 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000033)
 
 SubClassOf(obo:ExO_0000002 obo:BFO_0000015)
 
-# Class: obo:FMA_24218 (Subdivision of head)
-
-AnnotationAssertion(obo:IAO_0000118 obo:FMA_24218 "Head region")
-AnnotationAssertion(dc:source obo:FMA_24218 "Foundational Model of Anatomy (FMA)")
-AnnotationAssertion(rdfs:label obo:FMA_24218 "Subdivision of head")
-SubClassOf(obo:FMA_24218 obo:FMA_67504)
-
-# Class: obo:FMA_49184 (Mouth)
-
-AnnotationAssertion(obo:IAO_0000118 obo:FMA_49184 "Oral region")
-AnnotationAssertion(dc:source obo:FMA_49184 "Foundational Model of Anatomy (FMA)")
-AnnotationAssertion(rdfs:label obo:FMA_49184 "Mouth")
-SubClassOf(obo:FMA_49184 obo:FMA_54393)
-
-# Class: obo:FMA_54393 (Subdivision of face)
-
-AnnotationAssertion(obo:IAO_0000118 obo:FMA_54393 "Facial region")
-AnnotationAssertion(dc:source obo:FMA_54393 "Foundational Model of Anatomy (FMA)")
-AnnotationAssertion(rdfs:label obo:FMA_54393 "Subdivision of face")
-SubClassOf(obo:FMA_54393 obo:FMA_24218)
-
-# Class: obo:FMA_67504 (Subdivision of cardinal body part)
-
-AnnotationAssertion(obo:IAO_0000118 obo:FMA_67504 "Principal body part subdivision")
-AnnotationAssertion(dc:source obo:FMA_67504 "Foundational Model of Anatomy (FMA)")
-AnnotationAssertion(rdfs:label obo:FMA_67504 "Subdivision of cardinal body part")
-SubClassOf(obo:FMA_67504 obo:UBERON_0000061)
-
 # Class: obo:GO_0006955 (immune response)
 
 AnnotationAssertion(rdfs:label obo:GO_0006955 "immune response"@en)
@@ -1859,7 +1828,7 @@ SubClassOf(obo:GO_0008150 obo:BFO_0000015)
 
 AnnotationAssertion(obo:IAO_0000116 obo:NBO_0000007 "Import from NBO")
 AnnotationAssertion(rdfs:label obo:NBO_0000007 "temp: mouth movement"@en)
-EquivalentClasses(obo:NBO_0000007 ObjectIntersectionOf(obo:OGMS_0000060 ObjectSomeValuesFrom(obo:RO_0000057 obo:FMA_49184)))
+EquivalentClasses(obo:NBO_0000007 ObjectIntersectionOf(obo:OGMS_0000060 ObjectSomeValuesFrom(obo:RO_0000057 obo:UBERON_0000165)))
 
 # Class: obo:OBI_0000245 (organization)
 
@@ -2082,7 +2051,7 @@ The evaluation, diagnosis, and/or treatment (nonsurgical, surgical, or related p
 AnnotationAssertion(dcterms:contributor obo:OHD_0000010 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(rdfs:comment obo:OHD_0000010 "replace tooth in logical def with dentition or mouth when it's been imported.")
 AnnotationAssertion(rdfs:label obo:OHD_0000010 "dental finding"@en)
-SubClassOf(obo:OHD_0000010 ObjectIntersectionOf(obo:OGMS_0000014 ObjectSomeValuesFrom(obo:IAO_0000136 obo:FMA_49184)))
+SubClassOf(obo:OHD_0000010 ObjectIntersectionOf(obo:OGMS_0000014 ObjectSomeValuesFrom(obo:IAO_0000136 obo:UBERON_0000165)))
 SubClassOf(obo:OHD_0000010 ObjectSomeValuesFrom(obo:BFO_0000051 obo:IAO_0000027))
 
 # Class: obo:OHD_0000011 (performing a dental clinical assessment)
@@ -4970,7 +4939,7 @@ AnnotationAssertion(dcterms:created obo:OHD_0000404 "2025-01-17T19:58:44Z"^^xsd:
 AnnotationAssertion(rdfs:label obo:OHD_0000404 "mouth disease"@en)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#exactMatch> obo:OHD_0000404 obo:DOID_403)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#exactMatch> obo:OHD_0000404 obo:MONDO_0006858)
-EquivalentClasses(obo:OHD_0000404 ObjectIntersectionOf(obo:OGMS_0000031 ObjectSomeValuesFrom(obo:RO_0000052 obo:FMA_49184)))
+EquivalentClasses(obo:OHD_0000404 ObjectIntersectionOf(obo:OGMS_0000031 ObjectSomeValuesFrom(obo:RO_0000052 obo:UBERON_0000165)))
 
 # Class: obo:OHD_0000405 (thermal dentin hypersensitivity)
 
@@ -4995,7 +4964,7 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000406 "An oral parafunction can in
 AnnotationAssertion(dcterms:contributor obo:OHD_0000406 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0000406 <https://orcid.org/0009-0006-7251-3026>)
 AnnotationAssertion(rdfs:label obo:OHD_0000406 "oral parafunction"@en)
-EquivalentClasses(obo:OHD_0000406 ObjectIntersectionOf(obo:OGMS_0000061 ObjectSomeValuesFrom(obo:RO_0000057 obo:FMA_49184) ObjectSomeValuesFrom(obo:RO_0003304 obo:OGMS_0000045)))
+EquivalentClasses(obo:OHD_0000406 ObjectIntersectionOf(obo:OGMS_0000061 ObjectSomeValuesFrom(obo:RO_0000057 obo:UBERON_0000165) ObjectSomeValuesFrom(obo:RO_0003304 obo:OGMS_0000045)))
 
 # Class: obo:OHD_0000407 (bruxism)
 
@@ -5092,7 +5061,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000414 <https://orcid.org/0000-
 AnnotationAssertion(dcterms:created obo:OHD_0000414 "2025-01-17T20:08:15Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000414 "mouth disorder"@en)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#exactMatch> obo:OHD_0000414 obo:MONDO_0006858)
-EquivalentClasses(obo:OHD_0000414 ObjectIntersectionOf(obo:OGMS_0000045 ObjectSomeValuesFrom(obo:FMA_85848 obo:FMA_49184)))
+EquivalentClasses(obo:OHD_0000414 ObjectIntersectionOf(obo:OGMS_0000045 ObjectSomeValuesFrom(obo:FMA_85848 obo:UBERON_0000165)))
 
 # Class: obo:OHD_0000415 (data collection)
 
@@ -5126,7 +5095,7 @@ SubClassOf(obo:OHD_0000417 ObjectSomeValuesFrom(obo:BFO_0000050 obo:OHD_0000416)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000418 "A microbiome that is located in the mouth.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000418 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(rdfs:label obo:OHD_0000418 "oral microbiome"@en)
-EquivalentClasses(obo:OHD_0000418 ObjectIntersectionOf(obo:OHMI_0000003 ObjectSomeValuesFrom(obo:RO_0001025 obo:FMA_49184)))
+EquivalentClasses(obo:OHD_0000418 ObjectIntersectionOf(obo:OHMI_0000003 ObjectSomeValuesFrom(obo:RO_0001025 obo:UBERON_0000165)))
 
 # Class: obo:OHD_0000419 (data table)
 
@@ -5731,7 +5700,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0005002 <https://orcid.org/0000-
 AnnotationAssertion(dcterms:contributor obo:OHD_0005002 <https://orcid.org/0000-0001-9990-8331>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0005002 <https://orcid.org/0009-0003-7246-1252>)
 AnnotationAssertion(rdfs:label obo:OHD_0005002 "patient-reported dental outcome"@en)
-EquivalentClasses(obo:OHD_0005002 ObjectIntersectionOf(obo:OHD_0005001 ObjectSomeValuesFrom(obo:IAO_0000136 obo:FMA_49184)))
+EquivalentClasses(obo:OHD_0005002 ObjectIntersectionOf(obo:OHD_0005001 ObjectSomeValuesFrom(obo:IAO_0000136 obo:UBERON_0000165)))
 
 # Class: obo:OHD_0005003 (patient-reported favorable dental outcome)
 
@@ -5740,7 +5709,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0005003 <https://orcid.org/0000-
 AnnotationAssertion(dcterms:contributor obo:OHD_0005003 <https://orcid.org/0000-0001-9990-8331>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0005003 <https://orcid.org/0009-0003-7246-1252>)
 AnnotationAssertion(rdfs:label obo:OHD_0005003 "patient-reported favorable dental outcome"@en)
-EquivalentClasses(obo:OHD_0005003 ObjectIntersectionOf(obo:OHD_0000272 ObjectSomeValuesFrom(obo:IAO_0000136 obo:FMA_49184)))
+EquivalentClasses(obo:OHD_0005003 ObjectIntersectionOf(obo:OHD_0000272 ObjectSomeValuesFrom(obo:IAO_0000136 obo:UBERON_0000165)))
 
 # Class: obo:OHD_0005004 (patient-reported unfavorable dental outcome)
 
@@ -5749,7 +5718,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0005004 <https://orcid.org/0000-
 AnnotationAssertion(dcterms:contributor obo:OHD_0005004 <https://orcid.org/0000-0001-9990-8331>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0005004 <https://orcid.org/0009-0003-7246-1252>)
 AnnotationAssertion(rdfs:label obo:OHD_0005004 "patient-reported unfavorable dental outcome"@en)
-EquivalentClasses(obo:OHD_0005004 ObjectIntersectionOf(obo:OHD_0000288 ObjectSomeValuesFrom(obo:IAO_0000136 obo:FMA_49184)))
+EquivalentClasses(obo:OHD_0005004 ObjectIntersectionOf(obo:OHD_0000288 ObjectSomeValuesFrom(obo:IAO_0000136 obo:UBERON_0000165)))
 
 # Class: obo:OHD_0005005 (avoidance behavior)
 
@@ -6286,7 +6255,7 @@ AnnotationAssertion(dcterms:created obo:OHD_0010001 "2025-04-04T15:48:49Z"^^xsd:
 AnnotationAssertion(rdfs:comment obo:OHD_0010001 "ICOP term 1.1")
 AnnotationAssertion(rdfs:label obo:OHD_0010001 "dental pain"@en)
 SubClassOf(obo:OHD_0010001 obo:OHD_0010000)
-SubClassOf(obo:OHD_0010001 ObjectSomeValuesFrom(obo:BFO_0000066 obo:FMA_49184))
+SubClassOf(obo:OHD_0010001 ObjectSomeValuesFrom(obo:BFO_0000066 obo:UBERON_0000165))
 
 # Class: obo:OHD_0010002 (pulpal pain)
 
@@ -6313,7 +6282,7 @@ AnnotationAssertion(rdfs:comment obo:OHD_0010003 "http://purl.obolibrary.org/obo
 AnnotationAssertion(rdfs:comment obo:OHD_0010003 "http://purl.obolibrary.org/obo/UBERON_0003681")
 AnnotationAssertion(rdfs:label obo:OHD_0010003 "myofascial orofacial pain"@en)
 SubClassOf(obo:OHD_0010003 obo:OHD_0010000)
-SubClassOf(obo:OHD_0010003 ObjectSomeValuesFrom(obo:BFO_0000066 obo:FMA_55600))
+SubClassOf(obo:OHD_0010003 ObjectSomeValuesFrom(obo:BFO_0000066 obo:UBERON_0004473))
 
 # Class: obo:OHD_0010004 (temporomandibular joint pain)
 
@@ -7817,7 +7786,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0010148 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0010148 "2025-06-25T18:59:05Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010148 "dental injury"@en)
 SubClassOf(obo:OHD_0010148 obo:OGMS_0000102)
-SubClassOf(obo:OHD_0010148 ObjectSomeValuesFrom(obo:BFO_0000066 obo:FMA_49184))
+SubClassOf(obo:OHD_0010148 ObjectSomeValuesFrom(obo:BFO_0000066 obo:UBERON_0000165))
 
 # Class: obo:OHD_0010149 (dental hard tissue fracture)
 
@@ -9419,7 +9388,7 @@ SubClassOf(obo:OHD_0010309 obo:OGMS_0000031)
 
 # Class: obo:OHMI_0000015 (microbiome in human oral)
 
-SubClassOf(obo:OHMI_0000015 ObjectSomeValuesFrom(obo:RO_0001025 obo:FMA_49184))
+SubClassOf(obo:OHMI_0000015 ObjectSomeValuesFrom(obo:RO_0001025 obo:UBERON_0000165))
 
 # Class: obo:OMRSE_00000007 (gender role)
 
