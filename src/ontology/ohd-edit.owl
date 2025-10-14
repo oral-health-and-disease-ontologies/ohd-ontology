@@ -579,6 +579,7 @@ Declaration(Class(obo:OHD_0008002))
 Declaration(Class(obo:OHD_0008003))
 Declaration(Class(obo:OHD_0008004))
 Declaration(Class(obo:OHD_0008005))
+Declaration(Class(obo:OHD_0008007))
 Declaration(Class(obo:OHD_0008008))
 Declaration(Class(obo:OHD_0008009))
 Declaration(Class(obo:OHD_0008010))
@@ -616,10 +617,15 @@ Declaration(Class(obo:OHD_0008041))
 Declaration(Class(obo:OHD_0008042))
 Declaration(Class(obo:OHD_0008043))
 Declaration(Class(obo:OHD_0008044))
+Declaration(Class(obo:OHD_0008046))
 Declaration(Class(obo:OHD_0008047))
+Declaration(Class(obo:OHD_0008048))
 Declaration(Class(obo:OHD_0008049))
+Declaration(Class(obo:OHD_0008050))
 Declaration(Class(obo:OHD_0008051))
 Declaration(Class(obo:OHD_0008052))
+Declaration(Class(obo:OHD_0008053))
+Declaration(Class(obo:OHD_0008054))
 Declaration(Class(obo:OHD_0010000))
 Declaration(Class(obo:OHD_0010001))
 Declaration(Class(obo:OHD_0010002))
@@ -5873,6 +5879,16 @@ AnnotationAssertion(dcterms:created obo:OHD_0008005 "2025-05-13T21:39:33Z"^^xsd:
 AnnotationAssertion(rdfs:label obo:OHD_0008005 "hearing dental drill"@en)
 SubClassOf(obo:OHD_0008005 obo:MF_0000038)
 
+# Class: obo:OHD_0008007 (avoidance or anticipatory fear question)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008007 "A question that is about either avoidance behavior or fear in anticipation of some event."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008007 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008007 "2025-10-14T18:14:24Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008007 obo:OHD_0005009)
+AnnotationAssertion(rdfs:comment obo:OHD_0008007 "Class based on the COHRA 'AvoidanceAnticipatoryFear' score sum slot."@en)
+AnnotationAssertion(rdfs:label obo:OHD_0008007 "avoidance or anticipatory fear question"@en)
+SubClassOf(obo:OHD_0008007 obo:OHD_0008011)
+
 # Class: obo:OHD_0008008 (dental fear and anxiety assessment instrument)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008008 "An evaluative information entity used to measure dental fear and anxiety."@en)
@@ -5989,7 +6005,7 @@ AnnotationAssertion(dcterms:created obo:OHD_0008020 "2025-03-15T16:22:39Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008020 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008020 "avoidance behavior question"@en)
 EquivalentClasses(obo:OHD_0008020 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005005)))
-SubClassOf(obo:OHD_0008020 obo:OHD_0008011)
+SubClassOf(obo:OHD_0008020 obo:OHD_0008007)
 
 # Class: obo:OHD_0008021 (health encounter avoidance question)
 
@@ -5998,7 +6014,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0008021 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0008021 "2025-03-15T16:25:28Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008021 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008021 "health encounter avoidance question"@en)
-EquivalentClasses(obo:OHD_0008021 ObjectIntersectionOf(obo:OHD_0008020 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005006)))
+EquivalentClasses(obo:OHD_0008021 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005006)))
 SubClassOf(obo:OHD_0008021 obo:OHD_0008020)
 
 # Class: obo:OHD_0008022 (dental visit avoidance question)
@@ -6008,7 +6024,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0008022 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0008022 "2025-03-15T16:26:49Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008022 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008022 "dental visit avoidance question"@en)
-EquivalentClasses(obo:OHD_0008022 ObjectIntersectionOf(obo:OHD_0008021 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005007)))
+EquivalentClasses(obo:OHD_0008022 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005007)))
 SubClassOf(obo:OHD_0008022 obo:OHD_0008021)
 
 # Class: obo:OHD_0008023 (question about canceling or not showing up for a dental appointment)
@@ -6018,7 +6034,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0008023 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0008023 "2025-03-15T16:30:10Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008023 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008023 "question about canceling or not showing up for a dental appointment"@en)
-EquivalentClasses(obo:OHD_0008023 ObjectIntersectionOf(obo:OHD_0008022 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005013)))
+EquivalentClasses(obo:OHD_0008023 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005013)))
 SubClassOf(obo:OHD_0008023 obo:OHD_0008022)
 
 # Class: obo:OHD_0008024 (question about delay in scheduling a dental appointment)
@@ -6028,7 +6044,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0008024 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0008024 "2025-03-15T16:31:41Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008024 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008024 "question about delay in scheduling a dental appointment"@en)
-EquivalentClasses(obo:OHD_0008024 ObjectIntersectionOf(obo:OHD_0008022 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005012)))
+EquivalentClasses(obo:OHD_0008024 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005012)))
 SubClassOf(obo:OHD_0008024 obo:OHD_0008022)
 
 # Class: obo:OHD_0008025 (seeing dentist)
@@ -6222,6 +6238,16 @@ AnnotationAssertion(rdfs:label obo:OHD_0008044 "dental procedure question"@en)
 EquivalentClasses(obo:OHD_0008044 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000002)))
 SubClassOf(obo:OHD_0008044 obo:OHD_0008011)
 
+# Class: obo:OHD_0008046 (fear of specific dental stimuli question)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008046 "A question about fear of some specific dental stimuli."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008046 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008046 "2025-10-14T18:32:31Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008046 obo:OHD_0005009)
+AnnotationAssertion(rdfs:comment obo:OHD_0008046 "Class based on the COHRA 'FearOfSpecificDentalStimuli' score sum slot."@en)
+AnnotationAssertion(rdfs:label obo:OHD_0008046 "fear of specific dental stimuli question"@en)
+SubClassOf(obo:OHD_0008046 obo:OHD_0008007)
+
 # Class: obo:OHD_0008047 (question about physiological effect)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008047 "A question that is about a change in state or activity as a result of a stimulus."@en)
@@ -6232,6 +6258,16 @@ AnnotationAssertion(rdfs:label obo:OHD_0008047 "question about physiological eff
 EquivalentClasses(obo:OHD_0008047 ObjectIntersectionOf(obo:OHD_0008011 ObjectUnionOf(ObjectSomeValuesFrom(obo:IAO_0000136 obo:GO_0003008) ObjectSomeValuesFrom(obo:IAO_0000136 obo:GO_0032941) ObjectSomeValuesFrom(obo:IAO_0000136 obo:OGMS_0000061))))
 SubClassOf(obo:OHD_0008047 obo:OHD_0008011)
 
+# Class: obo:OHD_0008048 (fear of pain question)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008048 "A question that is about some fear of pain."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008048 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008048 "2025-10-14T18:47:04Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008048 obo:OHD_0005009)
+AnnotationAssertion(rdfs:comment obo:OHD_0008048 "Class based on the COHRA1 'FearOfPainScore' sum slot."@en)
+AnnotationAssertion(rdfs:label obo:OHD_0008048 "fear of pain question"@en)
+SubClassOf(obo:OHD_0008048 obo:OHD_0008007)
+
 # Class: obo:OHD_0008049 (increased breathing rate)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008049 "A bodily process in which the rate at which an organism moves air in and out of its lungs increases."@en)
@@ -6240,6 +6276,16 @@ AnnotationAssertion(dcterms:created obo:OHD_0008049 "2025-04-04T13:22:01Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008049 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008049 "increased breathing rate"@en)
 SubClassOf(obo:OHD_0008049 obo:GO_0003016)
+
+# Class: obo:OHD_0008050 (fear of minor pain question)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008050 "A question about an individual's fear of experiencing a minor degree of pain."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008050 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008050 "2025-10-14T18:50:51Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008050 obo:OHD_0005009)
+AnnotationAssertion(rdfs:comment obo:OHD_0008050 "Class based on the COHRA 'FearOfMinorPain' score sum slot."@en)
+AnnotationAssertion(rdfs:label obo:OHD_0008050 "fear of minor pain question"@en)
+SubClassOf(obo:OHD_0008050 obo:OHD_0008048)
 
 # Class: obo:OHD_0008051 (nausea)
 
@@ -6257,6 +6303,26 @@ AnnotationAssertion(dcterms:created obo:OHD_0008052 "2025-04-04T13:31:33Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008052 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008052 "increased heart rate"@en)
 SubClassOf(obo:OHD_0008052 obo:GO_0003015)
+
+# Class: obo:OHD_0008053 (fear of severe pain question)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008053 "A question about an individual's fear of experiencing a severe degree of pain."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008053 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008053 "2025-10-14T18:51:06Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008053 obo:OHD_0005009)
+AnnotationAssertion(rdfs:comment obo:OHD_0008053 "Class based on the COHRA 'FearOfSeverePain' score sum slot."@en)
+AnnotationAssertion(rdfs:label obo:OHD_0008053 "fear of severe pain question"@en)
+SubClassOf(obo:OHD_0008053 obo:OHD_0008048)
+
+# Class: obo:OHD_0008054 (fear of medical procedure question)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008054 "A question about an individual's fear of undergoing a medical procedure."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008054 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008054 "2025-10-14T18:51:35Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008054 obo:OHD_0005009)
+AnnotationAssertion(rdfs:comment obo:OHD_0008054 "Class based on the COHRA 'FearOfMedical' score sum slot."@en)
+AnnotationAssertion(rdfs:label obo:OHD_0008054 "fear of medical procedure question"@en)
+SubClassOf(obo:OHD_0008054 obo:OHD_0008007)
 
 # Class: obo:OHD_0010000 (orofacial pain)
 
