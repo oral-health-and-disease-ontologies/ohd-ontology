@@ -24,15 +24,15 @@ $(SUBSETDIR)/odfa.owl: $(ONT).owl $(SPARQLDIR)/odfa-subset.rq $(SUBSETDIR)/odfa-
 	$(ROBOT) extract --method STAR \
 			--input $< \
 			--term-file $@.tmp.txt \
-		annotate \
-			--ontology-iri $(URIBASE)/$(ONT)/$(notdir $@) \
-			--version-iri $(URIBASE)/$(ONT)/$(VERSION)/$(notdir $@) \
-			--annotation owl:versionInfo $(VERSION) \
 		--output $@.tmp.owl &&\
 	$(ROBOT) merge \
 			--include-annotations true \
 			--input $(word 3, $^) \
 			--input  $@.tmp.owl \
+		annotate \
+			--ontology-iri $(URIBASE)/$(ONT)/$(notdir $@) \
+			--version-iri $(URIBASE)/$(ONT)/releases/$(VERSION)/$(notdir $@) \
+			--annotation owl:versionInfo $(VERSION) \
 		--output $@ &&\
 	rm $@.tmp.owl
 .PRECIOUS: $(SUBSETDIR)/odfa.owl
