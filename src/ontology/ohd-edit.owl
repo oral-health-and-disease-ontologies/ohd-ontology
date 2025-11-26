@@ -130,6 +130,7 @@ Declaration(Class(obo:ECTO_9002146))
 Declaration(Class(obo:GO_0002209))
 Declaration(Class(obo:GO_0002524))
 Declaration(Class(obo:GO_0006955))
+Declaration(Class(obo:GO_0160269))
 Declaration(Class(obo:NBO_0000007))
 Declaration(Class(obo:OBI_0000245))
 Declaration(Class(obo:OBI_1110054))
@@ -624,6 +625,8 @@ Declaration(Class(obo:OHD_0008049))
 Declaration(Class(obo:OHD_0008050))
 Declaration(Class(obo:OHD_0008051))
 Declaration(Class(obo:OHD_0008052))
+Declaration(Class(obo:OHD_0008053))
+Declaration(Class(obo:OHD_0008054))
 Declaration(Class(obo:OHD_0008055))
 Declaration(Class(obo:OHD_0008056))
 Declaration(Class(obo:OHD_0008057))
@@ -650,8 +653,6 @@ Declaration(Class(obo:OHD_0008077))
 Declaration(Class(obo:OHD_0008078))
 Declaration(Class(obo:OHD_0008079))
 Declaration(Class(obo:OHD_0008080))
-Declaration(Class(obo:OHD_0008053))
-Declaration(Class(obo:OHD_0008054))
 Declaration(Class(obo:OHD_0010000))
 Declaration(Class(obo:OHD_0010001))
 Declaration(Class(obo:OHD_0010002))
@@ -1156,8 +1157,6 @@ Declaration(ObjectProperty(obo:BFO_0000053))
 Declaration(ObjectProperty(obo:BFO_0000054))
 Declaration(ObjectProperty(obo:BFO_0000055))
 Declaration(ObjectProperty(obo:BFO_0000063))
-Declaration(ObjectProperty(obo:FMA_85848))
-Declaration(ObjectProperty(obo:FMA_85995))
 Declaration(ObjectProperty(obo:IAO_0000136))
 Declaration(ObjectProperty(obo:OBI_0000293))
 Declaration(ObjectProperty(obo:OBI_0000299))
@@ -1376,14 +1375,6 @@ AnnotationAssertion(rdfs:label <http://www.w3.org/2004/02/skos/core#narrowMatch>
 ############################
 #   Object Properties
 ############################
-
-# Object Property: obo:FMA_85848 (obo:FMA_85848)
-
-SubObjectPropertyOf(obo:FMA_85848 obo:BFO_0000050)
-
-# Object Property: obo:FMA_85995 (obo:FMA_85995)
-
-SubObjectPropertyOf(obo:FMA_85995 obo:BFO_0000051)
 
 # Object Property: obo:OHD_0000091 (is dental restoration of)
 
@@ -3793,7 +3784,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000260 "A disorder that is part of 
 AnnotationAssertion(dcterms:contributor obo:OHD_0000260 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000260 "2023-06-06T21:30:39Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000260 "tooth disorder"@en)
-EquivalentClasses(obo:OHD_0000260 ObjectIntersectionOf(obo:OHD_0000414 ObjectSomeValuesFrom(obo:FMA_85848 obo:UBERON_0001091)))
+EquivalentClasses(obo:OHD_0000260 ObjectIntersectionOf(obo:OHD_0000414 ObjectSomeValuesFrom(obo:BFO_0000050 obo:UBERON_0001091)))
 
 # Class: obo:OHD_0000261 (tooth abfraction lesion)
 
@@ -3864,7 +3855,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000267 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000267 "2023-06-06T21:38:37Z")
 AnnotationAssertion(rdfs:label obo:OHD_0000267 "enamel carious lesion"@en)
 SubClassOf(obo:OHD_0000267 obo:OHD_0000021)
-SubClassOf(obo:OHD_0000267 ObjectSomeValuesFrom(obo:FMA_85848 obo:UBERON_0001752))
+SubClassOf(obo:OHD_0000267 ObjectSomeValuesFrom(obo:BFO_0000050 obo:UBERON_0001752))
 
 # Class: obo:OHD_0000268 (dentine carious lesion)
 
@@ -3874,7 +3865,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000268 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0000268 "2023-06-06T21:39:01Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000268 "dentine carious lesion"@en)
 SubClassOf(obo:OHD_0000268 obo:OHD_0000021)
-SubClassOf(obo:OHD_0000268 ObjectSomeValuesFrom(obo:FMA_85848 obo:UBERON_0001751))
+SubClassOf(obo:OHD_0000268 ObjectSomeValuesFrom(obo:BFO_0000050 obo:UBERON_0001751))
 
 # Class: obo:OHD_0000269 (tooth root carious lesion)
 
@@ -3885,7 +3876,7 @@ AnnotationAssertion(dcterms:created obo:OHD_0000269 "2023-06-06T21:39:44Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:OHD_0000269 "root caries")
 AnnotationAssertion(rdfs:label obo:OHD_0000269 "tooth root carious lesion"@en)
 SubClassOf(obo:OHD_0000269 obo:OHD_0000021)
-SubClassOf(obo:OHD_0000269 ObjectSomeValuesFrom(obo:FMA_85848 obo:UBERON_0003677))
+SubClassOf(obo:OHD_0000269 ObjectSomeValuesFrom(obo:BFO_0000050 obo:UBERON_0003677))
 
 # Class: obo:OHD_0000270 (non-carious tooth lesion)
 
@@ -5115,7 +5106,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000414 <https://orcid.org/0000-
 AnnotationAssertion(dcterms:created obo:OHD_0000414 "2025-01-17T20:08:15Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000414 "mouth disorder"@en)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#exactMatch> obo:OHD_0000414 obo:MONDO_0006858)
-EquivalentClasses(obo:OHD_0000414 ObjectIntersectionOf(obo:OGMS_0000045 ObjectSomeValuesFrom(obo:FMA_85848 obo:UBERON_0000165)))
+EquivalentClasses(obo:OHD_0000414 ObjectIntersectionOf(obo:OGMS_0000045 ObjectSomeValuesFrom(obo:BFO_0000050 obo:UBERON_0000165)))
 
 # Class: obo:OHD_0000415 (data collection)
 
@@ -6332,6 +6323,26 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:
 AnnotationAssertion(rdfs:label obo:OHD_0008052 "increased heart rate"@en)
 SubClassOf(obo:OHD_0008052 obo:GO_0003015)
 
+# Class: obo:OHD_0008053 (fear of severe pain question)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008053 "A question about an individual's fear of experiencing a severe degree of pain."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008053 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008053 "2025-10-14T18:51:06Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008053 obo:OHD_0005009)
+AnnotationAssertion(rdfs:comment obo:OHD_0008053 "Class based on the COHRA 'FearOfSeverePain' score sum slot."@en)
+AnnotationAssertion(rdfs:label obo:OHD_0008053 "fear of severe pain question"@en)
+SubClassOf(obo:OHD_0008053 obo:OHD_0008048)
+
+# Class: obo:OHD_0008054 (fear of medical procedure question)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008054 "A question about an individual's fear of undergoing a medical procedure."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008054 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008054 "2025-10-14T18:51:35Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008054 obo:OHD_0005009)
+AnnotationAssertion(rdfs:comment obo:OHD_0008054 "Class based on the COHRA 'FearOfMedical' score sum slot."@en)
+AnnotationAssertion(rdfs:label obo:OHD_0008054 "fear of medical procedure question"@en)
+SubClassOf(obo:OHD_0008054 obo:OHD_0008007)
+
 # Class: obo:OHD_0008055 (IDAF-4C+ 1a. I feel anxious shortly before going to the dentist.)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008055 "IDAF-4C+ 1 question asking to what degree respondants agree they feel anxious shortly before going to the dentist."@en)
@@ -6580,25 +6591,6 @@ AnnotationAssertion(dcterms:created obo:OHD_0008080 "2025-10-22T17:45:44Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008080 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008080 "IDAF-4C+ 3. To what extent are you anxious about the following things when you go the dentist."@en)
 SubClassOf(obo:OHD_0008080 obo:OHD_0008001)
-# Class: obo:OHD_0008053 (fear of severe pain question)
-
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008053 "A question about an individual's fear of experiencing a severe degree of pain."@en)
-AnnotationAssertion(dcterms:contributor obo:OHD_0008053 <https://orcid.org/0009-0002-7282-0836>)
-AnnotationAssertion(dcterms:created obo:OHD_0008053 "2025-10-14T18:51:06Z"^^xsd:dateTime)
-AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008053 obo:OHD_0005009)
-AnnotationAssertion(rdfs:comment obo:OHD_0008053 "Class based on the COHRA 'FearOfSeverePain' score sum slot."@en)
-AnnotationAssertion(rdfs:label obo:OHD_0008053 "fear of severe pain question"@en)
-SubClassOf(obo:OHD_0008053 obo:OHD_0008048)
-
-# Class: obo:OHD_0008054 (fear of medical procedure question)
-
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008054 "A question about an individual's fear of undergoing a medical procedure."@en)
-AnnotationAssertion(dcterms:contributor obo:OHD_0008054 <https://orcid.org/0009-0002-7282-0836>)
-AnnotationAssertion(dcterms:created obo:OHD_0008054 "2025-10-14T18:51:35Z"^^xsd:dateTime)
-AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008054 obo:OHD_0005009)
-AnnotationAssertion(rdfs:comment obo:OHD_0008054 "Class based on the COHRA 'FearOfMedical' score sum slot."@en)
-AnnotationAssertion(rdfs:label obo:OHD_0008054 "fear of medical procedure question"@en)
-SubClassOf(obo:OHD_0008054 obo:OHD_0008007)
 
 # Class: obo:OHD_0010000 (orofacial pain)
 
