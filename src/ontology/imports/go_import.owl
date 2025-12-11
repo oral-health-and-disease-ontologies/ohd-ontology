@@ -7,7 +7,7 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 
 
 Ontology(<http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>
-<http://purl.obolibrary.org/obo/ohd/imports/2025-11-25/go_import.owl>
+<http://purl.obolibrary.org/obo/ohd/imports/2025-12-10/go_import.owl>
 
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0001662>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0002209>))
@@ -28,6 +28,7 @@ Declaration(Class(<http://purl.obolibrary.org/obo/GO_0006952>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0006954>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0006955>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0007585>))
+Declaration(Class(<http://purl.obolibrary.org/obo/GO_0007589>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0007610>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0008150>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0032501>))
@@ -36,9 +37,13 @@ Declaration(Class(<http://purl.obolibrary.org/obo/GO_0033555>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0040011>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0042596>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0046903>))
+Declaration(Class(<http://purl.obolibrary.org/obo/GO_0050878>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0050896>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0051179>))
 Declaration(Class(<http://purl.obolibrary.org/obo/GO_0051234>))
+Declaration(Class(<http://purl.obolibrary.org/obo/GO_0065007>))
+Declaration(Class(<http://purl.obolibrary.org/obo/GO_0065008>))
+Declaration(Class(<http://purl.obolibrary.org/obo/GO_0160269>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/BFO_0000050>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/BFO_0000051>))
 Declaration(ObjectProperty(owl:topObjectProperty))
@@ -420,6 +425,16 @@ AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0007585>
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0007585> "respiratory gaseous exchange by respiratory system")
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0007585> <http://purl.obolibrary.org/obo/GO_0032501>)
 
+# Class: <http://purl.obolibrary.org/obo/GO_0007589> (body fluid secretion)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:ai") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:dph") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:mah") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:tb") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0007589> "The controlled release of a fluid by a cell or tissue in an animal.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0007589> "biological_process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0007589> "GO:0007589")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0007589> <http://purl.obolibrary.org/obo/go.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0007589> "body fluid secretion")
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0007589> <http://purl.obolibrary.org/obo/GO_0046903>)
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0007589> <http://purl.obolibrary.org/obo/GO_0050878>)
+
 # Class: <http://purl.obolibrary.org/obo/GO_0007610> (behavior)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:ems") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:jl") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "ISBN:0395448956") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "PMID:20160973") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0007610> "The internally coordinated responses (actions or inactions) of animals (individuals or groups) to internal or external stimuli, via a mechanism that involves nervous system activity.")
@@ -544,6 +559,16 @@ AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0046903>
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0046903> "secretion")
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0046903> <http://purl.obolibrary.org/obo/GO_0006810>)
 
+# Class: <http://purl.obolibrary.org/obo/GO_0050878> (regulation of body fluid levels)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:ai") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:dph") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:tb") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0050878> "Any process that modulates the levels of body fluids.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0050878> "biological_process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0050878> "GO:0050878")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0050878> <http://purl.obolibrary.org/obo/go#goslim_pir>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0050878> <http://purl.obolibrary.org/obo/go.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0050878> "regulation of body fluid levels")
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0050878> <http://purl.obolibrary.org/obo/GO_0065008>)
+
 # Class: <http://purl.obolibrary.org/obo/GO_0050896> (response to stimulus)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:ai") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:bf") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0050896> "Any process that results in a change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a stimulus. The process begins with detection of the stimulus and ends with a change in state or activity or the cell or organism.")
@@ -601,6 +626,48 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <htt
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0051234> <http://purl.obolibrary.org/obo/go.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0051234> "establishment of localization")
 SubClassOf(<http://purl.obolibrary.org/obo/GO_0051234> <http://purl.obolibrary.org/obo/GO_0051179>)
+
+# Class: <http://purl.obolibrary.org/obo/GO_0065007> (biological regulation)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:dph") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:isa_complete") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:mah") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:pr") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:vw") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0065007> "Any process that modulates a measurable attribute of any biological process, quality or function.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> <http://purl.obolibrary.org/obo/GO_0065007> "regulation")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0065007> "biological_process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0065007> "GO:0065007")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0065007> <http://purl.obolibrary.org/obo/go#gocheck_do_not_annotate>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0065007> <http://purl.obolibrary.org/obo/go#goslim_pir>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0065007> <http://purl.obolibrary.org/obo/go.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0065007> "biological regulation")
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0065007> <http://purl.obolibrary.org/obo/GO_0008150>)
+
+# Class: <http://purl.obolibrary.org/obo/GO_0065008> (regulation of biological quality)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:dph") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:isa_complete") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:mah") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:pr") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:vw") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0065008> "Any process that modulates a qualitative or quantitative trait of a biological quality. A biological quality is a measurable attribute of an organism or part of an organism, such as size, mass, shape, color, etc.")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000233> <http://purl.obolibrary.org/obo/GO_0065008> "https://github.com/geneontology/go-ontology/issues/30599"^^xsd:anyURI)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/GO_0065008> "regulation of biological attribute")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/GO_0065008> "regulation of biological characteristic")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0065008> "biological_process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0065008> "GO:0065008")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0065008> <http://purl.obolibrary.org/obo/go#gocheck_do_not_annotate>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/GO_0065008> <http://purl.obolibrary.org/obo/go#goslim_pir>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0065008> <http://purl.obolibrary.org/obo/go.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0065008> "regulation of biological quality")
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0065008> <http://purl.obolibrary.org/obo/GO_0065007>)
+
+# Class: <http://purl.obolibrary.org/obo/GO_0160269> (sweat secretion)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "PMID:1778649") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/GO_0160269> "The regulated release of sweat from the sweat glands.")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000233> <http://purl.obolibrary.org/obo/GO_0160269> "https://github.com/geneontology/go-ontology/issues/30274."^^xsd:anyURI)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#created_by> <http://purl.obolibrary.org/obo/GO_0160269> "rynl")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> <http://purl.obolibrary.org/obo/GO_0160269> "2025-05-19T20:55:14Z")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/GO_0160269> "perspiration")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/GO_0160269> "perspiring")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/GO_0160269> "sweating")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/GO_0160269> "biological_process")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/GO_0160269> "GO:0160269")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/GO_0160269> <http://purl.obolibrary.org/obo/go.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/GO_0160269> "sweat secretion")
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0160269> <http://purl.obolibrary.org/obo/GO_0007589>)
+SubClassOf(<http://purl.obolibrary.org/obo/GO_0160269> <http://purl.obolibrary.org/obo/GO_0032941>)
 
 
 )
