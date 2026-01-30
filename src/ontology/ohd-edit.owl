@@ -1306,7 +1306,7 @@ AnnotationAssertion(rdfs:label dcterms:created "date created")
 
 AnnotationAssertion(rdfs:label <http://www.geneontology.org/formats/oboInOwl#SubsetProperty> "subset_property"@en)
 
-# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> (has broad synonym)
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> (has_broad_synonym)
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> obo:IAO_0000118)
 
@@ -1314,7 +1314,7 @@ SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasBroadSy
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:IAO_0000118)
 
-# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> (has narrow synonym)
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> (has_narrow_synonym)
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> obo:IAO_0000118)
 
@@ -8686,8 +8686,9 @@ SubClassOf(obo:OHD_0010177 ObjectSomeValuesFrom(obo:RO_0002410 obo:OHD_0010176))
 
 # Class: obo:OHD_0010178 (periodontal pain due to periodontitis as a manifestation of a systemic disorder)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010178 "Periodontal pain due to periodontal disease resulting from a systematic disorder known to cause periodontitis.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010178 "Periodontal pain due to periodontal disease that results from a systematic disorder.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0010178 "PMID:32103673")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010178 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0010178 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010178 "2025-06-26T18:53:25Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> obo:OHD_0010178 "periodontal pain due to unspecified systemic disorder")
@@ -8699,8 +8700,9 @@ SubClassOf(obo:OHD_0010178 obo:OHD_0010102)
 
 # Class: obo:OHD_0010179 (periodontal pain due to genetic disorder)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010179 "Periodontal pain due to periodontitis as a manifestion of a systematic disorder resulting form one of the following: familial and cyclic neutropenia, Down syndrome, leukocyte adhesion deficiency syndromes, Papillon–Lefèvre syndrome, Chediak–Higashi syndrome, histiocytosis syndromes, glycogen storage disease, infantile genetic agranulocytosis, Cohen syndrome, Ehler–Danlos syndrome (types IV and VIII), hypophosphatasia, or other genetic disorder known to be able to cause periodontitis.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010179 "Periodontal pain due to periodontitis as a manifestion of a systematic genetic disorder. Genetic disorders which can result in periodontitis include familial and cyclic neutropenia, Down syndrome, leukocyte adhesion deficiency syndromes, Papillon–Lefèvre syndrome, Chediak–Higashi syndrome, histiocytosis syndromes, glycogen storage disease, infantile genetic agranulocytosis, Cohen syndrome, Ehler–Danlos syndrome (types IV and VIII), and hypophosphatasia.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0010179 "PMID:32103673")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010179 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0010179 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010179 "2025-06-26T18:54:59Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0010179 obo:OHD_0010296)
@@ -8720,8 +8722,9 @@ SubClassOf(obo:OHD_0010180 obo:OHD_0010187)
 
 # Class: obo:OHD_0010181 (periodontal pain due to haematological disorder)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010181 "Periodontal pain due to periodontitis as a manifestation of a systematic disorder resulitng from one of the following: acquired neutropenia, leukaemia, or other haematological disorder known to be able to cause periodontitis.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010181 "Periodontal pain due to periodontitis as a manifestation of a systematic haematological disorder. Haematological disorders which can result in periodontitis include acquired neutropenia and leukaemia.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0010181 "PMID:32103673")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010181 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0010181 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010181 "2025-06-26T18:59:27Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0010181 obo:OHD_0010296)
@@ -8732,7 +8735,7 @@ SubClassOf(obo:OHD_0010181 ObjectSomeValuesFrom(obo:RO_0002410 obo:OHD_0010180))
 
 # Class: obo:OHD_0010182 (periodontal pain due to periodontal abscess)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010182 "Periodontal pain due to periodontal disease resulting form either or both of the following: acute inflammation and loss of attatchement, or marginal and periradicular bone resorption.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010182 "Periodontal pain due to periodontal disease resulting from either or both of the following: acute inflammation and loss of attatchement, or marginal and periradicular bone resorption.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0010182 "PMID:32103673")
 AnnotationAssertion(dcterms:contributor obo:OHD_0010182 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010182 "2025-06-26T19:02:46Z"^^xsd:dateTime)
@@ -8984,8 +8987,9 @@ SubClassOf(obo:OHD_0010206 ObjectSomeValuesFrom(obo:RO_0002410 obo:OHD_0010205))
 
 # Class: obo:OHD_0010207 (jaw bone pain due to malignant lesion)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010207 "Jaw bone pain due to a primary or seconday malignant lesion known to be able to cause jaw bone tissue pain.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010207 "Jaw bone pain that results from a primary or seconday malignant lesion.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0010207 "PMID:32103673")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010207 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0010207 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010207 "2025-06-30T18:16:50Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0010207 obo:OHD_0010296)
@@ -9004,8 +9008,9 @@ SubClassOf(obo:OHD_0010208 obo:OGMS_0000045)
 
 # Class: obo:OHD_0010209 (jaw bone pain due to local benign lesion)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010209 "Jaw bone pain due to a local benign lesion known to be able to cause jaw bown tissue pain.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010209 "Jaw bone pain that results from a local benign lesion.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0010209 "PMID:32103673")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010209 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0010209 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010209 "2025-06-30T18:22:25Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0010209 obo:OHD_0010296)
@@ -9906,8 +9911,9 @@ SubClassOf(obo:OHD_0010291 obo:OGMS_0000045)
 
 # Class: obo:OHD_0010292 (gingival pain due to autoimmunity)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010292 "Gingival pain due to gingivitis resulting from an autoimmune disease or disorder known to cause gingival pain.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010292 "Gingival pain due to gingivitis resulting from an autoimmune disease or disorder.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0010292 "PMID:32103673")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010292 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0010292 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010292 "2025-07-08T17:26:49Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0010292 obo:OHD_0010296)
@@ -9930,8 +9936,9 @@ SubClassOf(obo:OHD_0010293 ObjectSomeValuesFrom(obo:RO_0002410 obo:GO_0002524))
 
 # Class: obo:OHD_0010294 (oral mucosal pain due to autoimmunity)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010294 "Oral mucosal pain due to oralmucosal inflammation resulting from an autoimmue disease known to cause oral mucosa pain.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010294 "Oral mucosal pain due to oralmucosal inflammation resulting from an autoimmue disease.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0010294 "PMID:32103673")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010294 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0010294 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010294 "2025-07-08T17:29:51Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0010294 obo:OHD_0010296)
