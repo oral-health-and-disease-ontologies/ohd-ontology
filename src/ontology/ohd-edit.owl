@@ -1306,7 +1306,7 @@ AnnotationAssertion(rdfs:label dcterms:created "date created")
 
 AnnotationAssertion(rdfs:label <http://www.geneontology.org/formats/oboInOwl#SubsetProperty> "subset_property"@en)
 
-# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> (has broad synonym)
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> (has_broad_synonym)
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> obo:IAO_0000118)
 
@@ -1314,7 +1314,7 @@ SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasBroadSy
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:IAO_0000118)
 
-# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> (has narrow synonym)
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> (has_narrow_synonym)
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> obo:IAO_0000118)
 
@@ -8176,17 +8176,20 @@ AnnotationAssertion(rdfs:comment obo:OHD_0010128 "ICOP number: 3.2")
 AnnotationAssertion(rdfs:label obo:OHD_0010128 "secondary temporomandibular joint pain"@en)
 SubClassOf(obo:OHD_0010128 obo:OHD_0010004)
 
-# Class: obo:OHD_0010129 (trigeminal neuralgia)
+# Class: obo:OHD_0010129 (trigeminal neuralgic pain)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010129 "A disorder characterized by recurrent unilateral brief electric shock-like pains, abrupt in onset and termination, limited to the distribution of one or more divisions of the trigeminal nerve and triggered by innocuous stimuli. It may develop without apparent cause or be a result of another disorder. Additionally, there may or may not be concomitant continuous pain of moderate intensity within the affected division(s).")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010129 "Unilateral brief electric shock-like pains, abrupt in onset and termination, limited to the distribution of one or more divisions of the trigeminal nerve and triggered by innocuous stimuli.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0010129 "PMID:32103673")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010129 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0010129 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010129 "2025-06-18T17:50:39Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> obo:OHD_0010129 "trigeminal neuralgia attributed to other cause")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> obo:OHD_0010129 "trigeminal neuralgia")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0010129 obo:OHD_0010296)
 AnnotationAssertion(rdfs:comment obo:OHD_0010129 "ICOP number: 4.1.1")
 AnnotationAssertion(rdfs:comment obo:OHD_0010129 "related ICOP number: 4.1.1.2.3")
-AnnotationAssertion(rdfs:label obo:OHD_0010129 "trigeminal neuralgia"@en)
+AnnotationAssertion(rdfs:comment obo:OHD_0010129 "Trigeminal neuralgic pain may develop without apparent cause or be a result of another disorder. Additionally, there may or may not be concomitant continuous pain of moderate intensity within the affected division(s).")
+AnnotationAssertion(rdfs:label obo:OHD_0010129 "trigeminal neuralgic pain"@en)
 SubClassOf(obo:OHD_0010129 obo:OHD_0010059)
 
 # Class: obo:OHD_0010130 (classic trigeminal neuralgia)
@@ -9977,14 +9980,16 @@ SubClassOf(obo:OHD_0010298 obo:OHD_0010023)
 
 # Class: obo:OHD_0010299 (trigeminal neuropathic pain)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010299 "Facial pain in the distribution of one or more branches of the trigeminal nerve caused by another disorder and indicative of neural damage. The primary pain is usually continuous or near-continuous, and commonly described as burning, squeezing, aching or likened to pins and needles. Superimposed brief pain paroxysms may occur but these are not the predominant pain type. This combination is distinct from that of 4.1.1 Trigeminal neuralgia. There are clinically detectable somatosensory changes within the trigeminal distribution, and mechanical allodynia and cold hyperalgesia/allodynia are common, fulfilling the IASP criteria for neuropathic pain. Allodynic areas may be much larger than the punctate trigger zones present in 4.1.1 Trigeminal neuralgia.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010299 "Orofacial pain in the distribution of one or more branches of the trigeminal nerve. The primary pain is usually continuous or near-continuous, and commonly described as burning, squeezing, aching or likened to pins and needles.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0010299 "PMID:32103673")
+AnnotationAssertion(dcterms:contributor obo:OHD_0010299 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0010299 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010299 "2025-07-08T17:40:50Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> obo:OHD_0010299 "trigeminal neuropathic pain attributed to other disorder")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0010299 obo:OHD_0010296)
 AnnotationAssertion(rdfs:comment obo:OHD_0010299 "ICOP number: 4.1.2")
 AnnotationAssertion(rdfs:comment obo:OHD_0010299 "related ICOP number: 4.1.2.4")
+AnnotationAssertion(rdfs:comment obo:OHD_0010299 "Superimposed brief pain paroxysms may occur but these are not the predominant pain type. This combination is distinct from that of 4.1.1 Trigeminal neuralgia. There are clinically detectable somatosensory changes within the trigeminal distribution, and mechanical allodynia and cold hyperalgesia/allodynia are common, fulfilling the IASP criteria for neuropathic pain. Allodynic areas may be much larger than the punctate trigger zones present in 4.1.1 Trigeminal neuralgia.")
 AnnotationAssertion(rdfs:label obo:OHD_0010299 "trigeminal neuropathic pain"@en)
 SubClassOf(obo:OHD_0010299 obo:OHD_0010059)
 
