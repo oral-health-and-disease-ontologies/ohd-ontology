@@ -1306,7 +1306,7 @@ AnnotationAssertion(rdfs:label dcterms:created "date created")
 
 AnnotationAssertion(rdfs:label <http://www.geneontology.org/formats/oboInOwl#SubsetProperty> "subset_property"@en)
 
-# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> (has broad synonym)
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> (has_broad_synonym)
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> obo:IAO_0000118)
 
@@ -1314,7 +1314,7 @@ SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasBroadSy
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:IAO_0000118)
 
-# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> (has narrow synonym)
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> (has_narrow_synonym)
 
 SubAnnotationPropertyOf(<http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym> obo:IAO_0000118)
 
@@ -8024,27 +8024,30 @@ SubClassOf(obo:OHD_0010114 ObjectSomeValuesFrom(obo:RO_0002410 obo:OHD_0010113))
 
 # Class: obo:OHD_0010115 (gingival disorder)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010115 "A mouth disorder occuring within the gingival tissue.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010115 "A mouth disorder that is part of the gingival tissue.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0010115 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010115 "2025-06-18T17:06:36Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010115 "gingival disorder"@en)
-SubClassOf(obo:OHD_0010115 obo:OHD_0000414)
+SubClassOf(obo:OHD_0010115 obo:OHD_0010117)
+SubClassOf(obo:OHD_0010115 ObjectSomeValuesFrom(obo:BFO_0000050 obo:UBERON_0001828))
 
 # Class: obo:OHD_0010116 (oral mucosal disorder)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010116 "A mouth disorder occuring within the mucosa.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010116 "A mouth disorder that is part of the mucosa.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0010116 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010116 "2025-06-18T17:16:52Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010116 "oral mucosal disorder"@en)
 SubClassOf(obo:OHD_0010116 obo:OHD_0000414)
+SubClassOf(obo:OHD_0010116 ObjectSomeValuesFrom(obo:BFO_0000050 obo:UBERON_0003729))
 
 # Class: obo:OHD_0010117 (periodontal disorder)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010117 "A mouth disorder occuring within the periodontium.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010117 "A mouth disorder that is part of the periodontium.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0010117 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010117 "2025-06-18T17:20:17Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010117 "periodontal disorder"@en)
 SubClassOf(obo:OHD_0010117 obo:OHD_0000414)
+SubClassOf(obo:OHD_0010117 ObjectSomeValuesFrom(obo:BFO_0000050 obo:UBERON_0001758))
 
 # Class: obo:OHD_0010118 (primary temporomandibular joint pain)
 
@@ -8937,11 +8940,12 @@ SubClassOf(obo:OHD_0010201 ObjectSomeValuesFrom(obo:RO_0002410 obo:OHD_0010184))
 
 # Class: obo:OHD_0010202 (salivary gland disorder)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010202 "A mouth disorder occuring within the salivary glands.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010202 "A mouth disorder that is part of the salivary glands.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0010202 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010202 "2025-06-30T18:02:18Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010202 "salivary gland disorder"@en)
 SubClassOf(obo:OHD_0010202 obo:OHD_0000414)
+SubClassOf(obo:OHD_0010202 ObjectSomeValuesFrom(obo:BFO_0000050 obo:UBERON_0001044))
 
 # Class: obo:OHD_0010203 (parotid disorder)
 
