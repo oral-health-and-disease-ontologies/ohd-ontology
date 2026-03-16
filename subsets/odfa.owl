@@ -15,7 +15,7 @@
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
     <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ohd/odfa.owl">
-        <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/ohd/2025-11-25/odfa.owl"/>
+        <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/ohd/releases/2026-03-16/odfa.owl"/>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-9191-6978"/>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-9625-1899"/>
         <terms:contributor rdf:resource="https://orcid.org/0000-0001-9990-8331"/>
@@ -30,7 +30,7 @@
 The ODFA is developed as a subset of the Oral Health and Disease Ontology (http://purl.obolibrary.org/obo/ohd.owl). Issues and new term requests can be submitted at https://github.com/oral-health-and-disease-ontologies/ohd-ontology/issues.</terms:description>
         <terms:license rdf:resource="http://creativecommons.org/licenses/by/4.0/"/>
         <terms:title>Ontology of Dental care-related Fear, Anxiety, and/or Phobia (ODFA)</terms:title>
-        <owl:versionInfo>2025-11-25</owl:versionInfo>
+        <owl:versionInfo>2026-03-16</owl:versionInfo>
     </owl:Ontology>
     
 
@@ -1885,6 +1885,29 @@ This data property provides a means to query for missing tooth roots. Since a mi
     
 
 
+    <!-- http://purl.obolibrary.org/obo/GO_0007589 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/GO_0007589">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/GO_0046903"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/GO_0050878"/>
+        <obo:IAO_0000115>The controlled release of a fluid by a cell or tissue in an animal.</obo:IAO_0000115>
+        <oboInOwl:hasOBONamespace>biological_process</oboInOwl:hasOBONamespace>
+        <oboInOwl:id>GO:0007589</oboInOwl:id>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
+        <rdfs:label>body fluid secretion</rdfs:label>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/GO_0007589"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>The controlled release of a fluid by a cell or tissue in an animal.</owl:annotatedTarget>
+        <oboInOwl:hasDbXref>GOC:ai</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:dph</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:mah</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:tb</oboInOwl:hasDbXref>
+    </owl:Axiom>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/GO_0007610 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/GO_0007610">
@@ -2064,6 +2087,28 @@ This data property provides a means to query for missing tooth roots. Since a mi
     
 
 
+    <!-- http://purl.obolibrary.org/obo/GO_0050878 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/GO_0050878">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/GO_0065008"/>
+        <obo:IAO_0000115>Any process that modulates the levels of body fluids.</obo:IAO_0000115>
+        <oboInOwl:hasOBONamespace>biological_process</oboInOwl:hasOBONamespace>
+        <oboInOwl:id>GO:0050878</oboInOwl:id>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_pir"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
+        <rdfs:label>regulation of body fluid levels</rdfs:label>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/GO_0050878"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>Any process that modulates the levels of body fluids.</owl:annotatedTarget>
+        <oboInOwl:hasDbXref>GOC:ai</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:dph</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:tb</oboInOwl:hasDbXref>
+    </owl:Axiom>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/GO_0050896 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/GO_0050896">
@@ -2176,9 +2221,83 @@ This data property provides a means to query for missing tooth roots. Since a mi
     
 
 
+    <!-- http://purl.obolibrary.org/obo/GO_0065007 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/GO_0065007">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/GO_0008150"/>
+        <obo:IAO_0000115>Any process that modulates a measurable attribute of any biological process, quality or function.</obo:IAO_0000115>
+        <oboInOwl:hasBroadSynonym>regulation</oboInOwl:hasBroadSynonym>
+        <oboInOwl:hasOBONamespace>biological_process</oboInOwl:hasOBONamespace>
+        <oboInOwl:id>GO:0065007</oboInOwl:id>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#gocheck_do_not_annotate"/>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_pir"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
+        <rdfs:label>biological regulation</rdfs:label>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/GO_0065007"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>Any process that modulates a measurable attribute of any biological process, quality or function.</owl:annotatedTarget>
+        <oboInOwl:hasDbXref>GOC:dph</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:isa_complete</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:mah</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:pr</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:vw</oboInOwl:hasDbXref>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/GO_0065008 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/GO_0065008">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/GO_0065007"/>
+        <obo:IAO_0000115>Any process that modulates a qualitative or quantitative trait of a biological quality. A biological quality is a measurable attribute of an organism or part of an organism, such as size, mass, shape, color, etc.</obo:IAO_0000115>
+        <obo:IAO_0000233 rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://github.com/geneontology/go-ontology/issues/30599</obo:IAO_0000233>
+        <oboInOwl:hasExactSynonym>regulation of biological attribute</oboInOwl:hasExactSynonym>
+        <oboInOwl:hasExactSynonym>regulation of biological characteristic</oboInOwl:hasExactSynonym>
+        <oboInOwl:hasOBONamespace>biological_process</oboInOwl:hasOBONamespace>
+        <oboInOwl:id>GO:0065008</oboInOwl:id>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#gocheck_do_not_annotate"/>
+        <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/go#goslim_pir"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
+        <rdfs:label>regulation of biological quality</rdfs:label>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/GO_0065008"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>Any process that modulates a qualitative or quantitative trait of a biological quality. A biological quality is a measurable attribute of an organism or part of an organism, such as size, mass, shape, color, etc.</owl:annotatedTarget>
+        <oboInOwl:hasDbXref>GOC:dph</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:isa_complete</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:mah</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:pr</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref>GOC:vw</oboInOwl:hasDbXref>
+    </owl:Axiom>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/GO_0160269 -->
 
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/GO_0160269"/>
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/GO_0160269">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/GO_0007589"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/GO_0032941"/>
+        <obo:IAO_0000115>The regulated release of sweat from the sweat glands.</obo:IAO_0000115>
+        <obo:IAO_0000233 rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://github.com/geneontology/go-ontology/issues/30274.</obo:IAO_0000233>
+        <oboInOwl:created_by>rynl</oboInOwl:created_by>
+        <oboInOwl:creation_date>2025-05-19T20:55:14Z</oboInOwl:creation_date>
+        <oboInOwl:hasExactSynonym>perspiration</oboInOwl:hasExactSynonym>
+        <oboInOwl:hasExactSynonym>perspiring</oboInOwl:hasExactSynonym>
+        <oboInOwl:hasExactSynonym>sweating</oboInOwl:hasExactSynonym>
+        <oboInOwl:hasOBONamespace>biological_process</oboInOwl:hasOBONamespace>
+        <oboInOwl:id>GO:0160269</oboInOwl:id>
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/go.owl"/>
+        <rdfs:label>sweat secretion</rdfs:label>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/GO_0160269"/>
+        <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
+        <owl:annotatedTarget>The regulated release of sweat from the sweat glands.</owl:annotatedTarget>
+        <oboInOwl:hasDbXref>PMID:1778649</oboInOwl:hasDbXref>
+    </owl:Axiom>
     
 
 
@@ -2202,23 +2321,6 @@ This data property provides a means to query for missing tooth roots. Since a mi
         <obo:IAO_0000119 xml:lang="en">OBI_0000217</obo:IAO_0000119>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
         <rdfs:label xml:lang="en">objective specification</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/IAO_0000009 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000009">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
-        <obo:IAO_0000111 xml:lang="en">datum label</obo:IAO_0000111>
-        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000123"/>
-        <obo:IAO_0000115 xml:lang="en">A label is a symbol that is part of some other datum and is used to either partially define  the denotation of that datum or to provide a means for identifying the datum as a member of the set of data with the same label</obo:IAO_0000115>
-        <obo:IAO_0000116 xml:lang="en">http://www.golovchenko.org/cgi-bin/wnsearch?q=label#4n</obo:IAO_0000116>
-        <obo:IAO_0000117 xml:lang="en">GROUP: IAO</obo:IAO_0000117>
-        <obo:IAO_0000232>9/22/11 BP: changed the rdfs:label for this class from &apos;label&apos; to &apos;datum label&apos; to convey that this class is not intended to cover all kinds of labels (stickers, radiolabels, etc.), and not even all kind of textual labels, but rather the kind of labels occuring in a datum. 
-</obo:IAO_0000232>
-        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/iao.owl"/>
-        <rdfs:label xml:lang="en">datum label</rdfs:label>
     </owl:Class>
     
 
@@ -2972,19 +3074,6 @@ My reasons for doing this are:
     
 
 
-    <!-- http://purl.obolibrary.org/obo/OHD_0000100 -->
-
-    <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000100">
-        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/IAO_0000009"/>
-        <obo:IAO_0000115 xml:lang="en">A label naming a type of secondary tooth canonically found in humans, adopted by the American Dental Association, and commonly used as labels on odontograms (toothcharts) and clinical notes. The Universal Numbering System uses No. 1 through 32 for the 32 teeth in the permanent dentition, starting with 1 for the maxillary right third molar, going around the arch to the maxillary left third molar as 16; dropping down on the same side, the left mandibular third molar becomes 17, and then the numbers increase around the lower arch to 32, which is the lower right third molar. </obo:IAO_0000115>
-        <obo:IAO_0000116 xml:lang="en">Bill Duncan 4/12/2012: From the book: &quot;The Universal Numbering System was first suggested by Parreidt in 1882, and officially adopted by the American Dental Association in 1975. It is accepted by third-party providers and is endorsed by the American Society of Forensic Odontology.&quot;</obo:IAO_0000116>
-        <obo:IAO_0000116>Titus Schleyer 1/1/2014: slightly updated definition</obo:IAO_0000116>
-        <obo:IAO_0000119 xml:lang="en">Book:Scheid, Rickne. Woelfel&apos;s Dental Anatomy, 8th Edition. Lippincott Williams &amp; Wilkins, 01/2011. pp. i - ii). </obo:IAO_0000119>
-        <rdfs:label>Universal tooth number</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://purl.obolibrary.org/obo/OHD_0000179 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000179">
@@ -3388,6 +3477,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000426">
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0008010"/>
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/OHD_0008047"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000136"/>
@@ -3401,6 +3491,12 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
         <oboInOwl:inSubset rdf:resource="http://purl.obolibrary.org/obo/OHD_0005009"/>
         <rdfs:label xml:lang="en">DFS 05. I perspire.</rdfs:label>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0000426"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/OHD_0008047"/>
+        <oboInOwl:is_inferred>true</oboInOwl:is_inferred>
+    </owl:Axiom>
     
 
 
@@ -6971,518 +7067,6 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55680 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55680"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55681 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55681"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55682 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55682"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55683 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55683"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55686 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55686"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55687 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55687"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55688 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55688"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55689 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55689"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55690 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55690"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55691 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55691"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55692 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55692"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55693 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55693"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55694 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55694"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55695 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55695"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55696 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55696"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55697 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55697"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55698 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55698"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55699 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55699"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55700 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55700"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55701 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55701"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55702 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55702"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55703 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55703"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55704 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55704"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55705 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55705"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55706 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55706"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55707 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55707"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55798 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55798"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_55799 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_55799"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_57140 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_57140"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_57141 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_57141"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_57142 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_57142"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/FMA_57143 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/FMA_57143"/>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000101 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000101">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55696"/>
-        <rdfs:label xml:lang="en">1</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000102 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000102">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55697"/>
-        <rdfs:label xml:lang="en">2</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000103 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000103">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55698"/>
-        <rdfs:label xml:lang="en">3</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000104 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000104">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55688"/>
-        <rdfs:label xml:lang="en">4</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000105 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000105">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55689"/>
-        <rdfs:label xml:lang="en">5</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000106 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000106">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55798"/>
-        <rdfs:label xml:lang="en">6</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000107 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000107">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55680"/>
-        <rdfs:label xml:lang="en">7</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000108 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000108">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55681"/>
-        <rdfs:label xml:lang="en">8</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000109 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000109">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55682"/>
-        <rdfs:label xml:lang="en">9</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000110 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000110">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55683"/>
-        <rdfs:label xml:lang="en">10</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000111 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000111">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55799"/>
-        <rdfs:label xml:lang="en">11</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000112 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000112">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55690"/>
-        <rdfs:label xml:lang="en">12</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000113 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000113">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55691"/>
-        <rdfs:label xml:lang="en">13</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000114 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000114">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55699"/>
-        <rdfs:label xml:lang="en">14</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000115 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000115">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55700"/>
-        <rdfs:label xml:lang="en">15</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000116 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000116">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55701"/>
-        <rdfs:label xml:lang="en">16</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000117 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000117">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55702"/>
-        <rdfs:label xml:lang="en">17</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000118 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000118">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55703"/>
-        <rdfs:label xml:lang="en">18</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000119 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000119">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55704"/>
-        <rdfs:label xml:lang="en">19</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000120 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000120">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55692"/>
-        <rdfs:label xml:lang="en">20</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000121 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000121">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55693"/>
-        <rdfs:label xml:lang="en">21</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000122 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000122">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55687"/>
-        <rdfs:label xml:lang="en">22</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000123 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000123">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_57141"/>
-        <rdfs:label xml:lang="en">23</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000124 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000124">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_57143"/>
-        <rdfs:label xml:lang="en">24</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000125 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000125">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_57142"/>
-        <rdfs:label xml:lang="en">25</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000126 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000126">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_57140"/>
-        <rdfs:label xml:lang="en">26</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000127 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000127">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55686"/>
-        <rdfs:label xml:lang="en">27</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000128 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000128">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55694"/>
-        <rdfs:label xml:lang="en">28</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000129 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000129">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55695"/>
-        <rdfs:label xml:lang="en">29</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000130 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000130">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55705"/>
-        <rdfs:label xml:lang="en">30</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000131 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000131">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55706"/>
-        <rdfs:label xml:lang="en">31</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/OHD_0000132 -->
-
-    <owl:NamedIndividual rdf:about="http://purl.obolibrary.org/obo/OHD_0000132">
-        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OHD_0000100"/>
-        <obo:IAO_0000136 rdf:resource="http://purl.obolibrary.org/obo/FMA_55707"/>
-        <rdfs:label xml:lang="en">32</rdfs:label>
-    </owl:NamedIndividual>
     
 
 
