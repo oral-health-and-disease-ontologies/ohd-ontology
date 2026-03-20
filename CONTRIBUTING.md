@@ -161,8 +161,8 @@ products (i.e., ontology products and subsets) released. The general process for
 
    - Go to the **Releases** tab in the GitHub UI.
    - Click **Draft a new release**
-   - Set the **tag** name: ```text vYYYY-MM-DD```
-   - Set the **release title**: ```text Release: YYYY-MM-DD```
+   - Set the **tag** name: ```vYYYY-MM-DD```
+   - Set the **release title**: ```Release: YYYY-MM-DD```
    - Add **release notes**.
    - Mark it as the **latest release**.
    - Click **Publish Release**.
