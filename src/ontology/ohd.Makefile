@@ -211,7 +211,7 @@ $(IMPORTDIR)/envo_import.owl: $(MIRRORDIR)/envo.owl $(IMPORTDIR)/envo_terms.txt
 		convert --format ofn \
         --output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
-$(IMPORTDIR)/chebi_import.owl: $(MIRRORDIR)/chebi.owl.gz $(IMPORTDIR)/chebi_terms.txt
+$(IMPORTDIR)/chebi_import.owl: $(MIRRORDIR)/chebi.owl $(IMPORTDIR)/chebi_terms.txt
 	if [ $(IMP) = true ]; then $(ROBOT) \
         remove \
             --input $< \
