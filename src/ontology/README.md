@@ -25,6 +25,15 @@ To make changes to the OHD, edit `ohd-edit.owl`. **DO NOT** edit the `ohd.owl` f
       make prepare_release
       ```
 
+   This command:
+      - Runs validation and quality checks.
+      - Generates the release products, including:
+      - `ohd.owl`
+      - `ohd.obo`
+      - `ohd.json`
+      - `ohd-base.owl`, etc.
+      - Updates the version IRIs and metadata.   
+
    Running this command may call for 'chebi.owl.gz'. This file can be retrieved with the following command:
    
       ```bash
@@ -36,15 +45,6 @@ To make changes to the OHD, edit `ohd-edit.owl`. **DO NOT** edit the `ohd.owl` f
       ```bash
       make prepare_release_fast
       ```
-
-   This command:
-      - Runs validation and quality checks.
-      - Generates the release products, including:
-      - `ohd.owl`
-      - `ohd.obo`
-      - `ohd.json`
-      - `ohd-base.owl`, etc.
-      - Updates the version IRIs and metadata.   
 
 3. Review and Commit the Generated Files
 
