@@ -29,24 +29,6 @@ To track changes made to the OHD Ontology, it is best maintained by following th
    request.
 5. Delete the issue branch (e.g., branch `issue-50`).
 
-### Updating Ontology Products and Subsets
-
-From time to time, the [imports](src/ontology/imports/) used by the OHD Ontology will need to be updated and new
-products (i.e., ontology products and subsets) released. The general process for updating the products is as follows:
-
-1. Create an issue, branch, and pull request using the steps outlined
-   in [Tracking Changes to the OHD Ontology](#tracking-changes-to-the-ohd-ontology) section.
-2. Navigate to the [src/ontology](src/ontology/) directory.
-3. Execute `make clean`. This removes all imports, ontologies, and subsets from the [src/ontology](src/ontology/)
-   directory. Note, the top-level ontology products and subsets still exist; only the files in
-   the [src/ontology](src/ontology/) directory were removed.
-4. Execute `make all`. This will create new ontology products and subsets in the [src/ontology](src/ontology/)
-   directory.
-5. Review the new ontology products and subsets.
-6. Once you are satisfied with the new ontology products and subsets, execute `make release`. This will copy the new
-   products to the top-level directory.
-7. Finally, push your changes to the repository, make a pull request, and merge.
-
 ## Configuring Protégé for OHD Contributions
 
 ### Rationale
