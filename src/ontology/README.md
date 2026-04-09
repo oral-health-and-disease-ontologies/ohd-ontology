@@ -45,45 +45,7 @@ To make changes to the OHD, edit `ohd-edit.owl`. **DO NOT** edit the `ohd.owl` f
       ```bash
       make prepare_release_fast
       ```
-
-3. Review and Commit the Generated Files
-
-   Run a Hermit reasoner (if possible) locally to check-in on ohd.owl
-
-   Inspect the release files. Changes may be minimal (typically just version updates if no content was added).
-
-   Then commit the release:
-
-   ```copy these files to the root
-   git commit -am "release for YYYY-MM-DD"
-   ```
-
-4. Push the Release Branch
-
-   ```bash
-   git push origin release-YYYY-MM-DD
-   ```
-
-5. Create a Pull Request
-
-   - Go to GitHub and open a pull request from the release branch into `main`.
-   - Use a title like:  `Release: YYYY-MM-DD`.
-   - Wait for automated checks (if configured).
-   - Merge the PR once checks pass.
-
-6. Draft the GitHub Release
-
-   After merging to `main`:
-
-   - Go to the **Releases** tab in the GitHub UI.
-   - Click **Draft a new release**
-   - Set the **tag** name: ```vYYYY-MM-DD```
-   - Set the **release title**: ```Release: YYYY-MM-DD```
-   - Add **release notes**.
-   - Mark it as the **latest release**.
-   - Click **Publish Release**.
-
-7. Update Subsets
+3. Update Subsets
 
    The OHD ontology generates subsets automatically using the **OHD subset extraction Makefile**, which builds ontology subsets based on class annotations:
 
@@ -96,9 +58,7 @@ To make changes to the OHD, edit `ohd-edit.owl`. **DO NOT** edit the `ohd.owl` f
       3. Merging in subset-specific annotations.
       4. Annotating the ontology IRI, version IRI, and `owl:versionInfo`.  
    
-   After preparing and merging an OHD release to `main`:
-
-   - Publish a new branch for generating subset files (subsets-YYYY-MM-DD)
+   After preparing the OHD release:
 
    - Navigate to the ontology source directory:
      ```bash
@@ -127,4 +87,39 @@ To make changes to the OHD, edit `ohd-edit.owl`. **DO NOT** edit the `ohd.owl` f
      - Correct metadata (version IRI, release date, license).
      - Include a brief summary of subset updates in the GitHub release notes when drafting the release.
 
-   - Create pull-request into main
+4. Review and Commit the Generated Files
+
+   Run a Hermit reasoner (if possible) locally to check-in on ohd.owl
+
+   Inspect the release files. Changes may be minimal (typically just version updates if no content was added).
+
+   Then commit the release:
+
+   ```copy these files to the root
+   git commit -am "release for YYYY-MM-DD"
+   ```
+
+5. Push the Release Branch
+
+   ```bash
+   git push origin release-YYYY-MM-DD
+   ```
+
+6. Create a Pull Request
+
+   - Go to GitHub and open a pull request from the release branch into `main`.
+   - Use a title like:  `Release: YYYY-MM-DD`.
+   - Wait for automated checks (if configured).
+   - Merge the PR once checks pass.
+
+7. Draft the GitHub Release
+
+   After merging to `main`:
+
+   - Go to the **Releases** tab in the GitHub UI.
+   - Click **Draft a new release**
+   - Set the **tag** name: ```vYYYY-MM-DD```
+   - Set the **release title**: ```Release: YYYY-MM-DD```
+   - Add **release notes**.
+   - Mark it as the **latest release**.
+   - Click **Publish Release**.
