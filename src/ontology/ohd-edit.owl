@@ -19,6 +19,7 @@ Import(<http://purl.obolibrary.org/obo/ohd/imports/ecto_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/go_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/iao_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/ido_import.owl>)
+Import(<http://purl.obolibrary.org/obo/ohd/imports/md-core_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/mf_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/ncbi_import.owl>)
 Import(<http://purl.obolibrary.org/obo/ohd/imports/obi_import.owl>)
@@ -685,6 +686,15 @@ Declaration(Class(obo:OHD_0008077))
 Declaration(Class(obo:OHD_0008078))
 Declaration(Class(obo:OHD_0008079))
 Declaration(Class(obo:OHD_0008080))
+Declaration(Class(obo:OHD_0008081))
+Declaration(Class(obo:OHD_0008082))
+Declaration(Class(obo:OHD_0008083))
+Declaration(Class(obo:OHD_0008084))
+Declaration(Class(obo:OHD_0008085))
+Declaration(Class(obo:OHD_0008086))
+Declaration(Class(obo:OHD_0008087))
+Declaration(Class(obo:OHD_0008088))
+Declaration(Class(obo:OHD_0008091))
 Declaration(Class(obo:OHD_0010000))
 Declaration(Class(obo:OHD_0010001))
 Declaration(Class(obo:OHD_0010002))
@@ -1834,6 +1844,10 @@ AnnotationAssertion(rdfs:label obo:GO_0006955 "immune response"@en)
 # Class: obo:GO_0008150 (biological_process)
 
 SubClassOf(obo:GO_0008150 obo:BFO_0000015)
+
+# Class: obo:MFOMD_0000024 (pathological mental process)
+
+SubClassOf(obo:MFOMD_0000024 obo:OGMS_0000061)
 
 # Class: obo:NBO_0000007 (temp: mouth movement)
 
@@ -6434,7 +6448,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0008047 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0008047 "2025-04-04T13:05:36Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008047 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008047 "question about physiological arousal"@en)
-EquivalentClasses(obo:OHD_0008047 ObjectIntersectionOf(obo:OHD_0008011 ObjectUnionOf(ObjectSomeValuesFrom(obo:IAO_0000136 obo:GO_0003008) ObjectSomeValuesFrom(obo:IAO_0000136 obo:GO_0032941) ObjectSomeValuesFrom(obo:IAO_0000136 obo:OGMS_0000061))))
+EquivalentClasses(obo:OHD_0008047 ObjectIntersectionOf(obo:OHD_0008011 ObjectUnionOf(ObjectSomeValuesFrom(obo:IAO_0000136 obo:GO_0003008) ObjectSomeValuesFrom(obo:IAO_0000136 obo:GO_0032941) ObjectSomeValuesFrom(obo:IAO_0000136 obo:MFOMD_0000024) ObjectSomeValuesFrom(obo:IAO_0000136 obo:OGMS_0000061))))
 SubClassOf(obo:OHD_0008047 obo:OHD_0008011)
 
 # Class: obo:OHD_0008048 (fear of pain question)
@@ -6618,7 +6632,7 @@ AnnotationAssertion(dcterms:created obo:OHD_0008066 "2025-10-22T17:35:33Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008066 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008066 "IDAF-4C+ 2d. I am afraid of going to the dentist because I am concerned I may have a panic attack  (abrupt fear with sweating, pounding heart, fear of dying or losing control, chest pain etc.)."@en)
 SubClassOf(obo:OHD_0008066 obo:OHD_0008079)
-SubClassOf(obo:OHD_0008066 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OGMS_0000061))
+SubClassOf(obo:OHD_0008066 ObjectSomeValuesFrom(obo:IAO_0000136 obo:MFOMD_0000136))
 
 # Class: obo:OHD_0008067 (IDAF-4C+ 2e. I am afraid of going to the dentist because I am generally highly self-conscious or concerned about being watched or judged in social situations.)
 
@@ -6694,6 +6708,7 @@ AnnotationAssertion(dcterms:created obo:OHD_0008074 "2025-10-22T17:40:47Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008074 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008074 "IDAF-4C+ 3g. The cost of dental treatment."@en)
 SubClassOf(obo:OHD_0008074 obo:OHD_0008080)
+SubClassOf(obo:OHD_0008074 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008084))
 
 # Class: obo:OHD_0008075 (IDAF-4C+ 3h. Needles or injections.)
 
@@ -6751,6 +6766,89 @@ AnnotationAssertion(dcterms:created obo:OHD_0008080 "2025-10-22T17:45:44Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008080 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008080 "IDAF-4C+ 3. To what extent are you anxious about the following things when you go the dentist."@en)
 SubClassOf(obo:OHD_0008080 obo:OHD_0008001)
+
+# Class: obo:OHD_0008081 (dental insurance policy)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008081 "An insurance policy which covers dental procedures."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008081 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008081 "2026-04-18T20:33:09Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0008081 "dental insurance policy"@en)
+SubClassOf(obo:OHD_0008081 obo:OMRSE_00000091)
+
+# Class: obo:OHD_0008082 (healthcare cost)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008082 "The cost associated with some healthcare procedure or healthcare product."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008082 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008082 "2026-04-18T20:39:20Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0008082 "healthcare cost"@en)
+SubClassOf(obo:OHD_0008082 obo:IAO_0000030)
+
+# Class: obo:OHD_0008083 (dental insurance question)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008083 "A question that is about dental insurance."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008083 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008083 "2026-04-14T22:58:25Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008083 obo:OHD_0005009)
+AnnotationAssertion(rdfs:label obo:OHD_0008083 "dental insurance question"@en)
+EquivalentClasses(obo:OHD_0008083 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008081)))
+SubClassOf(obo:OHD_0008083 obo:OHD_0008011)
+
+# Class: obo:OHD_0008084 (dental healthcare cost)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008084 "Healthcare cost for some dental procedure or dental product."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008084 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008084 "2026-04-18T20:39:33Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0008084 "dental healthcare cost"@en)
+SubClassOf(obo:OHD_0008084 obo:OHD_0008082)
+
+# Class: obo:OHD_0008085 (dental insurance cost)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008085 "Dental cost associated with a dental insurance policy."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008085 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008085 "2026-04-18T20:40:08Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0008085 "dental insurance cost"@en)
+SubClassOf(obo:OHD_0008085 obo:OHD_0008084)
+SubClassOf(obo:OHD_0008085 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008081))
+
+# Class: obo:OHD_0008086 (healthcare cost question)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008086 "Question that is about costs associated with some healthcare procedure or healthcare product."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008086 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008086 "2026-04-18T20:48:27Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#SubsetProperty> obo:OHD_0008086 obo:OHD_0005009)
+AnnotationAssertion(rdfs:label obo:OHD_0008086 "healthcare cost question"@en)
+EquivalentClasses(obo:OHD_0008086 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008082)))
+SubClassOf(obo:OHD_0008086 obo:OHD_0008011)
+
+# Class: obo:OHD_0008087 (dental healthcare cost question)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008087 "Healthcare cost question that is about costs associated with some dental healthcare procedure or dental healthcare product."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008087 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008087 "2026-04-18T20:49:23Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#SubsetProperty> obo:OHD_0008087 obo:OHD_0005009)
+AnnotationAssertion(rdfs:label obo:OHD_0008087 "dental healthcare cost question"@en)
+EquivalentClasses(obo:OHD_0008087 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008084)))
+SubClassOf(obo:OHD_0008087 obo:OHD_0008086)
+
+# Class: obo:OHD_0008088 (dental insurance cost question)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008088 "Dental healthcare cost question that is about costs associated with dental insurance."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008088 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008088 "2026-04-18T20:49:49Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#SubsetProperty> obo:OHD_0008088 obo:OHD_0005009)
+AnnotationAssertion(rdfs:label obo:OHD_0008088 "dental insurance cost question"@en)
+EquivalentClasses(obo:OHD_0008088 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008085)))
+SubClassOf(obo:OHD_0008088 obo:OHD_0008087)
+SubClassOf(obo:OHD_0008088 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008081))
+SubClassOf(obo:OHD_0008088 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008085))
+
+# Class: obo:OHD_0008091 (question about panic attack)
+
+AnnotationAssertion(dcterms:contributor obo:OHD_0008091 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008091 "2026-04-19T22:33:44Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0008091 "question about panic attack"@en)
+EquivalentClasses(obo:OHD_0008091 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:MFOMD_0000136)))
+SubClassOf(obo:OHD_0008091 obo:OHD_0008047)
 
 # Class: obo:OHD_0010000 (orofacial pain)
 
@@ -10109,6 +10207,10 @@ SubClassOf(obo:OHMI_0000015 ObjectSomeValuesFrom(obo:RO_0001025 obo:UBERON_00001
 # Class: obo:OMRSE_00000007 (gender role)
 
 SubClassOf(obo:OMRSE_00000007 obo:BFO_0000023)
+
+# Class: obo:OMRSE_00000090 (indemnity contract)
+
+SubClassOf(obo:OMRSE_00000090 obo:OMRSE_00000089)
 
 # Class: obo:PATO_0040034 (fractured)
 
