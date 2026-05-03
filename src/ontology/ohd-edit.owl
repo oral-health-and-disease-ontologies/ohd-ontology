@@ -695,6 +695,10 @@ Declaration(Class(obo:OHD_0008086))
 Declaration(Class(obo:OHD_0008087))
 Declaration(Class(obo:OHD_0008088))
 Declaration(Class(obo:OHD_0008091))
+Declaration(Class(obo:OHD_0008092))
+Declaration(Class(obo:OHD_0008093))
+Declaration(Class(obo:OHD_0008094))
+Declaration(Class(obo:OHD_0008095))
 Declaration(Class(obo:OHD_0010000))
 Declaration(Class(obo:OHD_0010001))
 Declaration(Class(obo:OHD_0010002))
@@ -6851,6 +6855,45 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:
 AnnotationAssertion(rdfs:label obo:OHD_0008091 "question about panic attack"@en)
 EquivalentClasses(obo:OHD_0008091 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:MFOMD_0000136)))
 SubClassOf(obo:OHD_0008091 obo:OHD_0008047)
+
+# Class: obo:OHD_0008092 (tooth concealment question)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008092 "A question that is about avoiding avoiding making one's own teeth visible."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008092 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008092 "2026-05-03T21:10:40Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008092 obo:OHD_0005009)
+AnnotationAssertion(rdfs:label obo:OHD_0008092 "tooth concealment question"@en)
+EquivalentClasses(obo:OHD_0008092 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008093)))
+SubClassOf(obo:OHD_0008092 obo:OHD_0008020)
+
+# Class: obo:OHD_0008093 (tooth concealment behavior)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008093 "Avoidance behavior which involves avoiding making one's own teeth visible, such as by not smiling widely."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008093 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008093 "2026-05-03T21:16:43Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008093 "'dental fear and anxiety'")
+AnnotationAssertion(rdfs:label obo:OHD_0008093 "tooth concealment behavior"@en)
+SubClassOf(obo:OHD_0008093 obo:OHD_0005005)
+
+# Class: obo:OHD_0008094 (dental visit history)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008094 "History of occurrences wherein an individual visited a healthcare provider for dental treatment."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008094 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008094 "2026-05-03T22:24:14Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008094 obo:OHD_0005009)
+AnnotationAssertion(rdfs:label obo:OHD_0008094 "dental visit history"@en)
+SubClassOf(obo:OHD_0008094 obo:BFO_0000182)
+
+# Class: obo:OHD_0008095 (dental visit history question)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008095 "Question about the history of occurrences wherein an individual visited a healthcare provider for dental treatment."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008095 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(dcterms:created obo:OHD_0008095 "2026-05-03T22:27:41Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008095 obo:OHD_0005009)
+AnnotationAssertion(rdfs:comment obo:OHD_0008095 "Includes questions about the frequency at which an individual goes to the dentisit and how long it has been since an individual's last dental visit.")
+AnnotationAssertion(rdfs:label obo:OHD_0008095 "dental visit history question"@en)
+EquivalentClasses(obo:OHD_0008095 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008094)))
+SubClassOf(obo:OHD_0008095 obo:OHD_0008011)
 
 # Class: obo:OHD_0010000 (orofacial pain)
 
