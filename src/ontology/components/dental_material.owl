@@ -26,6 +26,7 @@ Import(<http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>)
 
 Declaration(Class(obo:CHEBI_31344))
 Declaration(Class(obo:CHEBI_36560))
+Declaration(Class(obo:OBI_0000047))
 Declaration(Class(obo:OHD_0000000))
 Declaration(Class(obo:OHD_0000001))
 Declaration(Class(obo:OHD_0000034))
@@ -363,7 +364,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000000 "A processed material that b
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000000 "restoration material")
 AnnotationAssertion(terms:contributor obo:OHD_0000000 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(rdfs:label obo:OHD_0000000 "dental restoration material")
-EquivalentClasses(obo:OHD_0000000 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000191))
+EquivalentClasses(obo:OHD_0000000 ObjectIntersectionOf(obo:OBI_0000047 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000191)))
 SubClassOf(obo:OHD_0000000 ObjectSomeValuesFrom(obo:BFO_0000053 obo:OHD_0000191))
 
 # Class: obo:OHD_0000001 (amalgam dental restoration material)
