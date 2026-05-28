@@ -1197,7 +1197,6 @@ Declaration(ObjectProperty(obo:OHD_0000091))
 Declaration(ObjectProperty(obo:OHD_0000216))
 Declaration(ObjectProperty(obo:OHD_0000217))
 Declaration(ObjectProperty(obo:OHD_0008006))
-Declaration(ObjectProperty(obo:OHD_0008045))
 Declaration(ObjectProperty(obo:OHD_0017000))
 Declaration(ObjectProperty(obo:RO_0000087))
 Declaration(ObjectProperty(obo:RO_0002354))
@@ -1264,6 +1263,8 @@ AnnotationAssertion(rdfs:label obo:OHD_0000053 "data source")
 
 # Annotation Property: obo:OHD_0000065 (ADA universal tooth number)
 
+AnnotationAssertion(Annotation(obo:IAO_0000119 "https://www.ada.org/-/media/project/ada-organization/ada/ada-org/files/publications/cdt/ada_utds_value_set_v1_2022_aug.pdf") obo:IAO_0000115 obo:OHD_0000065 "An alternative label for human teeth designated by the American Dental Association."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000065 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(rdfs:label obo:OHD_0000065 "ADA universal tooth number")
 SubAnnotationPropertyOf(obo:OHD_0000065 obo:IAO_0000118)
 
@@ -1276,8 +1277,10 @@ AnnotationAssertion(rdfs:label obo:OHD_0000092 "asserted type")
 
 # Annotation Property: obo:OHD_0000209 (duplicated)
 
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000209 "A property indicating whether a representational unit is duplicative of another.")
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000209 "This property is an application property, used for intermediate calculations when cleaning data.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000209 "Alan Ruttenberg")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000209 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(rdfs:comment obo:OHD_0000209 "mark true for representational units that are duplicate/conflict others")
 AnnotationAssertion(rdfs:label obo:OHD_0000209 "duplicated"@en)
 
@@ -1388,14 +1391,9 @@ AnnotationAssertion(rdfs:label obo:OHD_0008006 "experienced in"@en)
 ObjectPropertyDomain(obo:OHD_0008006 obo:MF_0000020)
 ObjectPropertyRange(obo:OHD_0008006 ObjectUnionOf(obo:BFO_0000029 obo:UBERON_0001062))
 
-# Object Property: obo:OHD_0008045 (based on information in)
-
-AnnotationAssertion(dcterms:contributor obo:OHD_0008045 <https://orcid.org/0009-0002-7282-0836>)
-AnnotationAssertion(dcterms:created obo:OHD_0008045 "2025-04-04T00:42:44Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0008045 "based on information in"@en)
-
 # Object Property: obo:OHD_0017000 (symptom of)
 
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0017000 "Relation between a process that is a symptom and the disease it is a symptom of."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0017000 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0017000 "2025-05-13T21:41:20Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0017000 "symptom of"@en)
@@ -2218,6 +2216,8 @@ SubClassOf(obo:OHD_0000028 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 # Class: obo:OHD_0000029 (fractured tooth)
 
+AnnotationAssertion(Annotation(obo:IAO_0000119 "https://www.aae.org/specialty/wp-content/uploads/sites/2/2022/12/ecfe-2022-edition-FINAL.pdf") obo:IAO_0000115 obo:OHD_0000029 "A calcareous tooth with a split or break in the enamel and/or dentin and/or cementum."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000029 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(rdfs:label obo:OHD_0000029 "fractured tooth"@en)
 EquivalentClasses(obo:OHD_0000029 ObjectIntersectionOf(obo:UBERON_0001091 ObjectSomeValuesFrom(obo:RO_0000053 obo:PATO_0040034)))
 SubClassOf(obo:OHD_0000029 obo:UBERON_0001091)
@@ -3184,7 +3184,9 @@ SubClassOf(obo:OHD_0000161 obo:OHD_0000033)
 
 # Class: obo:OHD_0000162 (predominantly base metal crown restoration procedure)
 
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000162 "A crown restoration material that uses predominantly base metal to restore the crown."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0000162 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000162 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(rdfs:label obo:OHD_0000162 "predominantly base metal crown restoration procedure")
 EquivalentClasses(obo:OHD_0000162 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000156)))
 SubClassOf(obo:OHD_0000162 obo:OHD_0000033)
@@ -3593,7 +3595,7 @@ SubClassOf(obo:OHD_0000207 ObjectSomeValuesFrom(obo:BFO_0000054 ObjectIntersecti
 
 # Class: obo:OHD_0000208 (restored tooth surface)
 
-AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000208 "A processed material that is part of a restored tooth and forms the part of a restored tooth where a the surface enamel of the restored tooth used to be.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000208 "A processed material that is part of a restored tooth and forms the part of a restored tooth where a the surface enamel of the restored tooth used to be.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000208 "Alan Ruttenberg")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000208 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(rdfs:label obo:OHD_0000208 "restored tooth surface"@en)
@@ -3954,7 +3956,9 @@ SubClassOf(obo:OHD_0000253 obo:OHD_0000301)
 
 # Class: obo:OHD_0000254 (complete removable denture)
 
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000254 "A complete denture that can be easily removed from a mouth.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000254 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000254 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000254 "2022-12-06T03:35:25Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000254 "complete removable denture"@en)
 SubClassOf(obo:OHD_0000254 obo:OHD_0000253)
@@ -3985,6 +3989,8 @@ SubClassOf(obo:OHD_0000257 obo:OHD_0000253)
 
 # Class: obo:OHD_0000258 (tooth decay)
 
+AnnotationAssertion(Annotation(obo:IAO_0000119 "https://en.wikipedia.org/wiki/Tooth_decay") obo:IAO_0000115 obo:OHD_0000258 "A progressive disease course wherein teeth break down due to acids produced by bacteria"@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000258 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0000258 "2023-06-06T21:29:59Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000258 "tooth decay"@en)
 SubClassOf(obo:OHD_0000258 obo:OGMS_0000065)
@@ -4331,7 +4337,9 @@ SubClassOf(obo:OHD_0000294 obo:OHD_0000280)
 
 # Class: obo:OHD_0000295 (porcelain fused to metal implant crown)
 
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000295 "A dental implant crown made out of porcelain fused to metal."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0000295 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000295 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000295 "2022-12-06T04:32:56Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000295 "porcelain fused to metal implant crown"@en)
 SubClassOf(obo:OHD_0000295 obo:OHD_0000280)
@@ -4517,7 +4525,7 @@ SubClassOf(obo:OHD_0000315 obo:OHD_0000314)
 
 # Class: obo:OHD_0000316 (pontic)
 
-AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000316 "A prothetic tooth that is part of a fixed partial denture.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000316 "A prothetic tooth that is part of a fixed partial denture.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000316 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000316 "pontic")
 EquivalentClasses(obo:OHD_0000316 ObjectIntersectionOf(obo:OHD_0000302 ObjectSomeValuesFrom(obo:BFO_0000050 obo:OHD_0000312)))
@@ -6489,6 +6497,7 @@ SubClassOf(obo:OHD_0008040 ObjectSomeValuesFrom(obo:BFO_0000062 obo:OHD_0000009)
 
 # Class: obo:OHD_0008041 (question about prior to dental visit)
 
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008041 "A question asking about something which happens before a dental visit."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008041 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008041 "2025-03-28T12:54:40Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008041 obo:OHD_0005009)
@@ -6499,6 +6508,7 @@ SubClassOf(obo:OHD_0008041 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008037)
 
 # Class: obo:OHD_0008042 (question about during dental visit)
 
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008042 "A question asking about something which happens during a dental visit."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008042 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008042 "2025-03-28T12:56:37Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008042 obo:OHD_0005009)
@@ -6509,6 +6519,7 @@ SubClassOf(obo:OHD_0008042 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008039)
 
 # Class: obo:OHD_0008043 (question about after dental visit)
 
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008043 "A question asking about something which happens after a dental visit."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008043 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008043 "2025-03-28T12:57:13Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008043 obo:OHD_0005009)
@@ -6579,6 +6590,7 @@ SubClassOf(obo:OHD_0008050 obo:OHD_0008048)
 
 # Class: obo:OHD_0008051 (nausea)
 
+AnnotationAssertion(Annotation(obo:IAO_0000119 "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/nausea") obo:IAO_0000115 obo:OHD_0008051 "Apathological bodily process experienced as a feeling of sickness or discomfort in the stomach that may come with an urge to vomit."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008051 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008051 "2025-04-04T13:29:32Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:comment obo:OHD_0008051 "We're not using the symptom ontology 'nausea' class, since this makes nausea a type of symptom, and this doesn't give a good way of stating what it's a symptom of. We prefer to use a 'symptom of' relation. We also don't like the definition they give of symptom, since symptoms are not necessarily perceived or reported.")
@@ -7164,6 +7176,7 @@ SubClassOf(obo:OHD_0010023 obo:OHD_0010186)
 
 # Class: obo:OHD_0010024 (gingival pain due to gingivitis)
 
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010024 "Gingival pain due to gingival inflammation.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0010024 "PMID:32103673")
 AnnotationAssertion(dcterms:contributor obo:OHD_0010024 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010024 "2025-06-10T17:57:43Z"^^xsd:dateTime)
@@ -7899,10 +7912,10 @@ SubClassOf(obo:OHD_0010091 ObjectSomeValuesFrom(obo:RO_0002410 obo:OHD_0010090))
 
 # Class: obo:OHD_0010092 (exposed dental pulp due to dental injury)
 
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010092 "Exposed dental pulp occuring because of some dental injury.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0010092 "PMID:32103673")
 AnnotationAssertion(dcterms:contributor obo:OHD_0010092 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010092 "2025-06-23T19:50:16Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:comment obo:OHD_0010092 "Exposed dental pulp occuring because of some dental injury.")
 AnnotationAssertion(rdfs:label obo:OHD_0010092 "exposed dental pulp due to dental injury"@en)
 SubClassOf(obo:OHD_0010092 obo:OHD_0010028)
 SubClassOf(obo:OHD_0010092 ObjectSomeValuesFrom(obo:RO_0002410 obo:OHD_0010148))
@@ -8448,7 +8461,7 @@ SubClassOf(obo:OHD_0010142 obo:OHD_0010000)
 
 # Class: obo:OHD_0010143 (hyperocclusion)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010143 "A tooth disorder resulting in a tooth making excessive contact with and opposing tooth, enroaching on the intercostal space.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010143 "A tooth disorder resulting in a tooth making excessive contact with an opposing tooth, enroaching on the intercostal space.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0010143 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010143 "2025-06-25T18:29:47Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010143 "hyperocclusion"@en)
@@ -8784,6 +8797,8 @@ SubClassOf(obo:OHD_0010175 ObjectSomeValuesFrom(obo:RO_0002410 obo:OHD_0010174))
 
 # Class: obo:OHD_0010176 (extraradicular endodontic infection)
 
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010176 "An endodontic infection of extraradicular tissue caused by infection of the pulp spreading to it."@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0010176 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0010176 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010176 "2025-06-26T18:45:35Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010176 "extraradicular endodontic infection"@en)
