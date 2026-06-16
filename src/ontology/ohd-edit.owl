@@ -1260,11 +1260,11 @@ Declaration(Datatype(xsd:date))
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000053 "an annotation property that relates an individual to the data source that was used to extract information about the individual")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000053 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000053 "data source")
+AnnotationAssertion(rdfs:label obo:OHD_0000053 "data source"@en)
 
 # Annotation Property: obo:OHD_0000065 (ADA universal tooth number)
 
-AnnotationAssertion(rdfs:label obo:OHD_0000065 "ADA universal tooth number")
+AnnotationAssertion(rdfs:label obo:OHD_0000065 "ADA universal tooth number"@en)
 SubAnnotationPropertyOf(obo:OHD_0000065 obo:IAO_0000118)
 
 # Annotation Property: obo:OHD_0000092 (asserted type)
@@ -1272,7 +1272,7 @@ SubAnnotationPropertyOf(obo:OHD_0000065 obo:IAO_0000118)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000092 "This annotation is used to indicate that an individual is asserted to be a member of a class.  This is useful when needing to find only the non-inferred type of an individual, and not the all the inferred types.  For example, suppose x is a member of the class 'material entity' and 'material entity' is a subclass of 'independent continuant'.  This entails that x will be a member of 'independent continuant'.  However, by using this annotation to assert that x is a member of 'material entity', you can query for x's 'asserted type' and ignore the other inferred types in the class hierarchy.  ")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000092 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(rdfs:comment obo:OHD_0000092 "Titus Schleyer 1/1/2014: Need to understand this property from an ontological construction perspective.")
-AnnotationAssertion(rdfs:label obo:OHD_0000092 "asserted type")
+AnnotationAssertion(rdfs:label obo:OHD_0000092 "asserted type"@en)
 
 # Annotation Property: obo:OHD_0000209 (duplicated)
 
@@ -1356,7 +1356,7 @@ AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000091 "Adapted from:
 Mosby's Dental Dictionary, 2nd Edition. page 580. 
 Wikipedia: http://en.wikipedia.org/wiki/Dental_restoration")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000091 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000091 "is dental restoration of")
+AnnotationAssertion(rdfs:label obo:OHD_0000091 "is dental restoration of"@en)
 ObjectPropertyRange(obo:OHD_0000091 ObjectSomeValuesFrom(obo:BFO_0000050 obo:UBERON_0001091))
 
 # Object Property: obo:OHD_0000216 (next visit)
@@ -1447,7 +1447,7 @@ DataPropertyRange(obo:OHD_0000050 DataUnionOf(xsd:date xsd:dateTime))
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000097 "a data property in which the values provide information as to whether a patient is actively being cared for by the practicet; takes values \"active\" and \"inactive\"")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000097 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000097 "2022-12-06T01:11:57Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0000097 "has patient activity status")
+AnnotationAssertion(rdfs:label obo:OHD_0000097 "has patient activity status"@en)
 DataPropertyRange(obo:OHD_0000097 xsd:string)
 
 # Data Property: obo:OHD_0000218 (first dental visit date)
@@ -1455,7 +1455,7 @@ DataPropertyRange(obo:OHD_0000097 xsd:string)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000218 "a data property used to record the date of a patient's first dental visit")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000218 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000218 "2022-12-06T01:22:17Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0000218 "first dental visit date")
+AnnotationAssertion(rdfs:label obo:OHD_0000218 "first dental visit date"@en)
 DataPropertyRange(obo:OHD_0000218 DataUnionOf(xsd:date xsd:dateTime))
 
 # Data Property: obo:OHD_0000219 (last dental visit date)
@@ -1463,7 +1463,7 @@ DataPropertyRange(obo:OHD_0000218 DataUnionOf(xsd:date xsd:dateTime))
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000219 "a data property used to record the last date on which a patient had a dental visit")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000219 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#creation_date> obo:OHD_0000219 "2022-12-06T01:23:31Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0000219 "last dental visit date")
+AnnotationAssertion(rdfs:label obo:OHD_0000219 "last dental visit date"@en)
 DataPropertyRange(obo:OHD_0000219 DataUnionOf(xsd:date xsd:dateTime))
 
 # Data Property: obo:OHD_0000234 (missing tooth number)
@@ -2024,7 +2024,7 @@ SubClassOf(obo:OHD_0000006 obo:OHD_0000004)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000007 "A target of material addition role that inheres in a tooth and is realized by a tooth restoration procedure during which the tooth bearing the role is restored to health.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000007 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000007 "tooth to be restored role")
+AnnotationAssertion(rdfs:label obo:OHD_0000007 "tooth to be restored role"@en)
 SubClassOf(obo:OHD_0000007 obo:OBI_0000444)
 SubClassOf(obo:OHD_0000007 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:BFO_0000052 obo:OHD_0000206) ObjectAllValuesFrom(obo:BFO_0000052 obo:OHD_0000206)))
 SubClassOf(obo:OHD_0000007 ObjectSomeValuesFrom(obo:BFO_0000054 obo:OHD_0000004))
@@ -2033,7 +2033,7 @@ SubClassOf(obo:OHD_0000007 ObjectSomeValuesFrom(obo:BFO_0000054 obo:OHD_0000004)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000008 "A tooth to be restored role that is realized by an intracoronal restoration procedure")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000008 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000008 "tooth to be filled role")
+AnnotationAssertion(rdfs:label obo:OHD_0000008 "tooth to be filled role"@en)
 EquivalentClasses(obo:OHD_0000008 ObjectIntersectionOf(obo:OHD_0000007 ObjectSomeValuesFrom(obo:BFO_0000054 obo:OHD_0000006)))
 
 # Class: obo:OHD_0000009 (dental visit)
@@ -2098,7 +2098,7 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000016 "Bill Duncan 09/30/2015:
 Professional prophylaxis, radiographs, sealants, and nonsurgical periodontal therapy are among the procedures performed by a hygienist. Most are licensed to administer local anesthesia, depending on applicable regulations in their area. They usually work for a dentist in a dental office or clinic under a form of supervision. In some locations hygienists are allowed to practice without a dentist's supervision. ")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000016 "Mosby. Mosby's Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 325.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000016 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000016 "dental hygienist role")
+AnnotationAssertion(rdfs:label obo:OHD_0000016 "dental hygienist role"@en)
 SubClassOf(obo:OHD_0000016 obo:OHD_0000052)
 
 # Class: obo:OHD_0000017 (dentist role)
@@ -2108,14 +2108,14 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000017 "a dental health care provid
 ")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000017 "Mosby. Mosby's Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 173.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000017 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000017 "dentist role")
+AnnotationAssertion(rdfs:label obo:OHD_0000017 "dentist role"@en)
 SubClassOf(obo:OHD_0000017 obo:OHD_0000052)
 
 # Class: obo:OHD_0000018 (dentist)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000018 "a dental health care provider that bears a dentist role")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000018 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000018 "dentist")
+AnnotationAssertion(rdfs:label obo:OHD_0000018 "dentist"@en)
 EquivalentClasses(obo:OHD_0000018 ObjectIntersectionOf(obo:OHD_0000051 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000017)))
 
 # Class: obo:OHD_0000019 (dental exam)
@@ -2134,7 +2134,7 @@ SubClassOf(obo:OHD_0000019 ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000010)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000020 "a dental health care provider that bears a dental hygienist role")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000020 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000020 "dental hygienist")
+AnnotationAssertion(rdfs:label obo:OHD_0000020 "dental hygienist"@en)
 EquivalentClasses(obo:OHD_0000020 ObjectIntersectionOf(obo:OHD_0000051 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000016)))
 
 # Class: obo:OHD_0000021 (carious tooth lesion)
@@ -2154,7 +2154,7 @@ SubClassOf(obo:OHD_0000021 ObjectSomeValuesFrom(obo:RO_0002354 obo:OHD_0000442))
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000022 "An inlay restoration procedure that uses metal to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000022 "metallic inlay restoration")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000022 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000022 "metallic inlay restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000022 "metallic inlay restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000022 ObjectIntersectionOf(obo:OHD_0000133 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000048)))
 
 # Class: obo:OHD_0000023 (restored tooth finding)
@@ -2203,7 +2203,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000027 "A tooth restoration procedu
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000027 "Adapted from Wikipedia:
 http://en.wikipedia.org/wiki/Veneer_%28dentistry%29")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000027 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000027 "veneer restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000027 "veneer restoration procedure"@en)
 SubClassOf(obo:OHD_0000027 obo:OHD_0000004)
 
 # Class: obo:OHD_0000028 (missing tooth 14 finding)
@@ -2258,7 +2258,7 @@ SubClassOf(obo:OHD_0000033 obo:OHD_0000004)
 # Class: obo:OHD_0000035 (obsolete porcelain dental restoration material)
 
 AnnotationAssertion(obo:IAO_0100001 obo:OHD_0000035 obo:OHD_0000135)
-AnnotationAssertion(rdfs:label obo:OHD_0000035 "obsolete porcelain dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0000035 "obsolete porcelain dental restoration material"@en)
 AnnotationAssertion(owl:deprecated obo:OHD_0000035 "true"^^xsd:boolean)
 SubClassOf(obo:OHD_0000035 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
 
@@ -2299,14 +2299,14 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000039 "An intracoronal restoration
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000039 "gold filling restoration")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000039 "gold foil intracoronal restoration procedure")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000039 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000039 "gold filling restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000039 "gold filling restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000039 ObjectIntersectionOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000034)))
 
 # Class: obo:OHD_0000040 (3/4 noble metal crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000040 "A 3/4 crown restoration procedure that uses noble metal to restore the tooth.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000040 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000040 "3/4 noble metal crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000040 "3/4 noble metal crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000040 ObjectIntersectionOf(obo:OHD_0000305 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000146)))
 
 # Class: obo:OHD_0000041 (amalgam filling restoration procedure)
@@ -2315,7 +2315,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000041 "An intracoronal restoration
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000041 "amalgam filling restoration")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000041 "amalgam intracoronal restoration procedure")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000041 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000041 "amalgam filling restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000041 "amalgam filling restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000041 ObjectIntersectionOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000037) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000001)))
 
 # Class: obo:OHD_0000042 (resin filling restoration procedure)
@@ -2324,7 +2324,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000042 "An intracoronal restoration
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000042 "resin filling restoration")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000042 "resin intracoronal restoration procedure")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000042 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000042 "resin filling restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000042 "resin filling restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000042 ObjectIntersectionOf(obo:OHD_0000006 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000037) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036)))
 
 # Class: obo:OHD_0000043 (dentin hypersensitivity)
@@ -2355,7 +2355,7 @@ SubClassOf(obo:OHD_0000044 obo:OHD_0000002)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000045 "A veneer restoration procedure that uses resin laminate to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000045 "resin laminate veneer restoration")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000045 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000045 "resin laminate veneer restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000045 "resin laminate veneer restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000045 ObjectIntersectionOf(obo:OHD_0000027 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036)))
 
 # Class: obo:OHD_0000046 (porcelain laminate veneer restoration procedure)
@@ -2363,21 +2363,21 @@ EquivalentClasses(obo:OHD_0000045 ObjectIntersectionOf(obo:OHD_0000027 ObjectSom
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000046 "A veneer restoration procedure that uses porcelain laminate to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000046 "porcelain laminate veneer restoration")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000046 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000046 "porcelain laminate veneer restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000046 "porcelain laminate veneer restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000046 ObjectIntersectionOf(obo:OHD_0000027 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000135)))
 
 # Class: obo:OHD_0000047 (tooth to undergo veneer procedure role)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000047 "A tooth to be restored role that is realized by a veneer restoration procedure")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000047 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000047 "tooth to undergo veneer procedure role")
+AnnotationAssertion(rdfs:label obo:OHD_0000047 "tooth to undergo veneer procedure role"@en)
 EquivalentClasses(obo:OHD_0000047 ObjectIntersectionOf(obo:OHD_0000007 ObjectSomeValuesFrom(obo:BFO_0000054 obo:OHD_0000027)))
 
 # Class: obo:OHD_0000049 (female dental patient)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000049 "A human dental patient that bears a female gender role.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000049 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000049 "female dental patient")
+AnnotationAssertion(rdfs:label obo:OHD_0000049 "female dental patient"@en)
 EquivalentClasses(obo:OHD_0000049 ObjectIntersectionOf(obo:OHD_0000012 ObjectSomeValuesFrom(obo:RO_0000087 obo:OMRSE_00000009)))
 
 # Class: obo:OHD_0000051 (dental healthcare provider)
@@ -2400,21 +2400,21 @@ SubClassOf(obo:OHD_0000052 ObjectSomeValuesFrom(obo:BFO_0000054 obo:OHD_0000002)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000054 "A human dental patient that bears a male gender role.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000054 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000054 "male dental patient")
+AnnotationAssertion(rdfs:label obo:OHD_0000054 "male dental patient"@en)
 EquivalentClasses(obo:OHD_0000054 ObjectIntersectionOf(obo:OHD_0000012 ObjectSomeValuesFrom(obo:RO_0000087 obo:OMRSE_00000008)))
 
 # Class: obo:OHD_0000055 (tooth to be crowned role)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000055 "A tooth to be restored role that is realized by a crown restoration procedure")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000055 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000055 "tooth to be crowned role")
+AnnotationAssertion(rdfs:label obo:OHD_0000055 "tooth to be crowned role"@en)
 EquivalentClasses(obo:OHD_0000055 ObjectIntersectionOf(obo:OHD_0000007 ObjectSomeValuesFrom(obo:BFO_0000054 obo:OHD_0000033)))
 
 # Class: obo:OHD_0000056 (tooth to be extracted role)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000056 "A role that inheres in a tooth and is realized by a tooth extraction procedure during which the tooth bearing the role is extracted.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000056 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000056 "tooth to be extracted role")
+AnnotationAssertion(rdfs:label obo:OHD_0000056 "tooth to be extracted role"@en)
 SubClassOf(obo:OHD_0000056 obo:BFO_0000023)
 SubClassOf(obo:OHD_0000056 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:BFO_0000052 obo:OHD_0000206) ObjectAllValuesFrom(obo:BFO_0000052 obo:OHD_0000206)))
 SubClassOf(obo:OHD_0000056 ObjectSomeValuesFrom(obo:BFO_0000054 obo:OHD_0000057))
@@ -2428,7 +2428,7 @@ I think the instrumentation (\" ...  by means of elevators and/or forceps\")  is
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000057 "Mosby. Mosby's Dental Dictionary, 2nd Edition. Mosby, 102007. p. 238
 ")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000057 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000057 "tooth extraction procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000057 "tooth extraction procedure"@en)
 SubClassOf(obo:OHD_0000057 obo:OHD_0000044)
 SubClassOf(obo:OHD_0000057 ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000233))
 SubClassOf(obo:OHD_0000057 ObjectSomeValuesFrom(obo:RO_0000057 obo:UBERON_0001091))
@@ -2437,7 +2437,7 @@ SubClassOf(obo:OHD_0000057 ObjectSomeValuesFrom(obo:RO_0000057 obo:UBERON_000109
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000058 "A role that inheres in a tooth and is realized by an endodontic procedure performed on the tooth bearing the role.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000058 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000058 "tooth to undergo endodontic procedure role")
+AnnotationAssertion(rdfs:label obo:OHD_0000058 "tooth to undergo endodontic procedure role"@en)
 SubClassOf(obo:OHD_0000058 obo:BFO_0000023)
 SubClassOf(obo:OHD_0000058 ObjectSomeValuesFrom(obo:BFO_0000052 obo:OHD_0000206))
 SubClassOf(obo:OHD_0000058 ObjectSomeValuesFrom(obo:BFO_0000054 obo:OHD_0000003))
@@ -2446,7 +2446,7 @@ SubClassOf(obo:OHD_0000058 ObjectSomeValuesFrom(obo:BFO_0000054 obo:OHD_0000003)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000059 "a missing tooth finding in which tooth 1 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000059 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000059 "missing tooth 1 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000059 "missing tooth 1 finding"@en)
 SubClassOf(obo:OHD_0000059 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000059 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490000)))))
 
@@ -2454,7 +2454,7 @@ SubClassOf(obo:OHD_0000059 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000060 "a missing tooth finding in which tooth 2 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000060 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000060 "missing tooth 2 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000060 "missing tooth 2 finding"@en)
 SubClassOf(obo:OHD_0000060 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000060 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490001)))))
 
@@ -2462,7 +2462,7 @@ SubClassOf(obo:OHD_0000060 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000061 "a missing tooth finding in which tooth 3 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000061 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000061 "missing tooth 3 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000061 "missing tooth 3 finding"@en)
 SubClassOf(obo:OHD_0000061 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000061 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490002)))))
 
@@ -2470,7 +2470,7 @@ SubClassOf(obo:OHD_0000061 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000062 "a missing tooth finding in which tooth 4 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000062 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000062 "missing tooth 4 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000062 "missing tooth 4 finding"@en)
 SubClassOf(obo:OHD_0000062 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000062 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490003)))))
 
@@ -2478,7 +2478,7 @@ SubClassOf(obo:OHD_0000062 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000063 "a missing tooth finding in which tooth 5 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000063 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000063 "missing tooth 5 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000063 "missing tooth 5 finding"@en)
 SubClassOf(obo:OHD_0000063 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000063 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490004)))))
 
@@ -2486,7 +2486,7 @@ SubClassOf(obo:OHD_0000063 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000064 "a missing tooth finding in which tooth 6 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000064 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000064 "missing tooth 6 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000064 "missing tooth 6 finding"@en)
 SubClassOf(obo:OHD_0000064 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000064 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490005)))))
 
@@ -2494,7 +2494,7 @@ SubClassOf(obo:OHD_0000064 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000066 "a missing tooth finding in which tooth 7 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000066 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000066 "missing tooth 7 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000066 "missing tooth 7 finding"@en)
 SubClassOf(obo:OHD_0000066 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000066 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490006)))))
 
@@ -2502,7 +2502,7 @@ SubClassOf(obo:OHD_0000066 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000067 "a missing tooth finding in which tooth 8 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000067 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000067 "missing tooth 8 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000067 "missing tooth 8 finding"@en)
 SubClassOf(obo:OHD_0000067 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000067 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490007)))))
 
@@ -2510,7 +2510,7 @@ SubClassOf(obo:OHD_0000067 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000068 "a missing tooth finding in which tooth 9 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000068 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000068 "missing tooth 9 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000068 "missing tooth 9 finding"@en)
 SubClassOf(obo:OHD_0000068 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000068 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490033)))))
 
@@ -2518,7 +2518,7 @@ SubClassOf(obo:OHD_0000068 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000069 "a missing tooth finding in which tooth 10 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000069 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000069 "missing tooth 10 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000069 "missing tooth 10 finding"@en)
 SubClassOf(obo:OHD_0000069 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000069 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490032)))))
 
@@ -2526,7 +2526,7 @@ SubClassOf(obo:OHD_0000069 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000070 "a missing tooth finding in which tooth 11 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000070 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000070 "missing tooth 11 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000070 "missing tooth 11 finding"@en)
 SubClassOf(obo:OHD_0000070 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000070 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490031)))))
 
@@ -2534,7 +2534,7 @@ SubClassOf(obo:OHD_0000070 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000071 "a missing tooth finding in which tooth 12 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000071 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000071 "missing tooth 12 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000071 "missing tooth 12 finding"@en)
 SubClassOf(obo:OHD_0000071 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000071 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490030)))))
 
@@ -2542,7 +2542,7 @@ SubClassOf(obo:OHD_0000071 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000072 "a missing tooth finding in which tooth 13 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000072 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000072 "missing tooth 13 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000072 "missing tooth 13 finding"@en)
 SubClassOf(obo:OHD_0000072 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000072 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490029)))))
 
@@ -2550,7 +2550,7 @@ SubClassOf(obo:OHD_0000072 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000073 "a missing tooth finding in which tooth 15 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000073 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000073 "missing tooth 15 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000073 "missing tooth 15 finding"@en)
 SubClassOf(obo:OHD_0000073 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000073 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490027)))))
 
@@ -2558,7 +2558,7 @@ SubClassOf(obo:OHD_0000073 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000074 "a missing tooth finding in which tooth 16 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000074 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000074 "missing tooth 16 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000074 "missing tooth 16 finding"@en)
 SubClassOf(obo:OHD_0000074 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000074 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490026)))))
 
@@ -2566,7 +2566,7 @@ SubClassOf(obo:OHD_0000074 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000075 "a missing tooth finding in which tooth 17 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000075 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000075 "missing tooth 17 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000075 "missing tooth 17 finding"@en)
 SubClassOf(obo:OHD_0000075 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000075 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490034)))))
 
@@ -2574,7 +2574,7 @@ SubClassOf(obo:OHD_0000075 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000076 "a missing tooth finding in which tooth 18 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000076 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000076 "missing tooth 18 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000076 "missing tooth 18 finding"@en)
 SubClassOf(obo:OHD_0000076 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000076 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490035)))))
 
@@ -2582,7 +2582,7 @@ SubClassOf(obo:OHD_0000076 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000077 "a missing tooth finding in which tooth 19 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000077 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000077 "missing tooth 19 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000077 "missing tooth 19 finding"@en)
 SubClassOf(obo:OHD_0000077 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000077 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490036)))))
 
@@ -2590,7 +2590,7 @@ SubClassOf(obo:OHD_0000077 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000078 "a missing tooth finding in which tooth 20 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000078 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000078 "missing tooth 20 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000078 "missing tooth 20 finding"@en)
 SubClassOf(obo:OHD_0000078 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000078 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490037)))))
 
@@ -2598,7 +2598,7 @@ SubClassOf(obo:OHD_0000078 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000079 "a missing tooth finding in which tooth 21 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000079 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000079 "missing tooth 21 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000079 "missing tooth 21 finding"@en)
 SubClassOf(obo:OHD_0000079 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000079 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490038)))))
 
@@ -2606,7 +2606,7 @@ SubClassOf(obo:OHD_0000079 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000080 "a missing tooth finding in which tooth 22 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000080 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000080 "missing tooth 22 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000080 "missing tooth 22 finding"@en)
 SubClassOf(obo:OHD_0000080 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000080 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490039)))))
 
@@ -2614,7 +2614,7 @@ SubClassOf(obo:OHD_0000080 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000081 "a missing tooth finding in which tooth 23 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000081 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000081 "missing tooth 23 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000081 "missing tooth 23 finding"@en)
 SubClassOf(obo:OHD_0000081 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000081 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490040)))))
 
@@ -2622,7 +2622,7 @@ SubClassOf(obo:OHD_0000081 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000082 "a missing tooth finding in which tooth 24 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000082 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000082 "missing tooth 24 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000082 "missing tooth 24 finding"@en)
 SubClassOf(obo:OHD_0000082 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000082 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490041)))))
 
@@ -2630,7 +2630,7 @@ SubClassOf(obo:OHD_0000082 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000083 "a missing tooth finding in which tooth 25 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000083 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000083 "missing tooth 25 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000083 "missing tooth 25 finding"@en)
 SubClassOf(obo:OHD_0000083 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000083 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490015)))))
 
@@ -2638,7 +2638,7 @@ SubClassOf(obo:OHD_0000083 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000084 "a missing tooth finding in which tooth 26 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000084 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000084 "missing tooth 26 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000084 "missing tooth 26 finding"@en)
 SubClassOf(obo:OHD_0000084 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000084 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490014)))))
 
@@ -2646,7 +2646,7 @@ SubClassOf(obo:OHD_0000084 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000085 "a missing tooth finding in which tooth 27 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000085 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000085 "missing tooth 27 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000085 "missing tooth 27 finding"@en)
 SubClassOf(obo:OHD_0000085 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000085 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490013)))))
 
@@ -2654,7 +2654,7 @@ SubClassOf(obo:OHD_0000085 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000086 "a missing tooth finding in which tooth 28 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000086 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000086 "missing tooth 28 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000086 "missing tooth 28 finding"@en)
 SubClassOf(obo:OHD_0000086 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000086 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490012)))))
 
@@ -2662,7 +2662,7 @@ SubClassOf(obo:OHD_0000086 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000087 "a missing tooth finding in which tooth 29 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000087 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000087 "missing tooth 29 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000087 "missing tooth 29 finding"@en)
 SubClassOf(obo:OHD_0000087 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000087 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490011)))))
 
@@ -2670,7 +2670,7 @@ SubClassOf(obo:OHD_0000087 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000088 "a missing tooth finding in which tooth 30 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000088 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000088 "missing tooth 30 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000088 "missing tooth 30 finding"@en)
 SubClassOf(obo:OHD_0000088 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000088 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490010)))))
 
@@ -2678,7 +2678,7 @@ SubClassOf(obo:OHD_0000088 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000089 "a missing tooth finding in which tooth 31 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000089 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000089 "missing tooth 31 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000089 "missing tooth 31 finding"@en)
 SubClassOf(obo:OHD_0000089 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000089 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490009)))))
 
@@ -2686,7 +2686,7 @@ SubClassOf(obo:OHD_0000089 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000090 "a missing tooth finding in which tooth 32 is found to be missing")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000090 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000090 "missing tooth 32 finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000090 "missing tooth 32 finding"@en)
 SubClassOf(obo:OHD_0000090 obo:OHD_0000026)
 SubClassOf(obo:OHD_0000090 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersectionOf(obo:UBERON_0007774 ObjectAllValuesFrom(obo:BFO_0000051 ObjectComplementOf(obo:UBERON_8490008)))))
 
@@ -2695,7 +2695,7 @@ SubClassOf(obo:OHD_0000090 ObjectSomeValuesFrom(obo:IAO_0000136 ObjectIntersecti
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000093 "A dental finding that a tooth was present during a clinical exam.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000093 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0000093 <https://orcid.org/0000-0002-1604-3078>)
-AnnotationAssertion(rdfs:label obo:OHD_0000093 "tooth clinically present finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000093 "tooth clinically present finding"@en)
 SubClassOf(obo:OHD_0000093 obo:OHD_0000010)
 SubClassOf(obo:OHD_0000093 ObjectSomeValuesFrom(obo:IAO_0000136 obo:UBERON_0001091))
 
@@ -2704,7 +2704,7 @@ SubClassOf(obo:OHD_0000093 ObjectSomeValuesFrom(obo:IAO_0000136 obo:UBERON_00010
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000094 "An inlay restoration procedure that uses ceramic to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000094 "ceramic inlay restoration")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000094 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000094 "ceramic inlay restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000094 "ceramic inlay restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000094 ObjectIntersectionOf(obo:OHD_0000133 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000135)))
 
 # Class: obo:OHD_0000095 (ceramic onlay restoration procedure)
@@ -2712,7 +2712,7 @@ EquivalentClasses(obo:OHD_0000094 ObjectIntersectionOf(obo:OHD_0000133 ObjectSom
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000095 "An onlay restoration procedure that uses ceramic to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000095 "ceramic onlay restoration")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000095 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000095 "ceramic onlay restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000095 "ceramic onlay restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000095 ObjectIntersectionOf(obo:OHD_0000134 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000135)))
 
 # Class: obo:OHD_0000096 (resin inlay restoration procedure)
@@ -2720,21 +2720,21 @@ EquivalentClasses(obo:OHD_0000095 ObjectIntersectionOf(obo:OHD_0000134 ObjectSom
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000096 "An inlay restoration procedure that uses resin to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000096 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000096 "resin inlay restoration")
-AnnotationAssertion(rdfs:label obo:OHD_0000096 "resin inlay restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000096 "resin inlay restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000096 ObjectIntersectionOf(obo:OHD_0000133 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036)))
 
 # Class: obo:OHD_0000098 (tooth to undergo inlay procedure role)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000098 "A tooth to be restored role that is realized by an inlay restoration procedure")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000098 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000098 "tooth to undergo inlay procedure role")
+AnnotationAssertion(rdfs:label obo:OHD_0000098 "tooth to undergo inlay procedure role"@en)
 EquivalentClasses(obo:OHD_0000098 ObjectIntersectionOf(obo:OHD_0000007 ObjectSomeValuesFrom(obo:BFO_0000054 obo:OHD_0000133)))
 
 # Class: obo:OHD_0000099 (tooth to undergo onlay procedure role)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000099 "A tooth to be restored role that is realized by an onlay restoration procedure")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000099 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000099 "tooth to undergo onlay procedure role")
+AnnotationAssertion(rdfs:label obo:OHD_0000099 "tooth to undergo onlay procedure role"@en)
 EquivalentClasses(obo:OHD_0000099 ObjectIntersectionOf(obo:OHD_0000007 ObjectSomeValuesFrom(obo:BFO_0000054 obo:OHD_0000134)))
 
 # Class: obo:OHD_0000100 (obsolete Universal tooth number)
@@ -2743,7 +2743,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000100 "A label naming a type of se
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000100 "Bill Duncan 4/12/2012: From the book: \"The Universal Numbering System was first suggested by Parreidt in 1882, and officially adopted by the American Dental Association in 1975. It is accepted by third-party providers and is endorsed by the American Society of Forensic Odontology.\""@en)
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000100 "Titus Schleyer 1/1/2014: slightly updated definition")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000100 "Book:Scheid, Rickne. Woelfel's Dental Anatomy, 8th Edition. Lippincott Williams & Wilkins, 01/2011. pp. i - ii). "@en)
-AnnotationAssertion(rdfs:label obo:OHD_0000100 "obsolete Universal tooth number")
+AnnotationAssertion(rdfs:label obo:OHD_0000100 "obsolete Universal tooth number"@en)
 AnnotationAssertion(owl:deprecated obo:OHD_0000100 "true"^^xsd:boolean)
 SubClassOf(obo:OHD_0000100 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
 
@@ -2975,14 +2975,14 @@ SubClassOf(obo:OHD_0000132 <http://www.geneontology.org/formats/oboInOwl#Obsolet
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000133 "An intracoronal restoration procedure in which dental restoration material is placed within the grooves and pits of the occlusal surface of a tooth.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000133 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000133 "inlay restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000133 "inlay restoration procedure"@en)
 SubClassOf(obo:OHD_0000133 obo:OHD_0000006)
 
 # Class: obo:OHD_0000134 (onlay restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000134 "A crown restoration procedure in which the dental restoration material either replaces the cusp or overlays the cusp.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000134 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000134 "onlay restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000134 "onlay restoration procedure"@en)
 SubClassOf(obo:OHD_0000134 obo:OHD_0000033)
 
 # Class: obo:OHD_0000138 (metallic onlay restoration procedure)
@@ -2990,7 +2990,7 @@ SubClassOf(obo:OHD_0000134 obo:OHD_0000033)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000138 "An onlay restoration procedure that uses metal to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000138 "metallic onlay restoration")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000138 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000138 "metallic onlay restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000138 "metallic onlay restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000138 ObjectIntersectionOf(obo:OHD_0000134 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000048)))
 
 # Class: obo:OHD_0000139 (resin with predominantly base metal crown restoration procedure)
@@ -2999,14 +2999,14 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000139 "A crown restoration procedu
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000139 "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by covering all or some of a predominantly base metal substrate with resin.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000139 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Resin_With_Predominately_Base_Metal__Dental_Procedure_Code_Description")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000139 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000139 "resin with predominantly base metal crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000139 "resin with predominantly base metal crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000139 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000349 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000156))))))
 
 # Class: obo:OHD_0000140 (titanium crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000140 "A crown restoration procedure that uses titanium to restore the tooth.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000140 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000140 "titanium crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000140 "titanium crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000140 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000136)))
 
 # Class: obo:OHD_0000141 (obsolete resin with predominantly base metal dental restoration)
@@ -3014,7 +3014,7 @@ EquivalentClasses(obo:OHD_0000140 ObjectIntersectionOf(obo:OHD_0000033 ObjectSom
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000141 "Bill Duncan 6/26/2015:
 There is not a dental restoration material of this kind. The class needs to be made obsolete.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000141 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000141 "obsolete resin with predominantly base metal dental restoration")
+AnnotationAssertion(rdfs:label obo:OHD_0000141 "obsolete resin with predominantly base metal dental restoration"@en)
 AnnotationAssertion(owl:deprecated obo:OHD_0000141 "true"^^xsd:boolean)
 SubClassOf(obo:OHD_0000141 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
 
@@ -3022,7 +3022,7 @@ SubClassOf(obo:OHD_0000141 <http://www.geneontology.org/formats/oboInOwl#Obsolet
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000142 "A crown restoration procedure that uses noble metal to restore the tooth.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000142 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000142 "noble metal crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000142 "noble metal crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000142 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000146)))
 
 # Class: obo:OHD_0000143 (obsolete porcelain fused to noble metal dental restoration material)
@@ -3030,7 +3030,7 @@ EquivalentClasses(obo:OHD_0000142 ObjectIntersectionOf(obo:OHD_0000033 ObjectSom
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000143 "Bill Duncan 6/26/2015:
 There is not a dental restoration material of this kind. The class needs to be made obsolete.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000143 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000143 "obsolete porcelain fused to noble metal dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0000143 "obsolete porcelain fused to noble metal dental restoration material"@en)
 AnnotationAssertion(owl:deprecated obo:OHD_0000143 "true"^^xsd:boolean)
 SubClassOf(obo:OHD_0000143 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
 
@@ -3039,7 +3039,7 @@ SubClassOf(obo:OHD_0000143 <http://www.geneontology.org/formats/oboInOwl#Obsolet
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000144 "Bill Duncan 6/26/2015:
 There is not a dental restoration material of this kind. The class needs to be made obsolete.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000144 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000144 "obsolete porcelain fused to high noble metal dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0000144 "obsolete porcelain fused to high noble metal dental restoration material"@en)
 AnnotationAssertion(owl:deprecated obo:OHD_0000144 "true"^^xsd:boolean)
 SubClassOf(obo:OHD_0000144 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
 
@@ -3048,7 +3048,7 @@ SubClassOf(obo:OHD_0000144 <http://www.geneontology.org/formats/oboInOwl#Obsolet
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000145 "Bill Duncan 6/26/2015:
 There is not a dental restoration material of this kind. The class needs to be made obsolete.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000145 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000145 "obsolete porcelain fused to predominantly base metal dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0000145 "obsolete porcelain fused to predominantly base metal dental restoration material"@en)
 AnnotationAssertion(owl:deprecated obo:OHD_0000145 "true"^^xsd:boolean)
 SubClassOf(obo:OHD_0000145 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
 
@@ -3057,63 +3057,63 @@ SubClassOf(obo:OHD_0000145 <http://www.geneontology.org/formats/oboInOwl#Obsolet
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000148 "A resin with noble metal crown restoraton procedure that uses high noble metal as a substrate.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000148 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Resin_With_High_Noble_Metal__Dental_Procedure_Code_Description")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000148 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000148 "resin with high noble metal crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000148 "resin with high noble metal crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000148 ObjectIntersectionOf(obo:OHD_0000166 ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000349 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000147))))))
 
 # Class: obo:OHD_0000149 (3/4 resin crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000149 "A 3/4 crown restoration procedure that uses resin to restore the tooth.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000149 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000149 "3/4 resin crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000149 "3/4 resin crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000149 ObjectIntersectionOf(obo:OHD_0000305 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036)))
 
 # Class: obo:OHD_0000150 (3/4 high noble metal crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000150 "A 3/4 noble metal crown restoration procedure that uses high noble metal to restore the tooth.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000150 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000150 "3/4 high noble metal crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000150 "3/4 high noble metal crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000150 ObjectIntersectionOf(obo:OHD_0000040 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000147)))
 
 # Class: obo:OHD_0000151 (3/4 predominantly base metal crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000151 "A 3/4 crown restoration procedure that uses predominantly base metal to restore the tooth.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000151 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000151 "3/4 predominantly base metal crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000151 "3/4 predominantly base metal crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000151 ObjectIntersectionOf(obo:OHD_0000305 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000156)))
 
 # Class: obo:OHD_0000152 (3/4 ceramic crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000152 "A 3/4 crown restoration procedure that uses ceramic to restore the tooth.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000152 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000152 "3/4 ceramic crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000152 "3/4 ceramic crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000152 ObjectIntersectionOf(obo:OHD_0000305 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000135)))
 
 # Class: obo:OHD_0000153 (noble metal onlay restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000153 "A metallic onlay restoration procedure that uses noble metal to restore the tooth.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000153 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000153 "noble metal onlay restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000153 "noble metal onlay restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000153 ObjectIntersectionOf(obo:OHD_0000138 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000146)))
 
 # Class: obo:OHD_0000154 (resin crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000154 "A crown restoration procedure that uses resin to restore the tooth.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000154 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000154 "resin crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000154 "resin crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000154 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036)))
 
 # Class: obo:OHD_0000155 (ceramic crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000155 "A crown restoration procedure that uses ceramic to restore the tooth.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000155 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000155 "ceramic crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000155 "ceramic crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000155 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000135)))
 
 # Class: obo:OHD_0000157 (high noble metal crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000157 "A noble metal crown restoration procedure that uses high noble metal to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000157 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000157 "high noble metal crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000157 "high noble metal crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000157 ObjectIntersectionOf(obo:OHD_0000142 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000147)))
 SubClassOf(obo:OHD_0000157 obo:OHD_0000142)
 
@@ -3123,7 +3123,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000158 "A procelain fused to nobal 
 ")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000158 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Porcelain_Fused_To_High_Noble_Metal__Dental_Procedure_Code_Description")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000158 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000158 "porcelain fused to high noble metal crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000158 "porcelain fused to high noble metal crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000158 ObjectIntersectionOf(obo:OHD_0000160 ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000306 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000135) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000147))))))
 
 # Class: obo:OHD_0000159 (high noble metal onlay restoration procedure)
@@ -3140,7 +3140,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000160 "A crown restoration procedu
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000160 "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by fusing porcelain to a substrate composed of noble metal.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000160 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Porcelain_Fused_To_Noble_Metal__Dental_Procedure_Code_Description")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000160 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000160 "porcelain fused to noble metal crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000160 "porcelain fused to noble metal crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000160 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000306 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000135) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000146))))))
 
 # Class: obo:OHD_0000161 (porcelain fused to predominantly base metal crown restoration procedure)
@@ -3149,20 +3149,20 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000161 "A crown restoration procedu
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000161 "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by fusing porcelain to a substrate composed of predominatly base metal.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000161 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Porcelain_Fused_To_Predominately_Base_Metal__Dental_Procedure_Code_Description")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000161 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000161 "porcelain fused to predominantly base metal crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000161 "porcelain fused to predominantly base metal crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000161 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000306 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000135) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000156))))))
 
 # Class: obo:OHD_0000162 (predominantly base metal crown restoration procedure)
 
 AnnotationAssertion(dcterms:contributor obo:OHD_0000162 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000162 "predominantly base metal crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000162 "predominantly base metal crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000162 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000156)))
 
 # Class: obo:OHD_0000163 (stainless steel crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000163 "A crown restoration procedure that uses stainless steel to restore the tooth.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000163 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000163 "stainless steel crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000163 "stainless steel crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000163 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000137)))
 
 # Class: obo:OHD_0000164 (stainless steel with resin window crown restoration procedure)
@@ -3173,7 +3173,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000164 "A crown restoration procedu
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000164 "http://www.dentalcare.com/en-US/dental-education/continuing-education/ce379/ce379.aspx?ModuleName=coursecontent&PartID=3&SectionID=-1")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000164 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Prefabricated_Stainless_Steel_with_Resin__Dental_Procedure_Code_Description")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000164 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000164 "stainless steel with resin window crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000164 "stainless steel with resin window crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000164 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000349 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000137))))))
 
 # Class: obo:OHD_0000165 (dental assistant role)
@@ -3182,7 +3182,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000165 "a dental health care provid
 ")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000165 "Mosby. Mosby's Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 55.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000165 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000165 "dental assistant role")
+AnnotationAssertion(rdfs:label obo:OHD_0000165 "dental assistant role"@en)
 SubClassOf(obo:OHD_0000165 obo:OHD_0000052)
 
 # Class: obo:OHD_0000166 (resin with noble metal crown restoration procedure)
@@ -3191,7 +3191,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000166 "A crown restoration procedu
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000166 "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by covering all or some of a noble metal substrate with resin.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000166 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Resin_With_Noble_Metal__Dental_Procedure_Code_Description")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000166 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000166 "resin with noble metal crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000166 "resin with noble metal crown restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000166 ObjectIntersectionOf(obo:OHD_0000033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038) ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000349) ObjectSomeValuesFrom(obo:BFO_0000051 ObjectIntersectionOf(obo:OHD_0000349 ObjectIntersectionOf(ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036) ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000146))))))
 
 # Class: obo:OHD_0000167 (noble metal inlay restoration procedure)
@@ -3207,7 +3207,7 @@ EquivalentClasses(obo:OHD_0000167 ObjectIntersectionOf(obo:OHD_0000022 ObjectSom
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000168 "A dental finding that a tooth has not errupted.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000168 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0000168 <https://orcid.org/0000-0002-1604-3078>)
-AnnotationAssertion(rdfs:label obo:OHD_0000168 "unerupted tooth finding")
+AnnotationAssertion(rdfs:label obo:OHD_0000168 "unerupted tooth finding"@en)
 SubClassOf(obo:OHD_0000168 obo:OHD_0000010)
 
 # Class: obo:OHD_0000169 (resin onlay restoration procedure)
@@ -3215,7 +3215,7 @@ SubClassOf(obo:OHD_0000168 obo:OHD_0000010)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000169 "An onlay restoration procedure that uses resin to restore the tooth.")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000169 "resin onlay restoration procedure")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000169 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000169 "resin onlay restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000169 "resin onlay restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000169 ObjectIntersectionOf(obo:OHD_0000134 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000036)))
 
 # Class: obo:OHD_0000170 (dental therapist role)
@@ -3355,7 +3355,7 @@ EquivalentClasses(obo:OHD_0000187 ObjectIntersectionOf(obo:OHD_0000018 ObjectSom
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000188 "Bill Duncan 6/26/2015:
 There is not a dental restoration material of this kind. The class needs to be made obsolete.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000188 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000188 "obsolete stainless steel with resin window dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0000188 "obsolete stainless steel with resin window dental restoration material"@en)
 AnnotationAssertion(owl:deprecated obo:OHD_0000188 "true"^^xsd:boolean)
 SubClassOf(obo:OHD_0000188 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
 
@@ -3436,7 +3436,7 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000197 "Titus Schleyer 1/14/2014: u
 
 Also, regarding Bill's comment on the fact that multiple examinations can occur on the same day (e.g.  periodic oral evaluation, comprehensive oral evaluation and comprehensive periodontal evaluation): From a billing and clinical perspective,  these are separate. For instance, a comprehensive oral evaluation has a larger scope than a periodic oral evaluation, while a  comprehensive periodontal evaluation is focused primarily on gums and supporting tissues.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000197 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000197 "oral evaluation")
+AnnotationAssertion(rdfs:label obo:OHD_0000197 "oral evaluation"@en)
 SubClassOf(obo:OHD_0000197 obo:OGMS_0000057)
 SubClassOf(obo:OHD_0000197 ObjectSomeValuesFrom(obo:BFO_0000050 obo:OHD_0000019))
 SubClassOf(obo:OHD_0000197 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0000052))
@@ -3447,7 +3447,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000198 "An oral evaluation performe
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000198 "Titus Schleyer 1/1/2014: updated definition")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000198 "ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000198 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000198 "periodic oral evaluation")
+AnnotationAssertion(rdfs:label obo:OHD_0000198 "periodic oral evaluation"@en)
 SubClassOf(obo:OHD_0000198 obo:OHD_0000197)
 SubClassOf(obo:OHD_0000198 ObjectSomeValuesFrom(obo:BFO_0000051 ObjectUnionOf(obo:OHD_0000025 obo:OHD_0000032)))
 
@@ -3469,7 +3469,7 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000200 "Titus Schleyer 1/14/2014: a
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000200 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000200 "PERSON: Bill Duncan")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000200 "a role that inheres in a person who licensed to provide health care")
-AnnotationAssertion(rdfs:label obo:OHD_0000200 "no oral health issues reported")
+AnnotationAssertion(rdfs:label obo:OHD_0000200 "no oral health issues reported"@en)
 SubClassOf(obo:OHD_0000200 obo:OHD_0000010)
 
 # Class: obo:OHD_0000201 (limited oral evaluation)
@@ -3477,7 +3477,7 @@ SubClassOf(obo:OHD_0000200 obo:OHD_0000010)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000201 "An oral evaluation limited to a specific oral health problem or complaint. This may require interpretation of information acquired through additional diagnostic procedures. Typically, patients receiving this type of evaluation present with a specific problem and/or dental emergencies, trauma, acute infections, etc.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000201 "ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000201 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000201 "limited oral evaluation")
+AnnotationAssertion(rdfs:label obo:OHD_0000201 "limited oral evaluation"@en)
 SubClassOf(obo:OHD_0000201 obo:OHD_0000197)
 SubClassOf(obo:OHD_0000201 ObjectSomeValuesFrom(obo:BFO_0000051 ObjectUnionOf(obo:OHD_0000025 obo:OHD_0000032)))
 
@@ -3489,7 +3489,7 @@ This includes an evaluation for oral cancer where indicated, the evaluation and 
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000202 "Titus Schleyer 1/1/2014: checked definition, looks okay")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000202 "ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000202 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000202 "comprehensive oral evaluation")
+AnnotationAssertion(rdfs:label obo:OHD_0000202 "comprehensive oral evaluation"@en)
 SubClassOf(obo:OHD_0000202 obo:OHD_0000197)
 SubClassOf(obo:OHD_0000202 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000025))
 SubClassOf(obo:OHD_0000202 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000204))
@@ -3501,7 +3501,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000203 "An oral evaluation performe
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000203 "Titus Schleyer 1/1/2014: slightly updated definition")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000203 "ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000203 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000203 "comprehensive periodontal evaluation")
+AnnotationAssertion(rdfs:label obo:OHD_0000203 "comprehensive periodontal evaluation"@en)
 SubClassOf(obo:OHD_0000203 obo:OHD_0000197)
 SubClassOf(obo:OHD_0000203 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000204))
 
@@ -3573,7 +3573,7 @@ SubClassOf(obo:OHD_0000211 obo:BFO_0000004)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000212 "A role that inheres in a person who is licensed to provide health care.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000212 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000212 "healthcare provider role")
+AnnotationAssertion(rdfs:label obo:OHD_0000212 "healthcare provider role"@en)
 SubClassOf(obo:OHD_0000212 obo:BFO_0000023)
 SubClassOf(obo:OHD_0000212 ObjectSomeValuesFrom(obo:BFO_0000052 obo:NCBITaxon_9606))
 SubClassOf(obo:OHD_0000212 ObjectSomeValuesFrom(obo:BFO_0000054 obo:OGMS_0000096))
@@ -4323,7 +4323,7 @@ SubClassOf(obo:OHD_0000300 ObjectSomeValuesFrom(obo:OBI_0000299 obo:OHD_0000358)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000301 "a processed material that bears a prothetic role")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000301 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000301 "prosthesis")
+AnnotationAssertion(rdfs:label obo:OHD_0000301 "prosthesis"@en)
 EquivalentClasses(obo:OHD_0000301 ObjectIntersectionOf(obo:OBI_0000047 ObjectSomeValuesFrom(obo:BFO_0000053 obo:OHD_0000314)))
 
 # Class: obo:OHD_0000302 (prosthetic tooth)
@@ -4332,7 +4332,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000302 "a prosthesis that has been 
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000302 "usually made of porcelain or plastic ")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000302 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000302 "Mosby. Mosby's Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 689")
-AnnotationAssertion(rdfs:label obo:OHD_0000302 "prosthetic tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000302 "prosthetic tooth"@en)
 SubClassOf(obo:OHD_0000302 obo:OHD_0000301)
 SubClassOf(obo:OHD_0000302 ObjectSomeValuesFrom(obo:BFO_0000053 obo:OHD_0000315))
 
@@ -4340,21 +4340,21 @@ SubClassOf(obo:OHD_0000302 ObjectSomeValuesFrom(obo:BFO_0000053 obo:OHD_0000315)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000303 "A tooth restoration procedure in which the dental restoration material is placed in the tooth via some direct dental restoration material combination process.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000303 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000303 "direct restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000303 "direct restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000303 ObjectIntersectionOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000037)))
 
 # Class: obo:OHD_0000304 (indirect restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000304 "A tooth restoration procedure in which the dental restoration material is placed in the tooth via some dental material tooth attachment process.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000304 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000304 "indirect restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000304 "indirect restoration procedure"@en)
 EquivalentClasses(obo:OHD_0000304 ObjectIntersectionOf(obo:OHD_0000004 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000038)))
 
 # Class: obo:OHD_0000305 (3/4 crown restoration procedure)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000305 "A crown restoration procedure in which 3 of the 4 surfaces on an anterior tooth is restored. The dental restoration material extends to (or almost to) the gum line.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000305 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000305 "3/4 crown restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000305 "3/4 crown restoration procedure"@en)
 SubClassOf(obo:OHD_0000305 obo:OHD_0000033)
 SubClassOf(obo:OHD_0000305 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307))
 
@@ -4362,14 +4362,14 @@ SubClassOf(obo:OHD_0000305 ObjectSomeValuesFrom(obo:OBI_0000293 obo:OHD_0000307)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000306 "A dental material combination process in which one or more materials forms a substructure and then one or more materials are fused (or baked) onto this substructure.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000306 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000306 "dental material fusion process")
+AnnotationAssertion(rdfs:label obo:OHD_0000306 "dental material fusion process"@en)
 SubClassOf(obo:OHD_0000306 obo:OHD_0000349)
 
 # Class: obo:OHD_0000307 (Anterior Tooth)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000307 "A tooth that is either an incisor or a canine.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000307 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000307 "Anterior Tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000307 "Anterior Tooth"@en)
 EquivalentClasses(obo:OHD_0000307 ObjectUnionOf(obo:UBERON_0001098 obo:UBERON_0003674))
 SubClassOf(obo:OHD_0000307 obo:UBERON_0001091)
 
@@ -4377,7 +4377,7 @@ SubClassOf(obo:OHD_0000307 obo:UBERON_0001091)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000308 "A tooth that is either a molar or premolar.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000308 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000308 "Posterior Tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000308 "Posterior Tooth"@en)
 EquivalentClasses(obo:OHD_0000308 ObjectUnionOf(obo:UBERON_0003655 obo:UBERON_0007120))
 SubClassOf(obo:OHD_0000308 obo:UBERON_0001091)
 
@@ -4396,7 +4396,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000310 "a prosthesis that replaces 
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000310 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000310 "partial dental prothesis")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000310 "Mosby. Mosby's Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 175")
-AnnotationAssertion(rdfs:label obo:OHD_0000310 "partial denture")
+AnnotationAssertion(rdfs:label obo:OHD_0000310 "partial denture"@en)
 SubClassOf(obo:OHD_0000310 obo:OHD_0000301)
 SubClassOf(obo:OHD_0000310 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0000302))
 
@@ -4408,7 +4408,7 @@ Mosby's definition is not quite corrrect. The support could also include other t
 ")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000311 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000311 "Mosby. Mosby's Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 175-176")
-AnnotationAssertion(rdfs:label obo:OHD_0000311 "tooth-supported partial denture")
+AnnotationAssertion(rdfs:label obo:OHD_0000311 "tooth-supported partial denture"@en)
 SubClassOf(obo:OHD_0000311 obo:OHD_0000312)
 
 # Class: obo:OHD_0000312 (fixed partial denture)
@@ -4416,7 +4416,7 @@ SubClassOf(obo:OHD_0000311 obo:OHD_0000312)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000312 "A partial denture that is permanently attached to prepared natural teeth, roots, or implants.")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000312 "bridge")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0000312 "Mosby. Mosby's Dental Dictionary, 2nd Edition. Mosby, 2008. VitalBook file. p. 175")
-AnnotationAssertion(rdfs:label obo:OHD_0000312 "fixed partial denture")
+AnnotationAssertion(rdfs:label obo:OHD_0000312 "fixed partial denture"@en)
 SubClassOf(obo:OHD_0000312 obo:OHD_0000310)
 
 # Class: obo:OHD_0000313 (fixed partial denture restoration procedure)
@@ -4425,7 +4425,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000313 "A tooth restoration procedu
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000313 "A tooth restoration procedure in which a fixed partial denture (i.e., bridge) is attached to the supporting teeth.")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000313 "bridge restoration procedure")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000313 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000313 "fixed partial denture restoration procedure")
+AnnotationAssertion(rdfs:label obo:OHD_0000313 "fixed partial denture restoration procedure"@en)
 SubClassOf(obo:OHD_0000313 obo:OHD_0000004)
 
 # Class: obo:OHD_0000314 (prosthetic role)
@@ -4438,7 +4438,7 @@ AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000314 "Bill Duncan / Alan Ruttenbe
 Prosthics may be either functional for non-functional. For example, a glass eye bears a prosthetic role, but it does not see. ")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000314 "Alan Ruttenberg")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000314 "Bill Dunan")
-AnnotationAssertion(rdfs:label obo:OHD_0000314 "prosthetic role")
+AnnotationAssertion(rdfs:label obo:OHD_0000314 "prosthetic role"@en)
 SubClassOf(obo:OHD_0000314 obo:OBI_0000319)
 SubClassOf(obo:OHD_0000314 ObjectSomeValuesFrom(obo:BFO_0000052 obo:BFO_0000040))
 
@@ -4448,14 +4448,14 @@ AnnotationAssertion(obo:IAO_0000112 obo:OHD_0000315 "A prosthic hand")
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000315 "A prosthetic role that is realized by activities in which the material entity (bearing the role) is used a manner that is similar to how the body part that the prosthesis replaces would be used.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000315 "Alan Ruttenberg")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000315 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000315 "functional prosthetic role")
+AnnotationAssertion(rdfs:label obo:OHD_0000315 "functional prosthetic role"@en)
 SubClassOf(obo:OHD_0000315 obo:OHD_0000314)
 
 # Class: obo:OHD_0000316 (pontic)
 
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000316 "A prothetic tooth that is part of a fixed partial denture.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000316 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000316 "pontic")
+AnnotationAssertion(rdfs:label obo:OHD_0000316 "pontic"@en)
 EquivalentClasses(obo:OHD_0000316 ObjectIntersectionOf(obo:OHD_0000302 ObjectSomeValuesFrom(obo:BFO_0000050 obo:OHD_0000312)))
 
 # Class: obo:OHD_0000317 (prosthetic right upper third secondary molar tooth)
@@ -4463,7 +4463,7 @@ EquivalentClasses(obo:OHD_0000316 ObjectIntersectionOf(obo:OHD_0000302 ObjectSom
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000317 "A prosthetic tooth that is used a substitute for a right upper third secondary molar tooth (tooth 1).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000317 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000317 "prosthetic tooth 1")
-AnnotationAssertion(rdfs:label obo:OHD_0000317 "prosthetic right upper third secondary molar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000317 "prosthetic right upper third secondary molar tooth"@en)
 SubClassOf(obo:OHD_0000317 obo:OHD_0000302)
 
 # Class: obo:OHD_0000318 (prosthetic right upper second secondary molar tooth)
@@ -4471,7 +4471,7 @@ SubClassOf(obo:OHD_0000317 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000318 "A prosthetic tooth that is used a substitute for a right upper second secondary molar tooth (tooth 2).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000318 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000318 "prosthetic tooth 2")
-AnnotationAssertion(rdfs:label obo:OHD_0000318 "prosthetic right upper second secondary molar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000318 "prosthetic right upper second secondary molar tooth"@en)
 SubClassOf(obo:OHD_0000318 obo:OHD_0000302)
 
 # Class: obo:OHD_0000319 (prosthetic right upper first secondary molar tooth)
@@ -4479,7 +4479,7 @@ SubClassOf(obo:OHD_0000318 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000319 "A prosthetic tooth that is used a substitute for a right upper first secondary molar tooth (tooth 3).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000319 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000319 "prosthetic tooth 3")
-AnnotationAssertion(rdfs:label obo:OHD_0000319 "prosthetic right upper first secondary molar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000319 "prosthetic right upper first secondary molar tooth"@en)
 SubClassOf(obo:OHD_0000319 obo:OHD_0000302)
 
 # Class: obo:OHD_0000320 (prosthetic right upper second secondary premolar tooth)
@@ -4487,7 +4487,7 @@ SubClassOf(obo:OHD_0000319 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000320 "A prosthetic tooth that is used a substitute for a right upper second secondary premolar tooth (tooth 4).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000320 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000320 "prosthetic tooth 4")
-AnnotationAssertion(rdfs:label obo:OHD_0000320 "prosthetic right upper second secondary premolar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000320 "prosthetic right upper second secondary premolar tooth"@en)
 SubClassOf(obo:OHD_0000320 obo:OHD_0000302)
 
 # Class: obo:OHD_0000321 (prosthetic right upper first secondary premolar tooth)
@@ -4495,7 +4495,7 @@ SubClassOf(obo:OHD_0000320 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000321 "A prosthetic tooth that is used a substitute for a right upper first secondary premolar tooth (tooth 5).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000321 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000321 "prosthetic tooth 5")
-AnnotationAssertion(rdfs:label obo:OHD_0000321 "prosthetic right upper first secondary premolar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000321 "prosthetic right upper first secondary premolar tooth"@en)
 SubClassOf(obo:OHD_0000321 obo:OHD_0000302)
 
 # Class: obo:OHD_0000322 (prosthetic right upper secondary canine tooth)
@@ -4503,7 +4503,7 @@ SubClassOf(obo:OHD_0000321 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000322 "A prosthetic tooth that is used a substitute for a right upper secondary canine tooth (tooth 6).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000322 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000322 "prosthetic tooth 6")
-AnnotationAssertion(rdfs:label obo:OHD_0000322 "prosthetic right upper secondary canine tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000322 "prosthetic right upper secondary canine tooth"@en)
 SubClassOf(obo:OHD_0000322 obo:OHD_0000302)
 
 # Class: obo:OHD_0000323 (prosthetic right upper lateral secondary incisor tooth)
@@ -4511,7 +4511,7 @@ SubClassOf(obo:OHD_0000322 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000323 "A prosthetic tooth that is used a substitute for a right upper lateral secondary incisor tooth (tooth 7).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000323 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000323 "prosthetic tooth 7")
-AnnotationAssertion(rdfs:label obo:OHD_0000323 "prosthetic right upper lateral secondary incisor tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000323 "prosthetic right upper lateral secondary incisor tooth"@en)
 SubClassOf(obo:OHD_0000323 obo:OHD_0000302)
 
 # Class: obo:OHD_0000324 (prosthetic right upper central secondary incisor tooth)
@@ -4519,7 +4519,7 @@ SubClassOf(obo:OHD_0000323 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000324 "A prosthetic tooth that is used a substitute for a right upper central secondary incisor tooth (tooth 8).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000324 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000324 "prosthetic tooth 8")
-AnnotationAssertion(rdfs:label obo:OHD_0000324 "prosthetic right upper central secondary incisor tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000324 "prosthetic right upper central secondary incisor tooth"@en)
 SubClassOf(obo:OHD_0000324 obo:OHD_0000302)
 
 # Class: obo:OHD_0000325 (prosthetic left upper central secondary incisor tooth)
@@ -4527,7 +4527,7 @@ SubClassOf(obo:OHD_0000324 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000325 "A prosthetic tooth that is used a substitute for a left upper central secondary incisor tooth (tooth 9).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000325 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000325 "prosthetic tooth 9")
-AnnotationAssertion(rdfs:label obo:OHD_0000325 "prosthetic left upper central secondary incisor tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000325 "prosthetic left upper central secondary incisor tooth"@en)
 SubClassOf(obo:OHD_0000325 obo:OHD_0000302)
 
 # Class: obo:OHD_0000326 (prosthetic left upper lateral secondary incisor tooth)
@@ -4535,7 +4535,7 @@ SubClassOf(obo:OHD_0000325 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000326 "A prosthetic tooth that is used a substitute for a left upper lateral secondary incisor tooth (tooth 10).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000326 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000326 "prosthetic tooth 10")
-AnnotationAssertion(rdfs:label obo:OHD_0000326 "prosthetic left upper lateral secondary incisor tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000326 "prosthetic left upper lateral secondary incisor tooth"@en)
 SubClassOf(obo:OHD_0000326 obo:OHD_0000302)
 
 # Class: obo:OHD_0000327 (prosthetic left upper secondary canine tooth)
@@ -4543,7 +4543,7 @@ SubClassOf(obo:OHD_0000326 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000327 "A prosthetic tooth that is used a substitute for a left upper secondary canine tooth (tooth 11).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000327 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000327 "prosthetic tooth 11")
-AnnotationAssertion(rdfs:label obo:OHD_0000327 "prosthetic left upper secondary canine tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000327 "prosthetic left upper secondary canine tooth"@en)
 SubClassOf(obo:OHD_0000327 obo:OHD_0000302)
 
 # Class: obo:OHD_0000328 (prosthetic left upper first secondary premolar tooth)
@@ -4551,7 +4551,7 @@ SubClassOf(obo:OHD_0000327 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000328 "A prosthetic tooth that is used a substitute for a left upper first secondary premolar tooth (tooth 12).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000328 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000328 "prosthetic tooth 12")
-AnnotationAssertion(rdfs:label obo:OHD_0000328 "prosthetic left upper first secondary premolar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000328 "prosthetic left upper first secondary premolar tooth"@en)
 SubClassOf(obo:OHD_0000328 obo:OHD_0000302)
 
 # Class: obo:OHD_0000329 (prosthetic left upper second secondary premolar tooth)
@@ -4559,7 +4559,7 @@ SubClassOf(obo:OHD_0000328 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000329 "A prosthetic tooth that is used a substitute for a left upper second secondary premolar tooth (tooth 13).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000329 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000329 "prosthetic tooth 13")
-AnnotationAssertion(rdfs:label obo:OHD_0000329 "prosthetic left upper second secondary premolar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000329 "prosthetic left upper second secondary premolar tooth"@en)
 SubClassOf(obo:OHD_0000329 obo:OHD_0000302)
 
 # Class: obo:OHD_0000330 (prosthetic left upper first secondary molar tooth)
@@ -4567,7 +4567,7 @@ SubClassOf(obo:OHD_0000329 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000330 "A prosthetic tooth that is used a substitute for a left upper first secondary molar tooth (tooth 14).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000330 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000330 "prosthetic tooth 14")
-AnnotationAssertion(rdfs:label obo:OHD_0000330 "prosthetic left upper first secondary molar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000330 "prosthetic left upper first secondary molar tooth"@en)
 SubClassOf(obo:OHD_0000330 obo:OHD_0000302)
 
 # Class: obo:OHD_0000331 (prosthetic left upper second secondary molar tooth)
@@ -4575,7 +4575,7 @@ SubClassOf(obo:OHD_0000330 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000331 "A prosthetic tooth that is used a substitute for a left upper second secondary molar tooth (tooth 15).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000331 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000331 "prosthetic tooth 15")
-AnnotationAssertion(rdfs:label obo:OHD_0000331 "prosthetic left upper second secondary molar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000331 "prosthetic left upper second secondary molar tooth"@en)
 SubClassOf(obo:OHD_0000331 obo:OHD_0000302)
 
 # Class: obo:OHD_0000332 (prosthetic left upper third secondary molar tooth)
@@ -4583,7 +4583,7 @@ SubClassOf(obo:OHD_0000331 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000332 "A prosthetic tooth that is used a substitute for a left upper third secondary molar tooth (tooth 16).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000332 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000332 "prothetic tooth 16")
-AnnotationAssertion(rdfs:label obo:OHD_0000332 "prosthetic left upper third secondary molar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000332 "prosthetic left upper third secondary molar tooth"@en)
 SubClassOf(obo:OHD_0000332 obo:OHD_0000302)
 
 # Class: obo:OHD_0000333 (prosthetic left lower third secondary molar tooth)
@@ -4591,7 +4591,7 @@ SubClassOf(obo:OHD_0000332 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000333 "A prosthetic tooth that is used a substitute for a left lower third secondary molar tooth (tooth 17).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000333 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000333 "prosthetic tooth 17")
-AnnotationAssertion(rdfs:label obo:OHD_0000333 "prosthetic left lower third secondary molar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000333 "prosthetic left lower third secondary molar tooth"@en)
 SubClassOf(obo:OHD_0000333 obo:OHD_0000302)
 
 # Class: obo:OHD_0000334 (prosthetic left lower second secondary molar tooth)
@@ -4599,7 +4599,7 @@ SubClassOf(obo:OHD_0000333 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000334 "A prosthetic tooth that is used a substitute for a left lower second secondary molar tooth (tooth 18).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000334 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000334 "prosthetic tooth 18")
-AnnotationAssertion(rdfs:label obo:OHD_0000334 "prosthetic left lower second secondary molar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000334 "prosthetic left lower second secondary molar tooth"@en)
 SubClassOf(obo:OHD_0000334 obo:OHD_0000302)
 
 # Class: obo:OHD_0000335 (prosthetic left lower first secondary molar tooth)
@@ -4607,7 +4607,7 @@ SubClassOf(obo:OHD_0000334 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000335 "A prosthetic tooth that is used a substitute for a left lower first secondary molar tooth (tooth 19).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000335 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000335 "prosthetic tooth 19")
-AnnotationAssertion(rdfs:label obo:OHD_0000335 "prosthetic left lower first secondary molar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000335 "prosthetic left lower first secondary molar tooth"@en)
 SubClassOf(obo:OHD_0000335 obo:OHD_0000302)
 
 # Class: obo:OHD_0000336 (prosthetic left lower second secondary premolar tooth)
@@ -4615,7 +4615,7 @@ SubClassOf(obo:OHD_0000335 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000336 "A prosthetic tooth that is used a substitute for a left lower second secondary premolar tooth (tooth 20).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000336 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000336 "prosthetic tooth 20")
-AnnotationAssertion(rdfs:label obo:OHD_0000336 "prosthetic left lower second secondary premolar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000336 "prosthetic left lower second secondary premolar tooth"@en)
 SubClassOf(obo:OHD_0000336 obo:OHD_0000302)
 
 # Class: obo:OHD_0000337 (prosthetic left lower first secondary premolar tooth)
@@ -4623,7 +4623,7 @@ SubClassOf(obo:OHD_0000336 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000337 "A prosthetic tooth that is used a substitute for a left lower first secondary premolar tooth (tooth 21).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000337 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000337 "prosthetic tooth 21")
-AnnotationAssertion(rdfs:label obo:OHD_0000337 "prosthetic left lower first secondary premolar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000337 "prosthetic left lower first secondary premolar tooth"@en)
 SubClassOf(obo:OHD_0000337 obo:OHD_0000302)
 
 # Class: obo:OHD_0000338 (prosthetic left lower secondary canine tooth)
@@ -4631,7 +4631,7 @@ SubClassOf(obo:OHD_0000337 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000338 "A prosthetic tooth that is used a substitute for a left lower secondary canine tooth (tooth 22).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000338 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000338 "prosthetic tooth 22")
-AnnotationAssertion(rdfs:label obo:OHD_0000338 "prosthetic left lower secondary canine tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000338 "prosthetic left lower secondary canine tooth"@en)
 SubClassOf(obo:OHD_0000338 obo:OHD_0000302)
 
 # Class: obo:OHD_0000339 (prosthetic left lower lateral secondary incisor tooth)
@@ -4639,7 +4639,7 @@ SubClassOf(obo:OHD_0000338 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000339 "A prosthetic tooth that is used a substitute for a left lower lateral secondary incisor tooth (tooth 23).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000339 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000339 "prosthetic tooth 23")
-AnnotationAssertion(rdfs:label obo:OHD_0000339 "prosthetic left lower lateral secondary incisor tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000339 "prosthetic left lower lateral secondary incisor tooth"@en)
 SubClassOf(obo:OHD_0000339 obo:OHD_0000302)
 
 # Class: obo:OHD_0000340 (prosthetic left lower central secondary incisor tooth)
@@ -4647,7 +4647,7 @@ SubClassOf(obo:OHD_0000339 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000340 "A prosthetic tooth that is used a substitute for a left lower central secondary incisor tooth (tooth 24).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000340 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000340 "prosthetic tooth 24")
-AnnotationAssertion(rdfs:label obo:OHD_0000340 "prosthetic left lower central secondary incisor tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000340 "prosthetic left lower central secondary incisor tooth"@en)
 SubClassOf(obo:OHD_0000340 obo:OHD_0000302)
 
 # Class: obo:OHD_0000341 (prosthetic right lower central secondary incisor tooth)
@@ -4655,7 +4655,7 @@ SubClassOf(obo:OHD_0000340 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000341 "A prosthetic tooth that is used a substitute for a right lower central secondary incisor tooth (tooth 25).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000341 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000341 "prosthetic tooth 25")
-AnnotationAssertion(rdfs:label obo:OHD_0000341 "prosthetic right lower central secondary incisor tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000341 "prosthetic right lower central secondary incisor tooth"@en)
 SubClassOf(obo:OHD_0000341 obo:OHD_0000302)
 
 # Class: obo:OHD_0000342 (prosthetic right lower lateral secondary incisor tooth)
@@ -4663,7 +4663,7 @@ SubClassOf(obo:OHD_0000341 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000342 "A prosthetic tooth that is used a substitute for a right lower lateral secondary incisor tooth (tooth 26).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000342 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000342 "prosthetic tooth 26")
-AnnotationAssertion(rdfs:label obo:OHD_0000342 "prosthetic right lower lateral secondary incisor tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000342 "prosthetic right lower lateral secondary incisor tooth"@en)
 SubClassOf(obo:OHD_0000342 obo:OHD_0000302)
 
 # Class: obo:OHD_0000343 (prosthetic right lower secondary canine tooth)
@@ -4671,7 +4671,7 @@ SubClassOf(obo:OHD_0000342 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000343 "A prosthetic tooth that is used a substitute for a right lower secondary canine tooth (tooth 27).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000343 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000343 "prosthetic tooth 27")
-AnnotationAssertion(rdfs:label obo:OHD_0000343 "prosthetic right lower secondary canine tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000343 "prosthetic right lower secondary canine tooth"@en)
 SubClassOf(obo:OHD_0000343 obo:OHD_0000302)
 
 # Class: obo:OHD_0000344 (prosthetic right lower first secondary premolar tooth)
@@ -4679,7 +4679,7 @@ SubClassOf(obo:OHD_0000343 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000344 "A prosthetic tooth that is used a substitute for a right lower first secondary premolar tooth (tooth 28).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000344 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000344 "prosthetic tooth 28")
-AnnotationAssertion(rdfs:label obo:OHD_0000344 "prosthetic right lower first secondary premolar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000344 "prosthetic right lower first secondary premolar tooth"@en)
 SubClassOf(obo:OHD_0000344 obo:OHD_0000302)
 
 # Class: obo:OHD_0000345 (prosthetic right lower second secondary premolar tooth)
@@ -4687,7 +4687,7 @@ SubClassOf(obo:OHD_0000344 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000345 "A prosthetic tooth that is used a substitute for a right lower second secondary premolar tooth (tooth 29).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000345 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000345 "prosthetic tooth 29")
-AnnotationAssertion(rdfs:label obo:OHD_0000345 "prosthetic right lower second secondary premolar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000345 "prosthetic right lower second secondary premolar tooth"@en)
 SubClassOf(obo:OHD_0000345 obo:OHD_0000302)
 
 # Class: obo:OHD_0000346 (prosthetic right lower first secondary molar tooth)
@@ -4695,7 +4695,7 @@ SubClassOf(obo:OHD_0000345 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000346 "A prosthetic tooth that is used a substitute for a right lower first secondary molar tooth (tooth 30).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000346 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000346 "prosthetic tooth 30")
-AnnotationAssertion(rdfs:label obo:OHD_0000346 "prosthetic right lower first secondary molar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000346 "prosthetic right lower first secondary molar tooth"@en)
 SubClassOf(obo:OHD_0000346 obo:OHD_0000302)
 
 # Class: obo:OHD_0000347 (prosthetic right lower second secondary molar tooth)
@@ -4703,7 +4703,7 @@ SubClassOf(obo:OHD_0000346 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000347 "A prosthetic tooth that is used a substitute for a right lower second secondary molar tooth (tooth 31).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000347 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000347 "prosthetic tooth 31")
-AnnotationAssertion(rdfs:label obo:OHD_0000347 "prosthetic right lower second secondary molar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000347 "prosthetic right lower second secondary molar tooth"@en)
 SubClassOf(obo:OHD_0000347 obo:OHD_0000302)
 
 # Class: obo:OHD_0000348 (prosthetic right lower third secondary molar tooth)
@@ -4711,14 +4711,14 @@ SubClassOf(obo:OHD_0000347 obo:OHD_0000302)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000348 "A prosthetic tooth that is used a substitute for a right lower third secondary molar tooth (tooth 32).")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000348 "Bill Duncan")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000348 "prosthetic tooth 32")
-AnnotationAssertion(rdfs:label obo:OHD_0000348 "prosthetic right lower third secondary molar tooth")
+AnnotationAssertion(rdfs:label obo:OHD_0000348 "prosthetic right lower third secondary molar tooth"@en)
 SubClassOf(obo:OHD_0000348 obo:OHD_0000302)
 
 # Class: obo:OHD_0000349 (dental material combination process)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000349 "A material combination in which two or more dental restoration materials are combined.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000349 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000349 "dental material combination process")
+AnnotationAssertion(rdfs:label obo:OHD_0000349 "dental material combination process"@en)
 SubClassOf(obo:OHD_0000349 obo:OBI_0000652)
 
 # Class: obo:OHD_0000350 (temporary prosthetic role)
@@ -4726,7 +4726,7 @@ SubClassOf(obo:OHD_0000349 obo:OBI_0000652)
 AnnotationAssertion(obo:IAO_0000112 obo:OHD_0000350 "provisional crown")
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000350 "A prosthetic role that is borne by a material entity which is serves as a temporary replacement for some body part in order to allow adequate time for healing or completion of other procedures.")
 AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000350 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000350 "temporary prosthetic role")
+AnnotationAssertion(rdfs:label obo:OHD_0000350 "temporary prosthetic role"@en)
 SubClassOf(obo:OHD_0000350 obo:OHD_0000314)
 
 # Class: obo:OHD_0000351 (dental implant retainer attachement procedure for porcelain fused to metal fixed partial denture)
@@ -4822,7 +4822,7 @@ SubClassOf(obo:OHD_0000362 obo:OHD_0000024)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000364 "A secondary dentition that is missing tooth 1.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000364 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000364 "2017-11-10T03:42:18Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000364 "secondary dentition missing tooth 1")
+AnnotationAssertion(rdfs:label obo:OHD_0000364 "secondary dentition missing tooth 1"@en)
 EquivalentClasses(obo:OHD_0000364 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "1")))
 
 # Class: obo:OHD_0000365 (secondary dentition missing tooth 2)
@@ -4830,7 +4830,7 @@ EquivalentClasses(obo:OHD_0000364 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000365 "A secondary dentition that is missing tooth 2.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000365 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000365 "2017-11-10T03:49:27Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000365 "secondary dentition missing tooth 2")
+AnnotationAssertion(rdfs:label obo:OHD_0000365 "secondary dentition missing tooth 2"@en)
 EquivalentClasses(obo:OHD_0000365 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "2")))
 
 # Class: obo:OHD_0000366 (secondary dentition missing tooth 3)
@@ -4838,7 +4838,7 @@ EquivalentClasses(obo:OHD_0000365 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000366 "A secondary dentition that is missing tooth 3.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000366 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000366 "2017-11-10T03:49:34Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000366 "secondary dentition missing tooth 3")
+AnnotationAssertion(rdfs:label obo:OHD_0000366 "secondary dentition missing tooth 3"@en)
 EquivalentClasses(obo:OHD_0000366 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "3")))
 
 # Class: obo:OHD_0000367 (secondary dentition missing tooth 4)
@@ -4846,14 +4846,14 @@ EquivalentClasses(obo:OHD_0000366 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000367 "A secondary dentition that is missing tooth 4.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000367 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000367 "2017-11-10T03:49:39Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000367 "secondary dentition missing tooth 4")
+AnnotationAssertion(rdfs:label obo:OHD_0000367 "secondary dentition missing tooth 4"@en)
 EquivalentClasses(obo:OHD_0000367 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "4")))
 
 # Class: obo:OHD_0000368 (secondary dentition missing tooth 5)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000368 "A secondary dentition that is missing tooth 5.")
 AnnotationAssertion(dcterms:created obo:OHD_0000368 "2017-11-10T03:49:48Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000368 "secondary dentition missing tooth 5")
+AnnotationAssertion(rdfs:label obo:OHD_0000368 "secondary dentition missing tooth 5"@en)
 EquivalentClasses(obo:OHD_0000368 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "5")))
 
 # Class: obo:OHD_0000369 (secondary dentition missing tooth 6)
@@ -4861,7 +4861,7 @@ EquivalentClasses(obo:OHD_0000368 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000369 "A secondary dentition that is missing tooth 6.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000369 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000369 "2017-11-10T03:49:54Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000369 "secondary dentition missing tooth 6")
+AnnotationAssertion(rdfs:label obo:OHD_0000369 "secondary dentition missing tooth 6"@en)
 EquivalentClasses(obo:OHD_0000369 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "6")))
 
 # Class: obo:OHD_0000370 (secondary dentition missing tooth 7)
@@ -4869,7 +4869,7 @@ EquivalentClasses(obo:OHD_0000369 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000370 "A secondary dentition that is missing tooth 7.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000370 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000370 "2017-11-10T03:50:01Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000370 "secondary dentition missing tooth 7")
+AnnotationAssertion(rdfs:label obo:OHD_0000370 "secondary dentition missing tooth 7"@en)
 EquivalentClasses(obo:OHD_0000370 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "7")))
 
 # Class: obo:OHD_0000371 (secondary dentition missing tooth 8)
@@ -4877,7 +4877,7 @@ EquivalentClasses(obo:OHD_0000370 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000371 "A secondary dentition that is missing tooth 8.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000371 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000371 "2017-11-10T03:50:08Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000371 "secondary dentition missing tooth 8")
+AnnotationAssertion(rdfs:label obo:OHD_0000371 "secondary dentition missing tooth 8"@en)
 EquivalentClasses(obo:OHD_0000371 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "8")))
 
 # Class: obo:OHD_0000372 (secondary dentition missing tooth 9)
@@ -4885,7 +4885,7 @@ EquivalentClasses(obo:OHD_0000371 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000372 "A secondary dentition that is missing tooth 9.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000372 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000372 "2017-11-10T03:50:29Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000372 "secondary dentition missing tooth 9")
+AnnotationAssertion(rdfs:label obo:OHD_0000372 "secondary dentition missing tooth 9"@en)
 EquivalentClasses(obo:OHD_0000372 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "9")))
 
 # Class: obo:OHD_0000373 (secondary dentition missing tooth 10)
@@ -4893,7 +4893,7 @@ EquivalentClasses(obo:OHD_0000372 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000373 "A secondary dentition that is missing tooth 10.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000373 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000373 "2017-11-10T03:50:36Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000373 "secondary dentition missing tooth 10")
+AnnotationAssertion(rdfs:label obo:OHD_0000373 "secondary dentition missing tooth 10"@en)
 EquivalentClasses(obo:OHD_0000373 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "10")))
 
 # Class: obo:OHD_0000374 (secondary dentition missing tooth 11)
@@ -4901,7 +4901,7 @@ EquivalentClasses(obo:OHD_0000373 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000374 "A secondary dentition that is missing tooth 11.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000374 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000374 "2017-11-10T03:50:44Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000374 "secondary dentition missing tooth 11")
+AnnotationAssertion(rdfs:label obo:OHD_0000374 "secondary dentition missing tooth 11"@en)
 EquivalentClasses(obo:OHD_0000374 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "11")))
 
 # Class: obo:OHD_0000375 (secondary dentition missing tooth 12)
@@ -4909,7 +4909,7 @@ EquivalentClasses(obo:OHD_0000374 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000375 "A secondary dentition that is missing tooth 12.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000375 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000375 "2017-11-10T03:50:49Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000375 "secondary dentition missing tooth 12")
+AnnotationAssertion(rdfs:label obo:OHD_0000375 "secondary dentition missing tooth 12"@en)
 EquivalentClasses(obo:OHD_0000375 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "12")))
 
 # Class: obo:OHD_0000376 (secondary dentition missing tooth 13)
@@ -4917,7 +4917,7 @@ EquivalentClasses(obo:OHD_0000375 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000376 "A secondary dentition that is missing tooth 13.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000376 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000376 "2017-11-10T03:50:55Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000376 "secondary dentition missing tooth 13")
+AnnotationAssertion(rdfs:label obo:OHD_0000376 "secondary dentition missing tooth 13"@en)
 EquivalentClasses(obo:OHD_0000376 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "13")))
 
 # Class: obo:OHD_0000377 (secondary dentition missing tooth 14)
@@ -4925,7 +4925,7 @@ EquivalentClasses(obo:OHD_0000376 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000377 "A secondary dentition that is missing tooth 14.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000377 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000377 "2017-11-10T03:51:02Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000377 "secondary dentition missing tooth 14")
+AnnotationAssertion(rdfs:label obo:OHD_0000377 "secondary dentition missing tooth 14"@en)
 EquivalentClasses(obo:OHD_0000377 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "14")))
 
 # Class: obo:OHD_0000378 (secondary dentition missing tooth 15)
@@ -4933,7 +4933,7 @@ EquivalentClasses(obo:OHD_0000377 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000378 "A secondary dentition that is missing tooth 15.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000378 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000378 "2017-11-10T03:51:11Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000378 "secondary dentition missing tooth 15")
+AnnotationAssertion(rdfs:label obo:OHD_0000378 "secondary dentition missing tooth 15"@en)
 EquivalentClasses(obo:OHD_0000378 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "15")))
 
 # Class: obo:OHD_0000379 (secondary dentition missing tooth 16)
@@ -4941,7 +4941,7 @@ EquivalentClasses(obo:OHD_0000378 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000379 "A secondary dentition that is missing tooth 16,")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000379 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000379 "2017-11-10T03:51:17Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000379 "secondary dentition missing tooth 16")
+AnnotationAssertion(rdfs:label obo:OHD_0000379 "secondary dentition missing tooth 16"@en)
 EquivalentClasses(obo:OHD_0000379 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "16")))
 
 # Class: obo:OHD_0000380 (secondary dentition missing tooth 17)
@@ -4949,7 +4949,7 @@ EquivalentClasses(obo:OHD_0000379 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000380 "A secondary dentition that is missing tooth 17.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000380 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000380 "2017-11-10T03:51:23Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000380 "secondary dentition missing tooth 17")
+AnnotationAssertion(rdfs:label obo:OHD_0000380 "secondary dentition missing tooth 17"@en)
 EquivalentClasses(obo:OHD_0000380 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "17")))
 
 # Class: obo:OHD_0000381 (secondary dentition missing tooth 18)
@@ -4957,7 +4957,7 @@ EquivalentClasses(obo:OHD_0000380 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000381 "A secondary dentition that is missing tooth 18.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000381 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000381 "2017-11-10T03:51:28Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000381 "secondary dentition missing tooth 18")
+AnnotationAssertion(rdfs:label obo:OHD_0000381 "secondary dentition missing tooth 18"@en)
 EquivalentClasses(obo:OHD_0000381 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "18")))
 
 # Class: obo:OHD_0000382 (secondary dentition missing tooth 19)
@@ -4965,7 +4965,7 @@ EquivalentClasses(obo:OHD_0000381 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000382 "A secondary dentition that is missing tooth 19.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000382 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000382 "2017-11-10T03:51:33Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000382 "secondary dentition missing tooth 19")
+AnnotationAssertion(rdfs:label obo:OHD_0000382 "secondary dentition missing tooth 19"@en)
 EquivalentClasses(obo:OHD_0000382 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "19")))
 
 # Class: obo:OHD_0000383 (secondary dentition missing tooth 20)
@@ -4973,7 +4973,7 @@ EquivalentClasses(obo:OHD_0000382 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000383 "A secondary dentition that is missing tooth 20.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000383 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000383 "2017-11-10T03:51:38Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000383 "secondary dentition missing tooth 20")
+AnnotationAssertion(rdfs:label obo:OHD_0000383 "secondary dentition missing tooth 20"@en)
 EquivalentClasses(obo:OHD_0000383 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "20")))
 
 # Class: obo:OHD_0000384 (secondary dentition missing tooth 21)
@@ -4981,7 +4981,7 @@ EquivalentClasses(obo:OHD_0000383 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000384 "A secondary dentition that is missing tooth 21.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000384 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000384 "2017-11-10T03:51:45Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000384 "secondary dentition missing tooth 21")
+AnnotationAssertion(rdfs:label obo:OHD_0000384 "secondary dentition missing tooth 21"@en)
 EquivalentClasses(obo:OHD_0000384 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "21")))
 
 # Class: obo:OHD_0000385 (secondary dentition missing tooth 22)
@@ -4989,7 +4989,7 @@ EquivalentClasses(obo:OHD_0000384 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000385 "A secondary dentition that is missing tooth 22.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000385 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000385 "2017-11-10T03:52:02Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000385 "secondary dentition missing tooth 22")
+AnnotationAssertion(rdfs:label obo:OHD_0000385 "secondary dentition missing tooth 22"@en)
 EquivalentClasses(obo:OHD_0000385 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "22")))
 
 # Class: obo:OHD_0000386 (secondary dentition missing tooth 23)
@@ -4997,7 +4997,7 @@ EquivalentClasses(obo:OHD_0000385 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000386 "A secondary dentition that is missing tooth 23.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000386 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000386 "2017-11-10T03:52:06Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000386 "secondary dentition missing tooth 23")
+AnnotationAssertion(rdfs:label obo:OHD_0000386 "secondary dentition missing tooth 23"@en)
 EquivalentClasses(obo:OHD_0000386 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "23")))
 
 # Class: obo:OHD_0000387 (secondary dentition missing tooth 24)
@@ -5005,7 +5005,7 @@ EquivalentClasses(obo:OHD_0000386 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000387 "A secondary dentition that is missing tooth 24.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000387 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000387 "2017-11-10T03:52:13Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000387 "secondary dentition missing tooth 24")
+AnnotationAssertion(rdfs:label obo:OHD_0000387 "secondary dentition missing tooth 24"@en)
 EquivalentClasses(obo:OHD_0000387 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "24")))
 
 # Class: obo:OHD_0000388 (secondary dentition missing tooth 25)
@@ -5013,7 +5013,7 @@ EquivalentClasses(obo:OHD_0000387 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000388 "A secondary dentition that is missing tooth 25.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000388 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000388 "2017-11-10T03:52:16Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000388 "secondary dentition missing tooth 25")
+AnnotationAssertion(rdfs:label obo:OHD_0000388 "secondary dentition missing tooth 25"@en)
 EquivalentClasses(obo:OHD_0000388 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "25")))
 
 # Class: obo:OHD_0000389 (secondary dentition missing tooth 26)
@@ -5021,7 +5021,7 @@ EquivalentClasses(obo:OHD_0000388 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000389 "A secondary dentition that is missing tooth 26.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000389 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000389 "2017-11-10T03:52:20Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000389 "secondary dentition missing tooth 26")
+AnnotationAssertion(rdfs:label obo:OHD_0000389 "secondary dentition missing tooth 26"@en)
 EquivalentClasses(obo:OHD_0000389 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "26")))
 
 # Class: obo:OHD_0000390 (secondary dentition missing tooth 27)
@@ -5029,7 +5029,7 @@ EquivalentClasses(obo:OHD_0000389 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000390 "A secondary dentition that is missing tooth 27.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000390 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000390 "2017-11-10T03:52:25Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000390 "secondary dentition missing tooth 27")
+AnnotationAssertion(rdfs:label obo:OHD_0000390 "secondary dentition missing tooth 27"@en)
 EquivalentClasses(obo:OHD_0000390 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "27")))
 
 # Class: obo:OHD_0000391 (secondary dentition missing tooth 28)
@@ -5037,7 +5037,7 @@ EquivalentClasses(obo:OHD_0000390 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000391 "A secondary dentition that is missing tooth 28.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000391 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000391 "2017-11-10T03:52:36Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000391 "secondary dentition missing tooth 28")
+AnnotationAssertion(rdfs:label obo:OHD_0000391 "secondary dentition missing tooth 28"@en)
 EquivalentClasses(obo:OHD_0000391 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "28")))
 
 # Class: obo:OHD_0000392 (secondary dentition missing tooth 29)
@@ -5045,7 +5045,7 @@ EquivalentClasses(obo:OHD_0000391 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000392 "A secondary dentition that is missing tooth 29.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000392 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000392 "2017-11-10T03:52:40Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000392 "secondary dentition missing tooth 29")
+AnnotationAssertion(rdfs:label obo:OHD_0000392 "secondary dentition missing tooth 29"@en)
 EquivalentClasses(obo:OHD_0000392 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "29")))
 
 # Class: obo:OHD_0000393 (secondary dentition missing tooth 30)
@@ -5053,7 +5053,7 @@ EquivalentClasses(obo:OHD_0000392 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000393 "A secondary dentition that is missing tooth 30.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000393 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000393 "2017-11-10T03:52:48Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000393 "secondary dentition missing tooth 30")
+AnnotationAssertion(rdfs:label obo:OHD_0000393 "secondary dentition missing tooth 30"@en)
 EquivalentClasses(obo:OHD_0000393 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "30")))
 
 # Class: obo:OHD_0000394 (secondary dentition missing tooth 31)
@@ -5061,7 +5061,7 @@ EquivalentClasses(obo:OHD_0000393 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000394 "A secondary dentition that is missing tooth 31.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000394 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000394 "2017-11-10T03:52:54Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000394 "secondary dentition missing tooth 31")
+AnnotationAssertion(rdfs:label obo:OHD_0000394 "secondary dentition missing tooth 31"@en)
 EquivalentClasses(obo:OHD_0000394 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "31")))
 
 # Class: obo:OHD_0000395 (secondary dentition missing tooth 32)
@@ -5069,7 +5069,7 @@ EquivalentClasses(obo:OHD_0000394 ObjectIntersectionOf(obo:UBERON_0007774 DataHa
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000395 "A secondary dentition that is missing tooth 32.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0000395 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000395 "2017-11-10T03:52:59Z")
-AnnotationAssertion(rdfs:label obo:OHD_0000395 "secondary dentition missing tooth 32")
+AnnotationAssertion(rdfs:label obo:OHD_0000395 "secondary dentition missing tooth 32"@en)
 EquivalentClasses(obo:OHD_0000395 ObjectIntersectionOf(obo:UBERON_0007774 DataHasValue(obo:OHD_0000234 "32")))
 
 # Class: obo:OHD_0000396 (endodontic procedure finding)
@@ -5881,7 +5881,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0002000 "A bodily process that invol
 AnnotationAssertion(dcterms:contributor obo:OHD_0002000 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0002000 <https://orcid.org/0009-0006-7251-3026>)
 AnnotationAssertion(dcterms:created obo:OHD_0002000 "2023-06-06T21:30:37Z")
-AnnotationAssertion(rdfs:label obo:OHD_0002000 "masticatory muscle activity")
+AnnotationAssertion(rdfs:label obo:OHD_0002000 "masticatory muscle activity"@en)
 SubClassOf(obo:OHD_0002000 obo:OGMS_0000060)
 
 # Class: obo:OHD_0005001 (patient-reported outcome)
@@ -7012,7 +7012,7 @@ SubClassOf(obo:OHD_0010019 ObjectSomeValuesFrom(obo:BFO_0000055 obo:OHD_0010018)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010020 "Pulpitis that has not yet progressed to being permanent.")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0010020 "PMID:32103673")
 AnnotationAssertion(dcterms:contributor obo:OHD_0010020 <https://orcid.org/0009-0003-5583-4731>)
-AnnotationAssertion(rdfs:label obo:OHD_0010020 "reversible pulpitis")
+AnnotationAssertion(rdfs:label obo:OHD_0010020 "reversible pulpitis"@en)
 SubClassOf(obo:OHD_0010020 obo:OHD_0010060)
 SubClassOf(obo:OHD_0010020 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0010062))
 
