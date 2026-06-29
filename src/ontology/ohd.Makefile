@@ -96,6 +96,26 @@ $(IMPORTDIR)/pato_import.owl: $(MIRRORDIR)/pato.owl $(IMPORTDIR)/pato_terms.txt
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@
 
+.PRECIOUS: $(IMPORTDIR)/md-core_import.owl
+$(IMPORTDIR)/md-core_import.owl: $(MIRRORDIR)/md-core.owl $(IMPORTDIR)/md-core_terms.txt
+	@echo "*** building $@ ***"
+	$(ROBOT) \
+		filter \
+			--input $< \
+			--term-file $(word 2, $^) \
+			--select "annotations self ancestors" \
+			--axioms logical \
+			--signature true \
+			--trim true \
+		remove \
+			--select "owl:deprecated='true'^^xsd:boolean" \
+		annotate \
+			--annotate-defined-by true \
+			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/$@ \
+		convert --format ofn \
+		--output $@.tmp.owl && mv $@.tmp.owl $@
+
 .PRECIOUS: $(IMPORTDIR)/uberon_import.owl
 $(IMPORTDIR)/uberon_import.owl: $(MIRRORDIR)/uberon.owl $(IMPORTDIR)/uberon_terms.txt
 	@echo "*** building $@ ***"
@@ -463,3 +483,14 @@ else # MIR=false
 $(MIRRORDIR)/%.owl $(MIRRORDIR)/%.owl.gz:
 	@echo "Not refreshing $@ because the mirrorring pipeline is disabled (MIR=$(MIR))."
 endif
+
+mirror-md-core:
+	@echo "*** mirroring md-core ***"
+	curl -L http://purl.obolibrary.org/obo/MF/internal/MD-core.owl \
+		--create-dirs -o tmp/mirror-md-core.temp.owl --retry 4 --max-time 200 && \
+	$(ROBOT) convert \
+		--input tmp/mirror-md-core.temp.owl \
+		--output tmp/mirror-md-core.owl && \
+	rm tmp/mirror-md-core.temp.owl
+
+$(MIRRORDIR)/md-core.owl: mirror-md-core
