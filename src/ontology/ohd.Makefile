@@ -191,6 +191,42 @@ $(IMPORTDIR)/caro_import.owl: $(MIRRORDIR)/caro.owl $(IMPORTDIR)/caro_terms.txt
 		convert --format ofn \
 		--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
+$(IMPORTDIR)/emro_import.owl: $(MIRRORDIR)/emro.owl $(IMPORTDIR)/emro_terms.txt
+
+	if [ $(IMP) = true ]; then $(ROBOT) \
+		remove \
+			--input $< \
+			--select "owl:deprecated='true'^^xsd:boolean" \
+		extract \
+			--method MIREOT \
+			--lower-terms $(word 2, $^) \
+			--intermediates minimal \
+		annotate \
+			--annotate-defined-by true \
+		annotate \
+			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
+		convert --format ofn \
+			--output $@.tmp.owl && mv $@.tmp.owl $@; fi
+
+$(IMPORTDIR)/pain_import.owl: $(MIRRORDIR)/pain.owl $(IMPORTDIR)/pain_terms.txt
+
+	if [ $(IMP) = true ]; then $(ROBOT) \
+		remove \
+			--input $< \
+			--select "owl:deprecated='true'^^xsd:boolean" \
+		extract \
+			--method MIREOT \
+			--lower-terms $(word 2, $^) \
+			--intermediates minimal \
+		annotate \
+			--annotate-defined-by true \
+		annotate \
+			--ontology-iri $(URIBASE)/$(ONT)/$@ \
+			--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $@) \
+		convert --format ofn \
+			--output $@.tmp.owl && mv $@.tmp.owl $@; fi
+
 $(IMPORTDIR)/envo_import.owl: $(MIRRORDIR)/envo.owl $(IMPORTDIR)/envo_terms.txt 
 	if [ $(IMP) = true ]; then $(ROBOT) \
         remove \
