@@ -202,7 +202,7 @@ $(IMPORTDIR)/envo_import.owl: $(MIRRORDIR)/envo.owl $(IMPORTDIR)/envo_terms.txt
         extract \
             --method MIREOT \
             --lower-terms $(word 2, $^) \
-            --intermediates minimal \
+            --intermediates all \
 		annotate \
 			--annotate-defined-by true \
         annotate \

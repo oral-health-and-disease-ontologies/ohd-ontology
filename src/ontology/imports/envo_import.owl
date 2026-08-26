@@ -7,16 +7,21 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 
 
 Ontology(<http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>
-<http://purl.obolibrary.org/obo/ohd/imports/2026-03-27/envo_import.owl>
+<http://purl.obolibrary.org/obo/ohd/imports/2026-08-26/envo_import.owl>
 
 Declaration(Class(<http://purl.obolibrary.org/obo/BFO_0000001>))
+Declaration(Class(<http://purl.obolibrary.org/obo/BFO_0000002>))
 Declaration(Class(<http://purl.obolibrary.org/obo/BFO_0000004>))
 Declaration(Class(<http://purl.obolibrary.org/obo/BFO_0000040>))
+Declaration(Class(<http://purl.obolibrary.org/obo/ENVO_00010483>))
+Declaration(Class(<http://purl.obolibrary.org/obo/ENVO_01000480>))
 Declaration(Class(<http://purl.obolibrary.org/obo/ENVO_01000481>))
+Declaration(Class(<http://purl.obolibrary.org/obo/ENVO_01000814>))
 Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0000115>))
 Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0010000>))
 Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#created_by>))
 Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym>))
+Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasDbXref>))
 Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym>))
 Declaration(AnnotationProperty(rdfs:comment))
 Declaration(AnnotationProperty(rdfs:label))
@@ -47,11 +52,17 @@ AnnotationAssertion(rdfs:label <http://www.geneontology.org/formats/oboInOwl#has
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/BFO_0000001> "entity"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/BFO_0000001> owl:Thing)
 
+# Class: <http://purl.obolibrary.org/obo/BFO_0000002> (continuant)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/BFO_0000002> "An entity that exists in full at any time in which it exists at all, persists through time while maintaining its identity and has no temporal parts."@en)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/BFO_0000002> "continuant"@en)
+SubClassOf(<http://purl.obolibrary.org/obo/BFO_0000002> <http://purl.obolibrary.org/obo/BFO_0000001>)
+
 # Class: <http://purl.obolibrary.org/obo/BFO_0000004> (independent continuant)
 
 AnnotationAssertion(Annotation(<http://purl.obolibrary.org/obo/IAO_0010000> <http://purl.obolibrary.org/obo/bfo/axiom/017-002>) <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/BFO_0000004> "b is an independent continuant = Def. b is a continuant which is such that there is no c and no t such that b s-depends_on c at t. (axiom label in BFO2 Reference: [017-002])"@en)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/BFO_0000004> "independent continuant"@en)
-SubClassOf(<http://purl.obolibrary.org/obo/BFO_0000004> <http://purl.obolibrary.org/obo/BFO_0000001>)
+SubClassOf(<http://purl.obolibrary.org/obo/BFO_0000004> <http://purl.obolibrary.org/obo/BFO_0000002>)
 
 # Class: <http://purl.obolibrary.org/obo/BFO_0000040> (material entity)
 
@@ -59,13 +70,37 @@ AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.ob
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/BFO_0000040> "material entity"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/BFO_0000040> <http://purl.obolibrary.org/obo/BFO_0000004>)
 
+# Class: <http://purl.obolibrary.org/obo/ENVO_00010483> (environmental material)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://ontology.buffalo.edu/smith/articles/niches.html>) Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <https://dx.doi.org/10.1186/2041-1480-4-43>) Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <https://en.wikipedia.org/wiki/Material>) <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/ENVO_00010483> "A material entity which other material entities in an environmental system are primarily or partially composed of."@en)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/ENVO_00010483> "portion of environmental material")
+AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/ENVO_00010483> "Everything under this parent must be a mass noun (i.e. not countable). All subclasses are to be understood as being composed primarily of the named entity, rather than restricted to that entity. For example, \"ENVO:water\" is to be understood as \"environmental material composed primarly of some CHEBI:water\"."@en)
+AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/ENVO_00010483> "Instances of this class are portions of environmental materials, such as seawater in bucket, a water parcel in the photic zone of a lake, or the concrete that composes a building part. Instances of these portions may have fiat or non-fiat boundaries. For example, a water parcel has not physical boundaries, while the seawater in a bucket is bounded by the internal surfaces of the bucket."@en)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/ENVO_00010483> "environmental material")
+SubClassOf(<http://purl.obolibrary.org/obo/ENVO_00010483> <http://purl.obolibrary.org/obo/BFO_0000040>)
+
+# Class: <http://purl.obolibrary.org/obo/ENVO_01000480> (glass)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "https://en.wikipedia.org/wiki/Glass") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/ENVO_01000480> "Glass is an amorphous (non-crystalline) solid which is often transparent.")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#created_by> <http://purl.obolibrary.org/obo/ENVO_01000480> "ORCID:0000-0002-4366-3088")
+AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/ENVO_01000480> "This class refers to all forms of glass. For the familiar form present in window panes and drinking glasses, consider silica-based glass.")
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/ENVO_01000480> "glass")
+SubClassOf(<http://purl.obolibrary.org/obo/ENVO_01000480> <http://purl.obolibrary.org/obo/ENVO_01000814>)
+
 # Class: <http://purl.obolibrary.org/obo/ENVO_01000481> (silica-based glass)
 
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/ENVO_01000481> "Silica-based glass is a glass composed primarily of silicon dioxide, the primary constituent of sand.")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> <http://purl.obolibrary.org/obo/ENVO_01000481> "glass")
 AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/ENVO_01000481> "Silica-based glasses are the most common manufactured variety of glass.")
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/ENVO_01000481> "silica-based glass")
-SubClassOf(<http://purl.obolibrary.org/obo/ENVO_01000481> <http://purl.obolibrary.org/obo/BFO_0000040>)
+SubClassOf(<http://purl.obolibrary.org/obo/ENVO_01000481> <http://purl.obolibrary.org/obo/ENVO_01000480>)
+
+# Class: <http://purl.obolibrary.org/obo/ENVO_01000814> (solid environmental material)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/ENVO_01000814> "An environmental material which is in a solid state.")
+AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/ENVO_01000814> "This is a defined class: its subclasses will not be asserted, but filled by inference.")
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/ENVO_01000814> "solid environmental material"@en)
+SubClassOf(<http://purl.obolibrary.org/obo/ENVO_01000814> <http://purl.obolibrary.org/obo/ENVO_00010483>)
 
 
 )
