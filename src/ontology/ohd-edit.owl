@@ -6174,15 +6174,16 @@ AnnotationAssertion(rdfs:label obo:OHD_0005004 "patient-reported unfavorable den
 EquivalentClasses(obo:OHD_0005004 ObjectIntersectionOf(obo:OHD_0000288 ObjectSomeValuesFrom(obo:IAO_0000136 obo:UBERON_0000165)))
 SubClassOf(obo:OHD_0005004 obo:OHD_0000288)
 
-# Class: obo:OHD_0005005 (avoidance behavior)
+# Class: obo:OHD_0005005 (obsolete avoidance behavior)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0005005 "A behavioral defense response in which an organism seeks to avoid an encounter with a potential external threat."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0005005 <https://orcid.org/0000-0001-9990-8331>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0005005 <https://orcid.org/0009-0003-7246-1252>)
 AnnotationAssertion(dcterms:created obo:OHD_0005005 "2025-02-10T00:00:00Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0005005 obo:OHD_0005009)
-AnnotationAssertion(rdfs:label obo:OHD_0005005 "avoidance behavior"@en)
-SubClassOf(obo:OHD_0005005 obo:GO_0002209)
+AnnotationAssertion(rdfs:label obo:OHD_0005005 "obsolete avoidance behavior"@en)
+AnnotationAssertion(Annotation(obo:IAO_0000231 "http://purl.obolibrary.org/obo/IAO_0000228") Annotation(obo:IAO_0100001 "http://purl.obolibrary.org/obo/EMRO_0003000") owl:deprecated obo:OHD_0005005 "true"^^xsd:boolean)
+SubClassOf(obo:OHD_0005005 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
 
 # Class: obo:OHD_0005006 (health encounter avoidance behavior)
 
@@ -6192,7 +6193,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0005006 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0005006 "2025-02-10T18:00:21Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0005006 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0005006 "health encounter avoidance behavior"@en)
-SubClassOf(obo:OHD_0005006 obo:OHD_0005005)
+SubClassOf(obo:OHD_0005006 obo:EMRO_0003000)
 
 # Class: obo:OHD_0005007 (dental visit avoidance behavior)
 
@@ -6432,7 +6433,7 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0008020 <https://orcid.org/0009-
 AnnotationAssertion(dcterms:created obo:OHD_0008020 "2025-03-15T16:22:39Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008020 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008020 "avoidance behavior question"@en)
-EquivalentClasses(obo:OHD_0008020 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0005005)))
+EquivalentClasses(obo:OHD_0008020 ObjectIntersectionOf(obo:OHD_0008011 ObjectSomeValuesFrom(obo:IAO_0000136 obo:EMRO_0003000)))
 SubClassOf(obo:OHD_0008020 obo:OHD_0008007)
 
 # Class: obo:OHD_0008021 (health encounter avoidance question)
