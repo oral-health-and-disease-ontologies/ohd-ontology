@@ -5503,7 +5503,7 @@ AnnotationAssertion(dcterms:created obo:OHD_0000424 "2025-02-15T18:43:32Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000424 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000424 "DFS 04. My breathing rate increases."@en)
 SubClassOf(obo:OHD_0000424 obo:OHD_0008010)
-SubClassOf(obo:OHD_0000424 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008049))
+SubClassOf(obo:OHD_0000424 ObjectSomeValuesFrom(obo:IAO_0000136 obo:EMRO_0000012))
 
 # Class: obo:OHD_0000425 (data field)
 
@@ -5545,7 +5545,7 @@ AnnotationAssertion(dcterms:created obo:OHD_0000428 "2025-02-15T18:52:23Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000428 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000428 "DFS 07. My heart beats faster."@en)
 SubClassOf(obo:OHD_0000428 obo:OHD_0008010)
-SubClassOf(obo:OHD_0000428 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008052))
+SubClassOf(obo:OHD_0000428 ObjectSomeValuesFrom(obo:IAO_0000136 obo:EMRO_0000011))
 
 # Class: obo:OHD_0000429 (DFS 08. Making an appointment for dentistry.)
 
@@ -6702,14 +6702,15 @@ AnnotationAssertion(rdfs:comment obo:OHD_0008048 "Class based on the COHRA1 'Fea
 AnnotationAssertion(rdfs:label obo:OHD_0008048 "fear of pain question"@en)
 SubClassOf(obo:OHD_0008048 obo:OHD_0008007)
 
-# Class: obo:OHD_0008049 (increased breathing rate)
+# Class: obo:OHD_0008049 (obsolete increased breathing rate)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008049 "A bodily process in which the rate at which an organism moves air in and out of its lungs increases."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008049 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008049 "2025-04-04T13:22:01Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008049 obo:OHD_0005009)
-AnnotationAssertion(rdfs:label obo:OHD_0008049 "increased breathing rate"@en)
-SubClassOf(obo:OHD_0008049 obo:GO_0003016)
+AnnotationAssertion(rdfs:label obo:OHD_0008049 "obsolete increased breathing rate"@en)
+AnnotationAssertion(Annotation(obo:IAO_0000231 obo:IAO_0000228) Annotation(obo:IAO_0100001 "http://purl.obolibrary.org/obo/EMRO_0000012") owl:deprecated obo:OHD_0008049 "true"^^xsd:boolean)
+SubClassOf(obo:OHD_0008049 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
 
 # Class: obo:OHD_0008050 (fear of minor pain question)
 
@@ -6730,14 +6731,15 @@ AnnotationAssertion(rdfs:comment obo:OHD_0008051 "We're not using the symptom on
 AnnotationAssertion(rdfs:label obo:OHD_0008051 "nausea"@en)
 SubClassOf(obo:OHD_0008051 obo:OGMS_0000061)
 
-# Class: obo:OHD_0008052 (increased heart rate)
+# Class: obo:OHD_0008052 (obsolete increased heart rate)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008052 "A bodily process in which the rate at which an organism's heart beats increases."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008052 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008052 "2025-04-04T13:31:33Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008052 obo:OHD_0005009)
-AnnotationAssertion(rdfs:label obo:OHD_0008052 "increased heart rate"@en)
-SubClassOf(obo:OHD_0008052 obo:GO_0003015)
+AnnotationAssertion(rdfs:label obo:OHD_0008052 "obsolete increased heart rate"@en)
+AnnotationAssertion(Annotation(obo:IAO_0000231 obo:IAO_0000228) Annotation(obo:IAO_0100001 "http://purl.obolibrary.org/obo/EMRO_0000011") owl:deprecated obo:OHD_0008052 "true"^^xsd:boolean)
+SubClassOf(obo:OHD_0008052 <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass>)
 
 # Class: obo:OHD_0008053 (fear of severe pain question)
 
@@ -6815,7 +6817,7 @@ AnnotationAssertion(dcterms:created obo:OHD_0008060 "2025-10-22T16:55:42Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008060 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008060 "IDAF-4C+ 1f. My heart beats faster when I go to the dentist."@en)
 SubClassOf(obo:OHD_0008060 obo:OHD_0008078)
-SubClassOf(obo:OHD_0008060 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0008052))
+SubClassOf(obo:OHD_0008060 ObjectSomeValuesFrom(obo:IAO_0000136 obo:EMRO_0000011))
 
 # Class: obo:OHD_0008061 (IDAF-4C+ 1g. I delay making appointments to go to the dentist.)
 
