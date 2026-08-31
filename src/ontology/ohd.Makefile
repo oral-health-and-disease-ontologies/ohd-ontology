@@ -75,7 +75,7 @@ $(IMPORTDIR)/mf_import.owl: $(MIRRORDIR)/mf.owl $(IMPORTDIR)/mf_terms.txt
 				--ontology-iri $(URIBASE)/$(ONT)/$@ \
 				--version-iri $(URIBASE)/$(ONT)/$@ \
 			convert --format ofn \
-			--output $@.tmp.owl && mv $@.tmp.owl $@
+			--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 .PRECIOUS: $(IMPORTDIR)/pato_import.owl
 $(IMPORTDIR)/pato_import.owl: $(MIRRORDIR)/pato.owl $(IMPORTDIR)/pato_terms.txt
@@ -96,7 +96,7 @@ $(IMPORTDIR)/pato_import.owl: $(MIRRORDIR)/pato.owl $(IMPORTDIR)/pato_terms.txt
 				--ontology-iri $(URIBASE)/$(ONT)/$@ \
 				--version-iri $(URIBASE)/$(ONT)/$@ \
 			convert --format ofn \
-			--output $@.tmp.owl && mv $@.tmp.owl $@
+			--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 .PRECIOUS: $(IMPORTDIR)/emro_import.owl
 $(IMPORTDIR)/emro_import.owl: $(MIRRORDIR)/emro.owl $(IMPORTDIR)/emro_terms.txt
@@ -114,7 +114,7 @@ $(IMPORTDIR)/emro_import.owl: $(MIRRORDIR)/emro.owl $(IMPORTDIR)/emro_terms.txt
 				--ontology-iri $(URIBASE)/$(ONT)/$@ \
 				--version-iri $(URIBASE)/$(ONT)/$@ \
 			convert --format ofn \
-			--output $@.tmp.owl && mv $@.tmp.owl $@
+			--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 .PRECIOUS: $(IMPORTDIR)/pain_import.owl
 $(IMPORTDIR)/pain_import.owl: $(MIRRORDIR)/pain.owl $(IMPORTDIR)/pain_terms.txt
@@ -132,7 +132,7 @@ $(IMPORTDIR)/pain_import.owl: $(MIRRORDIR)/pain.owl $(IMPORTDIR)/pain_terms.txt
 				--ontology-iri $(URIBASE)/$(ONT)/$@ \
 				--version-iri $(URIBASE)/$(ONT)/$@ \
 			convert --format ofn \
-			--output $@.tmp.owl && mv $@.tmp.owl $@
+			--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 .PRECIOUS: $(IMPORTDIR)/uberon_import.owl
 $(IMPORTDIR)/uberon_import.owl: $(MIRRORDIR)/uberon.owl $(IMPORTDIR)/uberon_terms.txt
@@ -155,7 +155,7 @@ $(IMPORTDIR)/uberon_import.owl: $(MIRRORDIR)/uberon.owl $(IMPORTDIR)/uberon_term
 				--ontology-iri $(URIBASE)/$(ONT)/$@ \
 				--version-iri $(URIBASE)/$(ONT)/$@ \
 			convert --format ofn \
-			--output $@.tmp.owl && mv $@.tmp.owl $@
+			--output $@.tmp.owl && mv $@.tmp.owl $@; fi
 
 .PRECIOUS: $(IMPORTDIR)/omo_import.owl
 $(IMPORTDIR)/omo_import.owl: $(MIRRORDIR)/omo.owl
