@@ -58,8 +58,7 @@ $(ONT).owl: $(SRC)
 
 .PRECIOUS: $(IMPORTDIR)/mf_import.owl
 $(IMPORTDIR)/mf_import.owl: $(MIRRORDIR)/mf.owl $(IMPORTDIR)/mf_terms.txt 
-	if [ $(IMP) = true ]; then $(ROBOT) \
-		@echo "*** building $@ ***"
+	if [ $(IMP) = true ]; then \
 		$(ROBOT) \
 			filter \
 				--input $< \
@@ -79,8 +78,7 @@ $(IMPORTDIR)/mf_import.owl: $(MIRRORDIR)/mf.owl $(IMPORTDIR)/mf_terms.txt
 
 .PRECIOUS: $(IMPORTDIR)/pato_import.owl
 $(IMPORTDIR)/pato_import.owl: $(MIRRORDIR)/pato.owl $(IMPORTDIR)/pato_terms.txt
-	if [ $(IMP) = true ]; then $(ROBOT) \
-		@echo "*** building $@ ***"
+	if [ $(IMP) = true ]; then \
 		$(ROBOT) \
 			filter \
 				--input $< \
@@ -100,8 +98,7 @@ $(IMPORTDIR)/pato_import.owl: $(MIRRORDIR)/pato.owl $(IMPORTDIR)/pato_terms.txt
 
 .PRECIOUS: $(IMPORTDIR)/emro_import.owl
 $(IMPORTDIR)/emro_import.owl: $(MIRRORDIR)/emro.owl $(IMPORTDIR)/emro_terms.txt
-	if [ $(IMP) = true ]; then $(ROBOT) \
-		@echo "*** building $@ ***"
+	if [ $(IMP) = true ]; then \
 		$(ROBOT) \
 			extract \
 				--input $< \
@@ -118,8 +115,7 @@ $(IMPORTDIR)/emro_import.owl: $(MIRRORDIR)/emro.owl $(IMPORTDIR)/emro_terms.txt
 
 .PRECIOUS: $(IMPORTDIR)/pain_import.owl
 $(IMPORTDIR)/pain_import.owl: $(MIRRORDIR)/pain.owl $(IMPORTDIR)/pain_terms.txt
-	if [ $(IMP) = true ]; then $(ROBOT) \
-		@echo "*** building $@ ***"
+	if [ $(IMP) = true ]; then \
 		$(ROBOT) \
 			extract \
 				--input $< \
@@ -136,8 +132,7 @@ $(IMPORTDIR)/pain_import.owl: $(MIRRORDIR)/pain.owl $(IMPORTDIR)/pain_terms.txt
 
 .PRECIOUS: $(IMPORTDIR)/uberon_import.owl
 $(IMPORTDIR)/uberon_import.owl: $(MIRRORDIR)/uberon.owl $(IMPORTDIR)/uberon_terms.txt
-	if [ $(IMP) = true ]; then $(ROBOT) \
-		@echo "*** building $@ ***"
+	if [ $(IMP) = true ]; then \
 		$(ROBOT) \
 			filter \
 				--input $< \
