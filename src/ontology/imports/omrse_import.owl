@@ -7,7 +7,7 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 
 
 Ontology(<http://purl.obolibrary.org/obo/ohd/imports/omrse_import.owl>
-<http://purl.obolibrary.org/obo/ohd/imports/2026-04-20/omrse_import.owl>
+<http://purl.obolibrary.org/obo/ohd/imports/2026-09-01/omrse_import.owl>
 
 Declaration(Class(<http://purl.obolibrary.org/obo/BFO_0000001>))
 Declaration(Class(<http://purl.obolibrary.org/obo/BFO_0000002>))
@@ -19,6 +19,8 @@ Declaration(Class(<http://purl.obolibrary.org/obo/BFO_0000031>))
 Declaration(Class(<http://purl.obolibrary.org/obo/BFO_0000040>))
 Declaration(Class(<http://purl.obolibrary.org/obo/IAO_0000030>))
 Declaration(Class(<http://purl.obolibrary.org/obo/IAO_0000310>))
+Declaration(Class(<http://purl.obolibrary.org/obo/MF_0000030>))
+Declaration(Class(<http://purl.obolibrary.org/obo/MF_0000031>))
 Declaration(Class(<http://purl.obolibrary.org/obo/OBI_0000245>))
 Declaration(Class(<http://purl.obolibrary.org/obo/OMRSE_00000007>))
 Declaration(Class(<http://purl.obolibrary.org/obo/OMRSE_00000008>))
@@ -27,6 +29,11 @@ Declaration(Class(<http://purl.obolibrary.org/obo/OMRSE_00000051>))
 Declaration(Class(<http://purl.obolibrary.org/obo/OMRSE_00000089>))
 Declaration(Class(<http://purl.obolibrary.org/obo/OMRSE_00000090>))
 Declaration(Class(<http://purl.obolibrary.org/obo/OMRSE_00000091>))
+Declaration(Class(<http://purl.obolibrary.org/obo/OMRSE_00000277>))
+Declaration(Class(<http://purl.obolibrary.org/obo/OMRSE_00000278>))
+Declaration(Class(<http://purl.obolibrary.org/obo/OMRSE_00000279>))
+Declaration(Class(<http://purl.obolibrary.org/obo/OMRSE_00000281>))
+Declaration(Class(<http://purl.obolibrary.org/obo/OMRSE_00000296>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0000052>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002314>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002502>))
@@ -38,6 +45,9 @@ Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0000116>))
 Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0000117>))
 Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0000118>))
 Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0000119>))
+Declaration(AnnotationProperty(<http://purl.org/dc/elements/1.1/contributor>))
+Declaration(AnnotationProperty(<http://purl.org/dc/terms/contributor>))
+Declaration(AnnotationProperty(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym>))
 ############################
 #   Annotation Properties
 ############################
@@ -73,6 +83,18 @@ AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/IAO_0000118
 # Annotation Property: <http://purl.obolibrary.org/obo/IAO_0000119> (<http://purl.obolibrary.org/obo/IAO_0000119>)
 
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/omrse.owl>)
+
+# Annotation Property: <http://purl.org/dc/elements/1.1/contributor> (<http://purl.org/dc/elements/1.1/contributor>)
+
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.org/dc/elements/1.1/contributor> <http://purl.obolibrary.org/obo/omrse.owl>)
+
+# Annotation Property: <http://purl.org/dc/terms/contributor> (<http://purl.org/dc/terms/contributor>)
+
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/omrse.owl>)
+
+# Annotation Property: <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> (<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym>)
+
+AnnotationAssertion(rdfs:isDefinedBy <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> <http://purl.obolibrary.org/obo/omrse.owl>)
 
 
 ############################
@@ -261,6 +283,22 @@ AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/IAO_0000310
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/IAO_0000310> "document"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/IAO_0000310> <http://purl.obolibrary.org/obo/IAO_0000030>)
 
+# Class: <http://purl.obolibrary.org/obo/MF_0000030> (representation)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/MF_0000030> "A dependent continuant which is about a portion of reality.")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/MF_0000030> "http://www.jbiomedsem.com/content/1/1/10")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/MF_0000030> <http://purl.obolibrary.org/obo/omrse.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/MF_0000030> "representation")
+SubClassOf(<http://purl.obolibrary.org/obo/MF_0000030> <http://purl.obolibrary.org/obo/BFO_0000020>)
+
+# Class: <http://purl.obolibrary.org/obo/MF_0000031> (cognitive representation)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/MF_0000031> "A representation which specifically depends on an anatomical structure in the cognitive system of an organism.")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/MF_0000031> "http://www.jbiomedsem.com/content/1/1/10")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/MF_0000031> <http://purl.obolibrary.org/obo/omrse.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/MF_0000031> "cognitive representation")
+SubClassOf(<http://purl.obolibrary.org/obo/MF_0000031> <http://purl.obolibrary.org/obo/MF_0000030>)
+
 # Class: <http://purl.obolibrary.org/obo/OBI_0000245> (organization)
 
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000111> <http://purl.obolibrary.org/obo/OBI_0000245> "organization"@en)
@@ -361,6 +399,57 @@ AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.ob
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/OMRSE_00000091> <http://purl.obolibrary.org/obo/omrse.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/OMRSE_00000091> "insurance policy"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/OMRSE_00000091> <http://purl.obolibrary.org/obo/OMRSE_00000090>)
+
+# Class: <http://purl.obolibrary.org/obo/OMRSE_00000277> (subjective representation)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/OMRSE_00000277> "A cognitive representation in which the representation’s bearer is represented as being its bearer."@en)
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/OMRSE_00000277> "Matthew Diller"@en)
+AnnotationAssertion(<http://purl.org/dc/elements/1.1/contributor> <http://purl.obolibrary.org/obo/OMRSE_00000277> "S. Clint Dowland"@en)
+AnnotationAssertion(<http://purl.org/dc/elements/1.1/contributor> <http://purl.obolibrary.org/obo/OMRSE_00000277> "William R. Hogan"@en)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/OMRSE_00000277> <http://purl.obolibrary.org/obo/omrse.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/OMRSE_00000277> "subjective representation"@en)
+SubClassOf(<http://purl.obolibrary.org/obo/OMRSE_00000277> <http://purl.obolibrary.org/obo/MF_0000031>)
+
+# Class: <http://purl.obolibrary.org/obo/OMRSE_00000278> (social identity)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/OMRSE_00000278> "A subjective representation of themselves by a person or group."@en)
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/OMRSE_00000278> "Matthew Diller"@en)
+AnnotationAssertion(<http://purl.org/dc/elements/1.1/contributor> <http://purl.obolibrary.org/obo/OMRSE_00000278> "S. Clint Dowland"@en)
+AnnotationAssertion(<http://purl.org/dc/elements/1.1/contributor> <http://purl.obolibrary.org/obo/OMRSE_00000278> "William R. Hogan"@en)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> <http://purl.obolibrary.org/obo/OMRSE_00000278> "identity"@en)
+AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/OMRSE_00000278> "Definition updated to AddictO defintion."@en)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/OMRSE_00000278> <http://purl.obolibrary.org/obo/omrse.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/OMRSE_00000278> "social identity"@en)
+SubClassOf(<http://purl.obolibrary.org/obo/OMRSE_00000278> <http://purl.obolibrary.org/obo/OMRSE_00000277>)
+
+# Class: <http://purl.obolibrary.org/obo/OMRSE_00000279> (racial identity)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/OMRSE_00000279> "A social identity for which the category is a racial category."@en)
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/OMRSE_00000279> "Matthew Diller"@en)
+AnnotationAssertion(<http://purl.org/dc/elements/1.1/contributor> <http://purl.obolibrary.org/obo/OMRSE_00000279> "S. Clint Dowland"@en)
+AnnotationAssertion(<http://purl.org/dc/elements/1.1/contributor> <http://purl.obolibrary.org/obo/OMRSE_00000279> "William R. Hogan"@en)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/OMRSE_00000279> <http://purl.obolibrary.org/obo/omrse.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/OMRSE_00000279> "racial identity"@en)
+SubClassOf(<http://purl.obolibrary.org/obo/OMRSE_00000279> <http://purl.obolibrary.org/obo/OMRSE_00000278>)
+
+# Class: <http://purl.obolibrary.org/obo/OMRSE_00000281> (ethnic identity)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/OMRSE_00000281> "A social identity for which the category is an ethnic category."@en)
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/OMRSE_00000281> "Matthew Diller"@en)
+AnnotationAssertion(<http://purl.org/dc/elements/1.1/contributor> <http://purl.obolibrary.org/obo/OMRSE_00000281> "S. Clint Dowland"@en)
+AnnotationAssertion(<http://purl.org/dc/elements/1.1/contributor> <http://purl.obolibrary.org/obo/OMRSE_00000281> "William R. Hogan"@en)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/OMRSE_00000281> <http://purl.obolibrary.org/obo/omrse.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/OMRSE_00000281> "ethnic identity"@en)
+SubClassOf(<http://purl.obolibrary.org/obo/OMRSE_00000281> <http://purl.obolibrary.org/obo/OMRSE_00000278>)
+
+# Class: <http://purl.obolibrary.org/obo/OMRSE_00000296> (gender identity)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/OMRSE_00000296> "A social identity for which the category is a gender category."@en)
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.obolibrary.org/obo/OMRSE_00000296> "ORCID: 0000-0002-5039-2052"@en)
+AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/OMRSE_00000296> <https://orcid.org/0000-0003-1909-9269>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/OMRSE_00000296> <http://purl.obolibrary.org/obo/omrse.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/OMRSE_00000296> "gender identity"@en)
+SubClassOf(<http://purl.obolibrary.org/obo/OMRSE_00000296> <http://purl.obolibrary.org/obo/OMRSE_00000278>)
 
 
 )
