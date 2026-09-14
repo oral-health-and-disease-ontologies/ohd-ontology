@@ -26,12 +26,12 @@ Import(<http://purl.obolibrary.org/obo/ohd/imports/envo_import.owl>)
 
 Declaration(Class(obo:CHEBI_31344))
 Declaration(Class(obo:CHEBI_36560))
+Declaration(Class(obo:OBI_0000047))
 Declaration(Class(obo:OHD_0000000))
 Declaration(Class(obo:OHD_0000001))
 Declaration(Class(obo:OHD_0000034))
 Declaration(Class(obo:OHD_0000036))
 Declaration(Class(obo:OHD_0000048))
-Declaration(Class(obo:OHD_00001025))
 Declaration(Class(obo:OHD_0000135))
 Declaration(Class(obo:OHD_0000136))
 Declaration(Class(obo:OHD_0000137))
@@ -39,6 +39,7 @@ Declaration(Class(obo:OHD_0000146))
 Declaration(Class(obo:OHD_0000147))
 Declaration(Class(obo:OHD_0000156))
 Declaration(Class(obo:OHD_0000191))
+Declaration(Class(obo:OHD_0001000))
 Declaration(Class(obo:OHD_0001005))
 Declaration(Class(obo:OHD_0001006))
 Declaration(Class(obo:OHD_0001007))
@@ -90,38 +91,6 @@ Declaration(Class(obo:OHD_0001084))
 Declaration(Class(obo:OHD_0001085))
 Declaration(Class(obo:OHD_0001086))
 Declaration(Class(obo:OHD_0001087))
-Declaration(Class(obo:OHD_0000101))
-Declaration(Class(obo:OHD_0000102))
-Declaration(Class(obo:OHD_0000103))
-Declaration(Class(obo:OHD_0000104))
-Declaration(Class(obo:OHD_0000105))
-Declaration(Class(obo:OHD_0000106))
-Declaration(Class(obo:OHD_0000107))
-Declaration(Class(obo:OHD_0000108))
-Declaration(Class(obo:OHD_0000109))
-Declaration(Class(obo:OHD_0000110))
-Declaration(Class(obo:OHD_0000111))
-Declaration(Class(obo:OHD_0000112))
-Declaration(Class(obo:OHD_0000113))
-Declaration(Class(obo:OHD_0000114))
-Declaration(Class(obo:OHD_0000115))
-Declaration(Class(obo:OHD_0000116))
-Declaration(Class(obo:OHD_0000117))
-Declaration(Class(obo:OHD_0000118))
-Declaration(Class(obo:OHD_0000119))
-Declaration(Class(obo:OHD_0000120))
-Declaration(Class(obo:OHD_0000121))
-Declaration(Class(obo:OHD_0000122))
-Declaration(Class(obo:OHD_0000123))
-Declaration(Class(obo:OHD_0000124))
-Declaration(Class(obo:OHD_0000125))
-Declaration(Class(obo:OHD_0000126))
-Declaration(Class(obo:OHD_0000127))
-Declaration(Class(obo:OHD_0000128))
-Declaration(Class(obo:OHD_0000129))
-Declaration(Class(obo:OHD_0000130))
-Declaration(Class(obo:OHD_0000131))
-Declaration(Class(obo:OHD_0000132))
 Declaration(Class(oboInOwl:ObsoleteClass))
 Declaration(ObjectProperty(obo:BFO_0000051))
 Declaration(ObjectProperty(obo:BFO_0000052))
@@ -168,6 +137,7 @@ Declaration(AnnotationProperty(obo:IAO_0000412))
 Declaration(AnnotationProperty(obo:IAO_0010000))
 Declaration(AnnotationProperty(obo:OHD_0000065))
 Declaration(AnnotationProperty(obo:OHD_0000273))
+Declaration(AnnotationProperty(obo:OHD_0008045))
 Declaration(AnnotationProperty(dc:contributor))
 Declaration(AnnotationProperty(dc:date))
 Declaration(AnnotationProperty(terms:contributor))
@@ -199,11 +169,11 @@ AnnotationAssertion(rdfs:label obo:IAO_0000115 "definition")
 
 AnnotationAssertion(rdfs:label obo:IAO_0000116 "editor note")
 
-# Annotation Property: obo:IAO_0000117 (term editor)
+# Annotation Property: obo:IAO_0000117 (definition editor)
 
 AnnotationAssertion(rdfs:label obo:IAO_0000117 "definition editor")
 
-# Annotation Property: obo:IAO_0000118 (alternative label)
+# Annotation Property: obo:IAO_0000118 (alternative term)
 
 AnnotationAssertion(rdfs:label obo:IAO_0000118 "alternative term")
 
@@ -222,9 +192,17 @@ AnnotationAssertion(rdfs:label obo:IAO_0000232 "curator note")
 
 AnnotationAssertion(rdfs:label obo:IAO_0000412 "imported from")
 
-# Annotation Property: obo:IAO_0010000 (has axiom label)
+# Annotation Property: obo:IAO_0010000 (axiom id)
 
 AnnotationAssertion(rdfs:label obo:IAO_0010000 "axiom id")
+
+# Annotation Property: obo:OHD_0008045 (IUPAC name)
+
+AnnotationAssertion(Annotation(obo:IAO_0000119 "https://iupac.org/what-we-do/nomenclature/brief-guides/") obo:IAO_0000115 obo:OHD_0008045 "Alternative label for a chemical adhering to the International Union of Pure and Applied Chemistry (IUPAC) nomenclature of organic, inorganic, or polymer chemistry ."@en)
+AnnotationAssertion(terms:contributor obo:OHD_0008045 <https://orcid.org/0009-0002-7282-0836>)
+AnnotationAssertion(terms:created obo:OHD_0008045 "2026-06-07T19:26:12Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0008045 "IUPAC name"@en)
+SubAnnotationPropertyOf(obo:OHD_0008045 obo:IAO_0000118)
 
 # Annotation Property: terms:created (date created)
 
@@ -359,44 +337,44 @@ SubClassOf(obo:CHEBI_52257 ObjectSomeValuesFrom(obo:BFO_0000051 obo:CHEBI_52257)
 
 # Class: obo:OHD_0000000 (dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000000 "A processed material that bears a dental restoration material role.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000000 "A processed material that bears a dental restoration material role."@en)
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0000000 "restoration material")
 AnnotationAssertion(terms:contributor obo:OHD_0000000 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000000 "dental restoration material")
-EquivalentClasses(obo:OHD_0000000 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000191))
+AnnotationAssertion(rdfs:label obo:OHD_0000000 "dental restoration material"@en)
+EquivalentClasses(obo:OHD_0000000 ObjectIntersectionOf(obo:OBI_0000047 ObjectSomeValuesFrom(obo:RO_0000087 obo:OHD_0000191)))
 SubClassOf(obo:OHD_0000000 ObjectSomeValuesFrom(obo:BFO_0000053 obo:OHD_0000191))
 
 # Class: obo:OHD_0000001 (amalgam dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "ISBN: 978-1-4377-2418-9") obo:IAO_0000115 obo:OHD_0000001 "A metal dental restoration material that consists of alloy that is formed by reacting mercury with silver, copper, tin and sometimes palladium, zinc and other elements to improve handling characteristics and clinical performance.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "ISBN: 978-1-4377-2418-9") obo:IAO_0000115 obo:OHD_0000001 "A metal dental restoration material that consists of alloy that is formed by reacting mercury with silver, copper, tin and sometimes palladium, zinc and other elements to improve handling characteristics and clinical performance."@en)
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000001 "Titus Schleyer 1/14/2014: updated definition")
 AnnotationAssertion(terms:contributor obo:OHD_0000001 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:contributor obo:OHD_0000001 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(terms:contributor obo:OHD_0000001 <https://orcid.org/0000-0003-1829-971X>)
 AnnotationAssertion(rdfs:comment obo:OHD_0000001 "Color depends on which metal is in the alloy at what % (e.g. if copper is more, amalgam become blackish).")
-AnnotationAssertion(rdfs:label obo:OHD_0000001 "amalgam dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0000001 "amalgam dental restoration material"@en)
 SubClassOf(obo:OHD_0000001 obo:OHD_0000048)
 
 # Class: obo:OHD_0000034 (gold foil dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000034 "A metal dental restoration material in which the principal ingredient is gold.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000034 "A metal dental restoration material in which the principal ingredient is gold."@en)
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000034 "Bill Duncan 12/11/2014:
 updated defintion")
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000034 "Titus Schleyer 3/13/2014: slightly updated definition")
 AnnotationAssertion(terms:contributor obo:OHD_0000034 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(terms:contributor obo:OHD_0000034 <https://orcid.org/0000-0003-1829-971X>)
-AnnotationAssertion(rdfs:label obo:OHD_0000034 "gold foil dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0000034 "gold foil dental restoration material"@en)
 SubClassOf(obo:OHD_0000034 obo:OHD_0000048)
 
 # Class: obo:OHD_0000036 (resin-based composite dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "Craig's restorative Dental Material") Annotation(obo:IAO_0000119 "ISBN:0323478212") obo:IAO_0000115 obo:OHD_0000036 "A dental restoration material that is primarily composed of highly cross-linked organic polymeric matrix reinforced by filler particles and/or short fibers bound to the matrix by coupling agents and set by light and or chemically activated polymerization reaction.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "Craig's restorative Dental Material") Annotation(obo:IAO_0000119 "ISBN:0323478212") obo:IAO_0000115 obo:OHD_0000036 "A dental restoration material that is primarily composed of highly cross-linked organic polymeric matrix reinforced by filler particles and/or short fibers bound to the matrix by coupling agents and set by light and or chemically activated polymerization reaction."@en)
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000036 "Titus Schleyer 3/13/2014: updated definition
 
 Bill D. 08-04-2023: Not all resins are tooth colored. Some are cream colored. Also, updated definition source Craig's restorative Dental Material.")
 AnnotationAssertion(terms:contributor obo:OHD_0000036 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(terms:contributor obo:OHD_0000036 <https://orcid.org/0000-0003-1829-971X>)
-AnnotationAssertion(rdfs:label obo:OHD_0000036 "resin-based composite dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0000036 "resin-based composite dental restoration material"@en)
 SubClassOf(obo:OHD_0000036 obo:OHD_0000000)
 
 # Class: obo:OHD_0000048 (metal dental restoration material)
@@ -404,63 +382,53 @@ SubClassOf(obo:OHD_0000036 obo:OHD_0000000)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000048 "A dental restoration material that consists mostly of metal and metal alloys."@en)
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000048 "Use CHEBI:33521 'metal ion' in a complete definition. Figure out how to say \"mostly\" first, however."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0000048 <https://orcid.org/0000-0001-6424-4096>)
-AnnotationAssertion(rdfs:label obo:OHD_0000048 "metal dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0000048 "metal dental restoration material"@en)
 SubClassOf(obo:OHD_0000048 obo:OHD_0000000)
-
-# Class: obo:OHD_00001025 (mineral trioxide aggregate cement dental restoration material)
-
-AnnotationAssertion(Annotation(obo:IAO_0000119 "Chang, S.W., 2012. Chemical characteristics of mineral trioxide aggregate and its hydration reaction. 
-Restorative dentistry & endodontics, 37(4), pp.188-193.") obo:IAO_0000115 obo:OHD_00001025 "A dental restoration material that primarily consists of tricalcium silicate, dicalcium silicate (similar to Portland cement), calcium aluminate, gypsum, radiopacifiers and set by hydration of silicates in the presence of moisture.")
-AnnotationAssertion(terms:contributor obo:OHD_00001025 <https://orcid.org/0000-0001-6424-4096>)
-AnnotationAssertion(terms:created obo:OHD_00001025 "2023-10-12T21:52:17Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:comment obo:OHD_00001025 "It is used in pulp capping, apexification, pulpotomy, and treatment of perforation.")
-AnnotationAssertion(rdfs:label obo:OHD_00001025 "mineral trioxide aggregate cement dental restoration material")
-SubClassOf(obo:OHD_00001025 obo:OHD_0000000)
 
 # Class: obo:OHD_0000135 (ceramic dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "ISBN: 9780323697552") obo:IAO_0000115 obo:OHD_0000135 "A dental restoration material that has a nonmetallic inorganic structure consisting primarily of compounds containing oxygen combined with one or more metallic or semi-metallic elements that are processed at high temperatures, pressed, and polished or milled.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "ISBN: 9780323697552") obo:IAO_0000115 obo:OHD_0000135 "A dental restoration material that has a nonmetallic inorganic structure consisting primarily of compounds containing oxygen combined with one or more metallic or semi-metallic elements that are processed at high temperatures, pressed, and polished or milled."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0000135 <https://orcid.org/0000-0001-6424-4096>)
-AnnotationAssertion(rdfs:label obo:OHD_0000135 "ceramic dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0000135 "ceramic dental restoration material"@en)
 SubClassOf(obo:OHD_0000135 obo:OHD_0000000)
 
 # Class: obo:OHD_0000136 (titanium dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1") obo:IAO_0000115 obo:OHD_0000136 "A metal dental restoration material that contains 85% or more titanium.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1") obo:IAO_0000115 obo:OHD_0000136 "A metal dental restoration material that contains 85% or more titanium."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0000136 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000136 "titanium dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0000136 "titanium dental restoration material"@en)
 SubClassOf(obo:OHD_0000136 obo:OHD_0000048)
 
 # Class: obo:OHD_0000137 (stainless steel dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000137 "A metal dental restoration material in which the principal ingredient is stainless steel.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000137 "A metal dental restoration material in which the principal ingredient is stainless steel."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0000137 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000137 "stainless steel dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0000137 "stainless steel dental restoration material"@en)
 SubClassOf(obo:OHD_0000137 obo:OHD_0000048)
 
 # Class: obo:OHD_0000146 (noble metal dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1") obo:IAO_0000115 obo:OHD_0000146 "A metal dental restoration material that is composed of a metallic alloy that contains 25% or more (by weight) of noble metal elements.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1") obo:IAO_0000115 obo:OHD_0000146 "A metal dental restoration material that is composed of a metallic alloy that contains 25% or more (by weight) of noble metal elements."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0000146 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(rdfs:comment obo:OHD_0000146 "Noble metal elements include Gold, Palladium, Platinum, Rhodium, Ruthenium, Iridium, and Osmium.")
-AnnotationAssertion(rdfs:label obo:OHD_0000146 "noble metal dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0000146 "noble metal dental restoration material"@en)
 SubClassOf(obo:OHD_0000146 obo:OHD_0000048)
 
 # Class: obo:OHD_0000147 (high noble metal dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1") obo:IAO_0000115 obo:OHD_0000147 "A noble metal dental restoration material that is composed of a metallic alloy that contains 40% by weight or more of gold and 60% by weight or more noble metal elements.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1") obo:IAO_0000115 obo:OHD_0000147 "A noble metal dental restoration material that is composed of a metallic alloy that contains 40% by weight or more of gold and 60% by weight or more noble metal elements."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0000147 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:contributor obo:OHD_0000147 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(terms:contributor obo:OHD_0000147 <https://orcid.org/0009-0002-7282-0836>)
-AnnotationAssertion(rdfs:label obo:OHD_0000147 "high noble metal dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0000147 "high noble metal dental restoration material"@en)
 SubClassOf(obo:OHD_0000147 obo:OHD_0000146)
 
 # Class: obo:OHD_0000156 (predominantly base metal dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1") obo:IAO_0000115 obo:OHD_0000156 "A metal dental restoration material that is composed of group of cast metals that rely on Chromium for corrosion resistance.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "ISBN:1935201387#CDT 2011-2012 Current Dental Terminology, Chapter 1") obo:IAO_0000115 obo:OHD_0000156 "A metal dental restoration material that is composed of group of cast metals that rely on Chromium for corrosion resistance."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0000156 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:contributor obo:OHD_0000156 <https://orcid.org/0000-0001-9625-1899>)
-AnnotationAssertion(rdfs:label obo:OHD_0000156 "predominantly base metal dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0000156 "predominantly base metal dental restoration material"@en)
 SubClassOf(obo:OHD_0000156 obo:OHD_0000048)
 
 # Class: obo:OHD_0000191 (dental restoration material role)
@@ -475,156 +443,165 @@ Widened the definition to include other materials used in restoration processes 
 AnnotationAssertion(obo:IAO_0000116 obo:OHD_0000191 "Titus Schleyer 1/1/2014: updated definition")
 AnnotationAssertion(terms:contributor obo:OHD_0000191 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(terms:contributor obo:OHD_0000191 <https://orcid.org/0000-0003-1829-971X>)
-AnnotationAssertion(rdfs:label obo:OHD_0000191 "dental restoration material role")
+AnnotationAssertion(rdfs:label obo:OHD_0000191 "dental restoration material role"@en)
+
+# Class: obo:OHD_0001000 (mineral trioxide aggregate cement dental restoration material)
+
+AnnotationAssertion(Annotation(obo:IAO_0000119 "Chang, S.W., 2012. Chemical characteristics of mineral trioxide aggregate and its hydration reaction. 
+Restorative dentistry & endodontics, 37(4), pp.188-193.") obo:IAO_0000115 obo:OHD_0001000 "A dental restoration material that primarily consists of tricalcium silicate, dicalcium silicate (similar to Portland cement), calcium aluminate, gypsum, radiopacifiers and set by hydration of silicates in the presence of moisture."@en)
+AnnotationAssertion(terms:contributor obo:OHD_0001000 <https://orcid.org/0000-0001-6424-4096>)
+AnnotationAssertion(terms:created obo:OHD_0001000 "2023-10-12T21:52:17Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0001000 "It is used in pulp capping, apexification, pulpotomy, and treatment of perforation.")
+AnnotationAssertion(rdfs:label obo:OHD_0001000 "mineral trioxide aggregate cement dental restoration material"@en)
+SubClassOf(obo:OHD_0001000 obo:OHD_0000000)
 
 # Class: obo:OHD_0001005 (resin-based cement dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "ISBN:0323478212") Annotation(obo:IAO_0000119 "https://www.iso.org/standard/42898.html") obo:IAO_0000115 obo:OHD_0001005 "A dental restoration material that contains methacrylate monomers, fillers and activator initiator system to facilitate light activated and/or chemically activated polymerization reactions.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "ISBN:0323478212") Annotation(obo:IAO_0000119 "https://www.iso.org/standard/42898.html") obo:IAO_0000115 obo:OHD_0001005 "A dental restoration material that contains methacrylate monomers, fillers and activator initiator system to facilitate light activated and/or chemically activated polymerization reactions."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001005 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001005 "2023-08-07T15:16:39Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:comment obo:OHD_0001005 "It is intended for use in the cementation or fixation of restorations and appliances.")
-AnnotationAssertion(rdfs:label obo:OHD_0001005 "resin-based cement dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0001005 "resin-based cement dental restoration material"@en)
 SubClassOf(obo:OHD_0001005 obo:OHD_0000000)
 
 # Class: obo:OHD_0001006 (glass ionomer cement dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001006 "An acid-base cement dental restoration material containing basic ion-leachable glass (fluoroaluminosilicate glass) as a powder component with polymeric water-soluble acid (polyacrylic acid, polyprotic carboxylic acid) as liquid component to complete the acid-base reaction.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001006 "An acid-base cement dental restoration material containing basic ion-leachable glass (fluoroaluminosilicate glass) as a powder component with polymeric water-soluble acid (polyacrylic acid, polyprotic carboxylic acid) as liquid component to complete the acid-base reaction."@en)
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0001006 "Glass Ionomer Cement (GIC)"@en)
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0001006 "glass polyalkenoate cement"@en)
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0001006 "doi:10.3390/jfb7030016")
 AnnotationAssertion(terms:contributor obo:OHD_0001006 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001006 "2023-07-19T15:23:33Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0001006 "glass ionomer cement dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0001006 "glass ionomer cement dental restoration material"@en)
 SubClassOf(obo:OHD_0001006 obo:OHD_0001021)
 
 # Class: obo:OHD_0001007 (zinc oxide eugenol cement dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001007 "A zinc-oxide cement dental restoration material containing eugenol as a liquid component to complete the acid-base reaction.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001007 "A zinc-oxide cement dental restoration material containing eugenol as a liquid component to complete the acid-base reaction."@en)
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0001007 "ISBN:0323478212")
 AnnotationAssertion(terms:contributor obo:OHD_0001007 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001007 "2023-07-21T13:58:36Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0001007 "zinc oxide eugenol cement dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0001007 "zinc oxide eugenol cement dental restoration material"@en)
 SubClassOf(obo:OHD_0001007 obo:OHD_0001022)
 SubClassOf(obo:OHD_0001007 ObjectSomeValuesFrom(obo:BFO_0000051 obo:CHEBI_4917))
 
 # Class: obo:OHD_0001008 (calcium aluminate glass ionomer hybrid cement dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001008 "A dental restoration material containing calcium aluminate, polyacrylic acid  with basic ion-leachable glass particles as powder component with water as liquid component to complete the acid-base reaction of glass ionomer and hydration of calcium aluminate cement.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001008 "A dental restoration material containing calcium aluminate, polyacrylic acid  with basic ion-leachable glass particles as powder component with water as liquid component to complete the acid-base reaction of glass ionomer and hydration of calcium aluminate cement."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001008 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001008 "2024-02-08T11:22:23Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0001008 "calcium aluminate glass ionomer hybrid cement dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0001008 "calcium aluminate glass ionomer hybrid cement dental restoration material"@en)
 SubClassOf(obo:OHD_0001008 obo:OHD_0000000)
 
 # Class: obo:OHD_0001010 (zinc oxide non-eugenol cement dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "ISBN:0323478212") Annotation(obo:IAO_0000119 "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9689175/") obo:IAO_0000115 obo:OHD_0001010 "A zinc-oxide cement dental restoration material containing aliphatic acid or butyric acid to substitute the eugenol as a liquid component to complete the acid-base reaction.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "ISBN:0323478212") Annotation(obo:IAO_0000119 "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9689175/") obo:IAO_0000115 obo:OHD_0001010 "A zinc-oxide cement dental restoration material containing aliphatic acid or butyric acid to substitute the eugenol as a liquid component to complete the acid-base reaction."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001010 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001010 "2023-07-31T12:05:19Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0001010 "zinc oxide non-eugenol cement dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0001010 "zinc oxide non-eugenol cement dental restoration material"@en)
 SubClassOf(obo:OHD_0001010 obo:OHD_0001022)
 
 # Class: obo:OHD_0001011 (bulk-filled resin-based composite dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "Craig's restorative Dental Material") obo:IAO_0000115 obo:OHD_0001011 "A resin-based composite dental restoration material that enables the restoration to be built up in thick layers of up to 4 mm and are recommended by manufacturers to simplify clinical technique and save time compared to traditional incremental placement.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "Craig's restorative Dental Material") obo:IAO_0000115 obo:OHD_0001011 "A resin-based composite dental restoration material that enables the restoration to be built up in thick layers of up to 4 mm and are recommended by manufacturers to simplify clinical technique and save time compared to traditional incremental placement."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001011 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001011 "2023-07-31T12:07:09Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0001011 "bulk-filled resin-based composite dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0001011 "bulk-filled resin-based composite dental restoration material"@en)
 SubClassOf(obo:OHD_0001011 obo:OHD_0000036)
 
 # Class: obo:OHD_0001012 (flowable resin-based composite dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "Craig's restorative Dental Material") obo:IAO_0000115 obo:OHD_0001012 "A resin-based composite dental restoration material that has low-viscosity and is recommended for cervical lesions, restorations in deciduous teeth, and other small, low- or non-stress bearing restorations.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "Craig's restorative Dental Material") obo:IAO_0000115 obo:OHD_0001012 "A resin-based composite dental restoration material that has low-viscosity and is recommended for cervical lesions, restorations in deciduous teeth, and other small, low- or non-stress bearing restorations."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001012 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001012 "2023-07-31T12:07:24Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0001012 "flowable resin-based composite dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0001012 "flowable resin-based composite dental restoration material"@en)
 SubClassOf(obo:OHD_0001012 obo:OHD_0000036)
 
 # Class: obo:OHD_0001014 (macrofilled resin-based composite dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "Craig's restorative Dental Material") obo:IAO_0000115 obo:OHD_0001014 "A resin-based composite dental restoration material that contains macrosize filler particles.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "Craig's restorative Dental Material") obo:IAO_0000115 obo:OHD_0001014 "A resin-based composite dental restoration material that contains macrosize filler particles."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001014 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001014 "2023-07-31T12:08:04Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0001014 "macrofilled resin-based composite dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0001014 "macrofilled resin-based composite dental restoration material"@en)
 SubClassOf(obo:OHD_0001014 obo:OHD_0000036)
 
 # Class: obo:OHD_0001015 (microfilled resin-based composite dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "Craig's restorative Dental Material") obo:IAO_0000115 obo:OHD_0001015 "A resin-based composite dental restoration material which is composed of dimethacrylate resins with 0.04-m colloidal silica fillers and prepolymerized resins, which are sometimes filled with colloidal silica.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "Craig's restorative Dental Material") obo:IAO_0000115 obo:OHD_0001015 "A resin-based composite dental restoration material which is composed of dimethacrylate resins with 0.04-m colloidal silica fillers and prepolymerized resins, which are sometimes filled with colloidal silica."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001015 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001015 "2023-07-31T12:08:13Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0001015 "microfilled resin-based composite dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0001015 "microfilled resin-based composite dental restoration material"@en)
 SubClassOf(obo:OHD_0001015 obo:OHD_0000036)
 
 # Class: obo:OHD_0001017 (nano filled resin-based composite dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "Craig's restorative Dental Material") obo:IAO_0000115 obo:OHD_0001017 "A resin-based composite dental restoration material that contains nanometer-sized filler particles (1 to 100 nm) throughout the resin matrix.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "Craig's restorative Dental Material") obo:IAO_0000115 obo:OHD_0001017 "A resin-based composite dental restoration material that contains nanometer-sized filler particles (1 to 100 nm) throughout the resin matrix."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001017 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001017 "2023-07-31T12:08:41Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0001017 "nano filled resin-based composite dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0001017 "nano filled resin-based composite dental restoration material"@en)
 SubClassOf(obo:OHD_0001017 obo:OHD_0000036)
 
 # Class: obo:OHD_0001018 (nano hybrid resin-based composite dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "Craig's restorative Dental Material") obo:IAO_0000115 obo:OHD_0001018 "A resin-based composite dental restoration material which consist of large particles 
-(0.4 to 5 m) with added nanometer-sized filler particles. Thus they are hybrid materials, not true nanofilled composites.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "Craig's restorative Dental Material") obo:IAO_0000115 obo:OHD_0001018 "A resin-based composite dental restoration material which consist of large particles (0.4 to 5 m) with added nanometer-sized filler particles. Thus they are hybrid materials, not true nanofilled composites."@en)
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0001018 "Craig's restorative Dental Material"@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001018 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001018 "2023-07-31T12:08:57Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0001018 "nano hybrid resin-based composite dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0001018 "nano hybrid resin-based composite dental restoration material"@en)
 SubClassOf(obo:OHD_0001018 obo:OHD_0000036)
 
 # Class: obo:OHD_0001019 (compomer resin-based composite dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "Craig's restorative Dental Material") Annotation(obo:IAO_0000119 "ISBN: 978-1-4377-2418-9") obo:IAO_0000115 obo:OHD_0001019 "A resin-based composite dental restoration material that contains fluoride-releasing silicate glass filler phase and a methacrylate based matrix with carboxylic acid functional groups.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "Craig's restorative Dental Material") Annotation(obo:IAO_0000119 "ISBN: 978-1-4377-2418-9") obo:IAO_0000115 obo:OHD_0001019 "A resin-based composite dental restoration material that contains fluoride-releasing silicate glass filler phase and a methacrylate based matrix with carboxylic acid functional groups."@en)
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0001019 "polyacid-modified glass ionomer cement")
 AnnotationAssertion(terms:contributor obo:OHD_0001019 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001019 "2023-07-31T12:09:12Z"^^xsd:dateTime)
-AnnotationAssertion(oboInOwl:hasDbXref obo:OHD_0001019 "ISBN: 978-81-312-3488-4")
-AnnotationAssertion(rdfs:label obo:OHD_0001019 "compomer resin-based composite dental restoration material")
+AnnotationAssertion(oboInOwl:hasDbXref obo:OHD_0001019 "ISBN:978-81-312-3488-4")
+AnnotationAssertion(rdfs:label obo:OHD_0001019 "compomer resin-based composite dental restoration material"@en)
 SubClassOf(obo:OHD_0001019 obo:OHD_0000036)
 
 # Class: obo:OHD_0001020 (metal modified glass ionomer dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001020 "An acid-base cement dental restoration material where in  glass ionomer cements  the glasses are fused with metals such as gold, silver, titanium, and silver to improve their strength.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001020 "An acid-base cement dental restoration material where in  glass ionomer cements  the glasses are fused with metals such as gold, silver, titanium, and silver to improve their strength."@en)
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0001020 "cermet dental restoration material"@en)
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0001020 "ISBN:0323478212"@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001020 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001020 "2023-07-31T15:40:29Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0001020 "metal modified glass ionomer dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0001020 "metal modified glass ionomer dental restoration material"@en)
 SubClassOf(obo:OHD_0001020 obo:OHD_0001021)
 
 # Class: obo:OHD_0001021 (acid-base cement dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001021 "A dental restoration material containing acid and liquid components in powder liquid form.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001021 "A dental restoration material containing acid and liquid components in powder liquid form."@en)
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0001021 "ISBN:0323478212")
 AnnotationAssertion(terms:contributor obo:OHD_0001021 <https://orcid.org/0000-0001-6424-4096>)
-AnnotationAssertion(rdfs:label obo:OHD_0001021 "acid-base cement dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0001021 "acid-base cement dental restoration material"@en)
 SubClassOf(obo:OHD_0001021 obo:OHD_0000000)
 
 # Class: obo:OHD_0001022 (zinc oxide cement dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001022 "An acid-base cement dental restoration material containing zinc-oxide as a powder component with some specific liquid component to complete the acid-base reaction.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001022 "An acid-base cement dental restoration material containing zinc-oxide as a powder component with some specific liquid component to complete the acid-base reaction."@en)
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0001022 "ISBN:0323478212")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0001022 "https://www.iso.org/standard/84407.html")
 AnnotationAssertion(terms:contributor obo:OHD_0001022 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001022 "2023-08-05T15:44:55Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0001022 "zinc oxide cement dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0001022 "zinc oxide cement dental restoration material"@en)
 SubClassOf(obo:OHD_0001022 obo:OHD_0001021)
 SubClassOf(obo:OHD_0001022 ObjectSomeValuesFrom(obo:BFO_0000051 obo:CHEBI_36560))
 
 # Class: obo:OHD_0001026 (resin-modified glass ionomer dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001026 "An acid-base cement dental restoration material with modification of  glass ionomer cement with some monomer component and associated activator initiator system to facilitate light and chemically activated polymerization reaction.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001026 "An acid-base cement dental restoration material with modification of  glass ionomer cement with some monomer component and associated activator initiator system to facilitate light and chemically activated polymerization reaction."@en)
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0001026 "doi: 10.3390/jfb7030016")
 AnnotationAssertion(terms:contributor obo:OHD_0001026 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001026 "2023-08-08T12:27:23Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:comment obo:OHD_0001026 "The monomer is typically 2-hydroxyethyl methacrylate, HEMA, and the initiator is camphorquinone. Resin-modified glass-ionomers set by the twin processes of neutralization (acid-base reaction) and addition polymerization, and the resulting material has a complicated structure based on the combined products of these two reactions.")
-AnnotationAssertion(rdfs:label obo:OHD_0001026 "resin-modified glass ionomer dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0001026 "resin-modified glass ionomer dental restoration material"@en)
 SubClassOf(obo:OHD_0001026 obo:OHD_0001021)
 
 # Class: obo:OHD_0001032 (glass matrix ceramic dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "https://doi.org/10.3390/ma16247541") obo:IAO_0000115 obo:OHD_0001032 "A ceramic dental restoration material that contains crystallized ceramic portions which are uniformally distributed within a glass phase.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "https://doi.org/10.3390/ma16247541") obo:IAO_0000115 obo:OHD_0001032 "A ceramic dental restoration material that contains crystallized ceramic portions which are uniformally distributed within a glass phase."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001032 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001032 "2024-08-30T13:39:47Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001032 "glass matrix ceramic dental restoration material"@en)
@@ -632,7 +609,7 @@ SubClassOf(obo:OHD_0001032 obo:OHD_0000135)
 
 # Class: obo:OHD_0001033 (polycrystalline ceramic dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001033 "A ceramic dental restoration material that contains small crystals, also known as grains, that are separated by grain boundaries and present a random crystallographic orientation , that do not contain a glass phase.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001033 "A ceramic dental restoration material that contains small crystals, also known as grains, that are separated by grain boundaries and present a random crystallographic orientation , that do not contain a glass phase."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001033 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001033 "2024-08-30T13:41:52Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001033 "polycrystalline ceramic dental restoration material"@en)
@@ -641,7 +618,7 @@ SubClassOf(obo:OHD_0001033 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0001079)
 
 # Class: obo:OHD_0001034 (zirconia polycrystalline ceramic dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "ISBN: 9780323697552") obo:IAO_0000115 obo:OHD_0001034 "A polycrystalline ceramic dental restoration material that contains Zirconia which is partially stabilized zirconium oxide usually in the tetragonal phase.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "ISBN: 9780323697552") obo:IAO_0000115 obo:OHD_0001034 "A polycrystalline ceramic dental restoration material that contains Zirconia which is partially stabilized zirconium oxide usually in the tetragonal phase."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001034 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001034 "2024-08-30T13:42:45Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001034 "zirconia polycrystalline ceramic dental restoration material"@en)
@@ -651,7 +628,7 @@ SubClassOf(obo:OHD_0001034 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0001080)
 
 # Class: obo:OHD_0001035 (3Y-TZP zirconia ceramic dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001035 "A zirconia polycrystalline ceramic dental restoration material that contains the first generation of dental zirconia fully stabilized with yttria (Y2O3) which are chiefly composed of the tetragonal phase (tetragonal zirconia polycrystals : TZPs) and are stabilized at room temperature with the addition of 3 mol% of yttrium oxide (3Y-TZP).")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001035 "A zirconia polycrystalline ceramic dental restoration material that contains the first generation of dental zirconia fully stabilized with yttria (Y2O3) which are chiefly composed of the tetragonal phase (tetragonal zirconia polycrystals : TZPs) and are stabilized at room temperature with the addition of 3 mol% of yttrium oxide (3Y-TZP)."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001035 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001035 "2024-08-30T13:43:04Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001035 "3Y-TZP zirconia ceramic dental restoration material"@en)
@@ -659,7 +636,7 @@ SubClassOf(obo:OHD_0001035 obo:OHD_0001034)
 
 # Class: obo:OHD_0001036 (4Y-PSZ zirconia ceramic dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001036 "A zirconia polycrystalline ceramic dental restoration material that contains the next generation of dental zirconia with the addition of transparent, non-birefringent, cubic-phase stabilized with higher yttrium oxide (of approximately 25% of the cubic phase achieved with 4 mol% of yttrium oxide) with increased translucency in relation to 3Y-TZP for monolithic applications.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001036 "A zirconia polycrystalline ceramic dental restoration material that contains the next generation of dental zirconia with the addition of transparent, non-birefringent, cubic-phase stabilized with higher yttrium oxide (of approximately 25% of the cubic phase achieved with 4 mol% of yttrium oxide) with increased translucency in relation to 3Y-TZP for monolithic applications."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001036 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001036 "2024-08-30T13:43:16Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001036 "4Y-PSZ zirconia ceramic dental restoration material"@en)
@@ -667,7 +644,7 @@ SubClassOf(obo:OHD_0001036 obo:OHD_0001034)
 
 # Class: obo:OHD_0001037 (5Y-PSZ zirconia ceramic dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001037 "A zirconia polycrystalline ceramic dental restoration material that contains zirconia with increased yttrium oxide (5-8% mol)")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001037 "A zirconia polycrystalline ceramic dental restoration material that contains zirconia with increased yttrium oxide (5-8% mol)"@en)
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0001037 "ultra translucent zironia")
 AnnotationAssertion(terms:contributor obo:OHD_0001037 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001037 "2024-08-30T13:43:35Z"^^xsd:dateTime)
@@ -676,7 +653,7 @@ SubClassOf(obo:OHD_0001037 obo:OHD_0001034)
 
 # Class: obo:OHD_0001038 (multichromatic zirconia ceramic dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001038 "A zirconia polycrystalline ceramic dental restoration material that contains additions of layers of different pigments to provide a graded shade between the cervical and the incisal portion of the restoration to mimic the natural tooth appearance.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001038 "A zirconia polycrystalline ceramic dental restoration material that contains additions of layers of different pigments to provide a graded shade between the cervical and the incisal portion of the restoration to mimic the natural tooth appearance."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001038 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001038 "2024-08-30T13:43:50Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001038 "multichromatic zirconia ceramic dental restoration material"@en)
@@ -684,7 +661,7 @@ SubClassOf(obo:OHD_0001038 obo:OHD_0001034)
 
 # Class: obo:OHD_0001039 (multilayered zirconia ceramic dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001039 "A zirconia polycrystalline ceramic dental restoration material that contains layered structure composed of different compositions of dental zirconias to provide graded structures that mimic not only the shade, but the translucency and esthetic appearance of natural teeth.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001039 "A zirconia polycrystalline ceramic dental restoration material that contains layered structure composed of different compositions of dental zirconias to provide graded structures that mimic not only the shade, but the translucency and esthetic appearance of natural teeth."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001039 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001039 "2024-08-30T13:44:12Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001039 "multilayered zirconia ceramic dental restoration material"@en)
@@ -692,7 +669,7 @@ SubClassOf(obo:OHD_0001039 obo:OHD_0001034)
 
 # Class: obo:OHD_0001040 (polycrystalline composite ceramic dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "doi: 10.3390/ma16247541") obo:IAO_0000115 obo:OHD_0001040 "A polycrystalline ceramic dental restoration material that combines different cryatalline phases to improve specific properties.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "doi: 10.3390/ma16247541") obo:IAO_0000115 obo:OHD_0001040 "A polycrystalline ceramic dental restoration material that combines different cryatalline phases to improve specific properties."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001040 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001040 "2024-08-30T13:44:39Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001040 "polycrystalline composite ceramic dental restoration material"@en)
@@ -700,7 +677,7 @@ SubClassOf(obo:OHD_0001040 obo:OHD_0001033)
 
 # Class: obo:OHD_0001041 (zirconia toughened alumina ceramic dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001041 "A polycrystalline composite ceramic dental restoration material that combines zirconium to increase the material's mechanical and esthetic properties.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001041 "A polycrystalline composite ceramic dental restoration material that combines zirconium to increase the material's mechanical and esthetic properties."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001041 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001041 "2024-08-30T13:44:55Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001041 "zirconia toughened alumina ceramic dental restoration material"@en)
@@ -709,42 +686,42 @@ SubClassOf(obo:OHD_0001041 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0001079)
 
 # Class: obo:OHD_0001042 (zinc phosphate cement dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001042 "An acid-base cement dental restoration material containing zinc-oxide and magnesium oxide as a powder component with phosphoric acid as liquid component to complete the acid-base reaction.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001042 "An acid-base cement dental restoration material containing zinc-oxide and magnesium oxide as a powder component with phosphoric acid as liquid component to complete the acid-base reaction."@en)
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0001042 "ISBN:0323478212")
 AnnotationAssertion(terms:contributor obo:OHD_0001042 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001042 "2023-09-14T16:34:50Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0001042 "zinc phosphate cement dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0001042 "zinc phosphate cement dental restoration material"@en)
 SubClassOf(obo:OHD_0001042 obo:OHD_0001021)
 
 # Class: obo:OHD_0001043 (zinc polycarboxylate cement dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001043 "An acid-base cement dental restoration material containing zinc-oxide and magnesium oxide as a powder component with polyacrylic acid and water as liquid component to complete the acid-base reaction.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001043 "An acid-base cement dental restoration material containing zinc-oxide and magnesium oxide as a powder component with polyacrylic acid and water as liquid component to complete the acid-base reaction."@en)
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0001043 "ISBN:0323478212")
 AnnotationAssertion(terms:contributor obo:OHD_0001043 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001043 "2023-09-14T16:35:15Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0001043 "zinc polycarboxylate cement dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0001043 "zinc polycarboxylate cement dental restoration material"@en)
 SubClassOf(obo:OHD_0001043 obo:OHD_0001021)
 
 # Class: obo:OHD_0001044 (dental prosthesis support role)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001044 "A dental restoration material role that is borne by a portion of dental restoration material in association with bulk restoration and is realized in a tooth restoration procedure in which the restoration material becomes part of a restored tooth.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001044 "A dental restoration material role that is borne by a portion of dental restoration material in association with bulk restoration and is realized in a tooth restoration procedure in which the restoration material becomes part of a restored tooth."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001044 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001044 "2023-10-12T11:44:24Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0001044 "dental prosthesis support role")
+AnnotationAssertion(rdfs:label obo:OHD_0001044 "dental prosthesis support role"@en)
 SubClassOf(obo:OHD_0001044 obo:OHD_0000191)
 
 # Class: obo:OHD_0001045 (calcium hydroxide cement dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001045 "A dental restoration material that contains calcium hydroxide as a chief ingredient and is suspended in a solvent carrier with a thickening agent.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001045 "A dental restoration material that contains calcium hydroxide as a chief ingredient and is suspended in a solvent carrier with a thickening agent."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001045 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001045 "2023-10-12T12:11:12Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:label obo:OHD_0001045 "calcium hydroxide cement dental restoration material")
+AnnotationAssertion(rdfs:label obo:OHD_0001045 "calcium hydroxide cement dental restoration material"@en)
 SubClassOf(obo:OHD_0001045 obo:OHD_0000000)
 SubClassOf(obo:OHD_0001045 ObjectSomeValuesFrom(obo:BFO_0000051 obo:CHEBI_31341))
 
 # Class: obo:OHD_0001046 (alumina toughened zirconia ceramic dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001046 "A polycrystalline composite ceramic dental restoration material that combine alumina to increase materials strength and toughness.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001046 "A polycrystalline composite ceramic dental restoration material that combine alumina to increase materials strength and toughness."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001046 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001046 "2024-08-30T13:45:12Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001046 "alumina toughened zirconia ceramic dental restoration material"@en)
@@ -753,7 +730,7 @@ SubClassOf(obo:OHD_0001046 ObjectSomeValuesFrom(obo:BFO_0000051 obo:CHEBI_30187)
 
 # Class: obo:OHD_0001047 (resin matrix ceramic dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001047 "A ceramic dental restoration material that consists of a ceramic network infiltrated with a polymer resin to integrate the mechanical properties of ceramics with the improved elasticity of resins.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001047 "A ceramic dental restoration material that consists of a ceramic network infiltrated with a polymer resin to integrate the mechanical properties of ceramics with the improved elasticity of resins."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001047 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001047 "2024-08-30T13:45:40Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001047 "resin matrix ceramic dental restoration material"@en)
@@ -761,7 +738,7 @@ SubClassOf(obo:OHD_0001047 obo:OHD_0000135)
 
 # Class: obo:OHD_0001048 (resin nano ceramic dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001048 "A resin matrix ceramic dental restoration material that contains nano ceramic filler, typically to improve esthetics, strength, and wear resistance.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001048 "A resin matrix ceramic dental restoration material that contains nano ceramic filler, typically to improve esthetics, strength, and wear resistance."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001048 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001048 "2024-08-30T13:46:29Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001048 "resin nano ceramic dental restoration material"@en)
@@ -769,7 +746,7 @@ SubClassOf(obo:OHD_0001048 obo:OHD_0001047)
 
 # Class: obo:OHD_0001049 (resin matrix glass ceramic dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001049 "A resin matrix ceramic dental restoration material that contains either lithium disilicate or leucite-reinforced glass ceramic filler, typically to improve esthetics, strength, and wear resistance.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001049 "A resin matrix ceramic dental restoration material that contains either lithium disilicate or leucite-reinforced glass ceramic filler, typically to improve esthetics, strength, and wear resistance."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001049 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001049 "2024-08-30T13:46:51Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001049 "resin matrix glass ceramic dental restoration material"@en)
@@ -777,7 +754,7 @@ SubClassOf(obo:OHD_0001049 obo:OHD_0001047)
 
 # Class: obo:OHD_0001050 (resin matrix zirconia silica ceramic dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001050 "A resin matrix ceramic dental restoration material that contains zirconia or silica based ceramic filler, typically to improve esthetics, strength, and wear resistance.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001050 "A resin matrix ceramic dental restoration material that contains zirconia or silica based ceramic filler, typically to improve esthetics, strength, and wear resistance."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001050 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001050 "2024-08-30T13:47:07Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001050 "resin matrix zirconia silica ceramic dental restoration material"@en)
@@ -785,7 +762,7 @@ SubClassOf(obo:OHD_0001050 obo:OHD_0001047)
 
 # Class: obo:OHD_0001051 (feldspathic glass matrix ceramic dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001051 "A glass matrix ceramic dental restoration material that primarily contains a ternary material system composed of kaolin (hydrated aluminosilicate), silica, and naturally occurring feldspar (a mixture of potassium and sodium aluminosilicates).")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001051 "A glass matrix ceramic dental restoration material that primarily contains a ternary material system composed of kaolin (hydrated aluminosilicate), silica, and naturally occurring feldspar (a mixture of potassium and sodium aluminosilicates)."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001051 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001051 "2024-08-30T13:47:42Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001051 "feldspathic glass matrix ceramic dental restoration material"@en)
@@ -796,7 +773,7 @@ SubClassOf(obo:OHD_0001051 ObjectSomeValuesFrom(obo:BFO_0000051 obo:ENVO_0100048
 
 # Class: obo:OHD_0001052 (synthetic glass matrix ceramic dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001052 "A glass matrix ceramic dental restoration material that contains synthetic materials which varies among manufacturers, but commonly includes silicon dioxide (SiO2), potassium oxide (K2O), sodium oxide (Na2O), and aluminum oxide (Al2O3).")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001052 "A glass matrix ceramic dental restoration material that contains synthetic materials which varies among manufacturers, but commonly includes silicon dioxide (SiO2), potassium oxide (K2O), sodium oxide (Na2O), and aluminum oxide (Al2O3)."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001052 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001052 "2024-08-30T13:47:59Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001052 "synthetic glass matrix ceramic dental restoration material"@en)
@@ -807,7 +784,7 @@ SubClassOf(obo:OHD_0001052 ObjectSomeValuesFrom(obo:BFO_0000051 obo:CHEBI_88321)
 
 # Class: obo:OHD_0001053 (leucite based synthetic glass matrix ceramic dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001053 "A synthetic glass matrix ceramic that contains a leucite (K2OAl2O34SiO2) crystalline phase dispersed in a glass matrix.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001053 "A synthetic glass matrix ceramic that contains a leucite (K2OAl2O34SiO2) crystalline phase dispersed in a glass matrix."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001053 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001053 "2024-08-30T13:48:16Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001053 "leucite based synthetic glass matrix ceramic dental restoration material"@en)
@@ -815,7 +792,7 @@ SubClassOf(obo:OHD_0001053 obo:OHD_0001052)
 
 # Class: obo:OHD_0001054 (lithia based synthetic glass matrix ceramic dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001054 "A synthetic glass matrix ceramic that contains a lithium disilicate system (SiO2-Li2O-K2O-ZnO-P2O5 Al2O3-[zirconium dioxide] ZrO2).")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001054 "A synthetic glass matrix ceramic that contains a lithium disilicate system (SiO2-Li2O-K2O-ZnO-P2O5 Al2O3-[zirconium dioxide] ZrO2)."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001054 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001054 "2024-08-30T13:48:33Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001054 "lithia based synthetic glass matrix ceramic dental restoration material"@en)
@@ -824,7 +801,7 @@ SubClassOf(obo:OHD_0001054 ObjectSomeValuesFrom(obo:BFO_0000051 obo:OHD_0001081)
 
 # Class: obo:OHD_0001055 (fluorapatite based synthetic glass matrix ceramic dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001055 "A synthetic glass matrix ceramic in which the glass phases may be combined with apatite crystals, in addition to leucite, for thermal expansion compatibility with metals and for improved strength.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001055 "A synthetic glass matrix ceramic in which the glass phases may be combined with apatite crystals, in addition to leucite, for thermal expansion compatibility with metals and for improved strength."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001055 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001055 "2024-08-30T13:48:47Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001055 "fluorapatite based synthetic glass matrix ceramic dental restoration material"@en)
@@ -832,10 +809,10 @@ SubClassOf(obo:OHD_0001055 obo:OHD_0001052)
 
 # Class: obo:OHD_0001076 (sodium oxide)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001076 "A  metal oxide which contain sodium and oxygen.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001076 "A  metal oxide which contain sodium and oxygen."@en)
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0001076 "Compound CID: 73971 
 https://pubchem.ncbi.nlm.nih.gov/compound/73971")
-AnnotationAssertion(obo:IAO_0000118 obo:OHD_0001076 "IUPAC Name: disodium;oxygen(2-)")
+AnnotationAssertion(obo:OHD_0008045 obo:OHD_0001076 "disodium;oxygen(2-)")
 AnnotationAssertion(terms:contributor obo:OHD_0001076 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001076 "2025-01-30T15:10:11Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001076 "sodium oxide"@en)
@@ -843,11 +820,11 @@ SubClassOf(obo:OHD_0001076 obo:CHEBI_133331)
 
 # Class: obo:OHD_0001077 (barium oxide)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001077 "A metal oxide which contain barium and oxigen.")
-AnnotationAssertion(obo:IAO_0000118 obo:OHD_0001077 "IUPAC Name: oxobarium")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001077 "A metal oxide which contain barium and oxigen."@en)
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0001077 "PubChem CID	62392
 https://pubchem.ncbi.nlm.nih.gov/compound/62392")
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0001077 "barium monoxide")
+AnnotationAssertion(obo:OHD_0008045 obo:OHD_0001077 "oxobarium")
 AnnotationAssertion(terms:contributor obo:OHD_0001077 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001077 "2025-01-30T15:12:24Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001077 "barium oxide"@en)
@@ -855,10 +832,10 @@ SubClassOf(obo:OHD_0001077 obo:CHEBI_133331)
 
 # Class: obo:OHD_0001079 (zirconium oxide)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001079 "A metal oxide which contain zirconium and oxygen.")
-AnnotationAssertion(obo:IAO_0000118 obo:OHD_0001079 "IUPAC Name: oxygen(2-);zirconium(4+)")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001079 "A metal oxide which contain zirconium and oxygen."@en)
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0001079 "PubChem CID	6452892
 https://pubchem.ncbi.nlm.nih.gov/compound/Zirconium-oxide")
+AnnotationAssertion(obo:OHD_0008045 obo:OHD_0001079 "oxygen(2-);zirconium(4+)")
 AnnotationAssertion(terms:contributor obo:OHD_0001079 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001079 "2025-01-30T15:38:39Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001079 "zirconium oxide"@en)
@@ -866,21 +843,20 @@ SubClassOf(obo:OHD_0001079 obo:CHEBI_133331)
 
 # Class: obo:OHD_0001080 (yttrium oxide)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001080 "A metal oxide which contain yttrium and oxygen.")
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001080 "Compound CID: 159374  
-https://pubchem.ncbi.nlm.nih.gov/compound/159374")
-AnnotationAssertion(obo:IAO_0000118 obo:OHD_0001080 "IUPAC Name: oxygen(2-);yttrium(3+)")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001080 "A metal oxide which contains yttrium and oxygen."@en)
+AnnotationAssertion(obo:OHD_0008045 obo:OHD_0001080 "oxygen(2-);yttrium(3+)")
 AnnotationAssertion(terms:contributor obo:OHD_0001080 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001080 "2025-01-30T15:42:14Z"^^xsd:dateTime)
+AnnotationAssertion(oboInOwl:id obo:OHD_0001080 "https://pubchem.ncbi.nlm.nih.gov/compound/159374")
 AnnotationAssertion(rdfs:label obo:OHD_0001080 "yttrium oxide"@en)
 SubClassOf(obo:OHD_0001080 obo:CHEBI_133331)
 
 # Class: obo:OHD_0001081 (lithium oxide)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001081 "A metal oxide which contain lithium and oxygen.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001081 "A metal oxide which contain lithium and oxygen."@en)
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0001081 "Compound CID: 166630  
 https://pubchem.ncbi.nlm.nih.gov/compound/166630")
-AnnotationAssertion(obo:IAO_0000118 obo:OHD_0001081 "IUPAC Name: dilithium;oxygen(2-)")
+AnnotationAssertion(obo:OHD_0008045 obo:OHD_0001081 "dilithium;oxygen(2-)")
 AnnotationAssertion(terms:contributor obo:OHD_0001081 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001081 "2025-01-30T15:42:45Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001081 "lithium oxide"@en)
@@ -888,7 +864,7 @@ SubClassOf(obo:OHD_0001081 obo:CHEBI_133331)
 
 # Class: obo:OHD_0001082 (hydroxyethyl methacrylate dental restoration material)
 
-AnnotationAssertion(Annotation(obo:IAO_0000119 "https://doi.org/10.3390/app14188111") obo:IAO_0000115 obo:OHD_0001082 "A dental restoration material which is a hydrophilic monomer used in dental adhesives, and primers.")
+AnnotationAssertion(Annotation(obo:IAO_0000119 "https://doi.org/10.3390/app14188111") obo:IAO_0000115 obo:OHD_0001082 "A dental restoration material which is a hydrophilic monomer used in dental adhesives, and primers."@en)
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0001082 "HEMA")
 AnnotationAssertion(terms:contributor obo:OHD_0001082 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001082 "2025-03-13T15:59:18Z"^^xsd:dateTime)
@@ -897,7 +873,7 @@ SubClassOf(obo:OHD_0001082 obo:OHD_0000000)
 
 # Class: obo:OHD_0001083 (cobalt chromium metal dental resotration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001083 "A predominantly base metal dental restoration material this is primarly composed of cobalt chromium.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001083 "A predominantly base metal dental restoration material this is primarly composed of cobalt chromium."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001083 <http://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(terms:contributor obo:OHD_0001083 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001083 "2025-06-20T14:52:41Z"^^xsd:dateTime)
@@ -907,7 +883,7 @@ SubClassOf(obo:OHD_0001083 ObjectSomeValuesFrom(obo:RO_0002473 obo:CHEBI_27638))
 
 # Class: obo:OHD_0001084 (nickel chromium metal dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001084 "A predominantly base metal dental restoration material that is primarily composed of nickel chromium.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001084 "A predominantly base metal dental restoration material that is primarily composed of nickel chromium."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001084 <http://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(terms:contributor obo:OHD_0001084 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001084 "2025-06-20T14:49:56Z"^^xsd:dateTime)
@@ -918,7 +894,7 @@ SubClassOf(obo:OHD_0001084 ObjectSomeValuesFrom(obo:BFO_0000051 obo:CHEBI_28112)
 
 # Class: obo:OHD_0001085 (silver-palladium alloy metal dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001085 "A noble metal dental restoration material that is composed of predominantly silver in composition and at least 25% by weight of palladium to provide nobility of the alloy.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001085 "A noble metal dental restoration material that is composed of predominantly silver in composition and at least 25% by weight of palladium to provide nobility of the alloy."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001085 <http://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(terms:contributor obo:OHD_0001085 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001085 "2025-06-20T14:47:05Z"^^xsd:dateTime)
@@ -927,8 +903,7 @@ SubClassOf(obo:OHD_0001085 obo:OHD_0000146)
 
 # Class: obo:OHD_0001086 (commercially pure titanium dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001086 "A titanium dental restoration material that contain pure titanium with 
-minimum impurities.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001086 "A titanium dental restoration material that contain pure titanium with minimum impurities."@en)
 AnnotationAssertion(obo:IAO_0000118 obo:OHD_0001086 "cp-titanium")
 AnnotationAssertion(terms:contributor obo:OHD_0001086 <http://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(terms:contributor obo:OHD_0001086 <https://orcid.org/0000-0001-6424-4096>)
@@ -939,140 +914,13 @@ SubClassOf(obo:OHD_0001086 obo:OHD_0000136)
 
 # Class: obo:OHD_0001087 (titanium alloy dental restoration material)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001087 "A titanium dental restoration material that contains titanium with incorporation of alpha or beta microstructural stabilizers. Common microstructural stabilizers include aluminum, vanadium, niobium, cobalt, copper, nickel, or molybdenum.")
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0001087 "A titanium dental restoration material that contains titanium with incorporation of alpha or beta microstructural stabilizers. Common microstructural stabilizers include aluminum, vanadium, niobium, cobalt, copper, nickel, or molybdenum."@en)
 AnnotationAssertion(terms:contributor obo:OHD_0001087 <http://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(terms:contributor obo:OHD_0001087 <https://orcid.org/0000-0001-6424-4096>)
 AnnotationAssertion(terms:created obo:OHD_0001087 "2025-06-20T15:00:37Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0001087 "titanium alloy dental restoration material"@en)
 SubClassOf(obo:OHD_0001087 obo:OHD_0000136)
 
-# Class: obo:OHD_0000101 (obsolete 1)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000101 "obsolete 1"@en)
-
-# Class: obo:OHD_0000102 (obsolete 2)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000102 "obsolete 2"@en)
-
-# Class: obo:OHD_0000103 (obsolete 3)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000103 "obsolete 3"@en)
-
-# Class: obo:OHD_0000104 (obsolete 4)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000104 "obsolete 4"@en)
-
-# Class: obo:OHD_0000105 (obsolete 5)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000105 "obsolete 5"@en)
-
-# Class: obo:OHD_0000106 (obsolete 6)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000106 "obsolete 6"@en)
-
-# Class: obo:OHD_0000107 (obsolete 7)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000107 "obsolete 7"@en)
-
-# Class: obo:OHD_0000108 (obsolete 8)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000108 "obsolete 8"@en)
-
-# Class: obo:OHD_0000109 (obsolete 9)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000109 "obsolete 9"@en)
-
-# Class: obo:OHD_0000110 (obsolete 10)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000110 "obsolete 10"@en)
-
-# Class: obo:OHD_0000111 (obsolete 11)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000111 "obsolete 11"@en)
-
-# Class: obo:OHD_0000112 (obsolete 12)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000112 "obsolete 12"@en)
-
-# Class: obo:OHD_0000113 (obsolete 13)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000113 "obsolete 13"@en)
-
-# Class: obo:OHD_0000114 (obsolete 14)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000114 "obsolete 14"@en)
-
-# Class: obo:OHD_0000115 (obsolete 15)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000115 "obsolete 15"@en)
-
-# Class: obo:OHD_0000116 (obsolete 16)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000116 "obsolete 16"@en)
-
-# Class: obo:OHD_0000117 (obsolete 17)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000117 "obsolete 17"@en)
-
-# Class: obo:OHD_0000118 (obsolete 18)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000118 "obsolete 18"@en)
-
-# Class: obo:OHD_0000119 (obsolete 19)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000119 "obsolete 19"@en)
-
-# Class: obo:OHD_0000120 (obsolete 20)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000120 "obsolete 20"@en)
-
-# Class: obo:OHD_0000121 (obsolete 21)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000121 "obsolete 21"@en)
-
-# Class: obo:OHD_0000122 (obsolete 22)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000122 "obsolete 22"@en)
-
-# Class: obo:OHD_0000123 (obsolete 23)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000123 "obsolete 23"@en)
-
-# Class: obo:OHD_0000124 (obsolete 24)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000124 "obsolete 24"@en)
-
-# Class: obo:OHD_0000125 (obsolete 25)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000125 "obsolete 25"@en)
-
-# Class: obo:OHD_0000126 (obsolete 26)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000126 "obsolete 26"@en)
-
-# Class: obo:OHD_0000127 (obsolete 27)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000127 "obsolete 27"@en)
-
-# Class: obo:OHD_0000128 (obsolete 28)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000128 "obsolete 28"@en)
-
-# Class: obo:OHD_0000129 (obsolete 29)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000129 "obsolete 29"@en)
-
-# Class: obo:OHD_0000130 (obsolete 30)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000130 "obsolete 30"@en)
-
-# Class: obo:OHD_0000131 (obsolete 31)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000131 "obsolete 31"@en)
-
-# Class: obo:OHD_0000132 (obsolete 32)
-
-AnnotationAssertion(rdfs:label obo:OHD_0000132 "obsolete 32"@en)
 
 ############################
 #   Named Individuals
