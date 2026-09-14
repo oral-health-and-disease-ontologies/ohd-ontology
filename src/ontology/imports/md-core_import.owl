@@ -1,0 +1,51 @@
+Prefix(:=<http://purl.obolibrary.org/obo/ohd/imports/md-core_import.owl#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://purl.obolibrary.org/obo/ohd/imports/md-core_import.owl>
+<http://purl.obolibrary.org/obo/ohd/imports/md-core_import.owl>
+
+Declaration(Class(<http://purl.obolibrary.org/obo/MFOMD_0000024>))
+Declaration(Class(<http://purl.obolibrary.org/obo/MFOMD_0000136>))
+Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0000115>))
+Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0000119>))
+############################
+#   Annotation Properties
+############################
+
+# Annotation Property: <http://purl.obolibrary.org/obo/IAO_0000115> (<http://purl.obolibrary.org/obo/IAO_0000115>)
+
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/ohd/imports/md-core_import.owl>)
+
+# Annotation Property: <http://purl.obolibrary.org/obo/IAO_0000119> (<http://purl.obolibrary.org/obo/IAO_0000119>)
+
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/ohd/imports/md-core_import.owl>)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://purl.obolibrary.org/obo/MFOMD_0000024> (pathological mental process)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/MFOMD_0000024> "http://www.jbiomedsem.com/content/1/1/10")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/MFOMD_0000024> <http://purl.obolibrary.org/obo/ohd/imports/md-core_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/MFOMD_0000024> "pathological mental process")
+
+# Class: <http://purl.obolibrary.org/obo/MFOMD_0000136> (panic attack)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/MFOMD_0000136> "Period of intense fear or apprehension that are of sudden onset and of variable duration from minutes to hours.
+
+
+http://en.wikipedia.org/wiki/Panic_attack")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/MFOMD_0000136> <http://purl.obolibrary.org/obo/ohd/imports/md-core_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/MFOMD_0000136> "panic attack"@en)
+SubClassOf(<http://purl.obolibrary.org/obo/MFOMD_0000136> <http://purl.obolibrary.org/obo/MFOMD_0000024>)
+
+
+)
