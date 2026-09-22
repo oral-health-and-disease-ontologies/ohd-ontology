@@ -599,6 +599,7 @@ Declaration(Class(obo:OHD_0000479))
 Declaration(Class(obo:OHD_0000480))
 Declaration(Class(obo:OHD_0000481))
 Declaration(Class(obo:OHD_0000482))
+Declaration(Class(obo:OHD_0000483))
 Declaration(Class(obo:OHD_0000499))
 Declaration(Class(obo:OHD_0000500))
 Declaration(Class(obo:OHD_0000501))
@@ -4469,19 +4470,19 @@ AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000306 "Bill Duncan")
 AnnotationAssertion(rdfs:label obo:OHD_0000306 "dental material fusion process"@en)
 SubClassOf(obo:OHD_0000306 obo:OHD_0000349)
 
-# Class: obo:OHD_0000307 (Anterior Tooth)
+# Class: obo:OHD_0000307 (anterior tooth)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000307 "A tooth that is either an incisor or a canine."@en)
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000307 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000307 "Anterior Tooth"@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000307 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(rdfs:label obo:OHD_0000307 "anterior tooth"@en)
 EquivalentClasses(obo:OHD_0000307 ObjectUnionOf(obo:UBERON_0001098 obo:UBERON_0003674))
 SubClassOf(obo:OHD_0000307 obo:UBERON_0001091)
 
-# Class: obo:OHD_0000308 (Posterior Tooth)
+# Class: obo:OHD_0000308 (posterior tooth)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000308 "A tooth that is either a molar or premolar."@en)
-AnnotationAssertion(obo:IAO_0000117 obo:OHD_0000308 "Bill Duncan")
-AnnotationAssertion(rdfs:label obo:OHD_0000308 "Posterior Tooth"@en)
+AnnotationAssertion(dcterms:contributor obo:OHD_0000308 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(rdfs:label obo:OHD_0000308 "posterior tooth"@en)
 EquivalentClasses(obo:OHD_0000308 ObjectUnionOf(obo:UBERON_0003655 obo:UBERON_0007120))
 SubClassOf(obo:OHD_0000308 obo:UBERON_0001091)
 
@@ -6034,6 +6035,14 @@ AnnotationAssertion(dcterms:created obo:OHD_0000482 "2025-02-15T20:24:23Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0000482 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0000482 "dental fear survey answer"@en)
 SubClassOf(obo:OHD_0000482 obo:IAO_0000027)
+
+# Class: obo:OHD_0000483 (initial occlusal contact quality)
+
+AnnotationAssertion(Annotation(obo:IAO_0000119 "PMID:37914442") obo:IAO_0000115 obo:OHD_0000483 "An occlusal contact quality that characterizes opposing teeth as being the first teeth to touch during closure of the mandible.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000483 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000483 "2026-09-22T21:36:09Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000483 "initial occlusal contact quality"@en)
+SubClassOf(obo:OHD_0000483 obo:OHD_0000476)
 
 # Class: obo:OHD_0000499 (Dental Fear Survey (DFS) answer)
 
