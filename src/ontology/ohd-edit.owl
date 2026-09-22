@@ -586,6 +586,7 @@ Declaration(Class(obo:OHD_0000463))
 Declaration(Class(obo:OHD_0000464))
 Declaration(Class(obo:OHD_0000465))
 Declaration(Class(obo:OHD_0000466))
+Declaration(Class(obo:OHD_0000469))
 Declaration(Class(obo:OHD_0000482))
 Declaration(Class(obo:OHD_0000499))
 Declaration(Class(obo:OHD_0000500))
@@ -5809,6 +5810,7 @@ AnnotationAssertion(Annotation(obo:IAO_0000119 "https://aaoinfo.org/resources/gl
 AnnotationAssertion(dcterms:contributor obo:OHD_0000455 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:created obo:OHD_0000455 "2026-06-10T22:48:05Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:OHD_0000455 "occlusion")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:OHD_0000455 "occlusion-position quality")
 AnnotationAssertion(rdfs:label obo:OHD_0000455 "occlusion quality"@en)
 SubClassOf(obo:OHD_0000455 obo:PATO_0000140)
 SubClassOf(obo:OHD_0000455 ObjectSomeValuesFrom(obo:RO_0000052 obo:UBERON_0001091))
@@ -5904,6 +5906,16 @@ AnnotationAssertion(dcterms:contributor obo:OHD_0000466 <https://orcid.org/0000-
 AnnotationAssertion(dcterms:created obo:OHD_0000466 "2026-06-10T23:43:30Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0000466 "malocclusion finding"@en)
 SubClassOf(obo:OHD_0000466 obo:OHD_0000465)
+
+# Class: obo:OHD_0000469 (static-occlusion quality)
+
+AnnotationAssertion(Annotation(obo:IAO_0000119 "PMID: 37914442") obo:IAO_0000115 obo:OHD_0000469 "An occlussion quality that characterizes the position of opposing teeth while they are held in contact and the mandible is stationary.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000469 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000469 "2026-09-22T20:43:40Z"^^xsd:dateTime)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:OHD_0000469 "static closure")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:OHD_0000469 "static occlusion")
+AnnotationAssertion(rdfs:label obo:OHD_0000469 "static-occlusion quality"@en)
+SubClassOf(obo:OHD_0000469 obo:OHD_0000455)
 
 # Class: obo:OHD_0000482 (dental fear survey answer)
 
