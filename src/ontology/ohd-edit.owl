@@ -601,6 +601,9 @@ Declaration(Class(obo:OHD_0000481))
 Declaration(Class(obo:OHD_0000482))
 Declaration(Class(obo:OHD_0000483))
 Declaration(Class(obo:OHD_0000484))
+Declaration(Class(obo:OHD_0000485))
+Declaration(Class(obo:OHD_0000486))
+Declaration(Class(obo:OHD_0000487))
 Declaration(Class(obo:OHD_0000499))
 Declaration(Class(obo:OHD_0000500))
 Declaration(Class(obo:OHD_0000501))
@@ -6069,6 +6072,30 @@ AnnotationAssertion(dcterms:created obo:OHD_0000484 "2026-09-22T21:46:59Z"^^xsd:
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> obo:OHD_0000484 "maxillary position")
 AnnotationAssertion(rdfs:label obo:OHD_0000484 "maxilla position quality"@en)
 SubClassOf(obo:OHD_0000484 obo:PATO_0000140)
+
+# Class: obo:OHD_0000485 (tooth contact site)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000485 "A site that is bounded by surfaces of two teeth, at which those surfaces can come into contact with one another.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000485 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000485 "2026-09-23T01:05:35Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000485 "tooth contact site"@en)
+SubClassOf(obo:OHD_0000485 obo:BFO_0000029)
+
+# Class: obo:OHD_0000486 (proximal contact site)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000486 "A tooth contact site that is bounded by the proximal surfaces of two adjacent teeth in the same dental arch.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000486 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000486 "2026-09-23T01:34:52Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000486 "proximal contact site"@en)
+SubClassOf(obo:OHD_0000486 obo:OHD_0000485)
+
+# Class: obo:OHD_0000487 (occlusal contact site)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000487 "A tooth contact site that is bounded by the occlusal (or incisal) surfaces of opposing teeth in the maxillary and mandibular arches.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000487 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000487 "2026-09-23T01:35:08Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000487 "occlusal contact site"@en)
+SubClassOf(obo:OHD_0000487 obo:OHD_0000485)
 
 # Class: obo:OHD_0000499 (Dental Fear Survey (DFS) answer)
 
