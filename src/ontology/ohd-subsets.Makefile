@@ -34,7 +34,8 @@ $(SUBSETDIR)/odfa.owl: $(ONT).owl $(SPARQLDIR)/odfa-subset.rq $(SUBSETDIR)/odfa-
 			--version-iri $(URIBASE)/$(ONT)/releases/$(VERSION)/$(notdir $@) \
 			--annotation owl:versionInfo $(VERSION) \
 		--output $@ &&\
-	rm $@.tmp.owl
+	rm $@.tmp.owl &&
+	rm $@.tmp.txt
 .PRECIOUS: $(SUBSETDIR)/odfa.owl
 
 $(SUBSETDIR)/icop.owl: $(ONT).owl $(SPARQLDIR)/icop-subset.rq $(SUBSETDIR)/icop-annotations.owl | $(SUBSETDIR)
@@ -55,7 +56,8 @@ $(SUBSETDIR)/icop.owl: $(ONT).owl $(SPARQLDIR)/icop-subset.rq $(SUBSETDIR)/icop-
 			--version-iri $(URIBASE)/$(ONT)/releases/$(VERSION)/$(notdir $@) \
 			--annotation owl:versionInfo $(VERSION) \
 		--output $@ &&\
-	rm $@.tmp.owl
+	rm $@.tmp.owl &&\
+	rm $@.tmp.txt
 .PRECIOUS: $(SUBSETDIR)/icop.owl
 
 # $(SUBSETDIR)/%.owl: $(ONT).owl | $(SUBSETDIR)
