@@ -133,13 +133,6 @@ Declaration(Class(<http://purl.obolibrary.org/obo/OHD_0010205>))
 Declaration(Class(<http://purl.obolibrary.org/obo/OHD_0010208>))
 Declaration(Class(<http://purl.obolibrary.org/obo/OHD_0010210>))
 Declaration(Class(<http://purl.obolibrary.org/obo/OHD_0010212>))
-Declaration(Class(<http://purl.obolibrary.org/obo/OHD_0010220>))
-Declaration(Class(<http://purl.obolibrary.org/obo/OHD_0010221>))
-Declaration(Class(<http://purl.obolibrary.org/obo/OHD_0010222>))
-Declaration(Class(<http://purl.obolibrary.org/obo/OHD_0010223>))
-Declaration(Class(<http://purl.obolibrary.org/obo/OHD_0010226>))
-Declaration(Class(<http://purl.obolibrary.org/obo/OHD_0010229>))
-Declaration(Class(<http://purl.obolibrary.org/obo/OHD_0010230>))
 Declaration(Class(<http://purl.obolibrary.org/obo/OHD_0010289>))
 Declaration(Class(<http://purl.obolibrary.org/obo/OHD_0010291>))
 Declaration(Class(<http://purl.obolibrary.org/obo/OHD_0010305>))
@@ -280,10 +273,17 @@ Declaration(Class(<http://purl.obolibrary.org/obo/PAIN_0010216>))
 Declaration(Class(<http://purl.obolibrary.org/obo/PAIN_0010217>))
 Declaration(Class(<http://purl.obolibrary.org/obo/PAIN_0010218>))
 Declaration(Class(<http://purl.obolibrary.org/obo/PAIN_0010219>))
+Declaration(Class(<http://purl.obolibrary.org/obo/PAIN_0010220>))
+Declaration(Class(<http://purl.obolibrary.org/obo/PAIN_0010221>))
+Declaration(Class(<http://purl.obolibrary.org/obo/PAIN_0010222>))
+Declaration(Class(<http://purl.obolibrary.org/obo/PAIN_0010223>))
 Declaration(Class(<http://purl.obolibrary.org/obo/PAIN_0010224>))
 Declaration(Class(<http://purl.obolibrary.org/obo/PAIN_0010225>))
+Declaration(Class(<http://purl.obolibrary.org/obo/PAIN_0010226>))
 Declaration(Class(<http://purl.obolibrary.org/obo/PAIN_0010227>))
 Declaration(Class(<http://purl.obolibrary.org/obo/PAIN_0010228>))
+Declaration(Class(<http://purl.obolibrary.org/obo/PAIN_0010229>))
+Declaration(Class(<http://purl.obolibrary.org/obo/PAIN_0010230>))
 Declaration(Class(<http://purl.obolibrary.org/obo/PAIN_0010231>))
 Declaration(Class(<http://purl.obolibrary.org/obo/PAIN_0010232>))
 Declaration(Class(<http://purl.obolibrary.org/obo/PAIN_0010233>))
@@ -361,6 +361,7 @@ Declaration(Class(<http://purl.obolibrary.org/obo/PATO_0000161>))
 Declaration(Class(<http://purl.obolibrary.org/obo/PATO_0000380>))
 Declaration(Class(<http://purl.obolibrary.org/obo/PATO_0000381>))
 Declaration(Class(<http://purl.obolibrary.org/obo/PATO_0000389>))
+Declaration(Class(<http://purl.obolibrary.org/obo/PATO_0000461>))
 Declaration(Class(<http://purl.obolibrary.org/obo/PATO_0000627>))
 Declaration(Class(<http://purl.obolibrary.org/obo/PATO_0000689>))
 Declaration(Class(<http://purl.obolibrary.org/obo/PATO_0000911>))
@@ -468,6 +469,9 @@ Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002418>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002427>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002501>))
 Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0002502>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0015006>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0015007>))
+Declaration(ObjectProperty(<http://purl.obolibrary.org/obo/RO_0015008>))
 Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/BFO_0000179>))
 Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/BFO_0000180>))
 Declaration(AnnotationProperty(<http://purl.obolibrary.org/obo/IAO_0000111>))
@@ -1094,6 +1098,31 @@ AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000117> <http://purl.ob
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0002502> <http://purl.obolibrary.org/obo/ro.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0002502> "depends on")
 AnnotationAssertion(rdfs:seeAlso <http://purl.obolibrary.org/obo/RO_0002502> <http://purl.obolibrary.org/obo/BFO_0000169>)
+
+# Object Property: <http://purl.obolibrary.org/obo/RO_0015006> (different in magnitude relative to)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "https://orcid.org/0000-0002-6601-2165") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/RO_0015006> "q1 different_in_magnitude_relative_to q2 if and only if magnitude(q1) NOT =~ magnitude(q2). Here, magnitude(q) is a function that maps a quality to a unit-invariant scale.")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0015006> <http://purl.obolibrary.org/obo/pato.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0015006> <http://purl.obolibrary.org/obo/ro.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0015006> "different in magnitude relative to")
+
+# Object Property: <http://purl.obolibrary.org/obo/RO_0015007> (increased in magnitude relative to)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "https://orcid.org/0000-0002-6601-2165") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/RO_0015007> "q1 increased_in_magnitude_relative_to q2 if and only if magnitude(q1) > magnitude(q2). Here, magnitude(q) is a function that maps a quality to a unit-invariant scale.")
+AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/RO_0015007> "This relation is used to determine the 'directionality' of relative qualities such as 'increased strength', relative to the parent type, 'strength'.")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0015007> <http://purl.obolibrary.org/obo/pato.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0015007> <http://purl.obolibrary.org/obo/ro.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0015007> "increased in magnitude relative to")
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0015007> <http://purl.obolibrary.org/obo/RO_0015006>)
+
+# Object Property: <http://purl.obolibrary.org/obo/RO_0015008> (decreased in magnitude relative to)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "https://orcid.org/0000-0002-6601-2165") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/RO_0015008> "q1 decreased_in_magnitude_relative_to q2 if and only if magnitude(q1) < magnitude(q2). Here, magnitude(q) is a function that maps a quality to a unit-invariant scale.")
+AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/RO_0015008> "This relation is used to determine the 'directionality' of relative qualities such as 'decreased strength', relative to the parent type, 'strength'.")
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0015008> <http://purl.obolibrary.org/obo/pato.owl>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/RO_0015008> <http://purl.obolibrary.org/obo/ro.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/RO_0015008> "decreased in magnitude relative to")
+SubObjectPropertyOf(<http://purl.obolibrary.org/obo/RO_0015008> <http://purl.obolibrary.org/obo/RO_0015006>)
 
 
 
@@ -2499,84 +2528,6 @@ AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/OHD_0010212
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/OHD_0010212> "remote malignancy"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/OHD_0010212> <http://purl.obolibrary.org/obo/OHD_0010184>)
 
-# Class: <http://purl.obolibrary.org/obo/OHD_0010220> (chronic frequent pain)
-
-AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/OHD_0010220> "Chronic pain that occurs 1-14 days a month.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/OHD_0010220> "PMID:32103673")
-AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/OHD_0010220> <https://orcid.org/0009-0003-5583-4731>)
-AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.org/obo/OHD_0010220> "2025-07-01T17:11:00Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/OHD_0010220> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
-AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/OHD_0010220> "chronic frequent pain"@en)
-EquivalentClasses(<http://purl.obolibrary.org/obo/OHD_0010220> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000040> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000380>)))
-SubClassOf(<http://purl.obolibrary.org/obo/OHD_0010220> <http://purl.obolibrary.org/obo/PAIN_0000040>)
-SubClassOf(<http://purl.obolibrary.org/obo/OHD_0010220> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000380>))
-
-# Class: <http://purl.obolibrary.org/obo/OHD_0010221> (chronic infrequent pain)
-
-AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/OHD_0010221> "Chronic pain that occurs less than one day a month.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/OHD_0010221> "PMID:32103673")
-AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/OHD_0010221> <https://orcid.org/0009-0003-5583-4731>)
-AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.org/obo/OHD_0010221> "2025-07-01T17:13:04Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/OHD_0010221> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
-AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/OHD_0010221> "chronic infrequent pain"@en)
-EquivalentClasses(<http://purl.obolibrary.org/obo/OHD_0010221> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000040> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000381>)))
-SubClassOf(<http://purl.obolibrary.org/obo/OHD_0010221> <http://purl.obolibrary.org/obo/PAIN_0000040>)
-SubClassOf(<http://purl.obolibrary.org/obo/OHD_0010221> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000381>))
-
-# Class: <http://purl.obolibrary.org/obo/OHD_0010222> (chronic frequent pain with pain referral)
-
-AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/OHD_0010222> "Chronic frequent pain that occurs beyond the affected site.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/OHD_0010222> "PMID:32103673")
-AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/OHD_0010222> <https://orcid.org/0009-0003-5583-4731>)
-AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.org/obo/OHD_0010222> "2025-07-01T17:14:42Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/OHD_0010222> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
-AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/OHD_0010222> "chronic frequent pain with pain referral"@en)
-EquivalentClasses(<http://purl.obolibrary.org/obo/OHD_0010222> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/OHD_0010220> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000126> <http://purl.obolibrary.org/obo/UBERON_0001062>)))
-SubClassOf(<http://purl.obolibrary.org/obo/OHD_0010222> <http://purl.obolibrary.org/obo/OHD_0010220>)
-SubClassOf(<http://purl.obolibrary.org/obo/OHD_0010222> <http://purl.obolibrary.org/obo/PAIN_0000054>)
-
-# Class: <http://purl.obolibrary.org/obo/OHD_0010223> (chronic frequent pain without pain referral)
-
-AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/OHD_0010223> "Chronic frequent pain that s localized to the affected area.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/OHD_0010223> "PMID:32103673")
-AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/OHD_0010223> <https://orcid.org/0009-0003-5583-4731>)
-AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.org/obo/OHD_0010223> "2025-07-01T17:15:41Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/OHD_0010223> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
-AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/OHD_0010223> "chronic frequent pain without pain referral"@en)
-SubClassOf(<http://purl.obolibrary.org/obo/OHD_0010223> <http://purl.obolibrary.org/obo/OHD_0010220>)
-
-# Class: <http://purl.obolibrary.org/obo/OHD_0010226> (chronic highly frequent pain)
-
-AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/OHD_0010226> "Chronic pain that occurs more than 15 days a month for more than 4 months.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/OHD_0010226> "PMID:32103673")
-AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/OHD_0010226> <https://orcid.org/0009-0003-5583-4731>)
-AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.org/obo/OHD_0010226> "2025-07-01T17:22:21Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/OHD_0010226> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
-AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/OHD_0010226> "chronic highly frequent pain"@en)
-SubClassOf(<http://purl.obolibrary.org/obo/OHD_0010226> <http://purl.obolibrary.org/obo/OHD_0010220>)
-
-# Class: <http://purl.obolibrary.org/obo/OHD_0010229> (chronic highly frequent pain without pain referral)
-
-AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/OHD_0010229> "Chronic highly frequent pain that is localized to the affected area.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/OHD_0010229> "PMID:32103673")
-AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/OHD_0010229> <https://orcid.org/0009-0003-5583-4731>)
-AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.org/obo/OHD_0010229> "2025-07-01T17:35:37Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/OHD_0010229> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
-AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/OHD_0010229> "chronic highly frequent pain without pain referral"@en)
-SubClassOf(<http://purl.obolibrary.org/obo/OHD_0010229> <http://purl.obolibrary.org/obo/OHD_0010226>)
-
-# Class: <http://purl.obolibrary.org/obo/OHD_0010230> (chronic highly frequent pain with pain referral)
-
-AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/OHD_0010230> "Chronic highly frequent pain with pain referral that occurs beyond the affected area.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/OHD_0010230> "PMID:32103673")
-AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/OHD_0010230> <https://orcid.org/0009-0003-5583-4731>)
-AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.org/obo/OHD_0010230> "2025-07-01T17:37:56Z"^^xsd:dateTime)
-AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/OHD_0010230> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
-AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/OHD_0010230> "chronic highly frequent pain with pain referral"@en)
-EquivalentClasses(<http://purl.obolibrary.org/obo/OHD_0010230> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/OHD_0010226> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000126> <http://purl.obolibrary.org/obo/UBERON_0001062>)))
-SubClassOf(<http://purl.obolibrary.org/obo/OHD_0010230> <http://purl.obolibrary.org/obo/OHD_0010222>)
-SubClassOf(<http://purl.obolibrary.org/obo/OHD_0010230> <http://purl.obolibrary.org/obo/OHD_0010226>)
-
 # Class: <http://purl.obolibrary.org/obo/OHD_0010289> (inflammation)
 
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/OHD_0010289> "A disorder in a tissue or organ that is marked by capillary dilatation, leukocytic infiltration, redness, heat, pain, swelling, and often loss of function, which is a response cellular injury or infection.")
@@ -2728,12 +2679,13 @@ AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000589> <http://purl.ob
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/PAIN_0000038> <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/PAIN_0000038> <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.org/obo/PAIN_0000038> "2026-04-08T17:10:12Z"^^xsd:dateTime)
-AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/PAIN_0000038> "breakthrough pain")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> <http://purl.obolibrary.org/obo/PAIN_0000038> "breakthrough pain")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/PAIN_0000038> "intermittent pain")
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0000038> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0000038> "episodic pain"@en)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#closeMatch> <http://purl.obolibrary.org/obo/PAIN_0000038> <http://purl.obolibrary.org/obo/HP_0032148>)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#relatedMatch> <http://purl.obolibrary.org/obo/PAIN_0000038> <http://purl.obolibrary.org/obo/NCIT_C9203>)
-EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0000038> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000036> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0002630>)))
+EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0000038> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000128> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0002630>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0000038> <http://purl.obolibrary.org/obo/PAIN_0000128>)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0000038> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0002630>))
 
@@ -2749,7 +2701,7 @@ AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0000040> "ch
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#closeMatch> <http://purl.obolibrary.org/obo/PAIN_0000040> <http://purl.obolibrary.org/obo/HP_0012532>)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#closeMatch> <http://purl.obolibrary.org/obo/PAIN_0000040> <http://purl.obolibrary.org/obo/NCIT_C26940>)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#closeMatch> <http://purl.obolibrary.org/obo/PAIN_0000040> <http://purl.obolibrary.org/obo/SYMP_0000837>)
-EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0000040> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000036> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0001863>)))
+EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0000040> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000128> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0001863>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0000040> <http://purl.obolibrary.org/obo/PAIN_0000128>)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0000040> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0001863>))
 
@@ -2771,7 +2723,7 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#closeMatch> <http://pur
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#closeMatch> <http://purl.obolibrary.org/obo/PAIN_0000044> <http://www.ebi.ac.uk/efo/EFO_0005762>)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#note> <http://purl.obolibrary.org/obo/PAIN_0000044> "Neuropathic pain is a clinical description (and not a diagnosis) which requires a demonstrable lesion or a disease that satisfies established neurological diagnostic criteria. The term lesion is commonly used when diagnostic investigations (e.g. imaging, neurophysiology, biopsies, lab tests) reveal an abnormality or when there was obvious trauma.")
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#note> <http://purl.obolibrary.org/obo/PAIN_0000044> "Somatosensory refers to information about the body per se including visceral organs, rather than information about the external world (e.g., vision, hearing, or olfaction). The presence of symptoms or signs (e.g., touch-evoked pain) alone does not justify the use of the term neuropathic. Some disease entities, such as trigeminal neuralgia, are currently defined by their clinical presentation rather than by objective diagnostic testing. Other diagnoses such as postherpetic neuralgia are normally based upon the history. It is common when investigating neuropathic pain that diagnostic testing may yield inconclusive or even inconsistent data. In such instances, clinical judgment is required to reduce the totality of findings in a patient into one putative diagnosis or concise group of diagnoses.")
-EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0000044> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000036> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/PAIN_0000045>)))
+EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0000044> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000132> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/PAIN_0000045>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0000044> <http://purl.obolibrary.org/obo/PAIN_0000132>)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0000044> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/PAIN_0000045>))
 
@@ -2798,7 +2750,7 @@ AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0000053> "ac
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#closeMatch> <http://purl.obolibrary.org/obo/PAIN_0000053> <http://purl.obolibrary.org/obo/NCIT_C27003>)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#closeMatch> <http://purl.obolibrary.org/obo/PAIN_0000053> <http://purl.obolibrary.org/obo/OMIT_0027663>)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#closeMatch> <http://purl.obolibrary.org/obo/PAIN_0000053> <http://purl.obolibrary.org/obo/SYMP_0000839>)
-EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0000053> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000036> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000389>)))
+EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0000053> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000128> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000389>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0000053> <http://purl.obolibrary.org/obo/PAIN_0000128>)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0000053> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000389>))
 
@@ -2814,7 +2766,7 @@ AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#closeMatch> <http://pur
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#closeMatch> <http://purl.obolibrary.org/obo/PAIN_0000054> <http://purl.obolibrary.org/obo/OMIT_0025470>)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#closeMatch> <http://purl.obolibrary.org/obo/PAIN_0000054> <http://purl.obolibrary.org/obo/SYMP_0000862>)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#closeMatch> <http://purl.obolibrary.org/obo/PAIN_0000054> <http://snomed.info/id/6617009>)
-EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0000054> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000036> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000126> <http://purl.obolibrary.org/obo/UBERON_0001062>)))
+EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0000054> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000130> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000126> <http://purl.obolibrary.org/obo/UBERON_0001062>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0000054> <http://purl.obolibrary.org/obo/PAIN_0000130>)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0000054> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000126> <http://purl.obolibrary.org/obo/UBERON_0001062>))
 
@@ -2827,7 +2779,7 @@ AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.o
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0000056> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0000056> "localized pain"@en)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#closeMatch> <http://purl.obolibrary.org/obo/PAIN_0000056> <http://snomed.info/id/112104007>)
-EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0000056> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000036> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000627>)))
+EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0000056> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000130> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000627>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0000056> <http://purl.obolibrary.org/obo/PAIN_0000130>)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0000056> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000627>))
 
@@ -2855,7 +2807,6 @@ AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.o
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/PAIN_0000090> <http://purl.obolibrary.org/obo/PAIN_0010296>)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0000090> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0000090> "orofacial pain"@en)
-EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0000090> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000089> ObjectUnionOf(ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000062> <http://purl.obolibrary.org/obo/UBERON_0000165>) ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000062> <http://purl.obolibrary.org/obo/UBERON_0001456>))))
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0000090> <http://purl.obolibrary.org/obo/PAIN_0000089>)
 
 # Class: <http://purl.obolibrary.org/obo/PAIN_0000101> (continuous pain)
@@ -2868,7 +2819,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynony
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0000101> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0000101> "continuous pain"@en)
 AnnotationAssertion(<http://www.w3.org/2004/02/skos/core#closeMatch> <http://purl.obolibrary.org/obo/PAIN_0000101> "http://snomed.info/id/426206001")
-EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0000101> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000036> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000689>)))
+EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0000101> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000128> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000689>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0000101> <http://purl.obolibrary.org/obo/PAIN_0000128>)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0000101> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000689>))
 
@@ -2911,6 +2862,8 @@ SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0000127> <http://purl.obolibrary
 
 # Class: <http://purl.obolibrary.org/obo/PAIN_0000128> (temporally specified pain)
 
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/PAIN_0000128> "Pain that is characterized by its temporal features, such as its duration, its frequency of occurrence, or its pattern of occurrence over time.")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000589> <http://purl.obolibrary.org/obo/PAIN_0000128> "temporally specified pain (PAIN)")
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/PAIN_0000128> <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.org/obo/PAIN_0000128> "2026-09-14T16:26:40Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0000128> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
@@ -2919,6 +2872,8 @@ SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0000128> <http://purl.obolibrary
 
 # Class: <http://purl.obolibrary.org/obo/PAIN_0000130> (spatially specified pain)
 
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/PAIN_0000130> "Pain that is characterized by its spatial features, such as the location at which it is experienced, its spatial extent, or the spatial relation between where it is experienced and where it originates.")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000589> <http://purl.obolibrary.org/obo/PAIN_0000130> "spatially specified pain (PAIN)")
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/PAIN_0000130> <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.org/obo/PAIN_0000130> "2026-09-14T16:27:16Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0000130> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
@@ -2927,6 +2882,8 @@ SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0000130> <http://purl.obolibrary
 
 # Class: <http://purl.obolibrary.org/obo/PAIN_0000132> (neurobiological pain process)
 
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/PAIN_0000132> "Pain that is characterized by the neurobiological mechanism by which it arises, such as activation of nociceptors, damaged neural tissue, a lesion or disease of the nervous system, or altered nociceptive processing.")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000589> <http://purl.obolibrary.org/obo/PAIN_0000132> "neurobiological pain process (PAIN)")
 AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/PAIN_0000132> <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.org/obo/PAIN_0000132> "2026-09-14T16:27:45Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0000132> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
@@ -2943,6 +2900,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <htt
 AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010001> "ICOP term 1.1")
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010001> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010001> "dental pain"@en)
+EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0010001> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000090> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000062> <http://purl.obolibrary.org/obo/UBERON_0000165>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010001> <http://purl.obolibrary.org/obo/PAIN_0000090>)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010001> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000062> <http://purl.obolibrary.org/obo/UBERON_0000165>))
 
@@ -2958,6 +2916,7 @@ AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010002> "
 AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010002> "http://purl.obolibrary.org/obo/UBERON_0001754")
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010002> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010002> "pulpal pain"@en)
+EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0010002> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0010001> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000062> <http://purl.obolibrary.org/obo/UBERON_0001754>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010002> <http://purl.obolibrary.org/obo/PAIN_0010001>)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010002> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000062> <http://purl.obolibrary.org/obo/UBERON_0001754>))
 
@@ -2991,6 +2950,7 @@ AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010005> "
 AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010005> "related ICOP number: 1.1.2.2")
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010005> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010005> "periodontal pain"@en)
+EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0010005> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0010001> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000062> <http://purl.obolibrary.org/obo/UBERON_0008266>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010005> <http://purl.obolibrary.org/obo/PAIN_0010001>)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010005> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000062> <http://purl.obolibrary.org/obo/UBERON_0008266>))
 
@@ -3005,6 +2965,7 @@ AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010006> "
 AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010006> "http://purl.obolibrary.org/obo/UBERON_0001828")
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010006> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010006> "gingival pain"@en)
+EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0010006> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0010001> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000062> <http://purl.obolibrary.org/obo/UBERON_0001828>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010006> <http://purl.obolibrary.org/obo/PAIN_0010001>)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010006> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000062> <http://purl.obolibrary.org/obo/UBERON_0001828>))
 
@@ -3719,8 +3680,8 @@ AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010121> "
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010121> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010121> "chronic infrequent primary temporomandibular joint pain"@en)
 EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0010121> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0010120> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000381>)))
-SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010121> <http://purl.obolibrary.org/obo/OHD_0010221>)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010121> <http://purl.obolibrary.org/obo/PAIN_0010120>)
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010121> <http://purl.obolibrary.org/obo/PAIN_0010221>)
 
 # Class: <http://purl.obolibrary.org/obo/PAIN_0010122> (chronic frequent primary temporomandibular joint pain)
 
@@ -3733,8 +3694,8 @@ AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010122> "
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010122> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010122> "chronic frequent primary temporomandibular joint pain"@en)
 EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0010122> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0010120> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000380>)))
-SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010122> <http://purl.obolibrary.org/obo/OHD_0010220>)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010122> <http://purl.obolibrary.org/obo/PAIN_0010120>)
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010122> <http://purl.obolibrary.org/obo/PAIN_0010220>)
 
 # Class: <http://purl.obolibrary.org/obo/PAIN_0010123> (chronic frequent primary temporomandibular joint pain without pain referral)
 
@@ -3747,7 +3708,7 @@ AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010123> "
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010123> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010123> "chronic frequent primary temporomandibular joint pain without pain referral"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010123> <http://purl.obolibrary.org/obo/PAIN_0010122>)
-SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010123> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/OHD_0010223>))
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010123> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/PAIN_0010223>))
 
 # Class: <http://purl.obolibrary.org/obo/PAIN_0010124> (chronic frequent primary temporomandibular joint pain with pain referral)
 
@@ -3760,7 +3721,7 @@ AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010124> "
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010124> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010124> "chronic frequent primary temporomandibular joint pain with pain referral"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010124> <http://purl.obolibrary.org/obo/PAIN_0010122>)
-SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010124> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/OHD_0010222>))
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010124> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/PAIN_0010222>))
 
 # Class: <http://purl.obolibrary.org/obo/PAIN_0010125> (chronic highly frequent primary temporomandibular joint pain)
 
@@ -3773,7 +3734,7 @@ AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010125> "
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010125> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010125> "chronic highly frequent primary temporomandibular joint pain"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010125> <http://purl.obolibrary.org/obo/PAIN_0010122>)
-SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010125> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/OHD_0010226>))
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010125> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/PAIN_0010226>))
 
 # Class: <http://purl.obolibrary.org/obo/PAIN_0010126> (chronic highly frequent primary temporomandibular joint pain without pain referral)
 
@@ -3786,7 +3747,7 @@ AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010126> "
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010126> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010126> "chronic highly frequent primary temporomandibular joint pain without pain referral"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010126> <http://purl.obolibrary.org/obo/PAIN_0010125>)
-SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010126> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/OHD_0010229>))
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010126> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/PAIN_0010229>))
 
 # Class: <http://purl.obolibrary.org/obo/PAIN_0010127> (chronic highly frequent primary temporomandibular joint pain with pain referral)
 
@@ -3799,7 +3760,7 @@ AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010127> "
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010127> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010127> "chronic highly frequent primary temporomandibular joint pain with pain referral"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010127> <http://purl.obolibrary.org/obo/PAIN_0010125>)
-SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010127> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/OHD_0010230>))
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010127> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/PAIN_0010230>))
 
 # Class: <http://purl.obolibrary.org/obo/PAIN_0010128> (secondary temporomandibular joint pain)
 
@@ -4415,8 +4376,8 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <htt
 AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010218> "ICOP number: 2.1.2.1")
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010218> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010218> "chronic infrequent primary myofascial orofacial pain"@en)
-SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010218> <http://purl.obolibrary.org/obo/OHD_0010221>)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010218> <http://purl.obolibrary.org/obo/PAIN_0010217>)
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010218> <http://purl.obolibrary.org/obo/PAIN_0010221>)
 
 # Class: <http://purl.obolibrary.org/obo/PAIN_0010219> (chronic frequent primary myofascial orofacial pain)
 
@@ -4428,8 +4389,54 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <htt
 AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010219> "ICOP number: 2.1.2.2")
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010219> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010219> "chronic frequent primary myofascial orofacial pain"@en)
-SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010219> <http://purl.obolibrary.org/obo/OHD_0010220>)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010219> <http://purl.obolibrary.org/obo/PAIN_0010217>)
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010219> <http://purl.obolibrary.org/obo/PAIN_0010220>)
+
+# Class: <http://purl.obolibrary.org/obo/PAIN_0010220> (chronic frequent pain)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/PAIN_0010220> "Chronic pain that occurs 1-14 days a month.")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/PAIN_0010220> "PMID:32103673")
+AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/PAIN_0010220> <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.org/obo/PAIN_0010220> "2025-07-01T17:11:00Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010220> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010220> "chronic frequent pain"@en)
+EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0010220> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000040> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000380>)))
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010220> <http://purl.obolibrary.org/obo/PAIN_0000040>)
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010220> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000380>))
+
+# Class: <http://purl.obolibrary.org/obo/PAIN_0010221> (chronic infrequent pain)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/PAIN_0010221> "Chronic pain that occurs less than one day a month.")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/PAIN_0010221> "PMID:32103673")
+AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/PAIN_0010221> <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.org/obo/PAIN_0010221> "2025-07-01T17:13:04Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010221> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010221> "chronic infrequent pain"@en)
+EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0010221> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000040> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000381>)))
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010221> <http://purl.obolibrary.org/obo/PAIN_0000040>)
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010221> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000381>))
+
+# Class: <http://purl.obolibrary.org/obo/PAIN_0010222> (chronic frequent pain with pain referral)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/PAIN_0010222> "Chronic frequent pain that occurs beyond the affected site.")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/PAIN_0010222> "PMID:32103673")
+AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/PAIN_0010222> <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.org/obo/PAIN_0010222> "2025-07-01T17:14:42Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010222> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010222> "chronic frequent pain with pain referral"@en)
+EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0010222> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0010220> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000126> <http://purl.obolibrary.org/obo/UBERON_0001062>)))
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010222> <http://purl.obolibrary.org/obo/PAIN_0000054>)
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010222> <http://purl.obolibrary.org/obo/PAIN_0010220>)
+
+# Class: <http://purl.obolibrary.org/obo/PAIN_0010223> (chronic frequent pain without pain referral)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/PAIN_0010223> "Chronic frequent pain that s localized to the affected area.")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/PAIN_0010223> "PMID:32103673")
+AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/PAIN_0010223> <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.org/obo/PAIN_0010223> "2025-07-01T17:15:41Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010223> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010223> "chronic frequent pain without pain referral"@en)
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010223> <http://purl.obolibrary.org/obo/PAIN_0010220>)
 
 # Class: <http://purl.obolibrary.org/obo/PAIN_0010224> (chronic frequent primary myofascial orofacial pain without pain referral)
 
@@ -4442,7 +4449,7 @@ AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010224> "
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010224> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010224> "chronic frequent primary myofascial orofacial pain without pain referral"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010224> <http://purl.obolibrary.org/obo/PAIN_0010219>)
-SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010224> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/OHD_0010223>))
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010224> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/PAIN_0010223>))
 
 # Class: <http://purl.obolibrary.org/obo/PAIN_0010225> (chronic frequent primary myofascial orofacial pain with pain referral)
 
@@ -4455,8 +4462,18 @@ AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010225> "
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010225> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010225> "chronic frequent primary myofascial orofacial pain with pain referral"@en)
 EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0010225> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0010219> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000126> <http://purl.obolibrary.org/obo/UBERON_0001062>)))
-SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010225> <http://purl.obolibrary.org/obo/OHD_0010222>)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010225> <http://purl.obolibrary.org/obo/PAIN_0010219>)
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010225> <http://purl.obolibrary.org/obo/PAIN_0010222>)
+
+# Class: <http://purl.obolibrary.org/obo/PAIN_0010226> (chronic highly frequent pain)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/PAIN_0010226> "Chronic pain that occurs more than 15 days a month for more than 4 months.")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/PAIN_0010226> "PMID:32103673")
+AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/PAIN_0010226> <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.org/obo/PAIN_0010226> "2025-07-01T17:22:21Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010226> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010226> "chronic highly frequent pain"@en)
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010226> <http://purl.obolibrary.org/obo/PAIN_0010220>)
 
 # Class: <http://purl.obolibrary.org/obo/PAIN_0010227> (chronic highly frequent primary myofascial orofacial pain)
 
@@ -4469,7 +4486,7 @@ AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010227> "
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010227> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010227> "chronic highly frequent primary myofascial orofacial pain"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010227> <http://purl.obolibrary.org/obo/PAIN_0010219>)
-SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010227> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/OHD_0010226>))
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010227> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/PAIN_0010226>))
 
 # Class: <http://purl.obolibrary.org/obo/PAIN_0010228> (chronic highly frequent primary myofascial orofacial pain without pain referral)
 
@@ -4482,7 +4499,29 @@ AnnotationAssertion(rdfs:comment <http://purl.obolibrary.org/obo/PAIN_0010228> "
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010228> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010228> "chronic highly frequent primary myofascial orofacial pain without pain referral"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010228> <http://purl.obolibrary.org/obo/PAIN_0010227>)
-SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010228> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/OHD_0010229>))
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010228> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/PAIN_0010229>))
+
+# Class: <http://purl.obolibrary.org/obo/PAIN_0010229> (chronic highly frequent pain without pain referral)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/PAIN_0010229> "Chronic highly frequent pain that is localized to the affected area.")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/PAIN_0010229> "PMID:32103673")
+AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/PAIN_0010229> <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.org/obo/PAIN_0010229> "2025-07-01T17:35:37Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010229> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010229> "chronic highly frequent pain without pain referral"@en)
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010229> <http://purl.obolibrary.org/obo/PAIN_0010226>)
+
+# Class: <http://purl.obolibrary.org/obo/PAIN_0010230> (chronic highly frequent pain with pain referral)
+
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/PAIN_0010230> "Chronic highly frequent pain with pain referral that occurs beyond the affected area.")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000119> <http://purl.obolibrary.org/obo/PAIN_0010230> "PMID:32103673")
+AnnotationAssertion(<http://purl.org/dc/terms/contributor> <http://purl.obolibrary.org/obo/PAIN_0010230> <https://orcid.org/0009-0003-5583-4731>)
+AnnotationAssertion(<http://purl.org/dc/terms/created> <http://purl.obolibrary.org/obo/PAIN_0010230> "2025-07-01T17:37:56Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PAIN_0010230> <http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PAIN_0010230> "chronic highly frequent pain with pain referral"@en)
+EquivalentClasses(<http://purl.obolibrary.org/obo/PAIN_0010230> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0010226> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000126> <http://purl.obolibrary.org/obo/UBERON_0001062>)))
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010230> <http://purl.obolibrary.org/obo/PAIN_0010222>)
+SubClassOf(<http://purl.obolibrary.org/obo/PAIN_0010230> <http://purl.obolibrary.org/obo/PAIN_0010226>)
 
 # Class: <http://purl.obolibrary.org/obo/PAIN_0010231> (chronic highly frequent primary myofascial orofacial pain with pain referral)
 
@@ -5423,6 +5462,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <htt
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/PATO_0000380> <http://purl.obolibrary.org/obo/pato#value_slim>)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PATO_0000380> <http://purl.obolibrary.org/obo/pato.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PATO_0000380> "increased frequency")
+EquivalentClasses(<http://purl.obolibrary.org/obo/PATO_0000380> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PATO_0000044> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0015007> <http://purl.obolibrary.org/obo/PATO_0000461>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0000380> <http://purl.obolibrary.org/obo/PATO_0000044>)
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0000380> <http://purl.obolibrary.org/obo/PATO_0055003>)
 
@@ -5438,6 +5478,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <htt
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/PATO_0000381> <http://purl.obolibrary.org/obo/pato#value_slim>)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PATO_0000381> <http://purl.obolibrary.org/obo/pato.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PATO_0000381> "decreased frequency")
+EquivalentClasses(<http://purl.obolibrary.org/obo/PATO_0000381> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PATO_0000044> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0015008> <http://purl.obolibrary.org/obo/PATO_0000461>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0000381> <http://purl.obolibrary.org/obo/PATO_0000044>)
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0000381> <http://purl.obolibrary.org/obo/PATO_0055004>)
 
@@ -5453,6 +5494,20 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <htt
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PATO_0000389> <http://purl.obolibrary.org/obo/pato.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PATO_0000389> "acute")
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0000389> <http://purl.obolibrary.org/obo/PATO_0001309>)
+
+# Class: <http://purl.obolibrary.org/obo/PATO_0000461> (normal)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "PATOC:GVG") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/PATO_0000461> "A quality inhering in a bearer by virtue of the bearer's exhibiting no deviation from normal or average.")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002604> <http://purl.obolibrary.org/obo/PATO_0000461> <http://purl.obolibrary.org/obo/PATO_0000460>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespace> <http://purl.obolibrary.org/obo/PATO_0000461> "quality")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/PATO_0000461> "average")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/PATO_0000461> "PATO:0000461")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/PATO_0000461> <http://purl.obolibrary.org/obo/pato#abnormal_slim>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/PATO_0000461> <http://purl.obolibrary.org/obo/pato#mpath_slim>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/PATO_0000461> <http://purl.obolibrary.org/obo/pato#value_slim>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PATO_0000461> <http://purl.obolibrary.org/obo/pato.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PATO_0000461> "normal")
+SubClassOf(<http://purl.obolibrary.org/obo/PATO_0000461> <http://purl.obolibrary.org/obo/PATO_0000068>)
 
 # Class: <http://purl.obolibrary.org/obo/PATO_0000627> (localized)
 
@@ -5492,6 +5547,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <htt
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/PATO_0000911> <http://purl.obolibrary.org/obo/pato#value_slim>)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PATO_0000911> <http://purl.obolibrary.org/obo/pato.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PATO_0000911> "decreased rate")
+EquivalentClasses(<http://purl.obolibrary.org/obo/PATO_0000911> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PATO_0000161> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0015008> <http://purl.obolibrary.org/obo/PATO_0000461>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0000911> <http://purl.obolibrary.org/obo/PATO_0000161>)
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0000911> <http://purl.obolibrary.org/obo/PATO_0002302>)
 
@@ -5507,6 +5563,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <htt
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/PATO_0000912> <http://purl.obolibrary.org/obo/pato#value_slim>)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PATO_0000912> <http://purl.obolibrary.org/obo/pato.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PATO_0000912> "increased rate")
+EquivalentClasses(<http://purl.obolibrary.org/obo/PATO_0000912> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PATO_0000161> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0015007> <http://purl.obolibrary.org/obo/PATO_0000461>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0000912> <http://purl.obolibrary.org/obo/PATO_0000161>)
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0000912> <http://purl.obolibrary.org/obo/PATO_0002304>)
 
@@ -5618,6 +5675,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://pu
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PATO_0002300> <http://purl.obolibrary.org/obo/pato.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PATO_0002300> "increased quality")
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0002300> <http://purl.obolibrary.org/obo/PATO_0000069>)
+SubClassOf(<http://purl.obolibrary.org/obo/PATO_0002300> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0015007> <http://purl.obolibrary.org/obo/PATO_0000461>))
 
 # Class: <http://purl.obolibrary.org/obo/PATO_0002301> (decreased quality)
 
@@ -5630,6 +5688,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://pu
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PATO_0002301> <http://purl.obolibrary.org/obo/pato.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PATO_0002301> "decreased quality")
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0002301> <http://purl.obolibrary.org/obo/PATO_0000069>)
+SubClassOf(<http://purl.obolibrary.org/obo/PATO_0002301> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0015008> <http://purl.obolibrary.org/obo/PATO_0000461>))
 
 # Class: <http://purl.obolibrary.org/obo/PATO_0002302> (decreased process quality)
 
@@ -5641,6 +5700,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespac
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/PATO_0002302> "PATO:0002302")
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PATO_0002302> <http://purl.obolibrary.org/obo/pato.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PATO_0002302> "decreased process quality")
+EquivalentClasses(<http://purl.obolibrary.org/obo/PATO_0002302> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PATO_0001236> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0015008> <http://purl.obolibrary.org/obo/PATO_0000461>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0002302> <http://purl.obolibrary.org/obo/PATO_0001236>)
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0002302> <http://purl.obolibrary.org/obo/PATO_0002301>)
 
@@ -5654,6 +5714,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespac
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/PATO_0002304> "PATO:0002304")
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PATO_0002304> <http://purl.obolibrary.org/obo/pato.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PATO_0002304> "increased process quality")
+EquivalentClasses(<http://purl.obolibrary.org/obo/PATO_0002304> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PATO_0001236> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0015007> <http://purl.obolibrary.org/obo/PATO_0000461>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0002304> <http://purl.obolibrary.org/obo/PATO_0001236>)
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0002304> <http://purl.obolibrary.org/obo/PATO_0002300>)
 
@@ -5699,6 +5760,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespac
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/PATO_0055003> "PATO:0055003")
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PATO_0055003> <http://purl.obolibrary.org/obo/pato.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PATO_0055003> "increased rate of occurrence")
+EquivalentClasses(<http://purl.obolibrary.org/obo/PATO_0055003> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PATO_0050000> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0015007> <http://purl.obolibrary.org/obo/PATO_0000461>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0055003> <http://purl.obolibrary.org/obo/PATO_0000912>)
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0055003> <http://purl.obolibrary.org/obo/PATO_0050000>)
 
@@ -5711,6 +5773,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasOBONamespac
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/PATO_0055004> "PATO:0055004")
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/PATO_0055004> <http://purl.obolibrary.org/obo/pato.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/PATO_0055004> "decreased rate of occurrence")
+EquivalentClasses(<http://purl.obolibrary.org/obo/PATO_0055004> ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PATO_0050000> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0015008> <http://purl.obolibrary.org/obo/PATO_0000461>)))
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0055004> <http://purl.obolibrary.org/obo/PATO_0000911>)
 SubClassOf(<http://purl.obolibrary.org/obo/PATO_0055004> <http://purl.obolibrary.org/obo/PATO_0050000>)
 
@@ -7424,6 +7487,12 @@ AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/UBERON_0034921> "
 SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0034921> <http://purl.obolibrary.org/obo/UBERON_0010000>)
 
 
+SubClassOf(ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000036> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000062> <http://purl.obolibrary.org/obo/UBERON_0001062>)) <http://purl.obolibrary.org/obo/PAIN_0000130>)
+SubClassOf(ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000036> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000126> <http://purl.obolibrary.org/obo/UBERON_0001062>)) <http://purl.obolibrary.org/obo/PAIN_0000130>)
+SubClassOf(ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000036> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> <http://purl.obolibrary.org/obo/PATO_0000627>)) <http://purl.obolibrary.org/obo/PAIN_0000130>)
+SubClassOf(ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000036> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0000053> ObjectUnionOf(<http://purl.obolibrary.org/obo/PATO_0000057> <http://purl.obolibrary.org/obo/PATO_0001309>))) <http://purl.obolibrary.org/obo/PAIN_0000128>)
+SubClassOf(ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000036> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/RO_0002410> <http://purl.obolibrary.org/obo/PAIN_0000045>)) <http://purl.obolibrary.org/obo/PAIN_0000132>)
+SubClassOf(ObjectIntersectionOf(<http://purl.obolibrary.org/obo/PAIN_0000089> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/PAIN_0000062> ObjectUnionOf(<http://purl.obolibrary.org/obo/UBERON_0000165> <http://purl.obolibrary.org/obo/UBERON_0001456>))) <http://purl.obolibrary.org/obo/PAIN_0000090>)
 DisjointClasses(ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/BFO_0000050> <http://purl.obolibrary.org/obo/UBERON_0001015>) ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/BFO_0000050> <http://purl.obolibrary.org/obo/UBERON_0001474>))
 DisjointClasses(ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/BFO_0000050> <http://purl.obolibrary.org/obo/UBERON_0001709>) ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/BFO_0000050> <http://purl.obolibrary.org/obo/UBERON_0001710>))
 SubObjectPropertyOf(ObjectPropertyChain(<http://purl.obolibrary.org/obo/BFO_0000050> <http://purl.obolibrary.org/obo/BFO_0000050>) <http://purl.obolibrary.org/obo/RO_0002131>)
