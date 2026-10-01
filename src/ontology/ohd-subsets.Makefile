@@ -34,7 +34,7 @@ $(SUBSETDIR)/odfa.owl: $(ONT).owl $(SPARQLDIR)/odfa-subset.rq $(SUBSETDIR)/odfa-
 			--version-iri $(URIBASE)/$(ONT)/releases/$(VERSION)/$(notdir $@) \
 			--annotation owl:versionInfo $(VERSION) \
 		--output $@ &&\
-	rm $@.tmp.owl &&
+	rm $@.tmp.owl && \
 	rm $@.tmp.txt
 .PRECIOUS: $(SUBSETDIR)/odfa.owl
 
