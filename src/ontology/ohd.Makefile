@@ -43,7 +43,9 @@ $(ONT).owl: $(SRC)
 	@echo "\n** building $@ **"
 	$(ROBOT) \
 		merge -i $< \
-		reason --reasoner HERMIT --annotate-inferred-axioms true --exclude-duplicate-axioms true \
+		reason --reasoner HERMIT \
+				--annotate-inferred-axioms true --exclude-duplicate-axioms true \
+				--equivalent-classes-allowed asserted-only --exclude-tautologies structural \
 		annotate \
 			--ontology-iri $(URIBASE)/$@ \
 			--version-iri $(ONTBASE)/releases/$(VERSION)/$@ \
