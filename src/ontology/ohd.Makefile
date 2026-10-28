@@ -4,6 +4,19 @@
 FORCE: ;
 
 prepare_release: test custom_reports all_assets
+	@tmp_release_assets="$(patsubst %, $(RELEASEDIR)/%, $(RELEASE_ASSETS))"; \
+	for f in $$tmp_release_assets; do \
+		case "$$f" in \
+			*.tsv) continue ;; \
+		esac; \
+		$(call remove-obsolete-class,$$f); \
+	done &&\
+	$(ROBOT) report -i $(ONT).owl $(REPORT_LABEL) $(REPORT_PROFILE_OPTS) \
+					--fail-on $(REPORT_FAIL_ON) \
+					--base-iri $(URIBASE)/OHD_ \
+					--base-iri $(URIBASE)/ohd \
+					--print 5 \
+					-o $(REPORTDIR)/$(SRC)-obo-report.tsv &&\ 
 	rsync -R $(RELEASE_ASSETS) $(RELEASEDIR) &&\
 	rm -f $(CLEANFILES) &&\
 	echo "Release files are now in $(RELEASEDIR) - now you should commit, push and make a release \
@@ -43,7 +56,9 @@ $(ONT).owl: $(SRC)
 	@echo "\n** building $@ **"
 	$(ROBOT) \
 		merge -i $< \
-		reason --reasoner HERMIT --annotate-inferred-axioms true --exclude-duplicate-axioms true \
+		reason --reasoner HERMIT \
+				--annotate-inferred-axioms true --exclude-duplicate-axioms true \
+				--equivalent-classes-allowed asserted-only --exclude-tautologies structural \
 		annotate \
 			--ontology-iri $(URIBASE)/$@ \
 			--version-iri $(ONTBASE)/releases/$(VERSION)/$@ \
@@ -497,3 +512,18 @@ else # MIR=false
 $(MIRRORDIR)/%.owl $(MIRRORDIR)/%.owl.gz:
 	@echo "Not refreshing $@ because the mirrorring pipeline is disabled (MIR=$(MIR))."
 endif
+
+#### Release Functions ####
+
+define remove-obsolete-class
+	echo "\n removing ObsoleteClass from $(1) ($$(basename $(1))) \n"; \
+	$(ROBOT) \
+		remove \
+			--input $(1) \
+			--term http://www.geneontology.org/formats/oboInOwl#ObsoleteClass \
+			--select "self descendants" \
+			--signature true \
+		remove \
+			--select "owl:deprecated='true'^^xsd:boolean" \
+	--output $(TMPDIR)/$$(basename $(1)) && mv $(TMPDIR)/$$(basename $(1)) $(1)
+endef

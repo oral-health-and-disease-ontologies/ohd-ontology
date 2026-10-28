@@ -575,6 +575,7 @@ Declaration(Class(obo:OHD_0000449))
 Declaration(Class(obo:OHD_0000450))
 Declaration(Class(obo:OHD_0000451))
 Declaration(Class(obo:OHD_0000452))
+Declaration(Class(obo:OHD_0000453))
 Declaration(Class(obo:OHD_0000455))
 Declaration(Class(obo:OHD_0000456))
 Declaration(Class(obo:OHD_0000457))
@@ -1836,6 +1837,10 @@ SubClassOf(obo:CDT_1000022 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000004)
 # Class: obo:CDT_1000023 (billing code for crowns - single restorations only)
 
 SubClassOf(obo:CDT_1000023 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000033))
+
+# Class: obo:COB_0000502 (characteristic)
+
+SubClassOf(obo:COB_0000502 owl:Thing)
 
 # Class: obo:ExO_0000002 (exposure event)
 
@@ -5821,6 +5826,15 @@ AnnotationAssertion(dcterms:created obo:OHD_0000452 "2026-06-15T19:29:13Z"^^xsd:
 AnnotationAssertion(rdfs:label obo:OHD_0000452 "Angle's classification finding"@en)
 SubClassOf(obo:OHD_0000452 obo:OHD_0000465)
 
+# Class: obo:OHD_0000453 (dental care-related fear or anxiety process)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000453 "A grouping class for dental care-related fear or dental care-related anxiety. It is not always clear if a dental care-related emotion is fear or anxiety.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000453 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000453 "2026-10-27T21:35:35Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000453 "dental care-related fear or anxiety process"@en)
+EquivalentClasses(obo:OHD_0000453 ObjectUnionOf(obo:OHD_0008083 obo:OHD_0008084))
+SubClassOf(obo:OHD_0000453 obo:EMRO_0000000)
+
 # Class: obo:OHD_0000455 (tooth occlusal quality)
 
 AnnotationAssertion(Annotation(obo:IAO_0000119 "https://aaoinfo.org/resources/glossary-of-orthodontic-terms/") Annotation(obo:IAO_0000119 "https://pmc.ncbi.nlm.nih.gov/articles/PMC11624512/") Annotation(obo:IAO_0000119 "https://www.ncbi.nlm.nih.gov/books/NBK570625/") obo:IAO_0000115 obo:OHD_0000455 "A alignment quality that characterizes how at least one upper tooth and at least one lower tooth spatialy relate to one another during static or dynamic maximal contact."@en)
@@ -7082,9 +7096,10 @@ SubClassOf(obo:OHD_0008082 obo:OHD_0000274)
 
 # Class: obo:OHD_0008083 (dental care-related fear process)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008083 "A fear process that occurs in relation to receiving dental care."@en)
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008083 "A fear process related to receiving dental care. Dental care-related fear typically occurs in close temporal proximity to actual dental care, such as immediately prior to or during an injection."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008083 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008083 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008083 <https://orcid.org/0000-0002-0766-8455>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008083 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008083 "2026-09-01T17:42:03Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008083 obo:OHD_0005009)
@@ -7093,11 +7108,13 @@ SubClassOf(obo:OHD_0008083 obo:EMRO_0000004)
 
 # Class: obo:OHD_0008084 (dental care-related anxiety process)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008084 "An anxiety process that is in response to some perceived future dental-related threat, such as an upcoming dental appointment or pain anticipated as part of a dental procedure."@en)
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008084 "An anxiety process related to receiving dental care. Dental care-related anxiety happens in response to dental-care related threat, such as an upcoming dental appointment or pain anticipated as part of a dental procedure.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0008084 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008084 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008084 <https://orcid.org/0000-0002-0766-8455>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008084 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008084 "2026-09-01T17:42:15Z"^^xsd:dateTime)
+AnnotationAssertion(dcterms:description obo:OHD_0008084 "Dental care-related anxiety happens in response to some perceived future dental-care related threat, such as an upcoming dental appointment or pain anticipated as part of a dental procedure."@en)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008084 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008084 "dental care-related anxiety process"@en)
 SubClassOf(obo:OHD_0008084 obo:EMRO_0000003)
@@ -10818,6 +10835,7 @@ AnnotationAssertion(obo:OHD_0000065 obo:UBERON_8490051 "O")
 # Class: <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> (obsolete class)
 
 AnnotationAssertion(rdfs:label <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> "obsolete class")
+SubClassOf(<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> owl:Thing)
 
 
 ############################
