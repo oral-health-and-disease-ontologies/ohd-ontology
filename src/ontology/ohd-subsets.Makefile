@@ -4,7 +4,7 @@
 # ----------------------------------------
 
 
-SUBSETS = odfa icop
+SUBSETS = odfa
 
 SUBSET_ROOTS = $(patsubst %, $(SUBSETDIR)/%, $(SUBSETS))
 SUBSET_FILES = $(foreach n,$(SUBSET_ROOTS), $(foreach f,$(FORMATS_INCL_TSV), $(n).$(f)))
