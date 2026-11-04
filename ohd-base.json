@@ -64,9 +64,9 @@
         "val" : "Oral Health and Disease Ontology"
       }, {
         "pred" : "http://www.w3.org/2002/07/owl#versionInfo",
-        "val" : "2026-10-01"
+        "val" : "2026-11-04"
       } ],
-      "version" : "http://purl.obolibrary.org/obo/ohd/releases/2026-10-01/ohd-base.json"
+      "version" : "http://purl.obolibrary.org/obo/ohd/releases/2026-11-04/ohd-base.json"
     },
     "nodes" : [ {
       "id" : "http://purl.obolibrary.org/obo/BFO_0000004",
@@ -121,6 +121,9 @@
       "type" : "CLASS"
     }, {
       "id" : "http://purl.obolibrary.org/obo/ECTO_9002146",
+      "type" : "CLASS"
+    }, {
+      "id" : "http://purl.obolibrary.org/obo/EMRO_0000000",
       "type" : "CLASS"
     }, {
       "id" : "http://purl.obolibrary.org/obo/EMRO_0000003",
@@ -333,7 +336,7 @@
           "val" : "PERSON:Pedro Cott"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -383,7 +386,7 @@
           "val" : "https://orcid.org/0000-0001-9625-1899"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -1053,9 +1056,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2024-06-21T14:26:11Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -3973,9 +3973,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2023-06-06T21:30:39Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -4453,13 +4450,13 @@
         },
         "basicPropertyValues" : [ {
           "pred" : "http://purl.org/dc/terms/contributor",
-          "val" : "https://orcid.org/0000-0001-9625-1899"
-        }, {
-          "pred" : "http://purl.org/dc/terms/contributor",
           "val" : "https://orcid.org/0009-0006-7251-3026"
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2023-06-09T16:29:17Z"
+        }, {
+          "pred" : "http://www.w3.org/2000/01/rdf-schema#comment",
+          "val" : "https://orcid.org/0000-0001-9625-1899"
         } ]
       }
     }, {
@@ -6376,9 +6373,6 @@
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-01-17T19:58:44Z"
         }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
-        }, {
           "pred" : "http://www.w3.org/2004/02/skos/core#exactMatch",
           "val" : "http://purl.obolibrary.org/obo/DOID_403"
         }, {
@@ -6661,9 +6655,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-01-17T20:08:15Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         }, {
           "pred" : "http://www.w3.org/2004/02/skos/core#exactMatch",
           "val" : "http://purl.obolibrary.org/obo/MONDO_0006858"
@@ -7434,6 +7425,22 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2026-06-15T19:29:13Z"
+        } ]
+      }
+    }, {
+      "id" : "http://purl.obolibrary.org/obo/OHD_0000453",
+      "lbl" : "dental care-related fear or anxiety process",
+      "type" : "CLASS",
+      "meta" : {
+        "definition" : {
+          "val" : "A grouping class for dental care-related fear or dental care-related anxiety. It is not always clear if a dental care-related emotion is fear or anxiety."
+        },
+        "basicPropertyValues" : [ {
+          "pred" : "http://purl.org/dc/terms/contributor",
+          "val" : "https://orcid.org/0000-0001-9625-1899"
+        }, {
+          "pred" : "http://purl.org/dc/terms/created",
+          "val" : "2026-10-27T21:35:35Z"
         } ]
       }
     }, {
@@ -10146,9 +10153,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-03-28T12:51:33Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -10886,7 +10890,7 @@
       "type" : "CLASS",
       "meta" : {
         "definition" : {
-          "val" : "A fear process that occurs during dental care, such as during a tooth restoration procedure."
+          "val" : "A fear process related to receiving dental care. Dental care-related fear typically occurs in close temporal proximity to actual dental care, such as immediately prior to or during an injection."
         },
         "subsets" : [ "http://purl.obolibrary.org/obo/OHD_0005009" ],
         "basicPropertyValues" : [ {
@@ -10895,6 +10899,9 @@
         }, {
           "pred" : "http://purl.org/dc/terms/contributor",
           "val" : "https://orcid.org/0000-0001-9990-8331"
+        }, {
+          "pred" : "http://purl.org/dc/terms/contributor",
+          "val" : "https://orcid.org/0000-0002-0766-8455"
         }, {
           "pred" : "http://purl.org/dc/terms/contributor",
           "val" : "https://orcid.org/0009-0002-7282-0836"
@@ -10909,7 +10916,7 @@
       "type" : "CLASS",
       "meta" : {
         "definition" : {
-          "val" : "An anxiety process that is in response to some perceived future dental-related threat, such as an upcoming dental appointment or pain anticipated as part of a dental procedure."
+          "val" : "An anxiety process related to receiving dental care. Dental care-related anxiety happens in response to dental-care related threat, such as an upcoming dental appointment or pain anticipated as part of a dental procedure."
         },
         "subsets" : [ "http://purl.obolibrary.org/obo/OHD_0005009" ],
         "basicPropertyValues" : [ {
@@ -10920,10 +10927,16 @@
           "val" : "https://orcid.org/0000-0001-9990-8331"
         }, {
           "pred" : "http://purl.org/dc/terms/contributor",
+          "val" : "https://orcid.org/0000-0002-0766-8455"
+        }, {
+          "pred" : "http://purl.org/dc/terms/contributor",
           "val" : "https://orcid.org/0009-0002-7282-0836"
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2026-09-01T17:42:15Z"
+        }, {
+          "pred" : "http://purl.org/dc/terms/description",
+          "val" : "Dental care-related anxiety happens in response to some perceived future dental-care related threat, such as an upcoming dental appointment or pain anticipated as part of a dental procedure."
         } ]
       }
     }, {
@@ -11236,7 +11249,7 @@
           "val" : "2025-06-05T14:17:34Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -11278,9 +11291,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-06-05T14:34:40Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -11302,7 +11312,7 @@
           "val" : "2025-06-05T14:40:56Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -11361,7 +11371,7 @@
           "val" : "2025-06-05T14:53:38Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -11416,7 +11426,7 @@
           "val" : "2025-06-05T15:03:12Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -11471,7 +11481,7 @@
           "val" : "2025-06-05T15:17:38Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -11521,9 +11531,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/contributor",
           "val" : "https://orcid.org/0009-0003-5583-4731"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -11545,7 +11552,7 @@
           "val" : "2025-06-19T18:48:48Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -11655,7 +11662,7 @@
           "val" : "2025-06-10T17:58:35Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -11677,7 +11684,7 @@
           "val" : "2025-06-10T18:08:21Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -11723,9 +11730,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-06-23T19:47:27Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -11747,7 +11751,7 @@
           "val" : "2025-06-10T18:30:06Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -11792,7 +11796,7 @@
           "val" : "2025-06-10T18:41:27Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -11814,7 +11818,7 @@
           "val" : "2025-06-10T18:44:24Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -11859,7 +11863,7 @@
           "val" : "2025-06-10T19:01:22Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -11881,7 +11885,7 @@
           "val" : "2025-06-10T19:02:08Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -12065,7 +12069,7 @@
           "val" : "2025-06-10T19:39:13Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -12087,7 +12091,7 @@
           "val" : "2025-06-10T19:44:06Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -12109,7 +12113,7 @@
           "val" : "2025-06-10T19:51:14Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -12157,7 +12161,7 @@
           "val" : "2025-06-10T19:57:38Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -12193,7 +12197,7 @@
       "type" : "CLASS",
       "meta" : {
         "definition" : {
-          "val" : "Oral mucosal inflammation occuring due to a viral infection within the oral mucosa."
+          "val" : "Oral mucosal inflammation occuring due to a fungal infection within the oral mucosa."
         },
         "basicPropertyValues" : [ {
           "pred" : "http://purl.obolibrary.org/obo/IAO_0000119",
@@ -12206,7 +12210,7 @@
           "val" : "2025-06-10T20:03:18Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -12358,7 +12362,7 @@
           "val" : "2025-06-11T17:45:20Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -12406,7 +12410,7 @@
           "val" : "2025-06-11T17:53:05Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -12507,7 +12511,7 @@
           "val" : "2025-06-11T18:15:26Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -12590,9 +12594,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-06-11T18:32:32Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -12633,7 +12634,7 @@
           "val" : "2025-06-11T18:50:51Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -12681,7 +12682,7 @@
           "val" : "2025-06-11T18:57:00Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -12729,7 +12730,7 @@
           "val" : "2025-06-11T19:03:19Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -12777,7 +12778,7 @@
           "val" : "2025-06-11T19:56:24Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -12836,7 +12837,7 @@
       "type" : "CLASS",
       "meta" : {
         "definition" : {
-          "val" : "dentin hypersensitivity due to exposed dentin resulting from a developmental dental hard tissue defect."
+          "val" : "Dentin hypersensitivity due to exposed dentin resulting from a developmental dental hard tissue defect."
         },
         "basicPropertyValues" : [ {
           "pred" : "http://purl.org/dc/terms/contributor",
@@ -12846,7 +12847,7 @@
           "val" : "2025-06-12T16:52:56Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -12952,7 +12953,7 @@
           "val" : "2025-06-12T18:12:50Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -13000,7 +13001,7 @@
           "val" : "2025-06-12T18:26:48Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -13133,9 +13134,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-06-19T19:04:30Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -13173,7 +13171,7 @@
           "val" : "2025-06-19T19:09:00Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -13210,7 +13208,6 @@
         "definition" : {
           "val" : "Exposed dental pulp occuring because of some dental injury."
         },
-        "comments" : [ "Exposed dental pulp occuring because of some dental injury." ],
         "basicPropertyValues" : [ {
           "pred" : "http://purl.obolibrary.org/obo/IAO_0000119",
           "val" : "PMID:32103673"
@@ -13222,7 +13219,7 @@
           "val" : "2025-06-23T19:50:16Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -13305,7 +13302,7 @@
           "val" : "2025-06-16T14:52:46Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -13346,7 +13343,7 @@
           "val" : "2025-06-16T18:27:39Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -13391,7 +13388,7 @@
           "val" : "2025-06-16T18:34:32Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -13458,7 +13455,7 @@
           "val" : "2025-06-16T18:42:35Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -13548,7 +13545,7 @@
           "val" : "2025-06-23T20:17:04Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -13612,7 +13609,7 @@
           "val" : "2025-06-17T18:38:52Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -13676,7 +13673,7 @@
           "val" : "2025-06-17T18:50:48Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -13720,9 +13717,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-06-18T17:06:36Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -13739,9 +13733,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-06-18T17:16:52Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -13758,9 +13749,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-06-18T17:20:17Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -14428,7 +14416,7 @@
       "type" : "CLASS",
       "meta" : {
         "definition" : {
-          "val" : "A tooth disorder resulting in a tooth making excessive contact with and opposing tooth, enroaching on the intercostal space."
+          "val" : "A tooth disorder resulting in a tooth making excessive contact with an opposing tooth, enroaching on the intercostal space."
         },
         "basicPropertyValues" : [ {
           "pred" : "http://purl.org/dc/terms/contributor",
@@ -14438,7 +14426,7 @@
           "val" : "2025-06-25T18:29:47Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -14454,7 +14442,7 @@
           "val" : "2025-06-25T18:32:17Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -14473,7 +14461,7 @@
           "val" : "2025-06-25T18:49:54Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -14492,7 +14480,7 @@
           "val" : "2025-06-25T18:50:29Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -14540,7 +14528,7 @@
           "val" : "2025-06-25T18:59:05Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -14600,7 +14588,7 @@
           "val" : "2025-06-25T19:15:09Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -14646,9 +14634,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-06-25T19:22:26Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -14668,9 +14653,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-06-25T19:23:53Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -14690,9 +14672,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-06-25T19:26:50Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -14731,9 +14710,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-06-25T19:34:08Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -14772,9 +14748,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-06-25T19:38:43Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -14796,7 +14769,7 @@
           "val" : "2025-06-25T19:39:40Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -14863,7 +14836,7 @@
           "val" : "2025-06-25T19:57:58Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -14908,7 +14881,7 @@
           "val" : "2025-06-26T18:19:19Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -15086,7 +15059,7 @@
           "val" : "2025-06-26T18:36:01Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -15134,7 +15107,7 @@
           "val" : "2025-06-26T18:41:03Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -15182,7 +15155,7 @@
           "val" : "2025-06-26T18:45:35Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -15291,7 +15264,7 @@
           "val" : "2025-06-26T18:58:07Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -15368,7 +15341,7 @@
           "val" : "2025-06-26T19:07:48Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -15387,7 +15360,7 @@
           "val" : "2025-06-26T19:20:29Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -15460,9 +15433,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-06-27T14:46:19Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -15482,9 +15452,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-06-30T17:03:00Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -15506,7 +15473,7 @@
           "val" : "2025-06-30T17:05:04Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -15618,7 +15585,7 @@
           "val" : "2025-06-30T17:31:17Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -15682,7 +15649,7 @@
           "val" : "2025-06-30T17:46:25Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -15730,7 +15697,7 @@
           "val" : "2025-06-30T17:51:49Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -15799,9 +15766,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-06-30T18:02:18Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -15821,9 +15785,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-06-30T18:03:40Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -15843,9 +15804,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-06-30T18:06:41Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -15867,7 +15825,7 @@
           "val" : "2025-06-30T18:07:42Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -15941,7 +15899,7 @@
           "val" : "2025-06-30T18:19:03Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -15989,7 +15947,7 @@
           "val" : "2025-06-30T18:25:59Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -16034,7 +15992,7 @@
           "val" : "2025-06-30T18:28:29Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -16242,9 +16200,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-07-01T17:11:00Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ],
         "deprecated" : true
       }
@@ -16271,9 +16226,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-07-01T17:13:04Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ],
         "deprecated" : true
       }
@@ -16300,9 +16252,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-07-01T17:14:42Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ],
         "deprecated" : true
       }
@@ -16329,9 +16278,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-07-01T17:15:41Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ],
         "deprecated" : true
       }
@@ -16410,9 +16356,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-07-01T17:22:21Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ],
         "deprecated" : true
       }
@@ -16491,9 +16434,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-07-01T17:35:37Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ],
         "deprecated" : true
       }
@@ -16520,9 +16460,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-07-01T17:37:56Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ],
         "deprecated" : true
       }
@@ -18048,9 +17985,6 @@
         }, {
           "pred" : "http://purl.org/dc/terms/created",
           "val" : "2025-07-14T15:26:18Z"
-        }, {
-          "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
         } ]
       }
     }, {
@@ -18091,7 +18025,7 @@
           "val" : "2025-07-07T18:48:59Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -18436,7 +18370,7 @@
           "val" : "2025-07-08T18:08:24Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -18455,7 +18389,7 @@
           "val" : "2025-07-08T18:10:02Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -18474,7 +18408,7 @@
           "val" : "2025-07-08T18:11:28Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -18493,7 +18427,7 @@
           "val" : "2025-07-08T18:13:59Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -18512,7 +18446,7 @@
           "val" : "2025-07-08T18:18:25Z"
         }, {
           "pred" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
-          "val" : "http://purl.obolibrary.org/obo/ohd.owl"
+          "val" : "http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"
         } ]
       }
     }, {
@@ -18525,22 +18459,10 @@
       "id" : "http://purl.obolibrary.org/obo/OMRSE_00000009",
       "type" : "CLASS"
     }, {
-      "id" : "http://purl.obolibrary.org/obo/PAIN_0000040",
-      "type" : "CLASS"
-    }, {
-      "id" : "http://purl.obolibrary.org/obo/PAIN_0000054",
-      "type" : "CLASS"
-    }, {
       "id" : "http://purl.obolibrary.org/obo/PATO_0000366",
       "type" : "CLASS"
     }, {
       "id" : "http://purl.obolibrary.org/obo/PATO_0000367",
-      "type" : "CLASS"
-    }, {
-      "id" : "http://purl.obolibrary.org/obo/PATO_0000380",
-      "type" : "CLASS"
-    }, {
-      "id" : "http://purl.obolibrary.org/obo/PATO_0000381",
       "type" : "CLASS"
     }, {
       "id" : "http://purl.obolibrary.org/obo/PATO_0001652",
@@ -18562,9 +18484,6 @@
       "type" : "CLASS"
     }, {
       "id" : "http://purl.obolibrary.org/obo/UBERON_0001044",
-      "type" : "CLASS"
-    }, {
-      "id" : "http://purl.obolibrary.org/obo/UBERON_0001062",
       "type" : "CLASS"
     }, {
       "id" : "http://purl.obolibrary.org/obo/UBERON_0001091",
@@ -18871,10 +18790,6 @@
           "val" : "2025-05-13T21:41:20Z"
         } ]
       }
-    }, {
-      "id" : "http://purl.obolibrary.org/obo/PAIN_0000126",
-      "type" : "PROPERTY",
-      "propertyType" : "OBJECT"
     }, {
       "id" : "http://purl.obolibrary.org/obo/RO_0000052",
       "type" : "PROPERTY",
@@ -19327,6 +19242,10 @@
       "type" : "PROPERTY",
       "propertyType" : "ANNOTATION"
     }, {
+      "id" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+      "type" : "PROPERTY",
+      "propertyType" : "ANNOTATION"
+    }, {
       "id" : "http://www.geneontology.org/formats/oboInOwl#source",
       "type" : "PROPERTY",
       "propertyType" : "ANNOTATION"
@@ -19393,7 +19312,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000002",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008039"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008039",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000002",
       "pred" : "http://purl.obolibrary.org/obo/BFO_0000055",
@@ -19401,7 +19326,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000003",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000002"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000002",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000003",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000057",
@@ -19529,7 +19460,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000022",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000022",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -19641,7 +19578,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000039",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000039",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -19649,7 +19592,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000040",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000142"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000142",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000040",
       "pred" : "is_a",
@@ -19661,7 +19610,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000041",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000303"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000303",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000041",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -19673,7 +19628,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000042",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000303"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000303",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000042",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -19933,7 +19894,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000094",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000094",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -19945,7 +19912,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000095",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000155"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000155",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000096",
       "pred" : "is_a",
@@ -19957,7 +19930,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000098",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000008"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000008",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000098",
       "pred" : "http://purl.obolibrary.org/obo/BFO_0000054",
@@ -19965,7 +19944,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000099",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000055"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000055",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000099",
       "pred" : "http://purl.obolibrary.org/obo/BFO_0000054",
@@ -20129,7 +20114,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000138",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000138",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -20141,7 +20132,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000139",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000140",
       "pred" : "is_a",
@@ -20149,7 +20146,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000140",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000140",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -20165,7 +20168,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000142",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000142",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -20197,7 +20206,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000149",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000154"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000154",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000149",
       "pred" : "is_a",
@@ -20209,11 +20224,23 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000150",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000157"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000157",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000151",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000162"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000162",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000151",
       "pred" : "is_a",
@@ -20221,7 +20248,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000152",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000155"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000155",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000152",
       "pred" : "is_a",
@@ -20233,7 +20266,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000153",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000142"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000142",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000154",
       "pred" : "is_a",
@@ -20249,7 +20288,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000155",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000155",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -20277,7 +20322,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000159",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000157"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000157",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000160",
       "pred" : "is_a",
@@ -20285,7 +20336,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000160",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000161",
       "pred" : "is_a",
@@ -20293,7 +20350,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000161",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000162",
       "pred" : "is_a",
@@ -20301,7 +20364,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000162",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000162",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -20313,7 +20382,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000163",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000163",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -20325,7 +20400,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000164",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000165",
       "pred" : "is_a",
@@ -20337,7 +20418,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000166",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000304",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000167",
       "pred" : "is_a",
@@ -20357,7 +20444,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000169",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000154"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000154",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000170",
       "pred" : "is_a",
@@ -20509,15 +20602,33 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000193",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000138"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000138",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000193",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000162"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000162",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000194",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000022"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000022",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000194",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000293",
@@ -20529,7 +20640,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000195",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000140"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000140",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000196",
       "pred" : "is_a",
@@ -20669,7 +20786,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000222",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000235"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000235",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000223",
       "pred" : "is_a",
@@ -20681,7 +20804,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000225",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000235"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000235",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000226",
       "pred" : "is_a",
@@ -20769,7 +20898,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000242",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000003"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000003",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000242",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000299",
@@ -20777,7 +20912,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000243",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000003"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000003",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000243",
       "pred" : "is_a",
@@ -20953,7 +21094,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000275",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000282"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000282",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000276",
       "pred" : "is_a",
@@ -21057,7 +21204,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000296",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000248"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000248",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000296",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000299",
@@ -21081,7 +21234,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000299",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000248"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000248",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000299",
       "pred" : "http://purl.obolibrary.org/obo/OBI_0000299",
@@ -21105,7 +21264,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000302",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000206"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000206",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000302",
       "pred" : "is_a",
@@ -21149,7 +21314,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000308",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/UBERON_0013164"
+      "obj" : "http://purl.obolibrary.org/obo/UBERON_0013164",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000309",
       "pred" : "is_a",
@@ -21581,7 +21752,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000406",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/NBO_0000007"
+      "obj" : "http://purl.obolibrary.org/obo/NBO_0000007",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000406",
       "pred" : "is_a",
@@ -21593,7 +21770,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000407",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000406"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000406",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000407",
       "pred" : "is_a",
@@ -21681,11 +21864,23 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000421",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008024"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008024",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000422",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008023"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008023",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000423",
       "pred" : "is_a",
@@ -21693,7 +21888,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000423",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000423",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -21709,7 +21910,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000424",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000424",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -21729,7 +21936,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000426",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000426",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -21745,7 +21958,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000427",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000427",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -21761,7 +21980,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000428",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000428",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -21773,11 +21998,23 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000429",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008007"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008007",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000430",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008007"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008007",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000430",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -21785,15 +22022,33 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000431",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008007"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008007",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000431",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008029"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008029",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000432",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008007"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008007",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000432",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -21801,7 +22056,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000433",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008007"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008007",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000433",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -21809,7 +22070,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000434",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008007"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008007",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000434",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -21817,7 +22084,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000435",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008046"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008046",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000435",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -21825,7 +22098,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000436",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008046"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008046",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000436",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -21833,11 +22112,23 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000437",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008030"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008030",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000437",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008046"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008046",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000437",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -21845,11 +22136,23 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000438",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008030"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008030",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000438",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008046"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008046",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000438",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -21857,11 +22160,23 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000439",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008030"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008030",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000439",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008046"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008046",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000439",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -21869,11 +22184,23 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000440",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008035"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008035",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000440",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008046"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008046",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000441",
       "pred" : "is_a",
@@ -21913,7 +22240,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000447",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008029"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008029",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000448",
       "pred" : "is_a",
@@ -21921,7 +22254,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000448",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008030"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008030",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000449",
       "pred" : "is_a",
@@ -21929,7 +22268,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000449",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008035"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008035",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000449",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -21955,6 +22300,10 @@
       "pred" : "is_a",
       "obj" : "http://purl.obolibrary.org/obo/OHD_0000465"
     }, {
+      "sub" : "http://purl.obolibrary.org/obo/OHD_0000453",
+      "pred" : "is_a",
+      "obj" : "http://purl.obolibrary.org/obo/EMRO_0000000"
+    }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000455",
       "pred" : "is_a",
       "obj" : "http://purl.obolibrary.org/obo/PATO_0001652"
@@ -21977,7 +22326,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000459",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000456"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000456",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000459",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -21985,7 +22340,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000460",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000456"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000456",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000460",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -21993,7 +22354,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000461",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000457"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000457",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000461",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -22001,7 +22368,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000462",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000457"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000457",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000462",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -22009,7 +22382,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000463",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000458"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000458",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000463",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -22017,7 +22396,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000464",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000458"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000458",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0000464",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -22409,7 +22794,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0005003",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0005002"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0005002",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0005004",
       "pred" : "is_a",
@@ -22417,7 +22808,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0005004",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0005002"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0005002",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0005005",
       "pred" : "is_a",
@@ -22481,7 +22878,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008007",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008010"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008010",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008008",
       "pred" : "is_a",
@@ -22585,7 +22988,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008027",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008039"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008039",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008028",
       "pred" : "is_a",
@@ -22593,7 +23002,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008029",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008029",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -22621,7 +23036,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008034",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000002"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000002",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008034",
       "pred" : "is_a",
@@ -22697,7 +23118,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008044",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008044",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -22741,7 +23168,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008055",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008041"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008041",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008055",
       "pred" : "is_a",
@@ -22749,7 +23182,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008056",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008022"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008022",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008056",
       "pred" : "is_a",
@@ -22765,7 +23204,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008059",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008059",
       "pred" : "is_a",
@@ -22773,7 +23218,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008060",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008060",
       "pred" : "is_a",
@@ -22785,7 +23236,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008061",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008024"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008024",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008061",
       "pred" : "is_a",
@@ -22793,7 +23250,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008062",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008041"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008041",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008062",
       "pred" : "is_a",
@@ -22801,7 +23264,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008063",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008022"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008022",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008063",
       "pred" : "is_a",
@@ -22813,7 +23282,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008065",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008022"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008022",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008065",
       "pred" : "is_a",
@@ -22821,11 +23296,23 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008065",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008085"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008085",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008066",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008066",
       "pred" : "is_a",
@@ -22853,11 +23340,23 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008067",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008085"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008085",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008068",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008044"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008044",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008068",
       "pred" : "is_a",
@@ -22865,7 +23364,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008069",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008069",
       "pred" : "is_a",
@@ -22873,11 +23378,23 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008069",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008085"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008085",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008070",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008070",
       "pred" : "is_a",
@@ -22901,7 +23418,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008075",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008044"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008044",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008075",
       "pred" : "is_a",
@@ -22909,7 +23432,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008076",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008076",
       "pred" : "is_a",
@@ -22917,7 +23446,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008077",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008042",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008077",
       "pred" : "is_a",
@@ -22943,13 +23478,39 @@
       "pred" : "is_a",
       "obj" : "http://purl.obolibrary.org/obo/EMRO_0000004"
     }, {
+      "sub" : "http://purl.obolibrary.org/obo/OHD_0008083",
+      "pred" : "is_a",
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000453",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
+    }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008084",
       "pred" : "is_a",
       "obj" : "http://purl.obolibrary.org/obo/EMRO_0000003"
     }, {
+      "sub" : "http://purl.obolibrary.org/obo/OHD_0008084",
+      "pred" : "is_a",
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000453",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
+    }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008085",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0008047",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0008085",
       "pred" : "http://purl.obolibrary.org/obo/IAO_0000136",
@@ -23081,7 +23642,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010025",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0010070"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0010070",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010025",
       "pred" : "is_a",
@@ -23173,7 +23740,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010042",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0010289"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0010289",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010042",
       "pred" : "http://purl.obolibrary.org/obo/BFO_0000066",
@@ -23333,7 +23906,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010070",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0010289"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0010289",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010070",
       "pred" : "http://purl.obolibrary.org/obo/RO_0001025",
@@ -23793,7 +24372,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010156",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0000413"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0000413",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010156",
       "pred" : "is_a",
@@ -24089,39 +24674,19 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010220",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/PAIN_0000040"
-    }, {
-      "sub" : "http://purl.obolibrary.org/obo/OHD_0010220",
-      "pred" : "is_a",
       "obj" : "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
-    }, {
-      "sub" : "http://purl.obolibrary.org/obo/OHD_0010220",
-      "pred" : "http://purl.obolibrary.org/obo/RO_0000053",
-      "obj" : "http://purl.obolibrary.org/obo/PATO_0000380"
-    }, {
-      "sub" : "http://purl.obolibrary.org/obo/OHD_0010221",
-      "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/PAIN_0000040"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010221",
       "pred" : "is_a",
       "obj" : "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
     }, {
-      "sub" : "http://purl.obolibrary.org/obo/OHD_0010221",
-      "pred" : "http://purl.obolibrary.org/obo/RO_0000053",
-      "obj" : "http://purl.obolibrary.org/obo/PATO_0000381"
-    }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010222",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0010220"
-    }, {
-      "sub" : "http://purl.obolibrary.org/obo/OHD_0010222",
-      "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/PAIN_0000054"
+      "obj" : "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010223",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0010220"
+      "obj" : "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010224",
       "pred" : "is_a",
@@ -24133,7 +24698,7 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010226",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0010220"
+      "obj" : "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010227",
       "pred" : "is_a",
@@ -24145,15 +24710,11 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010229",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0010226"
+      "obj" : "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010230",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0010222"
-    }, {
-      "sub" : "http://purl.obolibrary.org/obo/OHD_0010230",
-      "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0010226"
+      "obj" : "http://www.geneontology.org/formats/oboInOwl#ObsoleteClass"
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010231",
       "pred" : "is_a",
@@ -24401,7 +24962,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010291",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0010289"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0010289",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010291",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000057",
@@ -24457,7 +25024,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010305",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0010289"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0010289",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010305",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000057",
@@ -24465,7 +25038,13 @@
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010306",
       "pred" : "is_a",
-      "obj" : "http://purl.obolibrary.org/obo/OHD_0010289"
+      "obj" : "http://purl.obolibrary.org/obo/OHD_0010289",
+      "meta" : {
+        "basicPropertyValues" : [ {
+          "pred" : "http://www.geneontology.org/formats/oboInOwl#is_inferred",
+          "val" : "true"
+        } ]
+      }
     }, {
       "sub" : "http://purl.obolibrary.org/obo/OHD_0010306",
       "pred" : "http://purl.obolibrary.org/obo/RO_0000057",
@@ -25447,34 +26026,6 @@
       }, {
         "propertyId" : "http://purl.obolibrary.org/obo/RO_0002353",
         "fillerId" : "http://purl.obolibrary.org/obo/GO_0006954"
-      } ]
-    }, {
-      "definedClassId" : "http://purl.obolibrary.org/obo/OHD_0010220",
-      "genusIds" : [ "http://purl.obolibrary.org/obo/PAIN_0000040" ],
-      "restrictions" : [ {
-        "propertyId" : "http://purl.obolibrary.org/obo/RO_0000053",
-        "fillerId" : "http://purl.obolibrary.org/obo/PATO_0000380"
-      } ]
-    }, {
-      "definedClassId" : "http://purl.obolibrary.org/obo/OHD_0010221",
-      "genusIds" : [ "http://purl.obolibrary.org/obo/PAIN_0000040" ],
-      "restrictions" : [ {
-        "propertyId" : "http://purl.obolibrary.org/obo/RO_0000053",
-        "fillerId" : "http://purl.obolibrary.org/obo/PATO_0000381"
-      } ]
-    }, {
-      "definedClassId" : "http://purl.obolibrary.org/obo/OHD_0010222",
-      "genusIds" : [ "http://purl.obolibrary.org/obo/OHD_0010220" ],
-      "restrictions" : [ {
-        "propertyId" : "http://purl.obolibrary.org/obo/PAIN_0000126",
-        "fillerId" : "http://purl.obolibrary.org/obo/UBERON_0001062"
-      } ]
-    }, {
-      "definedClassId" : "http://purl.obolibrary.org/obo/OHD_0010230",
-      "genusIds" : [ "http://purl.obolibrary.org/obo/OHD_0010226" ],
-      "restrictions" : [ {
-        "propertyId" : "http://purl.obolibrary.org/obo/PAIN_0000126",
-        "fillerId" : "http://purl.obolibrary.org/obo/UBERON_0001062"
       } ]
     }, {
       "definedClassId" : "http://purl.obolibrary.org/obo/OHD_0010289",
