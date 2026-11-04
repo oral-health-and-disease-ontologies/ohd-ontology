@@ -1,5 +1,5 @@
 format-version: 1.2
-data-version: ohd/releases/2026-10-01/ohd-base.owl
+data-version: ohd/releases/2026-11-04/ohd-base.owl
 subsetdef: OHD:0005009 ""
 subsetdef: OHD:0010296 "PMID:32103673"
 idspace: dc http://purl.org/dc/elements/1.1/ 
@@ -27,7 +27,7 @@ property_value: dcterms:contributor "Pedro Hernandez Cott" xsd:string
 property_value: dcterms:description "The Oral Health and Disease Ontology (OHD) is an OBO Foundry ontology used for representing  oral-health maladies, their diagnosis, and treatment. It is has been used to represent the content of dental practice health records and is intended to be further developed for use in translation medicine. It demonstrates a principled split between billing codes as information entities and what the codes are about, such as dental procedures, materials, and patients." xsd:string
 property_value: dcterms:license http://creativecommons.org/licenses/by/4.0/
 property_value: dcterms:title "Oral Health and Disease Ontology" xsd:string
-property_value: owl:versionInfo "2026-10-01" xsd:string
+property_value: owl:versionInfo "2026-11-04" xsd:string
 
 [Term]
 id: OHD:0000000
@@ -57,7 +57,7 @@ id: OHD:0000002
 name: dental procedure
 def: "A healthcare encounter that realizes a dental patient role in which the patient undergoes a diagnostic or therapeutic process." []
 is_a: OGMS:0000097
-is_a: OHD:0008039 ! process during dental visit
+is_a: OHD:0008039 {is_inferred="true"} ! process during dental visit
 intersection_of: BFO:0000015
 intersection_of: BFO:0000055 OHD:0000052 ! dental healthcare provider role
 intersection_of: BFO:0000055 OHD:0000190 ! dental patient role
@@ -65,13 +65,13 @@ relationship: BFO:0000055 OHD:0000052 ! dental healthcare provider role
 property_value: IAO:0000116 "Bill Duncan 5/12/2015:\n\nChanged \"A specific healthcare activity\" to \"A health care encounter in which\"" xsd:string
 property_value: IAO:0000116 "Titus Schleyer 1/14/14: adapted definition slightly" xsd:string
 property_value: IAO:0000117 "PERSON:Pedro Cott" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0000003
 name: endodontic procedure
 def: "A dental procedure that is performed on the pulp chamber and/or root canal of a tooth, or a part thereof." []
-is_a: OHD:0000002 ! dental procedure
+is_a: OHD:0000002 {is_inferred="true"} ! dental procedure
 relationship: RO:0000057 NCBITaxon:9606
 relationship: RO:0000057 UBERON:0001091
 property_value: IAO:0000116 "Titus Schleyer 1/14/2014: adapted definition" xsd:string
@@ -92,7 +92,7 @@ property_value: IAO:0000116 "Mosby's Dental Dictionary 2nd ed" xsd:string
 property_value: IAO:0000116 "Titus Schleyer 3/14/2014: slightly edited definition" xsd:string
 property_value: IAO:0000117 "PERSON:Alan Ruttenberg" xsd:string
 property_value: IAO:0000117 "PERSON:Pedro Cott" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0000005
@@ -247,7 +247,7 @@ id: OHD:0000022
 name: metallic inlay restoration procedure
 def: "An inlay restoration procedure that uses metal to restore the tooth." []
 is_a: OHD:0000133 ! inlay restoration procedure
-is_a: OHD:0000304 ! indirect restoration procedure
+is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
 intersection_of: OHD:0000133 ! inlay restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000048 ! metal dental restoration material
@@ -410,7 +410,7 @@ id: OHD:0000039
 name: gold filling restoration procedure
 def: "An intracoronal restoration procedure that uses gold foil to restore the tooth." []
 is_a: OHD:0000006 ! intracoronal restoration procedure
-is_a: OHD:0000304 ! indirect restoration procedure
+is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
 intersection_of: OHD:0000006 ! intracoronal restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000034 ! gold foil dental restoration material
@@ -423,7 +423,7 @@ property_value: IAO:0000118 "gold foil intracoronal restoration procedure" xsd:s
 id: OHD:0000040
 name: 3/4 noble metal crown restoration procedure
 def: "A 3/4 crown restoration procedure that uses noble metal to restore the tooth." []
-is_a: OHD:0000142 ! noble metal crown restoration procedure
+is_a: OHD:0000142 {is_inferred="true"} ! noble metal crown restoration procedure
 is_a: OHD:0000305 ! 3/4 crown restoration procedure
 intersection_of: OHD:0000305 ! 3/4 crown restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
@@ -435,7 +435,7 @@ id: OHD:0000041
 name: amalgam filling restoration procedure
 def: "An intracoronal restoration procedure that uses amalgam to restore the tooth." []
 is_a: OHD:0000006 ! intracoronal restoration procedure
-is_a: OHD:0000303 ! direct restoration procedure
+is_a: OHD:0000303 {is_inferred="true"} ! direct restoration procedure
 intersection_of: OHD:0000006 ! intracoronal restoration procedure
 intersection_of: BFO:0000051 OHD:0000037 ! direct dental material insertion process
 intersection_of: OBI:0000293 OHD:0000001 ! amalgam dental restoration material
@@ -449,7 +449,7 @@ id: OHD:0000042
 name: resin filling restoration procedure
 def: "An intracoronal restoration procedure that uses resin to restore the tooth." []
 is_a: OHD:0000006 ! intracoronal restoration procedure
-is_a: OHD:0000303 ! direct restoration procedure
+is_a: OHD:0000303 {is_inferred="true"} ! direct restoration procedure
 intersection_of: OHD:0000006 ! intracoronal restoration procedure
 intersection_of: BFO:0000051 OHD:0000037 ! direct dental material insertion process
 intersection_of: OBI:0000293 OHD:0000036 ! resin-based composite dental restoration material
@@ -471,7 +471,6 @@ property_value: dcterms:contributor https://orcid.org/0000-0001-9990-8331
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:contributor https://orcid.org/0009-0006-7251-3026
 property_value: dcterms:created "2024-06-21T14:26:11Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0000044
@@ -829,7 +828,7 @@ id: OHD:0000094
 name: ceramic inlay restoration procedure
 def: "An inlay restoration procedure that uses ceramic to restore the tooth." []
 is_a: OHD:0000133 ! inlay restoration procedure
-is_a: OHD:0000304 ! indirect restoration procedure
+is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
 intersection_of: OHD:0000133 ! inlay restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000135 ! ceramic dental restoration material
@@ -842,7 +841,7 @@ id: OHD:0000095
 name: ceramic onlay restoration procedure
 def: "An onlay restoration procedure that uses ceramic to restore the tooth." []
 is_a: OHD:0000134 ! onlay restoration procedure
-is_a: OHD:0000155 ! ceramic crown restoration procedure
+is_a: OHD:0000155 {is_inferred="true"} ! ceramic crown restoration procedure
 intersection_of: OHD:0000134 ! onlay restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000135 ! ceramic dental restoration material
@@ -864,7 +863,7 @@ property_value: IAO:0000118 "resin inlay restoration" xsd:string
 id: OHD:0000098
 name: tooth to undergo inlay procedure role
 def: "A tooth to be restored role that is realized by an inlay restoration procedure" []
-is_a: OHD:0000008 ! tooth to be filled role
+is_a: OHD:0000008 {is_inferred="true"} ! tooth to be filled role
 intersection_of: OHD:0000007 ! tooth to be restored role
 intersection_of: BFO:0000054 OHD:0000133 ! inlay restoration procedure
 relationship: BFO:0000054 OHD:0000133 ! inlay restoration procedure
@@ -874,7 +873,7 @@ property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 id: OHD:0000099
 name: tooth to undergo onlay procedure role
 def: "A tooth to be restored role that is realized by an onlay restoration procedure" []
-is_a: OHD:0000055 ! tooth to be crowned role
+is_a: OHD:0000055 {is_inferred="true"} ! tooth to be crowned role
 intersection_of: OHD:0000007 ! tooth to be restored role
 intersection_of: BFO:0000054 OHD:0000134 ! onlay restoration procedure
 relationship: BFO:0000054 OHD:0000134 ! onlay restoration procedure
@@ -1154,7 +1153,7 @@ id: OHD:0000138
 name: metallic onlay restoration procedure
 def: "An onlay restoration procedure that uses metal to restore the tooth." []
 is_a: OHD:0000134 ! onlay restoration procedure
-is_a: OHD:0000304 ! indirect restoration procedure
+is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
 intersection_of: OHD:0000134 ! onlay restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000048 ! metal dental restoration material
@@ -1167,7 +1166,7 @@ id: OHD:0000139
 name: resin with predominantly base metal crown restoration procedure
 def: "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by covering all or some of a predominantly base metal substrate with resin." []
 is_a: OHD:0000033 ! crown restoration procedure
-is_a: OHD:0000304 ! indirect restoration procedure
+is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: IAO:0000119 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Resin_With_Predominately_Base_Metal__Dental_Procedure_Code_Description" xsd:string
 
@@ -1176,7 +1175,7 @@ id: OHD:0000140
 name: titanium crown restoration procedure
 def: "A crown restoration procedure that uses titanium to restore the tooth." []
 is_a: OHD:0000033 ! crown restoration procedure
-is_a: OHD:0000304 ! indirect restoration procedure
+is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
 intersection_of: OHD:0000033 ! crown restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000136 ! titanium dental restoration material
@@ -1196,7 +1195,7 @@ id: OHD:0000142
 name: noble metal crown restoration procedure
 def: "A crown restoration procedure that uses noble metal to restore the tooth." []
 is_a: OHD:0000033 ! crown restoration procedure
-is_a: OHD:0000304 ! indirect restoration procedure
+is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
 intersection_of: OHD:0000033 ! crown restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000146 ! noble metal dental restoration material
@@ -1256,7 +1255,7 @@ property_value: IAO:0000119 "https://www.patientconnect365.com/DentalHealthTopic
 id: OHD:0000149
 name: 3/4 resin crown restoration procedure
 def: "A 3/4 crown restoration procedure that uses resin to restore the tooth." []
-is_a: OHD:0000154 ! resin crown restoration procedure
+is_a: OHD:0000154 {is_inferred="true"} ! resin crown restoration procedure
 is_a: OHD:0000305 ! 3/4 crown restoration procedure
 intersection_of: OHD:0000305 ! 3/4 crown restoration procedure
 intersection_of: OBI:0000293 OHD:0000036 ! resin-based composite dental restoration material
@@ -1267,7 +1266,7 @@ id: OHD:0000150
 name: 3/4 high noble metal crown restoration procedure
 def: "A 3/4 noble metal crown restoration procedure that uses high noble metal to restore the tooth." []
 is_a: OHD:0000040 ! 3/4 noble metal crown restoration procedure
-is_a: OHD:0000157 ! high noble metal crown restoration procedure
+is_a: OHD:0000157 {is_inferred="true"} ! high noble metal crown restoration procedure
 intersection_of: OHD:0000040 ! 3/4 noble metal crown restoration procedure
 intersection_of: OBI:0000293 OHD:0000147 ! high noble metal dental restoration material
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -1276,7 +1275,7 @@ property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 id: OHD:0000151
 name: 3/4 predominantly base metal crown restoration procedure
 def: "A 3/4 crown restoration procedure that uses predominantly base metal to restore the tooth." []
-is_a: OHD:0000162 ! predominantly base metal crown restoration procedure
+is_a: OHD:0000162 {is_inferred="true"} ! predominantly base metal crown restoration procedure
 is_a: OHD:0000305 ! 3/4 crown restoration procedure
 intersection_of: OHD:0000305 ! 3/4 crown restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
@@ -1287,7 +1286,7 @@ property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 id: OHD:0000152
 name: 3/4 ceramic crown restoration procedure
 def: "A 3/4 crown restoration procedure that uses ceramic to restore the tooth." []
-is_a: OHD:0000155 ! ceramic crown restoration procedure
+is_a: OHD:0000155 {is_inferred="true"} ! ceramic crown restoration procedure
 is_a: OHD:0000305 ! 3/4 crown restoration procedure
 intersection_of: OHD:0000305 ! 3/4 crown restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
@@ -1299,7 +1298,7 @@ id: OHD:0000153
 name: noble metal onlay restoration procedure
 def: "A metallic onlay restoration procedure that uses noble metal to restore the tooth." []
 is_a: OHD:0000138 ! metallic onlay restoration procedure
-is_a: OHD:0000142 ! noble metal crown restoration procedure
+is_a: OHD:0000142 {is_inferred="true"} ! noble metal crown restoration procedure
 intersection_of: OHD:0000138 ! metallic onlay restoration procedure
 intersection_of: OBI:0000293 OHD:0000146 ! noble metal dental restoration material
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -1319,7 +1318,7 @@ id: OHD:0000155
 name: ceramic crown restoration procedure
 def: "A crown restoration procedure that uses ceramic to restore the tooth." []
 is_a: OHD:0000033 ! crown restoration procedure
-is_a: OHD:0000304 ! indirect restoration procedure
+is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
 intersection_of: OHD:0000033 ! crown restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000135 ! ceramic dental restoration material
@@ -1357,7 +1356,7 @@ id: OHD:0000159
 name: high noble metal onlay restoration procedure
 def: "A noble metal onlay restoration procedure that uses high noble metal to restore the tooth." []
 is_a: OHD:0000153 ! noble metal onlay restoration procedure
-is_a: OHD:0000157 ! high noble metal crown restoration procedure
+is_a: OHD:0000157 {is_inferred="true"} ! high noble metal crown restoration procedure
 intersection_of: OHD:0000153 ! noble metal onlay restoration procedure
 intersection_of: OBI:0000293 OHD:0000147 ! high noble metal dental restoration material
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -1368,7 +1367,7 @@ id: OHD:0000160
 name: porcelain fused to noble metal crown restoration procedure
 def: "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by fusing porcelain to a substrate composed of noble metal." []
 is_a: OHD:0000033 ! crown restoration procedure
-is_a: OHD:0000304 ! indirect restoration procedure
+is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: IAO:0000119 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Porcelain_Fused_To_Noble_Metal__Dental_Procedure_Code_Description" xsd:string
 
@@ -1377,7 +1376,7 @@ id: OHD:0000161
 name: porcelain fused to predominantly base metal crown restoration procedure
 def: "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by fusing porcelain to a substrate composed of predominatly base metal." []
 is_a: OHD:0000033 ! crown restoration procedure
-is_a: OHD:0000304 ! indirect restoration procedure
+is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: IAO:0000119 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Porcelain_Fused_To_Predominately_Base_Metal__Dental_Procedure_Code_Description" xsd:string
 
@@ -1386,7 +1385,7 @@ id: OHD:0000162
 name: predominantly base metal crown restoration procedure
 def: "A crown restoration material that uses predominantly base metal to restore the crown." []
 is_a: OHD:0000033 ! crown restoration procedure
-is_a: OHD:0000304 ! indirect restoration procedure
+is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
 intersection_of: OHD:0000033 ! crown restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000156 ! predominantly base metal dental restoration material
@@ -1399,7 +1398,7 @@ id: OHD:0000163
 name: stainless steel crown restoration procedure
 def: "A crown restoration procedure that uses stainless steel to restore the tooth." []
 is_a: OHD:0000033 ! crown restoration procedure
-is_a: OHD:0000304 ! indirect restoration procedure
+is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
 intersection_of: OHD:0000033 ! crown restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000137 ! stainless steel dental restoration material
@@ -1411,7 +1410,7 @@ id: OHD:0000164
 name: stainless steel with resin window crown restoration procedure
 def: "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by cutting a window into a stainless steel prosthetic crown and filling the window with resin." []
 is_a: OHD:0000033 ! crown restoration procedure
-is_a: OHD:0000304 ! indirect restoration procedure
+is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: IAO:0000119 "http://www.dentalcare.com/en-US/dental-education/continuing-education/ce379/ce379.aspx?ModuleName=coursecontent&PartID=3&SectionID=-1" xsd:string
 property_value: IAO:0000119 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Prefabricated_Stainless_Steel_with_Resin__Dental_Procedure_Code_Description" xsd:string
@@ -1429,7 +1428,7 @@ id: OHD:0000166
 name: resin with noble metal crown restoration procedure
 def: "A crown restoration procedure in which the artificial crown used to restore the tooth is formed by covering all or some of a noble metal substrate with resin." []
 is_a: OHD:0000033 ! crown restoration procedure
-is_a: OHD:0000304 ! indirect restoration procedure
+is_a: OHD:0000304 {is_inferred="true"} ! indirect restoration procedure
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: IAO:0000119 "https://www.patientconnect365.com/DentalHealthTopics/Article/Crown__Resin_With_Noble_Metal__Dental_Procedure_Code_Description" xsd:string
 
@@ -1457,7 +1456,7 @@ id: OHD:0000169
 name: resin onlay restoration procedure
 def: "An onlay restoration procedure that uses resin to restore the tooth." []
 is_a: OHD:0000134 ! onlay restoration procedure
-is_a: OHD:0000154 ! resin crown restoration procedure
+is_a: OHD:0000154 {is_inferred="true"} ! resin crown restoration procedure
 intersection_of: OHD:0000134 ! onlay restoration procedure
 intersection_of: OBI:0000293 OHD:0000036 ! resin-based composite dental restoration material
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -1682,8 +1681,8 @@ property_value: IAO:0000117 "An inlay restoration procedure that uses high noble
 id: OHD:0000193
 name: predominantly base metal onlay restoration procedure
 def: "An onlay restoration procedure that uses predominantly base metal to restore the tooth." []
-is_a: OHD:0000138 ! metallic onlay restoration procedure
-is_a: OHD:0000162 ! predominantly base metal crown restoration procedure
+is_a: OHD:0000138 {is_inferred="true"} ! metallic onlay restoration procedure
+is_a: OHD:0000162 {is_inferred="true"} ! predominantly base metal crown restoration procedure
 intersection_of: OHD:0000134 ! onlay restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000156 ! predominantly base metal dental restoration material
@@ -1693,7 +1692,7 @@ property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 id: OHD:0000194
 name: predominantly base metal inlay restoration procedure
 def: "An inlay restoration procedure that uses predominantly base metal to restore the tooth." []
-is_a: OHD:0000022 ! metallic inlay restoration procedure
+is_a: OHD:0000022 {is_inferred="true"} ! metallic inlay restoration procedure
 intersection_of: OHD:0000133 ! inlay restoration procedure
 intersection_of: BFO:0000051 OHD:0000038 ! dental material tooth attachment process
 intersection_of: OBI:0000293 OHD:0000156 ! predominantly base metal dental restoration material
@@ -1705,7 +1704,7 @@ id: OHD:0000195
 name: titanium onlay restoration procedure
 def: "A metallic onlay restoration procedure that uses titanium to restore the tooth." []
 is_a: OHD:0000138 ! metallic onlay restoration procedure
-is_a: OHD:0000140 ! titanium crown restoration procedure
+is_a: OHD:0000140 {is_inferred="true"} ! titanium crown restoration procedure
 intersection_of: OHD:0000138 ! metallic onlay restoration procedure
 intersection_of: OBI:0000293 OHD:0000136 ! titanium dental restoration material
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -1910,7 +1909,7 @@ creation_date: 2016-12-27T01:45:45Z
 id: OHD:0000222
 name: restored buccal surface
 def: "A restored tooth surface that forms the buccal surface of a restored tooth." []
-is_a: OHD:0000235 ! restored facial surface
+is_a: OHD:0000235 {is_inferred="true"} ! restored facial surface
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 creation_date: 2022-12-06T02:41:02Z
 
@@ -1934,7 +1933,7 @@ creation_date: 2022-12-06T02:44:18Z
 id: OHD:0000225
 name: restored labial surface
 def: "A restored tooth surface that forms the labial surface of a restored tooth." []
-is_a: OHD:0000235 ! restored facial surface
+is_a: OHD:0000235 {is_inferred="true"} ! restored facial surface
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 creation_date: 2022-12-06T02:47:52Z
 
@@ -2092,7 +2091,7 @@ creation_date: 2022-12-06T02:20:26Z
 id: OHD:0000242
 name: endodontic restorative procedure
 def: "A tooth restoration procedure during which some portion of the tooth's root or pulp is replaced by dental restoration material." []
-is_a: OHD:0000003 ! endodontic procedure
+is_a: OHD:0000003 {is_inferred="true"} ! endodontic procedure
 relationship: OBI:0000299 OHD:0000236 ! endodontically restored tooth
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 creation_date: 2022-12-06T01:52:43Z
@@ -2101,7 +2100,7 @@ creation_date: 2022-12-06T01:52:43Z
 id: OHD:0000243
 name: surgical endodontic procedure
 def: "A surgical dental procedure that is performed on the pulp chamber and/or root canal of a tooth, or a part thereof." []
-is_a: OHD:0000003 ! endodontic procedure
+is_a: OHD:0000003 {is_inferred="true"} ! endodontic procedure
 is_a: OHD:0000044 ! surgical dental procedure
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 creation_date: 2022-12-06T02:26:59Z
@@ -2252,7 +2251,6 @@ intersection_of: BFO:0000050 UBERON:0001091
 relationship: BFO:0000050 UBERON:0001091
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2023-06-06T21:30:39Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0000261
@@ -2391,7 +2389,7 @@ id: OHD:0000275
 name: toothbrushing
 def: "A tooth cleaning process during which an object is used to clean the tooth (or teeth) by applying a powder, paste, or liquid (i.e., dentifrice)." []
 is_a: OHD:0000274 ! tooth cleaning process
-is_a: OHD:0000282 ! tooth abrasive process
+is_a: OHD:0000282 {is_inferred="true"} ! tooth abrasive process
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0006-7251-3026
 property_value: dcterms:created "2023-06-08T16:59:29Z" xsd:dateTime
@@ -2482,8 +2480,8 @@ creation_date: 2022-12-06T04:25:20Z
 id: OHD:0000284
 name: abrasive material
 def: "A material entity of a certain hardness and density that helps remove material from the surface of an entity." []
+comment: https://orcid.org/0000-0001-9625-1899
 is_a: BFO:0000040
-property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0006-7251-3026
 property_value: dcterms:created "2023-06-09T16:29:17Z" xsd:dateTime
 
@@ -2587,7 +2585,7 @@ creation_date: 2022-12-06T04:32:56Z
 id: OHD:0000296
 name: dental implant crown attachment procedure
 def: "A fixed prosthodontics procedure during which an artificial crown is attached to an dental implant abutment." []
-is_a: OHD:0000248 ! dental implant procedure
+is_a: OHD:0000248 {is_inferred="true"} ! dental implant procedure
 relationship: OBI:0000299 OHD:0000280 ! dental implant crown
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 creation_date: 2022-12-06T04:43:23Z
@@ -2614,7 +2612,7 @@ creation_date: 2022-12-06T04:46:37Z
 id: OHD:0000299
 name: dental implant abutment attachement procedure
 def: "A fixed prosthodontics procedure during which an abutment is attached to an implant body." []
-is_a: OHD:0000248 ! dental implant procedure
+is_a: OHD:0000248 {is_inferred="true"} ! dental implant procedure
 relationship: OBI:0000299 OHD:0000279 ! dental implant abutment
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 creation_date: 2022-12-06T04:39:09Z
@@ -2642,7 +2640,7 @@ property_value: IAO:0000117 "Bill Duncan" xsd:string
 id: OHD:0000302
 name: prosthetic tooth
 def: "A prosthesis that has been fabricated for use as a substitute for a natural tooth." []
-is_a: OHD:0000206 ! functional tooth
+is_a: OHD:0000206 {is_inferred="true"} ! functional tooth
 is_a: OHD:0000301 ! prosthesis
 relationship: BFO:0000053 OHD:0000315 ! functional prosthetic role
 property_value: IAO:0000116 "usually made of porcelain or plastic" xsd:string
@@ -2697,7 +2695,7 @@ property_value: IAO:0000117 "Bill Duncan" xsd:string
 id: OHD:0000308
 name: Posterior Tooth
 def: "A tooth that is either a molar or premolar." []
-is_a: UBERON:0013164
+is_a: UBERON:0013164 {is_inferred="true"}
 union_of: UBERON:0003655
 union_of: UBERON:0007120
 property_value: IAO:0000117 "Bill Duncan" xsd:string
@@ -3490,7 +3488,6 @@ intersection_of: RO:0000052 UBERON:0000165
 relationship: RO:0000052 UBERON:0000165
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-01-17T19:58:44Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 property_value: skos:exactMatch DOID:403
 property_value: skos:exactMatch MONDO:0006858
 
@@ -3511,7 +3508,7 @@ property_value: OHD:0000092 https://orcid.org/0009-0003-5583-4731
 id: OHD:0000406
 name: oral parafunction
 def: "A pathological process that involves the mouth and can contribute to some disorder of the head and neck region." []
-is_a: NBO:0000007
+is_a: NBO:0000007 {is_inferred="true"}
 is_a: OGMS:0000061
 intersection_of: OGMS:0000061
 intersection_of: RO:0000057 UBERON:0000165
@@ -3528,7 +3525,7 @@ property_value: IAO:0000116 "An oral parafunction can include tongue thrusting, 
 id: OHD:0000407
 name: bruxism
 def: "A masticatory muscle activity that may result in a disorder within the head and neck region." []
-is_a: OHD:0000406 ! oral parafunction
+is_a: OHD:0000406 {is_inferred="true"} ! oral parafunction
 is_a: OHD:0002000 ! masticatory muscle activity
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0006-7251-3026
@@ -3624,7 +3621,6 @@ intersection_of: BFO:0000050 UBERON:0000165
 relationship: BFO:0000050 UBERON:0000165
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2025-01-17T20:08:15Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 property_value: skos:exactMatch MONDO:0006858
 
 [Term]
@@ -3690,7 +3686,7 @@ id: OHD:0000421
 name: DFS 01. Has fear of dental work ever caused you to put off making an appointment?
 def: "A Dental Fear Survey (DFS) question asking \"Has fear of dental work ever caused you to put off making an appointment?\"" []
 subset: OHD:0005009
-is_a: OHD:0008024 ! question about delay in scheduling a dental appointment
+is_a: OHD:0008024 {is_inferred="true"} ! question about delay in scheduling a dental appointment
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-02-15T18:42:53Z" xsd:dateTime
@@ -3700,7 +3696,7 @@ id: OHD:0000422
 name: DFS 02. Has fear of dental work ever caused you to cancel or not appear for an appointment?
 def: "A Dental Fear Survey (DFS) question asking \"Has fear of dental work ever caused you to cancel or not appear for an appointment?\"" []
 subset: OHD:0005009
-is_a: OHD:0008023 ! question about canceling or not showing up for a dental appointment
+is_a: OHD:0008023 {is_inferred="true"} ! question about canceling or not showing up for a dental appointment
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-02-15T18:43:08Z" xsd:dateTime
@@ -3711,7 +3707,7 @@ name: DFS 03. My muscles become tense.
 def: "A Dental Fear Survey (DFS) question prompting users with \"My muscles become tense.\"" []
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008047 ! question about physiological arousal
+is_a: OHD:0008047 {is_inferred="true"} ! question about physiological arousal
 relationship: IAO:0000136 EMRO:0000010
 relationship: IAO:0000136 OHD:0000009 ! dental visit
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -3724,7 +3720,7 @@ name: DFS 04. My breathing rate increases.
 def: "A Dental Fear Survey (DFS) question prompting users with \"My breathing rate increases.\"" []
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008047 ! question about physiological arousal
+is_a: OHD:0008047 {is_inferred="true"} ! question about physiological arousal
 relationship: IAO:0000136 EMRO:0000012
 relationship: IAO:0000136 OHD:0000009 ! dental visit
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -3746,7 +3742,7 @@ name: DFS 05. I perspire.
 def: "A Dental Fear Survey (DFS) question prompting users with \"I perspire.\"" []
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008047 ! question about physiological arousal
+is_a: OHD:0008047 {is_inferred="true"} ! question about physiological arousal
 relationship: IAO:0000136 GO:0160269
 relationship: IAO:0000136 OHD:0000009 ! dental visit
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -3759,7 +3755,7 @@ name: DFS 06. I feel nauseated and sick to my stomach.
 def: "A Dental Fear Survey (DFS) question prompting users with \"I feel nauseated and sick to my stomach.\"" []
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008047 ! question about physiological arousal
+is_a: OHD:0008047 {is_inferred="true"} ! question about physiological arousal
 relationship: IAO:0000136 OHD:0000009 ! dental visit
 relationship: IAO:0000136 OHD:0008051 ! nausea
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -3772,7 +3768,7 @@ name: DFS 07. My heart beats faster.
 def: "A Dental Fear Survey (DFS) question prompting users with \"My heart beats faster.\"" []
 subset: OHD:0005009
 is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
-is_a: OHD:0008047 ! question about physiological arousal
+is_a: OHD:0008047 {is_inferred="true"} ! question about physiological arousal
 relationship: IAO:0000136 EMRO:0000011
 relationship: IAO:0000136 OHD:0000009 ! dental visit
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -3784,7 +3780,7 @@ id: OHD:0000429
 name: DFS 08. Making an appointment for dentistry.
 def: "A Dental Fear Survey (DFS) question prompting users with \"Making an appointment for dentistry.\"" []
 subset: OHD:0005009
-is_a: OHD:0008007 ! avoidance or anticipatory fear question
+is_a: OHD:0008007 {is_inferred="true"} ! avoidance or anticipatory fear question
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-02-15T18:53:00Z" xsd:dateTime
@@ -3794,7 +3790,7 @@ id: OHD:0000430
 name: DFS 09. Approaching the dentist’s office.
 def: "A Dental Fear Survey (DFS) question prompting users with \"Approaching the dentist’s office.\"" []
 subset: OHD:0005009
-is_a: OHD:0008007 ! avoidance or anticipatory fear question
+is_a: OHD:0008007 {is_inferred="true"} ! avoidance or anticipatory fear question
 relationship: IAO:0000136 GO:0040011
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
@@ -3805,8 +3801,8 @@ id: OHD:0000431
 name: DFS 10. Sitting in the waiting room.
 def: "A Dental Fear Survey (DFS) question prompting users with \"Sitting in the waiting room.\"" []
 subset: OHD:0005009
-is_a: OHD:0008007 ! avoidance or anticipatory fear question
-is_a: OHD:0008029 ! question about patient sitting in a waiting room
+is_a: OHD:0008007 {is_inferred="true"} ! avoidance or anticipatory fear question
+is_a: OHD:0008029 {is_inferred="true"} ! question about patient sitting in a waiting room
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-02-15T18:53:25Z" xsd:dateTime
@@ -3816,7 +3812,7 @@ id: OHD:0000432
 name: DFS 11. Being seated in the dental chair.
 def: "A Dental Fear Survey (DFS) question prompting users with \"Being seated in the dental chair.\"" []
 subset: OHD:0005009
-is_a: OHD:0008007 ! avoidance or anticipatory fear question
+is_a: OHD:0008007 {is_inferred="true"} ! avoidance or anticipatory fear question
 relationship: IAO:0000136 OHD:0008038 ! sitting process
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
@@ -3827,7 +3823,7 @@ id: OHD:0000433
 name: DFS 12. The smell of the dentist’s office.
 def: "A Dental Fear Survey (DFS) question prompting users with \"The smell of the dentist’s office.\"" []
 subset: OHD:0005009
-is_a: OHD:0008007 ! avoidance or anticipatory fear question
+is_a: OHD:0008007 {is_inferred="true"} ! avoidance or anticipatory fear question
 relationship: IAO:0000136 OHD:0008016 ! smelling dentist office
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
@@ -3838,7 +3834,7 @@ id: OHD:0000434
 name: DFS 13. Seeing the dentist walk in.
 def: "A Dental Fear Survey (DFS) question prompting users with \"Seeing the dentist walk in.\"" []
 subset: OHD:0005009
-is_a: OHD:0008007 ! avoidance or anticipatory fear question
+is_a: OHD:0008007 {is_inferred="true"} ! avoidance or anticipatory fear question
 relationship: IAO:0000136 OHD:0008025 ! seeing dentist
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
@@ -3849,7 +3845,7 @@ id: OHD:0000435
 name: DFS 14. Seeing the anesthetic needle.
 def: "A Dental Fear Survey (DFS) question prompting users with \"Seeing the anesthetic needle.\"" []
 subset: OHD:0005009
-is_a: OHD:0008046 ! fear of specific dental stimuli question
+is_a: OHD:0008046 {is_inferred="true"} ! fear of specific dental stimuli question
 relationship: IAO:0000136 OHD:0008026 ! seeing anesthetic needle
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
@@ -3860,7 +3856,7 @@ id: OHD:0000436
 name: DFS 15. Feeling the needle injected.
 def: "A Dental Fear Survey (DFS) question prompting users with \"Feeling the needle injected.\"" []
 subset: OHD:0005009
-is_a: OHD:0008046 ! fear of specific dental stimuli question
+is_a: OHD:0008046 {is_inferred="true"} ! fear of specific dental stimuli question
 relationship: IAO:0000136 OHD:0008036 ! feeling needle injection
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
@@ -3871,8 +3867,8 @@ id: OHD:0000437
 name: DFS 16. Seeing the drill.
 def: "A Dental Fear Survey (DFS) question prompting users with \"Seeing the drill.\"" []
 subset: OHD:0005009
-is_a: OHD:0008030 ! question about tooth drilling
-is_a: OHD:0008046 ! fear of specific dental stimuli question
+is_a: OHD:0008030 {is_inferred="true"} ! question about tooth drilling
+is_a: OHD:0008046 {is_inferred="true"} ! fear of specific dental stimuli question
 relationship: IAO:0000136 OHD:0008002 ! seeing dental drill
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
@@ -3883,8 +3879,8 @@ id: OHD:0000438
 name: DFS 17. Hearing the drill.
 def: "A Dental Fear Survey (DFS) question prompting users with \"Hearing the drill.\"" []
 subset: OHD:0005009
-is_a: OHD:0008030 ! question about tooth drilling
-is_a: OHD:0008046 ! fear of specific dental stimuli question
+is_a: OHD:0008030 {is_inferred="true"} ! question about tooth drilling
+is_a: OHD:0008046 {is_inferred="true"} ! fear of specific dental stimuli question
 relationship: IAO:0000136 OHD:0008005 ! hearing dental drill
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
@@ -3895,8 +3891,8 @@ id: OHD:0000439
 name: DFS 18. Feeling the vibrations of the drill.
 def: "A Dental Fear Survey (DFS) question prompting users with \"Feeling the vibrations of the drill.\"" []
 subset: OHD:0005009
-is_a: OHD:0008030 ! question about tooth drilling
-is_a: OHD:0008046 ! fear of specific dental stimuli question
+is_a: OHD:0008030 {is_inferred="true"} ! question about tooth drilling
+is_a: OHD:0008046 {is_inferred="true"} ! fear of specific dental stimuli question
 relationship: IAO:0000136 OHD:0000451 ! feeling dental drill vibrations
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
@@ -3907,8 +3903,8 @@ id: OHD:0000440
 name: DFS 19. Having your teeth cleaned.
 def: "A Dental Fear Survey (DFS) question prompting users with \"Having your teeth cleaned.\"" []
 subset: OHD:0005009
-is_a: OHD:0008035 ! question about a tooth cleaning procedure
-is_a: OHD:0008046 ! fear of specific dental stimuli question
+is_a: OHD:0008035 {is_inferred="true"} ! question about a tooth cleaning procedure
+is_a: OHD:0008046 {is_inferred="true"} ! fear of specific dental stimuli question
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-02-15T18:55:32Z" xsd:dateTime
@@ -3981,7 +3977,7 @@ name: MDAS 2. If you were sitting in the WAITING ROOM (waiting for treatment), h
 def: "A Modified Dental Anxiety Scale (MDAS) question asking \"If you were sitting in the WAITING ROOM (waiting for treatment), how would you feel?\"" []
 subset: OHD:0005009
 is_a: OHD:0000445 ! Modified Dental Anxiety Scale (MDAS) question
-is_a: OHD:0008029 ! question about patient sitting in a waiting room
+is_a: OHD:0008029 {is_inferred="true"} ! question about patient sitting in a waiting room
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-02-15T19:02:44Z" xsd:dateTime
@@ -3992,7 +3988,7 @@ name: MDAS 3. If you were about to have a TOOTH DRILLED, how would you feel?
 def: "A Modified Dental Anxiety Scale (MDAS) question asking \"If you were about to have a TOOTH DRILLED, how would you feel?\"" []
 subset: OHD:0005009
 is_a: OHD:0000445 ! Modified Dental Anxiety Scale (MDAS) question
-is_a: OHD:0008030 ! question about tooth drilling
+is_a: OHD:0008030 {is_inferred="true"} ! question about tooth drilling
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-02-15T19:02:54Z" xsd:dateTime
@@ -4003,7 +3999,7 @@ name: MDAS 4. If you were about to have your TEETH SCALED AND POLISHED, how woul
 def: "A Modified Dental Anxiety Scale (MDAS) question asking \"If you were about to have your TEETH SCALED AND POLISHED, how would you feel?\"" []
 subset: OHD:0005009
 is_a: OHD:0000445 ! Modified Dental Anxiety Scale (MDAS) question
-is_a: OHD:0008035 ! question about a tooth cleaning procedure
+is_a: OHD:0008035 {is_inferred="true"} ! question about a tooth cleaning procedure
 relationship: IAO:0000136 OHD:0008031 ! tooth scaling procedure
 relationship: IAO:0000136 OHD:0008032 ! tooth polishing procedure
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -4037,6 +4033,16 @@ def: "A dental occlusion finding that follows the classificatons defined by Dr. 
 is_a: OHD:0000465 ! dental occlusion finding
 property_value: dcterms:contributor http://orcid.org/0000-0001-9625-1899
 property_value: dcterms:created "2026-06-15T19:29:13Z" xsd:dateTime
+
+[Term]
+id: OHD:0000453
+name: dental care-related fear or anxiety process
+def: "A grouping class for dental care-related fear or dental care-related anxiety. It is not always clear if a dental care-related emotion is fear or anxiety." []
+is_a: EMRO:0000000
+union_of: OHD:0008083 ! dental care-related fear process
+union_of: OHD:0008084 ! dental care-related anxiety process
+property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
+property_value: dcterms:created "2026-10-27T21:35:35Z" xsd:dateTime
 
 [Term]
 id: OHD:0000455
@@ -4079,7 +4085,7 @@ property_value: dcterms:description "The mandibular teeth are significantly forw
 id: OHD:0000459
 name: right Class I dental occlusal finding
 def: "A Class I occlusion finding that is about the teeth on the right side of the mouth." []
-is_a: OHD:0000456 ! Class I occlusion finding
+is_a: OHD:0000456 {is_inferred="true"} ! Class I occlusion finding
 intersection_of: OHD:0000456 ! Class I occlusion finding
 intersection_of: IAO:0000136 PATO:0000367
 relationship: IAO:0000136 PATO:0000367
@@ -4090,7 +4096,7 @@ property_value: dcterms:created "2026-06-10T22:56:36Z" xsd:dateTime
 id: OHD:0000460
 name: left Class I dental occlusal finding
 def: "A Class I occlusion finding that is about the teeth on the left side of the mouth." []
-is_a: OHD:0000456 ! Class I occlusion finding
+is_a: OHD:0000456 {is_inferred="true"} ! Class I occlusion finding
 intersection_of: OHD:0000456 ! Class I occlusion finding
 intersection_of: IAO:0000136 PATO:0000366
 relationship: IAO:0000136 PATO:0000366
@@ -4101,7 +4107,7 @@ property_value: dcterms:created "2026-06-10T22:56:45Z" xsd:dateTime
 id: OHD:0000461
 name: right Class II dental occlusal finding
 def: "A Class II occlusion finding that is about the teeth on the rght side of the mouth." []
-is_a: OHD:0000457 ! Class II occlusion finding
+is_a: OHD:0000457 {is_inferred="true"} ! Class II occlusion finding
 intersection_of: OHD:0000457 ! Class II occlusion finding
 intersection_of: IAO:0000136 PATO:0000367
 relationship: IAO:0000136 PATO:0000367
@@ -4112,7 +4118,7 @@ property_value: dcterms:created "2026-06-10T22:57:00Z" xsd:dateTime
 id: OHD:0000462
 name: left Class II dental occlusal finding
 def: "A Class II occlusion finding that is about the teeth on the left side of the mouth." []
-is_a: OHD:0000457 ! Class II occlusion finding
+is_a: OHD:0000457 {is_inferred="true"} ! Class II occlusion finding
 intersection_of: OHD:0000457 ! Class II occlusion finding
 intersection_of: IAO:0000136 PATO:0000366
 relationship: IAO:0000136 PATO:0000366
@@ -4123,7 +4129,7 @@ property_value: dcterms:created "2026-06-10T22:57:09Z" xsd:dateTime
 id: OHD:0000463
 name: right Class III dental occlusal finding
 def: "A Class III occlusion finding that is about the teeth on the right side of the mouth." []
-is_a: OHD:0000458 ! Class III occlusion finding
+is_a: OHD:0000458 {is_inferred="true"} ! Class III occlusion finding
 intersection_of: OHD:0000458 ! Class III occlusion finding
 intersection_of: IAO:0000136 PATO:0000367
 relationship: IAO:0000136 PATO:0000367
@@ -4134,7 +4140,7 @@ property_value: dcterms:created "2026-06-10T22:57:20Z" xsd:dateTime
 id: OHD:0000464
 name: left Class III dental occlusal finding
 def: "A Class Iii occlusion finding that is about the teeth on the left side of the mouth." []
-is_a: OHD:0000458 ! Class III occlusion finding
+is_a: OHD:0000458 {is_inferred="true"} ! Class III occlusion finding
 intersection_of: OHD:0000458 ! Class III occlusion finding
 intersection_of: IAO:0000136 PATO:0000366
 relationship: IAO:0000136 PATO:0000366
@@ -4880,7 +4886,7 @@ id: OHD:0005003
 name: patient-reported favorable dental outcome
 def: "A patient reported dental outcome that is favorable and related to a dental condition or treatment." []
 is_a: OHD:0000272 ! patient-reported favorable outcome
-is_a: OHD:0005002 ! patient-reported dental outcome
+is_a: OHD:0005002 {is_inferred="true"} ! patient-reported dental outcome
 intersection_of: OHD:0000272 ! patient-reported favorable outcome
 intersection_of: IAO:0000136 UBERON:0000165
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -4892,7 +4898,7 @@ id: OHD:0005004
 name: patient-reported unfavorable dental outcome
 def: "A patient-reported outcome that indicates an unfavorable experience or result related to a dental condition or treatment" []
 is_a: OHD:0000288 ! patient-reported unfavorable outcome
-is_a: OHD:0005002 ! patient-reported dental outcome
+is_a: OHD:0005002 {is_inferred="true"} ! patient-reported dental outcome
 intersection_of: OHD:0000288 ! patient-reported unfavorable outcome
 intersection_of: IAO:0000136 UBERON:0000165
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -5043,7 +5049,7 @@ property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-09-26T23:11:39Z" xsd:dateTime
 property_value: IAO:0000231 IAO:0000228
 is_obsolete: true
-replaced_by: http://purl.obolibrary.org/obo/PAIN_0000062
+replaced_by: PAIN:0000062
 
 [Term]
 id: OHD:0008007
@@ -5051,7 +5057,7 @@ name: avoidance or anticipatory fear question
 def: "A question that is about either avoidance behavior or fear in anticipation of some event." []
 comment: Class based on the COHRA 'AvoidanceAnticipatoryFear' score sum slot.
 subset: OHD:0005009
-is_a: OHD:0008010 ! Dental Fear Survey (DFS) question
+is_a: OHD:0008010 {is_inferred="true"} ! Dental Fear Survey (DFS) question
 union_of: OHD:0000421 ! DFS 01. Has fear of dental work ever caused you to put off making an appointment?
 union_of: OHD:0000422 ! DFS 02. Has fear of dental work ever caused you to cancel or not appear for an appointment?
 union_of: OHD:0000429 ! DFS 08. Making an appointment for dentistry.
@@ -5252,7 +5258,7 @@ name: patient sitting in waiting room
 def: "A process in which a patient sits in a waiting room." []
 subset: OHD:0005009
 is_a: OHD:0008038 ! sitting process
-is_a: OHD:0008039 ! process during dental visit
+is_a: OHD:0008039 {is_inferred="true"} ! process during dental visit
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-03-28T00:44:02Z" xsd:dateTime
 
@@ -5270,7 +5276,7 @@ id: OHD:0008029
 name: question about patient sitting in a waiting room
 def: "A question that is about a patient sitting in a waiting room." []
 subset: OHD:0005009
-is_a: OHD:0008042 ! question about during dental visit
+is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
 intersection_of: OHD:0008011 ! question
 intersection_of: IAO:0000136 OHD:0008027 ! patient sitting in waiting room
 relationship: IAO:0000136 OHD:0008027 ! patient sitting in waiting room
@@ -5321,7 +5327,7 @@ id: OHD:0008034
 name: tooth cleaning procedure
 def: "A tooth cleaning process performed by a physician on a patient." []
 subset: OHD:0005009
-is_a: OHD:0000002 ! dental procedure
+is_a: OHD:0000002 {is_inferred="true"} ! dental procedure
 is_a: OHD:0000274 ! tooth cleaning process
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-03-28T01:53:03Z" xsd:dateTime
@@ -5379,7 +5385,6 @@ relationship: BFO:0000055 OHD:0000190 ! dental patient role
 relationship: RO:0002092 OHD:0000009 ! dental visit
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-03-28T12:51:33Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0008040
@@ -5431,7 +5436,7 @@ id: OHD:0008044
 name: dental procedure question
 def: "A question that is about some dental procedure." []
 subset: OHD:0005009
-is_a: OHD:0008042 ! question about during dental visit
+is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
 intersection_of: OHD:0008011 ! question
 intersection_of: IAO:0000136 OHD:0000002 ! dental procedure
 relationship: IAO:0000136 OHD:0000002 ! dental procedure
@@ -5537,7 +5542,7 @@ id: OHD:0008055
 name: IDAF-4C+ 1a. I feel anxious shortly before going to the dentist.
 def: "IDAF-4C+ 1 question asking to what degree respondants agree they feel anxious shortly before going to the dentist." []
 subset: OHD:0005009
-is_a: OHD:0008041 ! question about prior to dental visit
+is_a: OHD:0008041 {is_inferred="true"} ! question about prior to dental visit
 is_a: OHD:0008078 ! IDAF-4C+ 1. How much do you agree with the following statements?
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-10-22T16:50:58Z" xsd:dateTime
@@ -5547,7 +5552,7 @@ id: OHD:0008056
 name: IDAF-4C+ 1b. I generally avoid going to the dentist because I find the experience unpleasant or distressing.
 def: "IDAF-4C+ 1 question asking to what degree respondants agree they generally avoid going to the dentist due to this being an unpleasant or distressing experience." []
 subset: OHD:0005009
-is_a: OHD:0008022 ! dental visit avoidance question
+is_a: OHD:0008022 {is_inferred="true"} ! dental visit avoidance question
 is_a: OHD:0008078 ! IDAF-4C+ 1. How much do you agree with the following statements?
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-10-22T16:53:04Z" xsd:dateTime
@@ -5575,7 +5580,7 @@ id: OHD:0008059
 name: IDAF-4C+ 1e. I feel afraid or fearful when visiting the dentist.
 def: "IDAF-4C+ 1 question asking to what degree respondants agree they feel afraid or fearful when they go to the dentist." []
 subset: OHD:0005009
-is_a: OHD:0008042 ! question about during dental visit
+is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
 is_a: OHD:0008078 ! IDAF-4C+ 1. How much do you agree with the following statements?
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-10-22T16:55:08Z" xsd:dateTime
@@ -5585,7 +5590,7 @@ id: OHD:0008060
 name: IDAF-4C+ 1f. My heart beats faster when I go to the dentist.
 def: "IDAF-4C+ 1 question asking to what degree respondants agree their heart beats faster when they go to the dentist." []
 subset: OHD:0005009
-is_a: OHD:0008047 ! question about physiological arousal
+is_a: OHD:0008047 {is_inferred="true"} ! question about physiological arousal
 is_a: OHD:0008078 ! IDAF-4C+ 1. How much do you agree with the following statements?
 relationship: IAO:0000136 EMRO:0000011
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
@@ -5596,7 +5601,7 @@ id: OHD:0008061
 name: IDAF-4C+ 1g. I delay making appointments to go to the dentist.
 def: "IDAF-4C+ 1 question asking to what degree respondants agree they delay making appointments to visit the dentist." []
 subset: OHD:0005009
-is_a: OHD:0008024 ! question about delay in scheduling a dental appointment
+is_a: OHD:0008024 {is_inferred="true"} ! question about delay in scheduling a dental appointment
 is_a: OHD:0008078 ! IDAF-4C+ 1. How much do you agree with the following statements?
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-10-22T16:56:12Z" xsd:dateTime
@@ -5606,7 +5611,7 @@ id: OHD:0008062
 name: IDAF-4C+ 1h. I often think about all the things that might go wrong prior to going to the dentist.
 def: "IDAF-4C+ 1 question asking to what degree respondants agree they often think about things that might go wrong before they go to the dentist." []
 subset: OHD:0005009
-is_a: OHD:0008041 ! question about prior to dental visit
+is_a: OHD:0008041 {is_inferred="true"} ! question about prior to dental visit
 is_a: OHD:0008078 ! IDAF-4C+ 1. How much do you agree with the following statements?
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-10-22T16:57:09Z" xsd:dateTime
@@ -5616,7 +5621,7 @@ id: OHD:0008063
 name: IDAF-4C+ 2a. Going to the dentist is actively avoided or else endured with intense fear or anxiety.
 def: "IDAF-4C+ 2 question asking if respondants agree they either actively avoid going to the dentist or endure it with intense fear or anxiety." []
 subset: OHD:0005009
-is_a: OHD:0008022 ! dental visit avoidance question
+is_a: OHD:0008022 {is_inferred="true"} ! dental visit avoidance question
 is_a: OHD:0008079 ! IDAF-4C+ 2. Do the following statements apply to you?
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-10-22T16:59:39Z" xsd:dateTime
@@ -5635,9 +5640,9 @@ id: OHD:0008065
 name: IDAF-4C+ 2c. My fear, anxiety or avoidance of going to the dentist significantly affects my life in some way (dental pain, avoiding eating some foods, embarrassed or self-conscious about appearance of teeth or mouth, etc.).
 def: "IDAF-4C+ 2 question asking if respondants agree their fear, anxiety, or avoidance of going to the dentist significantly affects their life." []
 subset: OHD:0005009
-is_a: OHD:0008022 ! dental visit avoidance question
+is_a: OHD:0008022 {is_inferred="true"} ! dental visit avoidance question
 is_a: OHD:0008079 ! IDAF-4C+ 2. Do the following statements apply to you?
-is_a: OHD:0008085 ! question about embarrassment
+is_a: OHD:0008085 {is_inferred="true"} ! question about embarrassment
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-10-22T17:01:12Z" xsd:dateTime
 
@@ -5646,7 +5651,7 @@ id: OHD:0008066
 name: IDAF-4C+ 2d. I am afraid of going to the dentist because I am concerned I may have a panic attack  (abrupt fear with sweating, pounding heart, fear of dying or losing control, chest pain etc.).
 def: "IDAF-4C+ 2 question asking if respondants agree they are afraid of going to the dentist due to being concerned they may have a panic attack." []
 subset: OHD:0005009
-is_a: OHD:0008047 ! question about physiological arousal
+is_a: OHD:0008047 {is_inferred="true"} ! question about physiological arousal
 is_a: OHD:0008079 ! IDAF-4C+ 2. Do the following statements apply to you?
 relationship: IAO:0000136 EMRO:0000008
 relationship: IAO:0000136 EMRO:0000011
@@ -5661,7 +5666,7 @@ name: IDAF-4C+ 2e. I am afraid of going to the dentist because I am generally hi
 def: "IDAF-4C+ 2 question asking if respondants agree they are afraid of going to the dentist due to being generally highly self-conscious or concerned about being watched or judged in social situations." []
 subset: OHD:0005009
 is_a: OHD:0008079 ! IDAF-4C+ 2. Do the following statements apply to you?
-is_a: OHD:0008085 ! question about embarrassment
+is_a: OHD:0008085 {is_inferred="true"} ! question about embarrassment
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-10-22T17:36:30Z" xsd:dateTime
 
@@ -5670,7 +5675,7 @@ id: OHD:0008068
 name: IDAF-4C+ 3a. Painful or uncomfortable procedures.
 def: "IDAF-4C+ 3 question asking to what extent respondants are anxious about painful or uncomfortable procedures when going to the dentist." []
 subset: OHD:0005009
-is_a: OHD:0008044 ! dental procedure question
+is_a: OHD:0008044 {is_inferred="true"} ! dental procedure question
 is_a: OHD:0008080 ! IDAF-4C+ 3. To what extent are you anxious about the following things when you go the dentist.
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-10-22T17:38:15Z" xsd:dateTime
@@ -5680,9 +5685,9 @@ id: OHD:0008069
 name: IDAF-4C+ 3b. Feeling embarrassed or ashamed.
 def: "IDAF-4C+ 3 question asking to what extent respondants are anxious about feeling embarrassed or ashamed when going to the dentist." []
 subset: OHD:0005009
-is_a: OHD:0008042 ! question about during dental visit
+is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
 is_a: OHD:0008080 ! IDAF-4C+ 3. To what extent are you anxious about the following things when you go the dentist.
-is_a: OHD:0008085 ! question about embarrassment
+is_a: OHD:0008085 {is_inferred="true"} ! question about embarrassment
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-10-22T17:38:45Z" xsd:dateTime
 
@@ -5691,7 +5696,7 @@ id: OHD:0008070
 name: IDAF-4C+ 3c. Not being in control of what is happening.
 def: "IDAF-4C+ 3 question asking to what extent respondants are anxious about not being in control of what is happening when going to the dentist." []
 subset: OHD:0005009
-is_a: OHD:0008042 ! question about during dental visit
+is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
 is_a: OHD:0008080 ! IDAF-4C+ 3. To what extent are you anxious about the following things when you go the dentist.
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-10-22T17:39:05Z" xsd:dateTime
@@ -5737,7 +5742,7 @@ id: OHD:0008075
 name: IDAF-4C+ 3h. Needles or injections.
 def: "IDAF-4C+ 3 question asking to what extent respondants are anxious about needles or injections when going to the dentist." []
 subset: OHD:0005009
-is_a: OHD:0008044 ! dental procedure question
+is_a: OHD:0008044 {is_inferred="true"} ! dental procedure question
 is_a: OHD:0008080 ! IDAF-4C+ 3. To what extent are you anxious about the following things when you go the dentist.
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-10-22T17:41:09Z" xsd:dateTime
@@ -5747,7 +5752,7 @@ id: OHD:0008076
 name: IDAF-4C+ 3i. Gagging or choking.
 def: "IDAF-4C+ 3 question asking to what extent respondants are anxious about gagging or choking when going to the dentist." []
 subset: OHD:0005009
-is_a: OHD:0008042 ! question about during dental visit
+is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
 is_a: OHD:0008080 ! IDAF-4C+ 3. To what extent are you anxious about the following things when you go the dentist.
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-10-22T17:41:26Z" xsd:dateTime
@@ -5757,7 +5762,7 @@ id: OHD:0008077
 name: IDAF-4C+ 3j. Having an unsympathetic or unkind dentist.
 def: "IDAF-4C+ 3 question asking to what extent respondants are anxious about having an unsympathetic or unkind dentist when going to the dentist." []
 subset: OHD:0005009
-is_a: OHD:0008042 ! question about during dental visit
+is_a: OHD:0008042 {is_inferred="true"} ! question about during dental visit
 is_a: OHD:0008080 ! IDAF-4C+ 3. To what extent are you anxious about the following things when you go the dentist.
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2025-10-22T17:41:48Z" xsd:dateTime
@@ -5804,31 +5809,36 @@ property_value: dcterms:created "2026-07-05T23:49:42Z" xsd:dateTime
 [Term]
 id: OHD:0008083
 name: dental care-related fear process
-def: "A fear process that occurs during dental care, such as during a tooth restoration procedure." []
+def: "A fear process related to receiving dental care. Dental care-related fear typically occurs in close temporal proximity to actual dental care, such as immediately prior to or during an injection." []
 subset: OHD:0005009
 is_a: EMRO:0000004
+is_a: OHD:0000453 {is_inferred="true"} ! dental care-related fear or anxiety process
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0000-0001-9990-8331
+property_value: dcterms:contributor https://orcid.org/0000-0002-0766-8455
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2026-09-01T17:42:03Z" xsd:dateTime
 
 [Term]
 id: OHD:0008084
 name: dental care-related anxiety process
-def: "An anxiety process that is in response to some perceived future dental-related threat, such as an upcoming dental appointment or pain anticipated as part of a dental procedure." []
+def: "An anxiety process related to receiving dental care. Dental care-related anxiety happens in response to dental-care related threat, such as an upcoming dental appointment or pain anticipated as part of a dental procedure." []
 subset: OHD:0005009
 is_a: EMRO:0000003
+is_a: OHD:0000453 {is_inferred="true"} ! dental care-related fear or anxiety process
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
 property_value: dcterms:contributor https://orcid.org/0000-0001-9990-8331
+property_value: dcterms:contributor https://orcid.org/0000-0002-0766-8455
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:created "2026-09-01T17:42:15Z" xsd:dateTime
+property_value: dcterms:description "Dental care-related anxiety happens in response to some perceived future dental-care related threat, such as an upcoming dental appointment or pain anticipated as part of a dental procedure." xsd:string
 
 [Term]
 id: OHD:0008085
 name: question about embarrassment
 def: "A question asking about an individual's experience with embarrassment, or lack thereof." []
 subset: OHD:0005009
-is_a: OHD:0008047 ! question about physiological arousal
+is_a: OHD:0008047 {is_inferred="true"} ! question about physiological arousal
 intersection_of: OHD:0008011 ! question
 intersection_of: IAO:0000136 EMRO:0003002
 relationship: IAO:0000136 EMRO:0003002
@@ -5845,7 +5855,7 @@ property_value: dcterms:created "2025-04-04T15:42:46Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
 property_value: IAO:0000231 IAO:0000228
 is_obsolete: true
-replaced_by: http://purl.obolibrary.org/obo/PAIN_0000090
+replaced_by: PAIN:0000090
 
 [Term]
 id: OHD:0010001
@@ -5903,7 +5913,7 @@ property_value: IAO:0000119 "https://doi.org/10.1177/0333102419893823" xsd:strin
 property_value: IAO:0000119 "PMID:32103673" xsd:string
 property_value: IAO:0000231 IAO:0000228
 is_obsolete: true
-replaced_by: http://purl.obolibrary.org/obo/PAIN_0000000
+replaced_by: PAIN:0000000
 
 [Term]
 id: OHD:0010005
@@ -5978,7 +5988,7 @@ is_a: BFO:0000016
 property_value: dcterms:contributor https://orcid.org/0000-0001-9990-8331
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-05T14:17:34Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010010
@@ -5998,7 +6008,6 @@ is_a: OHD:0010009 ! sensory hypersensitivity
 property_value: dcterms:contributor https://orcid.org/0000-0001-9990-8331
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-05T14:34:40Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010012
@@ -6011,7 +6020,7 @@ relationship: RO:0002410 OHD:0010010 ! crack in enamel
 property_value: dcterms:contributor https://orcid.org/0000-0001-9990-8331
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-05T14:40:56Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010013
@@ -6041,7 +6050,7 @@ relationship: RO:0002410 OHD:0000410 ! exposed dentin
 property_value: dcterms:contributor https://orcid.org/0000-0001-9990-8331
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-05T14:53:38Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010015
@@ -6070,7 +6079,7 @@ relationship: RO:0002410 OHD:0000264 ! tooth abrasive lesion
 property_value: dcterms:contributor https://orcid.org/0000-0001-9990-8331
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-05T15:03:12Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010017
@@ -6099,7 +6108,7 @@ relationship: RO:0002410 OHD:0000413 ! tooth fracture with exposed dentin
 property_value: dcterms:contributor https://orcid.org/0000-0001-9990-8331
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-05T15:17:38Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010019
@@ -6125,7 +6134,6 @@ is_a: OHD:0010060 ! pulpitis
 relationship: BFO:0000051 OHD:0010062 ! reversible disorder
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010021
@@ -6136,7 +6144,7 @@ relationship: RO:0002410 OHD:0000044 ! surgical dental procedure
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-19T18:48:48Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010022
@@ -6182,14 +6190,14 @@ replaced_by: PAIN:0010024
 id: OHD:0010025
 name: gingivitis
 def: "A gingival disorder involving inflammation of the gingival tissue." []
-is_a: OHD:0010070 ! periodontitis
+is_a: OHD:0010070 {is_inferred="true"} ! periodontitis
 is_a: OHD:0010115 ! gingival disorder
 intersection_of: OHD:0010115 ! gingival disorder
 intersection_of: RO:0002353 GO:0006954
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-10T17:58:35Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010026
@@ -6200,7 +6208,7 @@ relationship: RO:0002410 IDO:0000586
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-10T18:08:21Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010027
@@ -6222,7 +6230,6 @@ is_a: OHD:0000260 ! tooth disorder
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-23T19:47:27Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010029
@@ -6233,7 +6240,7 @@ relationship: BFO:0000051 OHD:0010096 ! bacterial infection
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-10T18:30:06Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010030
@@ -6254,7 +6261,7 @@ def: "An infectious disorder caused by viruses." []
 is_a: IDO:0000504
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-10T18:41:27Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010032
@@ -6265,7 +6272,7 @@ relationship: BFO:0000051 OHD:0010031 ! viral infection
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-10T18:44:24Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010033
@@ -6286,7 +6293,7 @@ def: "An infectious disorder caused by fungi." []
 is_a: IDO:0000504
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-10T19:01:22Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010035
@@ -6297,7 +6304,7 @@ relationship: BFO:0000051 OHD:0010034 ! fungal infection
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-10T19:02:08Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010036
@@ -6379,14 +6386,14 @@ id: OHD:0010042
 name: oral mucosal inflammation
 def: "An inflammatory response causing inflammation in the oral mucosa." []
 is_a: OHD:0010116 ! oral mucosal disorder
-is_a: OHD:0010289 ! inflammation
+is_a: OHD:0010289 {is_inferred="true"} ! inflammation
 intersection_of: OHD:0010116 ! oral mucosal disorder
 intersection_of: RO:0002353 GO:0006954
 relationship: BFO:0000066 UBERON:0000344
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-10T19:39:13Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010043
@@ -6397,7 +6404,7 @@ relationship: RO:0002410 IDO:0000586
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-10T19:44:06Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010044
@@ -6408,7 +6415,7 @@ relationship: BFO:0000051 OHD:0010096 ! bacterial infection
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-10T19:51:14Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010045
@@ -6431,7 +6438,7 @@ relationship: RO:0002410 OHD:0010031 ! viral infection
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-10T19:57:38Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010047
@@ -6450,13 +6457,12 @@ replaced_by: PAIN:0010047
 id: OHD:0010048
 name: oral mucosal inflammation due to fungal infection
 def: "Oral mucosal inflammation occuring due to a fungal infection within the oral mucosa." []
-def: "Oral mucosal inflammation occuring due to a viral infection within the oral mucosa." []
 is_a: OHD:0010043 ! oral mucosal inflammation due to infection
 relationship: BFO:0000051 OHD:0010034 ! fungal infection
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-10T20:03:18Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010049
@@ -6527,7 +6533,7 @@ relationship: RO:0002410 OGMS:0000102
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-11T17:45:20Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010055
@@ -6550,7 +6556,7 @@ relationship: RO:0002410 OGMS:0000102
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-11T17:53:05Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010057
@@ -6597,7 +6603,7 @@ is_a: OHD:0000260 ! tooth disorder
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-11T18:15:26Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010061
@@ -6638,7 +6644,6 @@ relationship: BFO:0000051 OHD:0010063 ! irreversible disorder
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-11T18:32:32Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010065
@@ -6659,7 +6664,7 @@ relationship: RO:0002410 OHD:0010065 ! dentin infection
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-11T18:50:51Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010067
@@ -6682,7 +6687,7 @@ relationship: RO:0002410 OHD:0010065 ! dentin infection
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-11T18:57:00Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010069
@@ -6701,14 +6706,14 @@ id: OHD:0010070
 name: periodontitis
 def: "A periodontal disorder that results from inflammation of the periodontium." []
 is_a: OHD:0010117 ! periodontal disorder
-is_a: OHD:0010289 ! inflammation
+is_a: OHD:0010289 {is_inferred="true"} ! inflammation
 intersection_of: OHD:0010117 ! periodontal disorder
 intersection_of: RO:0002353 GO:0006954
 relationship: RO:0001025 UBERON:0008266
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-11T19:03:19Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010071
@@ -6731,7 +6736,7 @@ relationship: BFO:0000051 OGMS:0000102
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-11T19:56:24Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010073
@@ -6760,14 +6765,13 @@ property_value: IAO:0000119 "PMID:32103673" xsd:string
 id: OHD:0010075
 name: dentin hypersensitivity due to developmental dental hard tissue defect
 def: "Dentin hypersensitivity due to exposed dentin resulting from a developmental dental hard tissue defect." []
-def: "dentin hypersensitivity due to exposed dentin resulting from a developmental dental hard tissue defect." []
 is_a: OHD:0010014 ! dentin hypersensitivity due to exposed dentin
 intersection_of: OHD:0010014 ! dentin hypersensitivity due to exposed dentin
 intersection_of: RO:0002410 OHD:0010074 ! developmental dental hard tissue defect
 relationship: RO:0002410 OHD:0010074 ! developmental dental hard tissue defect
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-12T16:52:56Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010076
@@ -6821,7 +6825,7 @@ relationship: RO:0002410 OHD:0010079 ! dental caries not extending to the pulp
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-12T18:12:50Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010081
@@ -6844,7 +6848,7 @@ relationship: RO:0002410 OHD:0000413 ! tooth fracture with exposed dentin
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-12T18:26:48Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010083
@@ -6911,7 +6915,6 @@ is_a: OHD:0010070 ! periodontitis
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-19T19:04:30Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010089
@@ -6931,7 +6934,7 @@ relationship: RO:0002410 OHD:0010089 ! endodontic disease
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-19T19:09:00Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010091
@@ -6949,13 +6952,12 @@ replaced_by: PAIN:0010091
 id: OHD:0010092
 name: exposed dental pulp due to dental injury
 def: "Exposed dental pulp occuring because of some dental injury." []
-comment: Exposed dental pulp occuring because of some dental injury.
 is_a: OHD:0010028 ! exposed dental pulp
 relationship: RO:0002410 OHD:0010148 ! dental injury
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-23T19:50:16Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010093
@@ -6994,7 +6996,7 @@ def: "An infectious disorder caused by bacteria." []
 is_a: IDO:0000504
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-16T14:52:46Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010097
@@ -7015,7 +7017,7 @@ relationship: RO:0002410 OHD:0010097 ! dental pulp infection
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-16T18:27:39Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010099
@@ -7037,7 +7039,7 @@ is_a: OHD:0000404 ! mouth disease
 relationship: RO:0000052 UBERON:0008266
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-16T18:34:32Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010101
@@ -7070,7 +7072,7 @@ relationship: RO:0000056 OGMS:0000064
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-16T18:42:35Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010104
@@ -7114,7 +7116,7 @@ relationship: RO:0002410 OHD:0010095 ! tooth crack without evidence of missing t
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-23T20:17:04Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010108
@@ -7145,7 +7147,7 @@ is_a: OHD:0010100 ! periodontal disease
 relationship: RO:0002410 OHD:0010109 ! aggressive periodontitis
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-17T18:38:52Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010111
@@ -7176,7 +7178,7 @@ is_a: OHD:0010100 ! periodontal disease
 relationship: RO:0002410 OHD:0010112 ! necrotizing ulcerative periodontitis
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-17T18:50:48Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010114
@@ -7199,7 +7201,6 @@ is_a: OHD:0010117 ! periodontal disorder
 relationship: BFO:0000050 UBERON:0001828
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-18T17:06:36Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010116
@@ -7209,7 +7210,6 @@ is_a: OHD:0000414 ! mouth disorder
 relationship: BFO:0000050 UBERON:0003729
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-18T17:16:52Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010117
@@ -7219,7 +7219,6 @@ is_a: OHD:0000414 ! mouth disorder
 relationship: BFO:0000050 UBERON:0001758
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-18T17:20:17Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010118
@@ -7500,7 +7499,7 @@ property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-25T18:14:29Z" xsd:dateTime
 property_value: IAO:0000231 IAO:0000228
 is_obsolete: true
-replaced_by: http://purl.obolibrary.org/obo/PAIN_0000053
+replaced_by: PAIN:0000053
 
 [Term]
 id: OHD:0010141
@@ -7511,7 +7510,7 @@ property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-25T18:15:03Z" xsd:dateTime
 property_value: IAO:0000231 IAO:0000228
 is_obsolete: true
-replaced_by: http://purl.obolibrary.org/obo/PAIN_0000040
+replaced_by: PAIN:0000040
 
 [Term]
 id: OHD:0010142
@@ -7529,11 +7528,10 @@ replaced_by: PAIN:0010142
 id: OHD:0010143
 name: hyperocclusion
 def: "A tooth disorder resulting in a tooth making excessive contact with an opposing tooth, enroaching on the intercostal space." []
-def: "A tooth disorder resulting in a tooth making excessive contact with and opposing tooth, enroaching on the intercostal space." []
 is_a: OHD:0000260 ! tooth disorder
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-25T18:29:47Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010144
@@ -7541,7 +7539,7 @@ name: hyperarticulation
 is_a: OHD:0000260 ! tooth disorder
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-25T18:32:17Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010145
@@ -7551,7 +7549,7 @@ is_a: OHD:0010143 ! hyperocclusion
 relationship: RO:0002410 OHD:0000004 ! tooth restoration procedure
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-25T18:49:54Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010146
@@ -7561,7 +7559,7 @@ is_a: OHD:0010144 ! hyperarticulation
 relationship: RO:0002410 OHD:0000004 ! tooth restoration procedure
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-25T18:50:29Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010147
@@ -7584,7 +7582,7 @@ relationship: BFO:0000066 UBERON:0000165
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-25T18:59:05Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010149
@@ -7613,7 +7611,7 @@ relationship: RO:0002410 OHD:0010150 ! dental hard tissue fracture without pulp 
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-25T19:15:09Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010152
@@ -7636,7 +7634,6 @@ relationship: RO:0002410 OHD:0010094 ! tooth crack
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-25T19:22:26Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010154
@@ -7647,7 +7644,6 @@ relationship: RO:0002410 OHD:0010149 ! dental hard tissue fracture
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-25T19:23:53Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010155
@@ -7657,13 +7653,12 @@ is_a: OHD:0010066 ! reversible pulpitis due to dentin infection
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-25T19:26:50Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010156
 name: dental hard tissue fracture with exposed dentin
 def: "Dental hard tissue fracture involving the enamel, root cementum, dentin, or any combination thereof and resulting in exposed dentin." []
-is_a: OHD:0000413 ! tooth fracture with exposed dentin
+is_a: OHD:0000413 {is_inferred="true"} ! tooth fracture with exposed dentin
 is_a: OHD:0010149 ! dental hard tissue fracture
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-25T19:30:44Z" xsd:dateTime
@@ -7678,7 +7673,6 @@ relationship: RO:0002410 OHD:0000031 ! dental caries
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-25T19:34:08Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010158
@@ -7699,7 +7693,6 @@ relationship: RO:0002410 OHD:0010094 ! tooth crack
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-25T19:38:43Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010160
@@ -7710,7 +7703,7 @@ relationship: RO:0002410 OHD:0010095 ! tooth crack without evidence of missing t
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-25T19:39:40Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010161
@@ -7742,7 +7735,7 @@ relationship: RO:0002410 OHD:0010162 ! dental hard tissue fracture with pulp exp
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-25T19:57:58Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010164
@@ -7763,7 +7756,7 @@ def: "A pathological bodily process that abnormally occurs when dentin is resorb
 is_a: OGMS:0000061
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-26T18:19:19Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010166
@@ -7846,7 +7839,7 @@ relationship: BFO:0000066 UBERON:0001754
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-26T18:36:01Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010173
@@ -7868,7 +7861,7 @@ is_a: OHD:0010172 ! endodontic infection
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-26T18:41:03Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010175
@@ -7890,7 +7883,7 @@ is_a: OHD:0010172 ! endodontic infection
 property_value: dcterms:contributor https://orcid.org/0009-0002-7282-0836
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-26T18:45:35Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010177
@@ -7940,7 +7933,7 @@ comment: The disorder might arise from an infection, but is not necessarily an i
 is_a: OHD:0010187 ! hematological disorder
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-26T18:58:07Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010181
@@ -7975,7 +7968,7 @@ is_a: IDO:0000504
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-26T19:07:48Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010184
@@ -7984,7 +7977,7 @@ def: "A disorder characterized by the presence of malignant cells." []
 is_a: OGMS:0000045
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-26T19:20:29Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010185
@@ -8018,7 +8011,6 @@ synonym: "haematological disorder" EXACT []
 is_a: OGMS:0000045
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-27T14:46:19Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010188
@@ -8032,7 +8024,6 @@ relationship: BFO:0000051 OHD:0000278 ! dental implant body
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-30T17:03:00Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010189
@@ -8042,7 +8033,7 @@ is_a: OHD:0010188 ! peri-implantitis
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-30T17:05:04Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010190
@@ -8094,7 +8085,7 @@ is_a: OHD:0010098 ! irreversible pulpitis due to dental pulp infection
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-30T17:31:17Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010195
@@ -8125,7 +8116,7 @@ relationship: RO:0002410 OHD:0010196 ! non-iatrogenic injury
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-30T17:46:25Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010198
@@ -8147,7 +8138,7 @@ is_a: OHD:0010056 ! oral mucosal inflammation due to injury
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-30T17:51:49Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010200
@@ -8181,7 +8172,6 @@ is_a: OHD:0000414 ! mouth disorder
 relationship: BFO:0000050 UBERON:0001044
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-30T18:02:18Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010203
@@ -8191,7 +8181,6 @@ is_a: OHD:0010202 ! salivary gland disorder
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-30T18:03:40Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010204
@@ -8201,7 +8190,6 @@ is_a: OHD:0010203 ! parotid disorder
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-30T18:06:41Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010205
@@ -8211,7 +8199,7 @@ is_a: OHD:0010204 ! parotitis
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-30T18:07:42Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010206
@@ -8245,7 +8233,7 @@ def: "A disorder characterized by a non-cancerous growth." []
 is_a: OGMS:0000045
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-30T18:19:03Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010209
@@ -8267,7 +8255,7 @@ def: "A malignant lesion that is confined to where the malignant cells began." [
 is_a: OHD:0010184 ! malignant lesion
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-30T18:25:59Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010211
@@ -8288,7 +8276,7 @@ def: "A malignant lesion that has spread from where teh malignant cells first be
 is_a: OHD:0010184 ! malignant lesion
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-06-30T18:28:29Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010213
@@ -8376,72 +8364,49 @@ replaced_by: PAIN:0010219
 
 [Term]
 id: OHD:0010220
-name: chronic frequent pain
 name: obsolete chronic frequent pain
-def: "Chronic pain that occurs 1-14 days a month." []
 def: "OBSOLETE. Chronic pain that occurs 1-14 days a month." []
 is_a: oboInOwl:ObsoleteClass
-is_a: PAIN:0000040
-intersection_of: PAIN:0000040
-intersection_of: RO:0000053 PATO:0000380
-relationship: RO:0000053 PATO:0000380
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-07-01T17:11:00Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
 property_value: IAO:0000231 IAO:0000228
-property_value: isDefinedBy pain:import.owl
 is_obsolete: true
 replaced_by: http://purl.obolibrary.org/obo/PAIN_0010220
 
 [Term]
 id: OHD:0010221
-name: chronic infrequent pain
 name: obsolete chronic infrequent pain
-def: "Chronic pain that occurs less than one day a month." []
 def: "OBSOLETE. Chronic pain that occurs less than one day a month." []
 is_a: oboInOwl:ObsoleteClass
-is_a: PAIN:0000040
-intersection_of: PAIN:0000040
-intersection_of: RO:0000053 PATO:0000381
-relationship: RO:0000053 PATO:0000381
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-07-01T17:13:04Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
 property_value: IAO:0000231 IAO:0000228
-property_value: isDefinedBy pain:import.owl
 is_obsolete: true
 replaced_by: http://purl.obolibrary.org/obo/PAIN_0010221
 
 [Term]
 id: OHD:0010222
-name: chronic frequent pain with pain referral
 name: obsolete chronic frequent pain with pain referral
-def: "Chronic frequent pain that occurs beyond the affected site." []
 def: "OBSOLETE. Chronic frequent pain that occurs beyond the affected site." []
-is_a: OHD:0010220 ! obsolete chronic frequent pain
-is_a: PAIN:0000054
-intersection_of: OHD:0010220 ! obsolete chronic frequent pain
-intersection_of: PAIN:0000126 UBERON:0001062
+is_a: oboInOwl:ObsoleteClass
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-07-01T17:14:42Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
 property_value: IAO:0000231 IAO:0000228
-property_value: isDefinedBy pain:import.owl
 is_obsolete: true
 replaced_by: http://purl.obolibrary.org/obo/PAIN_0010222
 
 [Term]
 id: OHD:0010223
-name: chronic frequent pain without pain referral
 name: obsolete chronic frequent pain without pain referral
-def: "Chronic frequent pain that s localized to the affected area." []
 def: "OBSOLETE. Chronic frequent pain that s localized to the affected area." []
-is_a: OHD:0010220 ! obsolete chronic frequent pain
+is_a: oboInOwl:ObsoleteClass
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-07-01T17:15:41Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
 property_value: IAO:0000231 IAO:0000228
-property_value: isDefinedBy pain:import.owl
 is_obsolete: true
 replaced_by: http://purl.obolibrary.org/obo/PAIN_0010223
 
@@ -8471,16 +8436,13 @@ replaced_by: PAIN:0010225
 
 [Term]
 id: OHD:0010226
-name: chronic highly frequent pain
 name: obsolete chronic highly frequent pain
-def: "Chronic pain that occurs more than 15 days a month for more than 4 months." []
 def: "OBSOLETE. Chronic pain that occurs more than 15 days a month for more than 4 months." []
-is_a: OHD:0010220 ! obsolete chronic frequent pain
+is_a: oboInOwl:ObsoleteClass
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-07-01T17:22:21Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
 property_value: IAO:0000231 IAO:0000228
-property_value: isDefinedBy pain:import.owl
 is_obsolete: true
 replaced_by: http://purl.obolibrary.org/obo/PAIN_0010226
 
@@ -8510,34 +8472,25 @@ replaced_by: PAIN:0010228
 
 [Term]
 id: OHD:0010229
-name: chronic highly frequent pain without pain referral
 name: obsolete chronic highly frequent pain without pain referral
-def: "Chronic highly frequent pain that is localized to the affected area." []
 def: "OBSOLETE. Chronic highly frequent pain that is localized to the affected area." []
-is_a: OHD:0010226 ! obsolete chronic highly frequent pain
+is_a: oboInOwl:ObsoleteClass
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-07-01T17:35:37Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
 property_value: IAO:0000231 IAO:0000228
-property_value: isDefinedBy pain:import.owl
 is_obsolete: true
 replaced_by: http://purl.obolibrary.org/obo/PAIN_0010229
 
 [Term]
 id: OHD:0010230
-name: chronic highly frequent pain with pain referral
 name: obsolete chronic highly frequent pain with pain referral
-def: "Chronic highly frequent pain with pain referral that occurs beyond the affected area." []
 def: "OBSOLETE. Chronic highly frequent pain with pain referral that occurs beyond the affected area." []
-is_a: OHD:0010222 ! obsolete chronic frequent pain with pain referral
-is_a: OHD:0010226 ! obsolete chronic highly frequent pain
-intersection_of: OHD:0010226 ! obsolete chronic highly frequent pain
-intersection_of: PAIN:0000126 UBERON:0001062
+is_a: oboInOwl:ObsoleteClass
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-07-01T17:37:56Z" xsd:dateTime
 property_value: IAO:0000119 "PMID:32103673" xsd:string
 property_value: IAO:0000231 IAO:0000228
-property_value: isDefinedBy pain:import.owl
 is_obsolete: true
 replaced_by: http://purl.obolibrary.org/obo/PAIN_0010230
 
@@ -8970,7 +8923,7 @@ property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-07-07T17:20:14Z" xsd:dateTime
 property_value: IAO:0000231 IAO:0000228
 is_obsolete: true
-replaced_by: http://purl.obolibrary.org/obo/PAIN_0000038
+replaced_by: PAIN:0000038
 
 [Term]
 id: OHD:0010267
@@ -9248,7 +9201,6 @@ property_value: dcterms:contributor https://orcid.org/0000-0001-9990-8331
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-07-14T15:26:18Z" xsd:dateTime
 property_value: IAO:0000119 "ISBN:978-0-8153-4505-3" xsd:string
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
 
 [Term]
 id: OHD:0010290
@@ -9264,14 +9216,14 @@ property_value: dcterms:created "2025-07-16T14:31:57Z" xsd:dateTime
 id: OHD:0010291
 name: tendonitis
 def: "A disorder of a tendon caused by inflammation." []
-is_a: OHD:0010289 ! inflammation
+is_a: OHD:0010289 {is_inferred="true"} ! inflammation
 intersection_of: OGMS:0000045
 intersection_of: RO:0000057 UBERON:0000043
 intersection_of: RO:0002353 GO:0006954
 relationship: RO:0000057 UBERON:0000043
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-07-07T18:48:59Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010292
@@ -9427,27 +9379,27 @@ replaced_by: PAIN:0010304
 id: OHD:0010305
 name: myositis
 def: "A disorder of a muscle caused by inflammation." []
-is_a: OHD:0010289 ! inflammation
+is_a: OHD:0010289 {is_inferred="true"} ! inflammation
 intersection_of: OGMS:0000045
 intersection_of: RO:0000057 UBERON:0001134
 intersection_of: RO:0002353 GO:0006954
 relationship: RO:0000057 UBERON:0001134
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-07-08T18:08:24Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010306
 name: inflammatory arthritis
 def: "A disorder of a joint caused by inflammation." []
-is_a: OHD:0010289 ! inflammation
+is_a: OHD:0010289 {is_inferred="true"} ! inflammation
 intersection_of: OGMS:0000045
 intersection_of: RO:0000057 UBERON:0000982
 intersection_of: RO:0002353 GO:0006954
 relationship: RO:0000057 UBERON:0000982
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-07-08T18:10:02Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010307
@@ -9456,7 +9408,7 @@ def: "Arthritis that primarily affects the joints." []
 is_a: OHD:0010306 ! inflammatory arthritis
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-07-08T18:11:28Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010308
@@ -9465,7 +9417,7 @@ def: "Arthritis that affects the joints and causes inflammation within the rest 
 is_a: OHD:0010306 ! inflammatory arthritis
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-07-08T18:13:59Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Term]
 id: OHD:0010309
@@ -9474,7 +9426,7 @@ def: "A disease in which the cartilage around the joint is gradually worn away."
 is_a: OGMS:0000031
 property_value: dcterms:contributor https://orcid.org/0009-0003-5583-4731
 property_value: dcterms:created "2025-07-08T18:18:25Z" xsd:dateTime
-property_value: isDefinedBy http://purl.obolibrary.org/obo/ohd.owl
+property_value: isDefinedBy pain:import.owl
 
 [Typedef]
 id: OHD:0000091

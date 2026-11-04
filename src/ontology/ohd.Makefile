@@ -3,20 +3,22 @@
 # empty target used for forcing a rule to run
 FORCE: ;
 
-prepare_release: test custom_reports all_assets
-	@tmp_release_assets="$(patsubst %, $(RELEASEDIR)/%, $(RELEASE_ASSETS))"; \
-	for f in $$tmp_release_assets; do \
-		case "$$f" in \
-			*.tsv) continue ;; \
-		esac; \
-		$(call remove-obsolete-class,$$f); \
-	done &&\
+prepare_release: custom_reports all_assets
+# @tmp_release_assets="$(patsubst %, $(RELEASEDIR)/%, $(RELEASE_ASSETS))"; \
+# for f in $$tmp_release_assets; do \
+# 	case "$$f" in \
+# 		*.tsv) continue ;; \
+# 	esac; \
+# 	$(call remove-obsolete-class,$$f); \
+# done
+	
 	$(ROBOT) report -i $(ONT).owl $(REPORT_LABEL) $(REPORT_PROFILE_OPTS) \
 					--fail-on $(REPORT_FAIL_ON) \
 					--base-iri $(URIBASE)/OHD_ \
 					--base-iri $(URIBASE)/ohd \
 					--print 5 \
-					-o $(REPORTDIR)/$(SRC)-obo-report.tsv &&\ 
+					-o $(REPORTDIR)/$(SRC)-obo-report.tsv
+	
 	rsync -R $(RELEASE_ASSETS) $(RELEASEDIR) &&\
 	rm -f $(CLEANFILES) &&\
 	echo "Release files are now in $(RELEASEDIR) - now you should commit, push and make a release \
@@ -24,6 +26,7 @@ prepare_release: test custom_reports all_assets
 
 .PHONY: all_assets
 all_assets: $(ASSETS)
+	@echo "\n ** Finished building all assets successfully. $(ASSETS) ** \n"
 
 
 .PHONY: elk_test
@@ -52,20 +55,20 @@ elk_reason_test: $(EDIT_PREPROCESSED)
 # Release artifacts
 # ----------------------------------------
 
-$(ONT).owl: $(SRC)
+# in the ohd.owl release we need to delete the language tags to remove duuplicate annations
+# the "rdfs:isDefinedBy" annotation is also removed from the release version of ohd.owl
+# $(ONT).owl: $(SRC) $(SPARQLDIR)/strip-language-tags.ru $(SPARQLDIR)/remove-ohd-defined-by.ru
+$(ONT).owl: $(ONT)-full.owl
 	@echo "\n** building $@ **"
 	$(ROBOT) \
-		merge -i $< \
-		reason --reasoner HERMIT \
-				--annotate-inferred-axioms true --exclude-duplicate-axioms true \
-				--equivalent-classes-allowed asserted-only --exclude-tautologies structural \
-		annotate \
+		annotate -i $< \
 			--ontology-iri $(URIBASE)/$@ \
 			--version-iri $(ONTBASE)/releases/$(VERSION)/$@ \
 			--annotation owl:versionInfo $(VERSION) \
 		reduce \
-		convert -o $@.tmp.owl && mv $@.tmp.owl $@
-		
+		convert -o $@.tmp.owl && \
+		$(call remove-obsolete-class,$@.tmp.owl) && \
+		mv $@.tmp.owl $@
 
 # ----------------------------------------
 # Ontology imports
@@ -73,26 +76,6 @@ $(ONT).owl: $(SRC)
 
 .PRECIOUS: $(IMPORTDIR)/mf_import.owl
 $(IMPORTDIR)/mf_import.owl: $(MIRRORDIR)/mf.owl $(IMPORTDIR)/mf_terms.txt 
-	if [ $(IMP) = true ]; then \
-		$(ROBOT) \
-			filter \
-				--input $< \
-				--term-file $(word 2, $^) \
-				--select "annotations self ancestors" \
-				--axioms logical \
-				--signature true \
-				--trim true \
-			remove \
-				--select "owl:deprecated='true'^^xsd:boolean" \
-			annotate \
-				--annotate-defined-by true \
-				--ontology-iri $(URIBASE)/$(ONT)/$@ \
-				--version-iri $(URIBASE)/$(ONT)/$@ \
-			convert --format ofn \
-			--output $@.tmp.owl && mv $@.tmp.owl $@; fi
-
-.PRECIOUS: $(IMPORTDIR)/pato_import.owl
-$(IMPORTDIR)/pato_import.owl: $(MIRRORDIR)/pato.owl $(IMPORTDIR)/pato_terms.txt
 	if [ $(IMP) = true ]; then \
 		$(ROBOT) \
 			filter \
@@ -516,14 +499,21 @@ endif
 #### Release Functions ####
 
 define remove-obsolete-class
-	echo "\n removing ObsoleteClass from $(1) ($$(basename $(1))) \n"; \
+	src=$(1); fmt=owl; \
+	case "$$src" in \
+		*.json) src="$${src%.json}.owl"; fmt=json ;; \
+		*.obo)  src="$${src%.obo}.owl";  fmt=obo ;; \
+	esac; \
+	echo "\n removing ObsoleteClass from $(1) (input: $$src) \n"; \
 	$(ROBOT) \
-		remove \
-			--input $(1) \
-			--term http://www.geneontology.org/formats/oboInOwl#ObsoleteClass \
-			--select "self descendants" \
-			--signature true \
-		remove \
+		remove --input $$src \
 			--select "owl:deprecated='true'^^xsd:boolean" \
-	--output $(TMPDIR)/$$(basename $(1)) && mv $(TMPDIR)/$$(basename $(1)) $(1)
+		remove \
+			--select "owl:deprecated='true'" \
+		remove \
+			--term oboInOwl:ObsoleteClass \
+			--select "self descendants" \
+		convert --format $$fmt --check false \
+			--output $(TMPDIR)/$$(basename $(1)) && \
+	mv $(TMPDIR)/$$(basename $(1)) $(1) || exit 1
 endef
