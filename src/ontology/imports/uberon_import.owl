@@ -7,13 +7,14 @@ Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
 
 
 Ontology(<http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl>
-<http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl>
+<http://purl.obolibrary.org/obo/ohd/imports/2026-11-18/uberon_import.owl>
 
 Declaration(Class(<http://purl.obolibrary.org/obo/BFO_0000001>))
 Declaration(Class(<http://purl.obolibrary.org/obo/BFO_0000002>))
 Declaration(Class(<http://purl.obolibrary.org/obo/BFO_0000004>))
 Declaration(Class(<http://purl.obolibrary.org/obo/BFO_0000040>))
 Declaration(Class(<http://purl.obolibrary.org/obo/BFO_0000141>))
+Declaration(Class(<http://purl.obolibrary.org/obo/UBERON_0000001>))
 Declaration(Class(<http://purl.obolibrary.org/obo/UBERON_0000009>))
 Declaration(Class(<http://purl.obolibrary.org/obo/UBERON_0000020>))
 Declaration(Class(<http://purl.obolibrary.org/obo/UBERON_0000029>))
@@ -792,9 +793,6 @@ ObjectPropertyRange(<http://purl.obolibrary.org/obo/RO_0001025> <http://purl.obo
 
 # Object Property: <http://purl.obolibrary.org/obo/RO_0002131> (overlaps)
 
-AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/RO_0002131> "x overlaps y if and only if there exists some z such that x has part z and z part of y")
-AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "BSPO:cjm") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/RO_0002131> "x overlaps y iff they have some part in common.")
-AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/RO_0002131> "RO:0002131")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/RO_0002131> "overlaps")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/RO_0002131> <http://purl.obolibrary.org/obo/valid_for_go_annotation_extension>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/RO_0002131> <http://purl.obolibrary.org/obo/valid_for_gocam>)
@@ -944,6 +942,7 @@ AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000112> <http://purl.ob
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000116> <http://purl.obolibrary.org/obo/BFO_0000040> "BFO 2 Reference: Material entities (continuants) can preserve their identity even while gaining and losing material parts. Continuants are contrasted with occurrents, which unfold themselves in successive temporal parts or phases [60"@en)
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000116> <http://purl.obolibrary.org/obo/BFO_0000040> "BFO 2 Reference: Object, Fiat Object Part and Object Aggregate are not intended to be exhaustive of Material Entity. Users are invited to propose new subcategories of Material Entity."@en)
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000116> <http://purl.obolibrary.org/obo/BFO_0000040> "BFO 2 Reference: ‘Matter’ is intended to encompass both mass and energy (we will address the ontological treatment of portions of energy in a later version of BFO). A portion of matter is anything that includes elementary particles among its proper or improper parts: quarks and leptons, including electrons, as the smallest particles thus far discovered; baryons (including protons and neutrons) at a higher level of granularity; atoms and molecules at still higher levels, forming the cells, organs, organisms and other material entities studied by biologists, the portions of rock studied by geologists, the fossils studied by paleontologists, and so on.Material entities are three-dimensional entities (entities extended in three spatial dimensions), as contrasted with the processes in which they participate, which are four-dimensional entities (entities extended also along the dimension of time).According to the FMA, material entities may have immaterial entities as parts – including the entities identified below as sites; for example the interior (or ‘lumen’) of your small intestine is a part of your body. BFO 2.0 embodies a decision to follow the FMA here."@en)
+AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000116> <http://purl.obolibrary.org/obo/BFO_0000040> "Elucidation: An independent continuant that is spatially extended whose identity is independent of that of other entities and can be maintained through time."@en)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/BFO_0000040> <http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/BFO_0000040> "material entity"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/BFO_0000040> <http://purl.obolibrary.org/obo/BFO_0000004>)
@@ -957,6 +956,18 @@ AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/BFO_0000141
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/BFO_0000141> "immaterial entity"@en)
 SubClassOf(<http://purl.obolibrary.org/obo/BFO_0000141> <http://purl.obolibrary.org/obo/BFO_0000004>)
 DisjointClasses(<http://purl.obolibrary.org/obo/BFO_0000141> ObjectSomeValuesFrom(<http://purl.obolibrary.org/obo/BFO_0000051> <http://purl.obolibrary.org/obo/BFO_0000040>))
+
+# Class: <http://purl.obolibrary.org/obo/UBERON_0000001> (gross anatomical part)
+
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "CARO:0001008") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0000001> "Anatomical structure that is part of a multicellular organism and is at the gross anatomical level, e.g. above the level of a cell.  Included are portions of organism substances such as blood, multi-cell-part structures such as axon tracts, acellular anatomical structures such as hair, and organism subdivisions such as head. Excluded is the whole organism and more granular parts of the organism, such as atoms, molecules, macromolecular complexes and cells.")
+AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0000001> <http://purl.obolibrary.org/obo/NCBITaxon_2759>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0000001> "CARO:0001008")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/UBERON_0000001> "UBERON:0000001")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0000001> <http://purl.obolibrary.org/obo/uberon/core#human_subset>)
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0000001> <http://purl.obolibrary.org/obo/uberon/core#mouse_subset>)
+AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/UBERON_0000001> <http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl>)
+AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/UBERON_0000001> "gross anatomical part")
+SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0000001> <http://purl.obolibrary.org/obo/UBERON_0000465>)
 
 # Class: <http://purl.obolibrary.org/obo/UBERON_0000009> (submucosa)
 
@@ -1031,7 +1042,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0000020> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0000029> (lymph node)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "BTO:0000784") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0000029> "Any of the rounded masses of lymphoid tissue that are surrounded by a capsule of connective tissue, are distributed along the lymphatic vessels, and contain numerous lymphocytes which filter the flow of lymph.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0000029> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-09-17") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "VHOG:0001273") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "VHOG") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "ISBN:978-0030223693 Liem KF, Bemis WE, Walker WF, Grande L, Functional Anatomy of the Vertebrates: An Evolutionary Perspective (2001) p.630") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "http://bgee.unil.ch/") <http://purl.obolibrary.org/obo/UBPROP_0000003> <http://purl.obolibrary.org/obo/UBERON_0000029> "Lymph nodes that are associated with the lymphatic system have evolved in mammals.[well established][VHOG]")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0000029> "BTO:0000784")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0000029> "CALOHA:TS-0579")
@@ -1187,7 +1197,6 @@ AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#has
 AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0000061> <http://purl.obolibrary.org/obo/NCBITaxon_33090>)
 AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0000061> <http://purl.obolibrary.org/obo/NCBITaxon_33208>)
 AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0000061> <http://purl.obolibrary.org/obo/NCBITaxon_4751>)
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0000061> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0000061> "AAO:0010825")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0000061> "AEO:0000003")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0000061> "BILA:0000003")
@@ -1237,6 +1246,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <ht
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0000062> "ENVO:01000162")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0000062> "FMA:67498")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0000062> "MA:0003001")
+AnnotationAssertion(Annotation(<https://w3id.org/sssom/mapping_justification> <https://w3id.org/semapv/vocab/LexicalMatching>) <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0000062> "MESH:D004602")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0000062> "NCIT:C13018")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0000062> "SCTID:272625005")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "ncithesaurus:Organ") <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0000062> "UMLS:C0178784")
@@ -1335,7 +1345,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0000158> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0000165> (mouth)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Mouth") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "https://github.com/obophenotype/uberon/wiki/The-digestive-tract") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0000165> "The proximal portion of the digestive tract, containing the oral cavity and bounded by the oral opening. In vertebrates, this extends to the pharynx and includes gums, lips, tongue and parts of the palate. Typically also includes the teeth, except where these occur elsewhere (e.g. pharyngeal jaws) or protrude from the mouth (tusks).")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0000165> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-06-20") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "AAO:0010355") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "AAO") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "AAO:BJB") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0000165> "Cavity in which food is initially ingested and generally contains teeth, tongue and glands.[AAO]")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-09-17") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "VHOG:0000812") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "VHOG") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "DOI:10.1038/nature07309 Hejnol A, Martindale MQ, Acoel development indicates the independent evolution of the bilaterian mouth and anus. Nature (2008)") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "http://bgee.unil.ch/") <http://purl.obolibrary.org/obo/UBPROP_0000003> <http://purl.obolibrary.org/obo/UBERON_0000165> "Molecular and developmental cell lineage data suggest that the acoel mouth opening is homologous to the mouth of protostomes and deuterostomes and that the last common ancestor of the Bilateria (the 'urbilaterian') had only this single digestive opening.[well established][VHOG]")
 AnnotationAssertion(<http://purl.obolibrary.org/obo/UBPROP_0000007> <http://purl.obolibrary.org/obo/UBERON_0000165> "oral")
@@ -1636,7 +1645,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <htt
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0000463> <http://purl.obolibrary.org/obo/uberon/core#upper_level>)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/UBERON_0000463> <http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/UBERON_0000463> "organism substance")
-SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0000463> <http://purl.obolibrary.org/obo/UBERON_0000465>)
+SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0000463> <http://purl.obolibrary.org/obo/UBERON_0000001>)
 
 # Class: <http://purl.obolibrary.org/obo/UBERON_0000464> (anatomical space)
 
@@ -1755,7 +1764,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <htt
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0000476> <http://purl.obolibrary.org/obo/uberon/core#vertebrate_core>)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/UBERON_0000476> <http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/UBERON_0000476> "acellular anatomical structure")
-SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0000476> <http://purl.obolibrary.org/obo/UBERON_0000061>)
+SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0000476> <http://purl.obolibrary.org/obo/UBERON_0000001>)
 DisjointClasses(<http://purl.obolibrary.org/obo/UBERON_0000476> <http://purl.obolibrary.org/obo/UBERON_0010000>)
 
 # Class: <http://purl.obolibrary.org/obo/UBERON_0000477> (anatomical cluster)
@@ -1764,6 +1773,7 @@ AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#has
 AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0000477> <http://purl.obolibrary.org/obo/NCBITaxon_33090>)
 AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0000477> <http://purl.obolibrary.org/obo/NCBITaxon_33208>)
 AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0000477> <http://purl.obolibrary.org/obo/NCBITaxon_4751>)
+AnnotationAssertion(Annotation(<https://w3id.org/sssom/mapping_justification> <https://w3id.org/semapv/vocab/LexicalMatching>) <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0000477> "CARO:0000041")
 AnnotationAssertion(Annotation(<https://w3id.org/sssom/mapping_justification> <https://w3id.org/semapv/vocab/ManualMappingCuration>) <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0000477> "FBbt:00007277")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0000477> "VHOG:0001737")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/UBERON_0000477> "UBERON:0000477")
@@ -2099,7 +2109,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0001015> ObjectSomeValuesFrom(
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GO:0007431") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Salivary_gland") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0001044> "Saliva-secreting exocrine glands of the oral cavity[GO].")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "3") <http://purl.obolibrary.org/obo/IAO_0000232> <http://purl.obolibrary.org/obo/UBERON_0001044> "currently we define saliva and salivary glands very generally in functional terms but it may be more appropriate to split this class. From WP: In most vertebrates, saliva does not contain any enzymes, consisting of mucus and water only, and its primary function is to moisten food while eating. As a result, true salivary glands are rarely found in fish or aquatic tetrapods, although there are often individual mucus-secreting cells. Amphibians have a single salivary gland, the intermaxillary gland, located in the forward part of the palate. Reptiles and birds normally have only very small glands on the lips, palate, and base of the mouth, although there are some birds with large glands, which produce a sticky saliva that helps in nest-building. The distinct parotid, submandibular, and sublingual glands are only developed in mammals.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0001044> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-09-17") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "VHOG:0000376") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "VHOG") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "http://bgee.unil.ch/") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0001044> "A gland that produces the saliva. [Bemis_WE, Functional_Anatomy_of_the_Vertebrates:_An_Evolutionary_Perspective, Glossary_G-25, Grande_L, Liem_KF, Third_Edition_(2001)_Orlando_Fla.:_Harcourt_College_Publishers, Walker_WF][VHOG]")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-09-17") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "VHOG:0000376") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "VHOG") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "ISBN:978-0471210054 Butler AB and Hodos W, Comparative vertebrate neuroanatomy: Evolution and Adaptationm(2005) p.211") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "http://bgee.unil.ch/") <http://purl.obolibrary.org/obo/UBPROP_0000003> <http://purl.obolibrary.org/obo/UBERON_0001044> "In air-feeding animals, the lack of water column to lubricate the food has been compensated for by the evolution of the salivary glands. These glands are present only in amniotes and are controlled by the parasympathetic system.[well established][VHOG]")
 AnnotationAssertion(<http://purl.obolibrary.org/obo/UBPROP_0000008> <http://purl.obolibrary.org/obo/UBERON_0001044> "The salivary glands in mammals are exocrine glands, glands with ducts, that produce saliva. They also secrete amylase, an enzyme that breaks down starch into maltose. In other organisms such as insects, salivary glands are often used to produce biologically important proteins like silk or glues, and fly salivary glands contain polytene chromosomes that have been useful in genetic research. The salivary glands of some species are modified to produce enzymes; salivary amylase is found in many, but by no means all, bird and mammal species (including humans, as noted above). Furthermore, the venom glands of poisonous snakes, Gila monsters, and some shrews, are modified salivary glands")
@@ -2170,6 +2179,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <htt
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0001062> <http://purl.obolibrary.org/obo/uberon/core#upper_level>)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/UBERON_0001062> <http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl>)
 AnnotationAssertion(rdfs:label <http://purl.obolibrary.org/obo/UBERON_0001062> "anatomical entity")
+EquivalentClasses(<http://purl.obolibrary.org/obo/UBERON_0001062> ObjectUnionOf(<http://purl.obolibrary.org/obo/UBERON_0000465> <http://purl.obolibrary.org/obo/UBERON_0000466>))
 SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0001062> <http://purl.obolibrary.org/obo/BFO_0000004>)
 
 # Class: <http://purl.obolibrary.org/obo/UBERON_0001089> (sweat)
@@ -2229,9 +2239,9 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0001090> ObjectSomeValuesFrom(
 # Class: <http://purl.obolibrary.org/obo/UBERON_0001091> (calcareous tooth)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Tooth_(animal)") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "http://orcid.org/0000-0002-6601-2165") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0001091> "Skeletal element within the mouth (or in some species, upper part of the digestive tract) that is composed of dentine and is used in procuring or masticating food.")
-AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "Wikipedia") <http://purl.obolibrary.org/obo/RO_0002161> <http://purl.obolibrary.org/obo/UBERON_0001091> <http://purl.obolibrary.org/obo/NCBITaxon_189497>)
 AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002161> <http://purl.obolibrary.org/obo/UBERON_0001091> <http://purl.obolibrary.org/obo/NCBITaxon_8782>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "PMID:10210685") <http://purl.obolibrary.org/obo/RO_0002161> <http://purl.obolibrary.org/obo/UBERON_0001091> <http://purl.obolibrary.org/obo/NCBITaxon_9257>)
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "https://github.com/obophenotype/uberon/issues/3752") <http://purl.obolibrary.org/obo/RO_0002161> <http://purl.obolibrary.org/obo/UBERON_0001091> <http://purl.obolibrary.org/obo/NCBITaxon_9259>)
 AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002161> <http://purl.obolibrary.org/obo/UBERON_0001091> <http://purl.obolibrary.org/obo/NCBITaxon_9761>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-09-17") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "VHOG:0001733") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "VHOG") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "PMID:19266065 Koussoulakou DS, Margaritis LH, Koussoulakos SL, A curriculum vitae of teeth: evolution, generation, regeneration. International Journal of Biological Sciences (2009)") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "http://bgee.unil.ch/") <http://purl.obolibrary.org/obo/UBPROP_0000003> <http://purl.obolibrary.org/obo/UBERON_0001091> "The ancestor of recent vertebrate teeth was a tooth-like structure on the outer body surface of jawless fishes.[well established][VHOG]")
 AnnotationAssertion(<http://purl.obolibrary.org/obo/UBPROP_0000007> <http://purl.obolibrary.org/obo/UBERON_0001091> "dental")
@@ -2444,7 +2454,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0001560> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0001571> (genioglossus muscle)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "VHOG:0000847") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Genioglossus_muscle") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0001571> "Either of a pair of lingual muscles with origin in the mandible, with insertion to the lingual fascia below the mucous membrane and epiglottis, with nerve supply from the hypoglossal nerve, and whose action depresses and protrudes the tongue.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0001571> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-09-17") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "VHOG:0000847") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "VHOG") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "http://bgee.unil.ch/") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "http://medical-dictionary.thefreedictionary.com/genioglossus") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0001571> "Either of a pair of lingual muscles with origin in the mandible, with insertion to the lingual fascia below the mucous membrane and epiglottis, with nerve supply from the hypoglossal nerve, and whose action depresses and protrudes the tongue. [TFD][VHOG]")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-06-20") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "AAO:0010660") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "AAO") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "AAO:BMZ") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0001571> "Makes up bulk of tongue in frogs and salamanders; makes up entire tongue in caecilians.[AAO]")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-07-02") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "FEED") Annotation(<http://www.geneontology.org/formats/oboInOwl#url> "http://www.feedexp.org") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0001571> "see Intrinsic Tongue.[FEED]")
@@ -2479,7 +2488,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0001571> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0001572> (hyoglossus muscle)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "FEED:rd") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0001572> "A muscle that attaches to the hyopid bone and to the tongue and is innervated by cranial nerve XII.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0001572> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-06-20") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "AAO:0010663") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "AAO") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "AAO:BMZ") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0001572> "Makes up part of the tongue in frogs and salamanders.[AAO]")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-07-02") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "FEED") Annotation(<http://www.geneontology.org/formats/oboInOwl#url> "http://www.feedexp.org") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0001572> "The hyoglossus is a muscle that attaches to the hyoid and tongue and is innervated by Cranial Nerve XII.[FEED]")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-06-20") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "AAO:0010663") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "AAO") <http://purl.obolibrary.org/obo/UBPROP_0000002> <http://purl.obolibrary.org/obo/UBERON_0001572> "relationship loss: subclass hyobranchial muscles (AAO:0000224)[AAO]")
@@ -2528,7 +2536,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0001573> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0001574> (palatoglossus muscle)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Palatoglossus_muscle") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0001574> "The palatoglossus, glossopalatinus, or palatoglossal muscle is a small fleshy fasciculus, narrower in the middle than at either end, forming, with the mucous membrane covering its surface, the glossopalatine arch. It arises from the anterior surface of the soft palate, where it is continuous with the muscle of the opposite side, and passing downward, forward, and lateralward in front of the palatine tonsil, is inserted into the side of the tongue, some of its fibers spreading over the dorsum, and others passing deeply into the substance of the organ to intermingle with the Transversus linguæ. [WP,unvetted].")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0001574> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-07-02") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "FEED") Annotation(<http://www.geneontology.org/formats/oboInOwl#url> "http://www.feedexp.org") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0001574> "Palatoglossus is a muscle that attaches to the soft palate and the tongue and is innervated by Cranial Nerve X via the pharyngeal plexus.[FEED]")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0001574> "EMAPA:18278")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0001574> "FMA:46697")
@@ -2556,7 +2563,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0001574> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0001575> (extrinsic muscle of tongue)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Muscles_of_tongue") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "https://github.com/obophenotype/uberon/issues/331") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0001575> "A muscle organ that attaches the tongue to some other structure.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0001575> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-09-17") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "VHOG:0000825") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "VHOG") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "DOI:10.1002/dvdy.20587 Kusakabe R, Kuratani S, Evolution and developmental patterning of the vertebrate skeletal muscles: perspectives from the lamprey. Developmental Dynamics (2005)") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "http://bgee.unil.ch/") <http://purl.obolibrary.org/obo/UBPROP_0000003> <http://purl.obolibrary.org/obo/UBERON_0001575> "The lamprey head contains another group of muscles, the epi- and hypo-branchial muscles (EBM and HBM), derivatives of anterior trunk myotomes. (...) The origin and the migration pattern of HBM precursors are very similar to that of the gnathostome MPP, especially to that of the tongue muscle precursors. Other evidence of homology of lamprey HBM to the gnathostome tongue muscle is that HBM is innervated by the nerve termed the hypoglossal nerve based on its morphological position associated with the head/trunk interface. (...) The HBM-specific expression of the LampPax3/7 gene is consistent with the homology of this muscle to the gnathostome tongue muscle, or to the hypobranchial series as a whole (including the infrahyoid and possibly the diaphragm in mammals).[well established][VHOG]")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "WP") <http://purl.obolibrary.org/obo/UBPROP_0000009> <http://purl.obolibrary.org/obo/UBERON_0001575> "main functions are altering the tongue's position allowing for protrusion, retraction, and side-to-side movement")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "WP") <http://purl.obolibrary.org/obo/UBPROP_0000010> <http://purl.obolibrary.org/obo/UBERON_0001575> "All intrinsic and extrinsic muscles of the tongue are supplied by the hypoglossal nerve (CN XII), except for one of the extrinsic muscles, palatoglossus, which is innervated by the Vagus nerve CN X of the pharyngeal plexus.")
@@ -2584,7 +2590,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0001575> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0001576> (intrinsic muscle of tongue)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "http://www.feedexp.org/wiki/Mammalian_Muscle_Ontology_Workshop") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0001576> "The intrinsic tongue muscles are an integral part of the tongue and completely contained within the tongue that are innervated by Cranial Nerve XII.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0001576> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-07-02") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "FEED") Annotation(<http://www.geneontology.org/formats/oboInOwl#url> "http://www.feedexp.org") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0001576> "The intrinsic tongue muscles are an integral part of the tongue that are innervated by Cranial Nerve XII.[FEED]")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-09-17") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "VHOG:0000748") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "VHOG") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "DOI:10.1002/dvdy.20587 Kusakabe R, Kuratani S, Evolution and developmental patterning of the vertebrate skeletal muscles: perspectives from the lamprey. Developmental Dynamics (2005)") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "http://bgee.unil.ch/") <http://purl.obolibrary.org/obo/UBPROP_0000003> <http://purl.obolibrary.org/obo/UBERON_0001576> "The lamprey head contains another group of muscles, the epi- and hypo-branchial muscles (EBM and HBM), derivatives of anterior trunk myotomes. (...) The origin and the migration pattern of HBM precursors are very similar to that of the gnathostome MPP, especially to that of the tongue muscle precursors. Other evidence of homology of lamprey HBM to the gnathostome tongue muscle is that HBM is innervated by the nerve termed the hypoglossal nerve based on its morphological position associated with the head/trunk interface. (...) The HBM-specific expression of the LampPax3/7 gene is consistent with the homology of this muscle to the gnathostome tongue muscle, or to the hypobranchial series as a whole (including the infrahyoid and possibly the diaphragm in mammals).[well established][VHOG]")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "WP") <http://purl.obolibrary.org/obo/UBPROP_0000009> <http://purl.obolibrary.org/obo/UBERON_0001576> "The main function of the intrinsic muscles is to provide shape. They are not involved with changing the position of the tongue and are not attached to bone")
@@ -2644,7 +2649,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0001630> ObjectSomeValuesFrom(
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Human_mandible") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Mandible") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0001684> "A dentary bone that is the only bone in one of the lateral halves of the lower jaw skeleton.")
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000116> <http://purl.obolibrary.org/obo/UBERON_0001684> "consider merging with dentary - for now we make it a mammal-specific subclass.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0001684> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(<http://purl.obolibrary.org/obo/UBPROP_0000007> <http://purl.obolibrary.org/obo/UBERON_0001684> "mandibular")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#external_ontology> "ZFA") <http://purl.obolibrary.org/obo/UBPROP_0000012> <http://purl.obolibrary.org/obo/UBERON_0001684> "Note in ZFA 'mandible' is a syn for the ventral mandibular arch, which is a portion of the 1st pharyngeal arch; however the term 'mandibular symphysis' refers to the dentary")
 AnnotationAssertion(<http://purl.obolibrary.org/obo/UBPROP_0000013> <http://purl.obolibrary.org/obo/UBERON_0001684> "'mandible' also refers to either the upper OR lower part of the beak in birds")
@@ -2729,7 +2733,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0001708> <http://purl.obolibra
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "FEED:rd") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "https://github.com/obophenotype/uberon/issues/256") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0001723> "A muscular organ in the floor of the mouth.")
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000116> <http://purl.obolibrary.org/obo/UBERON_0001723> "in MA the tongue is part of the oral region, which in uberon is treated as the oral opening. consider revising oral opening - oral region equivalence.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0001723> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-09-17") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "VHOG:0000419") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "VHOG") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "http://bgee.unil.ch/") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "http://medical-dictionary.thefreedictionary.com/tongue") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0001723> "A mobile mass of muscular tissue that is covered with mucous membrane, occupies much of the cavity of the mouth, forms part of its floor, bears the organ of taste, and assists in chewing and swallowing. [TFD][VHOG]")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-07-02") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "FEED") Annotation(<http://www.geneontology.org/formats/oboInOwl#url> "http://www.feedexp.org") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0001723> "Muscular organ in the floor of the mouth.[FEED]")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "GO:0043586") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0001723> "The tongue is the movable, muscular organ on the floor of the mouth of most vertebrates, in many other mammals is the principal organ of taste, aids in the prehension of food, in swallowing, and in modifying the voice as in speech[GO][GO:0043586].")
@@ -2984,6 +2987,7 @@ AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#has
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "MESH:A04.531.621.578") <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/UBERON_0001764> "Highmore antrum")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "MESH:A04.531.621.578") <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/UBERON_0001764> "maxillary antrum")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/UBERON_0001764> "UBERON:0001764")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0001764> <http://purl.obolibrary.org/obo/uberon/core#human_reference_atlas>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0001764> <http://purl.obolibrary.org/obo/uberon/core#human_subset>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0001764> <http://purl.obolibrary.org/obo/uberon/core#mouse_subset>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0001764> <http://purl.obolibrary.org/obo/uberon/core#pheno_slim>)
@@ -3027,7 +3031,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0001825> <http://purl.obolibra
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "ISBN:0013002015") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Gingiva") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0001828> "The fibrous investing tissue, covered by keratinized epithelium, that immediately surrounds a tooth and is contiguous with its periodontal ligament and with the mucosal tissues of the mouth[Glossary of Periodontal Terms 2001].")
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000116> <http://purl.obolibrary.org/obo/UBERON_0001828> "FMA has a 3-level breakdown of jaws into: region, jaw (skeleton+gums), skeleton.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0001828> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(<http://purl.obolibrary.org/obo/UBPROP_0000007> <http://purl.obolibrary.org/obo/UBERON_0001828> "gingival")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0001828> "BTO:0000519")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0001828> "CALOHA:TS-2074")
@@ -3073,6 +3076,7 @@ AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#dat
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0001994> "EMAPA:35414")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0001994> "FMA:64783")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0001994> "MA:0000109")
+AnnotationAssertion(Annotation(<https://w3id.org/sssom/mapping_justification> <https://w3id.org/semapv/vocab/LexicalMatching>) <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0001994> "MESH:D051457")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0001994> "NCIT:C32746")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0001994> "SCTID:39298000")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "ncithesaurus:Hyaline_Cartilage") <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0001994> "UMLS:C0225362")
@@ -3145,6 +3149,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <ht
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002036> "EMAPA:36390")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002036> "FMA:67905")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002036> "MA:0002438")
+AnnotationAssertion(Annotation(<https://w3id.org/sssom/mapping_justification> <https://w3id.org/semapv/vocab/LexicalMatching>) <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002036> "MESH:D054792")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002036> "NCIT:C12436")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "ncithesaurus:Striated_Muscle_Tissue") <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002036> "UMLS:C1331262")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002036> "WBbt:0005779")
@@ -3164,7 +3169,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0002036> <http://purl.obolibra
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "ZFA:0005249") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0002049> "An interconnected tubular multi-tissue structure contains fluid that is actively transported around the organism[ZFA]. Examples: vasculature of lung, vasculature of face.")
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000116> <http://purl.obolibrary.org/obo/UBERON_0002049> "see also: vascular system. Consider merging?")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0002049> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(<http://purl.obolibrary.org/obo/UBPROP_0000007> <http://purl.obolibrary.org/obo/UBERON_0002049> "vascular")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002049> "BTO:0003718")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002049> "FMA:69050")
@@ -3172,7 +3176,6 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <ht
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002049> "ZFA:0005249")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "FMA:69050") <http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/UBERON_0002049> "vascular network")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/UBERON_0002049> "UBERON:0002049")
-AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0002049> <http://purl.obolibrary.org/obo/uberon/core#human_reference_atlas>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0002049> <http://purl.obolibrary.org/obo/uberon/core#human_subset>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0002049> <http://purl.obolibrary.org/obo/uberon/core#mouse_subset>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0002049> <http://purl.obolibrary.org/obo/uberon/core#pheno_slim>)
@@ -3247,7 +3250,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0002365> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0002376> (cranial muscle)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "http://orcid.org/0000-0002-6601-2165") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0002376> "Any skeletal muscle that is part of the head region.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0002376> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasAlternativeId> <http://purl.obolibrary.org/obo/UBERON_0002376> "UBERON:0003899")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002376> "AAO:0000107")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002376> "BTO:0000021")
@@ -3285,7 +3287,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0002376> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0002377> (muscle of neck)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "http://orcid.org/0000-0002-6601-2165") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0002377> "Any muscle that is part of the cervical (neck) region.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0002377> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002377> "FMA:9617")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002377> "GAID:149")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002377> "MA:0000587")
@@ -3310,7 +3311,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0002377> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0002384> (connective tissue)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GO_REF:0000034") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "PSPUB:0000170") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "VSAO:0000017") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "http://dx.plos.org/10.1371/journal.pone.0051070") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "https://github.com/obophenotype/uberon/issues/23") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0002384> "Tissue with cells that deposit non-polarized extracellular matrix including connective tissue fibers and ground substance.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0002384> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-06-20") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "AAO:0000098") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "AAO") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "AAO:LAP") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0002384> "One of the four types of tissue in traditional classifications. It is largely a category of exclusion rather than one with a precise definition, but there are certain characteristics shared by all or most tissues in this category, such as involvement in structure and support, derived from mesoderm, and characterized largely by the traits of non-living tissue.[AAO]")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-08-14") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "TAO:0001641") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "TAO") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "TAO:wd") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0002384> "Portion of tissue that consists of mesodermally derived cells and intercellular matrix comprised of protein fibers and carbohydrates, which supports, ensheathes and binds together other tissues.[TAO]")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-08-14") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "VSAO:0000017") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "VSAO") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "GO_REF:0000034, http://dx.plos.org/10.1371/journal.pone.0051070") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "PSPUB:0000170") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0002384> "Tissue with cells that deposit non-polarized extracellular matrix including connective tissue fibers and ground substance.[VSAO]")
@@ -3385,7 +3385,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0002385> ObjectSomeValuesFrom(
 # Class: <http://purl.obolibrary.org/obo/UBERON_0002397> (maxilla)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Maxilla") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "http://palaeos.com/vertebrates/glossary/glossaryM.html") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0002397> "The bone which normally forms the lateral upper jaw in osteichthyans, including tetrapods.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0002397> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-08-14") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "TAO:0000270") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "TAO") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "TAO:GA_TG") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0002397> "Dermal bone that forms part of the upper jaw, located antero-ventral to the premaxilla. The maxilla is a paired bone.[TAO]")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-06-20") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "AAO:0000285") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "AAO") Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "AAO:LAP") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0002397> "Paired, intramembranous bone located on the lateral sides of the skull, posterior to the premaxillae.[AAO]")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-08-14") Annotation(<http://www.geneontology.org/formats/oboInOwl#external_class> "TAO:0000270") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "TAO") <http://purl.obolibrary.org/obo/UBPROP_0000002> <http://purl.obolibrary.org/obo/UBERON_0002397> "relationship loss: overlaps autopalatine-maxillary joint (TAO:0001942)[TAO]")
@@ -3394,6 +3393,7 @@ AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#dat
 AnnotationAssertion(<http://purl.obolibrary.org/obo/UBPROP_0000007> <http://purl.obolibrary.org/obo/UBERON_0002397> "maxillary")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> <http://purl.obolibrary.org/obo/UBERON_0002397> "upper jaw bone")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002397> "AAO:0000285")
+AnnotationAssertion(Annotation(<https://w3id.org/sssom/mapping_justification> <https://w3id.org/semapv/vocab/LexicalMatching>) <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002397> "BTO:0006516")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002397> "CALOHA:TS-2217")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002397> "EHDAA2:0001068")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0002397> "EHDAA:8043")
@@ -3997,7 +3997,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0003350> ObjectSomeValuesFrom(
 # Class: <http://purl.obolibrary.org/obo/UBERON_0003357> (epithelium of tongue)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "OBOL:automatic") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0003357> "An epithelium that is part of a tongue [Automatically generated definition].")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0003357> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0003357> "BTO:0000992")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0003357> "CALOHA:TS-1051")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0003357> "EHDAA2:0004598")
@@ -4329,7 +4328,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0003677> ObjectSomeValuesFrom(
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "MESH:A02.633.567.750") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Muscles_of_soft_palate_and_fauces") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0003682> "The muscles of the palate are the glossopalatine, palatoglossus, levator palati(ni), musculus uvulae, palatopharyngeus, and tensor palati(ni).")
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000116> <http://purl.obolibrary.org/obo/UBERON_0003682> "consider extra class for fauces")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0003682> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#external_ontology> "FMA") <http://purl.obolibrary.org/obo/UBPROP_0000012> <http://purl.obolibrary.org/obo/UBERON_0003682> "see also FMA:71438 ! set of muscles of soft palate and fauces")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "MA:th") <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0003682> "EMAPA:37929")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0003682> "FMA:46726")
@@ -4419,7 +4417,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0003700> ObjectSomeValuesFrom(
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "http://orcid.org/0000-0002-6601-2165") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0003729> "A mucous membrane that lines the mouth.")
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000232> <http://purl.obolibrary.org/obo/UBERON_0003729> "this is defined as any mucous membrane of the mouth - including palate, lips, uvula, etc. ncit split mouth/oral mucosa into lip and buccal. In future we may split into masticatory/keratinized (gingiva + hard palate) vs lining/non-keratinized (lips, cheeks, floor of mouth, soft palate). FMA distinguishes between mucosa of mouth and region of mouth (the latter including the buccal mucosa)")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0003729> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "Wikipedia:Oral_mucosa") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0003729> "the mucous membrane epithelium of the mouth. It can be divided into three categories: masticatory, lining, and specialized[Wikipedia:Oral_mucosa].")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0003729> "BTO:0002860")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0003729> "CALOHA:TS-0716")
@@ -4650,7 +4647,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0004473> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0004527> (alveolar process of maxilla)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "http://orcid.org/0000-0002-6601-2165") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0004527> "The thickened ridge of bone that contains the tooth sockets on the maxilla.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0004527> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "WP") <http://purl.obolibrary.org/obo/UBPROP_0000008> <http://purl.obolibrary.org/obo/UBERON_0004527> "In humans, the tooth-bearing bones are the maxilla and the mandible. The mineral content of alveolar bone is mostly hydroxyapatite, which is also found in enamel as the main inorganic substance")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasAlternativeId> <http://purl.obolibrary.org/obo/UBERON_0004527> "UBERON:0001696")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0004527> "AAO:0000396")
@@ -4723,6 +4719,7 @@ AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#has
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0004529> "AAO:0010278")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0004529> "FMA:67601")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0004529> "HAO:0000822")
+AnnotationAssertion(Annotation(<https://w3id.org/sssom/mapping_justification> <https://w3id.org/semapv/vocab/LexicalMatching>) <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0004529> "MESH:D011385")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0004529> "NCIT:C61549")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0004529> "TAO:0001834")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0004529> "VSAO:0000180")
@@ -4763,7 +4760,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0004529> ObjectSomeValuesFrom(
 # Class: <http://purl.obolibrary.org/obo/UBERON_0004650> (tongue keratinized epithelium)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "OBOL:automatic") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0004650> "A keratinized stratified squamous epithelium that is part of a tongue.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0004650> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0004650> "FMA:74865")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0004650> "MA:0002787")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "FMA:74865") <http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/UBERON_0004650> "keratinized epithelium of tongue")
@@ -4799,6 +4795,7 @@ AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#has
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Condyloid_process") <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/UBERON_0004657> "condyloid process")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "MA:0002816") <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/UBERON_0004657> "mandibular condyloid process")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/UBERON_0004657> "UBERON:0004657")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0004657> <http://purl.obolibrary.org/obo/uberon/core#human_reference_atlas>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0004657> <http://purl.obolibrary.org/obo/uberon/core#human_subset>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0004657> <http://purl.obolibrary.org/obo/uberon/core#mouse_subset>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0004657> <http://purl.obolibrary.org/obo/uberon/core#pheno_slim>)
@@ -4832,6 +4829,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <ht
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "FMA:59332") <http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/UBERON_0004659> "mandibular neck")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "FMA:59332") <http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/UBERON_0004659> "neck of mandible")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/UBERON_0004659> "UBERON:0004659")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0004659> <http://purl.obolibrary.org/obo/uberon/core#human_reference_atlas>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0004659> <http://purl.obolibrary.org/obo/uberon/core#human_subset>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0004659> <http://purl.obolibrary.org/obo/uberon/core#mouse_subset>)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/UBERON_0004659> <http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl>)
@@ -4894,6 +4892,7 @@ AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#has
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Deep_cervical_lymph_nodes") <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/UBERON_0004722> "middle jugular nodes")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Deep_cervical_lymph_nodes") <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/UBERON_0004722> "upper jugular nodes")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/UBERON_0004722> "UBERON:0004722")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0004722> <http://purl.obolibrary.org/obo/uberon/core#human_reference_atlas>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0004722> <http://purl.obolibrary.org/obo/uberon/core#human_subset>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0004722> <http://purl.obolibrary.org/obo/uberon/core#mouse_subset>)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/UBERON_0004722> <http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl>)
@@ -5040,7 +5039,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0004905> <http://purl.obolibra
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "http://orcid.org/0000-0002-6601-2165") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0004921> "A proximal-distal subdivision of the digestive tract.")
 AnnotationAssertion(<http://purl.obolibrary.org/obo/IAO_0000232> <http://purl.obolibrary.org/obo/UBERON_0004921> "intended to denote both embryonic and adult structures. Note the FMA grouping here is not quite correct.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0004921> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<https://w3id.org/sssom/mapping_justification> <https://w3id.org/semapv/vocab/ManualMappingCuration>) <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0004921> "FBbt:00100315")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0004921> "FMA:71131")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "FMA:71131") <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/UBERON_0004921> "alimentary system subdivision")
@@ -5060,10 +5058,8 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0004921> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0004923> (organ component layer)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "http://orcid.org/0000-0002-6601-2165") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0004923> "A part of a wall of an organ that forms a layer.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0004923> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0004923> "FMA:82485")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/UBERON_0004923> "UBERON:0004923")
-AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0004923> <http://purl.obolibrary.org/obo/uberon/core#human_reference_atlas>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0004923> <http://purl.obolibrary.org/obo/uberon/core#human_subset>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0004923> <http://purl.obolibrary.org/obo/uberon/core#mouse_subset>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0004923> <http://purl.obolibrary.org/obo/uberon/core#upper_level>)
@@ -5109,7 +5105,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0005019> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0005020> (mucosa of tongue)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "OBOL:automatic") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0005020> "A mucosa that is part of a tongue [Automatically generated definition].")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0005020> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0005020> "EFO:0002553")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0005020> "FMA:54807")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0005020> "SCTID:362092002")
@@ -5245,7 +5240,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0005813> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0005871> (palatine process of maxilla)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Palatine_process_of_maxilla") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0005871> "A thick, horizontal process of the maxilla. It forms the anterior three quarters of the hard palate, the horizontal plate of the palatine bone making up the rest.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0005871> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "AAO:0000413, AAO:LAP") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0005871> "Lingual ledge on the inner surface of the maxilla.")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0005871> "AAO:0000413")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#source> "MA:th") <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0005871> "EMAPA:37932")
@@ -5379,7 +5373,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0006915> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0006916> (non-keratinized epithelium of tongue)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "OBOL:automatic") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0006916> "A non-keratinized stratified squamous epithelium that is part of a tongue.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0006916> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0006916> "FMA:62130")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/UBERON_0006916> "UBERON:0006916")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0006916> <http://purl.obolibrary.org/obo/uberon/core#human_reference_atlas>)
@@ -5395,7 +5388,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0006916> ObjectSomeValuesFrom(
 # Class: <http://purl.obolibrary.org/obo/UBERON_0006919> (tongue squamous epithelium)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "OBOL:automatic") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0006919> "A squamous epithelium that is part of a tongue.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0006919> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#external_ontology> "MA") <http://purl.obolibrary.org/obo/UBPROP_0000012> <http://purl.obolibrary.org/obo/UBERON_0006919> "this is a singleton subclass of tongue epithelium in MA")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0006919> "MA:0002786")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "OBOL:automatic") <http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/UBERON_0006919> "squamous epithelium of tongue")
@@ -5416,7 +5408,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0006919> ObjectSomeValuesFrom(
 # Class: <http://purl.obolibrary.org/obo/UBERON_0006956> (buccal mucosa)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "http://www.medterms.com/") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0006956> "The inner lining of the cheeks and lips.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0006956> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0006956> "BTO:0003833")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0006956> "CALOHA:TS-2349")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0006956> "FMA:59785")
@@ -5860,6 +5851,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <ht
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "http://www.medilexicon.com/medicaldictionary.php?t=56655") <http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/UBERON_0008428> "ceratoglossus muscle")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "http://www.medilexicon.com/medicaldictionary.php?t=56655") <http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/UBERON_0008428> "musculus ceratoglossus")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/UBERON_0008428> "UBERON:0008428")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0008428> <http://purl.obolibrary.org/obo/uberon/core#human_reference_atlas>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0008428> <http://purl.obolibrary.org/obo/uberon/core#human_subset>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0008428> <http://purl.obolibrary.org/obo/uberon/core#mouse_subset>)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/UBERON_0008428> <http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl>)
@@ -5880,6 +5872,7 @@ AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#has
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Superior_longitudinal_muscle_of_tongue") <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/UBERON_0008582> "superior lingualis")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Superior_longitudinal_muscle_of_tongue") <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/UBERON_0008582> "superior longitudinal muscle")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/UBERON_0008582> "UBERON:0008582")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0008582> <http://purl.obolibrary.org/obo/uberon/core#human_reference_atlas>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0008582> <http://purl.obolibrary.org/obo/uberon/core#human_subset>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0008582> <http://purl.obolibrary.org/obo/uberon/core#mouse_subset>)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/UBERON_0008582> <http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl>)
@@ -5906,6 +5899,7 @@ AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#has
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Transverse_muscle_of_tongue") <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/UBERON_0008583> "transversus linguæ")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Transverse_muscle_of_tongue") <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/UBERON_0008583> "transversus muscle")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/UBERON_0008583> "UBERON:0008583")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0008583> <http://purl.obolibrary.org/obo/uberon/core#human_reference_atlas>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0008583> <http://purl.obolibrary.org/obo/uberon/core#human_subset>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0008583> <http://purl.obolibrary.org/obo/uberon/core#mouse_subset>)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/UBERON_0008583> <http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl>)
@@ -5933,6 +5927,7 @@ AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#has
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Vertical_muscle_of_tongue") <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/UBERON_0008584> "verticalis linguæ muscle")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Vertical_muscle_of_tongue") <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/UBERON_0008584> "verticalis muscle")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/UBERON_0008584> "UBERON:0008584")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0008584> <http://purl.obolibrary.org/obo/uberon/core#human_reference_atlas>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0008584> <http://purl.obolibrary.org/obo/uberon/core#human_subset>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0008584> <http://purl.obolibrary.org/obo/uberon/core#mouse_subset>)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/UBERON_0008584> <http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl>)
@@ -5955,6 +5950,7 @@ AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <ht
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0008846> "FMA:25624")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0008846> "GAID:118")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0008846> "MA:0003005")
+AnnotationAssertion(Annotation(<https://w3id.org/sssom/mapping_justification> <https://w3id.org/semapv/vocab/LexicalMatching>) <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0008846> "MESH:D008023")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0008846> "SCTID:410744003")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0008846> "VSAO:0000072")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0008846> "Wikipedia:Ligament#Articular_ligaments")
@@ -6122,7 +6118,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0010033> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0010047> (oral gland)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "ISBN:0073040584") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0010047> "Gland of the epithelium lining the oral cavity. The most common are the salivary glands.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0010047> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#external_ontology> "EHDAA2") <http://purl.obolibrary.org/obo/UBPROP_0000012> <http://purl.obolibrary.org/obo/UBERON_0010047> "Note that Kardong classifies lacrimal glands here. EHDAA2 includes pituitary primordium, as this develops from oral mucosa")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasAlternativeId> <http://purl.obolibrary.org/obo/UBERON_0010047> "UBERON:0003293")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0010047> "EHDAA2:0001327")
@@ -6150,7 +6145,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0010047> ObjectSomeValuesFrom(
 # Class: <http://purl.obolibrary.org/obo/UBERON_0010234> (palatopharyngeus muscle)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Palatopharyngeus_muscle") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0010234> "The palatopharyngeus or palatopharyngeal or pharyngopalatinus muscle is a long, fleshy fasciculus, narrower in the middle than at either end, forming, with the mucous membrane covering its surface, the palatopharyngeal arch.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0010234> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#date_retrieved> "2012-07-02") Annotation(<http://www.geneontology.org/formats/oboInOwl#ontology> "FEED") Annotation(<http://www.geneontology.org/formats/oboInOwl#url> "http://www.feedexp.org") <http://purl.obolibrary.org/obo/UBPROP_0000001> <http://purl.obolibrary.org/obo/UBERON_0010234> "Palatopharyngeus is a muscle that attaches to the palatine bones, soft palate, and pharynx and is innervated by Cranial Nerve X via the pharyngeal plexus.[FEED]")
 AnnotationAssertion(<http://purl.obolibrary.org/obo/UBPROP_0000010> <http://purl.obolibrary.org/obo/UBERON_0010234> "It is separated from the palatoglossus muscle by an angular interval, in which the palatine tonsil is lodged. It arises from the soft palate, where it is divided into two fasciculi by the levator veli palatini and musculus uvulae")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0010234> "FMA:46666")
@@ -6294,7 +6288,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0010959> ObjectSomeValuesFrom(
 # Class: <http://purl.obolibrary.org/obo/UBERON_0010996> (articular cartilage of joint)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "BTO:0001572") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0010996> "A thin layer of cartilage, usually hyaline, on the articular surface of bones in synovial joints.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0010996> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0010996> "AEO:0000179")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0010996> "BTO:0001572")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0010996> "CALOHA:TS-0055")
@@ -6344,7 +6337,6 @@ AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#has
 AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0011216> <http://purl.obolibrary.org/obo/NCBITaxon_33090>)
 AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0011216> <http://purl.obolibrary.org/obo/NCBITaxon_33208>)
 AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0011216> <http://purl.obolibrary.org/obo/NCBITaxon_4751>)
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0011216> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<https://w3id.org/sssom/mapping_justification> <https://w3id.org/semapv/vocab/ManualMappingCuration>) <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0011216> "FBbt:00007330")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0011216> "FMA:67509")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0011216> "SCTID:91690000")
@@ -6378,7 +6370,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0011245> ObjectSomeValuesFrom(
 # Class: <http://purl.obolibrary.org/obo/UBERON_0011309> (body of mandible)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "http://www.avdc.org/Nomenclature.pdf") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0011309> "The zone of the mandible that carries the teeth.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0011309> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0011309> "FMA:52827")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0011309> "SCTID:244684002")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0011309> "Wikipedia:Body_of_mandible")
@@ -6467,6 +6458,7 @@ AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#has
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Chondroglossus") <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/UBERON_0011535> "chondroglossal muscle")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "_muscle") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasSynonymType> <http://purl.obolibrary.org/obo/OMO_0003011>) <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/UBERON_0011535> "musculus chondroglossus")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/UBERON_0011535> "UBERON:0011535")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0011535> <http://purl.obolibrary.org/obo/uberon/core#human_reference_atlas>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0011535> <http://purl.obolibrary.org/obo/uberon/core#human_subset>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0011535> <http://purl.obolibrary.org/obo/uberon/core#mouse_subset>)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/UBERON_0011535> <http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl>)
@@ -6767,6 +6759,7 @@ AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#has
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "FMA:62900") <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/UBERON_0012369> "outer muscularis")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "FMA:62900") <http://www.geneontology.org/formats/oboInOwl#hasRelatedSynonym> <http://purl.obolibrary.org/obo/UBERON_0012369> "outer muscularis layer")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/UBERON_0012369> "UBERON:0012369")
+AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0012369> <http://purl.obolibrary.org/obo/uberon/core#human_reference_atlas>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0012369> <http://purl.obolibrary.org/obo/uberon/core#human_subset>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0012369> <http://purl.obolibrary.org/obo/uberon/core#mouse_subset>)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/UBERON_0012369> <http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl>)
@@ -6974,7 +6967,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0013765> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0013767> (frontal process of maxilla)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Frontal_process_of_maxilla") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0013767> "A plate of bone from the maxilla that that projects upward, medialward, and backward, by the side of the nose, forming part of its lateral boundary[WP,modified].")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0013767> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0013767> "FMA:52894")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0013767> "SCTID:368869008")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0013767> "Wikipedia:Frontal_process_of_maxilla")
@@ -7009,8 +7001,7 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0014389> <http://purl.obolibra
 
 # Class: <http://purl.obolibrary.org/obo/UBERON_0014892> (skeletal muscle organ, vertebrate)
 
-AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "GOC:dos") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0014892> "A muscle organ that consists of skeletal muscle tissue ensheathed in epimysium, that develops from myotome and that is innervated by some somatic motor neuron. Skeletal muscles are typically attached (via a tendon) to a bone but there are exceptions (e.g. intrinsic tongue muscles).")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0014892> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
+AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "https://orcid.org/0000-0002-7073-9172") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0014892> "A muscle organ that consists of skeletal muscle tissue ensheathed in epimysium, that develops from myotome and that is innervated by some somatic motor neuron. Skeletal muscles are typically attached (via a tendon) to a bone but there are exceptions (e.g. intrinsic tongue muscles).")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> <http://purl.obolibrary.org/obo/UBERON_0014892> "skeletal muscle")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0014892> "AAO:0011099")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0014892> "BTO:0001103")
@@ -7366,7 +7357,6 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0016476> ObjectSomeValuesFrom(
 # Class: <http://purl.obolibrary.org/obo/UBERON_0016477> (zygomatic process of maxilla)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Zygomatic_process_of_maxilla") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0016477> "The zygomatic process of the maxilla (malar process) is a rough triangular eminence, situated at the angle of separation of the anterior, zygomatic, and orbital surfaces. In front it forms part of the anterior surface. Behind it is concave, and forms part of the infratemporal fossa. Above it is rough and serrated for articulation with the zygomatic bone. Below it presents the prominent arched border which marks the division between the anterior and infratemporal surfaces.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0016477> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "Wikipedia:Zygomatic_process_of_maxilla") <http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym> <http://purl.obolibrary.org/obo/UBERON_0016477> "malar process")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0016477> "FMA:52895")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0016477> "SCTID:272684007")
@@ -7387,6 +7377,7 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0016477> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0016910> (frenulum of lip)
 
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0016910> "FMA:59820")
+AnnotationAssertion(Annotation(<https://w3id.org/sssom/mapping_justification> <https://w3id.org/semapv/vocab/LexicalMatching>) <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0016910> "MESH:D007742")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0016910> "SCTID:264053009")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/UBERON_0016910> "frenulum labii")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/UBERON_0016910> "labial frenulum")
@@ -7618,6 +7609,7 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0017748> <http://purl.obolibra
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "http://medical-dictionary.thefreedictionary.com/velopharyngeal+sphincter") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0018103> "The thinner portion of the muscle of the palatopharyngeal arch, originating in the region of the midline where its fibers interdigitate with the contralateral partner, then passing posterior to the levator veli palatini muscle to join the longitudinal layer of pharyngeal musculature; acts as a sort of sphincter, reducing the caliber of the isthmus of fauces at the palatopharyngeal arch.")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0018103> "FMA:46684")
+AnnotationAssertion(Annotation(<https://w3id.org/sssom/mapping_justification> <https://w3id.org/semapv/vocab/LexicalMatching>) <http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0018103> "MESH:D055158")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0018103> "SCTID:244801005")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "FMA:46684") <http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/UBERON_0018103> "fasciculus posterior (musculus palatopharyngeus)")
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "FMA:46684") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "FMA:TA") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasSynonymType> <http://purl.obolibrary.org/obo/OMO_0003011>) <http://www.geneontology.org/formats/oboInOwl#hasExactSynonym> <http://purl.obolibrary.org/obo/UBERON_0018103> "fasciculus posterior musculus palatopharyngei")
@@ -8646,11 +8638,9 @@ SubClassOf(<http://purl.obolibrary.org/obo/UBERON_0035204> <http://purl.obolibra
 # Class: <http://purl.obolibrary.org/obo/UBERON_0035967> (alveolar mucosa)
 
 AnnotationAssertion(Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "BTO:0004046") Annotation(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> "http://www.biology-online.org/dictionary/") <http://purl.obolibrary.org/obo/IAO_0000115> <http://purl.obolibrary.org/obo/UBERON_0035967> "The mucous membrane apical to the attached gingiva.")
-AnnotationAssertion(<http://purl.obolibrary.org/obo/RO_0002175> <http://purl.obolibrary.org/obo/UBERON_0035967> <http://purl.obolibrary.org/obo/NCBITaxon_9606>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0035967> "BTO:0004046")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#hasDbXref> <http://purl.obolibrary.org/obo/UBERON_0035967> "FMA:289360")
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#id> <http://purl.obolibrary.org/obo/UBERON_0035967> "UBERON:0035967")
-AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0035967> <http://purl.obolibrary.org/obo/uberon/core#human_reference_atlas>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0035967> <http://purl.obolibrary.org/obo/uberon/core#human_subset>)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> <http://purl.obolibrary.org/obo/UBERON_0035967> <http://purl.obolibrary.org/obo/uberon/core#mouse_subset>)
 AnnotationAssertion(rdfs:isDefinedBy <http://purl.obolibrary.org/obo/UBERON_0035967> <http://purl.obolibrary.org/obo/ohd/imports/uberon_import.owl>)

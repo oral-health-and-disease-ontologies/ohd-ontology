@@ -476,7 +476,8 @@ $(ONT).json: $(ONT).owl
 # -----------------------------------------------------
 SHARED_ROBOT_COMMANDS = query \
 	--update $(SPARQLDIR)/strip-language-tags.ru \
-	--update $(SPARQLDIR)/remove-ohd-defined-by.ru 
+	--update $(SPARQLDIR)/remove-ohd-defined-by.ru \
+	--update $(SPARQLDIR)/remove-duplicate-definitions.ru
 
 $(ONTOLOGYTERMS): $(SRCMERGED)
 	$(ROBOT) query -f csv -i $< --query ../sparql/ohd_terms.sparql $@
