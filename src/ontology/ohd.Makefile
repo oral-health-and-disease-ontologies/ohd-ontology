@@ -11,6 +11,37 @@
 ##   5. Manually maintained mirrors and imports
 ##   6. Mirroring upstream ontologies
 ##   7. Helper functions (import, mirror, release, testing)
+##
+## Removing duplicate definitions from imports:
+##   Some terms receive a definition (IAO:0000115) from several imports (e.g., BFO:0000015
+##   'process' is defined in the BFO import, but also in ecto, ido, emro, etc.), which results
+##   in duplicate definitions in the release. A term's definition should come from the ontology
+##   that owns the term's namespace (e.g., BFO terms from the BFO import), so the definitions
+##   supplied by the other imports are removed when those imports are built.
+##
+##   How it works:
+##     1. imports/<name>_remove_definitions.txt lists (one per line) the terms whose
+##        definitions are removed from <name>_import.owl.
+##     2. The file is added as the last prerequisite of the import rule, e.g.:
+##          $(IMPORTDIR)/ogms_import.owl: $(MIRRORDIR)/ogms.owl $(IMPORTDIR)/ogms_terms.txt $(IMPORTDIR)/ogms_remove_definitions.txt
+##        so the import is rebuilt when the file changes.
+##     3. Every import function ends with annotate-import, which passes any
+##        *_remove_definitions.txt prerequisite to remove-import-definitions. That function adds
+##          remove --term-file <file> --term IAO:0000115 --axioms annotation
+##                 --signature true --trim false --preserve-structure false
+##        to the ROBOT command. Imports without the prerequisite are not changed.
+##
+##   Notes:
+##     - ROBOT only removes a definition if every entity in the axiom is in the term set. If a
+##       definition has axiom annotations (e.g., oboInOwl:hasDbXref), the annotation property
+##       must also be listed in the file (see ecto, pain, uberon). Plain annotations with that
+##       property on the listed terms are removed as well (e.g., xrefs on RO:0002131 in pain).
+##     - Axiom annotations with IRI values cannot be targeted this way, so ido first drops the
+##       BFO axiom ids (IAO:0010000) using the extra-commands parameter of filter-import.
+##     - To add an import: create imports/<name>_remove_definitions.txt and add it to the end of
+##       the import rule's prerequisites. Refresh it with: make no-mirror-refresh-<name>
+##     - Definitions in hand-maintained files (ohd-edit.owl, components/dental_material.owl,
+##       manually maintained imports) are not handled by this; edit those files directly.
 
 # ----------------------------------------
 # Global parameters
@@ -114,31 +145,32 @@ $(ONT).owl: $(ONT)-full.owl
 
 # ---- filter imports ----
 
-$(IMPORTDIR)/mf_import.owl: $(MIRRORDIR)/mf.owl $(IMPORTDIR)/mf_terms.txt
+$(IMPORTDIR)/mf_import.owl: $(MIRRORDIR)/mf.owl $(IMPORTDIR)/mf_terms.txt $(IMPORTDIR)/mf_remove_definitions.txt
 	$(call filter-import,$@,$<,$(word 2, $^))
 
-$(IMPORTDIR)/ido_import.owl: $(MIRRORDIR)/ido.owl $(IMPORTDIR)/ido_terms.txt
+# ido: drop BFO axiom ids (IAO:0010000) on axioms so the BFO definitions supplied by ido can be removed
+$(IMPORTDIR)/ido_import.owl: $(MIRRORDIR)/ido.owl $(IMPORTDIR)/ido_terms.txt $(IMPORTDIR)/ido_remove_definitions.txt
+	$(call filter-import,$@,$<,$(word 2, $^),remove --select complement --drop-axiom-annotations IAO:0010000)
+
+$(IMPORTDIR)/pato_import.owl: $(MIRRORDIR)/pato.owl $(IMPORTDIR)/pato_terms.txt $(IMPORTDIR)/pato_remove_definitions.txt
 	$(call filter-import,$@,$<,$(word 2, $^))
 
-$(IMPORTDIR)/pato_import.owl: $(MIRRORDIR)/pato.owl $(IMPORTDIR)/pato_terms.txt
+$(IMPORTDIR)/ogms_import.owl: $(MIRRORDIR)/ogms.owl $(IMPORTDIR)/ogms_terms.txt $(IMPORTDIR)/ogms_remove_definitions.txt
 	$(call filter-import,$@,$<,$(word 2, $^))
 
-$(IMPORTDIR)/ogms_import.owl: $(MIRRORDIR)/ogms.owl $(IMPORTDIR)/ogms_terms.txt
-	$(call filter-import,$@,$<,$(word 2, $^))
-
-$(IMPORTDIR)/omrse_import.owl: $(MIRRORDIR)/omrse.owl $(IMPORTDIR)/omrse_terms.txt
+$(IMPORTDIR)/omrse_import.owl: $(MIRRORDIR)/omrse.owl $(IMPORTDIR)/omrse_terms.txt $(IMPORTDIR)/omrse_remove_definitions.txt
 	$(call filter-import,$@,$<,$(word 2, $^))
 
 # uberon: also remove unneeded NCBI Taxon terms
-$(IMPORTDIR)/uberon_import.owl: $(MIRRORDIR)/uberon.owl $(IMPORTDIR)/uberon_terms.txt
+$(IMPORTDIR)/uberon_import.owl: $(MIRRORDIR)/uberon.owl $(IMPORTDIR)/uberon_terms.txt $(IMPORTDIR)/uberon_remove_definitions.txt
 	$(call filter-import,$@,$<,$(word 2, $^),remove --select "<http://purl.obolibrary.org/obo/NCBITaxon_*>")
 
 # ---- BOT imports ----
 
-$(IMPORTDIR)/emro_import.owl: $(MIRRORDIR)/emro.owl $(IMPORTDIR)/emro_terms.txt
+$(IMPORTDIR)/emro_import.owl: $(MIRRORDIR)/emro.owl $(IMPORTDIR)/emro_terms.txt $(IMPORTDIR)/emro_remove_definitions.txt
 	$(call bot-import,$@,$<,$(word 2, $^))
 
-$(IMPORTDIR)/pain_import.owl: $(MIRRORDIR)/pain.owl $(IMPORTDIR)/pain_terms.txt
+$(IMPORTDIR)/pain_import.owl: $(MIRRORDIR)/pain.owl $(IMPORTDIR)/pain_terms.txt $(IMPORTDIR)/pain_remove_definitions.txt
 	$(call bot-import,$@,$<,$(word 2, $^))
 
 # ---- MIREOT imports ----
@@ -147,7 +179,7 @@ $(IMPORTDIR)/pain_import.owl: $(MIRRORDIR)/pain.owl $(IMPORTDIR)/pain_terms.txt
 $(IMPORTDIR)/ro_import.owl: $(MIRRORDIR)/ro.owl $(IMPORTDIR)/ro_terms.txt
 	$(call mireot-import,$@,$<,$(word 2, $^),,classes)
 
-$(IMPORTDIR)/ohmi_import.owl: $(MIRRORDIR)/ohmi.owl $(IMPORTDIR)/ohmi_terms.txt
+$(IMPORTDIR)/ohmi_import.owl: $(MIRRORDIR)/ohmi.owl $(IMPORTDIR)/ohmi_terms.txt $(IMPORTDIR)/ohmi_remove_definitions.txt
 	$(call mireot-import,$@,$<,$(word 2, $^),,classes)
 
 # iao: upper term is BFO:0000031 (generically dependent continuant)
@@ -155,7 +187,7 @@ $(IMPORTDIR)/iao_import.owl: $(MIRRORDIR)/iao.owl $(IMPORTDIR)/iao_terms.txt
 	$(call mireot-import,$@,$<,$(word 2, $^),BFO:0000031)
 
 # ecto: upper term is ExO_0000002 (exposure stressor)
-$(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl $(IMPORTDIR)/ecto_terms.txt
+$(IMPORTDIR)/ecto_import.owl: $(MIRRORDIR)/ecto.owl $(IMPORTDIR)/ecto_terms.txt $(IMPORTDIR)/ecto_remove_definitions.txt
 	$(call mireot-import,$@,$<,$(word 2, $^),http://purl.obolibrary.org/obo/ExO_0000002)
 
 # go: upper term is GO_0008150 (biological process)
@@ -166,7 +198,7 @@ $(IMPORTDIR)/go_import.owl: $(MIRRORDIR)/go.owl $(IMPORTDIR)/go_terms.txt
 # note: envo and chebi are imported by components/dental_material.owl
 
 # envo: branch from BFO:0000001 (entity)
-$(IMPORTDIR)/envo_import.owl: $(MIRRORDIR)/envo.owl $(IMPORTDIR)/envo_terms.txt
+$(IMPORTDIR)/envo_import.owl: $(MIRRORDIR)/envo.owl $(IMPORTDIR)/envo_terms.txt $(IMPORTDIR)/envo_remove_definitions.txt
 	$(call branch-mireot-import,$@,$<,$(word 2, $^),BFO:0000001)
 
 # chebi: branch from CHEBI:24431 (chemical entity); uses the gzipped mirror
@@ -176,7 +208,7 @@ $(IMPORTDIR)/chebi_import.owl: $(MIRRORDIR)/chebi.owl.gz $(IMPORTDIR)/chebi_term
 # ---- other imports ----
 
 # omo: annotation properties only (all classes are removed)
-$(IMPORTDIR)/omo_import.owl: $(MIRRORDIR)/omo.owl
+$(IMPORTDIR)/omo_import.owl: $(MIRRORDIR)/omo.owl $(IMPORTDIR)/omo_remove_definitions.txt
 	if [ $(IMP) = true ]; then \
 		$(ROBOT) \
 			remove \
@@ -219,6 +251,13 @@ $(patsubst %, $(IMPORTDIR)/%_import.owl, $(MANUAL_IMPORTS)):
 # Mirroring upstream ontologies
 # ----------------------------------------
 
+# large ontologies whose mirror is stored gzipped ($(MIRRORDIR)/<name>.owl.gz)
+GZIPPED_MIRRORS = chebi
+
+# all mirrors downloaded from upstream: the ODK IMPORTS (excluding manually maintained mirrors),
+# plus the imports built in this file that are not in IMPORTS
+DOWNLOADED_MIRRORS = $(filter-out $(MANUAL_MIRRORS), $(IMPORTS)) mf ohmi pato uberon
+
 ifeq ($(strip $(MIR)),true)
 
 # mirror-% downloads the ontology and updates the mirror only if it has changed
@@ -226,20 +265,40 @@ ifeq ($(strip $(MIR)),true)
 mirror-% force-mirror-%: | $(TMPDIR) $(MIRRORDIR)
 	$(call mirror-ontology,$*,,$(firstword $(subst -, ,$@)))
 
+# gzipped mirrors: the gzipped ontology is downloaded and the mirror is stored gzipped
+$(patsubst %, mirror-%, $(GZIPPED_MIRRORS)) \
+$(patsubst %, force-mirror-%, $(GZIPPED_MIRRORS)): | $(TMPDIR) $(MIRRORDIR)
+	$(call mirror-ontology,$(patsubst mirror-%,%,$(patsubst force-%,%,$@)),,$(firstword $(subst -, ,$@)),gz)
+
 # $(MIRRORDIR)/%.owl is only built when the mirror file is missing, or when
 # make is run with -B (e.g., the refresh-% and refresh-imports goals).
 # The mirror directory is only updated if the download differs from the mirror.
-.PRECIOUS: $(MIRRORDIR)/%.owl
+.PRECIOUS: $(MIRRORDIR)/%.owl $(MIRRORDIR)/%.owl.gz
 $(MIRRORDIR)/%.owl: | $(TMPDIR) $(MIRRORDIR)
 	$(call mirror-ontology,$*,,)
 
+$(MIRRORDIR)/%.owl.gz: | $(TMPDIR) $(MIRRORDIR)
+	$(call mirror-ontology,$*,,,gz)
+
+# mirror files, e.g. mirror/go.owl and mirror/chebi.owl.gz
+DOWNLOADED_MIRROR_FILES = \
+	$(patsubst %, $(MIRRORDIR)/%.owl, $(filter-out $(GZIPPED_MIRRORS), $(DOWNLOADED_MIRRORS))) \
+	$(patsubst %, $(MIRRORDIR)/%.owl.gz, $(filter $(GZIPPED_MIRRORS), $(DOWNLOADED_MIRRORS)))
+
+# all-mirrors only downloads mirrors that are missing
 .PHONY: all-mirrors
 all-mirrors:
-	$(MAKE) $(patsubst %, $(MIRRORDIR)/%.owl, $(filter-out $(MANUAL_MIRRORS), $(IMPORTS)))
+	$(MAKE) $(DOWNLOADED_MIRROR_FILES)
 
+# refresh-all-mirrors downloads every mirror, and updates the mirrors that have changed
+.PHONY: refresh-all-mirrors
+refresh-all-mirrors:
+	$(MAKE) $(patsubst %, mirror-%, $(DOWNLOADED_MIRRORS))
+
+# force-all-mirrors downloads every mirror, and updates all of them (even if unchanged)
 .PHONY: force-all-mirrors
 force-all-mirrors:
-	$(MAKE) $(patsubst %, force-mirror-%, $(filter-out $(MANUAL_MIRRORS), $(IMPORTS)))
+	$(MAKE) $(patsubst %, force-mirror-%, $(DOWNLOADED_MIRRORS))
 
 else # MIR=false
 $(MIRRORDIR)/%.owl $(MIRRORDIR)/%.owl.gz:
@@ -247,21 +306,61 @@ $(MIRRORDIR)/%.owl $(MIRRORDIR)/%.owl.gz:
 endif
 
 # ----------------------------------------
+# Refreshing imports
+# ----------------------------------------
+# These rebuild every import, whether or not its mirror was updated.
+# (The ODK refresh-imports goals use the ODK IMPORTS list, which does not include mf, ohmi,
+# pato and uberon.) obi is excluded until its import rule is fixed.
+
+REFRESHED_IMPORTS = $(filter-out obi, $(DOWNLOADED_MIRRORS))
+
+# refresh-all-imports updates the mirrors that have changed, then rebuilds all imports
+.PHONY: refresh-all-imports
+refresh-all-imports:
+	$(MAKE) MIR=true IMP=true IMP_LARGE=true refresh-all-mirrors
+	$(MAKE) no-mirror-refresh-all-imports
+
+# no-mirror-refresh-all-imports rebuilds all imports from the current mirrors
+# (MIR=false, so -B does not download the mirrors again)
+.PHONY: no-mirror-refresh-all-imports
+no-mirror-refresh-all-imports:
+	$(MAKE) IMP=true IMP_LARGE=true MIR=false PAT=false \
+		$(patsubst %, $(IMPORTDIR)/%_import.owl, $(REFRESHED_IMPORTS)) -B
+
+# ----------------------------------------
 # Helper functions
 # ----------------------------------------
 
 #### Import Functions ####
 
-# common tail of every import pipeline: adds rdfs:isDefinedBy, sets the
+# common tail of every import pipeline: removes duplicate definitions if the rule has a
+# *_remove_definitions.txt prerequisite (see below), adds rdfs:isDefinedBy, sets the
 # ontology/version IRIs, and writes the import (OFN) via a temp file
 # parameters: $(1): target
 define annotate-import
+			$(call remove-import-definitions,$(filter %_remove_definitions.txt,$^)) \
 			annotate \
 				--annotate-defined-by true \
 				--ontology-iri $(URIBASE)/$(ONT)/$(1) \
 				--version-iri $(URIBASE)/$(ONT)/imports/$(VERSION)/$(notdir $(1)) \
 			convert --format ofn \
 			--output $(1).tmp.owl && mv $(1).tmp.owl $(1)
+endef
+
+# Some terms get definitions from several imports. A term's definition should come from the
+# ontology that owns its namespace (e.g., BFO terms from the BFO import), so the definitions
+# (IAO:0000115) of the terms listed in $(IMPORTDIR)/<name>_remove_definitions.txt are removed
+# from <name>_import.owl. To use it, add the file as a prerequisite of the import rule;
+# imports without this prerequisite are not changed.
+# parameters: $(1): remove definitions file (e.g., imports/ecto_remove_definitions.txt), may be empty
+define remove-import-definitions
+$(if $(strip $(1)),remove \
+				--term-file $(strip $(1)) \
+				--term IAO:0000115 \
+				--axioms annotation \
+				--signature true \
+				--trim false \
+				--preserve-structure false)
 endef
 
 # filters out all terms except those in the term file (and their ancestors)
@@ -335,30 +434,47 @@ endef
 
 #### Mirror Functions ####
 
+# file extension of a mirror download: owl.gz if $(1) is "gz", otherwise owl
+mirror-ext = $(if $(filter gz,$(strip $(1))),owl.gz,owl)
+
 # General function for mirroring an ontology. The ontology is downloaded and
 # converted with ROBOT (the conversion also checks the download is a valid ontology).
 # The mirror is only updated if the converted download differs from the
 # existing mirror, or if the update is forced.
+# For large ontologies ($(4) = gz), the gzipped ontology (<name>.owl.gz) is downloaded and the
+# mirror is stored gzipped. ROBOT reads .gz files but does not write them, so the converted
+# file is compared with the unzipped mirror, and gzipped (with -n, so the output is
+# reproducible) when the mirror is updated.
 # parameters: $(1): name of the ontology to mirror;
 #             $(2): optional base URL to download from (defaults to $(OBOBASE));
-#             $(3): "force" to update regardless of whether the source has changed or not
+#             $(3): "force" to update regardless of whether the source has changed or not;
+#             $(4): optional "gz" to download and store the mirror gzipped
 define mirror-ontology
 	@if [ "$(strip $(MIR))" = "true" ] && \
 			[ "$(strip $(IMP))" = "true" ] && \
 			[ "$(strip $(IMP_LARGE))" = "true" ]; then \
 		echo "*** mirroring $(strip $(1)) ***"; \
 		download_url_base=$(if $(strip $(2)),$(strip $(2)),$(OBOBASE)); \
-		echo "url: $$download_url_base/$(strip $(1)).owl"; \
-		curl -L $$download_url_base/$(strip $(1)).owl \
-			--create-dirs -o $(TMPDIR)/mirror-$(strip $(1)).temp.owl --retry 4 --max-time 200 && \
+		echo "url: $$download_url_base/$(strip $(1)).$(call mirror-ext,$(4))"; \
+		curl -L $$download_url_base/$(strip $(1)).$(call mirror-ext,$(4)) \
+			--create-dirs -o $(TMPDIR)/mirror-$(strip $(1)).temp.$(call mirror-ext,$(4)) --retry 4 --max-time 200 && \
 		$(ROBOT) convert \
-			--input $(TMPDIR)/mirror-$(strip $(1)).temp.owl \
+			--input $(TMPDIR)/mirror-$(strip $(1)).temp.$(call mirror-ext,$(4)) \
 			--output $(TMPDIR)/mirror-$(strip $(1)).owl || exit 1; \
-		rm -f $(TMPDIR)/mirror-$(strip $(1)).temp.owl; \
+		rm -f $(TMPDIR)/mirror-$(strip $(1)).temp.$(call mirror-ext,$(4)); \
+		if [ "$(strip $(4))" = "gz" ]; then \
+			mirror_file=$(MIRRORDIR)/$(strip $(1)).owl.gz; \
+			current_mirror="gzip -dc $$mirror_file"; \
+			update_mirror="gzip -nc $(TMPDIR)/mirror-$(strip $(1)).owl"; \
+		else \
+			mirror_file=$(MIRRORDIR)/$(strip $(1)).owl; \
+			current_mirror="cat $$mirror_file"; \
+			update_mirror="cat $(TMPDIR)/mirror-$(strip $(1)).owl"; \
+		fi; \
 		if [ "$(strip $(3))" = "force" ] || \
-				! cmp -s $(TMPDIR)/mirror-$(strip $(1)).owl $(MIRRORDIR)/$(strip $(1)).owl ; then \
+				! ($$current_mirror 2>/dev/null | cmp -s - $(TMPDIR)/mirror-$(strip $(1)).owl) ; then \
 			echo "Mirrors different or update is forced, !!! UPDATING !!!" && \
-			cp $(TMPDIR)/mirror-$(strip $(1)).owl $(MIRRORDIR)/$(strip $(1)).owl; \
+			$$update_mirror > $$mirror_file; \
 		else \
 			echo "Mirrors identical, !!! IGNORING !!!"; \
 		fi; \
