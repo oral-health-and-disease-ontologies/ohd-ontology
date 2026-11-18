@@ -13,7 +13,7 @@
      xmlns:dcterms="http://purl.org/dc/terms/"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
     <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ohd/ohd-base.owl">
-        <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/ohd/releases/2026-11-04/ohd-base.owl"/>
+        <owl:versionIRI rdf:resource="http://purl.obolibrary.org/obo/ohd/releases/2026-11-18/ohd-base.owl"/>
         <dc:type rdf:resource="http://purl.obolibrary.org/obo/IAO_8000001"/>
         <dcterms:contributor rdf:resource="https://orcid.org/0000-0001-6378-1703"/>
         <dcterms:contributor rdf:resource="https://orcid.org/0000-0001-6424-4096"/>
@@ -34,7 +34,7 @@
         <dcterms:description>The Oral Health and Disease Ontology (OHD) is an OBO Foundry ontology used for representing  oral-health maladies, their diagnosis, and treatment. It is has been used to represent the content of dental practice health records and is intended to be further developed for use in translation medicine. It demonstrates a principled split between billing codes as information entities and what the codes are about, such as dental procedures, materials, and patients.</dcterms:description>
         <dcterms:license rdf:resource="http://creativecommons.org/licenses/by/4.0/"/>
         <dcterms:title>Oral Health and Disease Ontology</dcterms:title>
-        <owl:versionInfo>2026-11-04</owl:versionInfo>
+        <owl:versionInfo>2026-11-18</owl:versionInfo>
     </owl:Ontology>
     
 
@@ -781,6 +781,12 @@ This data property provides a means to query for missing tooth roots. Since a mi
     
 
 
+    <!-- http://purl.obolibrary.org/obo/BFO_0000020 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000020"/>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/BFO_0000023 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/BFO_0000023"/>
@@ -1262,12 +1268,6 @@ Changed &quot;A specific healthcare activity&quot; to &quot;A health care encoun
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"/>
         <rdfs:label>dental procedure</rdfs:label>
     </owl:Class>
-    <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0000002"/>
-        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/OHD_0008039"/>
-        <oboInOwl:is_inferred>true</oboInOwl:is_inferred>
-    </owl:Axiom>
     
 
 
@@ -11194,6 +11194,7 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
     <!-- http://purl.obolibrary.org/obo/OHD_0000455 -->
 
     <owl:Class rdf:about="http://purl.obolibrary.org/obo/OHD_0000455">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000020"/>
         <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/PATO_0001652"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -11207,6 +11208,12 @@ Prosthics may be either functional for non-functional. For example, a glass eye 
         <oboInOwl:hasExactSynonym>occlusion</oboInOwl:hasExactSynonym>
         <rdfs:label>tooth occlusal quality</rdfs:label>
     </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0000455"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/BFO_0000020"/>
+        <oboInOwl:is_inferred>true</oboInOwl:is_inferred>
+    </owl:Axiom>
     <owl:Axiom>
         <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0000455"/>
         <owl:annotatedProperty rdf:resource="http://purl.obolibrary.org/obo/IAO_0000115"/>
@@ -15437,12 +15444,6 @@ https://pubchem.ncbi.nlm.nih.gov/compound/166630</obo:IAO_0000118>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"/>
         <rdfs:label>gingivitis</rdfs:label>
     </owl:Class>
-    <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0010025"/>
-        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/OHD_0010070"/>
-        <oboInOwl:is_inferred>true</oboInOwl:is_inferred>
-    </owl:Axiom>
     
 
 
@@ -15741,12 +15742,6 @@ https://pubchem.ncbi.nlm.nih.gov/compound/166630</obo:IAO_0000118>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"/>
         <rdfs:label>oral mucosal inflammation</rdfs:label>
     </owl:Class>
-    <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0010042"/>
-        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/OHD_0010289"/>
-        <oboInOwl:is_inferred>true</oboInOwl:is_inferred>
-    </owl:Axiom>
     
 
 
@@ -16243,12 +16238,6 @@ https://pubchem.ncbi.nlm.nih.gov/compound/166630</obo:IAO_0000118>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"/>
         <rdfs:label>periodontitis</rdfs:label>
     </owl:Class>
-    <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0010070"/>
-        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/OHD_0010289"/>
-        <oboInOwl:is_inferred>true</oboInOwl:is_inferred>
-    </owl:Axiom>
     
 
 
@@ -19904,12 +19893,6 @@ https://pubchem.ncbi.nlm.nih.gov/compound/166630</obo:IAO_0000118>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"/>
         <rdfs:label>tendonitis</rdfs:label>
     </owl:Class>
-    <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0010291"/>
-        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/OHD_0010289"/>
-        <oboInOwl:is_inferred>true</oboInOwl:is_inferred>
-    </owl:Axiom>
     
 
 
@@ -20142,12 +20125,6 @@ https://pubchem.ncbi.nlm.nih.gov/compound/166630</obo:IAO_0000118>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"/>
         <rdfs:label>myositis</rdfs:label>
     </owl:Class>
-    <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0010305"/>
-        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/OHD_0010289"/>
-        <oboInOwl:is_inferred>true</oboInOwl:is_inferred>
-    </owl:Axiom>
     
 
 
@@ -20182,12 +20159,6 @@ https://pubchem.ncbi.nlm.nih.gov/compound/166630</obo:IAO_0000118>
         <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/ohd/imports/pain_import.owl"/>
         <rdfs:label>inflammatory arthritis</rdfs:label>
     </owl:Class>
-    <owl:Axiom>
-        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/OHD_0010306"/>
-        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
-        <owl:annotatedTarget rdf:resource="http://purl.obolibrary.org/obo/OHD_0010289"/>
-        <oboInOwl:is_inferred>true</oboInOwl:is_inferred>
-    </owl:Axiom>
     
 
 

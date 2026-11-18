@@ -1,5 +1,5 @@
 format-version: 1.2
-data-version: ohd/releases/2026-11-04/ohd-base.owl
+data-version: ohd/releases/2026-11-18/ohd-base.owl
 subsetdef: OHD:0005009 ""
 subsetdef: OHD:0010296 "PMID:32103673"
 idspace: dc http://purl.org/dc/elements/1.1/ 
@@ -27,7 +27,7 @@ property_value: dcterms:contributor "Pedro Hernandez Cott" xsd:string
 property_value: dcterms:description "The Oral Health and Disease Ontology (OHD) is an OBO Foundry ontology used for representing  oral-health maladies, their diagnosis, and treatment. It is has been used to represent the content of dental practice health records and is intended to be further developed for use in translation medicine. It demonstrates a principled split between billing codes as information entities and what the codes are about, such as dental procedures, materials, and patients." xsd:string
 property_value: dcterms:license http://creativecommons.org/licenses/by/4.0/
 property_value: dcterms:title "Oral Health and Disease Ontology" xsd:string
-property_value: owl:versionInfo "2026-11-04" xsd:string
+property_value: owl:versionInfo "2026-11-18" xsd:string
 
 [Term]
 id: OHD:0000000
@@ -57,7 +57,7 @@ id: OHD:0000002
 name: dental procedure
 def: "A healthcare encounter that realizes a dental patient role in which the patient undergoes a diagnostic or therapeutic process." []
 is_a: OGMS:0000097
-is_a: OHD:0008039 {is_inferred="true"} ! process during dental visit
+is_a: OHD:0008039 ! process during dental visit
 intersection_of: BFO:0000015
 intersection_of: BFO:0000055 OHD:0000052 ! dental healthcare provider role
 intersection_of: BFO:0000055 OHD:0000190 ! dental patient role
@@ -4049,6 +4049,7 @@ id: OHD:0000455
 name: tooth occlusal quality
 def: "A alignment quality that characterizes how at least one upper tooth and at least one lower tooth spatialy relate to one another during static or dynamic maximal contact." [] {IAO:0000119="https://pmc.ncbi.nlm.nih.gov/articles/PMC11624512/", IAO:0000119="https://aaoinfo.org/resources/glossary-of-orthodontic-terms/", IAO:0000119="https://www.ncbi.nlm.nih.gov/books/NBK570625/"}
 synonym: "occlusion" EXACT []
+is_a: BFO:0000020 {is_inferred="true"}
 is_a: PATO:0001652
 relationship: RO:0000052 UBERON:0001091
 property_value: dcterms:contributor https://orcid.org/0000-0001-9625-1899
@@ -6190,7 +6191,7 @@ replaced_by: PAIN:0010024
 id: OHD:0010025
 name: gingivitis
 def: "A gingival disorder involving inflammation of the gingival tissue." []
-is_a: OHD:0010070 {is_inferred="true"} ! periodontitis
+is_a: OHD:0010070 ! periodontitis
 is_a: OHD:0010115 ! gingival disorder
 intersection_of: OHD:0010115 ! gingival disorder
 intersection_of: RO:0002353 GO:0006954
@@ -6386,7 +6387,7 @@ id: OHD:0010042
 name: oral mucosal inflammation
 def: "An inflammatory response causing inflammation in the oral mucosa." []
 is_a: OHD:0010116 ! oral mucosal disorder
-is_a: OHD:0010289 {is_inferred="true"} ! inflammation
+is_a: OHD:0010289 ! inflammation
 intersection_of: OHD:0010116 ! oral mucosal disorder
 intersection_of: RO:0002353 GO:0006954
 relationship: BFO:0000066 UBERON:0000344
@@ -6706,7 +6707,7 @@ id: OHD:0010070
 name: periodontitis
 def: "A periodontal disorder that results from inflammation of the periodontium." []
 is_a: OHD:0010117 ! periodontal disorder
-is_a: OHD:0010289 {is_inferred="true"} ! inflammation
+is_a: OHD:0010289 ! inflammation
 intersection_of: OHD:0010117 ! periodontal disorder
 intersection_of: RO:0002353 GO:0006954
 relationship: RO:0001025 UBERON:0008266
@@ -9216,7 +9217,7 @@ property_value: dcterms:created "2025-07-16T14:31:57Z" xsd:dateTime
 id: OHD:0010291
 name: tendonitis
 def: "A disorder of a tendon caused by inflammation." []
-is_a: OHD:0010289 {is_inferred="true"} ! inflammation
+is_a: OHD:0010289 ! inflammation
 intersection_of: OGMS:0000045
 intersection_of: RO:0000057 UBERON:0000043
 intersection_of: RO:0002353 GO:0006954
@@ -9379,7 +9380,7 @@ replaced_by: PAIN:0010304
 id: OHD:0010305
 name: myositis
 def: "A disorder of a muscle caused by inflammation." []
-is_a: OHD:0010289 {is_inferred="true"} ! inflammation
+is_a: OHD:0010289 ! inflammation
 intersection_of: OGMS:0000045
 intersection_of: RO:0000057 UBERON:0001134
 intersection_of: RO:0002353 GO:0006954
@@ -9392,7 +9393,7 @@ property_value: isDefinedBy pain:import.owl
 id: OHD:0010306
 name: inflammatory arthritis
 def: "A disorder of a joint caused by inflammation." []
-is_a: OHD:0010289 {is_inferred="true"} ! inflammation
+is_a: OHD:0010289 ! inflammation
 intersection_of: OGMS:0000045
 intersection_of: RO:0000057 UBERON:0000982
 intersection_of: RO:0002353 GO:0006954
