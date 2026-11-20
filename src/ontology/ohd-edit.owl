@@ -575,6 +575,7 @@ Declaration(Class(obo:OHD_0000449))
 Declaration(Class(obo:OHD_0000450))
 Declaration(Class(obo:OHD_0000451))
 Declaration(Class(obo:OHD_0000452))
+Declaration(Class(obo:OHD_0000453))
 Declaration(Class(obo:OHD_0000455))
 Declaration(Class(obo:OHD_0000456))
 Declaration(Class(obo:OHD_0000457))
@@ -1854,6 +1855,10 @@ SubClassOf(obo:CDT_1000022 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000004)
 
 SubClassOf(obo:CDT_1000023 ObjectSomeValuesFrom(obo:IAO_0000136 obo:OHD_0000033))
 
+# Class: obo:COB_0000502 (characteristic)
+
+SubClassOf(obo:COB_0000502 owl:Thing)
+
 # Class: obo:ExO_0000002 (exposure event)
 
 SubClassOf(obo:ExO_0000002 obo:BFO_0000015)
@@ -1876,7 +1881,6 @@ EquivalentClasses(obo:NBO_0000007 ObjectIntersectionOf(obo:OGMS_0000060 ObjectSo
 
 AnnotationAssertion(obo:IAO_0000111 obo:OBI_0000245 "organization"@en)
 AnnotationAssertion(obo:IAO_0000112 obo:OBI_0000245 "PMID: 16353909.AAPS J. 2005 Sep 22;7(2):E274-80. Review. The joint food and agriculture organization of the United Nations/World Health Organization Expert Committee on Food Additives and its role in the evaluation of the safety of veterinary drug residues in foods."@en)
-AnnotationAssertion(obo:IAO_0000115 obo:OBI_0000245 "An organization is a continuant entity which can play roles,  has members, and has a set of organization rules.  Members of organizations are either organizations themselves or individual people. Members can bear specific organization member roles that are determined in the organization rules. The organization rules also determine how decisions are made on behalf of the organization by the organization members."@en)
 AnnotationAssertion(obo:IAO_0000116 obo:OBI_0000245 "BP: The definition summarizes long email discussions on the OBI developer, roles, biomaterial and denrie branches. It leaves open if an organization is a material entity or a dependent continuant, as no consensus was reached on that.  The current placement as material is therefore temporary, in order to move forward with development. Here is the entire email summary, on which the definition is based:
 
 1) there are organization_member_roles (president, treasurer, branch
@@ -4271,9 +4275,9 @@ SubClassOf(obo:OHD_0000283 obo:OHD_0000278)
 # Class: obo:OHD_0000284 (abrasive material)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000284 "A material entity of a certain hardness and density that helps remove material from the surface of an entity."@en)
-AnnotationAssertion(dcterms:contributor obo:OHD_0000284 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0000284 <https://orcid.org/0009-0006-7251-3026>)
 AnnotationAssertion(dcterms:created obo:OHD_0000284 "2023-06-09T16:29:17Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:comment obo:OHD_0000284 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(rdfs:label obo:OHD_0000284 "abrasive material"@en)
 SubClassOf(obo:OHD_0000284 obo:BFO_0000040)
 
@@ -5838,6 +5842,15 @@ AnnotationAssertion(dcterms:created obo:OHD_0000452 "2026-06-15T19:29:13Z"^^xsd:
 AnnotationAssertion(rdfs:label obo:OHD_0000452 "Angle's classification finding"@en)
 SubClassOf(obo:OHD_0000452 obo:OHD_0000465)
 
+# Class: obo:OHD_0000453 (dental care-related fear or anxiety process)
+
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0000453 "A grouping class for dental care-related fear or dental care-related anxiety. It is not always clear if a dental care-related emotion is fear or anxiety.")
+AnnotationAssertion(dcterms:contributor obo:OHD_0000453 <https://orcid.org/0000-0001-9625-1899>)
+AnnotationAssertion(dcterms:created obo:OHD_0000453 "2026-10-27T21:35:35Z"^^xsd:dateTime)
+AnnotationAssertion(rdfs:label obo:OHD_0000453 "dental care-related fear or anxiety process"@en)
+EquivalentClasses(obo:OHD_0000453 ObjectUnionOf(obo:OHD_0008083 obo:OHD_0008084))
+SubClassOf(obo:OHD_0000453 obo:EMRO_0000000)
+
 # Class: obo:OHD_0000455 (occlusion quality)
 
 AnnotationAssertion(Annotation(obo:IAO_0000119 "PMID:37914442") Annotation(obo:IAO_0000119 "https://aaoinfo.org/resources/glossary-of-orthodontic-terms/") Annotation(obo:IAO_0000119 "https://pmc.ncbi.nlm.nih.gov/articles/PMC11624512/") Annotation(obo:IAO_0000119 "https://www.ncbi.nlm.nih.gov/books/NBK570625/") obo:IAO_0000115 obo:OHD_0000455 "A position quality that characterizes how at least one upper tooth and at least one lower tooth spatialy relate to one another."@en)
@@ -6510,7 +6523,7 @@ SubClassOf(obo:OHD_0008005 obo:MF_0000038)
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008006 "OBSOLETE. A relation between a physical sensation and an anatomical entity or site where an anatomical entity is usually located in which the sensation is subjectively experienced as occurring in the anatomical entity or site."@en)
 AnnotationAssertion(obo:IAO_0000231 obo:OHD_0008006 obo:IAO_0000228)
-AnnotationAssertion(obo:IAO_0100001 obo:OHD_0008006 "http://purl.obolibrary.org/obo/PAIN_0000062")
+AnnotationAssertion(obo:IAO_0100001 obo:OHD_0008006 obo:PAIN_0000062)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008006 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008006 <https://orcid.org/0000-0001-9990-8331>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008006 <https://orcid.org/0009-0002-7282-0836>)
@@ -7265,9 +7278,10 @@ SubClassOf(obo:OHD_0008082 obo:OHD_0000274)
 
 # Class: obo:OHD_0008083 (dental care-related fear process)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008083 "A fear process that occurs during dental care, such as during a tooth restoration procedure."@en)
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008083 "A fear process related to receiving dental care. Dental care-related fear typically occurs in close temporal proximity to actual dental care, such as immediately prior to or during an injection."@en)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008083 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008083 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008083 <https://orcid.org/0000-0002-0766-8455>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008083 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008083 "2026-09-01T17:42:03Z"^^xsd:dateTime)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008083 obo:OHD_0005009)
@@ -7276,11 +7290,13 @@ SubClassOf(obo:OHD_0008083 obo:EMRO_0000004)
 
 # Class: obo:OHD_0008084 (dental care-related anxiety process)
 
-AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008084 "An anxiety process that is in response to some perceived future dental-related threat, such as an upcoming dental appointment or pain anticipated as part of a dental procedure."@en)
+AnnotationAssertion(obo:IAO_0000115 obo:OHD_0008084 "An anxiety process related to receiving dental care. Dental care-related anxiety happens in response to dental-care related threat, such as an upcoming dental appointment or pain anticipated as part of a dental procedure.")
 AnnotationAssertion(dcterms:contributor obo:OHD_0008084 <https://orcid.org/0000-0001-9625-1899>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008084 <https://orcid.org/0000-0001-9990-8331>)
+AnnotationAssertion(dcterms:contributor obo:OHD_0008084 <https://orcid.org/0000-0002-0766-8455>)
 AnnotationAssertion(dcterms:contributor obo:OHD_0008084 <https://orcid.org/0009-0002-7282-0836>)
 AnnotationAssertion(dcterms:created obo:OHD_0008084 "2026-09-01T17:42:15Z"^^xsd:dateTime)
+AnnotationAssertion(dcterms:description obo:OHD_0008084 "Dental care-related anxiety happens in response to some perceived future dental-care related threat, such as an upcoming dental appointment or pain anticipated as part of a dental procedure."@en)
 AnnotationAssertion(<http://www.geneontology.org/formats/oboInOwl#inSubset> obo:OHD_0008084 obo:OHD_0005009)
 AnnotationAssertion(rdfs:label obo:OHD_0008084 "dental care-related anxiety process"@en)
 SubClassOf(obo:OHD_0008084 obo:EMRO_0000003)
@@ -7300,7 +7316,7 @@ SubClassOf(obo:OHD_0008085 obo:OHD_0008011)
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010000 "OBSOLETE. Pain originating in the orofacial region, which includes the mouth and face."@en)
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0010000 "PMID:32103673")
 AnnotationAssertion(obo:IAO_0000231 obo:OHD_0010000 obo:IAO_0000228)
-AnnotationAssertion(obo:IAO_0100001 obo:OHD_0010000 "http://purl.obolibrary.org/obo/PAIN_0000090")
+AnnotationAssertion(obo:IAO_0100001 obo:OHD_0010000 obo:PAIN_0000090)
 AnnotationAssertion(dcterms:contributor obo:OHD_0010000 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010000 "2025-04-04T15:42:46Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010000 "obsolete orofacial pain"@en)
@@ -7357,7 +7373,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010004 "OBSOLETE. Orofacial pain in
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0010004 "PMID:32103673")
 AnnotationAssertion(obo:IAO_0000119 obo:OHD_0010004 "https://doi.org/10.1177/0333102419893823")
 AnnotationAssertion(obo:IAO_0000231 obo:OHD_0010004 obo:IAO_0000228)
-AnnotationAssertion(obo:IAO_0100001 obo:OHD_0010004 "http://purl.obolibrary.org/obo/PAIN_0000000")
+AnnotationAssertion(obo:IAO_0100001 obo:OHD_0010004 obo:PAIN_0000000)
 AnnotationAssertion(dcterms:contributor obo:OHD_0010004 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010004 "2025-04-08T14:26:28Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:comment obo:OHD_0010004 "http://purl.obolibrary.org/obo/UBERON_0003700")
@@ -8887,7 +8903,7 @@ SubClassOf(obo:OHD_0010139 <http://www.geneontology.org/formats/oboInOwl#Obsolet
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010140 "OBSOLETE. Pain that is onset within the last 3 months"@en)
 AnnotationAssertion(obo:IAO_0000231 obo:OHD_0010140 obo:IAO_0000228)
-AnnotationAssertion(obo:IAO_0100001 obo:OHD_0010140 "http://purl.obolibrary.org/obo/PAIN_0000053")
+AnnotationAssertion(obo:IAO_0100001 obo:OHD_0010140 obo:PAIN_0000053)
 AnnotationAssertion(dcterms:contributor obo:OHD_0010140 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010140 "2025-06-25T18:14:29Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010140 "obsolete acute pain"@en)
@@ -8898,7 +8914,7 @@ SubClassOf(obo:OHD_0010140 <http://www.geneontology.org/formats/oboInOwl#Obsolet
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010141 "OBSOLETE. Pain that is onset for more than three months."@en)
 AnnotationAssertion(obo:IAO_0000231 obo:OHD_0010141 obo:IAO_0000228)
-AnnotationAssertion(obo:IAO_0100001 obo:OHD_0010141 "http://purl.obolibrary.org/obo/PAIN_0000040")
+AnnotationAssertion(obo:IAO_0100001 obo:OHD_0010141 obo:PAIN_0000040)
 AnnotationAssertion(dcterms:contributor obo:OHD_0010141 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010141 "2025-06-25T18:15:03Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010141 "obsolete chronic pain"@en)
@@ -10285,7 +10301,7 @@ SubClassOf(obo:OHD_0010265 <http://www.geneontology.org/formats/oboInOwl#Obsolet
 
 AnnotationAssertion(obo:IAO_0000115 obo:OHD_0010266 "OBSOLETE. Pain occuring from 7 days to 1 year, separated by pain-free periods lasting at least 3 months."@en)
 AnnotationAssertion(obo:IAO_0000231 obo:OHD_0010266 obo:IAO_0000228)
-AnnotationAssertion(obo:IAO_0100001 obo:OHD_0010266 "http://purl.obolibrary.org/obo/PAIN_0000038")
+AnnotationAssertion(obo:IAO_0100001 obo:OHD_0010266 obo:PAIN_0000038)
 AnnotationAssertion(dcterms:contributor obo:OHD_0010266 <https://orcid.org/0009-0003-5583-4731>)
 AnnotationAssertion(dcterms:created obo:OHD_0010266 "2025-07-07T17:20:14Z"^^xsd:dateTime)
 AnnotationAssertion(rdfs:label obo:OHD_0010266 "obsolete episodic pain"@en)
@@ -11001,6 +11017,7 @@ AnnotationAssertion(obo:OHD_0000065 obo:UBERON_8490051 "O")
 # Class: <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> (obsolete class)
 
 AnnotationAssertion(rdfs:label <http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> "obsolete class")
+SubClassOf(<http://www.geneontology.org/formats/oboInOwl#ObsoleteClass> owl:Thing)
 
 
 ############################

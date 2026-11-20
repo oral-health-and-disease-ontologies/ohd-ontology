@@ -1,1 +1,1 @@
-This directory contains files for OHD ontology subsets, including icop and odfa. The files here are part of the subset build process are not the final versions of the subset files. Those can be found in the subset root directory.
+This directory contains files for OHD ontology subsets (currently odfa). The files here are part of the subset build process and are not the final versions of the subset files. Those can be found in the subsets directory at the repository root. See ../README-MAKEFILE.md for how subsets are built.
